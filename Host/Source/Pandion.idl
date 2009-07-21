@@ -287,7 +287,8 @@ import "atliface.idl";
 		HRESULT GetLength([out,retval] DWORD* Length);
 		HRESULT GetStatus([out,retval] BSTR* Status);
 	}
-*/	[ uuid(AA1128C2-C1DD-40be-9F04-CCAC37D9C576), dual ] interface IXMPP : IDispatch
+*/
+/*	[ uuid(AA1128C2-C1DD-40be-9F04-CCAC37D9C576), dual ] interface IXMPP : IDispatch
 	{
 		HRESULT SetMainWnd([in] void* mainwnd);
 		HRESULT Connect([in] BSTR server, [in] USHORT port, [in,defaultvalue(FALSE)] BOOL useSSL,
@@ -312,7 +313,7 @@ import "atliface.idl";
 		[propget] HRESULT ConnectionIP([out,retval] BSTR* strIP);
 		HRESULT SetProxyServer([in] BSTR server, [in] USHORT port, [in] BSTR username, [in] BSTR password);
 		HRESULT SetProxyPollURL([in] BSTR pollURL);
-	}
+	}*/
 	[ uuid(4DA65D01-52FA-4305-8F87-3C2124F01FB1), dual ] interface ISASL : IDispatch
 	{
 		HRESULT PlainGenerateResponse([in] BSTR jid, [in] BSTR username, [in] BSTR password, [out,retval] BSTR* strBase64);

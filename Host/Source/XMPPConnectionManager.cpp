@@ -29,7 +29,8 @@
  */
 XMPPConnectionManager::XMPPConnectionManager(XMPPHandlers& handlers, 
 											 XMPPLogger& logger) :
-	m_Handlers(handlers), m_Logger(logger), m_XMLParser(handlers, logger)
+	m_Handlers(handlers), m_Logger(logger), m_XMLParser(handlers, logger),
+	m_Socket()
 {
 	m_ProxyMethod = ProxyMethodDontUse;
 
@@ -270,12 +271,12 @@ DWORD XMPPConnectionManager::AsyncConnect()
 		m_SendQueue.SetDisconnected();
 		m_XMLParser.SetDisconnected();
 		m_Socket.Disconnect();
-		m_Handlers.OnDisconnected();
 	}
 	else
 	{
 //		OutputDebugString(TEXT("CXMPP::AsyncConnect(): Could not connect to XMPP server!\n"));
 	}
+	m_Handlers.OnDisconnected();
 	return 0;
 }
 

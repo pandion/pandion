@@ -245,13 +245,9 @@ STDMETHODIMP CExternal::get_Directory( VARIANT *pDisp )
 }
 STDMETHODIMP CExternal::get_XMPP( VARIANT *pDisp )
 {
-	IXMPP *pXMPP;
-	
-	m_pModule->GetXMPP( &pXMPP );
-	pXMPP->QueryInterface( IID_IDispatch, (void **) &pDisp->pdispVal );
-	pXMPP->Release();
-
+	m_pModule->GetXMPP( &pDisp->pdispVal );
 	pDisp->vt = VT_DISPATCH;
+
 	return S_OK;
 }
 STDMETHODIMP CExternal::StringToSHA1(BSTR str, BSTR *strSHA1)

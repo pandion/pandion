@@ -26,10 +26,12 @@
 #include "XMPPConnectionManager.h"
 
 class CXMPP :
-	public CComObjectRootEx<CComSingleThreadModel>,
-	public IDispatchImpl<IXMPP>
+	public IDispatch
 {
 private:
+	unsigned long			m_COMReferenceCounter;
+	ITypeInfo*				m_TypeInfo;
+
 	XMPPHandlers			m_Handlers;
 	XMPPLogger				m_Logger;
 	XMPPConnectionManager	m_ConnectionManager;
@@ -37,14 +39,23 @@ public:
 	CXMPP();
 	~CXMPP();
 
+	virtual void SetMainWnd(CMainWnd* pMainWnd);
+
 	/* IUnknown implementation */
-BEGIN_COM_MAP(CXMPP)
-	COM_INTERFACE_ENTRY(IDispatch)
-	COM_INTERFACE_ENTRY(IXMPP)
-END_COM_MAP()
+	STDMETHOD(QueryInterface)(REFIID riid, void** ppvObject);
+	STDMETHOD_(ULONG,AddRef)();
+	STDMETHOD_(ULONG,Release)();
+
+	/* IDispatch implementation */
+	STDMETHOD(GetTypeInfoCount)(UINT* pctinfo);
+	STDMETHOD(GetTypeInfo)(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo);
+	STDMETHOD(GetIDsOfNames)(REFIID riid, LPOLESTR* rgszNames,
+		UINT cNames, LCID lcid, DISPID* rgDispId);
+	STDMETHOD(Invoke)(DISPID dispidMember, REFIID riid, LCID lcid, WORD wFlags,
+		DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo,
+		UINT* puArgErr);
 
 	/* IXMPP implementation */
-	STDMETHOD(SetMainWnd)(void *pMainWnd);
 	STDMETHOD(SetProxyServer)(BSTR server, 
 		USHORT port, BSTR username, BSTR password);
 	STDMETHOD(SetProxyPollURL)(BSTR pollURL);
@@ -57,7 +68,7 @@ END_COM_MAP()
 	STDMETHOD(StartTLS)();
 	STDMETHOD(StartSC)();
 
-	STDMETHOD(SendXML)(VARIANT pDisp);
+	STDMETHOD(SendXML)(IDispatch* pDisp);
 	STDMETHOD(SendText)(BSTR strText);
 
 	STDMETHOD(put_ConnectedHandler)(BSTR handler);

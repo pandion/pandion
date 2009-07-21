@@ -72,7 +72,6 @@ private:
 	 * Data that has yet to be decrypted.
 	 */
 	std::vector<char>  m_pendingEncoded;
-
 public:
 	Socket(SOCKET s = INVALID_SOCKET);
 	~Socket();

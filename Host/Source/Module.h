@@ -20,6 +20,7 @@
  * Description: TODOTODOTODO
  */
 #pragma once
+#include "XMPP.h"
 
 const DWORD COPYDATA_CMDLINE = 0x0001;
 
@@ -30,8 +31,8 @@ class CPandionModule : public CAtlExeModuleT< CPandionModule >
 private:
 	CMainWnd *m_pMainWnd;
 
+	CXMPP m_XMPP;
 	IHTTP *m_pHTTP;
-	IXMPP *m_pXMPP;
 	ISASL *m_pSASL;
 
 	CComQIPtr< ScrRun::IDictionary > m_spGlobals;
@@ -42,7 +43,7 @@ public :
 
 	void GetMainWnd( CMainWnd **ppMainWnd );
 	void GetHTTP( IHTTP **ppHTTP );
-	void GetXMPP( IXMPP **ppXMPP );
+	void GetXMPP( IDispatch **ppXMPP );
 	void GetSASL( ISASL **ppSASL );
 	void GetGlobals( ScrRun::IDictionary **ppGlobals );
 	void GetWindows( ScrRun::IDictionary **ppWindows );

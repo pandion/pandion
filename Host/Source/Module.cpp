@@ -53,15 +53,9 @@ void CPandionModule::GetHTTP( IHTTP **ppHTTP )
 		ATLASSERT( 0 );
 	}
 }
-void CPandionModule::GetXMPP( IXMPP **ppXMPP )
+void CPandionModule::GetXMPP( IDispatch **ppXMPP )
 {
-	if( m_pXMPP )
-		m_pXMPP->QueryInterface( ppXMPP );
-	else
-	{
-		*ppXMPP = NULL;
-		ATLASSERT( 0 );
-	}
+	m_XMPP.QueryInterface( IID_IDispatch, (void**) ppXMPP );
 }
 void CPandionModule::GetSASL( ISASL **ppSASL )
 {
@@ -193,13 +187,6 @@ HRESULT CPandionModule::PreMessageLoop( int nShowCmd )
 	/* Initialize ATL ActiveX support */
 	AtlAxWinInit();
 
-	/* Initialize Winsock 2.0 */
-	WSADATA wsad;
-	if( WSAStartup( MAKEWORD(2,0), &wsad ) )
-	{
-		::MessageBox( NULL, TEXT("Failed to initialize Winsock 2.0"), TEXT("Pandion"), MB_OK | MB_ICONERROR );
-	}
-
 	/* Initialize globals Dictionary */
 	m_spGlobals.CoCreateInstance( OLESTR("Scripting.Dictionary") );
 
@@ -215,7 +202,6 @@ HRESULT CPandionModule::PreMessageLoop( int nShowCmd )
 	m_spWindows.CoCreateInstance( OLESTR("Scripting.Dictionary") );
 
 	(new CComObject< CHTTP >)->QueryInterface( &m_pHTTP );
-	(new CComObject< CXMPP >)->QueryInterface( &m_pXMPP );
 	(new CComObject< CSASL >)->QueryInterface( &m_pSASL );
 
 	/* Create the main window */
@@ -238,7 +224,7 @@ HRESULT CPandionModule::PreMessageLoop( int nShowCmd )
 		m_pMainWnd->GetWndClassInfo().Register(&(m_pMainWnd->m_pfnSuperWindowProc)), (void*) p );
 	delete p;
 
-	m_pXMPP->SetMainWnd( m_pMainWnd );
+	m_XMPP.SetMainWnd( m_pMainWnd );
 
 	return S_OK;
 }
@@ -286,7 +272,7 @@ HRESULT CPandionModule::PostMessageLoop()
 	/* Release the main window */
 	m_pMainWnd->Release();
 
-	m_pXMPP->Release();
+	m_XMPP.Release();
 	m_pHTTP->Release();
 
 	/* Cleanup winsock */
@@ -302,16 +288,21 @@ HRESULT CPandionModule::PostMessageLoop()
 	return S_OK;
 }
 
-CPandionModule _AtlModule;
-
 extern "C" int WINAPI _tWinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, 
                                 LPTSTR /*lpCmdLine*/, int nShowCmd)
 {
+	/* Initialize Winsock 2.0 */
+	WSADATA wsad;
+	if( WSAStartup( MAKEWORD(2,0), &wsad ) )
+	{
+		::MessageBox( NULL, TEXT("Failed to initialize Winsock 2.0"), TEXT("Pandion"), MB_OK | MB_ICONERROR );
+	}
+
 	STARTUPINFO StartupInfo;
 	StartupInfo.dwFlags = 0;
 	GetStartupInfo( &StartupInfo );
-
-	int retval = _AtlModule.WinMain( StartupInfo.dwFlags & STARTF_USESHOWWINDOW ? StartupInfo.wShowWindow : SW_SHOWDEFAULT );
-    return retval;
+	
+	CPandionModule _AtlModule;
+    return _AtlModule.WinMain( StartupInfo.dwFlags & STARTF_USESHOWWINDOW ? StartupInfo.wShowWindow : SW_SHOWDEFAULT );
 }
 
