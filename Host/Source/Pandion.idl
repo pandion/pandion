@@ -1,24 +1,24 @@
 /**
- * This file is part of Pandion.
- *
- * Pandion is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Pandion is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Pandion.  If not, see <http://www.gnu.org/licenses/>.
- *
- * Filename:    Pandion.idl
- * Author(s):   Dries Staelens
- * Copyright:   Copyright (c) 2009 Dries Staelens
- * Description: TODOTODOTODO
- */
+*  This file is part of Pandion.
+* 
+*  Pandion is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+* 
+*  Pandion is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+* 
+*  You should have received a copy of the GNU General Public License
+*  along with Pandion.  If not, see <http://www.gnu.org/licenses/>.
+* 
+*  Filename:    Pandion.idl
+*  Author(s):   Dries Staelens
+*  Copyright:   Copyright (c) 2009 Dries Staelens
+*  Description: TODOTODOTODO
+*/
 
 import "scrrun.idl";
 import "oaidl.idl";
@@ -32,373 +32,374 @@ import "atliface.idl";
     
 	[ uuid(4D7F263B-EF63-4132-9264-109E4C874ED1) ] interface IExternal : IDispatch
 	{
-		HRESULT Init( [in] void *, [in] void * );
-		[propget] HRESULT wnd( [out, retval] VARIANT *pDisp );
-		[propget] HRESULT mainWnd( [out, retval] VARIANT *pDisp );
-		[propget] HRESULT windows( [out, retval] VARIANT *pDisp );
-		[propget] HRESULT globals( [out, retval] VARIANT *pDisp );
-		[propget] HRESULT ComCtrl( [out, retval] VARIANT *pDisp );
-		HRESULT createWindow( [in] BSTR name, [in] BSTR file, [in] VARIANT* params, [in, defaultvalue(FALSE)] BOOL bPopUnder, [out, retval] VARIANT* pDisp );
-		HRESULT shellExec( [in] BSTR verb, [in] BSTR file, [in] BSTR params, [in] BSTR dir, [in] DWORD nShowCmd );
-		[propget] HRESULT cursorX( [out, retval] VARIANT *retVal );
-		[propget] HRESULT cursorY( [out, retval] VARIANT *retVal );
-		[propget] HRESULT newPopupMenu( [out, retval] VARIANT *pDisp );
-		[propget] HRESULT notifyIcon( [out, retval] VARIANT *pDisp );
-//		[propget] HRESULT HTTP( [out, retval] VARIANT *pDisp );
-		[propget] HRESULT HTTPEngine( [out, retval] VARIANT *pDisp );
-		[propget] HRESULT SASL( [out, retval] VARIANT *pDisp );
-		[propget] HRESULT IPs( [out,retval] VARIANT *pStr );
-		[propget] HRESULT CmdLine( [out,retval] VARIANT *pStr );
-		HRESULT sleep( [in] DWORD dwMilliseconds );
-		HRESULT File( [in] BSTR path, [out,retval] VARIANT *pDisp );
-		HRESULT FileExists( [in] BSTR path, [out,retval] BOOL *bExists );
-		[propget] HRESULT Directory( [out,retval] VARIANT *pDisp );
-		[propget] HRESULT XMPP( [out,retval] VARIANT *pDisp );
-		HRESULT StringToSHA1( [in] BSTR str, [out,retval] BSTR *strSHA1 );
-		HRESULT GetSpecialFolder( [in] int nFolder, [out,retval] BSTR *Path );
-		HRESULT RegRead( [in] BSTR strHKey, [in] BSTR strKey, [in] BSTR value, [out,retval] VARIANT *vRetVal );
-		[propget] HRESULT Shortcut( [out,retval] VARIANT *pDisp );
-		HRESULT UnZip( [in] BSTR path, [in] BSTR targetDir, [out,retval] int *nSuccess );
-		HRESULT Base64ToString( [in] BSTR b64String, [out,retval] BSTR *UTF16String );
-		HRESULT StringToBase64( [in] BSTR UTF16String, [out,retval] BSTR *b64String );
-		HRESULT Fullscreen( [out,retval] BOOL *bFullscreen );
+		HRESULT Init([in] void* , [in] void* );
+		[propget] HRESULT wnd([out, retval] VARIANT* pDisp);
+		[propget] HRESULT mainWnd([out, retval] VARIANT* pDisp);
+		[propget] HRESULT windows([out, retval] VARIANT* pDisp);
+		[propget] HRESULT globals([out, retval] VARIANT* pDisp);
+		[propget] HRESULT ComCtrl([out, retval] VARIANT* pDisp);
+		HRESULT createWindow([in] BSTR name, [in] BSTR file, [in] VARIANT* params, [in, defaultvalue(FALSE)] BOOL bPopUnder, [out, retval] VARIANT* pDisp);
+		HRESULT shellExec([in] BSTR verb, [in] BSTR file, [in] BSTR params, [in] BSTR dir, [in] DWORD nShowCmd);
+		[propget] HRESULT cursorX([out, retval] VARIANT* retVal);
+		[propget] HRESULT cursorY([out, retval] VARIANT* retVal);
+		[propget] HRESULT newPopupMenu([out, retval] VARIANT* pDisp);
+		[propget] HRESULT notifyIcon([out, retval] VARIANT* pDisp);
+//		[propget] HRESULT HTTP([out, retval] VARIANT* pDisp);
+		[propget] HRESULT HTTPEngine([out, retval] VARIANT* pDisp);
+		[propget] HRESULT SASL([out, retval] VARIANT* pDisp);
+		[propget] HRESULT IPs([out,retval] VARIANT* pStr);
+		[propget] HRESULT CmdLine([out,retval] VARIANT* pStr);
+		HRESULT sleep([in] DWORD dwMilliseconds);
+		HRESULT File([in] BSTR path, [out,retval] VARIANT* pDisp);
+		HRESULT FileExists([in] BSTR path, [out,retval] BOOL* bExists);
+		[propget] HRESULT Directory([out,retval] VARIANT* pDisp);
+		[propget] HRESULT XMPP([out,retval] VARIANT* pDisp);
+		HRESULT StringToSHA1([in] BSTR str, [out,retval] BSTR* strSHA1);
+		HRESULT GetSpecialFolder([in] int nFolder, [out,retval] BSTR* Path);
+		HRESULT RegRead([in] BSTR strHKey, [in] BSTR strKey, [in] BSTR value, [out,retval] VARIANT* vRetVal);
+		[propget] HRESULT Shortcut([out,retval] VARIANT* pDisp);
+		HRESULT UnZip([in] BSTR path, [in] BSTR targetDir, [out,retval] int* nSuccess);
+		HRESULT Base64ToString([in] BSTR b64String, [out,retval] BSTR* UTF16String);
+		HRESULT StringToBase64([in] BSTR UTF16String, [out,retval] BSTR* b64String);
+		HRESULT Fullscreen([out,retval] BOOL* bFullscreen);
+		HRESULT PlaySound([in] BSTR soundFile);
 	}
 	[ uuid(FBD6DFDE-45DA-4fd3-94A2-BF211D925CD2) ] interface IPdnFile : IDispatch
 	{
-		HRESULT Create( [in] BSTR strFileName, [in] unsigned dwAccess, [in] unsigned dwShare, [in] unsigned dwDisposition );
+		HRESULT Create([in] BSTR strFileName, [in] unsigned dwAccess, [in] unsigned dwShare, [in] unsigned dwDisposition);
 
-		HRESULT Seek( [in] int fpLow, [in] int fpHigh, [in] unsigned dwMethod );
+		HRESULT Seek([in] int fpLow, [in] int fpHigh, [in] unsigned dwMethod);
 		HRESULT SetEOF();
 
-		HRESULT Read( [out] BYTE* pBuffer, [in] unsigned nRead );
-		HRESULT Write( [in] BYTE* pBuffer, [in] unsigned nWrite );
+		HRESULT Read([out] BYTE* pBuffer, [in] unsigned nRead);
+		HRESULT Write([in] BYTE* pBuffer, [in] unsigned nWrite);
 
-		HRESULT ReadLine( [out,retval] BSTR* strLine );
-		HRESULT WriteLine( [in] BSTR strLine );
+		HRESULT ReadLine([out,retval] BSTR* strLine);
+		HRESULT WriteLine([in] BSTR strLine);
 
-		HRESULT ReadBase64( [out,retval] BSTR* strBase64 );
-		HRESULT WriteBase64( [in] BSTR strBase64 );
+		HRESULT ReadBase64([out,retval] BSTR* strBase64);
+		HRESULT WriteBase64([in] BSTR strBase64);
 
-		[propget] HRESULT AtEnd( [out,retval] bool* bAtEnd );
-		[propget] HRESULT Size( [out,retval] unsigned* nSize );
-		[propget] HRESULT FileName( [out,retval] BSTR* strFileName );
-		[propget] HRESULT SHA1( [out,retval] BSTR* strSHA1 );
+		[propget] HRESULT AtEnd([out,retval] bool* bAtEnd);
+		[propget] HRESULT Size([out,retval] unsigned* nSize);
+		[propget] HRESULT FileName([out,retval] BSTR* strFileName);
+		[propget] HRESULT SHA1([out,retval] BSTR* strSHA1);
 
-		HRESULT Move( [in] BSTR strTo );
-		HRESULT Copy( [in] BSTR strTo, [in,defaultvalue(FALSE)] bool bOverWrite, [out,retval] IPdnFile** retCopy );
+		HRESULT Move([in] BSTR strTo);
+		HRESULT Copy([in] BSTR strTo, [in,defaultvalue(FALSE)] bool bOverWrite, [out,retval] IPdnFile** retCopy);
 		HRESULT Delete();
 		HRESULT Flush();
 		HRESULT Close();
 
-		[propget] HRESULT LastWriteTime( [out,retval] VARIANT* vLastWriteTime );
+		[propget] HRESULT LastWriteTime([out,retval] VARIANT* vLastWriteTime);
 	}
 	[ uuid(E8AC5D21-E54C-4401-B87E-DB242C6F83F2) ] interface IPdnDirectory : IDispatch
 	{
-		HRESULT Create( [in] BSTR path );
-		HRESULT Exists( [in] BSTR path, [out,retval] bool *bExists );
-		HRESULT ListDirs( [in] BSTR path, [out,retval] VARIANT *list );
-		HRESULT ListFiles( [in] BSTR path, [out,retval] VARIANT *list );
-		HRESULT Delete( [in] BSTR path );
+		HRESULT Create([in] BSTR path);
+		HRESULT Exists([in] BSTR path, [out,retval] bool* bExists);
+		HRESULT ListDirs([in] BSTR path, [out,retval] VARIANT* list);
+		HRESULT ListFiles([in] BSTR path, [out,retval] VARIANT* list);
+		HRESULT Delete([in] BSTR path);
 	}
 	[ uuid(A373BD14-D034-461c-9ADA-6B95B5C03A27) ] interface IListEntry : IDispatch
 	{
-		[propget] HRESULT IsArchive( [out,retval] BOOL *b );
-		[propget] HRESULT IsCompressed( [out,retval] BOOL *b );
-		[propget] HRESULT IsDirectory( [out,retval] BOOL *b );
-		[propget] HRESULT IsEncrypted( [out,retval] BOOL *b );
-		[propget] HRESULT IsHidden( [out,retval] BOOL *b );
-		[propget] HRESULT IsNormal( [out,retval] BOOL *b );
-		[propget] HRESULT IsOffline( [out,retval] BOOL *b );
-		[propget] HRESULT IsReadOnly( [out,retval] BOOL *b );
-		[propget] HRESULT HasReparsePoint( [out,retval] BOOL *b );
-		[propget] HRESULT IsSparseFile( [out,retval] BOOL *b );
-		[propget] HRESULT IsSystem( [out,retval] BOOL *b );
-		[propget] HRESULT IsTemporary( [out,retval] BOOL *b );
+		[propget] HRESULT IsArchive([out,retval] BOOL* b);
+		[propget] HRESULT IsCompressed([out,retval] BOOL* b);
+		[propget] HRESULT IsDirectory([out,retval] BOOL* b);
+		[propget] HRESULT IsEncrypted([out,retval] BOOL* b);
+		[propget] HRESULT IsHidden([out,retval] BOOL* b);
+		[propget] HRESULT IsNormal([out,retval] BOOL* b);
+		[propget] HRESULT IsOffline([out,retval] BOOL* b);
+		[propget] HRESULT IsReadOnly([out,retval] BOOL* b);
+		[propget] HRESULT HasReparsePoint([out,retval] BOOL* b);
+		[propget] HRESULT IsSparseFile([out,retval] BOOL* b);
+		[propget] HRESULT IsSystem([out,retval] BOOL* b);
+		[propget] HRESULT IsTemporary([out,retval] BOOL* b);
 
-		[propget] HRESULT CreationTime( [out,retval] BSTR *str );
-		[propget] HRESULT LastAccessTime( [out,retval] BSTR *str );
-		[propget] HRESULT LastWriteTime( [out,retval] BSTR *str );
+		[propget] HRESULT CreationTime([out,retval] BSTR* str);
+		[propget] HRESULT LastAccessTime([out,retval] BSTR* str);
+		[propget] HRESULT LastWriteTime([out,retval] BSTR* str);
 
-		[propget] HRESULT FileSizeHigh( [out,retval] DWORD *dw );
-		[propget] HRESULT FileSizeLow( [out,retval] DWORD *dw );
+		[propget] HRESULT FileSizeHigh([out,retval] DWORD* dw);
+		[propget] HRESULT FileSizeLow([out,retval] DWORD* dw);
 
-		[propget] HRESULT ReparseTag( [out,retval] DWORD *dw );
-		[propget] HRESULT Reserved1( [out,retval] DWORD *dw );
+		[propget] HRESULT ReparseTag([out,retval] DWORD* dw);
+		[propget] HRESULT Reserved1([out,retval] DWORD* dw);
 	
-		[propget] HRESULT Name( [out,retval] BSTR *str );
-		[propget] HRESULT AlternateName( [out,retval] BSTR *str );
+		[propget] HRESULT Name([out,retval] BSTR* str);
+		[propget] HRESULT AlternateName([out,retval] BSTR* str);
 	}
 	[ uuid(EAE0B241-A558-451d-9AF8-899F1FBA68F7) ] interface IPdnWnd : IDispatch
 	{
-		HRESULT setTitle( [in] BSTR Title );
-		HRESULT setAOT( [in] BOOL b );
+		HRESULT setTitle([in] BSTR Title);
+		HRESULT setAOT([in] BOOL b);
 		HRESULT minimize();
 		HRESULT maximize();
 		HRESULT close();
-		HRESULT setSize( [in] DWORD width, [in] DWORD height );
-		HRESULT setPos( [in] int left, [in] int top );
-		HRESULT setIcon( [in] BSTR IconPath );
-		HRESULT hide( [in] BOOL b );
-		HRESULT flash( [in] DWORD u );
-		HRESULT resizeable( [in] BOOL b );
-		HRESULT showMinBox( [in] BOOL b );
-		HRESULT showMaxBox( [in] BOOL b );
-		HRESULT showTitlebar( [in] BOOL b );
-		HRESULT translucent( [in] DWORD percent );
-		HRESULT animate( [in] DWORD flags, [in] DWORD duration );
-		HRESULT Do( [in] BSTR funcName, [in] VARIANT* params, [in,defaultvalue(1)] DWORD nParams );
-		[propget] HRESULT params( [out, retval] VARIANT* retVal );
+		HRESULT setSize([in] DWORD width, [in] DWORD height);
+		HRESULT setPos([in] int left, [in] int top);
+		HRESULT setIcon([in] BSTR IconPath);
+		HRESULT hide([in] BOOL b);
+		HRESULT flash([in] DWORD u);
+		HRESULT resizeable([in] BOOL b);
+		HRESULT showMinBox([in] BOOL b);
+		HRESULT showMaxBox([in] BOOL b);
+		HRESULT showTitlebar([in] BOOL b);
+		HRESULT translucent([in] DWORD percent);
+		HRESULT animate([in] DWORD flags, [in] DWORD duration);
+		HRESULT Do([in] BSTR funcName, [in] VARIANT* params, [in,defaultvalue(1)] DWORD nParams);
+		[propget] HRESULT params([out, retval] VARIANT* retVal);
 		HRESULT focus();
-		[propget] HRESULT left( [out, retval] VARIANT* retVal );
-		[propget] HRESULT top( [out, retval] VARIANT* retVal );
-		[propget] HRESULT width( [out, retval] VARIANT* retVal );
-		[propget] HRESULT height( [out, retval] VARIANT* retVal );
-		[propput] HRESULT minWidth( [in] DWORD minWidth );
-		[propput] HRESULT minHeight( [in] DWORD minHeight );
-		HRESULT isActive ([out,retval] BOOL* );
+		[propget] HRESULT left([out, retval] VARIANT* retVal);
+		[propget] HRESULT top([out, retval] VARIANT* retVal);
+		[propget] HRESULT width([out, retval] VARIANT* retVal);
+		[propget] HRESULT height([out, retval] VARIANT* retVal);
+		[propput] HRESULT minWidth([in] DWORD minWidth);
+		[propput] HRESULT minHeight([in] DWORD minHeight);
+		HRESULT isActive ([out,retval] BOOL*);
 		HRESULT pushFocus();
 		HRESULT popFocus();
-		HRESULT setMinHandler( [in] BSTR );
-		HRESULT setCloseHandler( [in] BSTR );
-		HRESULT setMenuHandler( [in] BSTR );
-		HRESULT setCmdLineHandler( [in] BSTR );
-		HRESULT setRestoreHandler( [in] BSTR );
-		HRESULT setActivationHandler( [in] BSTR );
-		[propget] HRESULT isMinimized( [out,retval] BOOL* );
-		[propget] HRESULT isMaximized( [out,retval] BOOL* );
-		[propget] HRESULT isHidden( [out,retval] BOOL* );
+		HRESULT setMinHandler([in] BSTR);
+		HRESULT setCloseHandler([in] BSTR);
+		HRESULT setMenuHandler([in] BSTR);
+		HRESULT setCmdLineHandler([in] BSTR);
+		HRESULT setRestoreHandler([in] BSTR);
+		HRESULT setActivationHandler([in] BSTR);
+		[propget] HRESULT isMinimized([out,retval] BOOL*);
+		[propget] HRESULT isMaximized([out,retval] BOOL*);
+		[propget] HRESULT isHidden([out,retval] BOOL*);
 		HRESULT restore();
-		HRESULT FireEvent( [in] BSTR handler, [in] VARIANT* parameters, [in] DWORD nParams );
-		[propget] HRESULT menuBar( [out,retval] VARIANT* pDisp );
-		HRESULT messageBox( [in] BOOL modal, [in] BSTR text, [in] BSTR caption, [in] DWORD type, [out,retval] DWORD* retval );
-		[propget] HRESULT Handle( [out,retval] DWORD *pHandle );
+		HRESULT FireEvent([in] BSTR handler, [in] VARIANT* parameters, [in] DWORD nParams);
+		[propget] HRESULT menuBar([out,retval] VARIANT* pDisp);
+		HRESULT messageBox([in] BOOL modal, [in] BSTR text, [in] BSTR caption, [in] DWORD type, [out,retval] DWORD* retval);
+		[propget] HRESULT Handle([out,retval] DWORD* pHandle);
 	}
 	[ uuid(F207E028-1821-4837-A3CB-4CEB55F77BBA) ] interface INotifyIcon : IDispatch
 	{
 		HRESULT show();
 		HRESULT remove();
-		HRESULT setText( [in] BSTR );
-        HRESULT setIcon( [in] BSTR, [in] int );
-		HRESULT setHandler( [in] BSTR );
+		HRESULT setText([in] BSTR);
+        HRESULT setIcon([in] BSTR, [in] int);
+		HRESULT setHandler([in] BSTR);
 		HRESULT update();
 	}
 	[ uuid(61E20ADF-74E3-4ad9-8C8F-C6B6065D88B6), dual ] interface IPopupMenu : IDispatch
 	{
-		HRESULT AddItem( [in] BOOL bEnabled, [in] BOOL bChecked, [in] BOOL bRadio, [in] BOOL bDefault, [in] DWORD hSubMenu, [in] BSTR label, [in] DWORD ID );
-		HRESULT Show( [in] DWORD x, [in] DWORD y, [in, defaultvalue(FALSE)] BOOL fromTray );
-		[propget]HRESULT Handle( [out, retval] VARIANT* pVal );
-		[propget]HRESULT Choice( [out, retval] VARIANT* pVal );
+		HRESULT AddItem([in] BOOL bEnabled, [in] BOOL bChecked, [in] BOOL bRadio, [in] BOOL bDefault, [in] DWORD hSubMenu, [in] BSTR label, [in] DWORD ID);
+		HRESULT Show([in] DWORD x, [in] DWORD y, [in, defaultvalue(FALSE)] BOOL fromTray);
+		[propget]HRESULT Handle([out, retval] VARIANT* pVal);
+		[propget]HRESULT Choice([out, retval] VARIANT* pVal);
 		HRESULT Clear();
 		HRESULT AddSeparator();
 	}
 
 	[ uuid(9543DAE7-DB3D-4233-8F07-1AFC4FDEA1C7), dual ] interface IMenuBar : IDispatch
 	{
-		HRESULT AddItem( [in] BSTR label, [in] DWORD pos, [in] DWORD ID, [in] IDispatch *subMenu );
-		HRESULT RemItem( [in] DWORD ID );
+		HRESULT AddItem([in] BSTR label, [in] DWORD pos, [in] DWORD ID, [in] IDispatch* subMenu);
+		HRESULT RemItem([in] DWORD ID);
 		HRESULT Update();
-		[propget]HRESULT Items( [out,retval] DWORD* nItems );
-		[propget]HRESULT Handle( [out,retval] VARIANT* pHandle );
-		[propput]HRESULT hwnd( [in] DWORD hwnd );
+		[propget]HRESULT Items([out,retval] DWORD* nItems);
+		[propget]HRESULT Handle([out,retval] VARIANT* pHandle);
+		[propput]HRESULT hwnd([in] DWORD hwnd);
 	}
 
 	[ uuid(0D70087F-57AD-4ffc-9AD3-C453A3CEDF95), dual ]
 	interface IEventRouter : IDispatch
 	{
-		HRESULT Subscribe( [in] IDispatch* wnd );
-		HRESULT Unsubscribe( [in] IDispatch* wnd );
+		HRESULT Subscribe([in] IDispatch* wnd);
+		HRESULT Unsubscribe([in] IDispatch* wnd);
 
-		HRESULT OnListening( [in] WORD Port );
-		HRESULT OnAccept( [in] DWORD sessionID, [in] BSTR remHost, [in] USHORT remPort, [in] USHORT localPort );
-		HRESULT OnConnected( [in] DWORD sessionID, [in] BSTR remHost, [in] USHORT remPort, [in] USHORT localPort );
+		HRESULT OnListening([in] WORD Port);
+		HRESULT OnAccept([in] DWORD sessionID, [in] BSTR remHost, [in] USHORT remPort, [in] USHORT localPort);
+		HRESULT OnConnected([in] DWORD sessionID, [in] BSTR remHost, [in] USHORT remPort, [in] USHORT localPort);
 
-		HRESULT OnGetRequest( [in] DWORD sessionID, [in] DWORD fileID, [in] BSTR URI, [in] BSTR localPath );
-		HRESULT OnPostRequest( [in] DWORD sessionID, [in] BSTR URI, [out] BSTR* saveAs );
+		HRESULT OnGetRequest([in] DWORD sessionID, [in] DWORD fileID, [in] BSTR URI, [in] BSTR localPath);
+		HRESULT OnPostRequest([in] DWORD sessionID, [in] BSTR URI, [out] BSTR* saveAs);
 
-		HRESULT OnTimeout( [in] DWORD sessionID );
-		HRESULT OnSockErr( [in] DWORD sessionID, [in] DWORD err );
-		HRESULT OnHTTPErr( [in] DWORD sessionID, [in] DWORD err );
-		HRESULT OnFileErr( [in] DWORD sessionID, [in] DWORD err );
+		HRESULT OnTimeout([in] DWORD sessionID);
+		HRESULT OnSockErr([in] DWORD sessionID, [in] DWORD err);
+		HRESULT OnHTTPErr([in] DWORD sessionID, [in] DWORD err);
+		HRESULT OnFileErr([in] DWORD sessionID, [in] DWORD err);
 
-		HRESULT OnTransferAborted( DWORD sessionID );
-		HRESULT OnTransferComplete( DWORD sessionID );
+		HRESULT OnTransferAborted(DWORD sessionID);
+		HRESULT OnTransferComplete(DWORD sessionID);
 	}
 	[ uuid(62AFF369-6F4F-43a2-84F4-7B60DE4C3F2A), dual ]
 	interface IHTTP : IDispatch
 	{
-		HRESULT ShareFile( [in] BSTR filename, [in] BSTR URL, [out, retval] DWORD* retCookie );
-		HRESULT UnShareFile( [in] DWORD fileCookie );
+		HRESULT ShareFile([in] BSTR filename, [in] BSTR URL, [out, retval] DWORD* retCookie);
+		HRESULT UnShareFile([in] DWORD fileCookie);
 		
-		HRESULT Listen( [in] USHORT port );
-		HRESULT StopListening( [in] USHORT port );
+		HRESULT Listen([in] USHORT port);
+		HRESULT StopListening([in] USHORT port);
 
-		HRESULT Get( [in] BSTR filename, [in] BSTR URI, [in] DWORD offset, [in] DWORD len, [in] BSTR address, [in] USHORT port, [out, retval] DWORD* sessionID );
-		HRESULT Post( [in] BSTR filename, [in] BSTR URI, [in] DWORD offset, [in] DWORD len, [in] BSTR address, [in] USHORT port, [out, retval] DWORD* sessionID );
+		HRESULT Get([in] BSTR filename, [in] BSTR URI, [in] DWORD offset, [in] DWORD len, [in] BSTR address, [in] USHORT port, [out, retval] DWORD* sessionID);
+		HRESULT Post([in] BSTR filename, [in] BSTR URI, [in] DWORD offset, [in] DWORD len, [in] BSTR address, [in] USHORT port, [out, retval] DWORD* sessionID);
 
-		HRESULT SetProxyInfo( [in] BSTR proxyAddress, [in] USHORT proxyPort, [in] BSTR proxyUName, [in] BSTR proxyPass );
+		HRESULT SetProxyInfo([in] BSTR proxyAddress, [in] USHORT proxyPort, [in] BSTR proxyUName, [in] BSTR proxyPass);
 
-		HRESULT GetProgress( [in] DWORD sessionID, [out,retval] DWORD* progress );
-		HRESULT GetLength( [in] DWORD sessionID, [out,retval] DWORD* length );
+		HRESULT GetProgress([in] DWORD sessionID, [out,retval] DWORD* progress);
+		HRESULT GetLength([in] DWORD sessionID, [out,retval] DWORD* length);
 
-		HRESULT Subscribe( [in] IDispatch* wnd );
-		HRESULT Unsubscribe( [in] IDispatch* wnd );
+		HRESULT Subscribe([in] IDispatch* wnd);
+		HRESULT Unsubscribe([in] IDispatch* wnd);
 
-		HRESULT Abort( [in] DWORD sessionID );
+		HRESULT Abort([in] DWORD sessionID);
 	}
 
 /*	[ uuid(27D74212-5EF5-401b-AFBD-30E8DC1D9534), dual ] interface IHTTP : IDispatch
 	{
-		[propget] HRESULT Server( [out,retval] IDispatch **ppServer );
-		[propget] HRESULT Client( [out,retval] IDispatch **ppClient );
+		[propget] HRESULT Server([out,retval] IDispatch* *ppServer);
+		[propget] HRESULT Client([out,retval] IDispatch* *ppClient);
 	}
 	[ uuid(E695B6B5-F5E5-4db9-8B6C-AC30147A8385), dual ] interface IHTTPServer : IDispatch
 	{
-		HRESULT RegisterEvent( [in] BSTR event, [in] BSTR handler, [in] IDispatch *pWnd );
-		HRESULT Listen( [in] USHORT port, [in] BOOL useTLS, [out,retval] USHORT *retPort );
-		HRESULT StopListen( [in] USHORT port );
-		HRESULT ShareFile( [in] BSTR path, [in] BSTR URL );
-		HRESULT UnShareFile( [in] BSTR URL );
+		HRESULT RegisterEvent([in] BSTR event, [in] BSTR handler, [in] IDispatch* pWnd);
+		HRESULT Listen([in] USHORT port, [in] BOOL useTLS, [out,retval] USHORT* retPort);
+		HRESULT StopListen([in] USHORT port);
+		HRESULT ShareFile([in] BSTR path, [in] BSTR URL);
+		HRESULT UnShareFile([in] BSTR URL);
 	}
 	[ uuid(D1428F43-C813-448b-B259-48F077CA8147), dual ] interface IServerSession : IDispatch
 	{
-		HRESULT RegisterEvent( [in] BSTR event, [in] BSTR handler, [in] IDispatch *pWnd );
-		[propget] HRESULT Progress( [out,retval] DWORD *Progress );
-		[propget] HRESULT Length( [out,retval] DWORD *Length );
-		[propget] HRESULT Status( [out,retval] BSTR *Status );
+		HRESULT RegisterEvent([in] BSTR event, [in] BSTR handler, [in] IDispatch* pWnd);
+		[propget] HRESULT Progress([out,retval] DWORD* Progress);
+		[propget] HRESULT Length([out,retval] DWORD* Length);
+		[propget] HRESULT Status([out,retval] BSTR* Status);
 		HRESULT Pause();
 		HRESULT Resume();
 		HRESULT Abort();
-		[propget] HRESULT Method( [out,retval] BSTR *Method );
-		[propget] HRESULT RequestURI( [out,retval] BSTR *RequestURI );
-		[propget] HRESULT HTTPHeaders( [out,retval] BSTR *HTTPHeaders );
+		[propget] HRESULT Method([out,retval] BSTR* Method);
+		[propget] HRESULT RequestURI([out,retval] BSTR* RequestURI);
+		[propget] HRESULT HTTPHeaders([out,retval] BSTR* HTTPHeaders);
 	}
 	[ uuid(481536E1-6083-4432-BC09-BDBC3A7118B8), dual ] interface IHTTPClient : IDispatch
 	{
-		HRESULT Get( [in] BSTR URL, [in] BSTR File, [in] DWORD Offset, [in] DWORD Length, 
-			[out,retval] IDispatch **ppSession );
-		HRESULT Post( [in] BSTR URL, [in] BSTR File, [in] DWORD Offset, [in] DWORD Length, 
-			[out,retval] IDispatch **ppSession );
+		HRESULT Get([in] BSTR URL, [in] BSTR File, [in] DWORD Offset, [in] DWORD Length, 
+			[out,retval] IDispatch* *ppSession);
+		HRESULT Post([in] BSTR URL, [in] BSTR File, [in] DWORD Offset, [in] DWORD Length, 
+			[out,retval] IDispatch* *ppSession);
 	}
 	[ uuid(ADEE0030-BA40-405e-A466-F6B416A23FE9), dual ] interface IClientSession : IDispatch
 	{
-		HRESULT RegisterEvent( [in] BSTR event, [in] BSTR handler, [out,retval] IDispatch **ppWnd );
-		HRESULT GetProgress( [out,retval] DWORD *Progress );
-		HRESULT GetLength( [out,retval] DWORD *Length );
-		HRESULT GetStatus( [out,retval] BSTR *Status );
+		HRESULT RegisterEvent([in] BSTR event, [in] BSTR handler, [out,retval] IDispatch* *ppWnd);
+		HRESULT GetProgress([out,retval] DWORD* Progress);
+		HRESULT GetLength([out,retval] DWORD* Length);
+		HRESULT GetStatus([out,retval] BSTR* Status);
 	}
 */	[ uuid(AA1128C2-C1DD-40be-9F04-CCAC37D9C576), dual ] interface IXMPP : IDispatch
 	{
-		HRESULT SetMainWnd( [in] void* mainwnd );
-		HRESULT Connect( [in] BSTR server, [in] USHORT port, [in,defaultvalue(FALSE)] BOOL useSSL,
-			[in,defaultvalue(0)] DWORD ProxyMethod );
+		HRESULT SetMainWnd([in] void* mainwnd);
+		HRESULT Connect([in] BSTR server, [in] USHORT port, [in,defaultvalue(FALSE)] BOOL useSSL,
+			[in,defaultvalue(0)] DWORD ProxyMethod);
 		HRESULT StartTLS();
 		HRESULT StartSC();
 		HRESULT Disconnect();
-		HRESULT SendXML( [in] VARIANT pDisp );
-		HRESULT SendText( [in] BSTR strText );
-		[propput] HRESULT ConnectedHandler( [in] BSTR handler );
-		[propput] HRESULT DisconnectedHandler( [in] BSTR handler );
-		[propput] HRESULT IQHandler( [in] BSTR handler );
-		[propput] HRESULT MessageHandler( [in] BSTR handler );
-		[propput] HRESULT PresenceHandler( [in] BSTR handler );
-		[propput] HRESULT DocumentStartHandler( [in] BSTR handler );
-		[propput] HRESULT DocumentEndHandler( [in] BSTR handler );
-		[propput] HRESULT StreamHandler( [in] BSTR handler );
-		[propput] HRESULT StartTLSSucceededHandler( [in] BSTR handler );
-		[propput] HRESULT StartTLSFailedHandler( [in] BSTR handler );
-		[propput] HRESULT StartSCSucceededHandler( [in] BSTR handler );
-		[propput] HRESULT StartSCFailedHandler( [in] BSTR handler );
-		[propget] HRESULT ConnectionIP( [out,retval] BSTR *strIP );
-		HRESULT SetProxyServer( [in] BSTR server, [in] USHORT port, [in] BSTR username, [in] BSTR password );
-		HRESULT SetProxyPollURL( [in] BSTR pollURL );
+		HRESULT SendXML([in] VARIANT pDisp);
+		HRESULT SendText([in] BSTR strText);
+		[propput] HRESULT ConnectedHandler([in] BSTR handler);
+		[propput] HRESULT DisconnectedHandler([in] BSTR handler);
+		[propput] HRESULT IQHandler([in] BSTR handler);
+		[propput] HRESULT MessageHandler([in] BSTR handler);
+		[propput] HRESULT PresenceHandler([in] BSTR handler);
+		[propput] HRESULT DocumentStartHandler([in] BSTR handler);
+		[propput] HRESULT DocumentEndHandler([in] BSTR handler);
+		[propput] HRESULT StreamHandler([in] BSTR handler);
+		[propput] HRESULT StartTLSSucceededHandler([in] BSTR handler);
+		[propput] HRESULT StartTLSFailedHandler([in] BSTR handler);
+		[propput] HRESULT StartSCSucceededHandler([in] BSTR handler);
+		[propput] HRESULT StartSCFailedHandler([in] BSTR handler);
+		[propget] HRESULT ConnectionIP([out,retval] BSTR* strIP);
+		HRESULT SetProxyServer([in] BSTR server, [in] USHORT port, [in] BSTR username, [in] BSTR password);
+		HRESULT SetProxyPollURL([in] BSTR pollURL);
 	}
-	[ uuid( 4DA65D01-52FA-4305-8F87-3C2124F01FB1 ), dual ] interface ISASL : IDispatch
+	[ uuid(4DA65D01-52FA-4305-8F87-3C2124F01FB1), dual ] interface ISASL : IDispatch
 	{
-		HRESULT PlainGenerateResponse( [in] BSTR jid, [in] BSTR username, [in] BSTR password, [out,retval] BSTR *strBase64 );
-		HRESULT DigestGenerateResponse( [in] BSTR username, [in] BSTR realm, [in] BSTR password, [in] BSTR nonce, [in] BSTR cnonce, [in] BSTR digest_uri, [in] BSTR nc, [in] BSTR qop, [out,retval] BSTR *strDigest );
+		HRESULT PlainGenerateResponse([in] BSTR jid, [in] BSTR username, [in] BSTR password, [out,retval] BSTR* strBase64);
+		HRESULT DigestGenerateResponse([in] BSTR username, [in] BSTR realm, [in] BSTR password, [in] BSTR nonce, [in] BSTR cnonce, [in] BSTR digest_uri, [in] BSTR nc, [in] BSTR qop, [out,retval] BSTR* strDigest);
 		HRESULT SSPIReset();
-		HRESULT SSPIGenerateResponse( [in] BSTR Challenge, [out] BOOL *Continue, [out,retval] BSTR *Response );
+		HRESULT SSPIGenerateResponse([in] BSTR Challenge, [out] BOOL* Continue, [out,retval] BSTR* Response);
 	}
 	[ uuid(86F9CBA5-DFB1-452d-A79F-F22E0DCFE567), dual ] interface IShortcut : IDispatch
 	{
-		HRESULT Save( [in] BSTR path );
-		HRESULT Load( [in] BSTR path );
+		HRESULT Save([in] BSTR path);
+		HRESULT Load([in] BSTR path);
 
-		[propget] HRESULT Description( [out,retval] BSTR *Description );
-		[propget] HRESULT IconLocation( [out,retval] BSTR *IconLocation );
-		[propget] HRESULT Path( [out,retval] BSTR *Path );
-		[propget] HRESULT Arguments( [out,retval] BSTR *Arguments );
+		[propget] HRESULT Description([out,retval] BSTR* Description);
+		[propget] HRESULT IconLocation([out,retval] BSTR* IconLocation);
+		[propget] HRESULT Path([out,retval] BSTR* Path);
+		[propget] HRESULT Arguments([out,retval] BSTR* Arguments);
 
-		[propput] HRESULT Description( [in] BSTR Description );
-		[propput] HRESULT IconLocation( [in] BSTR IconLocation );
-		[propput] HRESULT Path( [in] BSTR Path );
-		[propput] HRESULT Arguments( [in] BSTR Arguments );
+		[propput] HRESULT Description([in] BSTR Description);
+		[propput] HRESULT IconLocation([in] BSTR IconLocation);
+		[propput] HRESULT Path([in] BSTR Path);
+		[propput] HRESULT Arguments([in] BSTR Arguments);
 	}
-	[ uuid( E4F835D5-4787-4c89-8283-BD18715E6DA8 ), dual ] interface IComCtrl : IDispatch
+	[ uuid(E4F835D5-4787-4c89-8283-BD18715E6DA8), dual ] interface IComCtrl : IDispatch
 	{
-		HRESULT SetWnd( [in] IPdnWnd *pWnd );
-		[propget] HRESULT ComDlg( [out,retval] IDispatch **ppComDlg );
+		HRESULT SetWnd([in] IPdnWnd* pWnd);
+		[propget] HRESULT ComDlg([out,retval] IDispatch* *ppComDlg);
 	}
-	[ uuid( 41392656-E8C6-40fe-9ACF-05C1EAD4ABFE ), dual ] interface IComDlg : IDispatch
+	[ uuid(41392656-E8C6-40fe-9ACF-05C1EAD4ABFE), dual ] interface IComDlg : IDispatch
 	{
-		HRESULT SetWnd( [in] IPdnWnd *pWnd );
-		[propget] HRESULT GetFileName( [out,retval] IDispatch **ppGetOpenFileName );
-		[propget] HRESULT ChooseFont( [out,retval] IDispatch **ppChooseFont );
+		HRESULT SetWnd([in] IPdnWnd* pWnd);
+		[propget] HRESULT GetFileName([out,retval] IDispatch* *ppGetOpenFileName);
+		[propget] HRESULT ChooseFont([out,retval] IDispatch* *ppChooseFont);
 	}
-	[ uuid( A1FA76F8-E23E-47c1-9081-9FC9DF992B90 ), dual ] interface IGetFileName : IDispatch
+	[ uuid(A1FA76F8-E23E-47c1-9081-9FC9DF992B90), dual ] interface IGetFileName : IDispatch
 	{
-		HRESULT SetWnd( [in] IPdnWnd *pWnd );
-		[propput] HRESULT Filter( [in] BSTR strFilter );
-		[propput] HRESULT FilterIndex( [in] DWORD dwFilterIndex );
-		[propget] HRESULT FilterIndex( [out,retval] DWORD *dwFilterIndex );
-		[propput] HRESULT FileName( [in] BSTR strFileName );
-		[propget] HRESULT FileName( [out,retval] BSTR *strFileName );
-		[propput] HRESULT InitDirectory( [in] BSTR strInitDirectory );
-		[propput] HRESULT Title( [in] BSTR strTitle );
-		[propput] HRESULT Flags( [in] DWORD dwFlags );
-		[propput] HRESULT DefExt( [in] BSTR strDefExt );
-		HRESULT DisplayOpen( [out,retval] BSTR *strFileName );
-		HRESULT DisplaySave( [out,retval] BSTR *strFileName );
+		HRESULT SetWnd([in] IPdnWnd* pWnd);
+		[propput] HRESULT Filter([in] BSTR strFilter);
+		[propput] HRESULT FilterIndex([in] DWORD dwFilterIndex);
+		[propget] HRESULT FilterIndex([out,retval] DWORD* dwFilterIndex);
+		[propput] HRESULT FileName([in] BSTR strFileName);
+		[propget] HRESULT FileName([out,retval] BSTR* strFileName);
+		[propput] HRESULT InitDirectory([in] BSTR strInitDirectory);
+		[propput] HRESULT Title([in] BSTR strTitle);
+		[propput] HRESULT Flags([in] DWORD dwFlags);
+		[propput] HRESULT DefExt([in] BSTR strDefExt);
+		HRESULT DisplayOpen([out,retval] BSTR* strFileName);
+		HRESULT DisplaySave([out,retval] BSTR* strFileName);
 	}
-	[ uuid( 4CC85506-A713-4896-A773-FA57B883EDA8 ), dual ] interface IChooseFont : IDispatch
+	[ uuid(4CC85506-A713-4896-A773-FA57B883EDA8), dual ] interface IChooseFont : IDispatch
 	{
-		HRESULT SetWnd( [in] IPdnWnd *pWnd );
-		[propget] HRESULT FontHeight( [out,retval] LONG *lfHeight );
-		[propput] HRESULT FontHeight( [in] LONG lfHeight );
-		[propget] HRESULT FontWidth( [out,retval] LONG *lfWidth );
-		[propput] HRESULT FontWidth( [in] LONG lfWidth );
-		[propget] HRESULT FontEscapement( [out,retval] LONG *lfEscapement );
-		[propput] HRESULT FontEscapement( [in] LONG lfEscapement );
-		[propget] HRESULT FontOrientation( [out,retval] LONG *lfOrientation );
-		[propput] HRESULT FontOrientation( [in] LONG lfOrientation );
-		[propget] HRESULT FontWeight( [out,retval] LONG *lfWeight );
-		[propput] HRESULT FontWeight( [in] LONG lfWeight );
-		[propget] HRESULT FontItalic( [out,retval] BYTE *lfItalic );
-		[propput] HRESULT FontItalic( [in] BYTE lfItalic );
-		[propget] HRESULT FontUnderline( [out,retval] BYTE *lfUnderline );
-		[propput] HRESULT FontUnderline( [in] BYTE lfUnderline );
-		[propget] HRESULT FontStrikeOut( [out,retval] BYTE *lfStrikeOut );
-		[propput] HRESULT FontStrikeOut( [in] BYTE lfStrikeOut );
-		[propget] HRESULT FontCharSet( [out,retval] BYTE *lfCharSet );
-		[propput] HRESULT FontCharSet( [in] BYTE lfCharSet );
-		[propget] HRESULT FontOutPrecision( [out,retval] BYTE *lfOutPrecision );
-		[propput] HRESULT FontOutPrecision( [in] BYTE lfOutPrecision );
-		[propget] HRESULT FontClipPrecision( [out,retval] BYTE *lfClipPrecision );
-		[propput] HRESULT FontClipPrecision( [in] BYTE lfClipPrecision );
-		[propget] HRESULT FontQuality( [out,retval] BYTE *lfQuality );
-		[propput] HRESULT FontQuality( [in] BYTE lfQuality );
-		[propget] HRESULT FontPitchAndFamily( [out,retval] BYTE *lfPitchAndFamily );
-		[propput] HRESULT FontPitchAndFamily( [in] BYTE lfPitchAndFamily );
-		[propget] HRESULT FontFace( [out,retval] BSTR *lfFaceName );
-		[propput] HRESULT FontFace( [in] BSTR lfFaceName );
-		[propget] HRESULT PointSize( [out,retval] INT *iPointSize );
-		[propput] HRESULT PointSize( [in] INT iPointSize );
-		[propput] HRESULT Flags( [in] DWORD dwFlags );
-		[propput] HRESULT Color( [in] DWORD dwColor );
-		[propget] HRESULT Color( [out,retval] DWORD *dwColor );
-		[propget] HRESULT FontType( [out,retval] WORD *dwType );
-		[propput] HRESULT SizeMin( [in] INT iSizeMin );
-		[propput] HRESULT SizeMax( [in] INT iSizeMax );
+		HRESULT SetWnd([in] IPdnWnd* pWnd);
+		[propget] HRESULT FontHeight([out,retval] LONG* lfHeight);
+		[propput] HRESULT FontHeight([in] LONG lfHeight);
+		[propget] HRESULT FontWidth([out,retval] LONG* lfWidth);
+		[propput] HRESULT FontWidth([in] LONG lfWidth);
+		[propget] HRESULT FontEscapement([out,retval] LONG* lfEscapement);
+		[propput] HRESULT FontEscapement([in] LONG lfEscapement);
+		[propget] HRESULT FontOrientation([out,retval] LONG* lfOrientation);
+		[propput] HRESULT FontOrientation([in] LONG lfOrientation);
+		[propget] HRESULT FontWeight([out,retval] LONG* lfWeight);
+		[propput] HRESULT FontWeight([in] LONG lfWeight);
+		[propget] HRESULT FontItalic([out,retval] BYTE* lfItalic);
+		[propput] HRESULT FontItalic([in] BYTE lfItalic);
+		[propget] HRESULT FontUnderline([out,retval] BYTE* lfUnderline);
+		[propput] HRESULT FontUnderline([in] BYTE lfUnderline);
+		[propget] HRESULT FontStrikeOut([out,retval] BYTE* lfStrikeOut);
+		[propput] HRESULT FontStrikeOut([in] BYTE lfStrikeOut);
+		[propget] HRESULT FontCharSet([out,retval] BYTE* lfCharSet);
+		[propput] HRESULT FontCharSet([in] BYTE lfCharSet);
+		[propget] HRESULT FontOutPrecision([out,retval] BYTE* lfOutPrecision);
+		[propput] HRESULT FontOutPrecision([in] BYTE lfOutPrecision);
+		[propget] HRESULT FontClipPrecision([out,retval] BYTE* lfClipPrecision);
+		[propput] HRESULT FontClipPrecision([in] BYTE lfClipPrecision);
+		[propget] HRESULT FontQuality([out,retval] BYTE* lfQuality);
+		[propput] HRESULT FontQuality([in] BYTE lfQuality);
+		[propget] HRESULT FontPitchAndFamily([out,retval] BYTE* lfPitchAndFamily);
+		[propput] HRESULT FontPitchAndFamily([in] BYTE lfPitchAndFamily);
+		[propget] HRESULT FontFace([out,retval] BSTR* lfFaceName);
+		[propput] HRESULT FontFace([in] BSTR lfFaceName);
+		[propget] HRESULT PointSize([out,retval] INT* iPointSize);
+		[propput] HRESULT PointSize([in] INT iPointSize);
+		[propput] HRESULT Flags([in] DWORD dwFlags);
+		[propput] HRESULT Color([in] DWORD dwColor);
+		[propget] HRESULT Color([out,retval] DWORD* dwColor);
+		[propget] HRESULT FontType([out,retval] WORD* dwType);
+		[propput] HRESULT SizeMin([in] INT iSizeMin);
+		[propput] HRESULT SizeMax([in] INT iSizeMax);
 		HRESULT Display();
 	}
 };

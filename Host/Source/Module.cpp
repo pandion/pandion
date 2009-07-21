@@ -209,6 +209,7 @@ HRESULT CPandionModule::PreMessageLoop( int nShowCmd )
 	PathAppend( cwd, TEXT("src") );
 	PathAddBackslash( cwd );
 	m_spGlobals->Add( &CComVariant( TEXT("cwd") ), &CComVariant(cwd) );
+	::SetCurrentDirectory(cwd);
 
 	/* Initialize Global Classes */
 	m_spWindows.CoCreateInstance( OLESTR("Scripting.Dictionary") );

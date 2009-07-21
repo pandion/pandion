@@ -43,7 +43,7 @@ public:
 	CExternal();
 	~CExternal();
 
-	DECLARE_NO_REGISTRY()
+//	DECLARE_NO_REGISTRY()
 
 	BEGIN_COM_MAP( CExternal )
 		COM_INTERFACE_ENTRY( IDispatch )
@@ -87,4 +87,5 @@ public:
 	STDMETHOD(Base64ToString)( BSTR b64String, BSTR *UTF16String );
 	STDMETHOD(StringToBase64)( BSTR UTF16String, BSTR *b64String );
 	STDMETHOD(Fullscreen)( BOOL *bFullscreen );
+	STDMETHOD(PlaySound)(BSTR soundFile);
 };

@@ -490,3 +490,10 @@ STDMETHODIMP CExternal::Fullscreen( BOOL *bFullscreen )
 	EnumWindows( EnumWindowsProc, (LPARAM) bFullscreen );
 	return S_OK;
 }
+
+STDMETHODIMP CExternal::PlaySound(BSTR soundFile)
+{
+	DWORD flags = SND_FILENAME | SND_ASYNC;
+	::PlaySound(CW2T(soundFile), NULL, flags);
+	return S_OK;
+}
