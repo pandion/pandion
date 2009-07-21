@@ -613,7 +613,7 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Generated Files"
+			Name="Auto-Generated Files"
 			SourceControlFiles="false"
 			>
 			<File
@@ -640,10 +640,6 @@
 					/>
 				</FileConfiguration>
 			</File>
-			<File
-				RelativePath="Resource.h"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
@@ -655,6 +651,10 @@
 			</File>
 			<File
 				RelativePath="Pandion.rc"
+				>
+			</File>
+			<File
+				RelativePath="Resource.h"
 				>
 			</File>
 		</Filter>
