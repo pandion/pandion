@@ -1,0 +1,63 @@
+﻿<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 2px;
+	padding: 0px;
+	color: buttontext;
+}
+</STYLE>
+<SCRIPT language=JScript>
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'conference_invitation', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	document.getElementById( 'nick' ).innerText = external.globals( 'Translator' ).Translate( 'conference_invitation', 'invitation', [ external.wnd.params[1] ] );
+	document.getElementById( 'room' ).value = external.wnd.params[2];
+	document.getElementById( 'msg' ).value = external.wnd.params[3];
+	document.getElementById( 'msg' ).focus();
+	external.wnd.hide( false );
+}
+
+function ok ()
+{
+	external.wnd.params[0].dial_conference( external.wnd.params[2].toLowerCase() );
+	external.wnd.close();
+}
+
+</SCRIPT>
+
+</HEAD>
+
+<BODY scroll=no bgcolor=buttonface onload="init()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<TABLE height="100%" width="100%" cellpadding=0 cellspacing=0 border=0>
+<TR>
+	<TD height=1 style="font-family: Tahoma; font-size: 11px; color: buttontext;" id=nick></TD>
+</TR>
+<TR>
+	<TD height=1 style="padding-top: 8px; font-family: Tahoma; font-size: 11px; color: buttontext;" id=txt_room></TD>
+</TR>
+<TR>
+	<TD height=1><INPUT id=room style="font-family: Tahoma; font-size: 11px; width: 100%;"></TD>
+</TR>
+<TR>
+	<TD height=1 style="padding-top: 4px; font-family: Tahoma; font-size: 11px; color: buttontext;" id=txt_reason></TD>
+</TR>
+<TR>
+	<TD style="padding-bottom: 8px;"><TEXTAREA id=msg readonly style="font-family: Tahoma; font-size: 11px; width: 100%; height: 100%; padding-left: 2px; overflow: auto;"></TEXTAREA></TD>
+</TR>
+<TR>
+	<TD height=1 align=center style="padding-bottom: 5px;">
+	<INPUT type=button style="width: 120px; height: 24px; font-family: Tahoma; font-size: 11px; margin-right: 5px;" id=btn_cancel onclick="external.wnd.close()"><INPUT type=submit style="width: 120px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_ok onclick="ok()">
+	</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>

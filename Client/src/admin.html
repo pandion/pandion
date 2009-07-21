@@ -1,0 +1,124 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+INPUT {
+	font-family: Tahoma;
+}
+FIELDSET {
+	cursor: default;
+}
+</STYLE>
+<SCRIPT language=JScript>
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'admin', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	document.getElementById( 'server_name' ).innerText = external.globals( 'ClientServices' ).Name;
+	document.getElementById( 'server_address' ).innerText = external.globals( 'ClientServices' ).JID;
+	document.getElementById( 'page1' ).focus();
+	external.wnd.hide( false );
+}
+
+function admin_viewusers ()
+{
+	if ( external.windows.Exists( 'admin_users' ) )
+		external.windows( 'admin_users' ).focus();
+	else
+		with ( external.createWindow( 'admin_users', external.globals( 'cwd' ) + 'admin_users.html', external.wnd.params ) )
+		{
+			setTitle( external.globals( 'Translator' ).Translate( 'admin', 'wnd_users' ) );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\webserver.ico' );
+			MinHeight = 382;
+			MinWidth = 385;
+			setSize( 385, 382 );
+			setPos( ( screen.availWidth - 385 ) / 2, ( screen.availHeight - 382 ) / 2 );
+		}
+}
+
+function admin_send_motd ()
+{
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<message><body/></message>' );
+	if ( external.globals( 'ClientServices' ).Admin )
+		dom.documentElement.setAttribute( 'to', external.globals( 'ClientServices' ).JID + ( document.getElementById( 'admin_msg_motd' ).value.length ? '/announce/motd' : '/announce/motd/delete' ) );
+	else if ( external.globals( 'ClientServices' ).AdminJ2.length )
+		dom.documentElement.setAttribute( 'to', external.globals( 'ClientServices' ).JID + '/announce' );
+	dom.documentElement.firstChild.text = document.getElementById( 'admin_msg_motd' ).value;
+	external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+	document.getElementById( 'admin_msg_motd' ).value = '';
+}
+
+function admin_send_wall ()
+{
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<message><body/></message>' );
+	dom.documentElement.setAttribute( 'to', external.globals( 'ClientServices' ).JID + '/announce/online' );
+	dom.documentElement.firstChild.text = document.getElementById( 'admin_msg_wall' ).value;
+	external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+	document.getElementById( 'admin_msg_wall' ).value = '';
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="init()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="event.returnValue = false">
+<TABLE id=page1 width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<TR valign=top height=60 bgcolor=window>
+	<TD colspan=2 style="padding-left: 20px; padding-right: 8px; padding-top: 10px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+	<SPAN id=server_name style="font-weight: bold;"></SPAN>&nbsp; - &nbsp;<SPAN id=server_address></SPAN><BR>
+	<DIV style="height: 27px; margin-left: 20px; margin-right: 20px; overflow: hidden;" id=txt_desc></DIV>
+	</TD>
+</TR>
+<TR valign=top>
+	<TD colspan=2 style="padding-left: 16px; padding-right: 16px; padding-top: 6px; font-size: 11px; font-family: Tahoma; color: buttontext;">
+
+	<FIELDSET>
+		<LEGEND style="margin-left: 8px;" id=txt_users></LEGEND>
+		<DIV style="margin: 8px; margin-top: 0px; margin-bottom: 4px;">
+		<SPAN id=txt_view></SPAN><BR>
+		<DIV style="margin-top: 4px;">
+		<INPUT type=button id=btn_view style="width: 180px; height: 24px; font: message-box;" onclick="admin_viewusers()">
+		</DIV>
+		</DIV>
+	</FIELDSET>
+	<FIELDSET style="margin-top: 8px;">
+		<LEGEND style="margin-left: 8px;" id=txt_motd></LEGEND>
+		<DIV style="margin: 8px; margin-top: 0px; margin-bottom: 4px;">
+		<SPAN id=txt_motd_desc></SPAN><BR>
+		<TEXTAREA id=admin_msg_motd class=text style="width: 250px; height: 40px; overflow: auto;"></TEXTAREA>
+		<INPUT type=button id=admin_btn_motd value=Send style="width: 70px; height: 40px; font-family: Tahoma; font-size: 11px;" onclick="admin_send_motd()">
+		</DIV>
+	</FIELDSET>
+	<FIELDSET style="margin-top: 8px;">
+		<LEGEND style="margin-left: 8px;" id=txt_wall></LEGEND>
+		<DIV style="margin: 8px; margin-top: 0px; margin-bottom: 4px;">
+		<SPAN id=txt_wall_desc></SPAN><BR>
+		<TEXTAREA id=admin_msg_wall class=text style="width: 250px; height: 40px; overflow: auto;"></TEXTAREA>
+		<INPUT type=button id=admin_btn_wall value=Send style="width: 70px; height: 40px; font-family: Tahoma; font-size: 11px;" onclick="admin_send_wall()">
+		</DIV>
+	</FIELDSET>
+
+	</TD>
+</TR>
+<TR valign=top height=45 colspan=2>
+	<TD align=right style="padding: 10px; border-top: 2px groove;">
+	<INPUT type=submit accesskey=c style="height: 24px; width: 90px; font-size: 11px;" id=btn_close onclick="external.wnd.close()">
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

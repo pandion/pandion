@@ -1,0 +1,328 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	background-color: buttonface;
+	color: buttontext;
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+TD {
+	font-family: Tahoma;
+	font-size: 11px;
+}
+#view_area {
+	padding: 4px 10px;
+}
+INPUT.text {
+	padding-left: 2px;
+	font-family: Tahoma;
+	font-size: 11px;
+	width: 100%;
+	height: 21px;
+}
+INPUT.address {
+	width: 120px;
+	margin-left: 10px;
+	margin-right: 20px;
+}
+INPUT.port {
+	width: 60px;
+	margin-left: 10px;
+}
+INPUT.button {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: buttontext;
+	width: 90px;
+	height: 24px;
+}
+FIELDSET {
+	padding: 8px;
+	cursor: default;
+	border-width: 2px 0 0 0;
+}
+FIELDSET .section {
+	margin-top: 6px;
+	margin-left: 10px;
+}
+LI {
+	margin-top: 2px;
+	list-style-type: none;
+}
+UL {
+	margin: 0;
+}
+.automatic {
+	font-style: italic;
+	color: graytext;
+}
+</STYLE>
+
+<SCRIPT language=JScript>
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'connection-settings', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	Reload();
+	document.getElementById( 'view_area' ).focus();
+	external.wnd.hide( false );
+}
+
+function Reload ()
+{
+	document.getElementById( 'server_address' ).value	= external.globals( 'serveraddress' );
+	document.getElementById( 'server_port' ).value		= external.globals( 'serverport' );
+	document.getElementById( 'proxy_address' ).value	= external.globals( 'proxyaddress' );
+	document.getElementById( 'proxy_port' ).value		= external.globals( 'proxyport' );
+
+	document.getElementById( 'encryption_optional' ).checked	= external.globals( 'encryption' ) == 'optional';
+	document.getElementById( 'encryption_tls' ).checked			= external.globals( 'encryption' ) == 'tls';
+	document.getElementById( 'encryption_ssl' ).checked			= external.globals( 'encryption' ) == 'ssl';
+	document.getElementById( 'encryption_none' ).checked		= external.globals( 'encryption' ) == 'none';
+
+	document.getElementById( 'authentication_normal' ).checked	= external.globals( 'authentication' ) == 'normal';
+	document.getElementById( 'authentication_ntlm' ).checked	= external.globals( 'authentication' ) == 'ntlm';
+
+	document.getElementById( 'proxy_none' ).checked	= external.globals( 'proxymethod' ) == 'none';
+	document.getElementById( 'proxy_http' ).checked	= external.globals( 'proxymethod' ) == 'http';
+
+	CheckBlur( document.getElementById( 'server_address' ) );
+	CheckBlur( document.getElementById( 'server_port' ) );
+	CheckProxy();
+	if ( external.windows.Exists( 'signup' ) )
+		document.getElementById( 'txt_authentication' ).parentNode.disabled = true;
+}
+
+function OK ()
+{
+	var OldServeraddress	= external.globals( 'serveraddress' );
+	var OldServerport		= external.globals( 'serverport' );
+	var OldProxyaddress		= external.globals( 'proxyaddress' );
+	var OldProxyport		= external.globals( 'proxyport' );
+	var OldEncryption		= external.globals( 'encryption' );
+	var OldAuthentication	= external.globals( 'authentication' );
+	var OldProxymethod		= external.globals( 'proxymethod' );
+
+	Save();
+
+	if ( OldAuthentication	!= external.globals( 'authentication' ) )
+	{
+		/* Redraw the log in window
+		 */
+		if ( external.windows.Exists( 'login' ) )
+		{
+			external.windows( 'login' ).Do( 'Reload', null );
+		}
+		/* Log out to change authentication method
+		 */
+		else if ( ! external.windows.Exists( 'signup' ) )
+		{
+			if ( 6 == external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'connection-settings', 'logout' ), external.globals( 'softwarename' ), 4 | 32 ) )
+			{
+				external.wnd.params.mode_new( -1, '' );
+				external.wnd.params.dial_logout();
+				return; // don't close the window below because dial_logout already closed it
+			}
+		}
+	}
+	else if (
+		OldServeraddress	!= external.globals( 'serveraddress' ) ||
+		OldServerport		!= external.globals( 'serverport' ) ||
+		OldProxyaddress		!= external.globals( 'proxyaddress' ) ||
+		OldProxyport		!= external.globals( 'proxyport' ) ||
+		OldEncryption		!= external.globals( 'encryption' ) ||
+		OldProxymethod		!= external.globals( 'proxymethod' ) ||
+		! external.globals( 'XMPPConnected' )
+	)
+	{
+		/* Reconnect to apply the new connection settings
+		 */
+		if ( ! external.globals( 'XMPPConnected' ) || 6 == external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'preferences', 'reconnect' ), external.globals( 'softwarename' ), 4 | 32 ) )
+		{
+			if ( ! external.windows.Exists( 'signup' ) && ! external.windows.Exists( 'login' ) )
+			{
+				external.wnd.params.mode_new( -1, external.globals( 'cfg' )( 'lastmsg' ) );
+				external.globals( 'XMPPConnected' ) = false;
+				external.wnd.params.Reconnect();
+			}
+		}
+	}
+
+	external.wnd.close();
+}
+
+function Save ()
+{
+	var Automatic = external.globals( 'Translator' ).Translate( 'connection-settings', 'automatic' );
+	external.globals( 'serveraddress' )	= document.getElementById( 'server_address' ).value == Automatic ? '' : document.getElementById( 'server_address' ).value;
+	external.globals( 'serverport' )	= document.getElementById( 'server_port' ).value == Automatic ? '' : document.getElementById( 'server_port' ).value;
+	external.globals( 'proxyaddress' )	= document.getElementById( 'proxy_address' ).value;
+	external.globals( 'proxyport' )		= document.getElementById( 'proxy_port' ).value;
+
+	if ( document.getElementById( 'encryption_optional' ).checked )
+		external.globals( 'encryption' ) = 'optional';
+	if ( document.getElementById( 'encryption_tls' ).checked )
+		external.globals( 'encryption' ) = 'tls';
+	if ( document.getElementById( 'encryption_ssl' ).checked )
+		external.globals( 'encryption' ) = 'ssl';
+	if ( document.getElementById( 'encryption_none' ).checked )
+		external.globals( 'encryption' ) = 'none';
+
+	if ( document.getElementById( 'authentication_normal' ).checked )
+		external.globals( 'authentication' ) = 'normal';
+	if ( document.getElementById( 'authentication_ntlm' ).checked )
+		external.globals( 'authentication' ) = 'ntlm';
+
+	if ( document.getElementById( 'proxy_none' ).checked )
+		external.globals( 'proxymethod' ) = 'none';
+	if ( document.getElementById( 'proxy_http' ).checked )
+		external.globals( 'proxymethod' ) = 'http';
+
+	external.wnd.params.SaveCommonProfile();
+}
+
+function CheckBlur ( Element )
+{
+	var BareClass = ListClasses( Element );
+	var Automatic = external.globals( 'Translator' ).Translate( 'connection-settings', 'automatic' );
+
+	if ( Element.value.length && Element.value != Automatic )
+		Element.className = BareClass;
+	else
+	{
+		Element.className = BareClass + ' automatic';
+		Element.value = Automatic;
+	}
+}
+
+function CheckFocus ( Element )
+{
+	var BareClass = ListClasses( Element );
+	var Automatic = external.globals( 'Translator' ).Translate( 'connection-settings', 'automatic' );
+
+	if ( Element.value == Automatic )
+	{
+		Element.className = BareClass;
+		Element.value = '';
+	}
+}
+
+function ListClasses ( Element )
+{
+	var BareClass = '';
+	var Classes = Element.className.split( /\s/ );
+	for ( var i = 0; i < Classes.length; ++i )
+		if ( Classes[i] != 'automatic' )
+			BareClass += ' ' + Classes[i];
+	return BareClass.substr( 1 );
+}
+
+function CheckProxy ()
+{
+	if ( document.getElementById( 'proxy_none' ).checked )
+		ToggleProxy( false );
+	if ( document.getElementById( 'proxy_http' ).checked )
+		ToggleProxy( true );
+}
+
+function ToggleProxy ( Enabled )
+{
+	document.getElementById( 'lbl_proxy_address' ).disabled	= ! Enabled;
+	document.getElementById( 'proxy_address' ).disabled		= ! Enabled;
+	document.getElementById( 'lbl_proxy_port' ).disabled	= ! Enabled;
+	document.getElementById( 'proxy_port' ).disabled		= ! Enabled;
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no onload="Begin()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="event.returnValue = false;">
+<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<TR valign=top>
+	<TD id=view_area>
+		<FIELDSET>
+			<LEGEND id=txt_connection></LEGEND>
+			<DIV class=section>
+				<LABEL id=lbl_server_address for=server_address></LABEL>
+				<INPUT id=server_address class="text address" onblur="CheckBlur( this )" onfocus="CheckFocus( this )">
+				<LABEL id=lbl_server_port for=server_port></LABEL>
+				<INPUT id=server_port class="text port" maxlength=5 onblur="CheckBlur( this )" onfocus="CheckFocus( this )">
+			</DIV>
+		</FIELDSET>
+		<FIELDSET>
+			<LEGEND id=txt_encryption></LEGEND>
+			<DIV class=section>
+				<UL>
+					<LI>
+						<INPUT type=radio name=encryption id=encryption_optional value=optional>
+						<LABEL for=encryption_optional id=lbl_encryption_optional></LABEL>
+					</LI>
+					<LI>
+						<INPUT type=radio name=encryption id=encryption_tls value=tls>
+						<LABEL for=encryption_tls id=lbl_encryption_tls></LABEL>
+					</LI>
+					<LI>
+						<INPUT type=radio name=encryption id=encryption_ssl value=ssl>
+						<LABEL for=encryption_ssl id=lbl_encryption_ssl></LABEL>
+					</LI>
+					<LI>
+						<INPUT type=radio name=encryption id=encryption_none value=none>
+						<LABEL for=encryption_none id=lbl_encryption_none></LABEL>
+					</LI>
+				</UL>
+			</DIV>
+		</FIELDSET>
+		<FIELDSET>
+			<LEGEND id=txt_authentication></LEGEND>
+			<DIV class=section>
+				<UL>
+					<LI>
+						<INPUT type=radio name=authentication id=authentication_normal value=normal>
+						<LABEL for=authentication_normal id=lbl_authentication_normal></LABEL>
+					</LI>
+					<LI>
+						<INPUT type=radio name=authentication id=authentication_ntlm value=ntlm>
+						<LABEL for=authentication_ntlm id=lbl_authentication_ntlm></LABEL>
+					</LI>
+				</UL>
+			</DIV>
+		</FIELDSET>
+		<FIELDSET>
+			<LEGEND id=txt_proxy></LEGEND>
+			<DIV class=section onkeyup="CheckProxy()" onclick="CheckProxy()">
+				<UL>
+					<LI>
+						<INPUT type=radio name=proxy id=proxy_none value=none>
+						<LABEL for=proxy_none id=lbl_proxy_none></LABEL>
+					</LI>
+					<LI>
+						<INPUT type=radio name=proxy id=proxy_http value=http>
+						<LABEL for=proxy_http id=lbl_proxy_http></LABEL>
+					</LI>
+				</UL>
+				<LABEL id=lbl_proxy_address for=proxy_address></LABEL>
+				<INPUT id=proxy_address class="text address">
+				<LABEL id=lbl_proxy_port for=proxy_port></LABEL>
+				<INPUT id=proxy_port class="text port" maxlength=5>
+			</DIV>
+		</FIELDSET>
+	</TD>
+</TR>
+<TR valign=top height=1>
+	<TD align=right style="padding: 10px; border-top: 2px groove;">
+		<INPUT type=submit class=button id=btn_ok onclick="OK()">
+		<INPUT type=button class=button id=btn_cancel onclick="external.wnd.close()">
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

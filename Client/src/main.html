@@ -1,0 +1,226 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<LINK rel="stylesheet" type="text/css" href="css/main.css"></LINK>
+
+<SCRIPT src="main/warn.js"></SCRIPT>
+<SCRIPT src="main/file2hash.js"></SCRIPT>
+<SCRIPT src="main/hash2file.js"></SCRIPT>
+<SCRIPT src="main/init.js"></SCRIPT>
+<SCRIPT src="main/login.js"></SCRIPT>
+<SCRIPT src="main/outnit.js"></SCRIPT>
+<SCRIPT src="main/handle_keyboard.js"></SCRIPT>
+<SCRIPT src="main/mousemenu.js"></SCRIPT>
+<SCRIPT src="main/sound_play.js"></SCRIPT>
+<SCRIPT src="main/login_check.js"></SCRIPT>
+<SCRIPT src="main/autoaway.js"></SCRIPT>
+<SCRIPT src="main/md5_obj.js"></SCRIPT>
+<SCRIPT src="main/mode_new.js"></SCRIPT>
+<SCRIPT src="main/vcard.js"></SCRIPT>
+<SCRIPT src="main/pass_code.js"></SCRIPT>
+<SCRIPT src="main/history_add.js"></SCRIPT>
+<SCRIPT src="main/SettingsSave.js"></SCRIPT>
+<SCRIPT src="main/LoadProfile.js"></SCRIPT>
+<SCRIPT src="main/SaveCommonProfile.js"></SCRIPT>
+<SCRIPT src="main/Reconnect.js"></SCRIPT>
+
+<SCRIPT src="main/CommandLine.js"></SCRIPT>
+<SCRIPT src="main/HTTPEngine.js"></SCRIPT>
+<SCRIPT src="main/MenuBar.js"></SCRIPT>
+<SCRIPT src="main/OnLogin.js"></SCRIPT>
+<SCRIPT src="main/Translator.js"></SCRIPT>
+<SCRIPT src="main/Tray.js"></SCRIPT>
+<SCRIPT src="main/Banner.js"></SCRIPT>
+
+<SCRIPT src="main/XMPPIQ.js"></SCRIPT>
+<SCRIPT src="main/XMPPMessage.js"></SCRIPT>
+<SCRIPT src="main/XMPPPresence.js"></SCRIPT>
+<SCRIPT src="main/XMPPHookIQ.js"></SCRIPT>
+<SCRIPT src="main/XMPPAddress.js"></SCRIPT>
+<SCRIPT src="main/BackgroundBrowse.js"></SCRIPT>
+<SCRIPT src="main/ClientBrowse.js"></SCRIPT>
+<SCRIPT src="main/ClientPlugin.js"></SCRIPT>
+<SCRIPT src="main/ClientRoster.js"></SCRIPT>
+<SCRIPT src="main/ChatSession.js"></SCRIPT>
+<SCRIPT src="main/ConferenceSession.js"></SCRIPT>
+<SCRIPT src="main/Emoticon.js"></SCRIPT>
+<SCRIPT src="main/Headline.js"></SCRIPT>
+
+<SCRIPT src="main/dial_about.js"></SCRIPT>
+<SCRIPT src="main/dial_adduser.js"></SCRIPT>
+<SCRIPT src="main/dial_avatar_pick.js"></SCRIPT>
+<SCRIPT src="main/dial_autoupdate.js"></SCRIPT>
+<SCRIPT src="main/dial_background_download.js"></SCRIPT>
+<SCRIPT src="main/dial_background_list.js"></SCRIPT>
+<SCRIPT src="main/dial_block.js"></SCRIPT>
+<SCRIPT src="main/dial_bookmarks_add.js"></SCRIPT>
+<SCRIPT src="main/dial_bookmarks_manage.js"></SCRIPT>
+<SCRIPT src="main/dial_chat.js"></SCRIPT>
+<SCRIPT src="main/dial_conference.js"></SCRIPT>
+<SCRIPT src="main/dial_conference_browse.js"></SCRIPT>
+<SCRIPT src="main/dial_conference_create.js"></SCRIPT>
+<SCRIPT src="main/dial_conference_invite.js"></SCRIPT>
+<SCRIPT src="main/dial_connection_settings.js"></SCRIPT>
+<SCRIPT src="main/dial_console.js"></SCRIPT>
+<SCRIPT src="main/dial_contacts_export.js"></SCRIPT>
+<SCRIPT src="main/dial_contacts_import.js"></SCRIPT>
+<SCRIPT src="main/dial_emoticon_download.js"></SCRIPT>
+<SCRIPT src="main/dial_emoticon_list.js"></SCRIPT>
+<SCRIPT src="main/dial_emoticon_viewer.js"></SCRIPT>
+<SCRIPT src="main/dial_extension_download.js"></SCRIPT>
+<SCRIPT src="main/dial_headlines.js"></SCRIPT>
+<SCRIPT src="main/dial_history.js"></SCRIPT>
+<SCRIPT src="main/dial_file.js"></SCRIPT>
+<SCRIPT src="main/dial_font.js"></SCRIPT>
+<SCRIPT src="main/dial_group_create.js"></SCRIPT>
+<SCRIPT src="main/dial_groupmessage.js"></SCRIPT>
+<SCRIPT src="main/dial_login.js"></SCRIPT>
+<SCRIPT src="main/dial_logout.js"></SCRIPT>
+<SCRIPT src="main/dial_mode.js"></SCRIPT>
+<SCRIPT src="main/dial_password_change.js"></SCRIPT>
+<SCRIPT src="main/dial_plugin_list.js"></SCRIPT>
+<SCRIPT src="main/dial_plugins.js"></SCRIPT>
+<SCRIPT src="main/dial_preferences.js"></SCRIPT>
+<SCRIPT src="main/dial_server_admin.js"></SCRIPT>
+<SCRIPT src="main/dial_service_register.js"></SCRIPT>
+<SCRIPT src="main/dial_signup.js"></SCRIPT>
+<SCRIPT src="main/dial_status_message.js"></SCRIPT>
+<SCRIPT src="main/dial_transport_list.js"></SCRIPT>
+<SCRIPT src="main/dial_url.js"></SCRIPT>
+<SCRIPT src="main/dial_userinfo.js"></SCRIPT>
+<SCRIPT src="main/dial_vcard_edit.js"></SCRIPT>
+<SCRIPT src="main/dial_webbrowser.js"></SCRIPT>
+
+<SCRIPT src="main/XMPPOnConnected.js"></SCRIPT>
+<SCRIPT src="main/XMPPOnDisconnected.js"></SCRIPT>
+<SCRIPT src="main/XMPPOnDocumentStart.js"></SCRIPT>
+<SCRIPT src="main/XMPPOnDocumentEnd.js"></SCRIPT>
+<SCRIPT src="main/XMPPOnIQ.js"></SCRIPT>
+<SCRIPT src="main/XMPPOnMessage.js"></SCRIPT>
+<SCRIPT src="main/XMPPOnPresence.js"></SCRIPT>
+<SCRIPT src="main/XMPPOnStartTLSFailed.js"></SCRIPT>
+<SCRIPT src="main/XMPPOnStartTLSSucceeded.js"></SCRIPT>
+<SCRIPT src="main/XMPPOnStartSCFailed.js"></SCRIPT>
+<SCRIPT src="main/XMPPOnStartSCSucceeded.js"></SCRIPT>
+<SCRIPT src="main/XMPPOnStream.js"></SCRIPT>
+
+<!-- Sound Engine -->
+<BGSOUND id=snd volume=0 loop=0>
+
+</HEAD>
+
+<BODY id=body onload="init()" scroll=no>
+
+<TABLE cellspacing=0 cellpadding=0 border=0 height="100%" width="100%" style="table-layout: fixed;">
+
+	<!-- Mode Indicator -->
+	<TR valign=top height=42>
+		<TD id=mode-bar onclick="dial_mode()" onmouseover="document.getElementById( 'mode-name' ).style.color = '#0570ad'; document.getElementById( 'mode-message' ).style.color = '#040E14';" onmouseout="document.getElementById( 'mode-name' ).style.color = ''; document.getElementById( 'mode-message' ).style.color = '';">
+			<IMG id=mode-avatar align=left onmouseover="this.style.borderWidth = '2px'; this.style.margin = '3px'; event.cancelBubble = true;" onmouseout="this.style.borderWidth = ''; this.style.margin = '';" onclick="dial_avatar_pick(); event.cancelBubble = true;">
+			<NOBR id=mode-top>
+				<SPAN id=mode-name></SPAN>
+				<IMG id=mode-secure width=16 height=16 src="../images/misc/lock-closed.png" align=top>
+			</NOBR>
+			<NOBR id=mode-message></NOBR>
+		</TD>
+	</TR>
+	<!-- / Mode Indicator -->
+
+	<!-- Unread Messages -->
+	<TR valign=top height=25 id=unread-messages-area>
+		<TD>
+			<NOBR class=unread-messages-line><A href="#" onclick="external.globals( 'ClientRoster' ).ShowUnread( event.screenX, event.screenY ); if ( document.getElementById( 'rosterback' ).style.display == 'block' ) document.getElementById( 'rosterback' ).focus(); return false;" id=unread-messages-counter></A></NOBR>
+		</TD>
+	</TR>
+	<!-- / Unread Messages -->
+
+	<!-- Roster -->
+	<TR valign=top height="100%">
+		<TD id=tab-area>
+			<DIV id=rosterback>
+
+				<!-- Connecting -->
+				<DIV id=connecting  style="display: none; height: 100%;">
+					<TABLE width="100%" height="100%" cellspacing=0 cellpadding=0 border=0>
+						<TR>
+							<TD align=center style="font-family: Tahoma; font-size: 11px; color: windowtext;">
+								<SPAN id=txt_pleasewait></SPAN>&nbsp;<IMG src="../images/misc/ooo.gif">
+							</TD>
+						</TR>
+					</TABLE>
+				</DIV>
+				<!-- / Connecting -->
+
+				<!-- Disconnected -->
+				<DIV id=commerror   style="display: none; height: 100%;">
+					<TABLE width="100%" height="100%" cellspacing=0 cellpadding=0 border=0>
+						<TR>
+							<TD align=center style="font-family: Tahoma; font-size: 11px; color: windowtext;">
+								<B id=txt_disconnected></B>
+								<HR width=170>
+								<BR>
+								<A href="" onclick="Reconnect(); return false;" id=txt_reconnect></A>
+								<BR>
+								<BR>
+								<SPAN id=txt_discor></SPAN>
+								<BR>
+								<BR>
+								<A href="" onclick="dial_connection_settings(); return false;" id=txt_connection_settings></A>
+							</TD>
+						</TR>
+					</TABLE>
+				</DIV>
+				<!-- / Disconnected -->
+
+				<!-- Welcome -->
+				<DIV id=welcomemsg  style="display: none; height: 100%;">
+					<TABLE width="100%" height="100%" cellspacing=0 cellpadding=0 border=0>
+						<TR>
+							<TD align=center style="font-family: Tahoma; font-size: 11px; color: windowtext;">
+								<B id=txt_welcome></B>
+								<HR width=128>
+								<BR>
+								<A href="" onclick="dial_adduser(); return false;" id=txt_addtolist></A>
+								<BR>
+								<BR>
+								<SPAN id=txt_welcor></SPAN>
+								<BR>
+								<BR>
+								<A href="" onclick="dial_transport_list(); return false;" id=txt_config_transport></A>
+							</TD>
+						</TR>
+					</TABLE>
+				</DIV>
+				<!-- / Welcome -->
+
+				<!-- Contacts -->
+				<DIV id=rosterfield style="display: none;" oncontextmenu="ClientRosterContextMenu()">
+					<TABLE width="100%" height="100%" cellspacing=0 cellpadding=0 border=0 style="table-layout: fixed">
+						<TR valign=top>
+							<TD id=rostercell></TD>
+						</TR>
+					</TABLE>
+				</DIV>
+				<!-- / Contacts -->
+			</DIV>
+		</TD>
+	</TR>
+	<!-- / Roster -->
+
+	<!-- Tab Buttons -->
+	<TR height=24 valign=top id=tab-bar-row>
+		<TD id=tab-bar></TD>
+	</TR>
+	<!-- / Tab Buttons -->
+
+	<!-- Banner -->
+	<TR height=68 id=banner-area>
+		<TD align=center style="overflow: hidden;"></TD>
+	</TR>
+	<!-- / Banner -->
+
+</TABLE>
+
+</BODY>
+</HTML>

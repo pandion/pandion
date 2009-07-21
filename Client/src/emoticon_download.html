@@ -1,0 +1,161 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+TD {
+	font-family: Arial;
+	font-size: 11px;
+	color: windowtext;
+}
+.textbox {
+	width: 250px;
+	margin: 70px 0 0 50px;
+}
+.box {
+	clear: both;
+	padding: 4px;
+	border-bottom: 1px solid threedlightshadow;
+}
+.name {
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #333536;
+}
+.preview {
+	margin-left: 6px;
+}
+.install {
+	margin-right: 4px;
+	margin-top: 10px;
+	height:	22px;
+	width: 90px;
+	font-size: 11px;
+	float: right;
+}
+</STYLE>
+<SCRIPT language=JScript>
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'emoticon_download', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	external.wnd.hide( false );
+	document.getElementById( 'list' ).focus();
+
+	if ( external.globals( 'EmoticonCache' ).List.readyState == 4 )
+	{
+		/* Show the cached emoticon styles list
+		 */
+		if ( external.globals( 'EmoticonCache' ).List.documentElement )
+			setTimeout( 'Draw()', 0 );
+
+		/* Download the emoticon styles list
+		 */
+		else
+			external.globals( 'EmoticonCache' ).List.load( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'emoticonlist' ) ) );
+	}
+}
+
+function TextBox ( Message )
+{
+	var HTMLElement			= document.createElement( 'DIV' );
+	HTMLElement.innerText	= Message;
+	HTMLElement.className	= 'textbox';
+	document.getElementById( 'list' ).appendChild( HTMLElement );
+}
+
+function Draw ()
+{
+	document.getElementById( 'txt_loading' ).innerText = ' ';
+	while ( document.getElementById( 'list' ).children.length )
+		document.getElementById( 'list' ).children.item(0).removeNode( true );
+	var Error = external.globals( 'EmoticonCache' ).List.parseError;
+	if ( Error.errorCode == 0 )
+	{
+		if ( external.globals( 'EmoticonCache' ).List.documentElement )
+		{
+			var Nodes = external.globals( 'EmoticonCache' ).List.documentElement.selectNodes( '/jisp/style[ name and description and download and preview and codename ]' );
+			for ( var i = 0; i < Nodes.length; ++i )
+			{
+				var Node = Nodes.item( i );
+				var Filename = Node.selectSingleNode( 'codename' ).text;
+				if ( Filename.length && ! external.Directory.Exists( external.globals( 'usersdir' ) + 'Emoticons\\' + Filename ) )
+				{
+					var Box				= document.createElement( 'DIV' );
+					Box.className		= 'box';
+
+					var Install			= document.createElement( 'BUTTON' );
+					Install.onclick		= StartInstallation;
+					Install.Location	= Node.selectSingleNode( 'download' ).text;
+					Install.ItemName	= Node.selectSingleNode( 'name' ).text.replace( /\s/gm, ' ' );
+					Install.innerText	= external.globals( 'Translator' ).Translate( 'emoticon_download', 'install' );
+					Install.className	= 'install';
+
+					var Name			= document.createElement( 'DIV' );
+					Name.innerText		= Node.selectSingleNode( 'name' ).text.replace( /\s/gm, ' ' );
+					Name.className		= 'name';
+
+					var Preview			= document.createElement( 'IMG' );
+					Preview.src			= Node.selectSingleNode( 'preview' ).text;
+					Preview.className	= 'preview';
+
+					Box.appendChild( Install );
+					Box.appendChild( Name );
+					Box.appendChild( Preview );
+					document.getElementById( 'list' ).appendChild( Box );
+				}
+			}
+
+			if ( ! document.getElementById( 'list' ).children.length )
+				TextBox( external.globals( 'Translator' ).Translate( 'emoticon_download', 'no_new_styles' ) );
+		}
+		else
+			TextBox( external.globals( 'Translator' ).Translate( 'emoticon_download', 'cannot_download', [ external.globals( 'Translator' ).Translate( 'emoticon_download', 'invalid_xml' ) ] ) );
+	}
+	else
+		TextBox( external.globals( 'Translator' ).Translate( 'emoticon_download', 'cannot_download', [ Error.reason ] ) );
+}
+
+function StartInstallation ()
+{
+	var Location = event.srcElement.Location;
+	var ItemName = event.srcElement.ItemName;
+	external.wnd.params.dial_extension_download( Location, ItemName, true, 'emoticon' );
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="Begin()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="event.returnValue = false; external.wnd.close();">
+<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<TR valign=top height=60 bgcolor=window>
+	<TD colspan=2 style="padding-left: 12px; padding-right: 8px; padding-top: 7px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+	<SPAN id=txt_title style="font-weight: bold;"></SPAN>
+	<DIV id=txt_subtitle style="height: 27px; margin-left: 20px; margin-right: 20px; overflow: hidden;"></DIV>
+	</TD>
+</TR>
+<TR valign=top>
+	<TD colspan=2 style="padding: 16px;">
+		<DIV id=list style="width: 100%; height: 100%; background-color: window; border: 2px inset; overflow-y: scroll; overflow-x: hidden;"></DIV>
+	</TD>
+</TR>
+<TR valign=top height=45>
+	<TD id=txt_loading style="padding-left: 16px; padding-top: 16px; border-top: 2px groove; font-size: 11px; font-family: Tahoma; color: buttontext;">&nbsp;</TD>
+	<TD align=right style="padding: 10px; border-top: 2px groove;">
+	<INPUT type=submit style="height: 24px; width: 90px; font-size: 11px;" id=btn_close>
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

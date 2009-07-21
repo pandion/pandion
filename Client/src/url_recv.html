@@ -1,0 +1,123 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE>
+TD, BODY {
+	font-family: Tahoma, MS Sans Serif;
+	font-size: 11px;
+	margin: 3px;
+	margin-bottom: 2px;
+	margin-top: 2px;
+	padding: 0px;
+}
+</STYLE>
+<SCRIPT language=JScript>
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'url_recv', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	var jid = external.wnd.params[0];
+	var url = external.wnd.params[1];
+	var desc = external.wnd.params[2];
+	var nick = jid;
+	if ( external.globals( 'ClientRoster' ).Items.Exists( jid ) )
+		nick = external.globals( 'ClientRoster' ).Items( jid ).Name;
+
+	document.getElementById( 'from' ).value = nick + ( nick == jid ? '' : ' <' + jid + '>' );
+	document.getElementById( 'url' ).value = url;
+	document.getElementById( 'url' ).focus();
+	document.getElementById( 'desc' ).value = url == desc ? external.globals( 'Translator' ).Translate( 'url_recv', 'no_info' ) : desc;
+	external.wnd.hide( false );
+}
+
+function open_url ()
+{
+	var url = external.wnd.params[1];
+	if ( ! ( /^\w+:/ ).test( url ) )
+	{
+		if ( ( /^www\./ ).test( url ) )
+			url = 'http://' + url;
+		else if ( ( /^ftp\./ ).test( url ) )
+			url = 'ftp://' + url;
+		else if ( ( /@/ ).test( url ) )
+			url = 'mailto:' + url;
+		else
+			url = 'http://' + url;
+	}
+	external.shellExec( 'open', url, '', '', 0 );
+	external.wnd.close();
+}
+
+function add_fav ()
+{
+	document.getElementById( 'btn_fav' ).disabled = true;
+	var url = external.wnd.params[1];
+	if ( ! ( /^\w+:/ ).test( url ) )
+	{
+		if ( ( /^www\./ ).test( url ) )
+			url = 'http://' + url;
+		else if ( ( /^ftp\./ ).test( url ) )
+			url = 'ftp://' + url;
+		else if ( ( /@/ ).test( url ) )
+			url = 'mailto:' + url;
+		else
+			url = 'http://' + url;
+	}
+
+	var shell = new ActiveXObject( 'WScript.Shell' );
+	var fav_path = external.GetSpecialFolder( 0x0006 );
+
+	var filename = url.replace( /[\\\/\:\*\?\<\>\|\"]/g, '-' );
+	if ( filename.length < 1 )
+		filename = external.globals( 'softwarenamesafe' ) + ' URL';
+
+	if ( external.FileExists( fav_path + '\\' + filename + '.lnk' ) )
+	{
+		var i = 1;
+		while ( external.FileExists( fav_path + '\\' + filename + '[' + i + '].lnk' ) )
+			i++;
+
+		var shortcut = shell.CreateShortcut( fav_path + '\\' + filename + '[' + i + '].lnk' );
+		shortcut.TargetPath = url;
+		shortcut.Save();
+	}
+	else
+	{
+		var shortcut = shell.CreateShortcut( fav_path + '\\' + filename + '.lnk' );
+		shortcut.TargetPath = url;
+		shortcut.Save();
+	}
+}
+
+</SCRIPT>
+</HEAD>
+
+<BODY scroll=no bgcolor=buttonface onload="init()" onkeydown="if(event.keyCode==27)external.wnd.close();">
+
+<TABLE cellspacing=0 cellpadding=0 width="100%" height="100%" border=0>
+
+<TR height=1><TD id=txt_from></TD></TR>
+<TR height=1><TD><INPUT id=from type=text readonly style="font: message-box; padding: 2px; height: 22px; width: 100%;"></TD></TR>
+
+<TR height=1><TD style="margin-top: 6px; margin-bottom: 1px;" id=txt_link></TD></TR>
+<TR height=1><TD><INPUT id=url type=text readonly style="font: message-box; padding: 2px; height: 22px; width: 100%;"></TD></TR>
+
+<TR height=1><TD style="margin-top: 5px;" id=txt_desc></TD></TR>
+<TR><TD style="padding-bottom: 2px;"><TEXTAREA id=desc readonly style="overflow: auto; padding-left: 2px; font: message-box; width: 100%; height: 100%;"></TEXTAREA></TD></TR>
+
+<TR height=1><TD>
+<TABLE cellspacing=0 cellpadding=0 border=0 style="margin-top: 3px;">
+<TR>
+	<TD style="padding-right: 4px;"><INPUT type=button accesskey=c style="padding: 1px; width: 119px; font: message-box;" id=btn_favorites onclick="add_fav()" id=btn_fav></TD>
+	<TD style="padding-right: 4px;"><INPUT type=button accesskey=o style="padding: 1px; width: 100px; font: message-box;" id=btn_open onclick="open_url()"></TD>
+	<TD><INPUT type=button accesskey=c style="padding: 1px; width: 80px; font: message-box;" id=btn_close onclick="external.wnd.close()"></TD>
+</TR>
+</TABLE>
+</TD></TR>
+
+</TABLE>
+
+</BODY>
+</HTML>

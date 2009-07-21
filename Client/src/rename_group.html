@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<SCRIPT language=JScript>
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'rename_group', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	if ( external.globals( 'ClientRoster' ).Groups.Exists( external.wnd.params ) )
+	{
+		document.getElementById( 'newname' ).focus();
+		document.getElementById( 'newname' ).value = external.globals( 'ClientRoster' ).Groups( external.wnd.params ).Name;
+		external.wnd.hide( false );
+	}
+	else
+		external.wnd.close();
+}
+
+function ok ()
+{
+	event.returnValue = false;
+	if ( document.getElementById( 'newname' ).value.length )
+	{
+		if ( external.globals( 'ClientRoster' ).Groups.Exists( external.wnd.params ) )
+			external.globals( 'ClientRoster' ).Groups( external.wnd.params ).SetName( document.getElementById( 'newname' ).value );
+		external.wnd.close();
+	}
+}
+
+</SCRIPT>
+<STYLE>
+BODY {
+	cursor: default;
+	margin: 8px;
+	padding: 0px;
+}
+INPUT.text {
+	font-family: Tahoma;
+	font-size: 11px;
+	width: 100%;
+	height: 22px;
+}
+TD {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: windowtext;
+}
+INPUT.btn {
+	width: 90px;
+	height: 24px;
+	font-family: Tahoma;
+	font-size: 11px;
+}
+</STYLE>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="init()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="ok()">
+<TABLE width="100%" border=0 cellpadding=2 cellspacing=0 style="table-layout: fixed;">
+<COL width=117><COL>
+<TR>
+	<TD id=txt_newname></TD>
+	<TD><INPUT id=newname class=text onpropertychange="document.getElementById( 'btn_ok' ).disabled = ! this.value.length"></TD>
+</TR>
+<TR>
+	<TD colspan=2 align=right style="padding-top: 10px;">
+		<INPUT type=submit class=btn id=btn_ok disabled>
+		<INPUT type=button class=btn id=btn_cancel onclick="external.wnd.close()">
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

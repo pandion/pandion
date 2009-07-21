@@ -1,0 +1,193 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY, MARQUEE {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+A {
+	color: blue;
+}
+H1 {
+	font-family: Tahoma;
+	font-size: 17px;
+	color: black;
+}
+TD {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: black;
+}
+#credits {
+	padding-left: 2px;
+	padding-top: 1px;
+	background-color: white;
+	border: 2px inset;
+	text-align: center;
+}
+</STYLE>
+<SCRIPT language=JScript>
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'about', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	document.getElementById( 'version'		).innerText = external.globals( 'softwareversion' );
+	document.getElementById( 'name'			).innerText = external.globals( 'softwarename' );
+	document.getElementById( 'copyholder'	).innerText = external.globals( 'softwarecopyrightholder' );
+	document.getElementById( 'copydate'		).innerText = external.globals( 'softwarecopyrightdate' );
+	document.getElementById( 'url'			).innerText = document.getElementById( 'url' ).href = external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'softwareurl' ) );
+	document.getElementById( 'copy_basis'	).innerHTML = external.globals( 'Translator' ).Translate( 'about', 'copy_basis', [ 'Pandion', '2006', 'Sebastiaan Deckers & Dries Staelens' ] );
+	document.getElementById( 'basis_link'	).innerText = document.getElementById( 'basis_link'	).href = 'http://www.pandion.be/';
+
+	if ( external.globals( 'softwarename' ) == 'Pandion' )
+		document.getElementById( 'basedon' ).style.display = 'none';
+
+	var Credits = [
+		[
+			'Realization',
+			'Sebastiaan Deckers',
+			'Dries Staelens'
+		],
+		[
+			'Documentation',
+			'Ben Branders'
+		],
+		[
+			'Translation',
+			'Carlos Alberto Costa Beppler',
+			'Alexander Bykov',
+			'Onur Can Çakmak',
+			'Leandro Vázquez Cervantes',
+			'Pascal Craponne',
+			'Marek Goldmann',
+			'César Gómez',
+			'Julius Hacker',
+			'Ontje Helmich',
+			'Francesco de Imperatori',
+			'Roman Ivanov',
+			'Masayuki Iwasa',
+			'Roula Kallou',
+			'Jakub Kulaviak',
+			'Xian Chung Lee',
+			'Bartosz Mazur',
+			'Krzysztof Mlodozeniec',
+			'Sylvio Rogério Soares do Nascimento',
+			'Dario Ornelas',
+			'Sergey Safarov',
+			'George Sartzetakis',
+			'Mariusz Smykula',
+			'Jan Starzak',
+			'William Wei',
+			'Sven Wiedeck',
+			'Mateusz Wozniak',
+			'Wang Yu Xiang',
+			'Zhang Shang Yi'
+		]
+	];
+
+	var CreditsArea = document.getElementById( 'credits-area' );
+
+	for ( var i = 0; i < Credits.length; ++i )
+	{
+		var Row					= CreditsArea.insertRow(-1);
+		Row.vAlign				= 'top';
+		Row.style.paddingTop	= '20px';
+
+		var Col					= Row.insertCell(-1);
+		Col.rowSpan				= Credits[i].length - 1;
+		Col.innerHTML			= Credits[i][0] + ':';
+
+		Col						= Row.insertCell(-1);
+		Col.innerHTML			= Credits[i][1];
+
+		for ( var j = 2; j < Credits[i].length; ++j )
+		{
+			Row					= CreditsArea.insertRow(-1);
+			Row.vAlign			= 'top';
+
+			Col					= Row.insertCell(-1);
+			Col.innerHTML		= Credits[i][j];
+		}
+	}
+
+	document.getElementById( 'btn_ok' ).focus();
+	document.getElementById( 'copytext' ).focus();
+	external.wnd.hide( false );
+}
+
+function show_copyright ()
+{
+	document.getElementById( 'credits'			).stop();
+	document.getElementById( 'credits'			).style.display = 'none';
+	document.getElementById( 'copyright'		).style.display = 'block';
+	document.getElementById( 'btn_copyright'	).style.display = 'none';
+	document.getElementById( 'copytext'			).focus();
+}
+
+function show_credits ()
+{
+	document.getElementById( 'credits'			).start();
+	document.getElementById( 'credits'			).style.display = 'block';
+	document.getElementById( 'copyright'		).style.display = 'none';
+	document.getElementById( 'btn_copyright'	).style.display = 'block';
+	document.getElementById( 'copytext'			).focus();
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="init()" onkeypress="if(event.keyCode==27)external.wnd.close();">
+
+<DIV style="position: absolute; top: 0px; left: 0px; height: 102px; width: 100%; background-color: white; border-bottom: 2px groove;"></DIV>
+
+<IMG id=logo src="../images/brand/about.gif" style="position: absolute; top: 5px; left: 20px;">
+
+<DIV id=copytext style="position: absolute; top: 25px; left: 120px; font-family: Tahoma; font-size: 11px; color: black;">
+	<B id=name></B>&nbsp;&nbsp;<SPAN id=version></SPAN><BR>
+	<SPAN id=txt_copyright></SPAN>&nbsp;<SPAN id=copydate></SPAN>&nbsp;<SPAN id=copyholder></SPAN><BR>
+	<A id=url href="" onclick="external.windows( 'MainWindow' ).Do( 'dial_webbrowser', this.href ); return false;"></A><BR>
+</DIV>
+
+<DIV id=copyright style="position: absolute; top: 120px; left: 20px; font-family: Tahoma; font-size: 11px; color: black;">
+	<SPAN id=basedon>
+		<DIV id=copy_basis></DIV>
+		<A id=basis_link onclick="external.windows( 'MainWindow' ).Do( 'dial_webbrowser', this.href ); return false;"></A><BR>
+		<BR>
+	</SPAN>
+	<DIV id=copy_darkproject></DIV>
+	<A href="http://www.darkproject.com/" onclick="external.windows( 'MainWindow' ).Do( 'dial_webbrowser', this.href ); return false;">http://www.darkproject.com/</A><BR>
+	<BR>
+	<DIV id=copy_rsa></DIV>
+	<A href="http://pajhome.org.uk/site/legal.html" onclick="external.windows( 'MainWindow' ).Do( 'dial_webbrowser', this.href ); return false;">http://pajhome.org.uk/site/legal.html</A><BR>
+	<BR>
+	<DIV id=copy_dns></DIV>
+	<A href="http://www.isc.org/" onclick="external.windows( 'MainWindow' ).Do( 'dial_webbrowser', this.href ); return false;">http://www.isc.org/</A><BR>
+</DIV>
+
+<MARQUEE behaviour=scroll direction=up scrollamount=1 scrolldelay=60 id=credits style="display: none; position: absolute; top: 120px; left: 20px; width: 360px; height: 152px;">
+	<H1>Credits</H1>
+	<TABLE border=0 style="table-layout: fixed;" width="90%">
+		<COLGROUP>
+			<COL width="40%">
+			<COL>
+		</COLGROUP>
+		<TBODY id=credits-area></TBODY>
+		<TBODY>
+			<TR style="padding-top: 150px; text-align: center;">
+				<TD colspan=2>Thank you for using this software! :-)</TD>
+			</TR>
+		</TBODY>
+	</TABLE>
+</MARQUEE>
+
+<DIV style="position: absolute; top: 291px; left: 0px; width: 100%; border-top: 2px groove;"></DIV>
+<INPUT type=button id=btn_credits style="position: absolute; top: 302px; left: 10px; width: 120px; height: 24px; font-family: Tahoma; font-size: 11px;" onclick="show_credits()">
+<INPUT type=button id=btn_copyright style="display: none; position: absolute; top: 302px; left: 10px; width: 120px; height: 24px; font-family: Tahoma; font-size: 11px;" onclick="show_copyright()">
+<INPUT type=submit id=btn_ok style="position: absolute; top: 302px; left: 300px; width: 90px; height: 24px; font-family: Tahoma; font-size: 11px;" onclick="external.wnd.close()">
+
+</BODY>
+</HTML>

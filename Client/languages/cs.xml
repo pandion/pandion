@@ -1,0 +1,1961 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This is a template for translating the user interface.  Every item
+corresponds to an HTML element in the interface.  All porperties
+such as innerText, innerHTML or title can be translated and will
+override the default english text.
+Each <code> is a string that is used in the program's source code.
+Some of these strings don't accept HTML, so you must encode < and
+> as &lt; and &gt;
+
+The following text is used by the installation program. Replace
+them with the translated text so that they can be included with
+the installer.
+
+-begin-
+
+LangString DESC_SecCopyRequired		${LANG_ENGLISH}	"Tyto soubory jsou nutné pro pro funkci prgramu ${PRODUCT}."
+LangString DESC_SecCreateStartMenu	${LANG_ENGLISH}	"Start Menu umožňuje rychlý přístup k ${PRODUCT}."
+LangString DESC_SecCreateQuickstart	${LANG_ENGLISH}	"Přídá ${PRODUCT} do panelu rychlého spouštění."
+LangString DESC_SecCreateDesktop	${LANG_ENGLISH}	"Přidá zástupce na plochu."
+LangString DESC_SecCreateAutoStart	${LANG_ENGLISH}	"${PRODUCT} se automaticky přihlásí k serveru při startu Windows."
+LangString ITEM_SecCreateStartMenu	${LANG_ENGLISH}	"Zástupce Start Menu"
+LangString ITEM_SecCreateQuickstart	${LANG_ENGLISH}	"Zástupce rychlého spuštění"
+LangString ITEM_SecCreateDesktop	${LANG_ENGLISH}	"Zástupce na ploše"
+LangString ITEM_SecCreateAutoStart	${LANG_ENGLISH}	"Spustit ${PRODUCT} při startu"
+LangString TEXT_WindowsOutdated		${LANG_ENGLISH}	"Nelze instalovat ${PRODUCT}.$\n Je vyžadováné Windows NT 4 a vyšší"
+LangString TEXT_AlreadyRunning		${LANG_ENGLISH}	"Zavřete ${PRODUCT} před pokračováním."
+LangString TEXT_InternetExplorer	${LANG_ENGLISH}	"Nemohu pokračovat v instalaci ${PRODUCT}.$\n$\nMicrosoft Internet Explorer verze 5.5 nebo vyšší je vyžadován. Chcete nyní stáhnout update?"
+LangString TEXT_DownloadFailed		${LANG_ENGLISH}	"Chyba: Nemohu stáhnout požadovanou komponentu. Ujistěte se, že jste připojeni k Internetu."
+LangString un.TEXT_RemoveProfiles	${LANG_ENGLISH}	"Odebrat profily a soubory s historií?"
+LangString un.TEXT_RemoveDirectory	${LANG_ENGLISH}	"Informace: $INSTDIR nemohl být odebrán."
+
+-end-
+
+Please send your own translations to cbas@pandion.be
+Thank you,
+  Sebastiaan Deckers
+-->
+<translation xml:lang="cs">
+  <about>
+    <language>Cesky</language>
+    <history>
+      <revision>
+        <author>
+          <name>Jakub Kulaviak</name>
+          <email>ja.ku@centrum.cz</email>
+          <xmpp></xmpp>
+        </author>
+        <date>2005-01-30</date>
+        <description>
+          Překlad 1.0, uvítám opravy na ja.ku@centrum.cz
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_pleasewait">
+      <innerText>Okamžik prosím.</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Odpojen od serveru.</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>Znovu připojit.</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>nebo</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Změnit nastavení připojení.</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>Přidat známého do seznamu kontaktů.</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>nebo</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>Nastavit síťové transporty.</innerText>
+    </item>
+
+    <code id="emoticon_unknown">Neznámý</code>
+    <code id="txt_welcome">Vítejte v ${0}u!</code>
+    <code id="user_online">${0} je nyní online</code>
+    <code id="cl_tooltip">${0} seznam kontaktů</code>
+    <code id="autoawaymessage">Zaneprázdněn déle než 5 minut.</code>
+    <code id="autoxawaymessage">Zaneprázdněn déle než 30 minut.</code>
+    <code id="import_files">Seznam kontaktů</code>
+    <code id="import_invalid">Soubor neobsahuje korektní data.</code>
+    <code id="import_no_new">Všechny kontakty jsou už v seznamu kontaktů.</code>
+    <code id="import_confirm">Tyto kontakty budou přidány do seznamu kontaktů:&#13;&#13;${0}&#13;&#13;Are you sure you want to add these addresses to your contact list?</code>
+    <code id="import_aim_not_registered">Aby bylo možné importovat AIM seznam kontaktů, je nutné mít nastaven AIM transport a musí být dostupný. &#13;Go to the Tools menu and choose Transports to view the status </code>
+    <code id="conference_invitation">${0} tě zve diskuzní místnosti.${1}&#13;&#13; Chcete se připojit k diskuzi?</code>
+
+    <code id="menu_file">&amp;Soubor</code>
+    <code id="menu_file_received">&amp;Otevřít přijaté soubory.</code>
+    <code id="menu_file_export">&amp;Exportovat seznam kontaktů...</code>
+    <code id="menu_file_import">&amp;Importovat seznam kontaktů...</code>
+    <code id="menu_file_change">Změnit &amp;status zprávu...</code>
+    <code id="menu_file_ffc">&amp;Mám volno</code>
+    <code id="menu_file_available">&amp;Dostupný</code>
+    <code id="menu_file_busy">&amp;Zaneprázdněný</code>
+    <code id="menu_file_away">P&amp;ryč</code>
+    <code id="menu_file_xaway">&amp;Nejsem tady</code>
+    <code id="menu_file_invisible">N&amp;eviditelný</code>
+    <code id="menu_file_offline">&amp;Offline</code>
+    <code id="menu_file_status">&amp;Status</code>
+    <code id="menu_file_out">&amp;Zaregistrovat se </code>
+    <code id="menu_file_exit">&amp;Konec</code>
+
+    <code id="menu_axn">&amp;Akce</code>
+    <code id="menu_axn_add">&amp;Přidat kontakt...</code>
+    <code id="menu_axn_addgroup">Přidat &amp;skupinu...</code>
+    <code id="menu_axn_join">Připojit se k &amp;diskuzi...</code>
+    <code id="menu_axn_create">&amp;Vytvořit diskuzní místnost...</code>
+    <code id="menu_axn_password">Změnit &amp;heslo...</code>
+    <code id="menu_axn_profile">&amp;Změnit profil...</code>
+    <code id="menu_axn_avatar">Změnit &amp;avatar...</code>
+
+    <code id="menu_tool">&amp;Nástroje</code>
+    <code id="menu_tool_transport">&amp;Transporty</code>
+    <code id="menu_tool_head">&amp;Důležité zprávy a hlášení</code>
+    <code id="menu_tool_plugin">&amp;Pluginy</code>
+    <code id="menu_tool_admin">&amp;Aministrace serveru</code>
+    <code id="menu_tool_traffic">Z&amp;atížení sítě</code>
+    <code id="menu_tool_view">&amp;Zobrazit</code>
+    <code id="menu_tool_detailed">&amp;Podrobně</code>
+    <code id="menu_tool_compact">&amp;Stručně</code>
+    <code id="menu_tool_language">&amp;Jazyk</code>
+    <code id="menu_tool_aot">&amp;Vždy nahoře</code>
+    <code id="menu_tool_settings">&amp;Nastavení</code>
+
+    <code id="menu_help">Nápo&amp;věda</code>
+    <code id="menu_help_manual">&amp;Online manuál</code>
+    <code id="menu_help_forum">&amp;Fórum uživatelů</code>
+    <code id="menu_help_contact">&amp;Kontakt na autory</code>
+    <code id="menu_help_about">O &amp;programu</code>
+
+    <code id="menu_tray_about">&amp;O programu ${0}</code>
+    <code id="menu_tray_settings">&amp;Nastavení</code>
+
+    <code id="wnd_autoupdate">Aktualizace ${0}</code>
+    <code id="wnd_vcard_edit">Uživatetelské informace</code>
+    <code id="wnd_about">O programu ${0}</code>
+    <code id="wnd_signup">Zapsat se - ${0}</code>
+    <code id="wnd_adduser">Najít kontakt </code>
+    <code id="wnd_avatar">Změnit vlastní avatar</code>
+    <code id="wnd_room_browse">diskuzní místnosti</code>
+    <code id="wnd_room_create">Vytvořit diskuzní místnost</code>
+    <code id="wnd_conference_invite">Pozvat známého</code>
+    <code id="wnd_conference_other">Další služby</code>
+    <code id="wnd_console">Konzole</code>
+    <code id="wnd_emoticon_download">Stáhnot emotikony</code>
+    <code id="wnd_emoticon_list">Emotikony</code>
+    <code id="wnd_emoticon_view">Detaily emotikonů</code>
+    <code id="wnd_file_send">Poslat soubor ${0}</code>
+    <code id="wnd_file_recv">Přichozí soubor od ${0}</code>
+    <code id="wnd_group_message">Zpráva více osobám</code>
+    <code id="wnd_transport_list">Transporty</code>
+    <code id="wnd_transport_other">Ostatní transporty</code>
+    <code id="wnd_headlines">Prohlížec důležitých zpráv</code>
+    <code id="wnd_history">${0} - Historie zpráv</code>
+    <code id="wnd_plugin_list">Pluginy</code>
+    <code id="wnd_plugins">Pluginy</code>
+    <code id="wnd_password">Změnit heslo</code>
+    <code id="wnd_settings">Nastavení</code>
+    <code id="wnd_admin_server">Administrace serveru</code>
+    <code id="wnd_status">Status zpráva</code>
+    <code id="wnd_vcard_view">Informace uživatele</code>
+    <code id="wnd_group_create">Vytvořit skupinu</code>
+    <code id="wnd_group_rename">Přejmenovat skupinu</code>
+    <code id="wnd_contact_rename">Přejmenovat kontakt</code>
+    <code id="wnd_authrequest">Žádost o autorizaci</code>
+    <code id="wnd_login">Přihlásit - ${0}</code>
+    <code id="wnd_extension_download">Instalování ${0}</code>
+    <code id="wnd_background_list">Pozadí</code>
+    <code id="wnd_background_download">Stáhnout pozadí</code>
+
+    <code id="msg_emoticon_install">Tento styl emotikonů byl už instalován.</code>
+    <code id="msg_received_files">Adresář pro přijaté soubory byl odebrán.</code>
+    <code id="msg_plugin_install">Chcete instalovat tento plugin?&#13;&#13;Jméno: ${0}&#13;Popis: ${1}</code>
+    <code id="msg_plugin_exists">Tento plugin byl už instalován.</code>
+    <code id="msg_expired">Zkušební doba tohoto softwaru již vypršela.</code>
+    <code id="msg_cl_adding">${0} byl přidán do Vašeho seznamu kontaktů.</code>
+    <code id="msg_cl_added">${0} si Vás přidal do svého seznamu kontaktů.</code>
+    <code id="msg_cl_removed">${0} vás odebral ze svého seznamu kontaktů.</code>
+    <code id="msg_blocked">Jste na seznaum blokovaných kontaktů tohoto uživatele.</code>
+    <code id="msg_autherror">Nelze se přihlásit. Možné příčiny:&#13;&#13;- Zadal jste špatné heslo&#13;- Tento účet na serveru neexistuje&#13;&#13;Pokuste se přihlásit znovu.</code>
+
+    <code id="menu_message">Zpráva</code>
+    <code id="menu_filetransfer">Přenos souboru</code>
+    <code id="menu_room_create">Vytvořit novou místnost</code>
+    <code id="menu_room_invite">Pozvat na diskuzi.</code>
+    <code id="menu_rename">Přejmenovat</code>
+    <code id="menu_block">Blokovat</code>
+    <code id="menu_delete">Smazat</code>
+    <code id="menu_group_create">Vytvořit novou skupinu</code>
+    <code id="menu_group_merge">Spojit s</code>
+    <code id="menu_group_move">Přesunout do</code>
+    <code id="menu_group_copy">Kopírovat do</code>
+    <code id="menu_request">Zažádat o autorizaci</code>
+    <code id="menu_history">Historie</code>
+    <code id="menu_profile">Profil</code>
+
+    <code id="cl_waiting_one">Máte jednu nepřečtenou zprávu.</code>
+    <code id="cl_waiting_multiple">Máte ${0} nepřečtených zpráv.</code>
+    <code id="cl_error_notexist">Adresa neexistuje.</code>
+    <code id="cl_error_cannotadd">Nelze přidat ${0} do seznamu kontaktů.&#13;${1}</code>
+    <code id="cl_default_group">Kontakty</code>
+    <code id="cl_group_expand">Ukázat offline kontakty</code>
+    <code id="cl_group_compact">Schovat offline kontakty</code>
+    <code id="cl_group_rename">Přejmenovat tuto skupinu.</code>
+    <code id="cl_group_message">Poslat zprávu všem.</code>
+    <code id="cl_room_create">Vytvořit novou místnost.</code>
+    <code id="cl_room_invite">Pozvat do diskuzní místnosti.</code>
+    <code id="cl_group_empty">V této skupině momentálné nejsou žádní lidé online.</code>
+    <code id="cl_status_empty">Status nemá nastavenou žádnou zprávu.</code>
+    <code id="cl_status_offline">Offline</code>
+    <code id="cl_status_awaiting">Čekání na autorizaci.</code>
+    <code id="cl_status_unknown">Neznámý status</code>
+    <code id="cl_status_waiting_one">1 nepřečtená zpráva</code>
+    <code id="cl_status_waiting_multiple">${0} nepřečtených zpráv</code>
+    <code id="cl_tooltip_offline">Adresa: ${0}</code>
+    <code id="cl_contact_remove_group">Jste si jist, že chcete odebrat tento kontakt z této skupiny?</code>
+    <code id="cl_contact_remove_list">Jste si jist, že chcete odebrat tento kontakt ze svého seznamu kontaktů?</code>
+    <code id="cl_link_open">Otevřít v prohlížeči</code>
+    <code id="cl_link_copy">Kopírovat adresu odkaz.</code>
+    <code id="cl_link_favorite">Přidat mezi oblíbené.</code>
+    <code id="cl_ffc">Volný na chat.</code>
+    <code id="cl_available">Dostupný.</code>
+    <code id="cl_busy">Zaneprázdněný</code>
+    <code id="cl_away">Pryč</code>
+    <code id="cl_xaway">Déle pryč.</code>
+    <code id="cl_invisible">Neviditelný.</code>
+    <code id="cl_tooltip_online">Adresa: ${0}&#13;Zdroj: ${1}</code>
+  </window>
+  <window name="about">
+    <item id="btn_credits">
+      <value>Credits &gt;&gt;</value>
+    </item>
+    <item id="btn_copyright">
+      <value>Copyright &gt;&gt;</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="copy_darkproject">
+      <innerHTML>Většina ikon a emotikonů je chráněna copyrightem &amp;copy; 2001 Greg Fleming.</innerHTML>
+    </item>
+    <item id="copy_rsa">
+      <innerHTML>Uses the MD5 Message-Digest Algorithm. Copyright RSA Data Security, Inc.</innerHTML>
+    </item>
+    <item id="copy_dns">
+      <innerHTML>Based on BIND. Copyright Internet Software Consortium, Inc.</innerHTML>
+    </item>
+    <item id="txt_copyright">
+      <innerHTML>Copyright &amp;copy;</innerHTML>
+    </item>
+    <code id="copy_basis">Based on ${0}. Copyright &amp;copy; ${1} ${2}.</code>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>Prohlédnout profil.</value>
+    </item>
+    <item id="btn_deny">
+      <value>Zakázat</value>
+    </item>
+    <item id="btn_accept">
+      <value>Přijmout</value>
+    </item>
+    <item id="txt_from">
+      <innerText>Dostal jste žádost o autorizaci od :</innerText>
+    </item>
+    <item id="txt_reason">
+      <innerText>Důvod:</innerText>
+    </item>
+    <item id="txt_add">
+      <innerText>Přidat tohoto uživatele do seznamu kontaktů.</innerText>
+    </item>
+  </window>
+  <window name="admin_users">
+    <item id="btn_refresh">
+      <value>Obnovit</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Pokud chcete poslat zprávu, klikněte na účet nebo klikněte pravým tlačítkem pro zobrazení dalších možností.</innerText>
+    </item>
+    <code id="add_to_list">Přidat do seznamu kontaktů.</code>
+    <code id="tooltip_with">Adresa: ${0}&#13;Zdroj: ${1}&#13;Online po dobu: ${2}</code>
+    <code id="tooltip_without">Adresa: ${0}&#13;Online po dobu: ${1}</code>
+    <code id="loading">Nahrávám...</code>
+    <code id="invalid_data">Přijatá neplatná data.</code>
+    <code id="server_error">Chyba serveru:</code>
+    <code id="server_failed">Selhalo stažení seznamu online uživatelů.&lt;BR&gt; Ujistěte se, že máte administrátorská práva pro přístup k serveru.</code>
+    <code id="user">1 uživatel online</code>
+    <code id="users">${0} uživatelů online</code>
+  </window>
+  <window name="admin">
+    <item id="btn_view">
+      <value>Zobrazit všechny online uživatele.</value>
+    </item>
+    <item id="btn_close">
+      <value>Zavřít</value>
+    </item>
+    <item id="admin_btn_wall">
+      <value>Odeslat</value>
+    </item>
+    <item id="admin_btn_motd">
+      <value>Odeslat</value>
+    </item>
+    <item id="txt_wall_desc">
+      <innerText>Tato zpráva je poslána všem online uživatelům.</innerText>
+    </item>
+    <item id="txt_motd_desc">
+      <innerText>Tato zpráva je poslána uživatelům při jejich přihlášení.</innerText>
+    </item>
+    <item id="txt_wall">
+      <innerText>Zpráva všem uživatelům.</innerText>
+    </item>
+    <item id="txt_motd">
+      <innerText>Zpráva dne</innerText>
+    </item>
+    <item id="txt_view">
+      <innerText>Zjistí, kdo je připojen k serveru.</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Nástroje pro sledování a administraci serveru.</innerText>
+    </item>
+    <item id="txt_users">
+      <innerText>Uživatelé</innerText>
+    </item>
+    <code id="wnd_users">Online uživatelé</code>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>Neformátovaný výstup</value>
+    </item>
+    <item id="btn_send">
+      <value>Odeslat</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>Presence</value>
+    </item>
+    <item id="btn_message">
+      <value>Zpráva</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>Stav sítě:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>Zalom řádky</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>XML vstup:</innerText>
+    </item>
+    <code id="toggle_on">Debug je zapnut</code>
+    <code id="toggle_off">Debug je vypnut</code>
+    <code id="valid_xml">Vstupem musí být validní XML. Ne jenom mezery, nebo prostý text.</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>Zavřít</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Hlášení a důležité zprávy.</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Zvláštní varování je zobrazeno, když dostanete zvláštní zprávu nebo jinou krátkou zprávu.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Nedostal jste žádná hlášení nebo důležité zprávy.</innerText>
+    </item>
+    <item id="alertonlinelabel">
+      <innerText>Zobrazit oznámení při změně statusu některého z kamarádů na online.</innerText>
+    </item>
+    <code id="read_more">Více...</code>
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>Storno</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_custom">
+      <value>Obrázek...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Vyberte osobní obrázek, který bude reprezentovat váš profil.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Nahrávání...</innerText>
+    </item>
+    <code id="error_size">Nelze nahrát obrázek. Velikost přesahuje 8 kB.</code>
+    <code id="error_empty">Nelze nahrát obrázek. Soubor je prázdný.</code>
+    <code id="error_load">Varování: Nelze nahrát avatar.&#13;&#13;${0}</code>
+    <code id="menu_use">Použij tento avatar</code>
+    <code id="menu_saveas">Uložit jako...</code>
+    <code id="menu_delete">Smazat</code>
+    <code id="wnd_select">Vyber avatar.</code>
+    <code id="saveas_files">Soubory s obrázky</code>
+    <code id="image_files">Soubory s obrázky menší než 8 kB.</code>
+    <code id="all_files">Všechny soubory</code>
+  </window>
+  <window name="mode_select">
+    <item id="ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_preset">
+      <value>Předvolit zprávu...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Ostatní uživatelé si mohou přečíst tuto zprávu, když nejste dostupní.</innerText>
+    </item>
+    <code id="btn_1">Na vycházce :-)</code>
+    <code id="btn_2">U telefonu</code>
+    <code id="btn_3">Spím</code>
+    <code id="btn_4">Jím</code>
+    <code id="btn_5">Na schůzce</code>
+    <code id="btn_6">Piji</code>
+    <code id="btn_7">Nerušit</code>
+    <code id="btn_8">Pracuji</code>
+    <code id="btn_9">Ve škole</code>
+    <code id="msg_1">Půjdu pryč.</code>
+    <code id="msg_2">Na telefonu.</code>
+    <code id="msg_3">Spím.</code>
+    <code id="msg_4">Čas na jídlo</code>
+    <code id="msg_5">Jsem na schůzce.</code>
+    <code id="msg_6">Šel jsem na drink.</code>
+    <code id="msg_7">Nerušit, potřebuji se soustředit.</code>
+    <code id="msg_8">Pracuji :-(</code>
+    <code id="msg_9">Jsem ve škole.</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Storno</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nové jméno:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Storno</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nové jméno:</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Storno</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nové jméno:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Storno</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>Potvrdit nové heslo:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Nové heslo:</innerText>
+    </item>
+    <code id="no_match">Zadaná hesla nesouhlasí.&#13;&#13; Zadejte nové heslo do obou polí.</code>
+    <code id="no_pass">Zadat nové heslo.</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="set_version">
+      <innerText>Nahrávání...</innerText>
+    </item>
+    <item id="header-images">
+      <innerText>Obrázky</innerText>
+    </item>
+    <item id="header-sounds">
+      <innerText>Zvuky</innerText>
+    </item>
+    <item id="header-markup">
+      <innerText>Text Markup</innerText>
+    </item>
+    <code id="empty">Styl emotikonu je prázdný.</code>
+    <code id="file_error">Chyba souboru</code>
+    <code id="cannot_load">Nelze nahrát emotikony.</code>
+    <code id="count_one">1 emotikon</code>
+    <code id="count_multiple">${0} emotikony</code>
+  </window>
+  <window name="emoticon_download">
+    <item id="btn_close">
+      <value>Zavřít</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Stáhnout emotikony</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Pro procházení katalogem emotikonu je vyžadováno připojení k internetu.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Nahrávání...</innerText>
+    </item>
+    <code id="install">Instalovat</code>
+    <code id="cannot_download">Chyba: Nelze nahrát emotikony.&#13;${0}</code>
+    <code id="invalid_xml">Zdroj dat obsahuje neplatná data.</code>
+    <code id="no_new_styles">Žádne styly emotikonů nejsou dostupné.</code>
+  </window>
+  <window name="emoticon_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Dostupné emotikony</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Vyberte styl emotikonu ze seznamu.</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>Nahrávání...</innerText>
+    </item>
+    <item id="btn_emoticon_download">
+      <value>Další emotikony</value>
+    </item>
+    <code id="emoticon_details">Zobrazit podrobnosti</code>
+    <code id="emoticon_remove">Smazat</code>
+    <code id="emoticon_confirm">Opravdu chcete smazat tento styl emotikonu?</code>
+    <code id="no_emoticons">Žádné emotikony nenalezeny.</code>
+  </window>
+  <window name="background_download">
+    <item id="btn_close">
+      <value>Zavřít</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Stáhnout pozadí</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Pro procházení katologem pozadí je vyžadováno připojení k Internetu.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Nahrávání...</innerText>
+    </item>
+    <code id="install">Instalovat</code>
+    <code id="cannot_download">Chyba: Nelze stáhnout pozadí.&#13;${0}</code>
+    <code id="invalid_xml">Zdroj dat obsahuje neplatná data.</code>
+    <code id="no_new_styles">Žádná pozadí nejsou dostupné.</code>
+  </window>
+  <window name="background_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Dostupná pozadí</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Přidejte nebo smažte pozadí.</innerText>
+    </item>
+    <item id="btn_background_download">
+      <value>Více pozadí</value>
+    </item>
+    <item id="txt_background_empty">
+      <innerText>Žádná pozadí nejsou nainstalována.</innerText>
+    </item>
+    <code id="background_uninstall">Smazat</code>
+    <code id="background_confirm">Opravdu chcete smazat toto pozadí?</code>
+  </window>
+  <window name="plugin_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Nainstalované pluginy</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Přidat nebo smazat pluginy.</innerText>
+    </item>
+    <item id="btn_plugin_download">
+      <value>Více pluginů</value>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>Žádné pluginy nejsou nainstalovány.</innerText>
+    </item>
+    <code id="plugin_uninstall">Odinstalovat</code>
+    <code id="plugin_confirm">Opravdu chcete smazat tento plugi?</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>Zavřít</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Stáhnout pluginy</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Pro procházení katalogem pluginů je požadováno připojení k Internetu.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Nahrávání...</innerText>
+    </item>
+    <code id="install">Instalovat</code>
+    <code id="cannot_download">Chyba: Nelze stáhnout pluginy.&#13;${0}</code>
+    <code id="invalid_xml">Zdroj dat neobsahuje platné XML.</code>
+    <code id="no_new_plugins">Žádné nové pluginy nejsou dostupné.</code>
+  </window>
+  <window name="autoupdate">
+    <code id="download_confirm">Nová verze tohoto softwaru je dostupná: ${0} ${1}&#13;&#13; Chcete stáhnout novou verzi?</code>
+    <item id="btn_cancel">
+      <value>Storno</value>
+    </item>
+    <item id="btn_install">
+      <value>Instalovat</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Připojování...</innerText>
+    </item>
+    <code id="downloading">Stahování...</code>
+    <code id="complete">Stahování dokončeno. Pokračujte stisknutím tlačítka Instalovat.</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Storno</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Každá diskuzní místnost má vlastní jedinečnou adresu. Zadejte adresu diskuzni služby a unikátní název místnosti.</innerText>
+    </item>
+    <item id="txt_service">
+      <innerText>Adresa služby:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Příklad: conference.example.com</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>Název místnosti:</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>Adresa diskuzní místnosti:</innerText>
+    </item>
+    <code id="incomplete">Vyplňtě všechna pole...</code>
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>Send</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Storno</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>Poslat těmto lidem:</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>Normální zpráva</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>Upozornění na výstrahu</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>Typ zprávy</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>Připoj odkaz</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>Zpráva</innerText>
+    </item>
+  </window>
+  <window name="extension_download">
+    <item id="btn_cancel">
+      <value>Storno</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Připojování...</innerText>
+    </item>
+    <code id="downloading">Stahování...</code>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>Storno</value>
+    </item>
+    <item id="btn_accept">
+      <value>Přijmout</value>
+    </item>
+    <item id="btn_abort">
+      <value>Zrušit</value>
+    </item>
+    <item id="btn_open">
+      <value>Otevřít</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Zbývající čas:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>Odesílatel:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Jméno souboru:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Umístění:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Průběh:</innerText>
+    </item>
+    <code id="resume">Soubor existuje. Chcete jej ponechat? &#13;&#13; Pokud jej chcete ponechat, klikněte na ano. &#13;Dejte ne, pokud jej chcet přepsat.</code>
+    <code id="cannot_overwrite">Nemohu přepsat soubor:&#13;${0}&#13;&#13;${1}</code>
+    <code id="incorrect">Nemohou zahájit přenos.  Přijata neplatná data.</code>
+    <code id="title_saving">${0}% of ${1} Uložen</code>
+    <code id="lessthanminute">Méně než 1 minuta při rychlosti ${0}/s</code>
+    <code id="onehour">1 hodina</code>
+    <code id="hours">${0} hodin a</code>
+    <code id="oneminute">1 minuta při</code>
+    <code id="minutes">${0} minut při</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Chcete zrušit přenos?</code>
+    <code id="aborted">Zrušen</code>
+    <code id="finished">Dokončen</code>
+    <code id="error_timeout">Vypršení časového limitu.</code>
+    <code id="error_code">Kód chyby: ${0}</code>
+    <code id="error_file">Kód chyby souboru: ${0}</code>
+    <code id="title_completed">Přenos dokončen - ${0}</code>
+    <code id="title_failed">Přenos selhal - ${0}</code>
+    <code id="error_move">Nemohu přesunout stažený soubor:&#13;${0}&#13;&#13;${1}</code>
+    <code id="error_failed">Přenost selhal.</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>Storno</value>
+    </item>
+    <item id="btn_abort">
+      <value>Zrušit</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Zbývající čas:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>Příjemce:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Jméno souboru:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Umístění:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Průběh:</innerText>
+    </item>
+    <code id="socket">Nelze poslat soubor.&#13; Nelze otevřít síťový socket.</code>
+    <code id="file">Nelze číst soubor:&#13;${0}</code>
+    <code id="filetransfer">Přenos souboru:</code>
+    <code id="title_saving">${0}% of ${1} Posláno</code>
+    <code id="lessthanminute">Méně než 1 minuta při rychlosti ${0}/s</code>
+    <code id="onehour">1 hodina a</code>
+    <code id="hours">${0} hodin a</code>
+    <code id="oneminute">1 minuta při</code>
+    <code id="minutes">${0} minut při</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Chcete zrušit přenos?</code>
+    <code id="finished">Dokončeno</code>
+    <code id="aborted">Zrušeno</code>
+    <code id="error_denied">Zákaz přístupu k souboru.</code>
+    <code id="error_timeout">Vypršel časový limit.</code>
+    <code id="error_code">Kód chyby: ${0}</code>
+    <code id="title_completed">Přenos dokončen - ${0}</code>
+    <code id="title_failed">Přenos selhal - ${0}</code>
+    <code id="error_failed">Přenos selhal.</code>
+  </window>
+  <window name="conference_browse">
+    <item id="btn_close">
+      <value>Storno</value>
+    </item>
+    <item id="btn_other_service">
+      <value>Další služby...</value>
+    </item>
+    <item id="btn_create">
+      <value>Vytvořit diskuzní místnost</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Dostupné místnosti:</innerText>
+    </item>
+    <item id="lbl_empty">
+      <innerText>Zobrazit prázdné místnosti</innerText>
+      <accessKey>r</accessKey>
+    </item>
+    <item id="lbl_full">
+      <innerText>Zobrazit plné místnosti</innerText>
+      <accessKey>p</accessKey>
+    </item>
+    <item id="lbl_filter">
+      <innerText>Filter:</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Na serveru není žádná dostupná diskuzní služba. &#13;&#13; Stiskněte tlačítko "Další služby...", pokud chcete přidat diskuzní služby z jiného serveru.</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Aby jste se mohl přidat k diskuzi, musíte být připojen k diskuznímu serveru.</innerText>
+    </item>
+    <code id="empty_filter">Žádné místnosti neodpovídají filtru.</code>
+    <code id="empty_no_rooms">Žádné diskuzní místnosti nejsou dostupné touto službou.</code>
+    <code id="status_connecting">Připojování...</code>
+    <code id="status_downloading">Stahování seznamu diskuzních místností...</code>
+    <code id="error_unknown">Služba "${0}" je nedostupná. Ujistěte se, že jste zadal správnou adresu. Zkuste ji zadat později, nebo zadejte jinou.</code>
+    <code id="error_no_services">Server "${0}" nemá nastavenu žádnou diskuzní službu. Pro více informací kontaktujte administrátora.</code>
+    <code id="error_no_new">Všechny diskuzní služby na serveru "${0}" jsou již zobrazeny.</code>
+  </window>
+  <window name="conference_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Storno</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Adresa:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Příklad: conference.example.com</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Zadejte adresu diskuzní služby nebo serveru.</innerText>
+    </item>
+    <code id="error_already_exists">Služba "${0}" je již zobrazena. Zadejte adresu diskuzní služby nebo serveru, který není dosud zobrazen.</code>
+  </window>
+  <window name="vcard">
+    <code id="save">Varování: Nelze uložit vCard soubor.&#13;&#13;${0}</code>
+    <code id="personal">Podrobnosti o uživateli</code>
+    <code id="system">Podrobnosti o systému</code>
+
+    <item id="txt_requesting1">
+      <innerText>Žádání informací ze serveru</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Toto bude trvat méně než 1 minutu.&lt;BR&gt;Buďte prosím trpělivý.</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>Uložit jako vCard</value>
+    </item>
+    <item id="btn_refresh">
+      <value>Obnovit</value>
+    </item>
+    <item id="btn_close">
+      <value>Storno</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>Vrátit změny</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Storno</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>Osobní informace</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>Další podrobnosti</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>Adresa domů</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>Práce</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>Adresa práce</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>System</innerText>
+    </item>
+
+    <item id="txt_name">
+      <innerText>Jméno</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>Jméno:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>Prostřední jméno:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>Příjmení:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>Přezdívka:</innerText>
+    </item>
+
+    <item id="txt_contact">
+      <innerText>Kontakt</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>Email:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>Telefon:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>Mobilní telefon:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>Fax:</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>Další podrobnosti</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>Věk:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>Narozeniny:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>Pohlaví:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>Stav:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>Vlastní stránky:</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>Adresa domů</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>Adresa 1:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>Adresa 2:</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>Město:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>Směrovací číslo:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>Stát:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>Země:</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>Organizace</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>Jméno:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>Oddělení:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>Titul:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>Funkce:</innerText>
+    </item>
+
+    <item id="txt_workcontact">
+      <innerText>Kontakt</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>Email:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>Telefon:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>Mobilní telefon:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>Fax:</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>Adresa práce</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>Adresa 1:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>Adresa 2:</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>Město:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>Směrovací číslo:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>Stát:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>Země:</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>Informace klienta</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>Adresa:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>Zdroj:</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>Místní čas:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>Software:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>Verze:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>Operační systém:</innerText>
+    </item>
+  </window>
+  <window name="transport_list">
+    <item id="btn_other">
+      <value>Další transporty...</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Dostupné transporty</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Transporty poskytují připojení k dalším typům sítí pro posílání zpráv.</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;Poznámka:&lt;/B&gt; Aby bylo možné konfigurovat transporty, musíte být připojeni k serveru.</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;Poznámka:&lt;/B&gt; Server, ke kterému jste připojeni nemá nastaveny žádné transporty. Pro více informací kontaktujte admininstrátora.</innerHTML>
+    </item>
+    <item id="msnworkaroundlabel">
+      <innerText>Dovolit MSN kontaktům změnit přezdívku.</innerText>
+    </item>
+    <code id="status_active">Aktivní</code>
+    <code id="status_noreg">Neregistrovaný</code>
+    <code id="status_disconnected">Odpojený</code>
+    <code id="status_connecting">Připojování...</code>
+    <code id="name_unknown">Neznámá služba</code>
+    <code id="error_unknown">Služba "${0}" je nedostupná. Ujistěte se, že jste zadal správnou adresu. is unavailable. Zkuste to později, nebo zadejte jinou adresu.</code>
+    <code id="error_no_transports">Server "${0}" nemá instalovány žádné transporty. Pro více informací kontaktujte administrátora.</code>    
+    <code id="error_no_new_transport">Všechny transporty na serveru "${0}" jsou již zobrazeny.</code>
+  </window>
+  <window name="transport_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Storno</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Adresa:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Příklad: sms.example.com</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Zadejte adresu transportu nebo serveru.</innerText>
+    </item>
+    <code id="error_already_exists">Služba "${0}" je již zobrazena. Zadejte adresu transportu nebo serveru, který není ještě zobrazen.</code>
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; Zpět</value>
+    </item>
+    <item id="btn_next">
+      <value>Další &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>Dokončit</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>Storno</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>Adresa:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>Přezdívka:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>Adresa:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Heslo:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>Přezdívka:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>Tento transport máte již registrován.&lt;BR&gt; Účet na který je registrován:</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>Zakázat transport</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText>Přípojování k serveru</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Bude trvat méně než 1 minutu.&lt;BR&gt;Buďte prosím trpělivý.</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>Pokud chcete zavřít tohoto průvodce, klikněte na tlačítko &lt;B&gt;Dokončit&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>Pokračujte kliknutím na tlačítko &lt;B&gt;Další&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <code id="error_invalid">Přijata neplatná data.</code>
+    <code id="error_server">&lt;B&gt;Chyba serveru:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Nelze pokračovat.</code>
+    <code id="error_unknown">&lt;B&gt;Neznámá chyba:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Nelze pokračovat.</code>
+    <code id="error_auth">&lt;B&gt;Chyba autorizace:&lt;/B&gt;&lt;BR&gt;Chybná adresa nebo heslo.&lt;BR&gt;&lt;BR&gt;Nelze pokračovat.</code>
+    <code id="wait">&lt;B&gt;Připojování k serveru&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Bude trvat méně než 1 minutu.&lt;BR&gt;Buďte prosím trpělivý.&lt;BR&gt;</code>
+
+    <code id="default_window_title">Konfigurace transportu</code>
+    <code id="default_begin_intro">Tento průvodce Vám pomůže konfigurovat transport.&lt;BR&gt; Tento transport je spojení mezi Vámí a další sítí.&lt;BR&gt;Aby jste mohl používat transport, musíte mít na síti, ke které se připojujete zřízen účet.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">Zadejte jméno a heslo.&lt;BR&gt;Také můžete zadat přezdívku, pod kterou Vás ostatní uživatelé uvidí. &lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">Váš účet je právě registrován s transportem.</code>
+    <code id="default_removing_busy">Vášemu účtu je právě odebírán transport.&lt;BR&gt;</code>
+    <code id="default_creating_done">Vášemu účtu byl úspěšne zaregistrován transport. </code>
+    <code id="default_removing_done">Vašemu účtu byl úspěšně zrušen transport.</code>
+
+    <code id="msn_window_title">MSN Messenger - Konfigurace transportu</code>
+    <code id="msn_begin_intro">Tento průvodce Vám pomuže nakonfigurovat MSN transport.&lt;BR&gt;Tento transport je spojení mezi Vámi a Vaším MSN účtem.&lt;BR&gt;Pro využívání transportu potřebujete Microsoft Passport.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">Zadejte Vaši MSN adresu a Vaše MSN heslo.&lt;BR&gt;Můžete také zadat přezdívku, kterou uvidí ostatní uživatelé.&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">Příklady: someone@msn.com, someone@hotmail.com</code>
+    <code id="msn_creating_busy">Váš účet se právě registruje s MSN transportem.</code>
+    <code id="msn_removing_busy">Vášemu účtu se právě ruší MSN transport.&lt;BR&gt;Můžete stále používat váš MSN účet jinými službami (například Hotmail, MSN Explorer, etc.).&lt;BR&gt;</code>
+    <code id="msn_creating_done">Vášemu účtu byl úspěšně zaregistrován MSN transport.</code>
+    <code id="msn_removing_done">Vašemu účtu byl úspěšně zrušen MSN transport.</code>
+
+    <code id="icq_window_title">ICQ - Konfigurace transportu</code>
+    <code id="icq_begin_intro">Tento průvodce Vám pomuže nakonfigurovat ICQ transport.&lt;BR&gt;Tento transport je spojení mezi Vámi a Vaším ICQ účtem. &lt;BR&gt;Pro využívání transportu potřebujete Uživatelské identifikační číslo (ICQ &lt;BR&gt;number)&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Zadejte Vaše ICQ číslo a heslo.&lt;BR&gt;Můžete také zadat přezdívku, kterou uvidí ostatní uživatelé.&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">Příklady: 39230793, 158525087</code>
+    <code id="icq_creating_busy">Váš účet se právě registruje s ICQ transportem.</code>
+    <code id="icq_removing_busy">Vášemu účtu se právě ruší ICQ transport.&lt;BR&gt;</code>
+    <code id="icq_creating_done">Vášemu účtu byl úspěšně zaregistrován ICQ transport.</code>
+    <code id="icq_removing_done">Vašemu účtu byl úspěšně zrušen ICQ transport.</code>
+
+    <code id="yahoo_window_title">Yahoo! Messenger - Konfigurace transportu</code>
+    <code id="yahoo_begin_intro">Tento průvodce Vám pomuže nakonfigurovat Yahoo! transport.&lt;BR&gt;Tento transport je spojení mezi Vámi a Vaším ICQ účtem.&lt;BR&gt;Pro využívání transportu potřebujete Yahoo! účet.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Zadejte Vaše Yahoo! uživatelské jméno a heslo.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">Váš účet se právě registruje s Yahoo! transportem.</code>
+    <code id="yahoo_removing_busy">Vášemu účtu se právě ruší Yahoo! transport.&lt;BR&gt;Můžete stále používat váš Yahoo! účet jinými službami (například. Yahoo! mail, Yahoo! Messenger, etc.).&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">Vášemu účtu byl úspěšně zaregistrován Yahoo! transport.</code>
+    <code id="yahoo_removing_done">Vašemu účtu byl úspěšně zrušen Yahoo! transport.</code>
+
+    <code id="aim_window_title">AOL Instant Messenger - Konfigurace transportu</code>
+    <code id="aim_begin_intro">Tento průvodce Vám pomuže nakonfigurovat AOL IM transport.&lt;BR&gt;Tento transport je spojení mezi Vámi a Vaším AOL IM účtem.&lt;BR&gt;Pro využívání transportu potřebujete AOL IM účet.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">Zadejte Vaše AOL IM uživatelské jméno a heslo.&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">Váš účet se právě registruje s AOL IM transportem.</code>
+    <code id="aim_removing_busy">Vášemu účtu se právě ruší AOL IM transport.&lt;BR&gt;Můžete stále používat váš AOL IM účet jinými programy.&lt;BR&gt;</code>
+    <code id="aim_creating_done">Vášemu účtu byl úspěšně zaregistrován AOL IM transport.</code>
+    <code id="aim_removing_done">Vašemu účtu byl úspěšně zrušen AOL IM transport.</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>Jdi</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>Uložit</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>Tisk</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>Smazat</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>Historie zpráv</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>Vyhledat:</innerText>
+    </item>
+    <code id="loading">Nahrávám historii zpráv...</code>
+    <code id="empty">Historie zpráv je prázdná.</code>
+    <code id="error_load">Nelze nahrát historii zpráv:&#13;${0}</code>
+    <code id="one_message">1 zpráva</code>
+    <code id="many_messages">${0} zpráva</code>
+    <code id="tooltip_save">Uložit historii zpráv z dnešního dne</code>
+    <code id="tooltip_print">Vytisknout historii zpráv z dnešního dne</code>
+    <code id="tooltip_delete">Smazat historii zpráv z dnešního dne</code>
+    <code id="error_open">Chyba: Nelze otevřít historii zpráv.</code>
+    <code id="error_read">Chyba: Nelze číst historii zpráv.</code>
+    <code id="delete_confirm">Opravdu chcete smazat historii zpráv pro ${0}?</code>
+    <code id="delete_confirm_date">Are you sure you want to delete the messages dated ${0}?</code>
+    <code id="delete_cannot">Nelze smazat soubor s historií zpráv: ${0}&#13;&#13;Žádné zprávy nebyly smazány.</code>
+    <code id="delete_cannot_temp">Nelze vytvořit dočasný soubor: ${0}&#13;&#13;Žádné zprávy nebyly smazány.</code>
+    <code id="delete_cannot_open">Nelze otevřít historii: ${0}&#13;&#13;Žádné zprávy nebyly smazány.</code>
+    <code id="delete_cannot_read">Nelze přečíst historii: ${0}&#13;&#13;Žádné zprávy nebyly smazány.</code>
+    <code id="delete_cannot_write">Cannot write to the temporary file: ${0}&#13;&#13;No messages have been deleted.</code>
+    <code id="error_print">Nelze nic vytisknout.&#13;Historie zpráv je prázdná.</code>
+    <code id="error_save">Nelze uložit historii zpráv.&#13;${0}</code>
+  </window>
+  <window name="chat-messages">
+    <code id="copy">Kopírovat</code>
+    <code id="copyall">Kopírovat vše</code>
+    <code id="clear">Vyčistit</code>
+    <code id="selectall">Vybrat vše</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>Ukaž, co si myslíš.</title>
+      <accessKey>u</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Změnit barvu textu a typ</title>
+      <accessKey>z</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Vybrat jiné pozadí</title>
+      <accessKey>v</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Emotikony</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Font</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Pozadí</innerText>
+    </item>
+
+    <item id="btn-send">
+      <value>Odeslat</value>
+    </item>
+
+    <code id="msg_typing">${0} píše zprávu.</code>
+    <code id="unknown">${0} možná neodepíše, protože jeho(její) status není znám.</code>
+    <code id="lastonline">Online po dobu: ${0}</code>
+    <code id="windowtitle">${0} - Konverzace</code>
+    <code id="choose_emoticons">Zobrazit všechny emotikony tohoto tématu nebo vybrat jinou sadu emotikonů</code>
+    <code id="background_no">Žádné pozadí</code>
+    <code id="background_list">Dostupná pozadí...</code>
+    <code id="close_many_tabs">Chcete zavřít všechny diskuze?</code>
+    <code id="close_recent_message">Právě přišla zpráva.&#13;&#13;Chcete zavřít tuto diskuzi?</code>
+
+    <code id="menu_file_received">&amp;Otevřít přijaté soubory...</code>
+    <code id="menu_file_history">&amp;Historie zpráv</code>
+    <code id="menu_file_close">&amp;Zavřít diskuzi</code>
+
+    <code id="menu_axn_contact">&amp;Kontakt</code>
+    <code id="menu_axn_add">Přidat do seznamu kontaktů</code>
+    <code id="menu_axn_block">&amp;Blokovat</code>
+    <code id="menu_axn_rename">&amp;Přejmenovat</code>
+    <code id="menu_axn_panel">Zobrazit Panel &amp;Akcí</code>
+    <code id="menu_axn_profile">Zobrazit &amp;profil</code>
+    <code id="menu_axn_file">Poslat &amp;Soubor</code>
+
+    <code id="menu_tool_emo_style">Vybrat &amp;emotikony...</code>
+    <code id="menu_tool_font">Změnit &amp;font...</code>
+    <code id="menu_tool_background">Změnit &amp;pozadí...</code>
+    <code id="menu_tool_aot">&amp;Vždy nahoře</code>
+    <code id="menu_tool_popup">N&amp;ové okno se zprávami</code>
+    <code id="menu_tool_tabbed">&amp;Diskuze v záložkách</code>
+    <code id="menu_tool_emoticons">&amp;Zobrazit emotikony</code>
+    <code id="menu_tool_settings">&amp;Nastavení</code>
+  </window>
+  <window name="conference-configuration">
+    <item id="btn_cancel">
+      <value>Storno</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_form_loading">
+      <innerText>Nahrávání...</innerText>
+    </item>
+    <item id="txt_form_empty">
+      <innerText>Tato diskuzní místnost nemá žádné konfigurovatelná nastavení</innerText>
+    </item>
+    <item id="txt_form_invalid">
+      <innerText>Chyba: Nelze získat nastavení diskuzní místnosti</innerText>
+    </item>
+    <code id="form_title">Nastavení pro diskuzní místnost</code>
+    <code id="form_subtitle">Místnost nakonfigurujete vyplněním tohoto  formuláře.</code>
+  </window>
+  <window name="conference-password">
+    <item id="txt_password">
+      <innerText>Heslo:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-name">
+    <item id="txt_name">
+      <innerText>Jméno:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-subject">
+    <item id="txt_subject">
+      <innerText>Téma:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-invite">
+    <item id="btn_cancel">
+      <value>Storno</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Vyberte kontakty, které chcete pozvat.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Žádné kontakty z tohoto seznamu nejsou právě online.</innerText>
+    </item>
+  </window>
+  <window name="conference-container">
+    <item id="btn-emoticons">
+      <title>Ukaž, co si myslíš</title>
+      <accessKey>u</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Změnit barvu textu a typ</title>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Vybrat jiné pozadí</title>
+      <accessKey>p</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Emotikony</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Font</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Pozadí</innerText>
+    </item>
+
+    <item id="btn-send">
+      <value>Odeslat</value>
+    </item>
+
+    <item id="txt-occupants">
+      <innerText>Účastníci</innerText>
+    </item>
+
+    <code id="wnd_conference_password">Připojit pomocí hesla</code>
+    <code id="wnd_conference_change_name">Změnit jméno</code>
+    <code id="wnd_conference_subject">Změnit téma diskuze</code>
+    <code id="wnd_conference_configuration">Konfigurace diskuzní místnosti</code>
+
+    <code id="default_subject">Tato diskuzní místnost nemá žádné téma</code>
+    <code id="windowtitle">${0} - Diskuze</code>
+    <code id="destroy">Odstranění této diskuze odebere všechny účastníky z diskuze a smaže ji ze serveru.&#13;&#13;Opravdu chcete smazat diskuzní místnost?</code>
+
+    <code id="menu_file_close">&amp;Zavřít diskuzi</code>
+
+    <code id="menu_axn_invite">&amp;Pozvat kontakty...</code>
+    <code id="menu_axn_change_name">Změnit svoje &amp;jméno...</code>
+    <code id="menu_axn_password">Přípojit pomocí &amp;hesla...</code>
+    <code id="menu_axn_subject">&amp;Změnit téma diskuzní místnosti...</code>
+    <code id="menu_axn_configuration">&amp;Nastavit konfiguraci diskuzní místnosti...</code>
+    <code id="menu_axn_destroy">&amp;Smazat diskuzní místnost...</code>
+  </window>
+  <window name="preferences">
+    <item id="txt_autoaway">
+      <innerText>V případě delší nepřítomnosti změní status na "Pryč".</innerText>
+    </item>
+    <item id="txt_displayawaymsg_left">
+      <innerText>Zobrazit tuto zprávu po</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_left">
+      <innerText>Zobrazit tuto zprávu po</innerText>
+    </item>
+    <item id="txt_displayawaymsg_right">
+      <innerText>minutách:</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_right">
+      <innerText>minutách:</innerText>
+    </item>
+    <item id="txt_blocking">
+      <innerText>Seznam s blokovanými kontakty je seznam obsahující kontakty, od kterých nechcete dostávat zprávy.</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>Zobrazit zprávy od lidí, kteří nejsou v mém seznamu kontaktů</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>Seznam blokovaných kontaktů</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>Odblokovat</value>
+    </item>
+    <item id="block_btn_view">
+      <value>Zobrazit profil</value>
+    </item>
+    <item id="txt_ssl">
+      <innerText>Použít zabezpečenou komunikaci (SSL)</innerText>
+    </item>
+    <item id="txt_firewall_proxy">
+      <innerText>Firewall a proxy server</innerText>
+    </item>
+    <item id="txt_proxy1">
+      <innerText>Žádný</innerText>
+    </item>
+    <item id="txt_proxy2">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_proxy3">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_proxy4">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_proxyserver">
+      <innerText>Server:</innerText>
+    </item>
+    <item id="txt_proxyport">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_proxyuser">
+      <innerText>Uživatelské jméno:</innerText>
+    </item>
+    <item id="txt_proxypass">
+      <innerText>Heslo:</innerText>
+    </item>
+    <item id="txt_portmap">
+      <innerText>NAT, firewall</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>Hostitel:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>Ukládat všechny zprávy</innerText>
+    </item>
+    <item id="txt_startup">
+      <innerText>Spustit automaticky při startu Windows</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>Když někdo žádá o autorizaci</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>Ptát se</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>Autorizovat všechny žádosti</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>Autorizovat všechny uživatele, kteří jsou v mém seznamu kontaktů, na ostatní se ptát</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>Zakázat všechny žádosti</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>Přehrát zvukové oznámení při příchozí zprávě</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>Přehrát zvukové oznámení při změně statusu některého známého na online</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>Přehrát zvukové oznámení při změně statusu některého známého na offline</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>Procházet</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>Procházet</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>Procházet</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Storno</value>
+    </item>
+    <item id="lbl_autoaway">
+      <innerText>Automaticky pryč</innerText>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>Blokovaný</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>Přípojení</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>Soukromí</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>Zvuky</innerText>
+    </item>
+    <code id="autoaway">Nastavení automatických zpráv</code>
+    <code id="blocking">Seznam blokovaných kontaktů</code>
+    <code id="connection">Nastavení připojení</code>
+    <code id="privacy">Soukromí</code>
+    <code id="sound">Zvuky - oznámení</code>
+    <code id="reconnect">Musíte se znovu přípojit, aby se změny projevily.&#13;&#13;Chcete se nyní odpojit a znovu připojit?</code>
+    <code id="shortcut">Odeslat a přijmout zprávy</code>
+    <code id="choose_sound">Vybrat zvuk oznámení</code>
+    <code id="file_audio">Zvukové soubory</code>
+    <code id="file_any">Všechny soubory</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>Najít nebo přidat kontakt.</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>Můžete vyhledat nový kontakt pomocí služby Hledání na serveru nebo zadat adresu nového kontaktu.</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>Jak chcete přídat kontakt?</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>Chci jej &lt;U&gt;v&lt;/U&gt;yhledat</innerHTML>
+      <accessKey>v</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>Služ&lt;U&gt;b&lt;/U&gt;a:</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>b</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML>&lt;U&gt;Z&lt;/U&gt;nám adresu nového kontaktu</innerHTML>
+      <accessKey>z</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>&lt;U&gt;S&lt;/U&gt;íť:</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>s</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>&lt;U&gt;A&lt;/U&gt;dresa:</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>a</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>Pokud chcete komunikovat s lidmi používající jiný typ sítě (ICQ, Yahoo...), musíte si nastavit pro tuto síť transport.</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>Nastavit transport</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>Další &gt;</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_p1_cancel">
+      <value>Storno</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>Zpracovávání nového kontaktu</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>Transport nyní ověřuje uživatelské jméno.</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; Zpět</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>Další &gt;</value>
+    </item>
+    <item id="page1b_btn_cancel">
+      <value>Storno</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>Zasílám požadavek na zaslání dialogového okna pro hledání</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>Vyhledávací dialogové okno obsahuje instrukce, vyhledávat můžete podle jednotlivých polí.</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; Zpět</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>Další &gt;</value>
+    </item>
+    <item id="page1c_btn_cancel">
+      <value>Storno</value>
+    </item>
+
+    <item id="txt_p2_title">
+      <innerText>Zpráva</innerText>
+    </item>
+    <item id="txt_p2_tagline">
+      <innerText>Můžete zaslat osobě, od níž žádáte o autorizaci, zprávu s důvody žádosti o autorizaci.</innerText>
+    </item>
+    <item id="page2_btn_back">
+      <value>&lt; Zpět</value>
+      <accessKey>z</accessKey>
+    </item>
+    <item id="page2_btn_finish">
+      <value>Dokončit</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="page2_btn_cancel">
+      <value>Storno</value>
+    </item>
+    <item id="txt_p2_desc">
+      <innerText>Žádost o autorizaci bude poslána:</innerText>
+    </item>
+    <item id="txt_p2_user">
+      <innerText>Adresa:</innerText>
+    </item>
+    <item id="txt_p2_network">
+      <innerText>Síť:</innerText>
+    </item>
+    <item id="txt_p2_message">
+      <innerHTML>&lt;U&gt;Z&lt;/U&gt;práva (volitelné):</innerHTML>
+    </item>
+    <item id="page2_message">
+      <innerText>Rád bych tě přidal do svého seznamu kontaktů.</innerText>
+    </item>
+    <item id="txt_p2_close">
+      <innerHTML>Žádost se odešle kliknutím na tlačítko &lt;B&gt;Dokončit&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; Zpět</value>
+      <accessKey>z</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>Vyhledat</value>
+      <accessKey>v</accessKey>
+    </item>
+    <item id="page3_btn_cancel">
+      <value>Storno</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText>Výsledky hledání</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>Můžete si zobrazit detaily uživatele nebo jej přidat do svého seznamu kontaktů.</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; Zpět</value>
+      <accessKey>z</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>Další &gt;</value>
+    </item>
+    <item id="page4_btn_cancel">
+      <value>Storno</value>
+    </item>
+    <code id="correct">Zadejte správné uživatelské jméno.&#13;&#13;Příklad: osoba123@${0}</code>
+    <code id="example_address">Příklad: osoba123@${0}</code>
+    <code id="enter_username">Zadejte jméno uživatele, kterého kontaktovat</code>
+    <code id="contacting_transport">&lt;B&gt;Kontaktování transportu&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Mělo by trvat méně než 1 minutu.&lt;BR&gt;Buďte prosím trpělivý.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Kontaktování vyhledávací služby&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Mělo by trvat méně než 1 minutu.&lt;BR&gt;Buďte prosím trpělivý.&lt;BR&gt;</code>
+    <code id="error_transport">&lt;B&gt;Chyba serveru:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Uživatel nemohl být přidán do Vašeho seznamu kontaktů.&lt;BR&gt;Ujistěte se, že jste zadal správné uživatelské jméno.</code>
+    <code id="error_search">&lt;B&gt;Chyba serveru:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Výsledky vyhledávání nemohly být staženy&lt;BR&gt;Zkuste to později, nebo s jinou službou.</code>
+    <code id="error_invalid">Přijata neplatná data.</code>
+    <code id="search_title">Vyhledání uživatele</code>
+    <code id="search_tagline">Vyplňte některý údaj o hledáném uživateli.</code>
+    <code id="firstname">Jméno:</code>
+    <code id="lastname">Příjmení:</code>
+    <code id="nick">Přezdívka:</code>
+    <code id="email">Email:</code>
+    <code id="searching">Hledání...</code>
+    <code id="add">Přidat do seznamu kontaktů</code>
+    <code id="view">Zobrazit profil</code>
+    <code id="foundone">1 výsledek</code>
+    <code id="foundmany">${0} výsledků</code>
+  </window>
+  <window name="login">
+    <code id="invalid">Adresa je neplatná. Opravte adresu a zkuste to znovu.&#13;&#13;Pokud nemáte adresu, klikněte na "Zaregistrovat se" a postupujte podle instrukcí.</code>
+    <item id="txt_instructions">
+      <innerText>Zadejte vaši adresu a heslo.</innerText>
+    </item>
+    <item id="txt_address">
+      <innerText>Adresa:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Příklad: osoba123@example.com</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Heslo:</innerText>
+    </item>
+    <item id="txt_remember">
+      <innerText>Zapamovat si heslo</innerText>
+    </item>
+    <item id="txt_autologin">
+      <innerText>Přihlašovat se automaticky</innerText>
+    </item>
+    <item id="btn_signup">
+      <value>Zaregistrovat se</value>
+    </item>
+    <item id="btn_login">
+      <value>Přihlásit se</value>
+    </item>
+    <item id="btn_close">
+      <value>Storno</value>
+    </item>
+  </window>
+  <window name="sign_up">
+    <code id="close_confirm">Nová adresa není úplná.&#13;&#13;Chcete zavřít průvodce?</code>
+    <code id="incomplete">Vyplňte všechna pole...</code>
+    <code id="pass_match">Hesla, která jste zadal navzájem nesouhlasí.&#13;&#13;Zadejte znovu hesla do obou polí.</code>
+
+    <code id="contacting">Kontaktování serveru...</code>
+    <code id="registered">Váš učet se zaregistrovává. Mělo by to trvat méně než 1 minutu.&lt;BR&gt;Buďte prosím trpělivý.&lt;BR&gt;</code>
+    <code id="requesting">Žádání o informace...</code>
+    <code id="sending">Posílání registrace...</code>
+    <code id="failure">Spojení selhalo</code>
+    <code id="completed">Registrace je kompletní</code>
+
+    <code id="address">Adresa:</code>
+    <code id="nickname">Jméno:</code>
+    <code id="userdir">Adresář uživatele:</code>
+    <item id="txt_page_welcome_title">
+      <innerText>Vítejte v průvodci registrací</innerText>
+    </item>
+    <item id="txt_page_welcome_intro">
+      <innerText>Tento průvodce Vám pomůže s registrací nového účtu.</innerText>
+    </item>
+    <item id="txt_page_welcome_next">
+      <innerHTML>Pokračujte kliknutím na &lt;B&gt;Další&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_welcome_next">
+      <value>Další &gt;</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_page_welcome_cancel">
+      <value>Storno</value>
+      <accessKey>s</accessKey>
+    </item>
+
+    <item id="txt_page_nickname_title">
+      <innerText>Osobní informace</innerText>
+    </item>
+    <item id="txt_page_nickname_tagline">
+      <innerText>Tato informace pomůže ostatním lidem Vás najít na síti.</innerText>
+    </item>
+    <item id="txt_page_nickname_desc">
+      <innerText>Zadejte své jméno, aby Vás známí mohli snadněji vyhledat.</innerText>
+    </item>
+    <item id="txt_page_nickname_name">
+      <innerHTML>&lt;U&gt;J&lt;/U&gt;méno:</innerHTML>
+    </item>
+    <item id="data_name">
+      <accessKey>j</accessKey>
+    </item>
+    <item id="btn_page_nickname_back">
+      <value>&lt; Zpět</value>
+      <accessKey>z</accessKey>
+    </item>
+    <item id="btn_page_nickname_next">
+      <value>Další &gt;</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_page_nickname_cancel">
+      <value>Storno</value>
+      <accessKey>s</accessKey>
+    </item>
+
+    <item id="txt_page_account_title">
+      <innerText>Informace o adrese</innerText>
+    </item>
+    <item id="txt_page_account_tagline">
+      <innerText>Můžete využít veřejného nebo soukromého serveru Vaší sítě.</innerText>
+    </item>
+    <item id="txt_page_account_server">
+      <innerHTML>&lt;U&gt;S&lt;/U&gt;erver:</innerHTML>
+    </item>
+    <item id="txt_page_account_username">
+      <innerHTML>&lt;U&gt;U&lt;/U&gt;živatelské jméno:</innerHTML>
+    </item>
+    <item id="txt_page_account_password">
+      <innerHTML>&lt;U&gt;H&lt;/U&gt;eslo:</innerHTML>
+    </item>
+    <item id="txt_page_account_confirm">
+      <innerHTML>&lt;U&gt;P&lt;/U&gt;otvrdit heslo:</innerHTML>
+    </item>
+    <item id="data_server">
+      <accessKey>s</accessKey>
+    </item>
+    <item id="data_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="data_password">
+      <accessKey>h</accessKey>
+    </item>
+    <item id="data_password_confirm">
+      <accessKey>p</accessKey>
+    </item>
+    <item id="txt_page_account_remember">
+      <innerHTML>&lt;U&gt;Z&lt;/U&gt;apamatovat si heslo</innerHTML>
+      <accessKey>z</accessKey>
+    </item>
+    <item id="txt_page_account_preview">
+      <innerText>Vaše IM adresa:</innerText>
+    </item>
+    <item id="btn_page_account_settings">
+      <value>Nastavení připojení</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_account_back">
+      <value>&lt; Zpět</value>
+      <accessKey>z</accessKey>
+    </item>
+    <item id="btn_page_account_next">
+      <value>Další &gt;</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_page_account_cancel">
+      <value>Storno</value>
+      <accessKey>s</accessKey>
+    </item>
+
+    <item id="txt_page_creating_title">
+      <innerText>Registrace adresy</innerText>
+    </item>
+    <item id="txt_page_creating_autherr">
+      <innerHTML>Adresa nemohla být zaregistrována. Uživatelské jméno je obsazené.&lt;BR&gt;&lt;BR&gt;Klikněte na &lt;B&gt;Zpět&lt;/B&gt; a zadejte jiné uživatelské jméno a zkuste to znovu.</innerHTML>
+    </item>
+    <item id="txt_page_creating_forbidden">
+      <innerHTML>Adresa nemohla být zaregistrována. Server nedovoluje výtvoření nového  účtu.&lt;BR&gt;&lt;BR&gt;Klikněte na &lt;B&gt;Zpět&lt;/B&gt; a vyberte jiný server a zkuste to znovu.</innerHTML>
+    </item>
+    <item id="txt_page_creating_commerr">
+      <innerHTML>Nelze kontaktovat server. Ujistěte se, že adresa serveru je správná.&lt;BR&gt;Ověřte, že jste připojeni k Internetu a zkuste to znovu. Pokud jste za firewallem, &lt;BR&gt; nakonfigurujte v programu nastavení sítě.</innerHTML>
+    </item>
+    <item id="btn_page_creating_retry">
+      <value>Zkusit znovu</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_creating_settings">
+      <value>Nastavení přípojení</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_creating_back">
+      <value>&lt; Zpět</value>
+      <accessKey>z</accessKey>
+    </item>
+    <item id="btn_page_creating_next">
+      <value>Další &gt;</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_page_creating_cancel">
+      <value>Storno</value>
+      <accessKey>s</accessKey>
+    </item>
+
+    <item id="txt_conn_title">
+      <innerText>Nastavení přípojení</innerText>
+    </item>
+    <item id="txt_ssl">
+      <innerText>Použít zabezpečenou komunikaci (SSL)</innerText>
+    </item>
+    <item id="txt_conn_desc">
+      <innerText>Firewall a proxy server</innerText>
+    </item>
+    <item id="txt_conn_none">
+      <innerText>Žádný</innerText>
+    </item>
+    <item id="txt_conn_http">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_conn_s4">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_conn_s5">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_conn_host">
+      <innerText>Server:</innerText>
+    </item>
+    <item id="txt_conn_port">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_conn_user">
+      <innerText>Uživatelské jméno:</innerText>
+    </item>
+    <item id="txt_conn_pass">
+      <innerText>Heslo:</innerText>
+    </item>
+    <item id="btn_conn_default">
+      <value>Přednastavené</value>
+      <accessKey>p</accessKey>
+    </item>
+    <item id="btn_conn_ok">
+      <value>OK</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn_conn_cancel">
+      <value>Storno</value>
+      <accessKey>s</accessKey>
+    </item>
+
+    <item id="txt_page_finished_title">
+      <innerText>Průvodce</innerText>
+    </item>
+    <item id="txt_page_finished_intro">
+      <innerText>Úspěšně jste dokončil(a) průvodce vytvořením nového profilu.</innerText>
+    </item>
+    <item id="txt_page_finished_details">
+      <innerText>Podrobnosti profilu:</innerText>
+    </item>
+    <item id="txt_page_finished_finish">
+      <innerHTML>Průvodce zavřete kliknutím na tlačítko &lt;B&gt;Dokončit&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_finished_back">
+      <value>&lt; Zpět</value>
+      <accessKey>z</accessKey>
+    </item>
+    <item id="btn_page_finished_finish">
+      <value>Dokončit</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_page_finished_cancel">
+      <value>Storno</value>
+      <accessKey>s</accessKey>
+    </item>
+  </window>
+</translation>

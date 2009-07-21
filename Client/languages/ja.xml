@@ -1,0 +1,1929 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<translation xml:lang="ja">
+  <about>
+    <language>日本語</language>
+    <history>
+      <revision>
+        <author>
+          <name>Bernie 'aoshiri' masanix</name>
+          <email>ebs@oack.com</email>
+          <xmpp>kuromaku@nantoka.kicks-ass.net</xmpp>
+        </author>
+        <date>2004-09-11</date>
+        <description>
+          日本語版2.1β
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_pleasewait">
+      <innerText>お待ちください</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>サーバから切断されています</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>再接続</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>または</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>接続設定変更</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>コンタクトリストに追加</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>または</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>トランスポートの設定</innerText>
+    </item>
+
+    <code id="emoticon_unknown">不明</code>
+    <code id="txt_welcome">ようこそ ${0}!</code>
+    <code id="user_online">${0} がサインインしました</code>
+    <code id="cl_tooltip">${0} コンタクトリスト</code>
+    <code id="autoawaymessage">5分以上使用されていません(Idle for more than 5 minutes)</code>
+    <code id="autoxawaymessage">30分以上使用されていません(Idle for more than 30 minutes)</code>
+    <code id="import_files">コンタクトリスト</code>
+    <code id="import_invalid">ファイルは、有効なデータを含みません</code>
+    <code id="import_no_new">ファイルの中の全てのコンタクトは、すでにコンタクトリストにあります</code>
+    <code id="import_confirm">これらのコンタクトアドレスは、コンタクトリストに加えられます:&#13;&#13;${0}&#13;&#13;これらのアドレスをコンタクトリストに加えてよろしいですか？</code>
+    <code id="import_aim_not_registered">AIMコンタクトリストをインポートするためにはAIMトランスポートを登録しなければいけません  トランスポートがアクティブでなければなりません&#13;ツールメニューのトランスポートでAIMトランスポートの状態を確認してください</code>
+    <code id="conference_invitation">${0} はあなたを会議室に招待しています: ${1}&#13;&#13;会議室に参加しますか？</code>
+
+    <code id="menu_file">ファイル(&amp;F)</code>
+    <code id="menu_file_received">受信ファイルを開く(&amp;O)</code>
+    <code id="menu_file_export">コンタクトリストエキスポート(&amp;E)</code>
+    <code id="menu_file_import">コンタクトリストインポート(&amp;I)</code>
+    <code id="menu_file_change">ステータスメッセージの変更(&amp;m)...</code>
+    <code id="menu_file_ffc">チャットしたい(&amp;F)</code>
+    <code id="menu_file_available">オンライン(&amp;A)</code>
+    <code id="menu_file_busy">忙しい(&amp;B)</code>
+    <code id="menu_file_away">離席(&amp;w)</code>
+    <code id="menu_file_xaway">拡張離席(&amp;E)</code>
+    <code id="menu_file_invisible">不可視(&amp;I)</code>
+    <code id="menu_file_offline">オフライン(&amp;O)</code>
+    <code id="menu_file_status">マイステータス(&amp;s)</code>
+    <code id="menu_file_out">サインアウト(&amp;o)</code>
+    <code id="menu_file_exit">終了(&amp;E)</code>
+
+    <code id="menu_axn">アクション(&amp;A)</code>
+    <code id="menu_axn_add">コンタクトリスト追加...(&amp;A)</code>
+    <code id="menu_axn_addgroup">グループ追加...(&amp;g)</code>
+    <code id="menu_axn_join">チャットルーム参加...(&amp;J)</code>
+    <code id="menu_axn_create">チャットルーム作成(&amp;C)...</code>
+    <code id="menu_axn_password">パスワード変更...(&amp;p)</code>
+    <code id="menu_axn_profile">プロフィール編集...(&amp;E)</code>
+    <code id="menu_axn_avatar">アバター変更...(&amp;a)</code>
+
+    <code id="menu_tool">ツール(&amp;T)</code>
+    <code id="menu_tool_transport">トランスポート(&amp;T)</code>
+    <code id="menu_tool_head">ヘッドラインと警告(&amp;H)</code>
+    <code id="menu_tool_plugin">プラグイン(&amp;P)</code>
+    <code id="menu_tool_admin">サーバ管理(&amp;a)</code>
+    <code id="menu_tool_traffic">ネットワークトラフィック(&amp;N)</code>
+    <code id="menu_tool_view">外観(&amp;V)</code>
+    <code id="menu_tool_detailed">詳細(&amp;D)</code>
+    <code id="menu_tool_compact">コンパクト(&amp;C)</code>
+    <code id="menu_tool_language">言語(&amp;L)</code>
+    <code id="menu_tool_aot">常に最前面に表示(&amp;A)</code>
+    <code id="menu_tool_settings">設定(&amp;S)</code>
+
+    <code id="menu_help">ヘルプ(&amp;H)</code>
+    <code id="menu_help_manual">オンラインマニュアル(&amp;O)</code>
+    <code id="menu_help_forum">サポートフォーラム(&amp;S)</code>
+    <code id="menu_help_contact">コンタクト(&amp;C)</code>
+    <code id="menu_help_about">Pandionについて(&amp;A)</code>
+
+    <code id="menu_tray_about">${0}について(&amp;A)</code>
+    <code id="menu_tray_settings">設定(&amp;S)</code>
+
+    <code id="wnd_autoupdate">アｯプデート中 ${0}</code>
+    <code id="wnd_vcard_edit">ユーザ情報</code>
+    <code id="wnd_about">${0}について</code>
+    <code id="wnd_signup">サインアップ - ${0}</code>
+    <code id="wnd_adduser">ユーザの検索と追加</code>
+    <code id="wnd_avatar">アバター変更</code>
+    <code id="wnd_room_browse">チャットルーム</code>
+    <code id="wnd_room_create">チャットルーム作成</code>
+    <code id="wnd_conference_invite">招待</code>
+    <code id="wnd_conference_other">その他のカンファレンスサービス</code>
+    <code id="wnd_console">コンソール</code>
+    <code id="wnd_emoticon_download">エモーションのダウンロード</code>
+    <code id="wnd_emoticon_list">エモーティコン</code>
+    <code id="wnd_emoticon_view">エモーティコン</code>
+    <code id="wnd_file_send">${0}にファイルを送信しています</code>
+    <code id="wnd_file_recv">${0}からファイルを受信しています</code>
+    <code id="wnd_group_message">グループメッセージ</code>
+    <code id="wnd_transport_list">トランスポート</code>
+    <code id="wnd_transport_other">その他のトランスポート</code>
+    <code id="wnd_headlines">ヘッドラインビュワー</code>
+    <code id="wnd_history">${0} - メッセージ履歴</code>
+    <code id="wnd_plugin_list">プラグイン</code>
+    <code id="wnd_plugins">プラグイン</code>
+    <code id="wnd_password">パスワード変更</code>
+    <code id="wnd_settings">設定</code>
+    <code id="wnd_admin_server">サーバ管理</code>
+    <code id="wnd_status">ステータスメッセージ</code>
+    <code id="wnd_vcard_view">ユーザ情報</code>
+    <code id="wnd_group_create">グループ作成</code>
+    <code id="wnd_group_rename">グループ名変更</code>
+    <code id="wnd_contact_rename">名前変更</code>
+    <code id="wnd_authrequest">認可リクエスト</code>
+    <code id="wnd_login">ログイン - ${0}</code>
+    <code id="wnd_extension_download">${0} インストール中</code>
+    <code id="wnd_background_list">背景</code>
+    <code id="wnd_background_download">背景ダウンロード</code>
+
+    <code id="msg_emoticon_install">このエモーティコンはインストールされました</code>
+    <code id="msg_received_files">受信ファイル用のディレクトリーは削除されました</code>
+    <code id="msg_plugin_install">このプラグインをインストールしますか？&#13;&#13;名前: ${0}&#13;内容: ${1}</code>
+    <code id="msg_plugin_exists">このプラグインは既にインストールされています</code>
+    <code id="msg_expired">このソフトウェアのデモンストレーション期間は終了しました</code>
+    <code id="msg_cl_adding">${0}はあなたのコンタクトリストに加えられました</code>
+    <code id="msg_cl_added">${0} のコンタクトリストに登録されました</code>
+    <code id="msg_cl_removed">${0} のコンタクトリストから削除されました</code>
+    <code id="msg_blocked">あなたはブロッキングリストに登録されています</code>
+    <code id="msg_autherror">ログインできません:&#13;&#13;- パスワードが間違っているか&#13;- サーバにアカウントが存在しません</code>
+
+    <code id="menu_message">メッセージ</code>
+    <code id="menu_filetransfer">ファイル転送</code>
+    <code id="menu_room_create">新規ルーム</code>
+    <code id="menu_room_invite">ルームに招待</code>
+    <code id="menu_rename">名前変更</code>
+    <code id="menu_block">ブロック</code>
+    <code id="menu_delete">削除</code>
+    <code id="menu_group_create">グループ作成</code>
+    <code id="menu_group_merge">統合</code>
+    <code id="menu_group_move">移動</code>
+    <code id="menu_group_copy">コピー</code>
+    <code id="menu_request">認可再リクエスト</code>
+    <code id="menu_history">履歴</code>
+    <code id="menu_profile">プロフィール</code>
+
+    <code id="cl_waiting_one">1件の未読メッセージがあります</code>
+    <code id="cl_waiting_multiple">${0}件の未読メッセージがあります</code>
+    <code id="cl_error_notexist">アドレスは存在しません</code>
+    <code id="cl_error_cannotadd">コンタクトリストに ${0} を登録できません&#13;${1}</code>
+    <code id="cl_default_group">コンタクト</code>
+    <code id="cl_group_expand">オフラインを表示</code>
+    <code id="cl_group_compact">オフラインを隠す</code>
+    <code id="cl_group_rename">グループ名変更</code>
+    <code id="cl_group_message">ブロードキャストメッセージ送信</code>
+    <code id="cl_room_create">新規ルーム作成</code>
+    <code id="cl_room_invite">ルームに招待</code>
+    <code id="cl_group_empty">このグループにオンラインのユーザはいません</code>
+    <code id="cl_status_empty">ステータスメッセージはありません</code>
+    <code id="cl_status_offline">オフライン</code>
+    <code id="cl_status_awaiting">認可待ち</code>
+    <code id="cl_status_unknown">ステータス不明</code>
+    <code id="cl_status_waiting_one">未読1件</code>
+    <code id="cl_status_waiting_multiple">未読${0}件</code>
+    <code id="cl_tooltip_offline">アドレス: ${0}</code>
+    <code id="cl_contact_remove_group">このグループからユーザを削除しますか？</code>
+    <code id="cl_contact_remove_list">コンタクトリストからユーザを削除しますか？</code>
+    <code id="cl_link_open">ウェブブラウザで開く</code>
+    <code id="cl_link_copy">URLをコピー</code>
+    <code id="cl_link_favorite">お気に入りに追加</code>
+    <code id="cl_ffc">チャットしたい</code>
+    <code id="cl_available">オンライン</code>
+    <code id="cl_busy">忙しい</code>
+    <code id="cl_away">離席</code>
+    <code id="cl_xaway">拡張離席</code>
+    <code id="cl_invisible">不可視</code>
+    <code id="cl_tooltip_online">アドレス: ${0}&#13;リソース: ${1}</code>
+  </window>
+  <window name="about">
+    <item id="btn_credits">
+      <value>クレジット &gt;&gt;</value>
+    </item>
+    <item id="btn_copyright">
+      <value>著作権 &gt;&gt;</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="copy_darkproject">
+      <innerHTML>Most icons and default emoticons are copyright &amp;copy; 2001 Greg Fleming.</innerHTML>
+    </item>
+    <item id="copy_rsa">
+      <innerHTML>Uses the MD5 Message-Digest Algorithm. Copyright RSA Data Security, Inc.</innerHTML>
+    </item>
+    <item id="copy_dns">
+      <innerHTML>Based on BIND. Copyright Internet Software Consortium, Inc.</innerHTML>
+    </item>
+    <item id="txt_copyright">
+      <innerHTML>Copyright &amp;copy;</innerHTML>
+    </item>
+    <code id="copy_basis">Based on ${0}. Copyright &amp;copy; ${1} ${2}.</code>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>プロフィール情報</value>
+    </item>
+    <item id="btn_deny">
+      <value>拒否</value>
+    </item>
+    <item id="btn_accept">
+      <value>承諾</value>
+    </item>
+    <item id="txt_from">
+      <innerText>認可リクエストを受信しました:</innerText>
+    </item>
+    <item id="txt_reason">
+      <innerText>理由:</innerText>
+    </item>
+    <item id="txt_add">
+      <innerText>コンタクトリストにユーザを登録しました</innerText>
+    </item>
+  </window>
+  <window name="admin_users">
+    <item id="btn_refresh">
+      <value>更新</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>メッセージを送るためにはアカウントをクリックしてください。右クリックでより多くのオプションが使えます。</innerText>
+    </item>
+    <code id="add_to_list">コンタクトリストに追加</code>
+    <code id="tooltip_with">アドレス: ${0}&#13;リソース: ${1}&#13;オンライン時間: ${2}</code>
+    <code id="tooltip_without">アドレス: ${0}&#13;オンライン時間: ${1}</code>
+    <code id="loading">読み込み中...</code>
+    <code id="invalid_data">無効なデータを受信しました</code>
+    <code id="server_error">サーバエラー:</code>
+    <code id="server_failed">オンラインユーザリストを検索しませんでした&lt;BR&gt;サーバへの管理アクセス権があるか確認してください</code>
+    <code id="user">1人のユーザが接続しています</code>
+    <code id="users">${0}人のユーザが接続しています</code>
+  </window>
+  <window name="admin">
+    <item id="btn_view">
+      <value>全接続ユーザを見る</value>
+    </item>
+    <item id="btn_close">
+      <value>閉じる</value>
+    </item>
+    <item id="admin_btn_wall">
+      <value>送信</value>
+    </item>
+    <item id="admin_btn_motd">
+      <value>送信</value>
+    </item>
+    <item id="txt_wall_desc">
+      <innerText>この警告は現在接続ユーザへ送信されます</innerText>
+    </item>
+    <item id="txt_motd_desc">
+      <innerText>この警告はユーザがログオンした時に送信されます</innerText>
+    </item>
+    <item id="txt_wall">
+      <innerText>ブロードキャストメッセージ</innerText>
+    </item>
+    <item id="txt_motd">
+      <innerText>今日のメッセージ</innerText>
+    </item>
+    <item id="txt_view">
+      <innerText>接続モニタ</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>IMサーバーをモニターし処理するこれらのツールを使用してください</innerText>
+    </item>
+    <item id="txt_users">
+      <innerText>ユーザ</innerText>
+    </item>
+    <code id="wnd_users">オンラインユーザ</code>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>出力クリア</value>
+    </item>
+    <item id="btn_send">
+      <value>送信</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>Presence</value>
+    </item>
+    <item id="btn_message">
+      <value>Message</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>ネットワークトラフィック:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>折り返し</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>XML 入力:</innerText>
+    </item>
+    <code id="toggle_on">デバッグ オン</code>
+    <code id="toggle_off">デバッグ オフ</code>
+    <code id="valid_xml">入力は有効なXMLです。空白やプレーンテキストではありません。</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>閉じる</value>
+    </item>
+    <item id="txt_title">
+      <innerText>警告とヘッドライン</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>ニュースヘッドラインあるいは他の短い情報を受け取る場合、特別の警告が表示されます</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>警告またはヘッドラインは受信されていません</innerText>
+    </item>
+    <item id="alertonlinelabel">
+      <innerText>誰かがログオンした時に、アラートで知らせる</innerText>
+    </item>
+    <code id="read_more">もっと...</code>
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_custom">
+      <value>カスタムイメージ ...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>プロフィールを識別するイメージを選択してください</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>読み込み中...</innerText>
+    </item>
+    <code id="error_size">イメージを読み込めません。ファイルサイズを8kByte未満にしてください。</code>
+    <code id="error_empty">イメージを読み込めません。ファイルがありません。</code>
+    <code id="error_load">警告: アバターイメージを読み込めません&#13;&#13;${0}</code>
+    <code id="menu_saveas">保存...</code>
+    <code id="menu_use">このアバターを使用する</code>
+    <code id="menu_delete">このイメージを削除</code>
+    <code id="wnd_select">アバターイメージ選択</code>
+    <code id="saveas_files">イメージファイル</code>
+    <code id="image_files">イメージファイルは8kByte未満にしてください</code>
+    <code id="all_files">全ファイル</code>
+  </window>
+  <window name="mode_select">
+    <item id="ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_preset">
+      <value>プリセットイメージ ...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>他のユーザはこのメッセージを読むことができますが返信できません:</innerText>
+    </item>
+    <code id="btn_1">散歩</code>
+    <code id="btn_2">電話</code>
+    <code id="btn_3">睡眠</code>
+    <code id="btn_4">食事</code>
+    <code id="btn_5">ミーティング</code>
+    <code id="btn_6">飲酒</code>
+    <code id="btn_7">集中</code>
+    <code id="btn_8">仕事中</code>
+    <code id="btn_9">学校</code>
+    <code id="msg_1">散歩中です</code>
+    <code id="msg_2">電話中です</code>
+    <code id="msg_3">睡眠中です</code>
+    <code id="msg_4">食事の時間です</code>
+    <code id="msg_5">ミーティング中です</code>
+    <code id="msg_6">飲みに行ってます</code>
+    <code id="msg_7">集中しています</code>
+    <code id="msg_8">仕事中です...</code>
+    <code id="msg_9">学校にいます</code>
+  </window>
+  <window name="mode_select">
+    <code id="configure">警告とヘッドラインを設定します</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>新しい名前:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>新しい名前:</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>新しい名前:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>パスワードの確認:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>新しいパスワード:</innerText>
+    </item>
+    <code id="no_match">入力したパスワードが一致しません&#13;&#13;両方のフィールドに新しいパスワードを入れてください</code>
+    <code id="no_pass">新しいパスワードを入力してください</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="set_version">
+      <innerText>読み込み中...</innerText>
+    </item>
+    <item id="header-images">
+      <innerText>イメージ</innerText>
+    </item>
+    <item id="header-sounds">
+      <innerText>サウンド</innerText>
+    </item>
+    <item id="header-markup">
+      <innerText>テキストマークアップ</innerText>
+    </item>
+    <code id="empty">このエモーティコンは空です</code>
+    <code id="file_error">ファイルエラー</code>
+    <code id="cannot_load">エモーティコンを読み込めません</code>
+    <code id="count_one">1つのエモーティコンがあります</code>
+    <code id="count_multiple">${0}つのエモーティコンがあります</code>
+  </window>
+  <window name="emoticon_download">
+    <item id="btn_close">
+      <value>閉じる</value>
+    </item>
+    <item id="txt_title">
+      <innerText>エモーティコンのダウンロード</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>インターネット接続はエモーティコンのカタログを取得するために要求されます</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>読込中...</innerText>
+    </item>
+    <code id="install">インストール</code>
+    <code id="cannot_download">エラー: エモーティコンをダウンロードできません&#13;${0}</code>
+    <code id="invalid_xml">無効なデータです</code>
+    <code id="no_new_styles">利用できる新しいエモーティコンがありません</code>
+  </window>
+  <window name="emoticon_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>利用可能なエモーティコン</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>リストからエモーティコンを選んでください</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>読込中...</innerText>
+    </item>
+    <item id="btn_emoticon_download">
+      <value>他のエモーティコン</value>
+    </item>
+    <code id="emoticon_details">詳細表示</code>
+    <code id="emoticon_remove">削除</code>
+    <code id="emoticon_confirm">このエモーティコンを削除しでもよろしいですか？</code>
+    <code id="no_emoticons">エモーティコンは見つかりませんでした</code>
+  </window>
+  <window name="background_download">
+    <item id="btn_close">
+      <value>閉じる</value>
+    </item>
+    <item id="txt_title">
+      <innerText>背景ダウンロード</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>インターネット接続は背景のカタログを取得するために要求されます</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>読込中...</innerText>
+    </item>
+    <code id="install">インストール</code>
+    <code id="cannot_download">エラー: 背景をダウンロードできません&#13;${0}</code>
+    <code id="invalid_xml">無効なデータが含まれています</code>
+    <code id="no_new_styles">利用できる新しい背景がありません</code>
+  </window>
+  <window name="background_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>利用できる背景</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>背景の追加と削除</innerText>
+    </item>
+    <item id="btn_background_download">
+      <value>より多くの背景</value>
+    </item>
+    <item id="txt_background_empty">
+      <innerText>背景はインストールされません</innerText>
+    </item>
+    <code id="background_uninstall">削除</code>
+    <code id="background_confirm">この背景を削除してよろしいですか？</code>
+  </window>
+  <window name="plugin_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>プラグインのインストール</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>プラグインを追加または削除してください</innerText>
+    </item>
+    <item id="btn_plugin_download">
+      <value>他のプラグイン</value>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>プラグインはインストールされていません</innerText>
+    </item>
+    <code id="plugin_uninstall">アンインストール</code>
+    <code id="plugin_confirm">このプラグインを削除してよろしいですか？</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>閉じる</value>
+    </item>
+    <item id="txt_title">
+      <innerText>プラグインのダウンロード</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>インターネット接続はプラグインのカタログを取得するために要求されます</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>読込中...</innerText>
+    </item>
+    <code id="install">Install</code>
+    <code id="cannot_download">エラー: プラグインがダウンロードできません&#13;${0}</code>
+    <code id="invalid_xml">データは有効なXMLを含んでいません</code>
+    <code id="no_new_plugins">利用できる新しいプラグインがありません</code>
+  </window>
+  <window name="autoupdate">
+    <code id="download_confirm">このソフトウェアの最新バージョンは利用可能です:${0}${1}&#13;&#13;最新版をダウンロードますか？</code>
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <item id="btn_install">
+      <value>インストール</value>
+    </item>
+    <item id="txt_status">
+      <innerText>接続中...</innerText>
+    </item>
+    <code id="downloading">ダウンロード中...</code>
+    <code id="complete">ダウンロード完了 インストールを押して続けてください</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>カンファレンスサービスアドレスとチャットルームのユニークな名前を入力してください</innerText>
+    </item>
+    <item id="txt_service">
+      <innerText>サービスアドレス:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>例: conference.example.com</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>チャットルーム名:</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>チャットルームアドレス:</innerText>
+    </item>
+    <code id="incomplete">全てのフィールドを入力ください...</code>
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>送信</value>
+    </item>
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>これらのユーザに送信します:</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>通常メッセージ</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>警告通知</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>メッセージのタイプ</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>ハイパーリンクを付けます</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>メッセージ</innerText>
+    </item>
+  </window>
+  <window name="extension_download">
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <item id="txt_status">
+      <innerText>接続中...</innerText>
+    </item>
+    <code id="downloading">ダウンロード中...</code>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>閉じる</value>
+    </item>
+    <item id="btn_accept">
+      <value>承諾</value>
+    </item>
+    <item id="btn_abort">
+      <value>中止</value>
+    </item>
+    <item id="btn_open">
+      <value>開く</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>残り時間:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>送信者:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>ファイル名:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>場所:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>進行度:</innerText>
+    </item>
+    <code id="resume">ファイルは存在します。レジュームしますか？&#13;&#13;はい をクリックするとレジュームします。&#13;いいえ をクリックすると上書きします。</code>
+    <code id="cannot_overwrite">ファイルを上書きできません:&#13;${0}&#13;&#13;${1}</code>
+    <code id="incorrect">転送を初期化できません。  不正確なデータを受信しました</code>
+    <code id="title_saving">${1} 中 ${0}% 完了</code>
+    <code id="lessthanminute">${0}秒 </code>
+    <code id="onehour">1時間 </code>
+    <code id="hours">${0}時間 </code>
+    <code id="oneminute">1分 </code>
+    <code id="minutes">${0}分 </code>
+    <code id="speed">${0}秒 </code>
+    <code id="abort">転送を中止しますか？</code>
+    <code id="aborted">中止されました</code>
+    <code id="finished">完了しました</code>
+    <code id="error_timeout">タイムアウトが発生しました</code>
+    <code id="error_code">エラーコード: ${0}</code>
+    <code id="error_file">ファイルエラーコード: ${0}</code>
+    <code id="title_completed">転送完了 - ${0}</code>
+    <code id="title_failed">転送失敗 - ${0}</code>
+    <code id="error_move">ファイルを移動できません:&#13;${0}&#13;&#13;${1}</code>
+    <code id="error_failed">転送失敗</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>閉じる</value>
+    </item>
+    <item id="btn_abort">
+      <value>中止</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>残り時間:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>受信者:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>ファイル名:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>場所:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>進行度:</innerText>
+    </item>
+    <code id="socket">ファイルを送信できません&#13;ソケットを開けません.</code>
+    <code id="file">ファイルを読めません:&#13;${0}</code>
+    <code id="filetransfer">ファイル転送:</code>
+    <code id="title_saving">${1} 中 ${0}% 送信</code>
+    <code id="lessthanminute">${0}秒 </code>
+    <code id="onehour">1時間 </code>
+    <code id="hours">${0}時間 </code>
+    <code id="oneminute">1分 </code>
+    <code id="minutes">${0}分 </code>
+    <code id="speed">${0}秒 </code>
+    <code id="abort">転送を中止しますか？</code>
+    <code id="finished">完了しました</code>
+    <code id="aborted">中止されました</code>
+    <code id="error_denied">ファイルは拒否されました</code>
+    <code id="error_timeout">タイムアウトが発生しました</code>
+    <code id="error_code">エラーコード: ${0}</code>
+    <code id="title_completed">転送完了 - ${0}</code>
+    <code id="title_failed">転送失敗 - ${0}</code>
+    <code id="error_failed">転送失敗</code>
+  </window>
+  <window name="conference_browse">
+    <item id="btn_close">
+      <value>閉じる</value>
+    </item>
+    <item id="btn_other_service">
+      <value>他のサービス...</value>
+    </item>
+    <item id="btn_create">
+      <value>新しいルーム作成</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>利用できるルーム:</innerText>
+    </item>
+    <item id="lbl_empty">
+      <innerText>空のルームを表示</innerText>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="lbl_full">
+      <innerText>全てのルームを表示</innerText>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="lbl_filter">
+      <innerText>フィルター:</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>利用できるカンファレンスサービスが、このサーバーにありません&#13;&#13;"他のサービス..."を押して他のサーバのカンファレンスサービスを追加してください</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>ルームに加わるために、サーバーに接続していなければなりません</innerText>
+    </item>
+    <code id="empty_filter">フィルターにマッチするルームがありません</code>
+    <code id="empty_no_rooms">このサービスでルームは利用できません</code>
+    <code id="status_connecting">接続中...</code>
+    <code id="status_downloading">ルームリスト検索中...</code>
+    <code id="error_unknown">サービス"${0}"は利用できません アドレスを確認してください もう一度後で試すか、さもなければ、異なるアドレスを入力してください</code>
+    <code id="error_no_services">サーバ "${0}" にはカンファレンスサービスがインストールされていません 詳細は管理者と連絡をとってください</code>
+    <code id="error_no_new">サーバ "${0}" の全てのカンファレンスサービスは、すでにリストされています</code>
+  </window>
+  <window name="conference_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <item id="txt_address">
+      <innerText>アドレス:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>例: conference.example.com</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>カンファレンスサーバーのアドレスを入力してください</innerText>
+    </item>
+    <code id="error_already_exists">サービス${0}はすでにリストされています カンファレンスサービスのアドレス、またはリストされていないカンファレンスサーバーのアドレスを入力してください</code>
+  </window>
+  <window name="vcard">
+    <code id="save">警告: vCard を保存できません&#13;&#13;${0}</code>
+    <code id="personal">ユーザ詳細</code>
+    <code id="system">システム詳細</code>
+
+    <item id="txt_requesting1">
+      <innerText>サーバに情報をリクエストしています </innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>1分ほどかかる事があります&lt;BR&gt;お待ちください</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>vCardを保存します</value>
+    </item>
+    <item id="btn_refresh">
+      <value>更新</value>
+    </item>
+    <item id="btn_close">
+      <value>閉じる</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>変更の取消</value>
+    </item>
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>個人情報</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>追加情報</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>自宅住所</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>仕事</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>仕事住所</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>システム</innerText>
+    </item>
+
+    <item id="txt_name">
+      <innerText>名前</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>名:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>ミドルネーム:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>姓:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>ニックネーム:</innerText>
+    </item>
+
+    <item id="txt_contact">
+      <innerText>連絡</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>メールアドレス:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>電話番号:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>携帯番号:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>ファックス:</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>追加情報</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>年齢:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>誕生日:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>性別:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>結婚:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>ウェブサイト:</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>自宅住所</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>住所 1:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>住所 2:</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>市町村:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>郵便番号:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>州:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>国:</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>構成</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>名前:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>部署:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>題:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>役職:</innerText>
+    </item>
+
+    <item id="txt_workcontact">
+      <innerText>連絡</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>メールアドレス:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>電話番号:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>携帯番号:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>ファックス:</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>仕事住所</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>住所 1:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>住所 2:</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>市町村:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>郵便番号:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>州:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>国:</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>クライアント情報</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>アドレス:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>リソース</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>現地時間:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>ソフトウェア:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>バージョン:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>OS:</innerText>
+    </item>
+  </window>
+  <window name="transport_list">
+    <item id="btn_other">
+      <value>その他のトランスポート...</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>利用可能なトランスポート</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>トランスポートは、他のIMネットワークとのリンクを提供します。</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;Note:&lt;/B&gt; トランスポートを設定するために、IMのサーバに接続されなければなりません</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;Note:&lt;/B&gt; 接続されるサーバはトランスポートに対応しません。より詳細には管理者と連絡をとってください。</innerHTML>
+    </item>
+    <item id="msnworkaroundlabel">
+      <innerText>MSNのコンタクトがニックネームを変更することを可能にします</innerText>
+    </item>
+    <code id="status_active">アクティブ</code>
+    <code id="status_noreg">未登録</code>
+    <code id="status_disconnected">切断</code>
+    <code id="status_connecting">接続中...</code>
+    <code id="name_unknown">未知のサービス</code>
+    <code id="error_unknown">サービス"${0}"は利用できません アドレスを確認してください もう一度後で試すか、さもなければ、異なるアドレスを入力してください</code>
+    <code id="error_no_transports">サーバ "${0}" にはトランスポートサービスがインストールされていません 詳細は管理者と連絡をとってください</code>
+    <code id="error_no_new_transport">サーバ "${0}" の全てのトランスポートはすでにリストされています</code>
+  </window>
+  <window name="transport_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <item id="txt_address">
+      <innerText>アドレス:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>例: sms.example.com</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>トランスポートするサーバのアドレスを入力してください</innerText>
+    </item>
+    <code id="error_already_exists">サービス${0}は、すでにリストされています　トランスポートのアドレスまたはまだリストされないサーバーを入力してください</code>
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; 戻る</value>
+    </item>
+    <item id="btn_next">
+      <value>次 &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>完了</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>キャンセル</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>アドレス:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>ニックネーム:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>アドレス:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>パスワード:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>ニックネーム:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>既にこのトランスポートに登録されています&lt;BR&gt;このアカウントが登録されています:</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>トランスポートを使用しない</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText>サーバに接続中</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>1分ほどかかる事があります&lt;BR&gt;お待ちください</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>このウィザードを閉じるには &lt;B&gt;完了&lt;/B&gt; をクリックしてください</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>続けるには &lt;B&gt;次&lt;/B&gt; をクリックしてください</innerHTML>
+    </item>
+
+    <code id="error_invalid">無効なデータを受信しました</code>
+    <code id="error_server">&lt;B&gt;サーバエラー:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;続けることができません</code>
+    <code id="error_unknown">&lt;B&gt;不明なエラー:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;続けることができません</code>
+    <code id="error_auth">&lt;B&gt;認証エラー:&lt;/B&gt;&lt;BR&gt;アドレスかパスワードが間違っています&lt;BR&gt;&lt;BR&gt;続けることができません</code>
+    <code id="wait">&lt;B&gt;サーバに接続中&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;1分ほどかかる事があります&lt;BR&gt;お待ちください&lt;BR&gt;</code>
+
+    <code id="default_window_title">トランスポート設定</code>
+    <code id="default_begin_intro">このウィザードはトランスポートの設定を行います&lt;BR&gt;このトランスポートはあなたと別のネットワークの間のリンクです&lt;BR&gt;トランスポートを使用するためには別のネットワークのアカウントが必要です&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">アカウントおよびパスワードを入力してください&lt;BR&gt;ニックネームも入力することができます&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">アカウントはトランスポートに登録されています</code>
+    <code id="default_removing_busy">アカウントはトランスポートから削除されています&lt;BR&gt;</code>
+    <code id="default_creating_done">アカウントはトランスポートに登録されました</code>
+    <code id="default_removing_done">アカウントはトランスポートから削除されました</code>
+
+    <code id="msn_window_title">MSN Messenger - トランスポートウィザード</code>
+    <code id="msn_begin_intro">このウィザードはMSNトランスポートの設定を行います&lt;BR&gt;このトランスポートはあなたとMSNネットワークの間のリンクです&lt;BR&gt;トランスポートを使用するためにはマイクロソフトパスポートのアカウントが必要です&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">MSNアドレスとパスワードを入力してください&lt;BR&gt;ニックネームも入力することができます&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">例: someone@msn.com, someone@hotmail.com</code>
+    <code id="msn_creating_busy">アカウントはMSNトランスポートに登録されています</code>
+    <code id="msn_removing_busy">MSNアカウントはトランスポートから削除されています&lt;BR&gt;他のサービス(例えば、ホットメール、MSNエキスプローラなど)のMSNアカウントを使用することができるでしょう&lt;BR&gt;</code>
+    <code id="msn_creating_done">アカウントはMSNトランスポートに登録されました</code>
+    <code id="msn_removing_done">アカウントはMSNトランスポートから削除されました</code>
+
+    <code id="icq_window_title">ICQ - トランスポートウィザード</code>
+    <code id="icq_begin_intro">このウィザードはICQトランスポートの設定を行います&lt;BR&gt;このトランスポートはあなたとICQネットワークの間のリンクです&lt;BR&gt;トランスポートを使用するためにはICQナンバーが必要です&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">ICQナンバーとパスワードを入力してください&lt;BR&gt;ニックネームも入力することができます&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">例: 39230793, 158525087</code>
+    <code id="icq_creating_busy">アカウントはICQトランスポートに登録されています</code>
+    <code id="icq_removing_busy">ICQアカウントはトランスポートから削除されています&lt;BR&gt;</code>
+    <code id="icq_creating_done">アカウントはICQトランスポートに登録されました</code>
+    <code id="icq_removing_done">アカウントはICQトランスポートから削除されました</code>
+
+    <code id="yahoo_window_title">Yahoo!メッセンジャー - トランスポートウィザード</code>
+    <code id="yahoo_begin_intro">このウィザードはYahoo!トランスポートの設定を行います&lt;BR&gt;このトランスポートはあなたとYahoo!アカウント間のリンクです&lt;BR&gt;トランスポートを使用するためにはYahoo!のアカウントが必要です&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Yahoo!ユーザネームとパスワードを入力してください&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">アカウントはYahoo!トランスポートに登録されています</code>
+    <code id="yahoo_removing_busy">Yahoo!アカウントはトランスポートから削除されています&lt;BR&gt;他のサービス(例えば、Yahoo!メール、Yahoo!メッセンジャーなど)のYahoo!アカウントを使用することができるでしょう&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">アカウントはYahoo!トランスポートに登録されました</code>
+    <code id="yahoo_removing_done">アカウントはYahoo!トランスポートに削除されました</code>
+
+    <code id="aim_window_title">AOL インスタントメッセンジャー - トランスポートウィザード</code>
+    <code id="aim_begin_intro">このウィザードはAOL IMトランスポートの設定を行います&lt;BR&gt;このトランスポートはあなたとAOL IMアカウント間のリンクです&lt;BR&gt;トランスポートを使用するためにはAOL IMのアカウントが必要です&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">AOL IMスクリーンネームとパスワードを入力してください&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">アカウントはAOL IMトランスポートに登録されています</code>
+    <code id="aim_removing_busy">AOL IMアカウントはトランスポートから削除されています&lt;BR&gt;</code>
+    <code id="aim_creating_done">アカウントはAOL IMトランスポートに登録されました</code>
+    <code id="aim_removing_done">アカウントはAOL IMトランスポートに削除されました</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>実行</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>保存</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>印刷</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>消去</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>履歴</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>検索:</innerText>
+    </item>
+    <code id="loading">履歴読み込み中...</code>
+    <code id="empty">履歴はありません</code>
+    <code id="error_load">履歴を読み込めません:&#13;${0}</code>
+    <code id="one_message">1件のメッセージ</code>
+    <code id="many_messages">${0}件のメッセージ</code>
+    <code id="tooltip_save">この日の履歴を保存します</code>
+    <code id="tooltip_print">この日の履歴を印刷します</code>
+    <code id="tooltip_delete">この日の履歴を削除します</code>
+    <code id="error_open">エラー: 履歴を開けません</code>
+    <code id="error_read">エラー: 履歴を読み込めません</code>
+    <code id="delete_confirm">${0}のメッセージを全て削除しますか？</code>
+    <code id="delete_confirm_date">${0}の日付のメッセージを削除しますか？</code>
+    <code id="delete_cannot">履歴ファイルを削除できません: ${0}&#13;&#13;メッセージは削除されていません</code>
+    <code id="delete_cannot_temp">一時ファイルを作成できません: ${0}&#13;&#13;メッセージは削除されていません</code>
+    <code id="delete_cannot_open">履歴ファイルを開けません: ${0}&#13;&#13;メッセージは削除されていません</code>
+    <code id="delete_cannot_read">履歴ファイルを読み込めません: ${0}&#13;&#13;メッセージは削除されていません</code>
+    <code id="delete_cannot_write">一時ファイルに書き込めません: ${0}&#13;&#13;メッセージは削除されていません</code>
+    <code id="error_print">印刷できません&#13;履歴がありません</code>
+    <code id="error_save">履歴を保存できません&#13;${0}</code>
+  </window>
+	<window name="chat-messages">
+    <code id="copy">コピー</code>
+    <code id="copyall">全てコピー</code>
+    <code id="clear">クリア</code>
+    <code id="selectall">全て選択</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>あなたの感情を示します</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>テキスト色またはタイプを変更します</title>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>異なる背景を選択</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>エモーティコン</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>フォント</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>背景</innerText>
+    </item>
+
+    <item id="btn-send">
+      <value>送信</value>
+    </item>
+
+    <code id="msg_typing">${0} がメッセージを入力中です</code>
+    <code id="unknown">ステータスが不明なので、${0}は返答しないかもしれません</code>
+    <code id="lastonline">最終オンライン時間: ${0}</code>
+    <code id="windowtitle">${0} - 会話</code>
+    <code id="choose_emoticons">このテーマのエモーティコンをすべて見る、あるいはエモーティコンの異なるセットを選びます</code>
+    <code id="background_no">背景なし</code>
+    <code id="background_list">利用できる背景...</code>
+    <code id="close_many_tabs">全ての会話を閉じてよろしいですか？</code>
+    <code id="close_recent_message">現在メッセージを受信しました&#13;&#13;この会話を閉じてよろしいですか？</code>
+
+    <code id="menu_file_received">受信ファイルを開く(&amp;O)</code>
+    <code id="menu_file_history">メッセージ履歴(&amp;H)</code>
+    <code id="menu_file_close">閉じる(&amp;C)</code>
+
+    <code id="menu_axn_contact">コンタクト(&amp;C)</code>
+    <code id="menu_axn_add">コンタクトリストに追加</code>
+    <code id="menu_axn_block">ブロック(&amp;B)</code>
+    <code id="menu_axn_rename">名前変更(&amp;R)</code>
+    <code id="menu_axn_panel">Show アクションパネルの表示(&amp;A)</code>
+    <code id="menu_axn_profile">プロファイル表示(&amp;P)</code>
+    <code id="menu_axn_file">ファイル送信(&amp;F)</code>
+
+    <code id="menu_tool_emo_style">エモーティコン選択...(&amp;e)</code>
+    <code id="menu_tool_font">フォント変更(&amp;F)...</code>
+    <code id="menu_tool_background">背景変更 (&amp;B)...</code>
+    <code id="menu_tool_aot">常に最上面(&amp;A)</code>
+    <code id="menu_tool_popup">新着ポップアップ(&amp;P)</code>
+    <code id="menu_tool_tabbed">会話タブ(&amp;T)</code>
+    <code id="menu_tool_emoticons">エモーティコン表示(&amp;D)</code>
+    <code id="menu_tool_settings">設定(&amp;S)</code>
+  </window>
+  <window name="conference-configuration">
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_form_loading">
+      <innerText>読込中...</innerText>
+    </item>
+    <item id="txt_form_empty">
+      <innerText>このルームは設定を変えられません</innerText>
+    </item>
+    <item id="txt_form_invalid">
+      <innerText>エラー: ルーム設定を取り戻せません</innerText>
+    </item>
+    <code id="form_title">このルームの設定</code>
+    <code id="form_subtitle">ルームを設定するためにフィールドに入力してください</code>
+  </window>
+  <window name="conference-password">
+    <item id="txt_password">
+      <innerText>パスワード:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+	<window name="conference-name">
+    <item id="txt_name">
+      <innerText>名前:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-subject">
+    <item id="txt_subject">
+      <innerText>サブジェクト:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-invite">
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>招待したいコンタクトを選んでください</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>オンライン中のコンタクトがいません</innerText>
+    </item>
+  </window>
+  <window name="conference-container">
+    <item id="btn-emoticons">
+      <title>あなたの感情を示します</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>テキスト色またはタイプを変更します</title>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>異なる背景を選択</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>エモーティコン</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>フォント</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>背景</innerText>
+    </item>
+
+    <item id="btn-send">
+      <value>送信</value>
+    </item>
+
+    <item id="txt-occupants">
+      <innerText>占有者</innerText>
+    </item>
+
+    <code id="wnd_conference_password">パスワードで接続</code>
+    <code id="wnd_conference_change_name">名前の変更</code>
+    <code id="wnd_conference_subject">カンファレンスルームサブジェクト</code>
+    <code id="wnd_conference_configuration">カンファレンスルーム設定</code>
+
+    <code id="default_subject">この会議室はサブジェクトを持っていません</code>
+    <code id="windowtitle">${0} - 会議</code>
+    <code id="destroy">ルームから全ての参加者を追い出して、サーバからルームを削除します&#13;&#13;本当にこのルームを破壊してよろしいですか？</code>
+
+    <code id="menu_file_close">会議を閉じる(&amp;C)</code>
+
+    <code id="menu_axn_invite">招待(&amp;I)</code>
+    <code id="menu_axn_change_name">名前の変更...(&amp;N)</code>
+    <code id="menu_axn_password">パスワードで接続...(&amp;P)</code>
+    <code id="menu_axn_subject">ルームサブジェクトの変更(&amp;C)</code>
+    <code id="menu_axn_configuration">このルームの設定(&amp;C)</code>
+    <code id="menu_axn_destroy">このルームの破壊(&amp;D)</code>
+  </window>
+  <window name="preferences">
+    <item id="txt_startup">
+      <innerText>ウィンドウズ起動時、自動的に開始</innerText>
+    </item>
+    <item id="txt_autoaway">
+      <innerText>数分間このコンピュータを使用しない場合、ステータスは"離席(Away)"になります</innerText>
+    </item>
+    <item id="txt_displayawaymsg_left">
+      <innerText>このメッセージを次の時間経過後表示</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_left">
+      <innerText>このメッセージを次の時間経過後表示</innerText>
+    </item>
+    <item id="txt_displayawaymsg_right">
+      <innerText>分:</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_right">
+      <innerText>分:</innerText>
+    </item>
+    <item id="txt_blocking">
+      <innerText>ブロックリストはあなたがメッセージを拒否するユーザのアドレスリストです</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>コンタクトリスト以外からのメッセージを無視</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>ブロックリスト</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>ブロック解除</value>
+    </item>
+    <item id="block_btn_view">
+      <value>プロフィールを見る</value>
+    </item>
+    <item id="txt_ssl">
+      <innerText>暗号化された接続(SSL)を使用</innerText>
+    </item>
+    <item id="txt_firewall_proxy">
+      <innerText>ファイアウォールとプロキシ</innerText>
+    </item>
+    <item id="txt_proxy1">
+      <innerText>無し</innerText>
+    </item>
+    <item id="txt_proxy2">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_proxy3">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_proxy4">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_proxyserver">
+      <innerText>サーバ:</innerText>
+    </item>
+    <item id="txt_proxyport">
+      <innerText>ポート:</innerText>
+    </item>
+    <item id="txt_proxyuser">
+      <innerText>ユーザネーム:</innerText>
+    </item>
+    <item id="txt_proxypass">
+      <innerText>パスワード:</innerText>
+    </item>
+    <item id="txt_portmap">
+      <innerText>ファイル転送ポート (NAT, ファイアウォール)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>ホスト:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>ポート:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>履歴にメッセージを保存</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>認可リクエスト</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>確認</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>全て許可</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>コンタクトリスト内は許可、それ以外は確認</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>全て拒否</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>メッセージを受信したら音を再生</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>誰かがオンラインに戻ると音を再生</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>誰かがオフラインになると音を再生</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>参照</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>参照</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>参照</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <item id="lbl_autoaway">
+      <innerText>自動離席</innerText>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>ブロック</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>接続</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>プライバシー</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>サウンド</innerText>
+    </item>
+    <code id="autoaway">自動離席メッセージ</code>
+    <code id="blocking">ブロックリスト</code>
+    <code id="connection">接続設定</code>
+    <code id="privacy">プライバシー</code>
+    <code id="sound">通知音</code>
+    <code id="reconnect">変更を適用するためはに再接続しなければなりません&#13;&#13;今すぐ再接続しますか？</code>
+    <code id="shortcut">インスタントメッセージの送受信</code>
+    <code id="choose_sound">通知音選択</code>
+    <code id="file_audio">サウンドファイル</code>
+    <code id="file_any">全てのファイル</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>ユーザの検索と追加</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>ユーザ名を入力することによりユーザを検索することができます</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>コンタクトリストに追加する方法</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>ユーザを検索したい (&lt;U&gt;s&lt;/U&gt;)</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>サービス (&lt;U&gt;r&lt;/U&gt;):</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML>既にアドレスを知っています (&lt;U&gt;a&lt;/U&gt;)</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>ネットワーク (&lt;U&gt;e&lt;/U&gt;):</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>ユーザ名 (&lt;U&gt;U&lt;/U&gt;):</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>異なるネットワークとメッセージを送受信するには、そのネットワークのアカウントを取得していなければなりません</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>トランスポートの設定</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>次 &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_p1_cancel">
+      <value>キャンセル</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>処理ユーザ名</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>トランスポートはユーザー名を確認しています</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; 戻る</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>次 &gt;</value>
+    </item>
+    <item id="page1b_btn_cancel">
+      <value>キャンセル</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>検索形式のリクエスト</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>検索形式は、検索することができるすべてのフィールドを含んでいます</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; 戻る</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>次 &gt;</value>
+    </item>
+    <item id="page1c_btn_cancel">
+      <value>キャンセル</value>
+    </item>
+
+    <item id="txt_p2_title">
+      <innerText>認可リクエストメッセージ</innerText>
+    </item>
+    <item id="txt_p2_tagline">
+      <innerText>メッセージを送ることにより認可を望む理由を通知できます</innerText>
+    </item>
+    <item id="page2_btn_back">
+      <value>&lt; 戻る</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page2_btn_finish">
+      <value>完了</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="page2_btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <item id="txt_p2_desc">
+      <innerText>認可リクエストは次のユーザに送られます:</innerText>
+    </item>
+    <item id="txt_p2_user">
+      <innerText>ユーザ名:</innerText>
+    </item>
+    <item id="txt_p2_network">
+      <innerText>ネットワーク:</innerText>
+    </item>
+    <item id="txt_p2_message">
+      <innerHTML>メッセージ(オプション)を入力してください (&lt;U&gt;m&lt;/U&gt;):</innerHTML>
+    </item>
+    <item id="page2_message">
+      <innerText>私はコンタクトリストにあなたを加えたい。(I would like to add you to my contact list.)</innerText>
+    </item>
+    <item id="txt_p2_close">
+      <innerHTML>リクエストを送信し、このウィザードを閉じるためには (&lt;B&gt;完了&lt;/B&gt;) をクリックしてください</innerHTML>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; 戻る</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>検索</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="page3_btn_cancel">
+      <value>キャンセル</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText>検索結果</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>ユーザの詳細を見るか、コンタクトリストにユーザを加えることができます</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; 戻る</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>次 &gt;</value>
+    </item>
+    <item id="page4_btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <code id="correct">正確なユーザー名を入力してください&#13;&#13;例: someone123@${0}</code>
+    <code id="example_address">例: someone123@${0}</code>
+    <code id="enter_username">コンタクトしたいユーザのユーザー名を入力してください</code>
+    <code id="contacting_transport">&lt;B&gt;トランスポートに接続しています&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;1分ほどかかる事があります&lt;BR&gt;お待ちください&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;検索サービスに接続中&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;1分ほどかかる事があります&lt;BR&gt;お待ちください&lt;BR&gt;</code>
+    <code id="error_transport">&lt;B&gt;サーバエラー:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;ユーザはコンタクトリストに追加できません&lt;BR&gt;正確なユーザー名を入力したことを確認してください</code>
+    <code id="error_search">&lt;B&gt;サーバエラー:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;検索形式をダウンロードできません&lt;BR&gt;再試行するか、異なるサービスを選択してください</code>
+    <code id="error_invalid">受信データは無効です</code>
+    <code id="search_title">ユーザ検索</code>
+    <code id="search_tagline">一致するユーザを探すためにフィールドに入力してください</code>
+    <code id="firstname">名:</code>
+    <code id="lastname">姓:</code>
+    <code id="nick">ニックネーム:</code>
+    <code id="email">メールアドレス:</code>
+    <code id="searching">検索中 ...</code>
+    <code id="add">コンタクトリストに追加</code>
+    <code id="view">プロフィールを見る</code>
+    <code id="foundone">1件の結果</code>
+    <code id="foundmany">${0}件の結果</code>
+  </window>
+	<window name="login">
+    <code id="invalid">アドレスは無効です。アドレスを修正して、再び試みてください。&#13;&#13;アドレスを持っていない場合は、サインアップを押して、指示に従ってください。</code>
+		<item id="txt_instructions">
+      <innerText>ログインするべきアドレスおよびパスワードを入力してください</innerText>
+    </item>
+		<item id="txt_address">
+      <innerText>アドレス:</innerText>
+    </item>
+		<item id="txt_example">
+      <innerText>例: someone123@example.com</innerText>
+    </item>
+		<item id="txt_password">
+      <innerText>パスワード:</innerText>
+    </item>
+		<item id="txt_remember">
+      <innerText>パスワードを記憶</innerText>
+    </item>
+		<item id="txt_autologin">
+      <innerText>自動ログイン</innerText>
+    </item>
+		<item id="btn_signup">
+      <value>サインアップ</value>
+    </item>
+		<item id="btn_login">
+      <value>ログイン</value>
+    </item>
+		<item id="btn_close">
+      <value>閉じる</value>
+    </item>
+  </window>
+	<window name="sign_up">
+    <code id="close_confirm">新しいアドレスは完全ではありません。&#13;&#13;ウィザードを閉じてよろしいですか？</code>
+    <code id="incomplete">フィールドをすべて完成します...</code>
+    <code id="pass_match">入力したパスワードは一致しません。&#13;&#13;両方のフィールドに新しいパスワードを入力します。</code>
+
+    <code id="contacting">サーバに接続...</code>
+    <code id="registered">あなたのアカウントが登録されています。これには1分ほどかかることがあります。&lt;BR&gt;お待ちください。&lt;BR&gt;</code>
+    <code id="requesting">情報の要求...</code>
+    <code id="sending">登録の送信...</code>
+    <code id="failure">接続失敗</code>
+    <code id="completed">登録完了</code>
+
+    <code id="address">アドレス:</code>
+    <code id="nickname">名前:</code>
+    <code id="userdir">ユーザディレクトリ:</code>
+
+		<item id="txt_page_welcome_title">
+      <innerText>サインアップウィザードへようこそ</innerText>
+    </item>
+    <item id="txt_page_welcome_intro">
+      <innerText>このウィザードは、IMネットワークにアカウント登録の手続きをするのを助けます</innerText>
+    </item>
+    <item id="txt_page_welcome_next">
+      <innerHTML>続けるには &lt;B&gt;次&lt;/B&gt;を押してください</innerHTML>
+    </item>
+    <item id="btn_page_welcome_next">
+      <value>次 &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_welcome_cancel">
+      <value>キャンセル</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_nickname_title">
+      <innerText>個人情報</innerText>
+    </item>
+    <item id="txt_page_nickname_tagline">
+      <innerText>この情報は、他の人々がネットワーク上であなたを見つけるのを助けるでしょう</innerText>
+    </item>
+    <item id="txt_page_nickname_desc">
+      <innerText>ニックネームを付けてください。 名と姓は必須ではありません。しかし、それらは、あなたの友達あるいは同僚にとって、あなたを検索するのが容易になります</innerText>
+    </item>
+    <item id="txt_page_nickname_name">
+      <innerHTML>名前(&lt;U&gt;N&lt;/U&gt;):</innerHTML>
+    </item>
+    <item id="data_name">
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_back">
+      <value>&lt; 戻る</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_nickname_next">
+      <value>次 &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_cancel">
+      <value>キャンセル</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_account_title">
+      <innerText>アドレス情報</innerText>
+    </item>
+    <item id="txt_page_account_tagline">
+      <innerText>インターネット上の公開サーバを使用するか、あるいはあなたの企業ネットワーク上で個人のサーバを使用することができます</innerText>
+    </item>
+    <item id="txt_page_account_server">
+      <innerHTML>サーバ(&lt;U&gt;S&lt;/U&gt;):</innerHTML>
+    </item>
+    <item id="txt_page_account_username">
+      <innerHTML>ユーザネーム(&lt;U&gt;U&lt;/U&gt;):</innerHTML>
+    </item>
+    <item id="txt_page_account_password">
+      <innerHTML>パスワード(&lt;U&gt;P&lt;/U&gt;):</innerHTML>
+    </item>
+    <item id="txt_page_account_confirm">
+      <innerHTML>パスワード確認(&lt;U&gt;C&lt;/U&gt;):</innerHTML>
+    </item>
+    <item id="data_server">
+      <accessKey>s</accessKey>
+    </item>
+    <item id="data_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="data_password">
+      <accessKey>p</accessKey>
+    </item>
+    <item id="data_password_confirm">
+      <accessKey>c</accessKey>
+    </item>
+    <item id="txt_page_account_remember">
+      <innerHTML>パスワード記憶(&lt;U&gt;R&lt;/U&gt;)</innerHTML>
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page_account_preview">
+      <innerText>IM アドレス:</innerText>
+    </item>
+    <item id="btn_page_account_settings">
+      <value>接続設定</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_account_back">
+      <value>&lt; 戻る</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_account_next">
+      <value>次 &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_account_cancel">
+      <value>キャンセル</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_creating_title">
+      <innerText>アドレス登録</innerText>
+    </item>
+    <item id="txt_page_creating_autherr">
+      <innerHTML>アドレスは登録することができません。ユーザー名は利用可能ではありません。&lt;BR&gt;&lt;BR&gt;&lt;B&gt;戻るk&lt;/B&gt;を押し、異なるユーザー名をタイプし、再び試みるてください。</innerHTML>
+    </item>
+    <item id="txt_page_creating_forbidden">
+      <innerHTML>アドレスは登録することができません。このサーバは、新しいアドレスの生成を許可しません。&lt;BR&gt;&lt;BR&gt;戻る&lt;B&gt;Back&lt;/B&gt;を押し、異なるサーバを選び、再び試みてください。</innerHTML>
+    </item>
+    <item id="txt_page_creating_commerr">
+      <innerHTML>サーバーと接続できません。サーバアドレスが正確であることを確かめてください。&lt;BR&gt;あなたのネットワーク接続をチェックし、再び試みてください。あなたがファイアウォール(&lt;)の後ろにいる場合;BR&gt;接続設定をしてください。</innerHTML>
+    </item>
+    <item id="btn_page_creating_retry">
+      <value>再試行</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_creating_settings">
+      <value>接続設定</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_creating_back">
+      <value>&lt; 戻る</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_creating_next">
+      <value>次 &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_creating_cancel">
+      <value>キャンセル</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_conn_title">
+      <innerText>接続設定</innerText>
+    </item>
+    <item id="txt_ssl">
+      <innerText>暗号化された接続を使用します (SSL)</innerText>
+    </item>
+    <item id="txt_conn_desc">
+      <innerText>ファイアウォールとプロキシサーバ</innerText>
+    </item>
+    <item id="txt_conn_none">
+      <innerText>無し</innerText>
+    </item>
+    <item id="txt_conn_http">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_conn_s4">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_conn_s5">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_conn_host">
+      <innerText>サーバ:</innerText>
+    </item>
+    <item id="txt_conn_port">
+      <innerText>ポート:</innerText>
+    </item>
+    <item id="txt_conn_user">
+      <innerText>ユーザネーム:</innerText>
+    </item>
+    <item id="txt_conn_pass">
+      <innerText>パスワード:</innerText>
+    </item>
+    <item id="btn_conn_default">
+      <value>デフォルト</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_conn_ok">
+      <value>OK</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn_conn_cancel">
+      <value>キャンセル</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_finished_title">
+      <innerText>プロフィールウィザードの完了</innerText>
+    </item>
+    <item id="txt_page_finished_intro">
+      <innerText>プロフィールの追加が成功しました</innerText>
+    </item>
+    <item id="txt_page_finished_details">
+      <innerText>プロフィール詳細:</innerText>
+    </item>
+    <item id="txt_page_finished_finish">
+      <innerHTML>ウィザードを終了するには &lt;B&gt;完了&lt;/B&gt;を押してください</innerHTML>
+    </item>
+    <item id="btn_page_finished_back">
+      <value>&lt; 戻る</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_finished_finish">
+      <value>完了</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn_page_finished_cancel">
+      <value>キャンセル</value>
+      <accessKey>c</accessKey>
+    </item>
+	</window>
+</translation>

@@ -1,0 +1,89 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0;
+	padding: 0;
+}
+</STYLE>
+
+<SCRIPT>
+
+var gMode = external.globals( 'cfg' )( 'lastmode' );
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'mode_select', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	document.getElementById( 'ask_status' ).checked = external.globals( 'cfg' )( 'askstatus' ).toString() == 'true';
+	SetMode( external.wnd.params[1] );
+	document.getElementById( 'StatusMessage' ).value = gMode == -1 ? '' : external.globals( 'cfg' )( 'lastmsg' );
+	document.getElementById( 'StatusMessage' ).select();
+	document.getElementById( 'StatusMessage' ).focus();
+	external.wnd.hide( false );
+	external.wnd.focus();
+}
+
+function SetStatus ()
+{
+	external.globals( 'cfg' )( 'askstatus' ) = document.getElementById( 'ask_status' ).checked;
+	var StatusMessage = document.getElementById( 'StatusMessage' ).value;
+	if ( gMode == -1 )
+	{
+		external.wnd.hide( true );
+		external.wnd.params[0].mode_new( gMode, StatusMessage );
+		external.wnd.params[0].dial_logout();
+	}
+	else
+	{
+		if ( ! external.globals( 'XMPPConnected' ) || StatusMessage != external.globals( 'cfg' )( 'lastmsg' ) || gMode != external.globals( 'cfg' )( 'lastmode' ) )
+		{
+			external.wnd.params[0].mode_new( gMode, StatusMessage );
+			external.wnd.params[0].SettingsSave();
+		}
+		external.wnd.close();
+	}
+}
+
+function SetMode ( Mode )
+{
+	if ( typeof Mode == 'number' )
+		gMode = Mode;
+}
+
+function UpdateOKButton ()
+{
+	document.getElementById( 'ok' ).value = document.getElementById( 'StatusMessage' ).value.length ? external.globals( 'Translator' ).Translate( 'mode_select', 'btn_ok' ) : external.globals( 'Translator' ).Translate( 'mode_select', 'btn_ok_empty' );
+}
+
+</SCRIPT>
+
+</HEAD>
+
+<BODY scroll=no bgcolor=buttonface onload="Begin()" onkeypress="if(event.keyCode==27)external.wnd.close();">
+
+<FORM onsubmit="event.returnValue = false; setTimeout( 'SetStatus()', 0 );">
+<TABLE height="100%" width="100%">
+<TR>
+	<TD height=1 style="font-family: Tahoma; font-size: 11px; color: buttontext;" id=txt_message></TD>
+</TR>
+<TR>
+	<TD><TEXTAREA id=StatusMessage onkeydown="if ( event.keyCode == 13 && ! event.shiftKey ) { event.returnValue = false; event.cancelBubble = true; setTimeout( 'SetStatus()', 0 ); }" onpropertychange="UpdateOKButton()" style="font-family: Tahoma; font-size: 11px; width: 100%; height: 100%; padding-left: 2px;"></TEXTAREA></TD>
+</TR>
+<TR>
+	<TD height=1 style="font-family: Tahoma; font-size: 11px; color: buttontext;"><INPUT type=checkbox checked id=ask_status> <LABEL for=ask_status id=lbl_ask_status></LABEL></TD>
+</TR>
+<TR>
+	<TD height=1 align=center>
+	<INPUT type=submit style="width: 140px; height: 24px; font-size: 11px; font-family: Tahoma; margin: 6px;" id=ok>
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

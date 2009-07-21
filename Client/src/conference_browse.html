@@ -1,0 +1,1040 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	background-color: buttonface;
+	color: buttontext;
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+TD {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: windowtext;
+}
+INPUT.button {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: buttontext;
+	width: 90px;
+	height: 24px;
+}
+INPUT.text {
+	height: 22px;
+	font-family: Tahoma;
+	font-size: 11px;
+	width: 100%;
+}
+UL, LI {
+	margin: 0;
+	list-style-type: none;
+}
+#services_list_area NOBR {
+	width: 100%;
+	overflow-x: hidden;
+	border-bottom: 1px solid #d3d5d6;
+	display: block;
+	margin: 4px 0 0 6px;
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+	color: #57a6d3;
+}
+#services_list_area NOBR SPAN {
+	font-weight: normal;
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #b3b5b6;
+}
+#services_list_area DIV {
+	margin: 4px 0 0 6px;
+	font-style: italic;
+	padding-bottom: 5px;
+	font-family: Arial;
+	font-size: 10px;
+	color: #b3b5b6;
+}
+#services_list_area UL {
+	margin: 0 0 10px 10px;
+	padding: 0;
+}
+#services_list_area UL LI {
+	padding: 2px 0;
+}
+.service-connecting {
+	width: 100%;
+	padding-bottom: 4px;
+	padding: 2px;
+	display: block;
+}
+.service-connecting-name {
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #333536;
+}
+.service-connecting-address {
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #b3b5b6;
+}
+.service-connecting-status {
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #b3b5b6;
+}
+#loading_list_area LI {
+	margin: 4px 0 4px 6px;
+	width: 100%;
+	overflow-x: hidden;
+}
+</STYLE>
+
+<SCRIPT language=JScript src="main/XMPPAddress.js"></SCRIPT>
+<SCRIPT language=JScript src="main/XMPPHookIQ.js"></SCRIPT>
+
+<SCRIPT language=JScript>
+
+var gWaitTimeout	= null;
+var gServices		= new ActiveXObject( 'Scripting.Dictionary' );
+var gHooks			= new ActiveXObject( 'Scripting.Dictionary' );
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'conference_browse', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	external.wnd.hide( false );
+	external.wnd.focus();
+	Refresh();
+}
+
+function End ()
+{
+	if ( external.windows.Exists( 'conference_other' ) )
+		external.windows( 'conference_other' ).close();
+	var HookAddresses = ( new VBArray( gHooks.Keys() ) ).toArray();
+	for ( var i = 0; i < HookAddresses.length; ++i )
+		gHooks( HookAddresses[i] ).Destroy();
+	gHooks.RemoveAll();
+}
+
+function Refresh ()
+{
+	/* Clear everything
+	 */
+	if ( ! external.globals( 'XMPPConnected' ) )
+	{
+		document.getElementById( 'btn_create' ).disabled			= true;
+		document.getElementById( 'btn_other_service' ).disabled		= true;
+		document.getElementById( 'txt_disconnected' ).style.display	= 'block';
+
+		document.getElementById( 'empty' ).checked		= true;
+		document.getElementById( 'full' ).checked		= true;
+		document.getElementById( 'empty' ).disabled		= false;
+		document.getElementById( 'full' ).disabled		= false;
+		document.getElementById( 'lbl_empty' ).disabled	= false;
+		document.getElementById( 'lbl_full' ).disabled	= false;
+
+		while ( document.getElementById( 'loading_list_area' ).children.length )
+			document.getElementById( 'loading_list_area' ).children.item(0).removeNode( true );
+
+		while ( document.getElementById( 'services_list_area' ).children.length )
+			document.getElementById( 'services_list_area' ).children.item(0).removeNode( true );
+
+		gServices.RemoveAll();
+
+		var HookAddresses = ( new VBArray( gHooks.Keys() ) ).toArray();
+		for ( var i = 0; i < HookAddresses.length; ++i )
+			gHooks( HookAddresses[i] ).Destroy();
+		gHooks.RemoveAll();
+	}
+	else
+	{
+		document.getElementById( 'btn_create' ).disabled			= false;
+		document.getElementById( 'btn_other_service' ).disabled		= false;
+		document.getElementById( 'txt_disconnected' ).style.display	= 'none';
+		/* Start contacting default services
+		 */
+		if ( ! gServices.Count && ! document.getElementById( 'loading_list_area' ).children.length )
+		{
+			var Service		= new MUCService();
+			Service.Name	= external.globals( 'Translator' ).Translate( 'conference_browse', 'bookmarks' );
+			Service.Address	= '';
+
+			var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
+			dom.async				= false;
+			dom.resolveExternals	= false;
+			dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\bookmarks.xml' );
+			if ( dom.documentElement )
+			{
+				var BookmarkNodes = dom.documentElement.selectNodes( '/bookmarks/room[@address]' );
+				Service.Rooms = new Array( BookmarkNodes.length );
+				for ( var i = 0; i < Math.min( BookmarkNodes.length, 999 ); ++i )
+				{
+					var Room		= new MUCRoom();
+					Room.Name		= BookmarkNodes.item(i).getAttribute( 'address' );
+					Room.Address	= BookmarkNodes.item(i).getAttribute( 'address' );
+					Room.Match		= BookmarkNodes.item(i).getAttribute( 'address' );
+
+					Service.Rooms[i] = Room;
+				}
+
+				Service.Rooms.sort( function(a,b){var c=a.Name.toLowerCase();var d=b.Name.toLowerCase();return c==d?0:c<d?-1:1} );
+				if ( Service.Rooms.length )
+				{
+					gServices.Add( 'Bookmarks', Service );
+					StartWait( 1 );
+				}
+			}
+
+			var Addresses = new ActiveXObject( 'Scripting.Dictionary' );
+
+			var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+			dom.async = false;
+			dom.resolveExternals = false;
+			dom.load( external.globals( 'cwd' ) + '..\\settings\\servers.xml' );
+			var List = dom.selectNodes( '/servers/conference' );
+			for ( var i = 0; i < List.length; ++i )
+				if ( ! Addresses.Exists( List.item(i).text.toLowerCase() ) )
+					Addresses.Add( List.item(i).text.toLowerCase(), null );
+
+			List = external.globals( 'ClientServices' ).FindByOptions( 0x0020 );
+			for ( var i = 0; i < List.length; ++i )
+				if ( ! Addresses.Exists( List[i].JID ) )
+					Addresses.Add( List[i].JID, true );
+
+			var Keys = ( new VBArray( Addresses.Keys() ) ).toArray();
+			for ( var i = 0; i < Keys.length; ++i )
+				if ( external.globals( 'ClientServices' ).Services.Exists( Keys[i] ) && Keys[i] != external.globals( 'ClientServices' ).Services( Keys[i] ).Name )
+					GetRoomsList( Keys[i], external.globals( 'ClientServices' ).Services( Keys[i] ).Name );
+				else
+					GetServiceInfo( Keys[i] );
+
+			if ( ! Keys.length )
+				document.getElementById( 'txt_empty' ).style.display = 'block';
+		}
+	}
+
+	if ( external.wnd.isActive() )
+		document.getElementById( 'view_area' ).focus();
+}
+
+/* Retrieve the name of the service
+ */
+function GetServiceInfo ( ServiceAddress )
+{
+	DrawConnecting(
+		ServiceAddress,
+		ServiceAddress,
+		'..\\images\\dials\\group.gif',
+		external.globals( 'Translator' ).Translate( 'conference_browse', 'status_connecting' )
+	);
+
+	if ( ! gHooks.Exists( ServiceAddress ) )
+	{
+		var Hook				= new XMPPHookIQ();
+		Hook.Callback			= 'ReceiveServiceInfo';
+		Hook.Window				= external.wnd;
+		gHooks.Add( ServiceAddress, Hook );
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#info"/></iq>' );
+		dom.documentElement.setAttribute( 'to', ServiceAddress );
+		dom.documentElement.setAttribute( 'id', Hook.Id );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+/* Draw the name of the service
+ */
+function ReceiveServiceInfo ( iq )
+{
+	var ServiceAddress	= iq.FromAddress.Host;
+	var ServiceName		= '';
+	gHooks.Remove( ServiceAddress );
+
+	if ( iq.Type == 'result' )
+	{
+		GetRoomsList( ServiceAddress, ServiceName );
+		var Node = null;
+		if ( Node = iq.XMLDOM.documentElement.selectSingleNode( '/iq/query/identity[@name and @type="text" and @category="conference"]' ) )
+			ServiceName = Node.getAttribute( 'name' );
+		if ( ! ServiceName.length )
+			ServiceName = ServiceAddress;
+		GetRoomsList( ServiceAddress, ServiceName );
+	}
+	else
+	{
+		var Hook				= new XMPPHookIQ();
+		Hook.Callback			= 'ReceiveRoomsListBrowse';
+		Hook.Window				= external.wnd;
+		gHooks.Add( ServiceAddress, Hook );
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:browse"/></iq>' );
+		dom.documentElement.setAttribute( 'to', ServiceAddress );
+		dom.documentElement.setAttribute( 'id', Hook.Id );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+/* Retrieve the disco nodes of the service
+ */
+function GetRoomsList ( ServiceAddress, ServiceName )
+{
+	DrawConnecting(
+		ServiceName,
+		ServiceAddress,
+		'..\\images\\dials\\group.gif',
+		external.globals( 'Translator' ).Translate( 'conference_browse', 'status_downloading' )
+	);
+
+	if ( ! gHooks.Exists( ServiceAddress ) )
+	{
+		var Hook				= new XMPPHookIQ();
+		Hook.Callback			= 'ReceiveRoomsList';
+		Hook.Window				= external.wnd;
+		gHooks.Add( ServiceAddress, Hook );
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#items"/></iq>' );
+		dom.documentElement.setAttribute( 'to', ServiceAddress );
+		dom.documentElement.setAttribute( 'id', Hook.Id );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+/* Parse disco items and redraw
+ */
+function ReceiveRoomsList ( iq )
+{
+	var ServiceAddress	= iq.FromAddress.Host;
+	var ServiceName		= document.getElementById( 'service-connecting--' + ServiceAddress ).firstChild.children.item(1).innerText;
+	gHooks.Remove( ServiceAddress );
+
+	if ( iq.Type == 'result' )
+	{
+		document.getElementById( 'service-connecting--' + ServiceAddress ).removeNode( true );
+
+		var DiscoItems = iq.XMLDOM.selectNodes( '/iq/*[@xmlns="http://jabber.org/protocol/disco#items"]/item[@jid]' );
+
+		var Service;
+		if ( gServices.Exists( ServiceAddress ) )
+			Service = gServices( ServiceAddress );
+		else
+		{
+			Service			= new MUCService();
+			Service.Name	= ServiceName;
+			Service.Address	= ServiceAddress;
+			gServices.Add( ServiceAddress, Service );
+		}
+
+		Service.Rooms		= new Array( DiscoItems.length );
+
+		var FindNumbers		= /[\(\[]([\d]+)[\-\\\/]([\d]+)[\)\]]$/;
+		var FindNumber		= /[\(\[]([\d]+)[\)\]]$/;
+		var FilterEmptyFull	= false;
+		var FilterEmpty		= false;
+
+		for ( var i = 0; i < DiscoItems.length; ++i )
+		{
+			var Address		= new XMPPAddress( DiscoItems.item(i).getAttribute( 'jid' ) );
+			var Name		= DiscoItems.item(i).getAttribute( 'name' );
+/*
+			var Limit	= 1 + Math.floor( Math.random() * 10 );
+			var Counter	= Math.round( Math.random() * Limit );
+			Name += ' [' + Counter + '/' + Limit + ']';
+*/
+			var Room		= new MUCRoom();
+			Room.Name		= Name ? Name : Address.User;
+			Room.Address	= Address.ShortAddress();
+			Room.Match		= Address.User + '\n' + Room.Name.toLowerCase();
+
+			if ( Name && ( Name.charAt( Name.length - 1 ) == ')' || Name.charAt( Name.length - 1 ) == ']' ) )
+			{
+				if ( FindNumbers.test( Name ) )
+				{
+					FilterEmptyFull = true;
+					if ( RegExp.$1 == 0 )
+						Room.IsEmpty = true;
+					if ( RegExp.$1 >= RegExp.$2 )
+						Room.IsFull = true;
+				}
+				else if ( FindNumber.test( Name ) )
+				{
+					FilterEmpty = true;
+					if ( RegExp.$1 == 0 )
+						Room.IsEmpty = true;
+					if ( Room.Name.length == 3 + RegExp.$1.length )
+						Room.Name = Address.User + Room.Name;
+				}
+			}
+
+			Service.Rooms[i] = Room;
+		}
+
+		Service.Rooms.sort( function(a,b){var c=a.Name.toLowerCase();var d=b.Name.toLowerCase();return c==d?0:c<d?-1:1} );
+
+		if ( FilterEmptyFull || FilterEmpty )
+		{
+			document.getElementById( 'empty' ).disabled		= false;
+			document.getElementById( 'lbl_empty' ).disabled	= false;
+		}
+		if ( FilterEmptyFull )
+		{
+			document.getElementById( 'full' ).disabled		= false;
+			document.getElementById( 'lbl_full' ).disabled	= false;
+		}
+
+		StartWait( 1000 );
+	}
+	else
+	{
+		var Hook				= new XMPPHookIQ();
+		Hook.Callback			= 'ReceiveRoomsListBrowse';
+		Hook.Window				= external.wnd;
+		gHooks.Add( ServiceAddress, Hook );
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:browse"/></iq>' );
+		dom.documentElement.setAttribute( 'to', ServiceAddress );
+		dom.documentElement.setAttribute( 'id', Hook.Id );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+/* Parse browse data and redraw
+ */
+function ReceiveRoomsListBrowse ( iq )
+{
+	var ServiceAddress	= iq.FromAddress.Host;
+	var ServiceName		= document.getElementById( 'service-connecting--' + ServiceAddress ).firstChild.children.item(1).innerText;
+	gHooks.Remove( ServiceAddress );
+	document.getElementById( 'service-connecting--' + ServiceAddress ).removeNode( true );
+
+	if ( iq.XMLDOM.selectSingleNode( '/iq[@type="result"]/*[@xmlns="jabber:iq:browse" and @category="conference"]' ) )
+	{
+		ParseRoomsBrowse( iq, ServiceAddress, ServiceName );
+	}
+}
+
+/* Parse browse result and redraw
+ */
+function ParseRoomsBrowse ( iq, ServiceAddress, ServiceName )
+{
+	var BrowseItems = iq.XMLDOM.selectNodes( '/iq[@type="result"]/*[@xmlns="jabber:iq:browse" and @category="conference"]/*[@jid and @category="conference"]' );
+
+	var Service;
+	if ( gServices.Exists( ServiceAddress ) )
+		Service = gServices( ServiceAddress );
+	else
+	{
+		Service			= new MUCService();
+		Service.Name	= ServiceName;
+		Service.Address	= ServiceAddress;
+		gServices.Add( ServiceAddress, Service );
+	}
+
+	Service.Rooms		= new Array( BrowseItems.length );
+
+	var FindNumbers		= /[\(\[]([\d]+)[\-\\\/]([\d]+)[\)\]]$/;
+	var FindNumber		= /[\(\[]([\d]+)[\)\]]$/;
+	var FilterEmptyFull	= false;
+	var FilterEmpty		= false;
+
+	for ( var i = 0; i < BrowseItems.length; ++i )
+	{
+		var Address		= new XMPPAddress( BrowseItems.item(i).getAttribute( 'jid' ) );
+		var Name		= BrowseItems.item(i).getAttribute( 'name' );
+/*
+		var Limit	= 1 + Math.floor( Math.random() * 10 );
+		var Counter	= Math.round( Math.random() * Limit );
+		Name += ' [' + Counter + '/' + Limit + ']';
+*/
+		var Room		= new MUCRoom();
+		Room.Name		= Name.length ? Name : Address.User;
+		Room.Address	= Address.ShortAddress();
+		Room.Match		= Address.User + '\n' + Room.Name.toLowerCase();
+
+		if ( Name.length && ( Name.charAt( Name.length - 1 ) == ')' || Name.charAt( Name.length - 1 ) == ']' ) )
+		{
+			if ( FindNumbers.test( Name ) )
+			{
+				FilterEmptyFull = true;
+				if ( RegExp.$1 == 0 )
+					Room.IsEmpty = true;
+				if ( RegExp.$1 >= RegExp.$2 )
+					Room.IsFull = true;
+			}
+			else if ( FindNumber.test( Name ) )
+			{
+				FilterEmpty = true;
+				if ( RegExp.$1 == 0 )
+					Room.IsEmpty = true;
+				if ( Room.Name.length == 3 + RegExp.$1.length )
+					Room.Name = Address.User + Room.Name;
+			}
+		}
+
+		Service.Rooms[i] = Room;
+	}
+
+	Service.Rooms.sort( function(a,b){var c=a.Name.toLowerCase();var d=b.Name.toLowerCase();return c==d?0:c<d?-1:1} );
+
+	if ( FilterEmptyFull || FilterEmpty )
+	{
+		document.getElementById( 'empty' ).disabled		= false;
+		document.getElementById( 'lbl_empty' ).disabled	= false;
+	}
+	if ( FilterEmptyFull )
+	{
+		document.getElementById( 'full' ).disabled		= false;
+		document.getElementById( 'lbl_full' ).disabled	= false;
+	}
+
+	StartWait( 1000 );
+}
+
+/* This buffers redraws to not make the window look frozen when entering a filter
+ */
+function StartWait ( Time )
+{
+	clearTimeout( gWaitTimeout );
+	gWaitTimeout = setTimeout( 'StopWait()', Time ? Time : 500 );
+}
+
+function StopWait ()
+{
+	gWaitTimeout = null;
+	DrawLoaded();
+}
+
+/* Display the filtered list of conference services and rooms
+ */
+function DrawLoaded ()
+{
+	if ( ! gWaitTimeout && external.globals( 'XMPPConnected' ) )
+	{
+		var View		= document.getElementById( 'view_area' );
+		var OuterList	= document.getElementById( 'services_list_area' );
+		var Addresses	= ( new VBArray( gServices.Keys() ) ).toArray();
+		document.getElementById( 'txt_empty' ).style.display = 'none';
+
+		while ( OuterList.children.length )
+			OuterList.children.item(0).removeNode( true );
+
+		for ( var i = 0; i < Addresses.length; ++i )
+		{
+			var Service = gServices( Addresses[i] );
+
+			var OuterListItem	= document.createElement( 'LI' );
+			var HeaderName		= document.createElement( 'NOBR' );
+			var HeaderAddress	= document.createElement( 'SPAN' );
+			var InnerList		= document.createElement( 'UL' );
+
+			HeaderName.innerText	= Service.Name;
+			HeaderName.title		= Service.Name + ( Service.Name == Service.Address || ! Service.Address.length ? '' : '\n' + Service.Address );
+			HeaderAddress.innerText	= Service.Name == Service.Address || ! Service.Address.length ? '' : ' - ' + Service.Address;
+
+			HeaderName.insertAdjacentElement( 'beforeEnd', HeaderAddress );
+			OuterListItem.insertAdjacentElement( 'beforeEnd', HeaderName );
+
+			var MatchFilter	= document.getElementById( 'filter' ).value.toLowerCase();
+			var ShowEmpty	= document.getElementById( 'empty' ).checked;
+			var ShowFull	= document.getElementById( 'full' ).checked;
+
+			for ( var j = 0; j < Service.Rooms.length; ++j )
+			{
+				var Room = Service.Rooms[j];
+				if ( ( ! Room.IsEmpty || ShowEmpty ) && ( ! Room.IsFull || ShowFull ) && Room.Match.indexOf( MatchFilter ) != -1 )
+				{
+					var InnerListItem		= document.createElement( '<LI onmouseover="this.style.textDecorationUnderline = true;" onmouseout="this.style.textDecorationUnderline = false;" onclick="external.wnd.params.dial_conference( this.title ); if ( ! event.shiftKey && ! event.ctrlKey ) external.wnd.close();" oncontextmenu="RoomContextMenu( this.title )">' );
+					InnerListItem.innerText	= Room.Name;
+					InnerListItem.title		= Room.Address;
+					InnerList.insertAdjacentElement( 'beforeEnd', InnerListItem );
+				}
+			}
+
+			if ( InnerList.children.length )
+				OuterListItem.insertAdjacentElement( 'beforeEnd', InnerList );
+			else
+			{
+				var Empty = document.createElement( 'DIV' );
+				if ( Service.Rooms.length )
+					Empty.innerText = external.globals( 'Translator' ).Translate( 'conference_browse', 'empty_filter' );
+				else
+					Empty.innerText = external.globals( 'Translator' ).Translate( 'conference_browse', 'empty_no_rooms' );
+				OuterListItem.insertAdjacentElement( 'beforeEnd', Empty );
+			}
+
+			OuterList.insertAdjacentElement( 'beforeEnd', OuterListItem );
+		}
+
+		if ( ! gServices.Count && ! document.getElementById( 'loading_list_area' ).children.length )
+			document.getElementById( 'txt_empty' ).style.display = 'block';
+
+		if ( external.wnd.isActive() )
+			View.focus();
+	}
+}
+
+/* List actions in a menu for rooms
+ */
+function RoomContextMenu ( Address )
+{
+	var Menu = external.newPopupMenu;
+	Menu.AddItem( true, false, false, true, 0, external.globals( 'Translator' ).Translate( 'conference_browse', 'menu_join' ), 1 );
+	Menu.AddSeparator();
+	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'conference_browse', 'menu_add' ), 2 );
+	Menu.Show( event.screenX, event.screenY );
+
+	switch ( Menu.Choice )
+	{
+		case 1:
+			var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
+			dom.async				= false;
+			dom.resolveExternals	= false;
+			dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\bookmarks.xml' );
+			if ( dom.documentElement )
+			{
+				var BookmarkNodes = dom.documentElement.selectNodes( '/bookmarks/room[@address]' );
+				for ( var i = 0; i < BookmarkNodes.length; ++i )
+					if ( Address == BookmarkNodes.item(i).getAttribute( 'address' ) )
+					{
+						var Address		= BookmarkNodes.item(i).getAttribute( 'address' );
+						var Password	= BookmarkNodes.item(i).getAttribute( 'password' );
+						external.wnd.params.dial_conference( Address, Password );
+						if ( ! event.shiftKey && ! event.ctrlKey )
+							external.wnd.close();
+						return;
+					}
+			}
+			external.wnd.params.dial_conference( Address );
+			if ( ! event.shiftKey && ! event.ctrlKey )
+				external.wnd.close();
+		break;
+		case 2:
+			external.wnd.params.dial_bookmarks_add( Address );
+		break;
+	}
+}
+
+/* Display a placeholder of the service
+ */
+function DrawConnecting ( Name, Address, Icon, Status )
+{
+	var ListItem, ItemName, ItemAddress, ItemIcon, ItemStatus;
+
+	if ( ListItem = document.getElementById( 'service-connecting--' + Address ) )
+	{
+		ItemIcon	= ListItem.firstChild.children.item(0);
+		ItemName	= ListItem.firstChild.children.item(1);
+		ItemAddress	= ListItem.firstChild.children.item(2);
+		ItemStatus	= ListItem.firstChild.children.item(3);
+	}
+	else
+	{
+		ItemIcon	= document.createElement( 'IMG' );
+		ItemName	= document.createElement( 'SPAN' );
+		ItemAddress	= document.createElement( 'SPAN' );
+		ItemStatus	= document.createElement( 'SPAN' );
+
+		ListItem	= document.createElement( 'LI' );
+		var Wrapper	= document.createElement( 'NOBR' );
+
+		ListItem.id					= 'service-connecting--' + Address;
+		ListItem.className			= 'service-connecting';
+
+		ItemIcon.align				= 'left';
+		ItemIcon.style.marginRight	= '5px';
+		ItemIcon.border				= 0;
+		ItemIcon.height				= 24;
+		ItemIcon.width				= 24;
+
+		ItemName.className			= 'service-connecting-name';
+		ItemAddress.className		= 'service-connecting-address';
+		ItemStatus.className		= 'service-connecting-status';
+
+		Wrapper.appendChild( ItemIcon );
+		Wrapper.appendChild( ItemName );
+		Wrapper.appendChild( ItemAddress );
+		Wrapper.appendChild( ItemStatus );
+
+		ListItem.appendChild( Wrapper );
+
+		var List = document.getElementById( 'loading_list_area' );
+		List.appendChild( ListItem );
+	}
+
+	ItemIcon.src			= Icon;
+	ItemName.innerText		= Name;
+	ItemName.title			= Name + ( Name == Address ? '' : '\n' + Address );
+	ItemAddress.innerText	= Name == Address ? '\n' : ' - ' + Address + '\n';
+	ItemStatus.innerText	= Status + '\n';
+}
+
+/* Data structure
+ */
+function MUCService ()
+{
+	this.Name		= '';
+	this.Address	= '';
+	this.Rooms		= new Array();
+}
+
+/* Data structure
+ */
+function MUCRoom ()
+{
+	this.Name		= '';
+	this.Match		= '';
+	this.Address	= '';
+	this.IsEmpty	= false;
+	this.IsFull		= false;
+}
+
+/* Open dialog to add a conferencing service
+ */
+function OtherService ()
+{
+	if ( external.windows.Exists( 'conference_other' ) )
+		external.windows( 'conference_other' ).focus();
+	else
+		with ( external.createWindow( 'conference_other', external.globals( 'cwd' ) + 'conference_other.html', null ) )
+		{
+			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_conference_other' ) );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\brand\\default.ico' );
+			resizeable( false );
+			MinHeight = MinWidth = 0;
+			setSize( 360, 120 );
+			setPos( ( screen.availWidth - 360 ) / 2, ( screen.availHeight - 80 ) / 2 );
+		}
+}
+
+function AddService ( ServiceAddress )
+{
+	ServiceAddress = ( new XMPPAddress( ServiceAddress ) ).Host;
+	if ( ! document.getElementById( 'service-connecting--' + ServiceAddress ) )
+	{
+		document.getElementById( 'txt_empty' ).style.display = 'none';
+		DrawConnecting(
+			ServiceAddress,
+			ServiceAddress,
+			'..\\images\\clients\\cog.gif',
+			external.globals( 'Translator' ).Translate( 'conference_browse', 'status_connecting' )
+		);
+
+		var Hook		= new XMPPHookIQ();
+		Hook.Callback	= 'ReceiveDiscoInfo';
+		Hook.Window		= external.wnd;
+		gHooks.Add( ServiceAddress, Hook );
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#info"/></iq>' );
+		dom.documentElement.setAttribute( 'to', ServiceAddress );
+		dom.documentElement.setAttribute( 'id', Hook.Id );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+function ReceiveDiscoInfo ( iq )
+{
+	var ServiceAddress = iq.FromAddress.Host;
+	gHooks.Remove( ServiceAddress );
+
+	var CountBefore = external.globals( 'ClientServices' ).FindByOptions( 0x0020 ).length;
+	external.globals( 'ClientServices' ).FromIQDisco( iq );
+
+	/* Received a conferencing service
+	 */
+	if ( CountBefore < external.globals( 'ClientServices' ).FindByOptions( 0x0020 ).length )
+	{
+		document.getElementById( 'service-connecting--' + ServiceAddress ).removeNode( true );
+		var Services = external.globals( 'ClientServices' ).FindByOptions( 0x0020 );
+		for ( var i = 0; i < Services.length; ++i )
+			if ( ! gServices.Exists( Services[i].JID ) && ! document.getElementById( 'service-connecting--' + Services[i].JID ) )
+			{
+				if ( Services[i].JID == external.globals( 'ClientServices' ).Services( Services[i].JID ).Name )
+					GetServiceInfo( Services[i].JID );
+				else
+					GetRoomsList( Services[i].JID, external.globals( 'ClientServices' ).Services( Services[i].JID ).Name );
+			}
+	}
+	/* Query items on the server
+	 */
+	else if ( iq.XMLDOM.selectSingleNode( '/iq/*[@xmlns="http://jabber.org/protocol/disco#info"]/identity[@type="im" and @category="server"]' ) )
+	{
+		var Hook		= new XMPPHookIQ();
+		Hook.Window		= external.wnd;
+		Hook.Callback	= 'ReceiveDiscoItems';
+		Hook.From		= ServiceAddress;
+		gHooks.Add( ServiceAddress, Hook );
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#items"/></iq>' );
+		dom.documentElement.setAttribute( 'to', ServiceAddress );
+		dom.documentElement.setAttribute( 'id', Hook.Id );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+	/* Fall back to browse mechanism
+	 */
+	else
+	{
+		var Hook		= new XMPPHookIQ();
+		Hook.Window		= external.wnd;
+		Hook.Callback	= 'ReceiveBrowse';
+		Hook.From		= ServiceAddress;
+		gHooks.Add( ServiceAddress, Hook );
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:browse"/></iq>' );
+		dom.documentElement.setAttribute( 'to', ServiceAddress );
+		dom.documentElement.setAttribute( 'id', Hook.Id );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+function ReceiveDiscoItems ( iq )
+{
+	var ServiceAddress = iq.FromAddress.Host;
+	gHooks.Remove( ServiceAddress );
+
+	/* Query the disco items on the server
+	 */
+	if ( iq.Type == 'result' )
+	{
+		var DiscoItems = iq.XMLDOM.selectNodes( '/iq/*[@xmlns="http://jabber.org/protocol/disco#items"]/item[@jid and not( @node )]' );
+
+		if ( DiscoItems.length )
+		{
+			document.getElementById( 'service-connecting--' + ServiceAddress ).removeNode( true );
+			for ( var i = 0; i < DiscoItems.length; ++i )
+			{
+				var Address = ( new XMPPAddress( DiscoItems.item(i).getAttribute( 'jid' ) ) ).Host;
+
+				if ( ! document.getElementById( 'service-connecting--' + Address ) && ! external.globals( 'ClientServices' ).Services.Exists( Address ) )
+				{
+					DrawConnecting(
+						Address,
+						Address,
+						'..\\images\\clients\\cog.gif',
+						external.globals( 'Translator' ).Translate( 'conference_browse', 'status_connecting' )
+					);
+
+					var Hook		= new XMPPHookIQ();
+					Hook.Window		= external.wnd;
+					Hook.Callback	= 'ReceiveDiscoItemInfo';
+					Hook.From		= Address;
+					gHooks.Add( Address, Hook );
+
+					var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+					dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#info"/></iq>' );
+					dom.documentElement.setAttribute( 'id', Hook.Id );
+					dom.documentElement.setAttribute( 'to', Address );
+					external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+					external.XMPP.SendXML( dom );
+				}
+			}
+		}
+		/* No conferencing services on the server
+		 */
+		else
+		{
+			document.getElementById( 'service-connecting--' + ServiceAddress ).removeNode( true );
+			external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'conference_browse', 'error_no_services', [ ServiceAddress ] ), external.globals( 'softwarename' ), 0 | 48 );
+		}
+	}
+	/* Error received
+	 */
+	else
+	{
+		document.getElementById( 'service-connecting--' + ServiceAddress ).removeNode( true );
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'conference_browse', 'error_unknown', [ ServiceAddress ] ), external.globals( 'softwarename' ), 0 | 48 );
+	}
+}
+
+function ReceiveDiscoItemInfo ( iq )
+{
+	var ServiceAddress = iq.FromAddress.Host;
+	gHooks.Remove( ServiceAddress );
+
+	document.getElementById( 'service-connecting--' + ServiceAddress ).removeNode( true );
+
+	var CountBefore = external.globals( 'ClientServices' ).FindByOptions( 0x0020 ).length;
+	external.globals( 'ClientServices' ).FromIQDisco( iq );
+
+	/* Received a conferencing service
+	 */
+	if ( CountBefore < external.globals( 'ClientServices' ).FindByOptions( 0x0020 ).length )
+	{
+		var Services = external.globals( 'ClientServices' ).FindByOptions( 0x0020 );
+		for ( var i = 0; i < Services.length; ++i )
+			if ( ! gServices.Exists( Services[i].JID ) && ! document.getElementById( 'service-connecting--' + Services[i].JID ) )
+			{
+				if ( Services[i].JID == external.globals( 'ClientServices' ).Services( Services[i].JID ).Name )
+					GetServiceInfo( Services[i].JID );
+				else
+					GetRoomsList( Services[i].JID, external.globals( 'ClientServices' ).Services( Services[i].JID ).Name );
+			}
+	}
+}
+
+function ReceiveBrowse ( iq )
+{
+	var ServiceAddress = iq.FromAddress.Host;
+	gHooks.Remove( ServiceAddress );
+
+	var CountBefore = external.globals( 'ClientServices' ).FindByOptions( 0x0020 ).length;
+	external.globals( 'ClientServices' ).FromIQBrowse( iq );
+
+	/* Received a conferencing service
+	 */
+	if ( CountBefore < external.globals( 'ClientServices' ).FindByOptions( 0x0020 ).length )
+	{
+		document.getElementById( 'service-connecting--' + ServiceAddress ).removeNode( true );
+		var Services = external.globals( 'ClientServices' ).FindByOptions( 0x0020 );
+		for ( var i = 0; i < Services.length; ++i )
+			if ( ! gServices.Exists( Services[i].JID ) && ! document.getElementById( 'service-connecting--' + Services[i].JID ) )
+			{
+				if ( Services[i].JID == external.globals( 'ClientServices' ).Services( Services[i].JID ).Name )
+					GetServiceInfo( Services[i].JID );
+				else
+					GetRoomsList( Services[i].JID, external.globals( 'ClientServices' ).Services( Services[i].JID ).Name );
+			}
+	}
+	/* Received list of rooms
+	 */
+	else if ( iq.XMLDOM.selectSingleNode( '/iq[@type="result"]/*[@xmlns="jabber:iq:browse" and @category="conference"]' ) )
+	{
+		var ServiceName = document.getElementById( 'service-connecting--' + ServiceAddress ).firstChild.children.item(1).innerText;
+		if ( ServiceName = iq.XMLDOM.selectSingleNode( '/iq[@type="result"]/*[@xmlns="jabber:iq:browse" and @name]' ) )
+			ServiceName = ServiceName.getAttribute( 'name' );
+		external.globals( 'ClientServices' ).AddService( ServiceAddress, 0x0020 | 0x0040 );
+		external.globals( 'ClientServices' ).Services( ServiceAddress ).Name = ServiceName;
+		ParseRoomsBrowse( iq, ServiceAddress, ServiceName );
+		document.getElementById( 'service-connecting--' + ServiceAddress ).removeNode( true );
+	}
+	/* No new conferencing services
+	 */
+	else if ( iq.XMLDOM.selectSingleNode( '/iq[@type="result"]/*[@xmlns="jabber:iq:browse"]' ) )
+	{
+		document.getElementById( 'service-connecting--' + ServiceAddress ).removeNode( true );
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'conference_browse', 'error_no_new', [ ServiceAddress ] ), external.globals( 'softwarename' ), 0 | 48 );
+	}
+	/* Fallback to agents mechanism
+	 */
+	else
+	{
+		var Hook		= new XMPPHookIQ();
+		Hook.Window		= external.wnd;
+		Hook.Callback	= 'ReceiveAgents';
+		Hook.From		= ServiceAddress;
+		gHooks.Add( ServiceAddress, Hook );
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:agents"/></iq>' );
+		dom.documentElement.setAttribute( 'to', ServiceAddress );
+		dom.documentElement.setAttribute( 'id', Hook.Id );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+function ReceiveAgents ( iq )
+{
+	var ServiceAddress = iq.FromAddress.Host;
+	gHooks.Remove( ServiceAddress );
+
+	document.getElementById( 'service-connecting--' + ServiceAddress ).removeNode( true );
+
+	var CountBefore = external.globals( 'ClientServices' ).FindByOptions( 0x0020 ).length;
+	external.globals( 'ClientServices' ).FromIQAgents( iq );
+
+	/* Received a conferencing service
+	 */
+	if ( CountBefore < external.globals( 'ClientServices' ).FindByOptions( 0x0020 ).length )
+	{
+		var Services = external.globals( 'ClientServices' ).FindByOptions( 0x0020 );
+		for ( var i = 0; i < Services.length; ++i )
+			if ( ! gServices.Exists( Services[i].JID ) && ! document.getElementById( 'service-connecting--' + Services[i].JID ) )
+			{
+				if ( Services[i].JID == external.globals( 'ClientServices' ).Services( Services[i].JID ).Name )
+					GetServiceInfo( Services[i].JID );
+				else
+					GetRoomsList( Services[i].JID, external.globals( 'ClientServices' ).Services( Services[i].JID ).Name );
+			}
+	}
+	/* No new conferencing services
+	 */
+	else if ( iq.XMLDOM.selectSingleNode( '/iq[@type="result"]/*[@xmlns="jabber:iq:agents"]' ) )
+	{
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'conference_browse', 'error_no_new', [ ServiceAddress ] ), external.globals( 'softwarename' ), 0 | 48 );
+	}
+	/* Not a server or no conferencing services
+	 */
+	else
+	{
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'conference_browse', 'error_no_services', [ ServiceAddress ] ), external.globals( 'softwarename' ), 0 | 48 );
+	}
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no onload="Begin()" onunload="End()" onkeydown="if ( event.keyCode == 27 ) external.wnd.close(); else if ( event.keyCode != 9 && event.keyCode != 13 && event.keyCode != 16 && ! ( event.keyCode >= 32 && event.keyCode <= 40 ) ) with ( document.getElementById( 'filter' ) ) { focus(); value = value; }">
+
+<FORM onsubmit="event.returnValue = false;">
+<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<COLGROUP>
+	<COL>
+	<COL width=200>
+</COLGROUP>
+<TR valign=top height=1>
+	<TD id=txt_instructions style="padding: 8px 16px;"></TD>
+	<TD style="padding: 8px 0;"><LABEL id=lbl_filter for=filter></LABEL></TD>
+</TR>
+<TR valign=top>
+	<TD style="padding: 0 16px;">
+		<DIV id=view_area style="overflow-y: scroll; overflow-x: auto; background-color: window; border: 2px inset; width: 100%; height: 100%; padding-bottom: 8px;">
+			<DIV id=txt_disconnected style="display: none; padding: 100px 24px 0 24px; text-align: center; text-align: left;"></DIV>
+			<DIV id=txt_empty style="display: none; padding: 100px 24px 0 24px; text-align: center; text-align: left;"></DIV>
+			<UL id=loading_list_area></UL>
+			<UL id=services_list_area></UL>
+		</DIV>
+	</TD>
+	<TD style="padding-right: 16px;">
+		<INPUT type=text class=text id=filter onkeydown="event.cancelBubble = true;" onpropertychange="StartWait();"><BR>
+		<BR>
+		<INPUT type=checkbox checked id=empty onpropertychange="StartWait( 100 );" disabled> <LABEL disabled id=lbl_empty for=empty></LABEL><BR>
+		<INPUT type=checkbox checked id=full onpropertychange="StartWait( 100 );" disabled> <LABEL disabled id=lbl_full for=full></LABEL><BR>
+	</TD>
+</TR>
+<TR valign=top height=1>
+	<TD align=center style="padding: 8px;">
+		<INPUT type=button class=button id=btn_other_service onclick="OtherService();" style="width: 140px;">
+	</TD>
+	<TD></TD>
+</TR>
+<TR valign=top height=1>
+	<TD style="padding: 8px; padding-bottom: 12px; border-top: 2px groove;">
+		<INPUT type=button class=button id=btn_create onclick="external.wnd.params.dial_conference_create(); external.wnd.close();" style="width: 180px;">
+	</TD>
+	<TD style="padding: 8px; padding-bottom: 12px; border-top: 2px groove;" align=right>
+		<INPUT type=submit class=button id=btn_close onclick="external.wnd.close();">
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

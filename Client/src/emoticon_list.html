@@ -1,0 +1,261 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+TD {
+	font-family: Arial;
+	font-size: 11px;
+	color: windowtext;
+}
+</STYLE>
+<SCRIPT language=JScript>
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'emoticon_list', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	external.wnd.hide( false );
+	document.getElementById( 'emoticon_list' ).focus();
+	document.getElementById( 'emoticonset' ).value = external.globals( 'cfg' )( 'emoticonset' );
+	document.getElementById( 'btn_emoticon_download' ).style.display = external.globals( 'emoticonlist' ).length ? 'inline' : 'none';
+	emoticon_refresh();
+}
+
+function End ()
+{
+	if ( external.globals( 'cfg' )( 'emoticonset' ) != document.getElementById( 'emoticonset' ).value )
+	{
+		external.globals( 'cfg' )( 'emoticonset' ) = document.getElementById( 'emoticonset' ).value;
+		external.wnd.params.SettingsSave();
+	}
+}
+
+function emoticon_refresh ()
+{
+	var list = document.getElementById( 'emoticon_list' );
+	while ( list.rows.length > 1 )
+		list.deleteRow(1);
+	document.getElementById( 'emoticon_row_loading' ).style.display = 'block';
+	setTimeout( 'panel_emoticon()', 0 );
+}
+
+function panel_emoticon ()
+{
+	document.getElementById( 'emoticon_row_loading' ).style.display = 'none';
+	var list = document.getElementById( 'emoticon_list' );
+	var emo_path = external.globals( 'usersdir' ) + 'Emoticons\\';
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.async = false;
+	dom.resolveExternals = false;
+	var subdirs = new VBArray( external.Directory.ListDirs( emo_path ) ).toArray();
+	for ( var i = 0; i < subdirs.length; ++i )
+	{
+		var setdir = new String( emo_path + subdirs[i].Name );
+		var emoset_path = setdir + '\\';
+		setdir = setdir.substr( 1 + setdir.lastIndexOf( '\\' ) );
+		dom.load( emoset_path + 'icondef.xml' );
+		var hashbytext = new ActiveXObject( 'Scripting.Dictionary' );
+		var hashbyfile = new ActiveXObject( 'Scripting.Dictionary' );
+		var name = '';
+		if ( name = dom.selectSingleNode( '/icondef/meta/name' ) )
+			name = name.text;
+		else
+			continue;
+		var iconlist = dom.selectNodes( '/icondef/icon[text and object]' );
+		if (  iconlist.length == 0 )
+			continue;
+		var max = Math.min( 50, iconlist.length );
+		for ( var j = 0; j < max; ++j )
+		{
+			var icon = iconlist.item( j );
+			var graphic = icon.selectSingleNode( 'object[@mime = "image/gif" or @mime = "image/png" or @mime = "image/jpeg" or @mime = "image/x-bmp"]' );
+			if ( ! graphic )
+				continue;
+			graphic = graphic.text;
+			if ( ! graphic.length )
+				continue;
+			if ( ! hashbyfile.Exists( graphic ) )
+				hashbyfile.Add( graphic, '' );
+			var texttags = icon.getElementsByTagName( 'text' );
+			for ( var k = 0; k < texttags.length; ++k )
+				with ( texttags.item( k ) )
+					if ( ! hashbytext.Exists( text ) )
+						hashbytext.Add( text, graphic );
+		}
+		var row = list.insertRow(-1);
+		row.vAlign = 'top';
+		row.attachEvent( 'onmousedown', emoticon_row_click );
+		row.attachEvent( 'oncontextmenu', emoticon_row_context );
+		row.attachEvent( 'ondblclick', emoticon_all );
+		var col = row.insertCell(-1);
+		col.style.border = '2px solid window';
+		col.style.height = '52px';
+		col.innerText = name;
+		row.set = setdir;
+		var guess = new Array( '::home::', '::star::', '::phone::', '::heart::', ':*)', 'B-)', ':\'(', ':-(', ':-P', ';-)', ':-D', ':)' );
+		var imghtml = '';
+		var showing = 0;
+		var max = 10;
+		for ( var j = guess.length - 1; j >= 0 && showing < max; j-- )
+			if ( hashbytext.Exists( guess[j] ) )
+			{
+				var filename = hashbytext( guess[j] );
+				if ( hashbyfile.Exists( filename ) )
+				{
+					imghtml += '<IMG align=absmiddle style="margin-right: 6px;" src="' + emoset_path + filename + '">';
+					hashbyfile.Remove( filename );
+					showing++;
+				}
+				hashbytext.Remove( guess[j] );
+			}
+		if ( showing < max )
+		{
+			var keys = ( new VBArray( hashbyfile.Keys() ) ).toArray();
+			for ( var j = 0; j < keys.length && showing < max; j++, showing++ )
+				imghtml += '<IMG align=absmiddle style="margin-right: 6px;" src="' + emoset_path + keys[j] + '">';
+		}
+		col.innerHTML = '<DIV style="font-weight: bold; font-family: Tahoma; font-size: 11px; padding-left: 4px; padding-bottom: 2px;">' + col.innerText + '</DIV><DIV style="font-weight: normal; font-size: 25px;"><NOBR>&nbsp; ' + imghtml + '<NOBR></DIV>';
+		if ( setdir == external.globals( 'cfg' )( 'emoticonset' ) )
+		{
+			document.getElementById( 'emoticonset' ).value = external.globals( 'cfg' )( 'emoticonset' );
+			row.isCurrentSelection = true;
+			col.style.border = '2px solid highlight';
+			col.children(0).style.backgroundColor = 'highlight';
+			col.children(0).style.color = 'highlighttext';
+		}
+	}
+	var rows = list.rows;
+	for ( var i = 0; i < rows.length; ++i )
+		if ( rows(i).isCurrentSelection )
+			return rows(i).scrollIntoView();
+	if ( ! rows.length )
+		list.outerHTML = '<DIV style="padding-top: 80px; padding-left: 6px; text-align: center;">' + external.globals( 'Translator' ).Translate( 'emoticon_list', 'no_emoticons' ) + '</DIV>';
+}
+
+function emoticon_row_context ()
+{
+	var Row = event.srcElement;
+	while ( ! Row.set )
+		Row = Row.parentElement;
+
+	var Menu = external.newPopupMenu;
+	Menu.AddItem( true, false, false, true,  0, external.globals( 'Translator' ).Translate( 'emoticon_list', 'emoticon_details' ), 1 );
+	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'emoticon_list', 'emoticon_remove'  ), 2 );
+
+	Menu.Show( event.screenX, event.screenY );
+
+	switch ( Menu.Choice )
+	{
+		case 1:
+			external.wnd.params.dial_emoticon_viewer( Row.set );
+		break;
+		case 2:
+			Delete( Row.set );
+		break;
+	}
+}
+
+function emoticon_row_click ()
+{
+	var row = event.srcElement;
+	while ( ! row.set )
+		row = row.parentElement;
+	if ( row.isCurrentSelection )
+		return;
+	row.cells(0).style.border = '2px solid highlight';
+	row.cells(0).children(0).style.backgroundColor = 'highlight';
+	row.cells(0).children(0).style.color = 'highlighttext';
+	var rows = row.parentElement.rows;
+	for ( var i = 0; i < rows.length; i++ )
+		if ( rows(i).isCurrentSelection )
+		{
+			rows(i).cells(0).style.border = '2px solid window';
+			rows(i).cells(0).children(0).style.backgroundColor = '';
+			rows(i).cells(0).children(0).style.color = '';
+			rows(i).isCurrentSelection = false;
+			break;
+		}
+	row.isCurrentSelection = true;
+	document.getElementById( 'emoticonset' ).value = row.set;
+}
+
+function emoticon_all ()
+{
+	var rows = document.getElementById( 'emoticon_list' ).rows;
+	for ( var i = 0; i < rows.length; i++ )
+		if ( rows(i).isCurrentSelection )
+			external.wnd.params.dial_emoticon_viewer( rows(i).set );
+}
+
+function Delete ( Style )
+{
+	if ( external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'emoticon_list', 'emoticon_confirm' ), external.globals( 'softwarename' ), 4 | 48 ) == 6 )
+	{
+		if ( external.globals( 'cfg' )( 'emoticonset' ) == Style )
+			external.globals( 'cfg' )( 'emoticonset' ) = '';
+		if ( external.globals( 'EmoticonCache' ).Styles.Exists( Style ) )
+			external.globals( 'EmoticonCache' ).Styles.Remove( Style );
+		external.Directory.Delete( external.globals( 'usersdir' ) + 'Emoticons\\' + Style );
+		emoticon_refresh();
+		if ( external.FileExists( external.globals( 'cwd' ) + '..\\emoticons\\' + Style + '.jisp' ) )
+			external.file( external.globals( 'cwd' ) + '..\\emoticons\\' + Style + '.jisp' ).Delete();
+	}
+}
+
+function Keyboard ( Key )
+{
+	if ( Key == 27 )
+		external.wnd.close();
+	else if ( Key == 46 )
+	{
+		var rows = document.getElementById( 'emoticon_list' ).rows;
+		for ( var i = 0; i < rows.length; i++ )
+			if ( rows(i).isCurrentSelection )
+				Delete( rows(i).set );
+	}
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="Begin()" onunload="End()" onkeydown="Keyboard( event.keyCode )">
+
+<FORM onsubmit="event.returnValue = false; external.wnd.close();">
+<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<TR valign=top height=60 bgcolor=window>
+	<TD colspan=2 style="padding-left: 12px; padding-right: 8px; padding-top: 7px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+	<SPAN id=txt_title style="font-weight: bold;"></SPAN>
+	<DIV id=txt_subtitle style="height: 27px; margin-left: 20px; margin-right: 20px; overflow: hidden;"></DIV>
+	</TD>
+</TR>
+<TR valign=top>
+	<TD colspan=2 style="padding: 16px;">
+		<INPUT id=emoticonset type=hidden>
+		<DIV style="overflow-y: scroll; overflow-x: auto; background-color: window; border: 2px inset; width: 100%; height: 100%;">
+			<TABLE id=emoticon_list border=0 cellspacing=0 cellpadding=0 width="100%" style="table-layout: fixed;">
+				<TR id=emoticon_row_loading>
+					<TD align=center style="font-size: 11px; font-family: Tahoma; color: windowtext; padding-top: 80px;" id=txt_loadingemo></TD>
+				</TR>
+			</TABLE>
+		</DIV>
+	</TD>
+</TR>
+<TR valign=top height=45>
+	<TD align=left style="padding: 10px; border-top: 2px groove;">
+		<INPUT type=button style="width: 130px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_emoticon_download onclick="external.wnd.params.dial_emoticon_download()">
+	</TD>
+	<TD align=right style="padding: 10px; border-top: 2px groove;">
+		<INPUT type=submit style="height: 24px; width: 90px; font-size: 11px;" id=btn_ok>
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

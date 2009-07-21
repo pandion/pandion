@@ -1,0 +1,326 @@
+<HTML>
+<HEAD>
+<TITLE>Translation Comparison</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<HTA:APPLICATION INNERBORDER="no"/>
+
+<!--
+
++ Purpose:
+
+  Compares translation XML files for the instant messaging client.
+
+
++ Requirements:
+
+  1. Internet Explorer 5.5 or higher
+  2. MSXML3
+
+
++ Usage:
+
+  1. Place this program in the "languages" directory.
+  2. Execute this program.
+  3. Select two XML translation files from the pull down boxes to compare them.
+     a. Missing HTML items in either of the XML translation files are shown in green.
+	 b. Missing code elements in either of the XML translation files are shown in yellow.
+  4. Add or remove the conflicting items so that your XML translation file contains the same text as the English file.
+
+-->
+
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+INPUT {
+	font-family: Tahoma;
+}
+#outputarea {
+	background-color: window;
+	width: 100%;
+	height: 100%;
+	border: 2px inset;
+	overflow-y: scroll;
+	font-size: 11px;
+	font-family: Tahoma;
+}
+SELECT {
+	width: 100%;
+}
+TD {
+	font-family: Tahoma;
+	font-size: 11px;
+}
+.wndrow {
+}
+.wndname {
+	font-size: 12px;
+	font-weight: bold;
+	color: cornflowerblue;
+	padding-bottom: 2px;
+	padding-left: 4px;
+	padding-top: 8px;
+	border-bottom: 1px solid gold;
+}
+.label-code {
+	background-color: lightyellow;
+	padding: 3px;
+	border-bottom: 1px solid gold;
+}
+.label-html {
+	background-color: honeydew;
+	padding: 3px;
+	border-bottom: 1px solid gold;
+}
+.language {
+	padding: 3px;
+	border-left: 1px solid gold;
+	border-bottom: 1px solid gold;
+}
+</STYLE>
+
+<SCRIPT language=JScript>
+
+WindowCache = new ActiveXObject( 'Scripting.Dictionary' );
+CodeCache = new ActiveXObject( 'Scripting.Dictionary' );
+HTMLCache = new ActiveXObject( 'Scripting.Dictionary' );
+
+function init ()
+{
+	window.resizeTo( 600, 550 );
+//	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	setTimeout( 'Refresh()', 0 );
+}
+
+function Refresh ()
+{
+	var fso = new ActiveXObject( 'Scripting.FileSystemObject' );
+	var files = new Enumerator( fso.GetFolder( '.' ).Files );
+
+	var list1 = document.getElementById( 'filelist1' );
+	var list2 = document.getElementById( 'filelist2' );
+
+	while ( list1.options.length )
+		list1.options.remove( 0 );
+	while ( list2.options.length )
+		list2.options.remove( 0 );
+
+	while ( ! files.atEnd() )
+	{
+		var file = files.item();
+		if ( file.Name.substr( file.Name.length - 4 ) == '.xml' && file.Name != 'languages.xml' )
+		{
+			var opt1 = document.createElement( file.Name == 'en.xml' ? '<OPTION selected>' : 'OPTION' );
+			opt1.text = file.Name;
+			opt1.value = file.Path;
+			list1.add( opt1 );
+			var opt2 = document.createElement( file.Name == 'en.xml' ? '<OPTION selected>' : 'OPTION' );
+			opt2.text = file.Name;
+			opt2.value = file.Path;
+			list2.add( opt2 );
+		}
+		files.moveNext();
+	}
+
+	ReloadLanguages();
+}
+
+function ReloadLanguages ()
+{
+	WindowCache.RemoveAll();
+	CodeCache.RemoveAll();
+	HTMLCache.RemoveAll();
+
+	if ( document.getElementById( 'filelist1' ).value != document.getElementById( 'filelist2' ).value )
+	{
+		LoadFile( document.getElementById( 'filelist1' ).value, 0 );
+		LoadFile( document.getElementById( 'filelist2' ).value, 1 );
+	}
+
+	Redraw();
+}
+
+function LoadFile ( path, index )
+{
+	var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+	dom.async = false;
+	dom.resolveExternals = false;
+	dom.load( path );
+	if ( dom.documentElement == null )
+		return;
+
+	var windowNodes = dom.documentElement.selectNodes( '/translation/window[@name]' );
+	for ( var i = windowNodes.length - 1; i >= 0; --i )
+	{
+		var windowName = windowNodes.item(i).getAttribute( 'name' );
+		if ( ! WindowCache.Exists( windowName ) )
+			WindowCache.Add( windowName, null );
+		if ( ! CodeCache.Exists( windowName ) )
+			CodeCache.Add( windowName, new ActiveXObject( 'Scripting.Dictionary' ) );
+		if ( ! HTMLCache.Exists( windowName ) )
+			HTMLCache.Add( windowName, new ActiveXObject( 'Scripting.Dictionary' ) );
+
+		var iterator = windowNodes.item(i).selectNodes( './item[@id]' );
+		for ( var j = iterator.length - 1; j >= 0; --j )
+		{
+			var itemTag = iterator.item(j);
+			var data = new Array();
+			var childTags = itemTag.childNodes;
+			for ( var k = 0; k < childTags.length; ++k )
+				switch ( childTags.item(k).tagName )
+				{
+					case 'title':
+					case 'innerHTML':
+					case 'innerText':
+					case 'value':
+					case 'accessKey':
+						data.push( childTags.item(k).text );
+					break;
+				}
+			var itemId = itemTag.getAttribute( 'id' );
+			if ( HTMLCache( windowName ).Exists( itemId ) && HTMLCache( windowName )( itemId )[ index ? 0 : 1 ].length == data.length )
+				HTMLCache( windowName ).Remove( itemId );
+			else
+			{
+				if ( ! HTMLCache( windowName ).Exists( itemId ) )
+					HTMLCache( windowName ).Add( itemId, [ new Array(), new Array() ] );
+				HTMLCache( windowName )( itemId )[ index ] = data;
+			}
+		}
+
+		iterator = windowNodes.item(i).selectNodes( './code[@id]' );
+		for ( var j = iterator.length - 1; j >= 0; --j )
+		{
+			var codeId = iterator.item(j).getAttribute( 'id' );
+			if ( CodeCache( windowName ).Exists( codeId ) )
+				CodeCache( windowName ).Remove( codeId );
+			else
+			{
+				CodeCache( windowName ).Add( codeId, new Array() );
+				for ( var k = index; k > 0; --k )
+					CodeCache( windowName )( codeId ).push( null );
+				CodeCache( windowName )( codeId ).push( iterator.item(j).text );
+				while ( CodeCache( windowName )( codeId ).length < 2 )
+					CodeCache( windowName )( codeId ).push( ' ' );
+			}
+		}
+	}
+}
+
+function Redraw ()
+{
+	var list = document.getElementById( 'output' );
+	while ( list.rows.length )
+		list.deleteRow();
+
+	var windowNames = ( new VBArray( WindowCache.Keys() ) ).toArray();
+	for ( var i = windowNames.length - 1; i >= 0; --i )
+		if ( CodeCache( windowNames[i] ).Count + HTMLCache( windowNames[i] ).Count != 0 )
+		{
+			DrawRowWindow( list, windowNames[i] );
+			var codeNames = ( new VBArray( CodeCache( windowNames[i] ).Keys() ) ).toArray();
+			for ( var j = codeNames.length - 1; j >= 0; --j )
+				DrawRowCode( list, codeNames[j], CodeCache( windowNames[i] )( codeNames[j] ) );
+			var HTMLNames = ( new VBArray( HTMLCache( windowNames[i] ).Keys() ) ).toArray();
+			for ( var j = HTMLNames.length - 1; j >= 0; --j )
+				DrawRowHTML( list, HTMLNames[j], HTMLCache( windowNames[i] )( HTMLNames[j] ) );
+		}
+}
+
+function DrawRowWindow ( area, name )
+{
+	var row = area.insertRow(-1);
+	row.className = 'wndrow';
+	with ( row.insertCell(-1) )
+	{
+		colSpan = 3;
+		className = 'wndname';
+		innerText = name;
+	}
+}
+
+function DrawRowCode ( area, name, values )
+{
+	var row = area.insertRow(-1);
+	with ( row.insertCell(-1) )
+	{
+		className = 'label-code';
+		innerText = name;
+	}
+	for ( var i = 0; i < values.length; ++i )
+	{
+		var cell = row.insertCell(-1);
+		cell.className = 'language';
+		cell.innerText = values[i] ? values[i] : ' ';
+	}
+}
+
+function DrawRowHTML ( area, name, values )
+{
+	var row = area.insertRow(-1);
+	row.className = 'textrow';
+	with ( row.insertCell(-1) )
+	{
+		className = 'label-html';
+		innerText = name;
+	}
+	for ( var i = 0; i < values.length; ++i )
+	{
+		var cell = row.insertCell(-1);
+		cell.className = 'language';
+		cell.innerText = values[i].length ? values[i].join( '\n' ) : ' ';
+	}
+}
+
+</SCRIPT>
+
+</HEAD>
+
+<BODY scroll=no bgcolor=buttonface onload="init()" onkeydown="if(event.keyCode==27)window.close()">
+
+<FORM onsubmit="event.returnValue = false;">
+	<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+		<TR valign=top height=50 bgcolor=window>
+			<TD colspan=2 style="padding-left: 16px; padding-right: 8px; padding-top: 10px; font-size: 21px; font-family: Tahoma; color: cornflowerblue; border-bottom: 2px groove;">
+				Translation Comparison
+			</TD>
+		</TR>
+		<TR valign=top height=35>
+			<TD colspan=2 style="padding: 16px; padding-bottom: 0px; padding-right: 32px;">
+				<TABLE style="table-layout: fixed;">
+					<COL width="20%"/><COL width="40%"/><COL width="40%"/>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD><SELECT id=filelist1 onchange="ReloadLanguages()"></SELECT></TD>
+						<TD><SELECT id=filelist2 onchange="ReloadLanguages()"></SELECT></TD>
+					</TR>
+				</TABLE>
+			</TD>
+		</TR>
+		<TR valign=top>
+			<TD colspan=2 style="padding: 16px; padding-top: 0px;" align=center>
+				<DIV id=outputarea>
+					<TABLE border=0 cellspacing=0 cellpadding=0 style="table-layout: fixed; width: 100%;">
+						<COL width="20%" valign=top/>
+						<COL width="40%" valign=top/>
+						<COL width="40%" valign=top/>
+						<TBODY id=output></TBODY>
+					</TABLE>
+				</DIV>
+			</TD>
+		</TR>
+		<TR valign=top height=45>
+			<TD align=left id=filesize width=250 style="padding-top: 10px; padding-left: 16px; border-top: 2px groove; font-size: 11px; font-family: Tahoma; color: buttontext;">&nbsp;</TD>
+			<TD align=right style="padding: 10px; border-top: 2px groove;">
+				<INPUT type=button accesskey=r style="height: 24px; width: 90px; font-size: 11px;" value=Refresh onclick="ReloadLanguages()">
+				<INPUT type=submit accesskey=c style="height: 24px; width: 90px; font-size: 11px;" value=Close onclick="window.close()">
+			</TD>
+		</TR>
+	</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

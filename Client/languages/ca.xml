@@ -1,0 +1,1986 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+LangString DESC_SecCopyRequired		${LANG_CATALAN}	"Aquests arxius són demanats per a utilitzar ${PRODUCT}."
+LangString DESC_SecCreateStartMenu	${LANG_CATALAN}	"El menú d'Inici et dóna un fàcil accès a ${PRODUCT}."
+LangString DESC_SecCreateQuickstart	${LANG_CATALAN}	"Afegeix ${PRODUCT} a la teva barra de Llençament Ràpid."
+LangString DESC_SecCreateDesktop	${LANG_CATALAN}	"Col·loca un enllaç directe al teu escriptori."
+LangString DESC_SecCreateAutoStart	${LANG_CATALAN}	"${PRODUCT} iniciarà sessió automàticament quan inicies Windows."
+LangString ITEM_SecCreateStartMenu	${LANG_CATALAN}	"Enllaç directe al Menú Inici"
+LangString ITEM_SecCreateQuickstart	${LANG_CATALAN}	"Enllaç directe a la barra de Llençament Ràpid"
+LangString ITEM_SecCreateDesktop	${LANG_CATALAN}	"Enllaç directe a l'Escriptori"
+LangString ITEM_SecCreateAutoStart	${LANG_CATALAN}	"Arrencar ${PRODUCT} a l'inici"
+LangString TEXT_WindowsOutdated		${LANG_CATALAN}	"No es pot instal·lar ${PRODUCT}.$\nEs demana Windows NT 4 o superior."
+LangString TEXT_AlreadyRunning		${LANG_CATALAN}	"Tancar ${PRODUCT} abans de continuar."
+LangString TEXT_InternetExplorer	${LANG_CATALAN}	"No es pot continuar amb l'instal·lació de ${PRODUCT}.$\n$\nEs demanat Microsoft Internet Explorer versió 5.5 o superior.  Vols baixar aquesta actualització ara?"
+LangString TEXT_DownloadFailed		${LANG_CATALAN}	"Error: No es pot baixar el component demanat. Assegureu-vos que esteu connectats a Internet."
+LangString un.TEXT_RemoveProfiles	${LANG_CATALAN}	"Esborrar el perfil i els arxius d'historial?"
+LangString un.TEXT_RemoveDirectory	${LANG_CATALAN}	"Nota: $INSTDIR no es pot esborrar."
+-->
+<translation xml:lang="ca">
+  <about>
+    <language>Català</language>
+    <history>
+      <revision>
+        <author>
+          <name>Carlos Moreno</name>
+          <email>cmoreno8@gmail.com</email>
+          <xmpp>c_moreno8@bulmalug.net</xmpp>
+        </author>
+        <date>2005-04-03</date>
+        <description>
+        	Primera edició de la traducció de Pandion en català. 
+        	
+        	Aquesta traducció fa referència al client de missatgeria instantània Pandion 1.4.
+        	
+        	Si us plau, si aquesta traducció no es correspon amb la versió que esteu utilitzant potser que la versió hagi canviat però no la traducció.
+        	
+        	Poseu-vos en contacte amb l'equip de suport de Pandion o amb mi mtjançant les meves dades.
+        	
+        	Si voleu ampliar la traducció per a noves versions sou lliures de fer-ho i s'ho us agrairà.
+        	
+        	This work is licensed under the Creative Commons Attribution-ShareAlike 2.0 License.
+        	To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/2.0/ or send a letter to:
+        	Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_pleasewait">
+      <innerText>Un moment si us plau</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Desconnectat del servidor</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>Reconnectar</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>o</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Canviar les opcions de la connexió</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>Afegir una persona a la teva llista de contactes</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>o</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>Configurar els transports de la xarxa</innerText>
+    </item>
+
+    <code id="emoticon_unknown">Desconegut</code>
+    <code id="txt_welcome">Benvingut a ${0}!</code>
+    <code id="user_online">${0} és en línia</code>
+    <code id="cl_tooltip">${0} Llista de Contactes</code>
+    <code id="autoawaymessage">Absent per més de 5 minuts</code>
+    <code id="autoxawaymessage">Absent per més de 30 minuts</code>
+    <code id="import_files">Llista de contactes</code>
+    <code id="import_invalid">L'arxiu no conté dades vàlides.</code>
+    <code id="import_no_new">Tots els contactes de l'arxiu ja són a la teva llista de contactes.</code>
+    <code id="import_confirm">Aquestes adreces seran afegides a la teva llista de contactes:&#13;&#13;${0}&#13;&#13;Esteu segurs que voleu afegir aquestes adreces a la vostra llista de contactes?</code>
+    <code id="import_aim_not_registered">Per a importar la teva llista d'amics d'AIM, el transport AIM ha de ser registrat. El transport ha de estar també actiu.&#13;Vés al menú Eines i escolleix Transports per a veure l'estat del transport AIM.</code>
+    <code id="import_msn_not_registered">Per a importar la teva llista d'amics de MSN, el transport MSN ha de ser registrat. El transport ha de estar també actiu.&#13;Vés al menú Eines i escolleix Transports per a veure l'estat del transport MSN.</code>
+    <code id="import_gadu_not_registered">Per a importar la teva llista d'amics de Gadu-Gadu, el transport Gadu-Gadu ha de ser registrat. El transport ha de estar també actiu.&#13;Vés al menú Eines i escolleix Transports per a veure l'estat del transport Gadu-Gadu.</code>
+    <code id="conference_invitation">${0} t'ha invitat la sala de conferències: ${1}&#13;&#13;Vols unir-te a aquesta sala de conferències?</code>
+    <code id="sspi_autoreconnecting">La connexió al servidor de missatgeria instantània ha fallat.</code>
+
+    <code id="menu_file">&amp;Arxiu</code>
+    <code id="menu_file_received">&amp;Obrir els meus Arxius Rebuts</code>
+    <code id="menu_file_export">&amp;Exportar Llista de Contactes...</code>
+    <code id="menu_file_import">&amp;Importar Llista de Contactes...</code>
+    <code id="menu_file_change">Canviar el meu &amp;missatge d'estat...</code>
+    <code id="menu_file_ffc">&amp;Lliure Per Parlar</code>
+    <code id="menu_file_available">&amp;Disponible</code>
+    <code id="menu_file_busy">&amp;Ocupat</code>
+    <code id="menu_file_away">A&amp;bsent</code>
+    <code id="menu_file_xaway">Absència &amp;Estesa</code>
+    <code id="menu_file_invisible">&amp;Invisible</code>
+    <code id="menu_file_offline">&amp;Fora de línia</code>
+    <code id="menu_file_status">El meu &amp;estat</code>
+    <code id="menu_file_out">&amp;Desconnectar</code>
+    <code id="menu_file_exit">S&amp;ortir</code>
+
+    <code id="menu_axn">A&amp;ccions</code>
+    <code id="menu_axn_add">&amp;Incloure un contacte...</code>
+    <code id="menu_axn_addgroup">Incloure un &amp;grup...</code>
+    <code id="menu_axn_join">&amp;Unir-se a una sala de conferències...</code>
+    <code id="menu_axn_create">&amp;Crear una sala de conferències...</code>
+    <code id="menu_axn_password">Canviar la meva &amp;contrasenya...</code>
+    <code id="menu_axn_profile">&amp;Editar el meu perfil...</code>
+    <code id="menu_axn_avatar">Canviar el meu &amp;avatar...</code>
+
+    <code id="menu_tool">&amp;Eines</code>
+    <code id="menu_tool_transport">&amp;Transports</code>
+    <code id="menu_tool_head">&amp;Capçaleres i alertes</code>
+    <code id="menu_tool_plugin">&amp;Plug-ins</code>
+    <code id="menu_tool_admin">Administració del &amp;Servidor</code>
+    <code id="menu_tool_traffic">&amp;Trànsit de xarxa</code>
+    <code id="menu_tool_view">&amp;Vista</code>
+    <code id="menu_tool_detailed">&amp;Detallat</code>
+    <code id="menu_tool_compact">&amp;Compacte</code>
+    <code id="menu_tool_language">&amp;Llenguatge</code>
+    <code id="menu_tool_aot">&amp;Sempre a dalt</code>
+    <code id="menu_tool_settings">&amp;Opcions</code>
+
+    <code id="menu_help">A&amp;juda</code>
+    <code id="menu_help_manual">&amp;Manual en línia</code>
+    <code id="menu_help_forum">&amp;Fòrum de Suport</code>
+    <code id="menu_help_contact">&amp;Contacta'ns</code>
+    <code id="menu_help_about">&amp;Sobre</code>
+
+    <code id="menu_tray_about">&amp;Sobre ${0}</code>
+    <code id="menu_tray_settings">&amp;Opcions</code>
+
+    <code id="wnd_autoupdate">Actualitzant ${0}</code>
+    <code id="wnd_vcard_edit">Informació de l'Usuari</code>
+    <code id="wnd_about">Sobre ${0}</code>
+    <code id="wnd_signup">Signar - ${0}</code>
+    <code id="wnd_adduser">Cercar o Afegir un Contacte</code>
+    <code id="wnd_avatar">Canviar el teu Avatar</code>
+    <code id="wnd_room_browse">Sales de Conferències</code>
+    <code id="wnd_room_create">Crear una Sala de Conferències</code>
+    <code id="wnd_conference_invite">Invitar Contactes</code>
+    <code id="wnd_conference_other">Altres Serveis de Conferències</code>
+    <code id="wnd_console">Consola</code>
+    <code id="wnd_emoticon_download">Baixar Emoticons</code>
+    <code id="wnd_emoticon_list">Emoticons</code>
+    <code id="wnd_emoticon_view">Detalls dels Emoticons</code>
+    <code id="wnd_file_send">Enviar Fitxer a ${0}</code>
+    <code id="wnd_file_recv">Rebre Arxiu de ${0}</code>
+    <code id="wnd_group_message">Missatge de Grup</code>
+    <code id="wnd_transport_list">Transports</code>
+    <code id="wnd_transport_other">Altres Transports</code>
+    <code id="wnd_headlines">Visualitzador de Capçaleres</code>
+    <code id="wnd_history">${0} - Historial de Missatges</code>
+    <code id="wnd_plugin_list">Plug-ins</code>
+    <code id="wnd_plugins">Plug-ins</code>
+    <code id="wnd_password">Canviar Contrasenya</code>
+    <code id="wnd_settings">Opcions</code>
+    <code id="wnd_admin_server">Administració del Servidor</code>
+    <code id="wnd_status">Missatge d'Estat</code>
+    <code id="wnd_vcard_view">Informació d'Usuari</code>
+    <code id="wnd_group_create">Crear Grup</code>
+    <code id="wnd_group_rename">Renombrar Grup</code>
+    <code id="wnd_contact_rename">Renombrar Contacte</code>
+    <code id="wnd_authrequest">Demanar Autorització</code>
+    <code id="wnd_login">Iniciar Sessió - ${0}</code>
+    <code id="wnd_extension_download">Instal·lant ${0}</code>
+    <code id="wnd_background_list">Fons de Pantalla</code>
+    <code id="wnd_background_download">Baixar Fons de Pantalla</code>
+
+    <code id="msg_emoticon_install">Aquest disseny d'emoticons ja ha sigut instal·lat.</code>
+    <code id="msg_received_files">El directori per a rebre arxius ha sigut esborrat.</code>
+    <code id="msg_plugin_install">Vols instal·lar aquest plug-in?&#13;&#13;Nom: ${0}&#13;Descripció: ${1}</code>
+    <code id="msg_plugin_exists">Aquest plug-in ja és instal·lat.</code>
+    <code id="msg_expired">El periòde de demostració d'aquest software ha expirat.</code>
+    <code id="msg_cl_adding">${0} ha estat afegit a la teva llista de contactes.</code>
+    <code id="msg_cl_added">${0} t'ha afegit a la seva llista de contactes.</code>
+    <code id="msg_cl_removed">${0} t'ha esborrat de la seva llista de contactes.</code>
+    <code id="msg_blocked">Et trobes a la llista de bloqujats d'aquesta persona.</code>
+    <code id="msg_autherror">No pots iniciar sessió. Això pot ser degut a una de les següents causes:&#13;&#13;- Has introduït una contrasenya incorrecta&#13;- El compte no existeix al servidor&#13;&#13;Si us plau, torneu-ho a intentar.</code>
+
+    <code id="menu_message">Missatge</code>
+    <code id="menu_filetransfer">Transferència de fitxers</code>
+    <code id="menu_room_create">Crear una nova sala</code>
+    <code id="menu_room_invite">Invitar a una sala de conferències</code>
+    <code id="menu_rename">Renombrar</code>
+    <code id="menu_block">Bloquejar</code>
+    <code id="menu_delete">Esborrar</code>
+    <code id="menu_group_create">Crear un nou grup</code>
+    <code id="menu_group_merge">Refondre amb</code>
+    <code id="menu_group_move">Moure a</code>
+    <code id="menu_group_copy">Copiar a</code>
+    <code id="menu_request">Re-demanar autorització</code>
+    <code id="menu_history">Història</code>
+    <code id="menu_profile">Perfil</code>
+
+    <code id="cl_waiting_one">Tens 1 missatge sense llegir</code>
+    <code id="cl_waiting_multiple">Tens ${0} missatges sense llegir</code>
+    <code id="cl_error_notexist">L'addreça no existeix.</code>
+    <code id="cl_error_cannotadd">No es pot afegir ${0} a la llista de contactes.&#13;${1}</code>
+    <code id="cl_default_group">Contactes</code>
+    <code id="cl_group_expand">Mostrar contactes fora de línia</code>
+    <code id="cl_group_compact">Ocultar contactes fora de línia</code>
+    <code id="cl_group_rename">Renombrar aquest grup</code>
+    <code id="cl_group_message">Enviar un missatge en difusió</code>
+    <code id="cl_room_create">Crear una nova sala</code>
+    <code id="cl_room_invite">Invitar a una sala de conferències</code>
+    <code id="cl_group_empty">No hi ha persones en línia en aquest grup.</code>
+    <code id="cl_status_empty">No hi ha missatge d'estat</code>
+    <code id="cl_status_offline">Fora de línia</code>
+    <code id="cl_status_awaiting">Esperant autorització</code>
+    <code id="cl_status_unknown">Estat desconegut</code>
+    <code id="cl_status_waiting_one">1 missatge sense llegir</code>
+    <code id="cl_status_waiting_multiple">${0} missatges sense llegir</code>
+    <code id="cl_tooltip_offline">Adreça: ${0}</code>
+    <code id="cl_contact_remove_group">Estas segur que vols esborrar aquest usuari d'aquest grup?</code>
+    <code id="cl_contact_remove_list">Estas segur que vols esborrar aquest usuari de la teva llista de contactes?</code>
+    <code id="cl_link_open">Obrir en un navegador</code>
+    <code id="cl_link_copy">Copiar l'enllaç</code>
+    <code id="cl_link_favorite">Afegir a favorits</code>
+    <code id="cl_ffc">Lliure Per Parlar</code>
+    <code id="cl_available">Disponible</code>
+    <code id="cl_busy">Ocupat</code>
+    <code id="cl_away">Absent</code>
+    <code id="cl_xaway">Absència estesa</code>
+    <code id="cl_invisible">Invisible</code>
+    <code id="cl_tooltip_online">Adreça: ${0}&#13;Recurs: ${1}</code>
+  </window>
+  <window name="about">
+    <item id="btn_credits">
+      <value>Crèdits &gt;&gt;</value>
+    </item>
+    <item id="btn_copyright">
+      <value>Drets de còpia &gt;&gt;</value>
+    </item>
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="copy_darkproject">
+      <innerHTML>La majoria dels icons i dels emoticons per defecte tenen dret de còpia &amp;copy; 2001 Greg Fleming.</innerHTML>
+    </item>
+    <item id="copy_rsa">
+      <innerHTML>S'usa l'Algoritme MD5 Message-Digest. Dret de còpia de RSA Data Security, Inc.</innerHTML>
+    </item>
+    <item id="copy_dns">
+      <innerHTML>Basat en BIND. Dret de còpia Internet Software Consortium, Inc.</innerHTML>
+    </item>
+    <item id="txt_copyright">
+      <innerHTML>Dret de còpia &amp;copy;</innerHTML>
+    </item>
+    <code id="copy_basis">Basat en ${0}. Dret de còpia &amp;copy; ${1} ${2}.</code>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>Veure Informació del Perfil</value>
+    </item>
+    <item id="btn_deny">
+      <value>Denegar</value>
+    </item>
+    <item id="btn_accept">
+      <value>Acceptar</value>
+    </item>
+    <item id="txt_from">
+      <innerText>Has rebut una petició d'autorització de:</innerText>
+    </item>
+    <item id="txt_reason">
+      <innerText>Raó:</innerText>
+    </item>
+    <item id="txt_add">
+      <innerText>Afegir aquest usuari a la meva llista de contactes</innerText>
+    </item>
+  </window>
+  <window name="admin_users">
+    <item id="btn_refresh">
+      <value>Refrescar</value>
+    </item>
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Prem en un compte per a enviar un missatge. El botó dret ofereix més opcions.</innerText>
+    </item>
+    <code id="add_to_list">Afegir a la llista de contactes</code>
+    <code id="tooltip_with">Adreça: ${0}&#13;Recurs: ${1}&#13;Temps en línia: ${2}</code>
+    <code id="tooltip_without">Adreça: ${0}&#13;Temps en línia: ${1}</code>
+    <code id="loading">Carregant...</code>
+    <code id="invalid_data">Dades rebudes invàlides.</code>
+    <code id="server_error">Error del servidor:</code>
+    <code id="server_failed">Fallada al recuperar la llista d'usuaris en línia.&lt;BR&gt;Assegureu-vos que teniu accès d'administració al servidor.</code>
+    <code id="user">1 usuari en línia</code>
+    <code id="users">${0} usuaris en línia</code>
+  </window>
+  <window name="admin">
+    <item id="btn_view">
+      <value>Veure tots els usuaris connectats</value>
+    </item>
+    <item id="btn_close">
+      <value>Tancar</value>
+    </item>
+    <item id="admin_btn_wall">
+      <value>Enviar</value>
+    </item>
+    <item id="admin_btn_motd">
+      <value>Enviar</value>
+    </item>
+    <item id="txt_wall_desc">
+      <innerText>Aquesta alerta és enviada als usuaris actualment en línia.</innerText>
+    </item>
+    <item id="txt_motd_desc">
+      <innerText>Aquesta alerta és enviada als usuaris quan ells iniciïn sessió.</innerText>
+    </item>
+    <item id="txt_wall">
+      <innerText>Missatge de difusió</innerText>
+    </item>
+    <item id="txt_motd">
+      <innerText>Missatge del dia</innerText>
+    </item>
+    <item id="txt_view">
+      <innerText>Monitor connectat al servidor.</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Usa aquestes eines per a monitoritzar i administrar el servidor de IM.</innerText>
+    </item>
+    <item id="txt_users">
+      <innerText>Usuaris</innerText>
+    </item>
+    <code id="wnd_users">Usuaris en línia</code>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>Esborrar sortida</value>
+    </item>
+    <item id="btn_send">
+      <value>Enviar</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>Presència</value>
+    </item>
+    <item id="btn_message">
+      <value>Missatge</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>Trànsit de xarxa:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>Trencar línies</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>Entrada XML:</innerText>
+    </item>
+    <code id="toggle_on">La depuració és encesa</code>
+    <code id="toggle_off">La depuració és apagada</code>
+    <code id="valid_xml">L'entrada XML ha de ser vàlida. No només amb espais en blanc o texte pla.</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>Tancar</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Alertes i Capçaleres</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Les alertes especials es veuen quan es rep la capçalera d'una notícia o altres informacions curtes.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>No s'han rebut alertes ni capçaleres.</innerText>
+    </item>
+    <item id="alertonlinelabel">
+      <innerText>Mostrar una alerta quan algú inicia sessió.</innerText>
+    </item>
+    <code id="read_more">Més...</code>
+    <code id="replay">Replay</code>
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="btn_custom">
+      <value>Imatge Personalitzada...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Selecciona una image personal que identifiqui el teu perfil.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Carregant...</innerText>
+    </item>
+    <code id="error_size">No es pot carregar l'imatge. El tamany de l'arxiu excedeix els 8 kilobytes.</code>
+    <code id="error_empty">No es pot carregar l'imatge. El fitxer és buit.</code>
+    <code id="error_load">Precaució: No es pot carregar les imatges de l'avatar .&#13;&#13;${0}</code>
+    <code id="menu_use">Usa aquest avatar</code>
+    <code id="menu_saveas">Desar com...</code>
+    <code id="menu_delete">Esborrar</code>
+    <code id="wnd_select">Selecciona una imatge d'avatar</code>
+    <code id="saveas_files">Arxius d'imatge</code>
+    <code id="image_files">Arxius d'imatge menors que 8kB</code>
+    <code id="all_files">Tots els arxius</code>
+  </window>
+  <window name="mode_select">
+    <item id="btn_preset">
+      <value>Missatge predefinit...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Els altres usuaris poden llegir aquest missatge mentre tu no ets disponible:</innerText>
+    </item>
+    <code id="btn_ok">D'acord</code>
+    <code id="btn_ok_empty">D'acord (sense missatge)</code>
+    <code id="btn_1">Passejant</code>
+    <code id="btn_2">Al telèfon</code>
+    <code id="btn_3">Dormint</code>
+    <code id="btn_4">Menjant</code>
+    <code id="btn_5">En una reunió</code>
+    <code id="btn_6">Bebent</code>
+    <code id="btn_7">Primer pla</code>
+    <code id="btn_8">Treballant</code>
+    <code id="btn_9">A l'escola</code>
+    <code id="msg_1">Estic donant un passeig.</code>
+    <code id="msg_2">Estic al telèfon.</code>
+    <code id="msg_3">Estic dormint.</code>
+    <code id="msg_4">Hora de menjar, nen!</code>
+    <code id="msg_5">Estic a una reunió.</code>
+    <code id="msg_6">He anat a per una beguda (o dues)</code>
+    <code id="msg_7">Calma't, Necessito passar a primer pla</code>
+    <code id="msg_8">Tot treballar i no jugar...</code>
+    <code id="msg_9">Estic a l'escola.</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nou nom:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nou nom:</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nou nom:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>Confirmi la nova contrasenya:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Nova contrasenya:</innerText>
+    </item>
+    <code id="no_match">Les contrasenyes que has introduït no coincideixen.&#13;&#13;Introdueix la nova contrasenya en els dos camps.</code>
+    <code id="no_pass">Introdueix la nova contrasenya.</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="set_version">
+      <innerText>Carregant...</innerText>
+    </item>
+    <item id="header-images">
+      <innerText>Imatges</innerText>
+    </item>
+    <item id="header-sounds">
+      <innerText>Sons</innerText>
+    </item>
+    <item id="header-markup">
+      <innerText>Texte amb Marques</innerText>
+    </item>
+    <code id="empty">Aquest estil d'emoticons és buit.</code>
+    <code id="file_error">Error a l'Arxiu</code>
+    <code id="cannot_load">No es pot carregar els emoticons.</code>
+    <code id="count_one">1 emoticon</code>
+    <code id="count_multiple">${0} emoticons</code>
+  </window>
+  <window name="emoticon_download">
+    <item id="btn_close">
+      <value>Tancar</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Baixar Emoticons</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>És necesaria una connexió a Internet per visualitzar el catàlog d'emoticons.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Carregant...</innerText>
+    </item>
+    <code id="install">Instal·lar</code>
+    <code id="cannot_download">Error: No es poden baixar emoticons.&#13;${0}</code>
+    <code id="invalid_xml">La font de dades conté dades invàlides.</code>
+    <code id="no_new_styles">No hi han nous estils d'emoticons disponibles.</code>
+  </window>
+  <window name="emoticon_list">
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Emoticons Disponibles</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Selecciona un disseny d'emoticons de la llista.</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>Carregant...</innerText>
+    </item>
+    <item id="btn_emoticon_download">
+      <value>Més emoticons</value>
+    </item>
+    <code id="emoticon_details">Mostrar detalls</code>
+    <code id="emoticon_remove">Esborrar</code>
+    <code id="emoticon_confirm">Estàs segur que vols esborrar aquest estil d'emoticons?</code>
+    <code id="no_emoticons">No s'han trobat emoticons.</code>
+  </window>
+  <window name="background_download">
+    <item id="btn_close">
+      <value>Tancar</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Baixar Fons de Pantalla</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>És necesaria una connexió a Internet per visualitzar el catàlog de fons de pantalla.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Carregant...</innerText>
+    </item>
+    <code id="install">Instal·lar</code>
+    <code id="cannot_download">Error: No es poden baixar fons de pantalla.&#13;${0}</code>
+    <code id="invalid_xml">Les dades d'origen no contenen dades vàlides.</code>
+    <code id="no_new_styles">No hi han nous fons de pantalla disponibles.</code>
+  </window>
+  <window name="background_list">
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Fons de Pantalla Disponibles</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Afegir o esborrar fons de pantalla.</innerText>
+    </item>
+    <item id="btn_background_download">
+      <value>Més fons de pantalla</value>
+    </item>
+    <item id="txt_background_empty">
+      <innerText>No hi ha instal·lats fons de pantalla.</innerText>
+    </item>
+    <code id="background_uninstall">Esborrar</code>
+    <code id="background_confirm">Estàs segur que vols esborrar aquest fons de pantalla?</code>
+  </window>
+  <window name="plugin_list">
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Plug-ins instal·lats</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Afegir o esborrar plug-ins.</innerText>
+    </item>
+    <item id="btn_plugin_download">
+      <value>Més plug-ins</value>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>No hi ha instal·lats plug-ins.</innerText>
+    </item>
+    <code id="plugin_uninstall">Desinstal·lar</code>
+    <code id="plugin_confirm">Estàs segur que vols esborrar aquest plug-in?</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>Tancar</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Baixar Plug-ins</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>És necesaria una connexió a Internet per visualitzar el catàlog de plug-ins.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Carregant...</innerText>
+    </item>
+    <code id="install">Instal·lar</code>
+    <code id="cannot_download">Error: No es poden baixar els plug-ins.&#13;${0}</code>
+    <code id="invalid_xml">Les dades d'entrada no són dades XML vàlides.</code>
+    <code id="no_new_plugins">No hi han nous plug-ins disponibles.</code>
+  </window>
+  <window name="autoupdate">
+    <item id="btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <item id="btn_install">
+      <value>Instal·lar</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Connectant...</innerText>
+    </item>
+    <code id="download_confirm">Una versió actualitzada d'aquest programa està disponible: ${0} ${1}&#13;&#13;Vols baixar aquesta actualització?</code>
+    <code id="downloading">Baixant...</code>
+    <code id="complete">Baixada completa. Prem Instal·lar per a continuar.</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Cada sala de conferències té una adreça única. Introdueix l'adreça del servei de conferències i un nom únic per a la sala.</innerText>
+    </item>
+    <item id="txt_service">
+      <innerText>Adreça del servei:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Exemple: conferencia.exemple.com</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>Nom de la sala:</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>Adreça de la sala de conferències:</innerText>
+    </item>
+    <code id="incomplete">Omple tots els camps...</code>
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>Enviar</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>Enviar a aquestes persones:</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>Missatge normal</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>Notificació d'alerta</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>Tipus de missatge</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>Afegir hiperenllaç</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>Missatge</innerText>
+    </item>
+  </window>
+  <window name="extension_download">
+    <item id="btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Connectant...</innerText>
+    </item>
+    <code id="downloading">Baixant...</code>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>Tancar</value>
+    </item>
+    <item id="btn_accept">
+      <value>Acceptar</value>
+    </item>
+    <item id="btn_abort">
+      <value>Avortar</value>
+    </item>
+    <item id="btn_open">
+      <value>Obrir</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Temps restant:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>Destinatari:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Nom de l'arxiu:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Localització:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Progrès:</innerText>
+    </item>
+    <code id="resume">L'arxiu existeix. Vols reprendre la transferència?&#13;&#13;Prem sí per a reprender la transferència de l'arxiu.&#13;Prem no per a sobreescriure l'arxiu.</code>
+    <code id="cannot_overwrite">No es pot sobreescriure l'arxiu:&#13;${0}&#13;&#13;${1}</code>
+    <code id="incorrect">No es pot inicialitzar la transferència. Les dades rebudes són incorrectes.</code>
+    <code id="title_saving">${0}% de ${1} Desat</code>
+    <code id="lessthanminute">Menys 1 minut a ${0}/s</code>
+    <code id="onehour">1 hora i</code>
+    <code id="hours">${0} hores i</code>
+    <code id="oneminute">1 minut a</code>
+    <code id="minutes">${0} minuts a</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Vols avortar la transferència?</code>
+    <code id="aborted">Avortat</code>
+    <code id="finished">Finalitzat</code>
+    <code id="error_timeout">Ha ocurregut un timeout.</code>
+    <code id="error_code">Codi d'error: ${0}</code>
+    <code id="error_file">Codi d'error de l'arxiu: ${0}</code>
+    <code id="title_completed">Transferència Completa - ${0}</code>
+    <code id="title_failed">Transferència Fallada - ${0}</code>
+    <code id="error_move">No es pot moure l'arxiu completat:&#13;${0}&#13;&#13;${1}</code>
+    <code id="error_failed">Transferència fallada.</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>Tancar</value>
+    </item>
+    <item id="btn_abort">
+      <value>Avortar</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Temps restant:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>Destinatari:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Nom de l'arxiu:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Localització:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Progrès:</innerText>
+    </item>
+    <code id="socket">No es possible enviar l'arxiu.&#13;No es pot obrir el socket de xarxa.</code>
+    <code id="file">No es pot llegir l'arxiu:&#13;${0}</code>
+    <code id="filetransfer">Transferència d'arxius:</code>
+    <code id="title_saving">${0}% de ${1} Enviat</code>
+    <code id="lessthanminute">Menys 1 minut a ${0}/s</code>
+    <code id="onehour">1 hora i</code>
+    <code id="hours">${0} hores i</code>
+    <code id="oneminute">1 minut a</code>
+    <code id="minutes">${0} minuts a</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Vols avortar la transferència?</code>
+    <code id="finished">Finalitzat</code>
+    <code id="aborted">Avortat</code>
+    <code id="error_denied">Arxiu denegat.</code>
+    <code id="error_timeout">Ha ocurregut un timeout.</code>
+    <code id="error_code">Codi d'error: ${0}</code>
+    <code id="title_completed">Transferència Completa - ${0}</code>
+    <code id="title_failed">Transferència Fallada - ${0}</code>
+    <code id="error_failed">Transferència Fallada.</code>
+  </window>
+  <window name="conference_browse">
+    <item id="btn_close">
+      <value>Tancar</value>
+    </item>
+    <item id="btn_other_service">
+      <value>Altres Serveis...</value>
+    </item>
+    <item id="btn_create">
+      <value>Crear una Sala de Conferències</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Sales Disponibles:</innerText>
+    </item>
+    <item id="lbl_empty">
+      <innerText>Veure sales buides</innerText>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="lbl_full">
+      <innerText>Veure sales plenes</innerText>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="lbl_filter">
+      <innerText>Filtre:</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>No hi han serveis de conferències disponibles en aquest servidor.&#13;&#13;Prem el botó "Altres Serveis..." per a afegir un servei de conferències d'un altre servidor.</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Per a unir-te a una sala de conferències has d'estar connectat al servidor de missatgeria instantània.</innerText>
+    </item>
+    <code id="empty_filter">No hi han sales que coincideixin amb el filtre</code>
+    <code id="empty_no_rooms">No hi han sales disponibles en aquest servei</code>
+    <code id="status_connecting">Connectant...</code>
+    <code id="status_downloading">Adquirint una llista de sales de conferències...</code>
+    <code id="error_unknown">El servei "${0}" no es troba disponible. Esteu segurs d'haver introduït l'adreça correcta. Tornar a probar-ho un altre cop més tard o introdueix una adreça diferent.</code>
+    <code id="error_no_services">El servidor "${0}" no té serveis de conferències instal·lats. Contacta l'administrador per a més informació.</code>
+    <code id="error_no_new">Tots els serveis de conferències del servidor "${0}" ja estan llistats.</code>
+  </window>
+  <window name="conference_other">
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Adreça:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Exemple: conferencia.exemple.com</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Introdueix l'adreça del servei de conferències o del servidor.</innerText>
+    </item>
+    <code id="error_already_exists">El servei "${0}" ja està llistat. Introdueix l'adreça del servei de conferències o del servidor que no està encara llistat.</code>
+  </window>
+  <window name="vcard">
+    <code id="save">Advertència: No es pot desar l'arxiu vCard.&#13;&#13;${0}</code>
+    <code id="personal">Detalls de l'Usuari</code>
+    <code id="system">Detalls del Sistema</code>
+
+    <item id="txt_requesting1">
+      <innerText>Demanant informació del servidor</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Això pot trigar un minut.&lt;BR&gt;Si us plau, sigues pacient.</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>Desar com a vCard</value>
+    </item>
+    <item id="btn_refresh">
+      <value>Refrescar</value>
+    </item>
+    <item id="btn_close">
+      <value>Tancar</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>Desfer Canvis</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>Informació Personal</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>Detalls Adicionals</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>Adreça</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>Treball</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>Adreça de Treball</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>Sistema</innerText>
+    </item>
+
+    <item id="txt_name">
+      <innerText>Nom</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>Nom de Pila:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>Nom Mig:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>Cognoms:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>Àlias:</innerText>
+    </item>
+
+    <item id="txt_contact">
+      <innerText>Contacte</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>Correu Electrònic:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>Telèfon:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>Telèfon Mòbil:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>Fax:</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>Detalls Adicionals</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>Edat:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>Data d'aniversari:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>Sexe:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>Estat Civil:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>Pàgina Web:</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>Adreça</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>Adreça 1:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>Adreça 2:</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>Ciutat:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>Codi Postal:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>Provincia:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>País:</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>Organització</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>Nom:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>Department:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>Títol:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>Rol:</innerText>
+    </item>
+
+    <item id="txt_workcontact">
+      <innerText>Contacte</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>Correu electrònic:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>Telèfon:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>Telèfon Mòbil:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>Fax:</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>Adreça de Treball</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>Adreça 1:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>Adreça 2:</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>Ciutat:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>Codi Postal:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>Provincia:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>País:</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>Informació del Client</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>Adreça:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>Recurs:</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>Temps Local:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>Software:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>Versió:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>Sistema Operatiu:</innerText>
+    </item>
+  </window>
+  <window name="transport_list">
+    <item id="btn_other">
+      <value>Altres transports...</value>
+    </item>
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Transports disponibles</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Els transports proveeixen enllaços amb altres xarxes de missatgeria instantània.</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;Nota:&lt;/B&gt; Per a configurar els transports has d'estar connectat al servidor de missatgeria instantània.</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;Nota:&lt;/B&gt; El servidor al que et trobes connectat no té transports instal·lats. Contacta amb l'administrdor per a més informació.</innerHTML>
+    </item>
+    <item id="msnworkaroundlabel">
+      <innerText>Permetre als contactes de MSN canviar el seu àlies</innerText>
+    </item>
+    <code id="status_active">Actiu</code>
+    <code id="status_noreg">No registrat</code>
+    <code id="status_disconnected">Desconnectat</code>
+    <code id="status_connecting">Connectant...</code>
+    <code id="name_unknown">Servei Desconegut</code>
+    <code id="error_unknown">El servei "${0}" no es troba disponible. Esteu segurs d'haver introduït l'adreça correcta. Torna-ho a intentar un altre cop més tard o introdueix una adreça diferent.</code>
+    <code id="error_no_transports">El servidor "${0}" no té transports instal·lats. Contacta amb l'administrador per a més informació.</code>
+    <code id="error_no_new_transport">Tots els transports en el servidor "${0}" són ja llistats.</code>
+  </window>
+  <window name="transport_other">
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Adreça:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Exemple: sms.exemple.com</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Introdueix l'adreça d'un transport o d'un servidor.</innerText>
+    </item>
+    <code id="error_already_exists">El servei "${0}" està ja llistat. Introdueix l'adreça d'un transport o d'un servidor que no hagi estat llistat encara.</code>
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; Enrera</value>
+    </item>
+    <item id="btn_next">
+      <value>Següent &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>Finalitzar</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>Cancel·lar</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>Adreça:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>Àlies:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>Adreça:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Contrasenya:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>Àlies:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>Ja estàs registrat amb aquest transport.&lt;BR&gt;El compte que tens registrat és:</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>Transport desactivat</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText>Contactant amb el servidor</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Això pot trigar més d'un minut.&lt;BR&gt;Si us plau, sigues pacient.</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>Per tancar aquest assistent, prem &lt;B&gt;Finalitzar&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>Per continuar, prem &lt;B&gt;Següent&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <code id="error_invalid">Dades rebudes invàlides</code>
+    <code id="error_server">&lt;B&gt;Error del servidor:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(codi ${1})&lt;BR&gt;&lt;BR&gt;No es pot continuar.</code>
+    <code id="error_unknown">&lt;B&gt;Error desconegut:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(codi ${1})&lt;BR&gt;&lt;BR&gt;No es pot continuar.</code>
+    <code id="error_auth">&lt;B&gt;Error d'autorització:&lt;/B&gt;&lt;BR&gt;Adreça o contrasenya incorrecta.&lt;BR&gt;&lt;BR&gt;No es pot continuar.</code>
+    <code id="wait">&lt;B&gt;Contactant amb el servidor&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Això pot trigar un minut.&lt;BR&gt;Si us plau, sigues pacient.&lt;BR&gt;</code>
+
+    <code id="default_window_title"> Configuració del transport</code>
+    <code id="default_begin_intro">Aquest assistent t'ajuda a configurar el transport.&lt;BR&gt;Aquest transport és un enllaç entre tu i una altra xarxa.&lt;BR&gt;Necessites un compte en l'altra xarxa per a utilitzar aquest transport.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">Introdueix el teu compte i la teva contrasenya.&lt;BR&gt;També pots introduir un àlies amb el que vols que la resta et vegi.&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">El teu compte està sent registrat amb el transport.</code>
+    <code id="default_removing_busy">El teu compte està sent esborrat del transport.&lt;BR&gt;</code>
+    <code id="default_creating_done">El compte fou registrat exitòsament amb el transport.</code>
+    <code id="default_removing_done">El compte fou desregistrat exitòsament amb el transport.</code>
+
+    <code id="msn_window_title">MSN Messenger - Configuració del Transport</code>
+    <code id="msn_begin_intro">Aquest assistent t'ajuda a configurar el transport MSN.&lt;BR&gt;Aquest transport és un enllaç entre tu i el teu compte de MSN.&lt;BR&gt;Necessites un Microsoft Passport per a utilitzar aquest transport.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">Introdueix la teva adreça i la teva contrasenya de MSN.&lt;BR&gt;Pots també introduir un àlies amb el que vols que la resta et vegi.&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">Exemples: algu@msn.com, algu@hotmail.com</code>
+    <code id="msn_creating_busy">El teu compte està sent registrat amb el transport MSN.</code>
+    <code id="msn_removing_busy">El teu compte està sent esborrat del transport.&lt;BR&gt;Podràs encara utilitzar el teu compte MSN amb altres serveis (p.ex. Hotmail, MSN Explorer, etc.).&lt;BR&gt;</code>
+    <code id="msn_creating_done">El compte fou registrat exitòsament amb el transport MSN.</code>
+    <code id="msn_removing_done">El compte fou desregistrat exitòsament amb el transport MSN.</code>
+
+    <code id="icq_window_title">ICQ - Configuració del Transport</code>
+    <code id="icq_begin_intro">Aquest assistent t'ajuda a configurar el transport ICQ.&lt;BR&gt;Aquest transport és un enllaç entre tu i el teu compte de ICQ.&lt;BR&gt;Has de tenir un Número d'Identificació d'Usuari existent (ICQ &lt;BR&gt;number) per a utilitzar aquest transport.&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Introdueix el teu número i la teva contrasenya de ICQ.&lt;BR&gt;Pots també introduir un àlies amb el que vols que la resta et vegi.&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">Examples: 39230793, 158525087</code>
+    <code id="icq_creating_busy">El teu compte està sent registrat amb el transport ICQ.</code>
+    <code id="icq_removing_busy">El teu compte de ICQ està sent esborrat del transport.&lt;BR&gt;</code>
+    <code id="icq_creating_done">El compte fou registrat exitòsament amb el transport ICQ.</code>
+    <code id="icq_removing_done">El compte fou desregistrat exitòsament amb el transport ICQ.</code>
+
+    <code id="yahoo_window_title">Yahoo! Messenger - Configuració del Transport</code>
+    <code id="yahoo_begin_intro">Aquest assistent t'ajuda a configurar el transport Yahoo!.&lt;BR&gt;Aquest transport és un enllaç entre tu i el teu compte de Yahoo!.&lt;BR&gt;Necesites un compte de Yahoo! per a utilitzar aquest transport.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Introdueix el teu usuari i la teva contrasenya de Yahoo!.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">El teu compte està sent registrat amb el transport Yahoo!.</code>
+    <code id="yahoo_removing_busy">El teu compte de Yahoo! està sent esborrat del transport.&lt;BR&gt;Podràs encara utilitzar el teu compte Yahoo! amb altres serveis (p.ex. Yahoo! mail, Yahoo! Messenger, etc.).&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">El compte fou registrat exitòsament amb el transport Yahoo!.</code>
+    <code id="yahoo_removing_done">El compte fou desregistrat exitòsament amb el transport Yahoo!.</code>
+
+    <code id="aim_window_title">AOL Instant Messenger - Configuració del Transport</code>
+    <code id="aim_begin_intro">Aquest assistent t'ajuda a configurar el transport AOL IM.&lt;BR&gt;Aquest transport és un enllaç entre tu i el teu compte de AOL IM.&lt;BR&gt;Necesites un compte de AOL IM per a utilitzar aquest transport.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">Introdueix el teu usuari i la teva contrasenya de AOL IM.&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">El teu compte està sent registrat amb el transport AOL IM.</code>
+    <code id="aim_removing_busy">El teu compte de AOL IM està sent esborrat del transport.&lt;BR&gt;Podràs encara utilitzar el teu compte AOL IM amb altres programes.&lt;BR&gt;</code>
+    <code id="aim_creating_done">El compte fou registrat exitòsament amb el transport AOL IM.</code>
+    <code id="aim_removing_done">El compte fou desregistrat exitòsament amb el transport AOL IM.</code>
+
+    <code id="gadu_window_title">Gadu-Gadu - Configuració del Transport</code>
+    <code id="gadu_begin_intro">Aquest assistent t'ajuda a configurar el transport Gadu-Gadu.&lt;BR&gt;Aquest transport és un enllaç entre tu i el teu compte de Gadu-Gadu.&lt;BR&gt;Necesites un número de Gadu-Gadu per a utilitzar aquest transport.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_instructions">Introdueix el teu número i la teva contrasenya de Gadu-Gadu.&lt;BR&gt;Pots també introduir un àlies amb el que vols que la resta et vegi.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_examples">&amp;nbsp;</code>
+    <code id="gadu_creating_busy">El teu número està sent registrat amb el transport Gadu-Gadu.</code>
+    <code id="gadu_removing_busy">El teu número de Gadu-Gadu està sent esborrat del transport.&lt;BR&gt;</code>
+    <code id="gadu_creating_done">El número fou registrat exitòsament amb el transport Gadu-Gadu.</code>
+    <code id="gadu_removing_done">El número fou desregistrat exitòsament amb el transport Gadu-Gadu.</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>Anar</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>Desar</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>Imprimir</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>Esborrar</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>Historial de Missatges</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>Cercar:</innerText>
+    </item>
+    <code id="loading">Carregar l'historial de missatges...</code>
+    <code id="empty">L'historial de missatges és buit.</code>
+    <code id="error_load">No es pot carregar l'historial de missatges:&#13;${0}</code>
+    <code id="one_message">1 missatge</code>
+    <code id="many_messages">${0} missatges</code>
+    <code id="tooltip_save">Desar l'historial de missatges d'aquest dia</code>
+    <code id="tooltip_print">Imprimir l'historial de missatges d'aquest dia</code>
+    <code id="tooltip_delete">Esborrar l'historial de missatge d'aquest dia</code>
+    <code id="error_open">Error: No es pot obrir l'historial de missatges.</code>
+    <code id="error_read">Error: No es pot llegir l'historial de missatges.</code>
+    <code id="delete_confirm">Estàs segur que vols esborrar l'historial de missatges complet de ${0}?</code>
+    <code id="delete_confirm_date">Estàs segur que vols esborrar els missatges datats en ${0}?</code>
+    <code id="delete_cannot">No es pot esborrar l'arxiu d'historial: ${0}&#13;&#13;Cap missatge ha sigut esborrat.</code>
+    <code id="delete_cannot_temp">No es pot crear l'arxiu temporal: ${0}&#13;&#13;Cap missatge ha sigut esborrat.</code>
+    <code id="delete_cannot_open">No es pot obrir l'historial: ${0}&#13;&#13;Cap missatge ha sigut esborrat.</code>
+    <code id="delete_cannot_read">No es pot llegir l'historial: ${0}&#13;&#13;Cap missatge ha sigut esborrat.</code>
+    <code id="delete_cannot_write">No es pot escriure l'arxiu temporal: ${0}&#13;&#13;Cap missatge ha sigut esborrat.</code>
+    <code id="error_print">No es pot imprimir res.&#13;L'historial de missatges és buit.</code>
+    <code id="error_save">No es pot desar l'historial de missatges.&#13;${0}</code>
+  </window>
+  <window name="chat-messages">
+    <code id="copy">Copiar</code>
+    <code id="copyall">Copiar Tot</code>
+    <code id="clear">Netejar</code>
+    <code id="selectall">Seleccionar Tot</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>Mostrar que estàs pensant o fent</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Canviar el color del text o el tipus</title>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Escollir un fons de pantalla diferent</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Emoticons</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Tipus de lletra</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Fons de pantalla</innerText>
+    </item>
+
+    <item id="btn-send">
+      <value>Enviar</value>
+    </item>
+
+    <code id="msg_typing">${0} està escrivint un missatge</code>
+    <code id="unknown">${0} pot ser no contestarà perquè el seu estat es desconegut</code>
+    <code id="lastonline">Últim temps en línia: ${0}</code>
+    <code id="windowtitle">${0} - Conversació</code>
+    <code id="choose_emoticons">Mostrar tots els emoticons en aquest tema o escull un conjunt diferent d'emoticons</code>
+    <code id="background_no">Sense fons de pantalla</code>
+    <code id="background_list">Fons de pantalla disponibles...</code>
+    <code id="close_many_tabs">Vols tancar totes les conversacions?</code>
+    <code id="close_recent_message">Acabes de rebre un missatge.&#13;&#13;Vols tancar aquesta conversació?</code>
+
+    <code id="menu_file_received">&amp;Obrir els meus Arxius Rebuts</code>
+    <code id="menu_file_history">&amp;Historial de Missatges</code>
+    <code id="menu_file_close">&amp;Tancar Conversació</code>
+
+    <code id="menu_axn_contact">&amp;Contacte</code>
+    <code id="menu_axn_add">Afegir a la Llista de Contactes</code>
+    <code id="menu_axn_block">&amp;Bloquejar</code>
+    <code id="menu_axn_rename">&amp;Renombrar</code>
+    <code id="menu_axn_panel">Mostrar el Panel d'&amp;Accions</code>
+    <code id="menu_axn_profile">Veure &amp;Perfils</code>
+    <code id="menu_axn_file">Enviar un &amp;Arxiu</code>
+
+    <code id="menu_tool_emo_style">Escull &amp;Emoticons...</code>
+    <code id="menu_tool_font">Canviar Tipus de &amp;Lletra...</code>
+    <code id="menu_tool_background">Canviar &amp;Fons de Pantalla...</code>
+    <code id="menu_tool_aot">&amp;Sempre amunt</code>
+    <code id="menu_tool_popup">&amp;Nous missatges en Popup</code>
+    <code id="menu_tool_tabbed">&amp;Conversacions en Pestanyes</code>
+    <code id="menu_tool_emoticons">&amp;Mostrar emoticons</code>
+    <code id="menu_tool_settings">&amp;Opcions</code>
+  </window>
+  <window name="conference-configuration">
+    <item id="btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="txt_form_loading">
+      <innerText>Carregant...</innerText>
+    </item>
+    <item id="txt_form_empty">
+      <innerText>Aquesta sala de conferències no té opcions de configuració</innerText>
+    </item>
+    <item id="txt_form_invalid">
+      <innerText>Error: No es pot recuperar la configuració de la sala de conferències</innerText>
+    </item>
+    <code id="form_title">Opcions per aquesta sala de conferències</code>
+    <code id="form_subtitle">Omplir aquest formulari per a configurar la sala de conferències</code>
+
+    <code id="muc#roomconfig_allowinvites">Permetre als ocupants invitar altres usuaris</code>
+    <code id="muc#roomconfig_changesubject">Permetre als ocupants canviar el tema de la sala de conferències</code>
+    <code id="muc#roomconfig_enablelogging">Registrar tots els missatges de la sala de conferències</code>
+    <code id="muc#roomconfig_lang">El llenguatge utilitzat en la sala de conferències</code>
+    <code id="muc#roomconfig_maxusers">Número màxim d'ocupants en la sala de conferències</code>
+    <code id="muc#roomconfig_membersonly">Només els membres tenen permís per a entrar en la sala de conferències</code>
+    <code id="muc#roomconfig_moderatedroom">L'aprovació dels moderadors és necessària per a enviar missatges</code>
+    <code id="muc#roomconfig_passwordprotectedroom">Per a entrar en la sala de conferències és necessària una contrasenya</code>
+    <code id="muc#roomconfig_persistentroom">La sala de conferències persisteix quan tothom ha marxat</code>
+    <code id="muc#roomconfig_presencebroadcast">Rols per als que l'informació de l'estat es difosa</code>
+    <code id="muc#roomconfig_publicroom">Mostrar la sala de conferències en la llista de sales de conferències públiques</code>
+    <code id="muc#roomconfig_roomadmins">Administradors de la sala de conferències</code>
+    <code id="muc#roomconfig_roomdesc">Descripció de la sala de conferències</code>
+    <code id="muc#roomconfig_roomname">Nom de la sala de conferències</code>
+    <code id="muc#roomconfig_roomowners">Propietaris de la sala de conferències</code>
+    <code id="muc#roomconfig_roomsecret">Contrasenya per a entrar en la sala de conferències</code>
+    <code id="muc#roomconfig_whois">Afiliacions que poden descobrir l'adreça real de tots els ocupants</code>
+  </window>
+  <window name="conference-password">
+    <item id="txt_password">
+      <innerText>Contrasenya:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+  </window>
+  <window name="conference-name">
+    <item id="txt_name">
+      <innerText>Nom:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+  </window>
+  <window name="conference-subject">
+    <item id="txt_subject">
+      <innerText>Asumpte:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+  </window>
+  <window name="conference-invite">
+    <item id="btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Seleccionar els contactes que vols invitar.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>No hi han contactes en línia en la llista de contactes.</innerText>
+    </item>
+  </window>
+  <window name="conference-container">
+    <item id="btn-emoticons">
+      <title>Mostrar que estàs pensant o fent</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Canviar el color o el tipus del texte</title>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Escolleix un fons de pantalla diferent</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Emoticons</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Tipus de lletra</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Fons de Pantalla</innerText>
+    </item>
+
+    <item id="btn-send">
+      <value>Enviar</value>
+    </item>
+
+    <item id="txt-occupants">
+      <innerText>Ocupants</innerText>
+    </item>
+
+    <code id="wnd_conference_password">Connectar amb una Contrasenya</code>
+    <code id="wnd_conference_change_name">Canviar el meu nom</code>
+    <code id="wnd_conference_subject">Tema de la Sala de Conferències</code>
+    <code id="wnd_conference_configuration">Configuració de la Sala de Conferències</code>
+
+    <code id="default_subject">Aquesta sala de conferències no té un tema.</code>
+    <code id="windowtitle">${0} - Conferència</code>
+    <code id="destroy">Destruint aquesta sala de conferències esborraràs a tots els participants de la sala i esborraràs la sala del servidor.&#13;&#13;Estàs segur que vols destruir aquesta sala de conferències?</code>
+    <code id="connecting">Connectant...</code>
+    <code id="connected">Connectat</code>
+    <code id="disconnected">Desconnectat</code>
+
+    <code id="menu_file_close">&amp;Tancar Conferència</code>
+
+    <code id="menu_axn_invite">&amp;Invitar Contactes</code>
+    <code id="menu_axn_change_name">Canviar el meu &amp;Nom...</code>
+    <code id="menu_axn_password">Connectar amb una &amp;Contrasenya...</code>
+    <code id="menu_axn_subject">&amp;Canviar el Tema de la Sala de Conferències</code>
+    <code id="menu_axn_configuration">&amp;Configurar aquesta Sala de Conferències</code>
+    <code id="menu_axn_destroy">&amp;Destruir aquesta Sala de Conferències</code>
+  </window>
+  <window name="preferences">
+    <item id="txt_autoaway">
+      <innerText>Quan no uses l'ordinador durant varis minuts, el teu estat canvia a "Absència".</innerText>
+    </item>
+    <item id="txt_displayawaymsg_left">
+      <innerText>Mostrar aquest missatge desprès</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_left">
+      <innerText>Mostrar aquest missatge desprès</innerText>
+    </item>
+    <item id="txt_displayawaymsg_right">
+      <innerText>minuts:</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_right">
+      <innerText>minuts:</innerText>
+    </item>
+    <item id="txt_blocking">
+      <innerText>La llista de bloquejats conté adreces de gent de la qual no vols rebre missatges.</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>Mostrar missatges de la gent que no és a la meva llista de contactes</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>Llista de Bloquejats</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>Elevador bloquejat</value>
+    </item>
+    <item id="block_btn_view">
+      <value>Veure el perfil</value>
+    </item>
+    <item id="txt_ssl">
+      <innerText>Utilitzar una connexió xifrada (SSL)</innerText>
+    </item>
+    <item id="txt_firewall_proxy">
+      <innerText>Tallafocs i servidor proxy</innerText>
+    </item>
+    <item id="txt_proxy1">
+      <innerText>Cap</innerText>
+    </item>
+    <item id="txt_proxy2">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_proxy3">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_proxy4">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_proxyserver">
+      <innerText>Servidor:</innerText>
+    </item>
+    <item id="txt_proxyport">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_proxyuser">
+      <innerText>Nom d'Usuari:</innerText>
+    </item>
+    <item id="txt_proxypass">
+      <innerText>Contrasenya:</innerText>
+    </item>
+    <item id="txt_portmap">
+      <innerText>Transferència d'arxius amb mapeig de ports (NAT, tallafocs)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>Host:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>Desar tots els missatges a l'arxiu d'història</innerText>
+    </item>
+    <item id="txt_startup">
+      <innerText>Llençar automàticament a l'inici</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>Quan alguna persona demana la meva autorització</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>Pregunta'm</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>Accepta totes les peticions</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>Accepta els usuaris que són a la meva llista de contactes, pregunta la resta</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>Denegar totes les peticions</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>Tocar un so quan arriba un missatge</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>Tocar un so quan algú és a l'estat en línia de nou</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>Tocar un so quan algú es posa fora de línia</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>Fulleja</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>Fulleja</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>Fulleja</value>
+    </item>
+    <item id="btn_ok">
+      <value>D'acord</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <item id="lbl_autoaway">
+      <innerText>Auto-absència</innerText>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>Bloquejar</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>Connexió</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>Privacitat</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>So</innerText>
+    </item>
+    <code id="autoaway">Missatges d'Absència Automàtics</code>
+    <code id="blocking">Llista de Bloquejats</code>
+    <code id="connection">Opcions de Connexió</code>
+    <code id="privacy">Privacitat</code>
+    <code id="sound">Sons de Notificació</code>
+    <code id="reconnect">Has de reconnectar per a aplicar els canvis.&#13;&#13;Vols reconnectar ara?</code>
+    <code id="shortcut">Enviar i rebre missatges instantanis</code>
+    <code id="choose_sound">Selecciona un so de notificació</code>
+    <code id="file_audio">Arxius d'audio</code>
+    <code id="file_any">Qualsevol arxiu</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>Trobar o Cercar una Persona</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>Pots cercar a algú basat en l'informació pública o pots introduir el nom d'usuari de la persona.</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>Com vols afegir el contacte?</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>Vull  &lt;U&gt;c&lt;/U&gt;ercar a algú.</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>Se&lt;U&gt;r&lt;/U&gt;vei:</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML>J &lt;U&gt;a&lt;/U&gt; conec l'adreça de missatgeria instantània de la persona.</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>&lt;U&gt;X&lt;/U&gt;arxa:</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>&lt;U&gt;N&lt;/U&gt;om d'Usuari:</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>Per a comunicar-te amb algú en una xarxa de missatgeria instantània diferent, has de registrar-te amb el transport d'aquesta xarxa.</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>Configurar els transports</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>Següent &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_p1_cancel">
+      <value>Cancel·lar</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>Procesant el Nom d'Usuari</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>El transport ara està verificant el nom d'usuari.</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; Enrera</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>Següent &gt;</value>
+    </item>
+    <item id="page1b_btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>Demanant el Formulari de Cerca</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>El formulari de cerca conté instruccions i tots els camps que han de ser cercats.</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; Enrera</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>Següent &gt;</value>
+    </item>
+    <item id="page1c_btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+
+    <item id="txt_p2_title">
+      <innerText>Demanar Missatge</innerText>
+    </item>
+    <item id="txt_p2_tagline">
+      <innerText>Pots deixar que altres persones coneixin perquè vols la seva autorització enviant-li un missatge.</innerText>
+    </item>
+    <item id="page2_btn_back">
+      <value>&lt; Enrera</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page2_btn_finish">
+      <value>Finalitzar</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="page2_btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <item id="txt_p2_desc">
+      <innerText>La petició d'autorització serà enviada a:</innerText>
+    </item>
+    <item id="txt_p2_user">
+      <innerText>Nom d'usuari:</innerText>
+    </item>
+    <item id="txt_p2_network">
+      <innerText>Xarxa:</innerText>
+    </item>
+    <item id="txt_p2_message">
+      <innerHTML>Introdueix un &lt;U&gt;m&lt;/U&gt;issatge (opcional):</innerHTML>
+    </item>
+    <item id="page2_message">
+      <innerText>M'agradaria afegir-te a la meva llista de contactes.</innerText>
+    </item>
+    <item id="txt_p2_close">
+      <innerHTML>Per a enviar la petició i tancar aquest assistent, prem &lt;B&gt;Finalitzar&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; Enrera</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>Cercar</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="page3_btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText>Cercar Resultats</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>Pots veure els detalls personals d'un usuari o afegir l'usuari a la teva llista de contactes.</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; Enrera</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>Següent &gt;</value>
+    </item>
+    <item id="page4_btn_cancel">
+      <value>Cancel·lar</value>
+    </item>
+    <code id="correct">Introdueix un nom d'usuari correcte.&#13;&#13;Exemple: algu123@${0}</code>
+    <code id="example_address">Exemple: algu123@${0}</code>
+    <code id="enter_username">Introdueix el nom d'usuari de la persona que vols contactar.</code>
+    <code id="contacting_transport">&lt;B&gt;Contactant transport&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Això pot trigar un minut.&lt;BR&gt;Si us plau sigues pacient.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Contactant el servei de cerca.&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Això pot trigar un minut.&lt;BR&gt;Si us plau sigues pacient.&lt;BR&gt;</code>
+    <code id="error_transport">&lt;B&gt;Error del servidor:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(codi ${1})&lt;BR&gt;&lt;BR&gt;L'usuari no es pot afegir a la teva llista de contactes.&lt;BR&gt;Assegureu-vos que heu introduït el nom d'usuari correcte.</code>
+    <code id="error_search">&lt;B&gt;Error del servidor:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(codi ${1})&lt;BR&gt;&lt;BR&gt;El formulari de cerca no es pot baixar.&lt;BR&gt;Torna-ho a provar més tard o selecciona un servei diferent.</code>
+    <code id="error_invalid">Dades rebudes invàlides.</code>
+    <code id="search_title">Cerca d'Usuari</code>
+    <code id="search_tagline">Omple el camp per a cercar usuaris que coincideixin.</code>
+    <code id="firstname">Nom:</code>
+    <code id="lastname">Cognoms:</code>
+    <code id="nick">Àlias:</code>
+    <code id="email">Adreça electrònica:</code>
+    <code id="searching">Cercant...</code>
+    <code id="add">Afegir a la llista de contactes</code>
+    <code id="view">Veure el perfil</code>
+    <code id="foundone">1 resultat</code>
+    <code id="foundmany">${0} resultats</code>
+  </window>
+  <window name="login">
+    <code id="invalid">L'adreça és invàlida. Corregeix l'adreça i torna-ho a provar.&#13;&#13;Si no disposes d'una adreça, prem Inscriure's i segueix les instruccions.</code>
+    <item id="txt_instructions">
+      <innerText>Introdueix la teva adreça de missatgeria instantània i la contrasenya per a iniciar sessió.</innerText>
+    </item>
+    <item id="txt_address">
+      <innerText>Adreça:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Exemple: algu123@exemple.com</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Contrasenya:</innerText>
+    </item>
+    <item id="txt_remember">
+      <innerText>Recorda la meva contrasenya</innerText>
+    </item>
+    <item id="txt_autologin">
+      <innerText>Iniciar sessió automàticament</innerText>
+    </item>
+    <item id="btn_signup">
+      <value>Inscriure's</value>
+    </item>
+    <item id="btn_login">
+      <value>Iniciar Sessió</value>
+    </item>
+    <item id="btn_close">
+      <value>Tancar</value>
+    </item>
+  </window>
+  <window name="sign_up">
+    <code id="close_confirm">La nova adreça no és completa.&#13;&#13;Estàs segur que vols tancar l'assistent?</code>
+    <code id="incomplete">Omple tots els camps...</code>
+    <code id="pass_match">Les contrasenyes introduïdes no coincideixen.&#13;&#13;Introdueix la nova contrasenya als dos camps.</code>
+
+    <code id="contacting">Contactant amb el servidor...</code>
+    <code id="registered">El teu compte s'està registrant. Això pot trigar un minut.&lt;BR&gt;Si us plau, sigues pacient.&lt;BR&gt;</code>
+    <code id="requesting">Demanant informació...</code>
+    <code id="sending">Enviant registre...</code>
+    <code id="failure">Connexió fallada</code>
+    <code id="completed">Registre complet</code>
+
+    <code id="address">Adreça:</code>
+    <code id="nickname">Nom:</code>
+    <code id="userdir">Directori d'usuari:</code>
+    <item id="txt_page_welcome_title">
+      <innerText>Benvingut a l'Assitent d'Inscripció</innerText>
+    </item>
+    <item id="txt_page_welcome_intro">
+      <innerText>Aquest assitent t'ajuda a incriure una adreça a la xarxa de missatgeria instantània.</innerText>
+    </item>
+    <item id="txt_page_welcome_next">
+      <innerHTML>Per a continuar, prem &lt;B&gt;Següent&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_welcome_next">
+      <value>Següent &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_welcome_cancel">
+      <value>Cancel·lar</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_nickname_title">
+      <innerText>Informació Personal</innerText>
+    </item>
+    <item id="txt_page_nickname_tagline">
+      <innerText>Aquesta informació ajudarà a altra gent a trobar-te a la xarxa.</innerText>
+    </item>
+    <item id="txt_page_nickname_desc">
+      <innerText>Introdueix el teu nom per a facilitar el contacte dels teus amics i contactes.</innerText>
+    </item>
+    <item id="txt_page_nickname_name">
+      <innerHTML>&lt;U&gt;N&lt;/U&gt;om:</innerHTML>
+    </item>
+    <item id="data_name">
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_back">
+      <value>&lt; Enrera</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_nickname_next">
+      <value>Següent &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_cancel">
+      <value>Cancel·lar</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_account_title">
+      <innerText>Informació de l'Adreça</innerText>
+    </item>
+    <item id="txt_page_account_tagline">
+      <innerText>Pots utilitzar un servidor públic en Internet o utilitzar un servidor privat a la teva xarxa corporativa.</innerText>
+    </item>
+    <item id="txt_page_account_server">
+      <innerHTML>&lt;U&gt;S&lt;/U&gt;ervidor:</innerHTML>
+    </item>
+    <item id="txt_page_account_username">
+      <innerHTML>&lt;U&gt;N&lt;/U&gt;om d'usuari:</innerHTML>
+    </item>
+    <item id="txt_page_account_password">
+      <innerHTML>&lt;U&gt;C&lt;/U&gt;ontrasenya:</innerHTML>
+    </item>
+    <item id="txt_page_account_confirm">
+      <innerHTML>&lt;U&gt;C&lt;/U&gt;onfirmar la contrasenya:</innerHTML>
+    </item>
+    <item id="data_server">
+      <accessKey>s</accessKey>
+    </item>
+    <item id="data_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="data_password">
+      <accessKey>p</accessKey>
+    </item>
+    <item id="data_password_confirm">
+      <accessKey>c</accessKey>
+    </item>
+    <item id="txt_page_account_remember">
+      <innerHTML>&lt;U&gt;R&lt;/U&gt;ecordar la meva contrasenya</innerHTML>
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page_account_preview">
+      <innerText>La teva adreça IM:</innerText>
+    </item>
+    <item id="btn_page_account_settings">
+      <value>Opcions de la connexió</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_account_back">
+      <value>&lt; Enrera</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_account_next">
+      <value>Següent &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_account_cancel">
+      <value>Cancel·lar</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_creating_title">
+      <innerText>Registre de l'Adreça</innerText>
+    </item>
+    <item id="txt_page_creating_autherr">
+      <innerHTML>L'adreça no es pot registrar. El nom d'usuari no es troba disponible.&lt;BR&gt;&lt;BR&gt;Prem  &lt;B&gt;Enrera&lt;/B&gt;, escriu un nom d'usuari diferent i torna-ho a intentar.</innerHTML>
+    </item>
+    <item id="txt_page_creating_forbidden">
+      <innerHTML>L'adreça no es pot registrat. Aquest servidor no permet la creació de noves adreces.&lt;BR&gt;&lt;BR&gt;Prem &lt;B&gt;Enrera&lt;/B&gt;, escull un servidor diferent i torna-ho a provar.</innerHTML>
+    </item>
+    <item id="txt_page_creating_commerr">
+      <innerHTML>No es pot contactar amb el servidor. Esteu segurs que l'adreça del servidor és correcte.&lt;BR&gt;Comprova la xarxa i torna-ho a provar. Si ets trobes darrera un tallafocs,&lt;BR&gt;configura les opcions de connexió.</innerHTML>
+    </item>
+    <item id="btn_page_creating_retry">
+      <value>Tornar a intentar</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_creating_settings">
+      <value>Opcions de la connexió</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_creating_back">
+      <value>&lt; Enrera</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_creating_next">
+      <value>Següent &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_creating_cancel">
+      <value>Cancel·lar</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_conn_title">
+      <innerText>Opcions de la Connexió</innerText>
+    </item>
+    <item id="txt_ssl">
+      <innerText>Utilitzar una connexió xifrada (SSL)</innerText>
+    </item>
+    <item id="txt_conn_desc">
+      <innerText>Talla Focs i Servidor Proxy</innerText>
+    </item>
+    <item id="txt_conn_none">
+      <innerText>Cap</innerText>
+    </item>
+    <item id="txt_conn_http">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_conn_s4">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_conn_s5">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_conn_host">
+      <innerText>Servidor:</innerText>
+    </item>
+    <item id="txt_conn_port">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_conn_user">
+      <innerText>Nom d'Usuari:</innerText>
+    </item>
+    <item id="txt_conn_pass">
+      <innerText>Contrasenya:</innerText>
+    </item>
+    <item id="btn_conn_default">
+      <value>Per Defecte</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_conn_ok">
+      <value>D'acord</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn_conn_cancel">
+      <value>Cancel·lar</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_finished_title">
+      <innerText>Completant l'Assistent per Afegir el Perfil</innerText>
+    </item>
+    <item id="txt_page_finished_intro">
+      <innerText>Has completat amb èxit l'Assistent per Afegir el Perfil.</innerText>
+    </item>
+    <item id="txt_page_finished_details">
+      <innerText>Detalls del perfil:</innerText>
+    </item>
+    <item id="txt_page_finished_finish">
+      <innerHTML>Per a tancar aquest assistent, pulsa &lt;B&gt;Finalitzar&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_finished_back">
+      <value>&lt; Enrera</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_finished_finish">
+      <value>Finaitzar</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn_page_finished_cancel">
+      <value>Cancel·lar</value>
+      <accessKey>c</accessKey>
+    </item>
+  </window>
+</translation>

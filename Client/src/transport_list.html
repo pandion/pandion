@@ -1,0 +1,588 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+TD {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: windowtext;
+}
+.transport {
+	width: 100%;
+	padding-bottom: 4px;
+	padding: 2px;
+	display: block;
+}
+.transport-name {
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #333536;
+}
+.transport-contacting-name {
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #b3b5b6;
+}
+.transport-address {
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #b3b5b6;
+}
+.transport-offline {
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #f84a21;
+}
+.transport-active {
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #2e9d4d;
+}
+.transport-disabled {
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #b3b5b6;
+}
+</STYLE>
+
+<SCRIPT language=JScript src="main/XMPPAddress.js"></SCRIPT>
+<SCRIPT language=JScript src="main/XMPPHookIQ.js"></SCRIPT>
+
+<SCRIPT language=JScript>
+
+var gHooks = new ActiveXObject( 'Scripting.Dictionary' );
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'transport_list', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	document.getElementById( 'transport_area' ).parentElement.focus();
+	document.getElementById( 'msnworkaround' ).checked = external.globals( 'cfg' )( 'msnworkaround' ).toString() == 'true';
+	transport_refresh();
+	external.wnd.hide( false );
+}
+
+function End ()
+{
+	if ( external.windows.Exists( 'transport_other' ) )
+		external.windows( 'transport_other' ).close();
+	var HookAddresses = ( new VBArray( gHooks.Keys() ) ).toArray();
+	for ( var i = 0; i < HookAddresses.length; ++i )
+		gHooks( HookAddresses[i] ).Destroy();
+	gHooks.RemoveAll();
+	if ( external.globals( 'cfg' )( 'msnworkaround' ).toString() != 'true' && document.getElementById( 'msnworkaround' ).checked )
+	{
+		var Itemnames = ( new VBArray( external.globals( 'ClientRoster' ).Items.Keys() ) ).toArray();
+		for ( var i = 0; i < Itemnames.length; ++i )
+			if ( external.globals( 'ClientRoster' ).Items( Itemnames[i] ).Resources.Count )
+			{
+				var RosterItem = external.globals( 'ClientRoster' ).Items( Itemnames[i] );
+				var AddressHost = ( new XMPPAddress( RosterItem.JID ) ).Host;
+				if ( external.globals( 'ClientServices' ).Services.Exists( AddressHost ) && external.globals( 'ClientServices' ).Services( AddressHost ).Options & 0x0002 )
+				{
+					var RedrawContact = false;
+					var Resources = ( new VBArray( RosterItem.Resources.Keys() ) ).toArray();
+					for ( var j = 0; j < Resources.length; ++j )
+					{
+						var Resource = RosterItem.Resources( Resources[j] );
+						if ( Resource.Status.length && Resource.Status != external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' ) )
+						{
+							RedrawContact = true;
+							if ( ( /^([^\(]+) \((.+)\)$/ ).test( Resource.Status ) )
+							{
+								RosterItem.Name	= RegExp.$1;
+								Resource.Status	= RegExp.$2;
+							}
+							else
+							{
+								RosterItem.Name	= Resource.Status;
+								Resource.Status	= external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' );
+							}
+						}
+					}
+					if ( RedrawContact )
+						RosterItem.RefreshAll();
+				}
+			}
+	}
+	external.globals( 'cfg' )( 'msnworkaround' ) = document.getElementById( 'msnworkaround' ).checked;
+}
+
+function transport_refresh ( jid )
+{
+	if ( ! external.globals( 'XMPPConnected' ) )
+	{
+		document.getElementById( 'btn_other' ).disabled = true;
+		var area = document.getElementById( 'transport_contacting' );
+		while ( area.children.length )
+			area.children.item(0).removeNode( true );
+		var HookAddresses = ( new VBArray( gHooks.Keys() ) ).toArray();
+		for ( var i = 0; i < HookAddresses.length; ++i )
+			gHooks( HookAddresses[i] ).Destroy();
+		gHooks.RemoveAll();
+	}
+	else
+		document.getElementById( 'btn_other' ).disabled = false;
+
+	if ( jid )
+	{
+		/* Refresh this transport
+		 */
+		if ( external.globals( 'ClientServices' ).Services.Exists( jid ) && external.globals( 'ClientServices' ).Services( jid ).Options & 0x0001 )
+		{
+			var kids = document.getElementById( 'transport_area' ).children;
+			for ( var i = 0; i < kids.length; ++i )
+			{
+				if ( kids[i].jid == jid )
+				{
+					var mode =  kids[i].children.item(3);
+					switch ( external.globals( 'ClientServices' ).Services( jid ).TransportMode )
+					{
+						case 1:
+							mode.innerText = external.globals( 'Translator' ).Translate( 'transport_list', 'status_active' ) + '\n';
+							mode.className = 'transport-active';
+						break;
+						case 0:
+							mode.innerText = external.globals( 'Translator' ).Translate( 'transport_list', 'status_noreg' ) + '\n';
+							mode.className = 'transport-disabled';
+						break;
+						case -1:
+							mode.innerText = external.globals( 'Translator' ).Translate( 'transport_list', 'status_disconnected' ) + '\n';
+							mode.className = 'transport-offline';
+						break;
+					}
+					break;
+				}
+			}
+		}
+	}
+	else
+	{
+		/* Flush and rebuild the list
+		 */
+		var area = document.getElementById( 'transport_area' );
+		while ( area.children.length )
+			area.children.item(0).removeNode( true );
+		var transports = external.globals( 'ClientServices' ).FindByOptions( 0x0001 ).sort( function(a,b){var c=a.Name.toLowerCase();var d=b.Name.toLowerCase();return c==d?0:c<d?-1:1} );
+
+		document.getElementById( 'msnworkaroundarea' ).style.display		= 'none';
+		document.getElementById( 'transport_connected' ).style.display		= 'none';
+		document.getElementById( 'transport_unsupported' ).style.display	= 'none';
+		if ( ! transports.length && ! document.getElementById( 'transport_contacting' ).children.length )
+		{
+			if ( external.globals( 'XMPPConnected' ) )
+				document.getElementById( 'transport_unsupported' ).style.display = 'block';
+			else
+				document.getElementById( 'transport_connected' ).style.display = 'block';
+		}
+
+		for ( var i = 0; i < transports.length; i++ )
+		{
+			var elem = document.createElement( 'NOBR' );
+			elem.className = 'transport';
+			elem.jid = transports[i].JID;
+			elem.attachEvent(
+				'onclick',
+				function ()
+				{
+					var elem = event.srcElement;
+					while ( ! elem.jid )
+						elem = elem.parentElement;
+					external.wnd.params.dial_service_register( elem.jid );
+				}
+			);
+			elem.attachEvent(
+				'onmouseover',
+				function ()
+				{
+					var elem = event.toElement;
+					while ( elem.tagName != 'NOBR' )
+						elem = elem.parentNode;
+					elem.children( elem.firstChild.tagName == 'IMG' ? 1 : 0 ).style.textDecoration = 'underline';
+				}
+			);
+			elem.attachEvent(
+				'onmouseout',
+				function ()
+				{
+					var elem = event.fromElement;
+					while ( elem.tagName != 'NOBR' )
+						elem = elem.parentNode;
+					elem.children( elem.firstChild.tagName == 'IMG' ? 1 : 0 ).style.textDecoration = 'none';
+				}
+			);
+
+			var logo = document.createElement( 'IMG' );
+			logo.align = 'left';
+			logo.style.marginRight = '5px';
+			logo.border = 0;
+			switch ( transports[i].Options & 0xB81E )
+			{
+				case 0x0002: logo.src = '..\\images\\clients\\msn.gif';			break;
+				case 0x0004: logo.src = '..\\images\\clients\\icq.gif';			break;
+				case 0x0008: logo.src = '..\\images\\clients\\aim.gif';			break;
+				case 0x0010: logo.src = '..\\images\\clients\\yahoo.gif';		break;
+				case 0x0800: logo.src = '..\\images\\clients\\gadugadu.gif';	break;
+				case 0x1000: logo.src = '..\\images\\clients\\email.gif';		break;
+				case 0x2000: logo.src = '..\\images\\clients\\sms.gif';			break;
+				case 0x8000: logo.src = '..\\images\\clients\\tlen.gif';		break;
+				default:	 logo.src = '..\\images\\clients\\cog.gif';
+			}
+			logo.height = logo.width = 24;
+			elem.insertAdjacentElement( 'beforeEnd', logo );
+
+			var name = document.createElement( 'SPAN' );
+			name.className = 'transport-name';
+			name.innerText = transports[i].Name;
+			elem.insertAdjacentElement( 'beforeEnd', name );
+
+			var address = document.createElement( 'SPAN' );
+			address.className = 'transport-address';
+			address.innerText = ' - ' + transports[i].JID + '\n';
+			elem.insertAdjacentElement( 'beforeEnd', address );
+
+			var mode = document.createElement( 'SPAN' );
+			switch ( transports[i].TransportMode )
+			{
+				case 1:
+					mode.innerText = external.globals( 'Translator' ).Translate( 'transport_list', 'status_active' ) + '\n';
+					mode.className = 'transport-active';
+				break;
+				case 0:
+					mode.innerText = external.globals( 'Translator' ).Translate( 'transport_list', 'status_noreg' ) + '\n';
+					mode.className = 'transport-disabled';
+				break;
+				case -1:
+					mode.innerText = external.globals( 'Translator' ).Translate( 'transport_list', 'status_disconnected' ) + '\n';
+					mode.className = 'transport-offline';
+				break;
+			}
+			elem.insertAdjacentElement( 'beforeEnd', mode );
+
+			if ( transports[i].Options & 0x0002 )
+				document.getElementById( 'msnworkaroundarea' ).style.display = 'block';
+
+			area.insertAdjacentElement( 'beforeEnd', elem );
+		}
+	}
+}
+
+function dial_transport_other ()
+{
+	if ( external.windows.Exists( 'transport_other' ) )
+		return external.windows( 'transport_other' ).focus();
+	else
+		with ( external.createWindow( 'transport_other', external.globals( 'cwd' ) + 'transport_other.html', null ) )
+		{
+			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_transport_other' ) );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\brand\\default.ico' );
+			resizeable( false );
+			MinHeight = MinWidth = 0;
+			setSize( 360, 120 );
+			setPos( ( screen.availWidth - 360 ) / 2, ( screen.availHeight - 80 ) / 2 );
+		}
+}
+
+function DrawContacting ( ServiceAddress )
+{
+	document.getElementById( 'transport_connected' ).style.display		= 'none';
+	document.getElementById( 'transport_unsupported' ).style.display	= 'none';
+
+	var ContactingArea = document.getElementById( 'transport_contacting' );
+
+	var Element				= document.createElement( 'NOBR' );
+	Element.className		= 'transport';
+	Element.id				= 'transport_contacting_' + ServiceAddress;
+
+	var Logo				= document.createElement( 'IMG' );
+	Logo.align				= 'left';
+	Logo.style.marginRight	= '5px';
+	Logo.border				= 0;
+	Logo.src				= '..\\images\\clients\\cog.gif';
+	Logo.height				= 24;
+	Logo.width				= 24;
+	Element.insertAdjacentElement( 'beforeEnd', Logo );
+
+	var Name				= document.createElement( 'SPAN' );
+	Name.className			= 'transport-contacting-name';
+	Name.innerText			= external.globals( 'Translator' ).Translate( 'transport_list', 'name_unknown' );
+	Element.insertAdjacentElement( 'beforeEnd', Name );
+
+	var Address				= document.createElement( 'SPAN' );
+	Address.className		= 'transport-address';
+	Address.innerText		= ' - ' + ServiceAddress + '\n';
+	Element.insertAdjacentElement( 'beforeEnd', Address );
+
+	var Mode				= document.createElement( 'SPAN' );
+	Mode.innerText			= external.globals( 'Translator' ).Translate( 'transport_list', 'status_connecting' ) + '\n';
+	Mode.className			= 'transport-disabled';
+	Element.insertAdjacentElement( 'beforeEnd', Mode );
+
+	ContactingArea.insertAdjacentElement( 'beforeEnd', Element );
+}
+
+function AddTransport ( ServiceAddress )
+{
+	ServiceAddress = ( new XMPPAddress( ServiceAddress ) ).Host;
+	if ( ! document.getElementById( 'transport_contacting_' + ServiceAddress ) )
+	{
+		DrawContacting ( ServiceAddress );
+
+		var Hook		= new XMPPHookIQ();
+		Hook.Callback	= 'ReceiveDiscoInfo';
+		Hook.Window		= external.wnd;
+		gHooks.Add( ServiceAddress, Hook );
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#info"/></iq>' );
+		dom.documentElement.setAttribute( 'to', ServiceAddress );
+		dom.documentElement.setAttribute( 'id', Hook.Id );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+function ReceiveDiscoInfo ( iq )
+{
+	var ServiceAddress = iq.FromAddress.Host;
+	gHooks.Remove( ServiceAddress );
+
+	var CountBefore = external.globals( 'ClientServices' ).FindByOptions( 0x0001 ).length;
+	external.globals( 'ClientServices' ).FromIQDisco( iq );
+
+	/* Received a transport
+	 */
+	if ( CountBefore < external.globals( 'ClientServices' ).FindByOptions( 0x0001 ).length )
+	{
+		document.getElementById( 'transport_contacting_' + ServiceAddress ).removeNode( true );
+		transport_refresh();
+	}
+	/* Query items on the server
+	 */
+	else if ( iq.XMLDOM.selectSingleNode( '/iq/*[@xmlns="http://jabber.org/protocol/disco#info"]/identity[@type="im" and @category="server"]' ) )
+	{
+		var Hook		= new XMPPHookIQ();
+		Hook.Window		= external.wnd;
+		Hook.Callback	= 'ReceiveDiscoItems';
+		Hook.From		= ServiceAddress;
+		gHooks.Add( ServiceAddress, Hook );
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#items"/></iq>' );
+		dom.documentElement.setAttribute( 'to', ServiceAddress );
+		dom.documentElement.setAttribute( 'id', Hook.Id );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+	/* Fall back to browse mechanism
+	 */
+	else
+	{
+		var Hook		= new XMPPHookIQ();
+		Hook.Window		= external.wnd;
+		Hook.Callback	= 'ReceiveBrowse';
+		Hook.From		= ServiceAddress;
+		gHooks.Add( ServiceAddress, Hook );
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:browse"/></iq>' );
+		dom.documentElement.setAttribute( 'to', ServiceAddress );
+		dom.documentElement.setAttribute( 'id', Hook.Id );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+function ReceiveDiscoItems ( iq )
+{
+	var ServiceAddress = iq.FromAddress.Host;
+	gHooks.Remove( ServiceAddress );
+
+	/* Query the disco items on the server
+	 */
+	if ( iq.Type == 'result' )
+	{
+		var DiscoItems = iq.XMLDOM.selectNodes( '/iq/*[@xmlns="http://jabber.org/protocol/disco#items"]/item[@jid and not( @node )]' );
+
+		if ( DiscoItems.length )
+		{
+			document.getElementById( 'transport_contacting_' + ServiceAddress ).removeNode( true );
+			for ( var i = 0; i < DiscoItems.length; ++i )
+			{
+				var Address = new XMPPAddress( DiscoItems.item(i).getAttribute( 'jid' ) );
+
+				if ( ! document.getElementById( 'transport_contacting_' + Address.ShortAddress() ) && ! external.globals( 'ClientServices' ).Services.Exists( Address.ShortAddress() ) )
+				{
+					DrawContacting( Address.ShortAddress() );
+
+					var Hook		= new XMPPHookIQ();
+					Hook.Window		= external.wnd;
+					Hook.Callback	= 'ReceiveDiscoItemInfo';
+					Hook.From		= Address.ShortAddress();
+					gHooks.Add( Address.ShortAddress(), Hook );
+
+					var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+					dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#info"/></iq>' );
+					dom.documentElement.setAttribute( 'id', Hook.Id );
+					dom.documentElement.setAttribute( 'to', Address.ShortAddress() );
+					external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+					external.XMPP.SendXML( dom );
+				}
+			}
+		}
+		/* No transports on the server
+		 */
+		else
+		{
+			document.getElementById( 'transport_contacting_' + ServiceAddress ).removeNode( true );
+			external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'transport_list', 'error_no_transports', [ ServiceAddress ] ), external.globals( 'softwarename' ), 0 | 48 );
+		}
+	}
+	/* Error received
+	 */
+	else
+	{
+		document.getElementById( 'transport_contacting_' + ServiceAddress ).removeNode( true );
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'transport_list', 'error_unknown', [ ServiceAddress ] ), external.globals( 'softwarename' ), 0 | 48 );
+	}
+}
+
+function ReceiveDiscoItemInfo ( iq )
+{
+	var ServiceAddress = iq.FromAddress.Host;
+	gHooks.Remove( ServiceAddress );
+
+	document.getElementById( 'transport_contacting_' + ServiceAddress ).removeNode( true );
+
+	var CountBefore = external.globals( 'ClientServices' ).FindByOptions( 0x0001 ).length;
+	external.globals( 'ClientServices' ).FromIQDisco( iq );
+
+	/* Received a transport
+	 */
+	if ( CountBefore < external.globals( 'ClientServices' ).FindByOptions( 0x0001 ).length )
+	{
+		transport_refresh();
+	}
+}
+
+function ReceiveBrowse ( iq )
+{
+	var ServiceAddress = iq.FromAddress.Host;
+	gHooks.Remove( ServiceAddress );
+
+	var CountBefore = external.globals( 'ClientServices' ).FindByOptions( 0x0001 ).length;
+	external.globals( 'ClientServices' ).FromIQBrowse( iq );
+
+	/* Received a transport
+	 */
+	if ( CountBefore < external.globals( 'ClientServices' ).FindByOptions( 0x0001 ).length )
+	{
+		document.getElementById( 'transport_contacting_' + ServiceAddress ).removeNode( true );
+		transport_refresh();
+	}
+	/* No new transports
+	 */
+	else if ( iq.XMLDOM.selectSingleNode( '/iq[@type="result"]/*[@xmlns="jabber:iq:browse"]' ) )
+	{
+		document.getElementById( 'transport_contacting_' + ServiceAddress ).removeNode( true );
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'transport_list', 'error_no_new_transport', [ ServiceAddress ] ), external.globals( 'softwarename' ), 0 | 48 );
+	}
+	/* Fallback to agents mechanism
+	 */
+	else
+	{
+		var Hook		= new XMPPHookIQ();
+		Hook.Window		= external.wnd;
+		Hook.Callback	= 'ReceiveAgents';
+		Hook.From		= ServiceAddress;
+		gHooks.Add( ServiceAddress, Hook );
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:agents"/></iq>' );
+		dom.documentElement.setAttribute( 'to', ServiceAddress );
+		dom.documentElement.setAttribute( 'id', Hook.Id );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+function ReceiveAgents ( iq )
+{
+	var ServiceAddress = iq.FromAddress.Host;
+	gHooks.Remove( ServiceAddress );
+
+	document.getElementById( 'transport_contacting_' + ServiceAddress ).removeNode( true );
+
+	var CountBefore = external.globals( 'ClientServices' ).FindByOptions( 0x0001 ).length;
+	external.globals( 'ClientServices' ).FromIQAgents( iq );
+
+	/* Received a transport
+	 */
+	if ( CountBefore < external.globals( 'ClientServices' ).FindByOptions( 0x0001 ).length )
+	{
+		transport_refresh();
+	}
+	/* No new transports
+	 */
+	else if ( iq.XMLDOM.selectSingleNode( '/iq[@type="result"]/*[@xmlns="jabber:iq:agents"]' ) )
+	{
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'transport_list', 'error_no_new_transport', [ ServiceAddress ] ), external.globals( 'softwarename' ), 0 | 48 );
+	}
+	/* Not a server or no transports
+	 */
+	else
+	{
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'transport_list', 'error_no_transports', [ ServiceAddress ] ), external.globals( 'softwarename' ), 0 | 48 );
+	}
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="Begin()" onunload="End()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="event.returnValue = false; external.wnd.close();">
+<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<TR valign=top height=60 bgcolor=window>
+	<TD colspan=2 style="padding-left: 12px; padding-right: 8px; padding-top: 7px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+	<SPAN id=txt_title style="font-weight: bold;"></SPAN>
+	<DIV id=txt_subtitle style="height: 27px; margin-left: 20px; margin-right: 20px; overflow: hidden;"></DIV>
+	</TD>
+</TR>
+<TR valign=top>
+	<TD colspan=2 style="padding: 16px; padding-bottom: 8px;">
+		<DIV style="overflow-y: auto; background-color: window; border: 2px inset; width: 100%; height: 100%; padding-left: 2px;">
+			<DIV id=transport_connected style="display: none; margin-left: 30px; margin-right: 30px; margin-top: 50px;"></DIV>
+			<DIV id=transport_unsupported style="display: none; margin-left: 30px; margin-right: 30px; margin-top: 50px;"></DIV>
+			<SPAN id=transport_area></SPAN>
+			<SPAN id=transport_contacting></SPAN>
+		</DIV>
+	</TD>
+</TR>
+<TR height=1 id=msnworkaroundarea>
+	<TD colspan=2 style="padding-left: 16px; padding-bottom: 4px;">
+		<INPUT id=msnworkaround type=checkbox checked>&nbsp;<LABEL for=msnworkaround id=msnworkaroundlabel></LABEL>
+	</TD>
+</TR>
+<TR height=8><TD colspan=2></TD></TR>
+<TR valign=top height=45>
+	<TD style="padding: 10px; border-top: 2px groove;">
+		<INPUT type=button style="height: 24px; width: 130px; font-size: 11px;" id=btn_other onclick="dial_transport_other()">
+	</TD>
+	<TD align=right style="padding: 10px; border-top: 2px groove;">
+		<INPUT type=submit style="height: 24px; width: 90px; font-size: 11px;" id=btn_ok>
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

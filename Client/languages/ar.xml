@@ -1,0 +1,1975 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<translation xml:lang="ar">
+  <about>
+    <language>Arabic</language>
+    <history>
+      <revision>
+        <author>
+          <name>Leandro Vázquez Cervantes</name>
+          <email>leandrov70@hotmail.com</email>
+          <xmpp>leandro@jabberpl.org</xmpp>
+        </author>
+        <date>2003-12-30</date>
+        <description>
+          الطبعة الاولى. second version
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_selectprofile">
+      <innerText>اختار هوية</innerText>
+    </item>
+    <item id="btn_addprofile">
+      <value>اضافة هوية</value>
+  	  <accessKey>ض</accessKey>
+    </item>
+    <item id="login_btn_ok">
+      <value>موافق</value>
+    </item>
+    <item id="login_btn_close">
+      <value>الخروج</value>
+    </item>
+    <item id="txt_autologin">
+      <innerHTML> تسجيل الدخول تلقائيًّا</innerHTML>
+  	  <accessKey>س</accessKey>
+    </item>
+    <item id="txt_pleasewait">
+      <innerText>ثانية واحدة من فضلك</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText> مفصل من الملقم</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>اعادة الاتصال</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>أو</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>تغيير   تفاصيل  الاتصال</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>اضافة احدا الى قائمتك المعرفين</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>أو</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>وفّق بين نقل الشّبكة</innerText>
+    </item>
+
+    <code id="txt_welcome">!${0} مرحبا بك الى</code>
+    <code id="cl_tooltip">${0} قائمة المعرفين</code>
+    <code id="autoawaymessage">غير حاضر أكثر من 5 دقيقة</code>
+    <code id="autoxawaymessage">غير حاضر أكثر من 30 دقيقة</code>
+
+    <code id="menu_file">&amp;ملف</code>
+    <code id="menu_file_received">&amp;فتج الملفات المتلقاة</code>
+    <code id="menu_file_change">... تغيير رسالتي الحالة</code>
+    <code id="menu_file_ffc">&amp;متاح للدردشة</code>
+    <code id="menu_file_available">متاح</code>
+    <code id="menu_file_busy">مشغول</code>
+    <code id="menu_file_away">غير حاضر</code>
+    <code id="menu_file_xaway">غير حاضر منذ  زمان</code>
+    <code id="menu_file_invisible">غير مرئي</code>
+    <code id="menu_file_offline">&amp;دون اتصال</code>
+    <code id="menu_file_status">وضعي</code>
+    <code id="menu_file_out">تسجيل الخروج</code>
+    <code id="menu_file_exit">الخروج</code>
+
+    <code id="menu_axn">اجراءات</code>
+    <code id="menu_axn_add">اضافة معروفا</code>
+    <code id="menu_axn_addgroup">اضافة مجموعة</code>
+    <code id="menu_axn_join">انضمام الي قاعة موتمر</code>
+    <code id="menu_axn_create">انشاء قاعة موتمر</code>
+    <code id="menu_axn_password">تغيير كلمتي السر</code>
+    <code id="menu_axn_profile">تفاصيل هويتي</code>
+    <code id="menu_axn_avatar">تغيير صورتي</code>
+
+    <code id="menu_tool">أدوات</code>
+    <code id="menu_tool_head">العناوين</code>
+    <code id="menu_tool_admin">إدارة الملقم</code>
+    <code id="menu_tool_traffic">مرور الشّبكة</code>
+    <code id="menu_tool_aot">دائما في المقدمة</code>
+    <code id="menu_tool_settings">خيارات</code>
+
+    <code id="menu_help">تعليمات</code>
+    <code id="menu_help_manual">الدّليل على الشّبكة</code>
+    <code id="menu_help_forum">منتدى الدّعم</code>
+    <code id="menu_help_contact">اتّصل بنا</code>
+    <code id="menu_help_about">حول</code>
+
+    <code id="menu_tray_about">${0} حول</code>
+    <code id="menu_tray_settings">&amp;خيارات</code>
+
+    <code id="wnd_vcard_edit">معلومات المستخدم</code>
+    <code id="wnd_about">${0} حول</code>
+    <code id="wnd_addprofile">المساعد لاضافة هوية</code>
+    <code id="wnd_adduser">ايجاد أو اضافة معروفا</code>
+    <code id="wnd_avatar">تغيير صورتك</code>
+    <code id="wnd_room_browse">غرف الاجتماعات</code>
+    <code id="wnd_room_create">انشاء غرفة الاجتماعات</code>
+    <code id="wnd_room_invite">دعوة المؤتمر</code>
+    <code id="wnd_console">النّاتج</code>
+    <code id="wnd_file_send">${0} إرسال ملفّ إلى</code>
+    <code id="wnd_file_recv">${0} الملفّ القادم من</code>
+    <code id="wnd_group_message">رسالة الجماعة</code>
+    <code id="wnd_headlines">مشاهد العنوان الرّئيسيّ</code>
+    <code id="wnd_history">${0} - تاريخ الرّسالة</code>
+    <code id="wnd_netmeeting_send">NetMeeting الدّعوة  الى</code>
+    <code id="wnd_netmeeting_recv">${0} من NetMeeting الدّعوة  الى</code>
+    <code id="wnd_plugins">Plug-ins</code>
+    <code id="wnd_password">تغيير كلمة السّرّ</code>
+    <code id="wnd_settings">خيارات</code>
+    <code id="wnd_admin_server">ادارة الملقم</code>
+    <code id="wnd_status">رسالة الوضع</code>
+    <code id="wnd_url_send">(URL) ارسال الرّابطة المتشعّبة </code>
+    <code id="wnd_url_recv">(URL) الرّابطة المتشعّبة القادمة </code>
+    <code id="wnd_vcard_view">معلومات المستخدم</code>
+    <code id="wnd_group_create">انشاء المجموعة</code>
+    <code id="wnd_group_rename">أعد تسمية المجموعة</code>
+    <code id="wnd_contact_rename">أعد تسمية المعروف</code>
+    <code id="wnd_authrequest">طلب التّصريح</code>
+    <code id="wnd_autoupdate">التّحديث متاح</code>
+
+    <code id="msg_received_files">الدّليل للملفّات المتلقّاة قد أُزِيلَ</code>
+    <code id="msg_plugin_install">هل تريد تركيب هذا الكبس  ؟;الاسم: ${0}&#13;الوصف: ${1}</code>
+    <code id="msg_plugin_exists">This plug-in is already installed.</code>
+    <code id="msg_expired">فترة العرض لهذا البرامج قد انتهت</code>
+    <code id="msg_userdata">الخطأ : لا يمكن أن يحمّل بيانات المستخدم</code>
+    <code id="msg_profile_login">الدخول هذه الهويّة</code>
+    <code id="msg_profile_delete">حذف هذه الهويّة</code>
+    <code id="msg_profile_confirm">هل تريد إزالة الهويّة ؟
+&#13;&#13;كلّ تاريخ رسالة و اختيارات المستخدم ستُفْقَد </code>
+    <code id="msg_profile_cannot_remove">لا يمكن أن يزيل الهويّة
+&#13;&#13;${0}</code>
+    <code id="msg_profile_enter">اكتب كلمة السّرّ لهذا الحساب</code>
+    <code id="msg_profile_save">تذكّر كلمة السّرّ</code>
+    <code id="msg_profile_none">لا هويّات وجدت.</code>
+    <code id="msg_cl_adding">قد أُضِيفَ لقائمة اصحابك
+ ${0}</code>
+    <code id="msg_cl_added">قد أضافك لقائمة أصدقاءه 
+${0}</code>
+    <code id="msg_cl_removed">قد أزالك من قائمة أصحابه
+ ${0}</code>
+    <code id="msg_blocked">You are on this person's blocking list.</code>
+    <code id="msg_autherror">كتبت كلمة سرّ خطأ  او لا يوجد هداالحساب في الملقم. من فضلك حاول مرة اخرى.  
+ &#13;&#13;.ما تم تسجيل الدخول. الاسباب الممكنة هي  </code>
+
+    <code id="menu_message">الرّسالة</code>
+    <code id="menu_link">(URL) الرّابطة المتشعّبة</code>
+    <code id="menu_filetransfer">انتقال الملفّ</code>
+    <code id="menu_netmeeting">NetMeeting الفيديو الصّوت</code>
+    <code id="menu_room_create">انشاء حجرةً جديدةً</code>
+    <code id="menu_room_invite">ادع إلى غرفة الاجتماعات</code>
+    <code id="menu_rename">إعادة تسمية</code>
+    <code id="menu_block">تجميد</code>
+    <code id="menu_delete">احذف</code>
+    <code id="menu_group_create">انشاء جماعة جديدة</code>
+    <code id="menu_group_merge">اندمج مع</code>
+    <code id="menu_group_move">النقل الى</code>
+    <code id="menu_group_copy">النّسخة إلى</code>
+    <code id="menu_request">اعادة  تصريح الطّلب</code>
+    <code id="menu_history">التّاريخ</code>
+    <code id="menu_profile">الهويّة</code>
+
+    <code id="cl_waiting_one">لديك رسالة غير مقروءة</code>
+    <code id="cl_waiting_multiple"> لديك  ${0} رسالة عير مقروءة</code>
+    <code id="cl_error_notexist">لا يتواجد ذلك العنوان</code>
+    <code id="cl_error_cannotadd">&#13;${1}   لا يمكن أن يضيف ال   {0}$ إلى قائمة الاتّصال</code>
+    <code id="cl_default_group">المعروفون</code>
+    <code id="cl_group_rename">أعد تسمية هذه المجموعة</code>
+    <code id="cl_group_message">ارسال رسالةً مذاعةً</code>
+    <code id="cl_room_create">انشاء حجرة جديدة</code>
+    <code id="cl_room_invite">دعوة إلى غرفة الاجتماعات</code>
+    <code id="cl_group_empty">ليس هناك ناس على الشّبكة في هذه المجموعة</code>
+    <code id="cl_status_empty">دون  رسالة الوضع</code>
+    <code id="cl_status_offline">دون اتصال</code>
+    <code id="cl_status_awaiting">انتظار التّصريح</code>
+    <code id="cl_status_unknown">الوضع المجهول</code>
+    <code id="cl_status_waiting_one">رسالة غير مقروءة</code>ا 
+    <code id="cl_status_waiting_multiple"> ${0} الرّسائل الغير مقروءة </code>
+    <code id="cl_tooltip_offline">${0}  العنوان</code>
+    <code id="cl_contact_remove_group">هل أنت متأكّد أنّك تريد إزالة المستخدم من هذه المجموعة ؟</code>
+    <code id="cl_contact_remove_list">هل أنت متأكّد أنّك تريد إزالة هذا المستخدم من قائمتك  المعروفين ؟</code>
+    <code id="cl_link_open">انفتاح في مستعرض ويب</code>
+    <code id="cl_link_copy">نسخ عنوان الرابطة المتشعبة</code>
+    <code id="cl_link_favorite">اضافة الى  المفضّلات</code>
+    <code id="cl_ffc">مستعد للدّردشة</code>
+    <code id="cl_available">متاح</code>
+    <code id="cl_busy">مشغول</code>
+    <code id="cl_away">غير حاضر</code>
+    <code id="cl_xaway">غير حاضر منذ زمان</code>
+    <code id="cl_invisible">غير مرئيّ</code>
+    <code id="cl_tooltip_online">${1}: المورد  
+  &#13;   ${0}:  العنوان  </code>
+  </window>
+  <window name="about">
+    <item id="btn_thanks">
+      <value> &gt;&gt; شكرا الى</value>
+    </item>
+    <item id="btn_copyright">
+      <value>&gt;&gt; حقوق النّشر</value>
+    </item>
+    <item id="btn_ok">
+      <value>موافق</value>
+    </item>
+    <item id="copy_author">
+      <innerText>Sebastiaan Deckers و Dries Staelens المؤلّفون</innerText>
+    </item>
+    <item id="copy_darkproject">
+      <innerHTML>2001 Greg Fleming &amp;copy; معظم الأيقونات و أيقونة مشاعر التّقصير</innerHTML>
+    </item>
+    <item id="copy_rsa">
+      <innerHTML>Copyright RSA Data Security, Inc. القاعدة MD5 يستعمل </innerHTML>
+    </item>
+    <item id="txt_copyright">
+      <innerHTML>Copyright &amp;copy;</innerHTML>
+    </item>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>رؤية معلومات الهويّة</value>
+    </item>
+    <item id="btn_deny">
+      <value>انكار</value>
+    </item>
+    <item id="btn_accept">
+      <value>اقبال</value>
+    </item>
+    <item id="txt_from">
+      <innerText>قد تلقّيت طلب تصريح من </innerText>
+    </item>
+    <item id="txt_reason">
+      <innerText>السّبب</innerText>
+    </item>
+    <item id="txt_add">
+      <innerText>إضافة هذا المستخدم لقائمتي المعروفين</innerText>
+    </item>
+  </window>
+  <window name="admin_users">
+    <item id="btn_refresh">
+      <value>إنعاش</value>
+    </item>
+    <item id="btn_ok">
+      <value>موافق</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>اضغط على الحساب لإرسال رسالة . اضغط على اليمينّ لرؤية خيارات أكثر</innerText>
+    </item>
+    <code id="add_to_list">اضافة الى قائمة الهويات</code>
+    <code id="tooltip_with">Address: ${0}&#13;Resource: ${1}&#13;Online time: ${2}</code>
+    <code id="tooltip_without">Address: ${0}&#13;Online time: ${1}</code>
+    <code id="loading">... جاري  التّحميل </code>
+    <code id="invalid_data">تلقّت البيانات الباطلة</code>
+    <code id="server_error">وقع خطأ في الملقم</code>
+    <code id="server_failed">تأكّد أنّ لديك مدخل إدارة للملقم.&lt;BR&gt; فشل في استعادة قائمة المستخدمين على الشّبكة</code>
+    <code id="user">مستخدم واحد على الشّبكة</code>
+    <code id="users">  ${0} مستخدمون على الشّبكة</code>
+  </window>
+  <window name="admin">
+    <item id="btn_view">
+      <value>رؤية كلّ المستخدمين على الشّبكة</value>
+    </item>
+    <item id="btn_close">
+      <value>اغلاق</value>
+    </item>
+    <item id="admin_btn_wall">
+      <value>إرسال</value>
+    </item>
+    <item id="admin_btn_motd">
+      <value>إرسال</value>
+    </item>
+    <item id="txt_wall_desc">
+      <innerText>هذا الإنذار يُرْسَل إلى المستخدمين على الشّبكة حاليًّا</innerText>
+    </item>
+    <item id="txt_motd_desc">
+      <innerText>هذا الإنذار يُرْسَل إلى المستخدمين عندما  تم تسجيل دخولهم</innerText>
+    </item>
+    <item id="txt_wall">
+      <innerText>الرّسالة المذاعة</innerText>
+    </item>
+    <item id="txt_motd">
+      <innerText>رسالة اليوم</innerText>
+    </item>
+    <item id="txt_view">
+      <innerText>تابع من متّصل بالملقم</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>استخدم هذه الأدوات لمتابعة و مغرفة الملقم</innerText>
+    </item>
+    <item id="txt_users">
+      <innerText>المستخدمون</innerText>
+    </item>
+    <code id="wnd_users">المستخدمون على الشّبكة</code>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>تنظيف النّاتج</value>
+    </item>
+    <item id="btn_send">
+      <value>إرسال</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>Presence</value>
+    </item>
+    <item id="btn_message">
+      <value>Message</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>مرور الشّبكة</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>Break lines</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>XML input:</innerText>
+    </item>
+    <code id="toggle_on">Debug is on</code>
+    <code id="toggle_off">Debug is off</code>
+    <code id="valid_xml">Input must be valid XML. Not just whitespace or plain text.</code>
+  </window>
+  <window name="headline">
+    <code id="configure">التّوفيق بين العناوين الرّئيسيّة و الإنذارات</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>انغلاق</value>
+    </item>
+    <item id="txt_title">
+      <innerText>الإنذارات و عناوين رئيسيّة</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>الإنذارات الخاصّة أُظْهِرَتْ عندما تتلقّى عنوان رئيسيّ من الأخبار أو المعلومات القصيرة الأخرى</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>لم تُتَلَقَّى أيّ إنذار أو عناوين رئيسيّة</innerText>
+    </item>
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>إلغاء الأمر</value>
+    </item>
+    <item id="btn_ok">
+      <value>موافق</value>
+    </item>
+    <item id="btn_custom">
+      <value>... صورة خاصة</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>اختار صورةً شخصيّةً ستتعرّف على هويتك</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>...  جاري التّحميل</innerText>
+    </item>
+    <code id="error_size">لا يمكن أن يحمّل الصّورة . يتجاوز حجم الملفّ 8 كيلوبايت.</code>
+    <code id="error_empty">لا يمكن أن يحمّل الصّورة . الملفّ فارغ</code>
+    <code id="error_load">Warning: لا يمكن أن يحمّل الصّور الشّخصيّة .
+&#13;&#13;${0}</code>
+    <code id="menu_use">استخدام هذه الصّورة</code>
+    <code id="menu_delete">حذف هذه الصّورة</code>
+    <code id="wnd_select">اختيار صورةً شخصيّةً</code>
+    <code id="image_files">8kB ملفّات الصّورة أقلّ من </code>
+    <code id="all_files">كلّ الملفّات</code>
+  </window>
+  <window name="mode_select">
+    <item id="ok">
+      <value>موافق</value>
+    </item>
+    <item id="btn_preset">
+      <value>..اخيارات الرّسالة</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>يمكن أن يقرأ المستخدمون الآخرون هذه الرّسالة بينما تكون متعذّري المقابلة للرّدّ</innerText>
+    </item>
+    <code id="btn_1"> بالخارج</code>
+    <code id="btn_2">على التّليفون</code>
+    <code id="btn_3">في النّوم</code>
+    <code id="btn_4">عند الأكل</code>
+    <code id="btn_5">التّقابل</code>
+    <code id="btn_6">الشّرب</code>
+    <code id="btn_7">التّركيز</code>
+    <code id="btn_8">العمل</code>
+    <code id="btn_9">في المدرسة</code>
+    <code id="msg_1">أمشي بالخارج</code>
+    <code id="msg_2">أنا على التّليفون</code>
+    <code id="msg_3">أنام</code>
+    <code id="msg_4">الوقت للطّعام,يا الرّجال !</code>
+    <code id="msg_5">أنا في اجتماع </code>
+    <code id="msg_6">أنا أُذْهَب لشيئ ما للشّرب</code>
+    <code id="msg_7">كن هادئًا, أحتاج للتّركي</code>
+    <code id="msg_8">...كلّ عمل و لا مسرحيّة</code>
+    <code id="msg_9">أنا في المدرسة</code>
+  </window>
+  <window name="mode_select">
+    <code id="configure">التّوفيق بين الإنذارات و العناوين الرّئيسيّة</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>موافق</value>
+    </item>
+    <item id="btn_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>الاسم الجديد</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>موافق</value>
+    </item>
+    <item id="btn_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>الاسم الجديد</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>موافق</value>
+    </item>
+    <item id="btn_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>لاسم الجديد</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>موافق</value>
+    </item>
+    <item id="btn_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>تأكيد كلمة السّرّ الجديدة</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>كلمة السّرّ الجديدة</innerText>
+    </item>
+    <code id="no_match"> أكتب كلمة السّرّ الجديدة في كلا الحقلين
+ &#13;&#13;   
+          لا تتلاءم كلمات السّرّ التي دخلتها</code>
+    <code id="no_pass">اكتب كلمة السّرّ الجديدة</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>موافق</value>
+    </item>
+    <item id="set_version">
+      <innerText>...جاري التّحميل</innerText>
+    </item>
+    <code id="unknown">المجهول</code>
+    <code id="empty">أسلوب أيقونة مشاعر هذه فارغ</code>
+    <code id="file_error">خطأ الملفّ</code>
+    <code id="cannot_load">لا يمكن أن يحمّل الأيقونة مشاعر</code>
+    <code id="count_one">أيقونة مشاعر واحدة</code>
+    <code id="count_multiple">${0}
+أيقونات مشاعر</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>اغلاق</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Download Plug-ins</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>An Internet connection is required to browse the plug-in catalog.</innerText>
+    </item>
+  </window>
+  <window name="netmeeting_in">
+    <item id="btn_ok">
+      <value>موافق</value>
+    </item>
+    <item id="btn_accept">
+      <value>اقبال</value>
+    </item>
+    <item id="btn_cancel">
+      <value>انكار</value>
+    </item>
+    <code id="invitation">${0} invites you to a NetMeeting conversation.</code>
+    <code id="cancelled">The NetMeeting invitation has been canceled.</code>
+  </window>
+  <window name="netmeeting_out">
+    <item id="btn_cancel">
+      <value>Cancel</value>
+    </item>
+    <item id="txt">
+      <innerText>Initialising NetMeeting ...</innerText>
+    </item>
+    <code id="unsupported">NetMeeting is not supported by this contact.</code>
+    <code id="denied">The NetMeeting invitation has been denied.</code>
+    <code id="timeout">The NetMeeting invitation has timed out.</code>
+    <code id="btn_ok">موافق</code>
+    <code id="timer">Cancel (${0})</code>
+    <code id="sending">Sending a NetMeeting invitation to ${0} ...</code>
+  </window>
+  <window name="url_send">
+    <item id="btn_cancel">
+      <value>Cancel</value>
+    </item>
+    <item id="btn_send">
+      <value>Send</value>
+    </item>
+    <item id="txt_to">
+      <innerText>To:</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Description:</innerText>
+    </item>
+    <item id="txt_link">
+      <innerText>Hyperlink (URL):</innerText>
+    </item>
+    <code id="valid">Enter a valid URL.</code>
+  </window>
+  <window name="url_recv">
+    <item id="btn_close">
+      <value>اغلاق</value>
+    </item>
+    <item id="btn_open">
+      <value>URL الذّهاب إلى</value>
+    </item>
+    <item id="btn_favorites">
+      <value>اضافة الى المفضّلات</value>
+    </item>
+    <item id="txt_from">
+      <innerText>من</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>الوصف</innerText>
+    </item>
+    <item id="txt_link">
+      <innerText>(URL) الرّابطة المتشعّبة</innerText>
+    </item>
+    <code id="no_info">لا توجد معلومات</code>
+  </window>
+  <window name="conference_invitation">
+    <item id="btn_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+    <item id="btn_ok">
+      <value>موافق</value>
+    </item>
+    <item id="txt_room">
+      <innerText>القاعة</innerText>
+    </item>
+    <item id="txt_reason">
+      <innerText>السبب</innerText>
+    </item>
+    <code id="invitation">You have received a conferencing invitation from&#13;${0}</code>
+  </window>
+  <window name="conference_custom">
+    <item id="btn_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+    <item id="btn_ok">
+      <value>موافق</value>
+    </item>
+    <item id="txt_address">
+      <innerText>خطاب غرفة الاجتماعات</innerText>
+    </item>
+    <code id="example">Example: myroom@${0}</code>
+    <code id="invalid">عنوان الغرفة الباطل
+&#13;ادخل خطاب غرفة الاجتماعات.</code>
+  </window>
+  <window name="autoupdate">
+    <item id="btn_download">
+      <value>التّنزيل الآن</value>
+    </item>
+    <item id="btn_neverask">
+      <value>لا تسألني أبدًا ثانية</value>
+    </item>
+    <item id="btn_reminder">
+      <value>ذكّرني فيما بعد</value>
+    </item>
+    <item id="txt_notes">
+      <innerText>Release notes:</innerText>
+    </item>
+    <code id="desc">هل تريد تنزيل هذا التّحسّن ؟
+ .النّسخة المرقّاة ل {0}$ متاح</code>
+    <code id="version">${0} الاصدار</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>موافق</value>
+    </item>
+    <item id="btn_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+    <item id="txt_invite">
+      <innerText>دعوة هؤلاء النّاس</innerText>
+    </item>
+    <item id="txt_invitation">
+      <innerText>رسالة الدّعوة</innerText>
+    </item>
+    <item id="invitation">
+      <innerText>الوقت لاجتماع</innerText>
+    </item>
+    <item id="txt_server">
+      <innerText>خطاب ملقم المؤتمر</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>اسم غرفة الاجتماعات</innerText>
+    </item>
+    <item id="txt_info">
+      <innerText>معلومات الحجرة</innerText>
+    </item>
+    <code id="valid">Use only letters, numbers, the underscore (_) and the dash (-)&#13;اكتب اسمًا صالحًا لغرفة الدّردشة</code>
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>ارسال</value>
+    </item>
+    <item id="btn_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>إرسال إلى هؤلاء النّاس</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>الرّسالة العاديّة</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>الإخطار اليقظ</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>نوع من الرّسالة</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>تثبيت الرّابطة المتشعّبة</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>الرّسالة</innerText>
+    </item>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>اغلاق</value>
+    </item>
+    <item id="btn_accept">
+      <value>اقبال</value>
+    </item>
+    <item id="btn_abort">
+      <value>الغاء الأمر</value>
+    </item>
+    <item id="btn_open">
+      <value>فتح</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Time left:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>المرسل</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>اسم الملف</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>المكان</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>التّقدّم</innerText>
+    </item>
+    <code id="resume"> اضغط لا للإسهاب في الملفّ
+&#13;
+اضغط نعم لاستئناف الملفّ
+&#13;&#13;
+هل تريد استئناف الانتقال ؟
+  يتواجد الملفّ</code>
+    <code id="cannot_overwrite">Cannot overwrite file:&#13;${0}&#13;&#13;${1}</code>
+    <code id="incorrect">  تلقّت البيانات الخطأ. 
+  لا يمكن أن يبدأ الانتقال</code>
+    <code id="title_saving">${0}% 
+من
+ ${1} محفظ</code>
+    <code id="lessthanminute">${0} أقلّ من 1 دقيقة في</code>
+    <code id="onehour">ساعة واحدة و</code>
+    <code id="hours">ساعات و
+${0}</code>
+    <code id="oneminute">دقيقة واحدة في</code>
+    <code id="minutes"> دقيقة في
+${0} </code>
+    <code id="speed">ث/
+${0}</code>
+    <code id="abort">هل تريد إلغاء الانتقال ؟</code>
+    <code id="aborted">ملغى</code>
+    <code id="finished">كامل</code>
+    <code id="error_timeout">Timeout occurred.</code>
+    <code id="error_code">${0} رقم الخطأ</code>
+    <code id="error_file">File error code: ${0}</code>
+    <code id="title_completed">${0} 
+الانتقال كامل </code>
+    <code id="title_failed">${0}
+فشل الانتقال</code>
+    <code id="error_move">Cannot move completed file:&#13;${0}&#13;&#13;${1}</code>
+    <code id="error_failed">فشل الانتقال</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>اغلاق</value>
+    </item>
+    <item id="btn_abort">
+      <value>الغاء الأمر</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Time left:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>Recipient:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>اسم الملف</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>مكان</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>التقدم</innerText>
+    </item>
+    <code id="socket">Unable to send the file.&#13;Cannot open the network socket.</code>
+    <code id="file">Cannot read file:&#13;${0}</code>
+    <code id="filetransfer">File transfer:</code>
+    <code id="title_saving">${0}% of ${1} Sent</code>
+    <code id="lessthanminute">Less than 1 minute at ${0}/s</code>
+    <code id="onehour">1 hour and</code>
+    <code id="hours">${0} hours and</code>
+    <code id="oneminute">1 minute at</code>
+    <code id="minutes">${0} minutes at</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Do you want to abort the transfer?</code>
+    <code id="finished">Finished</code>
+    <code id="aborted">Aborted</code>
+    <code id="error_denied">File denied.</code>
+    <code id="error_timeout">Timeout occurred.</code>
+    <code id="error_code">Error code: ${0}</code>
+    <code id="title_completed">Transfer Completed - ${0}</code>
+    <code id="title_failed">Transfer Failed - ${0}</code>
+    <code id="error_failed">Transfer failed.</code>
+  </window>
+  <window name="conference_browse">
+    <item id="btn_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+    <item id="btn_join">
+      <value>انضمام</value>
+    </item>
+    <item id="btn_create">
+      <value>انشاء حجرة جديدة</value>
+    </item>
+    <item id="btn_other">
+      <value>الانضمام إلى الحجرة الأخرى</value>
+    </item>
+    <item id="txt_rooms">
+      <innerText>الحجرات المتاحة</innerText>
+    </item>
+    <item id="txt_people">
+      <innerText>النّاس في هذه الحجرة</innerText>
+    </item>
+    <item id="room_info_text">
+      <innerText>اختار حجرةً على اليسار</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>جاري التّحميل</innerText>
+    </item>
+    <code id="empty">هناك لا أحد في هذه الحجرة</code>
+    <code id="wnd_conference_custom">الانضمام إلى الحجرة الأخرى</code>
+  </window>
+  <window name="vcard">
+    <code id="save">Warning: Cannot save vCard file.&#13;&#13;${0}</code>
+    <code id="personal">تفاصيل المستخدم</code>
+    <code id="system">تفاصيل النّظام</code>
+
+    <item id="txt_requesting1">
+      <innerText>طلب المعلومات من الملقم</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>هذا يمكن أن يطول دقيقة واحدة.&lt;BR&gt;من فضلك كن صبورًا</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>vCard التّخزين  ك</value>
+    </item>
+    <item id="btn_refresh">
+      <value>منعش</value>
+    </item>
+    <item id="btn_close">
+      <value>اغلاق</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>فكّ التّغييرات</value>
+    </item>
+    <item id="btn_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+    <item id="btn_ok">
+      <value>موافق</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>المعلومات الشّخصيّة</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>التّفاصيل الإضافيّة</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>عنوان المنزل</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>الأعمال</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>عنوان الأعمال</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>النّظام</innerText>
+    </item>
+
+    <item id="txt_name">
+      <innerText>الاسم</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>الاسم الأوّل</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>اسم الأب</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>اللّقب</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>الاسم التّدليليّ</innerText>
+    </item>
+
+    <item id="txt_contact">
+      <innerText>الاتّصال</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>البريد الإلكترونيّ</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>التّليفون</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>لتّليفون النقال</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>الفاكس</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>التّفاصيل الإضافيّ</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>العمر</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>عيد الميلاد</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>الجنس</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>الحالة الاجتماعيّة</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>الموقع على الانترنت</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>عنوان المنزل</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>العنوان  1</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>العنوان 2</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>المدينة</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>الرّمز البريديّ</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>المحافظة</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>الدّولة</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>المنظّمة</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>الاسم</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>القسم</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>الاسم</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>الدّور</innerText>
+    </item>
+
+    <item id="txt_workcontact">
+      <innerText>الاتّصال</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>البريد الإلكترونيّ</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>التّليفون</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>التّليفون النقال</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>الفاكس</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>عنوان الأعمال</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>1 العنوان</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>2 العنوان</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>المدينة</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>الرّمز البريديّ</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>المحافظة</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>البلد</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>معلومات العميل</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>العنوان</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>المورد</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>التّوقيت المحلّيّ</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>البرامج</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>النّسخة</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>نظام التّشغيل</innerText>
+    </item>
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; الرّجوع</value>
+    </item>
+    <item id="btn_next">
+      <value>الذّهاب &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>انهاء</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>الغاء الأمر</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>العنوان</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>الاسم التّدليليّ</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>العنوان</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>كلمة السّرّ</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>الاسم التّدليليّ</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>أنت تُسَجَّل بالفعل بهذا النّقل &lt;BR&gt; النّقل الذي قد سجّلته هو</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>إعاقة النّقل</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText> جاري  الاتّصال بالملقم</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML> من فضلك كن صبورًا &lt;BR&gt;
+هذا يمكن أن يدومّ حتى دقيقة واحدة</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>&lt;/B&gt; لإغلاق هذا المساعد, اضغط على 
+&lt;B&gt;انهاء</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>&lt;/B&gt;للاستمرار, اضغط على 
+&lt;B&gt;القادم</innerHTML>
+    </item>
+
+    <code id="error_invalid">تلقّت البيانات الباطل</code>
+    <code id="error_server">&lt;B&gt;Server error:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;لا يمكن أن يستمرّ</code>
+    <code id="error_unknown">&lt;B&gt;Unknown error:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;لا يمكن أن يستمرّ</code>
+    <code id="error_auth">&lt;B&gt;Authorisation error:&lt;/B&gt;&lt;BR&gt;العنوان الخطأ أو كلمة سرّ.&lt;BR&gt;&lt;BR&gt;لا يمكن أن يستمرّ</code>
+    <code id="wait">&lt;B&gt;Contacting server&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;This can take up to one minute.&lt;BR&gt;من فضلك كن صبورًا&lt;BR&gt;</code>
+
+    <code id="default_window_title">شكل النّقل</code>
+    <code id="default_begin_intro">يساعدك هذا المساعد أن توفّق بين النّقل.&lt;BR&gt;هذه النّقل رابطة بينك و شبكة أخرى &lt;BR&gt;تحتاج لتقرير على الشّبكة الأخرى لاستخدام هذه النّقل.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">اكتب تقريرك و كلمة سرّك.&lt;BR&gt;أيضًا يمكن أن تدخل الاسم التّدليليّ الذي سيراه آخرون.&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">حسابك يُسَجَّل بالنّقل</code>
+    <code id="default_removing_busy">حسابك يُزِيلَ من النّقل&lt;BR&gt;</code>
+    <code id="default_creating_done">الحساب سُجِّلَ بنجاح بالنّقل.</code>
+    <code id="default_removing_done">كان الحساب غير مسجّل بنجاح في النقل.</code>
+
+    <code id="msn_window_title">MSN Messenger - خيارات النّقل</code>
+    <code id="msn_begin_intro">تحتاج لجواز مايكروسوفت لاستخدام هذه النقل
+MSN هذه النقل رابطة بينك و حساب 
+MSN 
+هذا المساعد يساعد توفّق</code>
+    <code id="msn_newaccount_instructions">Enter your MSN address and your MSN password.&lt;BR&gt;أيضًا يمكن أن تكتب الاسم التّدليليّ الذي سيراه المستخدمون.&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">someone@msn.com, someone@hotmail.com :الأمثلة</code>
+    <code id="msn_creating_busy">msn حسابك يُسَجَّل الان بنقل</code>
+    <code id="msn_removing_busy">Your MSN account is being removed from the transport.&lt;BR&gt;You will still be able to use your MSN account with other services (eg. Hotmail, MSN Explorer, etc.).&lt;BR&gt;</code>
+    <code id="msn_creating_done">msn الحساب سُجِّلَ بنجاح بنقل</code>
+    <code id="msn_removing_done">msn كان الحساب غير مسجّل بنجاح من نقل  </code>
+
+    <code id="icq_window_title">ICQ - خيارات النّقل</code>
+    <code id="icq_begin_intro">This wizard helps you configure the ICQ transport.&lt;BR&gt;This transport is a link between you and your ICQ account.&lt;BR&gt;You must have an existing User Identification Number (ICQ &lt;BR&gt;number) to use this transport.&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Enter your ICQ number and your ICQ password.&lt;BR&gt;You can also enter a nickname which users will see.&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">39230793, 158525087 :الأمثلة</code>
+    <code id="icq_creating_busy">icq حسابك يُسَجَّل الان بنقل</code>
+    <code id="icq_removing_busy">Your ICQ account is being removed from the transport.&lt;BR&gt;</code>
+    <code id="icq_creating_done">icq الحساب سُجِّلَ بنجاح بنقل</code>
+    <code id="icq_removing_done">icq كان الحساب غير مسجّل بنجاح من نقل</code>
+
+    <code id="yahoo_window_title">Yahoo! Messenger - خيارات النّقل</code>
+    <code id="yahoo_begin_intro">This wizard helps you configure the Yahoo! transport.&lt;BR&gt;This transport is a link between you and your Yahoo! account.&lt;BR&gt;You need an existing Yahoo! account to use this transport.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Enter your Yahoo! username and your Yahoo! password.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">Yahoo! حسابك يُسَجَّل الان بنقل</code>
+    <code id="yahoo_removing_busy">Your Yahoo! account is being removed from the transport.&lt;BR&gt;You will still be able to use your Yahoo! account with other services (eg. Yahoo! mail, Yahoo! Messenger, etc.).&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">Yahoo! الحساب سُجِّلَ بنجاح بنقل</code>
+    <code id="yahoo_removing_done">Yahoo! كان الحساب غير مسجّل بنجاح من نقل</code>
+
+    <code id="aim_window_title">AOL Instant Messenger - خيارات النّقل</code>
+    <code id="aim_begin_intro">This wizard helps you configure the AOL IM transport.&lt;BR&gt;This transport is a link between you and your AOL IM account.&lt;BR&gt;You need an AOL IM account to use this transport.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">Enter your AOL IM screenname and password.&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">AOL حسابك يُسَجَّل الان بنقل</code>
+    <code id="aim_removing_busy">Your AOL IM account is being removed from the transport.&lt;BR&gt;You will still be able to use your AOL IM account with other software.&lt;BR&gt;</code>
+    <code id="aim_creating_done">AOL الحساب سُجِّلَ بنجاح بنقل</code>
+    <code id="aim_removing_done">AOL كان الحساب غير مسجّل بنجاح من نقل</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>الذّهاب</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>الحفظ</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>الطّبع</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>المسح</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>تاريخ الرّسالة</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>البحث</innerText>
+    </item>
+    <code id="loading">...تحميل تاريخ الرّسالة</code>
+    <code id="empty">تاريخ الرّسالة فارغ</code>
+    <code id="error_load">لا يمكن أن يحمّل تاريخ الرّسالة
+&#13;${0}</code>
+    <code id="one_message">رسالة واحدة</code>
+    <code id="many_messages">رسائل
+  ${0}</code>
+    <code id="tooltip_save">حفظ تاريخ الرّسالة لهذا اليوم</code>
+    <code id="tooltip_print">طبع تاريخ الرّسالة لهذا اليوم</code>
+    <code id="tooltip_delete">حذف تاريخ الرّسالة لهذا اليوم</code>
+    <code id="error_open">الخطأ.  لا يمكن أن يفتح تاريخ الرّسالة</code>
+    <code id="error_read">الخطأ.  لا يمكن أن يقرأ تاريخ الرّسالة</code>
+    <code id="delete_confirm"> ?${0} هل أنت متأكّد أنّك تريد حذف تاريخ الرسالة بالكامل ل  </code>
+    <code id="delete_confirm_date">?  ${0}  هل أنت متأكّد أنّك تريد حذف الرّسائل بتاريخ</code>
+    <code id="delete_cannot">لم تُحْذَف أيّ رسالة
+:لا يمكن أن يزيل ملفّ التّاريخ ${0}&#13;&#13;</code>
+    <code id="delete_cannot_temp">لم تُحْذَف أيّ رسالة
+:لا يمكن أن يانشاء ملفّ مؤقّت ${0}&#13;&#13;</code>
+    <code id="delete_cannot_open">لم تُحْذَف أيّ رسالة
+:لا يمكن أن يفتح التّاريخ ${0}&#13;&#13;</code>
+    <code id="delete_cannot_read">لم تُحْذَف أيّ رسالة
+:لا يمكن أن يقرأ التّاريخ ${0}&#13;&#13;</code>
+    <code id="delete_cannot_write">لم تُحْذَف أيّ رسالة
+:لا يمكن أن يكتب للملفّ المؤقّت
+${0}&#13;&#13;</code>
+    <code id="error_print">تاريخ الرّسالة فارغ
+ &#13;.لا يمكن أن يطبع أي شيئ</code>
+    <code id="error_save">${0} &#13; لا يمكن أن ينقذ تاريخ الرّسالة</code>
+  </window>
+  <window name="chat-messages">
+    <code id="error">الخطأ</code>
+    <code id="copy">النّسخ</code>
+    <code id="copyall">نسخ الكلّ</code>
+    <code id="clear">الانقشاع</code>
+    <code id="selectall">اختيار الكلّ</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>إظهار ما تفكّر أو تعمل</title>
+      <accessKey>ظ</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>تغيير لون النّصّ أو نوعه</title>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="txt-emoticons">
+      <innerText>أيقونة مشاعر</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>الخط</innerText>
+    </item>
+
+    <item id="btn-send">
+      <value>إرسال</value>
+    </item>
+
+    <code id="msg_typing">يطبع  {0}$ رسالة الان</code>
+    <code id="unknown">قد لا يجيب لأنّ وضعه مجهول
+${0}</code>
+    <code id="lastonline">الوقت الاخير على الشّبكة
+${0}</code>
+    <code id="windowtitle">${0} - محادثة</code>
+    <code id="choose_emoticons">مشاهدة كلّ اقونات المشاعر في هذا الموضوع أو اختيار مجموعة أيقونة مشاعر مختلفة</code>
+
+    <code id="menu_file">&amp;ملفّ</code>
+    <code id="menu_file_received">&amp;فتح ملفّاتي المتلقّاة</code>
+    <code id="menu_file_history">تاريخ الرّسالة</code>
+    <code id="menu_file_close">ترك المحادثة</code>
+    <code id="menu_axn">&amp;اجراءات</code>
+    <code id="menu_axn_contact">&amp;هوية</code>
+    <code id="menu_axn_add">اضافة الى قائمة الاصحاب</code>
+    <code id="menu_axn_block">&amp;تجميد هذا الحساب</code>
+    <code id="menu_axn_rename">&amp;إعادة تسمية</code>
+    <code id="menu_axn_panel">إظهار لوح الأفعال</code>
+    <code id="menu_axn_profile">رؤية الهويّة</code>
+    <code id="menu_axn_file">إرسال ملفّ</code>
+
+    <code id="menu_tool">&amp;أدوات</code>
+    <code id="menu_tool_font">...تغيير الخط</code>
+    <code id="menu_tool_aot">&amp;دائمًا في المقدمة</code>
+    <code id="menu_tool_popup">&amp;إظهار الرّسائل الجديدة</code>
+    <code id="menu_tool_tabbed">&amp;محادثات مزيّنة</code>
+    <code id="menu_tool_settings">&amp;خيارات</code>
+
+    <code id="menu_help">&amp;تعليمات</code>
+    <code id="menu_help_manual">&amp;الدّليل على الشّبكة</code>
+    <code id="menu_help_forum">&amp;منتدى الدّعم</code>
+    <code id="menu_help_contact">&amp;اتّصل بنا</code>
+    <code id="menu_help_about">&amp;حول</code>
+  </window>
+  <window name="conference">
+    <item id="btn_emoticons">
+      <title>إظهار ما تفكّر أو تعمل</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn_clear">
+      <title>مسح نافذة الدّردشة هذه</title>
+      <accessKey>م</accessKey>
+    </item>
+    <item id="btn_font">
+      <title>تغيير لون النّصّ أو نوعه</title>
+      <accessKey>غ</accessKey>
+    </item>
+
+    <item id="txt_emoticons">
+      <innerText>أيقونة مشاعر</innerText>
+    </item>
+    <item id="txt_clear">
+      <innerText>التّنظيف</innerText>
+    </item>
+    <item id="txt_font">
+      <innerText>الخط</innerText>
+    </item>
+
+    <item id="btn_send">
+      <value>إرسال</value>
+    </item>
+
+    <item id="subject">
+      <value>.ليس لدى هذه الحجرة أيّ  موضوع. اضغط هنا لوضع موضوع</value>
+    </item>
+
+    <code id="title">${0} - مؤتمر</code>
+    <code id="error_join">لا يمكن أن ينضمّ إلى هذه غرفة الاجتماعات. (code ${0})</code>
+    <code id="error_unknown">الخطأ المجهول</code>
+    <code id="error_message">(code ${0})</code>
+    <code id="choose_emoticons">مشاهدة كلّ اقونات مشاعر في هذا الموضوع أو اختيار مجموعة أيقونة مشاعر مختلفة</code>
+  </window>
+  <window name="preferences">
+    <item id="txt_autoaway">
+      <innerText>عندما لا تستخدم هذا الكمبيوتر لمدّة عدّة دقائق, وضعك سيتغيّر إلى غير حاضر</innerText>
+    </item>
+    <item id="txt_displayawaymsg_left">
+      <innerText>عرض هذه الرّسالة فيما بعد</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_left">
+      <innerText>عرض هذه الرّسالة فيما بعد</innerText>
+    </item>
+    <item id="txt_displayawaymsg_right">
+      <innerText>دقائق</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_right">
+      <innerText>دقائق</innerText>
+    </item>
+    <item id="txt_blocking">
+      <innerText>تحتوي قائمة التجميد على حسابات النّاس لا تريد تلقّي الرّسائل منهم</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>عرض الرّسائل من النّاس ليس في قائمة اصحابي</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>قائمة التجميد</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>حذف التجميد</value>
+    </item>
+    <item id="block_btn_view">
+      <value>رؤية الهويّة</value>
+    </item>
+    <item id="txt_ssl">
+      <innerText>(SSL)  استخدام وصلة مشفّرة</innerText>
+    </item>
+    <item id="txt_customport">
+      <innerText>التّوصيل إلى منفذ  غير معياريّ</innerText>
+    </item>
+    <item id="txt_resource">
+      <innerText>المورد</innerText>
+    </item>
+    <item id="txt_firewall_proxy">
+      <innerText>ملقم وكيل</innerText>
+    </item>
+    <item id="txt_proxy1">
+      <innerText>لا أحد</innerText>
+    </item>
+    <item id="txt_proxy2">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_proxy3">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_proxy4">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_proxyserver">
+      <innerText>الملقم</innerText>
+    </item>
+    <item id="txt_proxyport">
+      <innerText>المنفذ</innerText>
+    </item>
+    <item id="txt_proxyuser">
+      <innerText>اسم المستخدم</innerText>
+    </item>
+    <item id="txt_proxypass">
+      <innerText>كلمة السّرّ</innerText>
+    </item>
+    <item id="txt_portmap">
+      <innerText>Filetransfer portmap (NAT, firewall)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>Host:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>المنفذ</innerText>
+    </item>
+    <item id="txt_emoticonuse">
+      <innerText>استخدام أيقونة مشاعر بيانيّ في المحادثات</innerText>
+    </item>
+    <item id="txt_select_emo">
+      <innerText>اختيار أيّ أيقونة مشاعر من المقرّر أن تستخدم</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>... جاري التّحميل</innerText>
+    </item>
+    <item id="btn_emoticon_all">
+      <value>رؤية التّفاصيل</value>
+    </item>
+    <item id="txt_plugins">
+      <innerText>Installed plug-ins</innerText>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>No plug-ins are installed.</innerText>
+    </item>
+    <item id="btn_plugin_online">
+      <value>More plug-ins</value>
+    </item>
+    <item id="txt_history_store">
+      <innerText>تخزين كلّ الرّسائل في ملف التّاريخ</innerText>
+    </item>
+    <item id="txt_autoupdate">
+      <innerText> فحص لتحديثات البرامج تلقائيًّا</innerText>
+    </item>
+    <item id="txt_startup">
+      <innerText>بدء تلقائيًّا في الابتداء</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>عندما شخص ما يطلب تصريحي</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>اسأل لي</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>قبول كلّ الطّلبات</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>قبول المستخدمين الذين في قائمة اصحابي, طلب الآخرين</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>إنكار كلّ الطّلبات</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>رن  صوت عندما تصل رسالة</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>رن  صوت عندما شخص ما يعود إلى الوضع على الشّبكة</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>رن  صوت عندما شخص ما يصبح متوقّفً</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>التّصفّح</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>التّصفّح</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>التّصفّح</value>
+    </item>
+    <item id="txt_transport">
+      <innerText>تزوّد النقلات روابط بشبكات خدمة الرّسائل الفوريّة الأخرى.</innerText>
+    </item>
+    <item id="txt_transportlist">
+      <innerText>النقلات المتاحة</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;Note:&lt;/B&gt; للتّوفيق بين النقلات يجب أن تكون متّصل بملقم خدمة الرّسائل الفوريّة.</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;Note:&lt;/B&gt; Contact the administrator for more information.الملقم أنت متّصل إليه  ما لديه  نقلات مركّبة</innerHTML>
+    </item>
+    <item id="msnworkaroundlabel">
+      <innerText>أن يغيّرو اسمهم التّدليليّ msn سماح لاصحاب</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>موافق</value>
+    </item>
+    <item id="btn_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+    <item id="lbl_autoaway">
+      <innerText>غير حاضر من تلقاء نفسه </innerText>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>تجميد حساب</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>الاتصال</innerText>
+    </item>
+    <item id="lbl_emoticon">
+      <innerText>أيقونات  مشاعر</innerText>
+    </item>
+    <item id="lbl_plugin">
+      <innerText>Plug-ins</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>الخصوصيّة</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>الصّوت</innerText>
+    </item>
+    <item id="lbl_transport">
+      <innerText>النقلات</innerText>
+    </item>
+    <code id="autoaway">تلقائيًّا غير حاضر رسائل</code>
+    <code id="blocking">قائمة التجميد</code>
+    <code id="connection">تفاصيل الاتصال</code>
+    <code id="emoticon">أيقونات مشاعر و إشارات</code>
+    <code id="plugin">Plug-ins</code>
+    <code id="privacy">الخصوصيّة</code>
+    <code id="sound">وقع الإخطار</code>
+    <code id="transport">النقلات</code>
+    <code id="reconnect">هل تريد إعادة توصيل الآن ؟ 
+ &#13;&#13;أنت يجب أن تعيد توصيل لاستعمال التّغييرات</code>
+    <code id="shortcut">إرسال و تلقّي رسائل عاجلة</code>
+    <code id="no_emoticons">ما وجدت أيقونات مشاعر </code>
+    <code id="wnd_emoticons">تفاصيل أيقونة مشاعر</code>
+    <code id="plugin_uninstall">فكّ</code>
+    <code id="plugin_confirm">Are you sure you want to delete this plug-in?</code>
+    <code id="status_active">حاضر</code>
+    <code id="status_noreg">غير مسجل</code>
+    <code id="status_disconnected">غير متصل</code>
+    <code id="choose_sound">اختيار وقع إخطار</code>
+    <code id="file_audio">الملفّات السّمعيّة</code>
+    <code id="file_any">أيّ ملفّ</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>إيجاد أو إضافة شخص</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>يمكن أن تبحث عن شخص ما على أساس  المعلومات العامّة لذلك الشّخص أو يمكن أن تكتب الاسم المستخدم للشّخص </innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>كيف تريد إضافة صديق ؟</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>أريد البحث عن شخص ما</innerHTML>
+      <accessKey>ر</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>Se&lt;U&gt;r&lt;/U&gt;vice:</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML>أعرف عنوان خدمة الرّسائل الفوريّة للشّخص بالفعل</innerHTML>
+      <accessKey>ع</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>الشبكة</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>ش</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>الاسم المستخدم</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>ل</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>للاتّصال بشخص ما على شبكة خدمة رسائل فوريّة مختلفة, يجب أن تسجّل بالنّقل لتلك الشّبكة</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>توفّيق بين النقلات</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>القادم &gt;</value>
+      <accessKey>د</accessKey>
+    </item>
+    <item id="btn_p1_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>معالجة اسم المستخدم</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>تتحقّق النقل  من الاسم المستخدم الآن</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; وراء</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>القادم &gt;</value>
+    </item>
+    <item id="page1b_btn_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>طلب استمارة البحث</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>تحتوي استمارة البحث على الإرشادات و كلّ الحقول التي يمكن أن تُبْحَث</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; وراء</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>القادم &gt;</value>
+    </item>
+    <item id="page1c_btn_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+
+    <item id="txt_p2_title">
+      <innerText>طلب الرّسالة</innerText>
+    </item>
+    <item id="txt_p2_tagline">
+      <innerText>يمكن أن تسمح للشّخص الآخر أن يعرف لماذا تريد تصريحها أو الخاصّ به بإرسال رسالة</innerText>
+    </item>
+    <item id="page2_btn_back">
+      <value>&lt; وراء</value>
+      <accessKey>و</accessKey>
+    </item>
+    <item id="page2_btn_finish">
+      <value>انهاء</value>
+      <accessKey>ن</accessKey>
+    </item>
+    <item id="page2_btn_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+    <item id="txt_p2_desc">
+      <innerText>طلب التّصريح سيُرْسَل إلى</innerText>
+    </item>
+    <item id="txt_p2_user">
+      <innerText>اسم المستخدم</innerText>
+    </item>
+    <item id="txt_p2_network">
+      <innerText>الشّبكة </innerText>
+    </item>
+    <item id="txt_p2_message">
+      <innerHTML>-اختياريّ- 
+اكتب رسالةً  
+</innerHTML>
+    </item>
+    <item id="page2_message">
+      <innerText>أريد إضافتك  الى  قائمتي الأصدقاء</innerText>
+    </item>
+    <item id="txt_p2_close">
+      <innerHTML>لإرسال الطّلب و إغلاق هذا المساعد, اضّغط  على  انهاء </innerHTML>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; وراء</value>
+      <accessKey>و</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>البحث</value>
+      <accessKey>ب</accessKey>
+    </item>
+    <item id="page3_btn_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText>نتائج البحث</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>يمكن أن ترى تفاصيل شخصيّة المستخدم أو تضيف المستخدم لقائمتك الأصدقاء</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; وراء</value>
+      <accessKey>و</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>القادم &gt;</value>
+    </item>
+    <item id="page4_btn_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+    <code id="correct">اكتب اسم المستخدم صحيحًا
+&#13;&#13;example: someone123@${0}</code>
+    <code id="example_address">Example: someone123@${0}</code>
+    <code id="enter_username">اكتب الاسم المستخدم للشّخص تريد الاتّصال</code>
+    <code id="contacting_transport">&lt;B&gt;Contacting transport&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;هذا يمكن أن يطول إلى دقيقة واحدة&lt;BR&gt; صبورًا.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Contacting search service&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;هذا يمكن أن يطول إلى دقيقة واحدة.&lt;BR&gt;من فضلك كن صبورًا.&lt;BR&gt;</code>
+    <code id="error_transport">&lt;B&gt;Server error:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;المستخدم لا يمكن أن يُضَاف لقائمة أصدقاءك.&lt;BR&gt;تأكّد أنّك قد أدخلت الاسم المستخدم الصّحيح</code>
+    <code id="error_search">&lt;B&gt;Server error:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;استمارة البحث لا يمكن أن تُنَزَّل.&lt;BR&gt;حاول ثانية فيما بعد أو اختر خدمةً مختلفةً</code>
+    <code id="search_title">بحث المستخدم</code>
+    <code id="search_tagline">املأ حقلاً للبحث عن أيّ مستخدمين متناسقين</code>
+    <code id="firstname">الاسم الأوّل</code>
+    <code id="lastname">اللّقب</code>
+    <code id="nick">الاسم التّدليليّ</code>
+    <code id="email">عنوان البريد الإلكترونيّ</code>
+    <code id="empty">اطبع شيئ ما في على الأقلّ حقل</code>
+    <code id="searching"> ... جاري  البحث</code>
+    <code id="add">الاضافة الى قائمة الأصدقاء</code>
+    <code id="view">رؤية الهويّة</code>
+    <code id="foundone">نتيجة واحدة</code>
+    <code id="foundmany">النّتائج
+ ${0} </code>
+  </window>
+  <window name="profile_add">
+    <code id="close_confirm">هل أنت متأكّد أنّك تريد إغلاق المساعد ؟
+&#13;&#13;الهويّة الجديدة غير كاملة</code>
+    <code id="avatars">${0} &#13;&#13;
+التّحذير : لا يمكن أن يحمّل الصّور</code>
+    <code id="incomplete"> ...أكمل كلّ الحقول</code>
+    <code id="invalid">اطبع عنوانًا صحيحًا</code>
+    <code id="exists">اختار عنوانًا مختلفًا
+&#13;&#13;.ذلك التّقرير رُكِّبَ بالفعل</code>
+    <code id="address">العنوان</code>
+    <code id="nickname">الاسم التّدليليّ</code>
+    <code id="userdir">دليل المستخدم</code>
+    <code id="pass_match">اكتب كلمة السّرّ الجديدة في كلا الحقلين
+&#13;&#13;.كلمات السّرّ أنت كتبت لا يتلاءم</code>
+    <code id="contacting">... في اتّصال بالملقم </code>
+    <code id="registered"> من فضلك كن صبورًا &lt;BR&gt;
+هذا يمكن أن يطول دقيقة &lt;BR&gt;تقريرك يُسَجَّل الان</code>
+    <code id="completed">التّسجيل كامل</code>
+    <code id="failure">فشل الاتصال</code>
+    <code id="requesting">...طلب المعلومات</code>
+    <code id="sending">...إرسال التّسجيل</code>
+    <code id="signing">...توقيع عند الوصول</code>
+
+    <item id="txt_p0_title">
+      <innerText>مرحبًا إلى  مساعد لاضافة  الهويّة</innerText>
+    </item>
+    <item id="txt_p0_intro">
+      <innerText>هذا المساعد يساعد أعددت تقريرًا على شبكة خدمة الرّسائل الفوريّة</innerText>
+    </item>
+    <item id="txt_p0_next">
+      <innerHTML>للاستمرار, اضغط إلى الأمام</innerHTML>
+    </item>
+    <item id="welcome_next">
+      <value>إلى الأمام &gt;</value>
+      <accessKey>م</accessKey>
+    </item>
+    <item id="btn_p0_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+
+    <item id="txt_p1_title">
+      <innerText>المعلومات الشّخصيّة</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>ستساعد هذه المعلومات ناس أخرى تجدك على الشّبكة</innerText>
+    </item>
+    <item id="txt_p1_desc">
+      <innerText>.اسمك الأوّل و لقبك لا يُتَطَلَّبَانِ لكنهم يجعلونه أسهل لأصدقاءك أو الزّملاء إيجادك
+.يجب أن تختار اسم تدليليّ</innerText>
+    </item>
+    <item id="txt_p1_nick">
+      <innerHTML>الاسم التّدليليّ</innerHTML>
+    </item>
+    <item id="txt_p1_first">
+      <innerHTML>الاسم الأوّل</innerHTML>
+    </item>
+    <item id="txt_p1_last">
+      <innerHTML>اللّقب</innerHTML>
+    </item>
+    <item id="nick">
+      <accessKey>ا</accessKey>
+    </item>
+    <item id="given">
+      <accessKey>س</accessKey>
+    </item>
+    <item id="family">
+      <accessKey>ق</accessKey>
+    </item>
+    <item id="btn_p1_back">
+      <value>&lt; وراء</value>
+      <accessKey>و</accessKey>
+    </item>
+    <item id="nick_next">
+      <value>القادم &gt;</value>
+      <accessKey>ق</accessKey>
+    </item>
+    <item id="btn_p1_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>الصورة</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>اختار صورةً شخصيّةً ستتعرّف على هويّتك في شاشة الدّخول</innerText>
+    </item>
+    <item id="btn_p1b_back">
+      <value>&lt; وراء</value>
+      <accessKey>و</accessKey>
+    </item>
+    <item id="btn_p1b_next">
+      <value>القادم &gt;</value>
+      <accessKey>ق</accessKey>
+    </item>
+    <item id="btn_p1b_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+
+    <item id="txt_p2_title">
+      <innerText>عنوان خدمة الرّسائل الفوريّ</innerText>
+    </item>
+    <item id="txt_p2_tagline">
+      <innerText>يتعرّف عنوانك عليك على شبكة خدمة الرّسائل الفوريّة</innerText>
+    </item>
+    <item id="txt_p2_desc">
+      <innerText>يمكن انشاء عنوان خدمة رسائل فوريّة جديدًا أو توصّل بعنوان حاليّ</innerText>
+    </item>
+    <item id="txt_p2_act_new">
+      <innerHTML>أريد انشاء عنوان جديد</innerHTML>
+    </item>
+    <item id="txt_p2_act_old">
+      <innerHTML>لديّ بالفعل الحساب الذي أريد أن أستخدمه</innerHTML>
+    </item>
+    <item id="act_new">
+      <accessKey>خ</accessKey>
+    </item>
+    <item id="act_old">
+      <accessKey>ل</accessKey>
+    </item>
+    <item id="btn_p2_back">
+      <value>&lt; وراء</value>
+      <accessKey>و</accessKey>
+    </item>
+    <item id="btn_p2_next">
+      <value>القادم &gt;</value>
+      <accessKey>ق</accessKey>
+    </item>
+    <item id="btn_p2_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+
+    <item id="txt_p3a_title">
+      <innerText>العنوان الحاليّ</innerText>
+    </item>
+    <item id="txt_p3a_tagline">
+      <innerText>يمكن أن تستخدم مغرفةً عامّةً على الإنترنت أو تستخدم خادمًا خاصًّا على شبكتك المتّحدة</innerText>
+    </item>
+    <item id="txt_p3a_desc">
+      <innerText>اطبع العنوان و كلمة السّرّ</innerText>
+    </item>
+    <item id="txt_p3a_address">
+      <innerHTML>العنوان</innerHTML>
+    </item>
+    <item id="txt_p3a_pass">
+      <innerHTML>كلمة السّرّ</innerHTML>
+    </item>
+    <item id="txt_p3a_savepass">
+      <innerHTML>تذكّر كلمة سرّي</innerHTML>
+    </item>
+    <item id="oldjid">
+      <accessKey>a</accessKey>
+    </item>
+    <item id="oldpass">
+      <accessKey>p</accessKey>
+    </item>
+    <item id="savepass">
+      <accessKey>س</accessKey>
+    </item>
+    <item id="txt_p3a_example">
+      <innerText>someone@server.com :المثال</innerText>
+    </item>
+    <item id="btn_p3a_back">
+      <value>&lt; وراء</value>
+      <accessKey>و</accessKey>
+    </item>
+    <item id="auth_next">
+      <value>القادم &gt;</value>
+      <accessKey>ق</accessKey>
+    </item>
+    <item id="btn_p3a_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+
+    <item id="txt_p4a_title">
+      <innerText>إكمال المساعد لإضافة الهويّة</innerText>
+    </item>
+    <item id="txt_p4a_intro">
+      <innerText>قد أكملت بنجاح  المساعد لإضافة الهويّة</innerText>
+    </item>
+    <item id="txt_p4a_details">
+      <innerText>تفاصيل الهويّة</innerText>
+    </item>
+    <item id="txt_p4a_outro">
+      <innerText>الهويّة ستُنْقَذ عندما تغلق هذا المساعد</innerText>
+    </item>
+    <item id="txt_p4a_finish">
+      <innerHTML>لإغلاق هذا المساعد, اضغط انهاء</innerHTML>
+    </item>
+    <item id="btn_p4a_back">
+      <value>&lt; وراء</value>
+      <accessKey>و</accessKey>
+    </item>
+    <item id="finish_a">
+      <value>انهاء</value>
+      <accessKey>ن</accessKey>
+    </item>
+    <item id="btn_p4a_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+
+    <item id="txt_p3b_title">
+      <innerText>معلومات الحساب</innerText>
+    </item>
+    <item id="txt_p3b_tagline">
+      <innerText>يمكن أن تستخدم مغرفةً عامّةً على الإنترنت أو تستخدم خادمًا خاصًّا على شبكتك المتّحدة</innerText>
+    </item>
+    <item id="txt_p3b_server">
+      <innerText>ملقم خدمة الرّسائل الفوريّة</innerText>
+    </item>
+    <item id="txt_p3b_public">
+      <innerHTML>الملقم العامّ على الشّبكة</innerHTML>
+      <accessKey>خ</accessKey>
+    </item>
+    <item id="txt_p3b_private">
+      <innerHTML>ملقم الشّبكة الخاصّ</innerHTML>
+      <accessKey>ش</accessKey>
+    </item>
+    <item id="txt_p3b_username">
+      <innerHTML>اسم المستخدم</innerHTML>
+    </item>
+    <item id="txt_p3b_password">
+      <innerHTML>كلمة السّرّ</innerHTML>
+    </item>
+    <item id="txt_p3b_confirm">
+      <innerHTML>تأكيد كلمة السّرّ</innerHTML>
+    </item>
+    <item id="page3b_newuser">
+      <accessKey>ا</accessKey>
+    </item>
+    <item id="page3b_newpass">
+      <accessKey>ك</accessKey>
+    </item>
+    <item id="page3b_newpass2">
+      <accessKey>ت</accessKey>
+    </item>
+    <item id="txt_p3b_remember">
+      <innerHTML>تذكّر كلمة سرّي</innerHTML>
+      <accessKey>س</accessKey>
+    </item>
+    <item id="txt_p3b_preview">
+      <innerText>IM حسابك</innerText>
+    </item>
+    <item id="btn_p3b_back">
+      <value>&lt; وراء</value>
+      <accessKey>و</accessKey>
+    </item>
+    <item id="page3b_newacc_next">
+      <value>القادم &gt;</value>
+      <accessKey>ق</accessKey>
+    </item>
+    <item id="btn_p3b_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+
+    <item id="txt_p4b_title">
+      <innerText>تسجيل الحساب</innerText>
+    </item>
+    <item id="createacc_autherr">
+      <innerHTML>اضغط  الزّر وراءّ, اطبع اسم المستخدم مختلفًا و حاول ثانية 
+الاسم المستخدم غير متاح
+.الحساب لا يمكن أن يُسَجَّل</innerHTML>
+    </item>
+    <item id="createacc_forbidden">
+      <innerHTML> اضغط الزّر وراء, اختر خادمًا مختلفًا و حاول ثاني
+ .&lt;BR&gt;&lt;BR&gt;.الحساب لا يمكن أن يُسَجَّل . لا يسمح هذا الملقم بانشاء الحسابات الجديدة .</innerHTML>
+    </item>
+    <item id="txt_createacc_commerr">
+      <innerHTML>افحص توصيل شبكتك و حاول ثانية . إذا كنت خلف فايرول, وفّق بين أماكن العلاقة
+&lt;BR&gt;.لا يمكن أن يتّصل بالملقم . تأكّد عنوان الملقم  صحيح</innerHTML>
+    </item>
+    <item id="btn_p4b_retry">
+      <value>حاول ثانية</value>
+    </item>
+    <item id="btn_p4b_settings">
+      <value>تفاصيل الاتصال</value>
+    </item>
+    <item id="createacc_back">
+      <value>&lt; وراء</value>
+      <accessKey>و</accessKey>
+    </item>
+    <item id="createacc_next">
+      <value>القادم &gt;</value>
+      <accessKey>ق</accessKey>
+    </item>
+    <item id="createacc_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+
+    <item id="txt_conn_title">
+      <innerText>تفاصيل الاتصال</innerText>
+    </item>
+    <item id="txt_conn_desc">
+      <innerText>ملقم وكيل</innerText>
+    </item>
+    <item id="txt_conn_ssl">
+      <innerText>(SSL) استخدام وصلةً مشفّرة</innerText>
+    </item>
+    <item id="txt_conn_customport">
+      <innerText>وصّل إلى منفذ غير معياريّ</innerText>
+    </item>
+    <item id="txt_conn_none">
+      <innerText>لا أحد</innerText>
+    </item>
+    <item id="txt_conn_http">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_conn_s4">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_conn_s5">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_conn_host">
+      <innerText>الملقم</innerText>
+    </item>
+    <item id="txt_conn_port">
+      <innerText>المنفذ</innerText>
+    </item>
+    <item id="txt_conn_user">
+      <innerText>اسم المستخدم</innerText>
+    </item>
+    <item id="txt_conn_pass">
+      <innerText>كلمة السّرّ</innerText>
+    </item>
+    <item id="btn_conn_default">
+      <value>Default</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_conn_ok">
+      <value>موافق</value>
+      <accessKey>م</accessKey>
+    </item>
+    <item id="btn_conn_cancel">
+      <value>الغاء الامر</value>
+    </item>
+
+    <item id="txt_p5b_title">
+      <innerText>إكمال المساعد لإضافة الهوية</innerText>
+    </item>
+    <item id="txt_p5b_intro">
+      <innerText>قد أكملت بنجاح  المساعد لإضافة الهويّة</innerText>
+    </item>
+    <item id="txt_p5b_details">
+      <innerText>تفاصيل الهويّة</innerText>
+    </item>
+    <item id="txt_p5b_finish">
+      <innerHTML>لإغلاق هذا المساعد اضغط انهاء</innerHTML>
+    </item>
+    <item id="btn_p5b_back">
+      <value>&lt; وراء</value>
+      <accessKey>و</accessKey>
+    </item>
+    <item id="finish_b">
+      <value>انهاء</value>
+      <accessKey>ن</accessKey>
+    </item>
+    <item id="btn_p5b_cancel">
+      <value>الغاء الأمر</value>
+    </item>
+  </window>
+</translation>

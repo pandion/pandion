@@ -1,0 +1,407 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+	background-color: buttonface;
+	color: buttontext;
+	font-family: Tahoma;
+	font-size: 11px;
+}
+</STYLE>
+
+<SCRIPT language=JScript src="main/XMPPHookIQ.js"></SCRIPT>
+
+<SCRIPT language=JScript>
+
+var gHOOK, gTYPE;
+
+function gettext ( id )
+{
+	return external.globals( 'Translator' ).Translate( 'transport_register', gTYPE + '_' + id );
+}
+
+function outnit ()
+{
+	if ( gHOOK && gHOOK.TTL )
+		gHOOK.Destroy();
+}
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'transport_register', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	document.getElementById( 'begin' ).style.display = 'block';
+
+	gTYPE = external.wnd.params[1];
+	if ( ! ( gTYPE == 'msn' || gTYPE == 'icq' || gTYPE == 'aim' || gTYPE == 'yahoo' || gTYPE == 'gadu' ) )
+		gTYPE = 'default';
+	external.wnd.setTitle( gettext( 'window_title' ) );
+	var keys = [ 'begin_intro', 'newaccount_instructions', 'newaccount_examples', 'creating_busy', 'removing_busy' ];
+	for ( var i = 0; i < keys.length; i++ )
+		document.getElementById( keys[i] ).innerHTML = gettext( keys[i] );
+
+	gHOOK			= new XMPPHookIQ();
+	gHOOK.Callback	= 'receive';
+	gHOOK.Window	= external.wnd;
+
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:register"/></iq>' );
+	dom.documentElement.firstChild.setAttribute( 'xml:lang', external.globals( 'language' ) );
+	dom.documentElement.setAttribute( 'id', gHOOK.Id );
+	dom.documentElement.setAttribute( 'to', external.wnd.params[0] );
+	external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+
+	document.getElementById( 'wait' ).style.display = 'block';
+	setbuttons( 0, 0, 1, 0, 0, 0, 1, 1 );
+	external.wnd.hide( false );
+}
+
+function receive ( iq )
+{
+	if ( iq.Type == 'result' )
+	{
+		if ( document.getElementById( 'begin' ).style.display == 'block' )
+			recv_begin( iq );
+		else if ( document.getElementById( 'removing' ).style.display == 'block' )
+			recv_removing( iq );
+		else if ( document.getElementById( 'creating' ).style.display == 'block' )
+			recv_creating( iq );
+	}
+	else
+	{
+		try
+		{
+			var error	= iq.XMLDOM.selectSingleNode( '/iq/error' );
+			var data	= error.text;
+			var code	= error.getAttribute( 'code' );
+		}
+		catch ( e )
+		{
+			var data = external.globals( 'Translator' ).Translate( 'transport_register', 'error_invalid' );
+			var code = 0;
+		}
+		if ( document.getElementById( 'begin' ).style.display == 'block' )
+			recv_error_begin( code, data );
+		else if ( document.getElementById( 'removing' ).style.display == 'block' )
+			recv_error_removing( code, data );
+		else if ( document.getElementById( 'creating' ).style.display == 'block' )
+			recv_error_creating( code, data );
+	}
+}
+
+function recv_begin ( iq )
+{
+	var temp = iq.XMLDOM.selectSingleNode( '/iq/query/key' );
+	document.getElementById( 'key' ).value = temp ? temp.text : '';
+	if ( iq.XMLDOM.selectSingleNode( '/iq/query/registered' ) && ! ( external.globals( 'ClientServices' ).Services.Exists( external.wnd.params[0] ) && ( external.globals( 'ClientServices' ).Services( external.wnd.params[0] ).Options & 0x001 ) && external.globals( 'ClientServices' ).Services( external.wnd.params[0] ).TransportMode == 0 ) )
+	{
+		document.getElementById( 'registered' ).style.display = 'block';
+		temp = iq.XMLDOM.selectSingleNode( '/iq/query/username' );
+		document.getElementById( 'old_addr' ).innerText = temp ? temp.text : '';
+		temp = iq.XMLDOM.selectSingleNode( '/iq/query/nick' );
+		document.getElementById( 'old_nick' ).innerText = temp ? temp.text : '';
+	}
+	else
+	{
+		document.getElementById( 'newaccount' ).style.display = 'block';
+		temp = iq.XMLDOM.selectSingleNode( '/iq/query/username' );
+		document.getElementById( 'new_addr' ).innerText = temp ? temp.text : '';
+		temp = iq.XMLDOM.selectSingleNode( '/iq/query/nick' );
+		document.getElementById( 'new_nick' ).innerText = temp ? temp.text : '';
+	}
+	setbuttons( 0, 0, 1, 1, 0, 0, 1, 1 );
+	document.getElementById( 'wait' ).style.display			= 'none';
+	document.getElementById( 'clicknext' ).style.display	= 'block';
+}
+
+function recv_error_begin ( code, desc )
+{
+	var show = document.getElementById( 'wait' );
+	if ( code >= 400 )
+		show.innerHTML = external.globals( 'Translator' ).Translate( 'transport_register', 'error_server', [ desc, code ] );
+	else
+		show.innerHTML = external.globals( 'Translator' ).Translate( 'transport_register', 'error_unknown', [ desc, code ] );
+}
+
+function begin_next ()
+{
+	document.getElementById( 'clicknext' ).style.display	= 'none';
+	document.getElementById( 'begin' ).style.display		= 'none';
+	if ( document.getElementById( 'registered' ).style.display == 'block' )
+	{
+		document.getElementById( 'clickfinish' ).style.display			= 'block';
+		document.getElementById( 'registered_wrapper' ).style.display	= 'block';
+		setbuttons( 1, 1, 0, 0, 1, 1, 1, 0 );
+	}
+	else
+	{
+		document.getElementById( 'newaccount_wrapper' ).style.display = 'block';
+		document.getElementById( 'new_addr' ).focus();
+		setbuttons( 1, 1, 1, 1, 0, 0, 1, 1 );
+	}
+}
+
+function registered_back ()
+{
+	document.getElementById( 'registered_wrapper' ).style.display	= 'none';
+	document.getElementById( 'begin' ).style.display				= 'block';
+	document.getElementById( 'clicknext' ).style.display			= 'block';
+	document.getElementById( 'clickfinish' ).style.display			= 'none';
+	setbuttons( 0, 0, 1, 1, 0, 0, 1, 1 );
+}
+
+function newaccount_back ()
+{
+	document.getElementById( 'newaccount_wrapper' ).style.display	= 'none';
+	document.getElementById( 'begin' ).style.display				= 'block';
+	document.getElementById( 'clicknext' ).style.display			= 'block';
+	setbuttons( 0, 0, 1, 1, 0, 0, 1, 1 );
+}
+
+function creating_back ()
+{
+	setbuttons( 1, 1, 1, 1, 0, 0, 1, 1 );
+	document.getElementById( 'wait' ).style.display					= 'none';
+	document.getElementById( 'clicknext' ).style.display			= 'block';
+	document.getElementById( 'creating' ).style.display				= 'none';
+	document.getElementById( 'newaccount_wrapper' ).style.display	= 'block';
+	document.getElementById( 'new_addr' ).focus();
+}
+
+function removing_back ()
+{
+	setbuttons( 1, 1, 0, 0, 1, 1, 1, 0 );
+	document.getElementById( 'clickfinish' ).style.display			= 'block';
+	document.getElementById( 'wait' ).style.display					= 'none';
+	document.getElementById( 'removing' ).style.display				= 'none';
+	document.getElementById( 'registered_wrapper' ).style.display	= 'block';
+}
+
+function newaccount_next ()
+{
+	setbuttons( 1, 0, 1, 0, 0, 0, 1, 1 );
+	document.getElementById( 'newaccount_wrapper' ).style.display	= 'none';
+	document.getElementById( 'creating' ).style.display				= 'block';
+	document.getElementById( 'wait' ).innerHTML						= external.globals( 'Translator' ).Translate( 'transport_register', 'wait' );
+	document.getElementById( 'wait' ).style.display					= 'block';
+	document.getElementById( 'clicknext' ).style.display			= 'none';
+
+	gHOOK			= new XMPPHookIQ();
+	gHOOK.Callback	= 'receive';
+	gHOOK.Window	= external.wnd;
+
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:register"><username/><password/><nick/><key/></query></iq>' );
+	dom.selectSingleNode( '/iq/query/username' ).text = document.getElementById( 'new_addr' ).value;
+	dom.selectSingleNode( '/iq/query/password' ).text = document.getElementById( 'new_pwrd' ).value;
+	dom.selectSingleNode( '/iq/query/nick' ).text = document.getElementById( 'new_nick' ).value;
+	dom.selectSingleNode( '/iq/query/key' ).text = document.getElementById( 'key' ).value;
+	dom.documentElement.firstChild.setAttribute( 'xml:lang', external.globals( 'language' ) );
+	dom.documentElement.setAttribute( 'id', gHOOK.Id );
+	dom.documentElement.setAttribute( 'to', external.wnd.params[0] );
+	external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+}
+
+function recv_creating ( xml )
+{
+	setbuttons( 1, 0, 0, 0, 1, 1, 1, 0 );
+	document.getElementById( 'creating_busy' ).innerHTML = gettext( 'creating_done' );
+	document.getElementById( 'clickfinish' ).style.display = 'block';
+	document.getElementById( 'wait' ).style.display = 'none';
+	external.globals( 'connecttime' ) = ( new Date() ).getTime();
+}
+
+function recv_error_creating ( code, desc )
+{
+	setbuttons( 1, 1, 1, 0, 0, 0, 1, 1 );
+	var show = document.getElementById( 'wait' );
+	if ( code == 401 )
+		show.innerHTML = external.globals( 'Translator' ).Translate( 'transport_register', 'error_auth' );
+	else if ( code >= 500 )
+		show.innerHTML = external.globals( 'Translator' ).Translate( 'transport_register', 'error_server', [ desc, code ] );
+	else
+		show.innerHTML = external.globals( 'Translator' ).Translate( 'transport_register', 'error_unknown', [ desc, code ] );
+}
+
+function remove ()
+{
+	document.getElementById( 'wait' ).innerHTML						= external.globals( 'Translator' ).Translate( 'transport_register', 'wait' );
+	document.getElementById( 'wait' ).style.display					= 'block';
+	document.getElementById( 'registered_wrapper' ).style.display	= 'none';
+	document.getElementById( 'removing' ).style.display				= 'block';
+	document.getElementById( 'clickfinish' ).style.display			= 'none';
+	setbuttons( 1, 0, 1, 0, 0, 0, 1, 1 );
+
+	gHOOK			= new XMPPHookIQ();
+	gHOOK.Callback	= 'receive';
+	gHOOK.Window	= external.wnd;
+
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:register"><remove/></query></iq>' );
+	dom.documentElement.firstChild.setAttribute( 'xml:lang', external.globals( 'language' ) );
+	dom.documentElement.setAttribute( 'id', gHOOK.Id );
+	dom.documentElement.setAttribute( 'to', external.wnd.params[0] );
+	external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+}
+
+function recv_removing ( iq )
+{
+	setbuttons( 1, 0, 0, 0, 1, 1, 1, 0 );
+	document.getElementById( 'clickfinish' ).style.display = 'block';
+	document.getElementById( 'wait' ).style.display = 'none';
+	document.getElementById( 'removing_busy' ).innerHTML = gettext( 'removing_done' );
+
+	/* Remove transport from roster
+	 */
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:roster"><item subscription="remove"/></query></iq>' );
+	dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
+
+	dom.documentElement.firstChild.firstChild.setAttribute( 'jid', external.wnd.params[0] + '/registered' );
+	external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+
+	dom.documentElement.firstChild.firstChild.setAttribute( 'jid', external.wnd.params[0] );
+	external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+
+	/* Remove transport contacts from roster
+	 */
+	var Host = '@' + external.wnd.params[0];
+	var ContactList = external.globals( 'ClientRoster' ).Items;
+	var Addresses = ( new VBArray( ContactList.Keys() ) ).toArray();
+	for ( var i = 0; i < Addresses.length; ++i )
+	{
+		var Address = ContactList( Addresses[i] ).JID;
+		if ( Address.length > Host.length && Address.substr( Address.length - Host.length ) == Host )
+			ContactList( Addresses[i] ).Purge( true );
+	}
+}
+
+function recv_error_removing ( code, desc )
+{
+	setbuttons( 1, 1, 1, 0, 0, 0, 1, 1 );
+	var show = document.getElementById( 'wait' );
+	if ( code >= 400 )
+		show.innerHTML = external.globals( 'Translator' ).Translate( 'transport_register', 'error_server', [ desc, code ] );
+	else
+		show.innerHTML = external.globals( 'Translator' ).Translate( 'transport_register', 'error_unknown', [ desc, code ] );
+}
+
+function back ()
+{
+	if ( document.getElementById( 'registered_wrapper' ).style.display == 'block' )
+		registered_back();
+	else if ( document.getElementById( 'newaccount_wrapper' ).style.display == 'block' )
+		newaccount_back();
+	else if ( document.getElementById( 'creating' ).style.display == 'block' )
+		creating_back();
+	else if ( document.getElementById( 'removing' ).style.display == 'block' )
+		removing_back();
+}
+
+function next ()
+{
+	if ( document.getElementById( 'begin' ).style.display == 'block' )
+		begin_next();
+	else if ( document.getElementById( 'newaccount_wrapper' ).style.display == 'block' )
+		newaccount_next();
+}
+
+function setbuttons ( back_show, back_active, next_show, next_active, finish_show, finish_active, cancel_show, cancel_active )
+{
+	document.getElementById( 'btn_back' ).style.display		= back_show ? 'inline' : 'none';
+	document.getElementById( 'btn_next' ).style.display		= next_show ? 'inline' : 'none';
+	document.getElementById( 'btn_finish' ).style.display	= finish_show ? 'inline' : 'none';
+	document.getElementById( 'btn_cancel' ).style.display	= cancel_show ? 'inline' : 'none';
+	document.getElementById( 'btn_back' ).disabled			= ! back_active;
+	document.getElementById( 'btn_next' ).disabled			= ! next_active;
+	document.getElementById( 'btn_finish' ).disabled		= ! finish_active;
+	document.getElementById( 'btn_cancel' ).disabled		= ! cancel_active;
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="init()" onunload="outnit()" onkeypress="if(event.keyCode==27)external.wnd.close();">
+
+<FORM onsubmit="return false">
+
+<!-- SIDEIMAGE -->
+<IMG src="../images/misc/transport-wiz.gif" style="position: absolute; top: 0px; left: 0px;">
+
+<!-- GROOVE -->
+<DIV style="position: absolute; top: 260px; left: 0px; border-top: 2px groove; width: 100%; height: 10px; background-color: buttonface;">&nbsp;</DIV>
+
+<!-- TRANSPORT KEY -->
+<INPUT type=hidden id=key value="">
+
+<!-- BEGIN -->
+<DIV id=begin style="display: none; position: absolute; top: 0px; left: 148px; padding-top: 10px; padding-left: 10px; font-family: Tahoma; font-size: 11px;">
+<SPAN id=begin_intro></SPAN>
+</DIV>
+
+<!-- REGISTERED -->
+<DIV id=registered_wrapper style="display: none;">
+<DIV id=registered style="display: none; position: absolute; top: 0px; left: 148px; padding-top: 10px; padding-left: 10px; font-family: Tahoma; font-size: 11px;">
+<DIV id=txt_registered></DIV>
+<TABLE cellspacing=2 cellpadding=0 border=0 style="margin: 20px; table-layout: fixed;">
+<COL width=70><COL>
+<TR style="font-family: Tahoma; font-size: 11px;"><TD id=txt_old_addr></TD><TD id=old_addr readonly style="width: 180px; height: 21px; font-family: Tahoma; font-size: 11px;"></TD></TR>
+<TR style="font-family: Tahoma; font-size: 11px;"><TD id=txt_old_nick></TD><TD id=old_nick readonly style="width: 180px; height: 21px; font-family: Tahoma; font-size: 11px;"></TD></TR>
+</TABLE>
+<INPUT type=button style="width: 160px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_remove onclick="remove()">
+</DIV>
+</DIV>
+
+<!-- NEWACCOUNT -->
+<DIV id=newaccount_wrapper style="display: none;">
+<DIV id=newaccount style="display: none; position: absolute; top: 0px; left: 148px; padding-top: 10px; padding-left: 10px; font-family: Tahoma; font-size: 11px;">
+<SPAN id=newaccount_instructions></SPAN>
+<TABLE cellspacing=2 cellpadding=0 border=0 style="margin: 20px; table-layout: fixed;">
+<COL width=70><COL>
+<TR style="font-family: Tahoma; font-size: 11px;"><TD id=txt_new_addr></TD><TD><INPUT id=new_addr style="width: 160px; height: 21px; font-family: Tahoma; font-size: 11px;"></TD></TR>
+<TR style="font-family: Tahoma; font-size: 11px;"><TD>&nbsp;</TD><TD><SPAN id=newaccount_examples></SPAN></TD></TR>
+<TR style="font-family: Tahoma; font-size: 11px;"><TD id=txt_password></TD><TD><INPUT type=password id=new_pwrd style="width: 160px; height: 21px; font-family: Tahoma; font-size: 11px;"></TD></TR>
+<TR style="font-family: Tahoma; font-size: 11px;"><TD id=txt_new_nick></TD><TD><INPUT id=new_nick style="width: 160px; height: 21px; font-family: Tahoma; font-size: 11px;"></TD></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+<!-- CREATING -->
+<DIV id=creating style="display: none; position: absolute; top: 0px; left: 148px; padding-top: 10px; padding-left: 10px; font-family: Tahoma; font-size: 11px;">
+<SPAN id=creating_busy></SPAN>
+</DIV>
+
+<!-- REMOVING -->
+<DIV id=removing style="display: none; position: absolute; top: 0px; left: 148px; padding-top: 10px; padding-left: 10px; font-family: Tahoma; font-size: 11px;">
+<SPAN id=removing_busy></SPAN>
+</DIV>
+
+<!-- PLACEHOLDERS -->
+<DIV id=wait style="display: none; border: 2px groove; padding: 10px; position: absolute; top: 120px; left: 178px; color: buttontext; width: 240px;">
+<B id=txt_requesting1></B>&nbsp;<IMG src="../images/misc/ooo.gif"><BR>
+<BR>
+<SPAN id=txt_requesting2></SPAN>
+</DIV>
+
+<DIV id=clickfinish style="display: none; position: absolute; top: 240px; left: 158px;"></DIV>
+<DIV id=clicknext style="display: none; position: absolute; top: 240px; left: 158px;"></DIV>
+
+<INPUT type=button style="position: absolute; top: 270px; left: 183px; width: 80px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_back onclick="back()">
+<INPUT type=submit style="position: absolute; top: 270px; left: 263px; width: 80px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_next onclick="next()">
+<INPUT type=submit style="position: absolute; top: 270px; left: 263px; width: 80px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_finish onclick="external.wnd.close()">
+<INPUT type=submit style="position: absolute; top: 270px; left: 353px; width: 80px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_cancel onclick="external.wnd.close()">
+
+</FORM>
+
+</BODY>
+</HTML>

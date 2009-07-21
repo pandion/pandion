@@ -1,0 +1,95 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+	color: buttontext;
+}
+</STYLE>
+
+<SCRIPT language=JScript src="main/XMPPAddress.js"></SCRIPT>
+
+<SCRIPT language=JScript>
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'auth_invitation', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	document.getElementById( 'jid' ).innerText = ( new XMPPAddress ( external.wnd.params[1] ) ).CleanAddress();
+	external.wnd.hide( false );
+}
+
+function choice ( accept )
+{
+	var jid = external.wnd.params[1];
+
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<presence/>' );
+	dom.documentElement.setAttribute( 'to', jid );
+	dom.documentElement.setAttribute( 'type', accept ? 'subscribed' : 'unsubscribed' );
+	external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+
+	if ( accept )
+	{
+		if ( ! external.globals( 'ClientRoster' ).Items.Exists( jid ) )
+		{
+			dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:roster"><item/></query></iq>' );
+			dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
+			dom.documentElement.firstChild.firstChild.setAttribute( 'jid', jid );
+			external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+			external.XMPP.SendXML( dom );
+		}
+
+		if
+			(
+				! external.globals( 'ClientRoster' ).Items.Exists( jid )
+				||
+				(
+					! external.globals( 'ClientRoster' ).Items( jid ).Ask
+					&&
+					(
+						external.globals( 'ClientRoster' ).Items( jid ).Subscription == 'none'
+						||
+						external.globals( 'ClientRoster' ).Items( jid ).Subscription == 'from'
+					)
+				)
+			)
+		{
+			dom.loadXML( '<presence type="subscribe"/>' );
+			dom.documentElement.setAttribute( 'to', jid );
+			external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+			external.XMPP.SendXML( dom );
+		}
+	}
+	external.wnd.close();
+}
+
+</SCRIPT>
+
+</HEAD>
+
+<BODY scroll=no bgcolor=buttonface onload="init()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<TABLE height="100%" width="100%" cellpadding=2 cellspacing=0 border=0>
+<TR valign=top>
+	<TD colspan=2 style="font-family: Tahoma; font-size: 11px; color: buttontext; padding: 16px; padding-bottom: 0px;"><SPAN id=txt_from></SPAN><BR><SPAN id=jid></SPAN><BR><BR><SPAN id=txt_question></SPAN></TD>
+</TR>
+<TR>
+	<TD height=1 style="padding-bottom: 10px; padding-left: 10px;">
+		<INPUT type=button style="width: 160px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_view onclick="external.wnd.params[0].dial_userinfo( external.wnd.params[1], '' )">
+	</TD>
+	<TD height=1 align=right style="padding-bottom: 10px; padding-right: 10px;">
+		<INPUT type=button style="width: 100px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_deny onclick="choice(false)">
+		<INPUT type=submit style="width: 100px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_accept onclick="choice(true)">
+	</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>

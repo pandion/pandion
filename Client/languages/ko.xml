@@ -1,0 +1,1260 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<translation xml:lang="ko">
+  <about>
+    <language>Korean</language>
+  </about>
+  <window name="main">
+    <item id="txt_pleasewait">
+      <innerText>잠깐만 기다려 주십시오</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>서버와의 연결이 끊겼습니다</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>다시 연결</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>또는</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>연결 세팅 변경</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>연락처에 대화 상대 추가</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>또는</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>외부 메신저와의 네트워크 트랜스포트 설정</innerText>
+    </item>
+
+    <code id="txt_welcome">${0}에 오심을 환영합니다!</code>
+    <code id="cl_tooltip">${0} 연락처</code>
+    <code id="autoawaymessage">5분 이상 자리 비움</code>
+    <code id="autoxawaymessage">30분 이상 자리 비움</code>
+
+    <code id="menu_file">파일(&amp;F)</code>
+    <code id="menu_file_change">상태 메시지 변경(&amp;m)</code>
+    <code id="menu_file_ffc">채팅 가능함(&amp;F)</code>
+    <code id="menu_file_available">온라인(&amp;A)</code>
+    <code id="menu_file_busy">다른 용무 중(&amp;B)</code>
+    <code id="menu_file_away">자리 비움(&amp;w)</code>
+    <code id="menu_file_xaway">오래 자리 비움(&amp;E)</code>
+    <code id="menu_file_invisible">보이지 않게(&amp;I)</code>
+    <code id="menu_file_offline">오프라인으로 표시(&amp;O)</code>
+    <code id="menu_file_status">내 상태(&amp;s)</code>
+    <code id="menu_file_out">로그 아웃(&amp;o)</code>
+    <code id="menu_file_exit">끝내기(&amp;E)</code>
+
+    <code id="menu_axn">동작(&amp;A)</code>
+    <code id="menu_axn_add">대화 상대 추가...(&amp;A)</code>
+    <code id="menu_axn_join">대화방 들어가기...(&amp;J)</code>
+    <code id="menu_axn_create">대화방 만들기...(&amp;C)</code>
+    <code id="menu_axn_password">패스워드 바꾸기...(&amp;p)</code>
+    <code id="menu_axn_profile">프로필 수정하기...(&amp;E)</code>
+    <code id="menu_axn_avatar">아바타 바꾸기...(&amp;a)</code>
+
+    <code id="menu_tool">도구(&amp;T)</code>
+    <code id="menu_tool_head">헤드라인과 경보(&amp;H)</code>
+    <code id="menu_tool_admin">서버 관리(&amp;a)</code>
+    <code id="menu_tool_traffic">네트워크 트래픽(&amp;N)</code>
+    <code id="menu_tool_aot">항상 위(&amp;A)</code>
+    <code id="menu_tool_settings">설정(&amp;S)</code>
+
+    <code id="menu_help">도움말(&amp;H)</code>
+    <code id="menu_help_manual">온라인 매뉴얼(&amp;O)</code>
+    <code id="menu_help_forum">도움방(&amp;S)</code>
+    <code id="menu_help_contact">연락(&amp;C)</code>
+    <code id="menu_help_about">정보(&amp;A)</code>
+
+    <code id="menu_tray_about">정보(&amp;A) ${0}</code>
+    <code id="menu_tray_settings">설정(&amp;S)</code>
+
+    <code id="wnd_vcard_edit">사용자 정보</code>
+    <code id="wnd_about">${0} 정보</code>
+    <code id="wnd_adduser">대화 상대 찾기/추가</code>
+    <code id="wnd_avatar">아바타 변경</code>
+    <code id="wnd_room_browse">대화방</code>
+    <code id="wnd_room_create">대화방 만들기</code>
+    <code id="wnd_room_invite">대화방 초청</code>
+    <code id="wnd_console">콘솔</code>
+    <code id="wnd_file_send">${0}에 파일 보내기</code>
+    <code id="wnd_file_recv">${0}로 부터 파일 수신</code>
+    <code id="wnd_group_message">그룹 메시지</code>
+    <code id="wnd_headlines">헤드라인 보기</code>
+    <code id="wnd_history">${0} - 메시지 히스토리</code>
+    <code id="wnd_password">패스워드 변경</code>
+    <code id="wnd_settings">설정</code>
+    <code id="wnd_admin_server">서버 관리</code>
+    <code id="wnd_status">상태 메시지</code>
+    <code id="wnd_vcard_view">사용자 정보</code>
+    <code id="wnd_group_create">그룹 만들기</code>
+    <code id="wnd_group_rename">그룹명 변경</code>
+    <code id="wnd_contact_rename">대화 상대명 변경</code>
+    <code id="wnd_authrequest">인증 요청</code>
+
+    <code id="msg_cl_added">${0}이(가) 그의 연락처에 당신을 추가했습니다.</code>
+    <code id="msg_cl_removed">${0}이(가) 그의 연락처에서 당신을 제거했습니다.</code>
+    <code id="msg_blocked">당신은 이 사람의 대화 거부(차단)자 명단에 들어 있습니다.</code>
+    <code id="msg_autherror">로그인을 할 수 없음. 그 이유는 다음과 같을 수 있음:&#13;&#13;- 패스워드가 틀림&#13;- 서버에 해당 계정이 존재 안함&#13;&#13;다시 시도해 주십시오.</code>
+
+    <code id="menu_message">메시지</code>
+    <code id="menu_filetransfer">파일 전송</code>
+    <code id="menu_room_create">신규방 만들기</code>
+    <code id="menu_room_invite">대화방 초청</code>
+    <code id="menu_rename">이름 변경</code>
+    <code id="menu_block">차단</code>
+    <code id="menu_delete">삭제</code>
+    <code id="menu_group_create">신규 그룹 만들기</code>
+    <code id="menu_group_move">이동: </code>
+    <code id="menu_group_copy">복사: </code>
+    <code id="menu_request">인증 재 요청</code>
+    <code id="menu_history">히스토리</code>
+    <code id="menu_profile">프로필</code>
+
+    <code id="cl_waiting_one">읽지 않은 메시지 1개 있습니다</code>
+    <code id="cl_waiting_multiple">읽지 않은 메시지 ${0}개 있습니다</code>
+    <code id="cl_error_notexist">주소가 존재하지 않습니다.</code>
+    <code id="cl_error_cannotadd">${0}을 연락처에 추가할 수 없습니다.&#13;${1}</code>
+    <code id="cl_default_group">연락처</code>
+    <code id="cl_group_rename">그룹 명칭 변경</code>
+    <code id="cl_group_message">메시지 방송</code>
+    <code id="cl_room_create">신규방 만들기</code>
+    <code id="cl_room_invite">대화방 초청</code>
+    <code id="cl_group_empty">이 그룹에 온라인 사용자가 없습니다.</code>
+    <code id="cl_status_empty">상태 메시지 없음</code>
+    <code id="cl_status_offline">오프라인</code>
+    <code id="cl_status_awaiting">인증 대기</code>
+    <code id="cl_status_unknown">상태 모름</code>
+    <code id="cl_status_waiting_one">1개 안 읽은 메시지</code>
+    <code id="cl_status_waiting_multiple">${0}개 안 읽은 메시지</code>
+    <code id="cl_tooltip_offline">주소: ${0}</code>
+    <code id="cl_contact_remove_group">이 사용자를 그룹에서 삭제하려는 것이 확실합니까?</code>
+    <code id="cl_contact_remove_list">이 사용자를 당신의 연락처에서 삭제하려는 것이 확실합니까?</code>
+    <code id="cl_link_open">웹브라우져로 열기</code>
+    <code id="cl_link_copy">hyperlink 주소 복사</code>
+    <code id="cl_link_favorite">즐겨찾기에 추가</code>
+    <code id="cl_ffc">채팅 가능함</code>
+    <code id="cl_available">온라인</code>
+    <code id="cl_busy">다른 용무 중</code>
+    <code id="cl_away">자리 비움</code>
+    <code id="cl_xaway">오래 자리 비움</code>
+    <code id="cl_invisible">보이지 않게</code>
+    <code id="cl_tooltip_online">주소: ${0}&#13;리소스: ${1}</code>
+  </window>
+  <window name="about">
+    <item id="btn_copyright">
+      <value>Copyrights &gt;&gt;</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="copy_darkproject">
+      <innerHTML>대부분의 아이콘과 에모티콘은 저작권이 다음에 있음 : &amp;copy; 2001 Greg Fleming.</innerHTML>
+    </item>
+    <item id="copy_rsa">
+      <innerHTML>MD5 Message-Digest 알고리즘 적용. Copyright RSA Data Security, Inc.</innerHTML>
+    </item>
+    <item id="txt_copyright">
+      <innerHTML>Copyright &amp;copy;</innerHTML>
+    </item>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>프로필 정보 보기</value>
+    </item>
+    <item id="btn_deny">
+      <value>거부</value>
+    </item>
+    <item id="btn_accept">
+      <value>승인</value>
+    </item>
+    <item id="txt_from">
+      <innerText>다음 사람으로부터 인증 요청이 들어 왔습니다:</innerText>
+    </item>
+    <item id="txt_reason">
+      <innerText>이유:</innerText>
+    </item>
+    <item id="txt_add">
+      <innerText>다음 사용자를 내 연락처에 추가</innerText>
+    </item>
+  </window>
+  <window name="admin_users">
+    <item id="btn_refresh">
+      <value>리프레시</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>메시지를 보내기 위해서 계정을 클릭하십시오. 오른쪽을 클릭하여 추가 옵션들을 보십시오.</innerText>
+    </item>
+    <code id="add_to_list">연락처에 추가</code>
+    <code id="tooltip_with">주소: ${0}&#13;리소스: ${1}&#13;온라인 시간: ${2}</code>
+    <code id="tooltip_without">주소: ${0}&#13;온라인 시간: ${1}</code>
+    <code id="loading">로딩 중...</code>
+    <code id="invalid_data">무효한 데이터 수신.</code>
+    <code id="server_error">서버 에러:</code>
+    <code id="server_failed">온라인 사용자 목록 검색 실패.&lt;BR&gt;서버 관리자 접근 권한이 있는 지 확인하십시오.</code>
+    <code id="user">온라인 사용자 1 명</code>
+    <code id="users">온라인 사용자 ${0} 명</code>
+  </window>
+  <window name="admin">
+    <item id="btn_view">
+      <value>모든 온라인 사용자 보기</value>
+    </item>
+    <item id="btn_close">
+      <value>닫기</value>
+    </item>
+    <item id="admin_btn_wall">
+      <value>보내기</value>
+    </item>
+    <item id="admin_btn_motd">
+      <value>보내기</value>
+    </item>
+    <item id="txt_wall_desc">
+      <innerText>현재 온라인 사용자에게 다음 경보가 전송되었습니다.</innerText>
+    </item>
+    <item id="txt_motd_desc">
+      <innerText>사용자들이 로그온 할 때 다음 경보가 전송됩니다.</innerText>
+    </item>
+    <item id="txt_wall">
+      <innerText>메시지 방송</innerText>
+    </item>
+    <item id="txt_motd">
+      <innerText>오늘의 메시지</innerText>
+    </item>
+    <item id="txt_view">
+      <innerText>서버 접속자 모니터.</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>IM 서버를 모니터 또는 관리할 때 이 도구를 사용하십시오.</innerText>
+    </item>
+    <item id="txt_users">
+      <innerText>사용자</innerText>
+    </item>
+    <code id="wnd_users">온라인 사용자</code>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>출력 클리어</value>
+    </item>
+    <item id="btn_send">
+      <value>보내기</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>프레센스</value>
+    </item>
+    <item id="btn_message">
+      <value>메시지</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>네트워크 트래픽:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>Break lines</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>XML 입력:</innerText>
+    </item>
+    <code id="toggle_on">Debug 온</code>
+    <code id="toggle_off">Debug 오프</code>
+    <code id="valid_xml">입력이 유효한 XML 이어야 함. Not just whitespace or plain text.</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>닫기</value>
+    </item>
+    <item id="txt_title">
+      <innerText>헤드라인과 경보</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>뉴스 헤드라인이나 짧은 정보가 수신되면 경보가 띄어 집니다.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>경보나 헤드라인이 수신되지 않음.</innerText>
+    </item>
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>취소</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_custom">
+      <value>커스텀 이미지 ...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>당신의 프로필에 나타낼 개인 이미지를 선택하십시오.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>로딩...</innerText>
+    </item>
+    <code id="error_size">에러: 이미지 크기가 8 KByte 초과.</code>
+    <code id="error_empty">에러: 빈 파일이라 로드 할 수 없음.</code>
+    <code id="error_load">주의: 아바타 이미지 로드 불가.&#13;&#13;${0}</code>
+    <code id="menu_use">이 아바타를 사용</code>
+    <code id="menu_delete">이미지 삭제</code>
+    <code id="wnd_select">아바타 이미지 선택</code>
+    <code id="image_files">8KB 이하의 이미지 사이즈</code>
+    <code id="all_files">모든 파일</code>
+  </window>
+  <window name="mode_select">
+    <item id="ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_preset">
+      <value>메시지 미리 지정...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>당신이 자리를 비워 응답을 할 수 없을 때에도 다른 사용자들이 이 메시지를 볼 수 있음:</innerText>
+    </item>
+    <code id="btn_1">외출</code>
+    <code id="btn_2">통화</code>
+    <code id="btn_3">취침</code>
+    <code id="btn_4">식사</code>
+    <code id="btn_5">회의</code>
+    <code id="btn_6">회식</code>
+    <code id="btn_7">집중</code>
+    <code id="btn_8">근무</code>
+    <code id="btn_9">학교에 공부하러</code>
+    <code id="msg_1">산책 중.</code>
+    <code id="msg_2">전화하고 있음.</code>
+    <code id="msg_3">나, 자고 있음.</code>
+    <code id="msg_4">맛있는 식사 시간, 나갑시다!</code>
+    <code id="msg_5">회의에서 머리를 짜 내는 중.</code>
+    <code id="msg_6">한 잔, 아니면 두 잔</code>
+    <code id="msg_7">나 지금 집중해야 하니까 협조를 바랍니다..</code>
+    <code id="msg_8">끝없는 격무 속에, 아아아...</code>
+    <code id="msg_9">학교에.</code>
+  </window>
+  <window name="mode_select">
+    <code id="configure">헤드라인과 경보 설정</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>취소</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>새 이름:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>취소</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>새 이름:</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>취소</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>새 이름:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>취소</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>새 패스워드 확인:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>새 패스워드:</innerText>
+    </item>
+    <code id="no_match">입력한 패스워드가 일치하지 않음.&#13;&#13;새 패스워드를 2 필드에 모두 입력.</code>
+    <code id="no_pass">새 패스워드 입력.</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="set_version">
+      <innerText>로딩...</innerText>
+    </item>
+    <code id="empty">에모티콘 스타일 없음.</code>
+    <code id="file_error">파일 에러</code>
+    <code id="cannot_load">에모티콘 로딩 실패.</code>
+    <code id="count_one">1 에모티콘</code>
+    <code id="count_multiple">${0} 에모티콘</code>
+  </window>
+  <window name="conference_invitation">
+    <item id="btn_cancel">
+      <value>취소</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_room">
+      <innerText>방:</innerText>
+    </item>
+    <item id="txt_reason">
+      <innerText>이유:</innerText>
+    </item>
+    <code id="invitation">다음으로 부터 대화방 초청을 받았습니다: &#13;${0}</code>
+  </window>
+  <window name="conference_custom">
+    <item id="btn_cancel">
+      <value>취소</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_address">
+      <innerText>대화방 주소:</innerText>
+    </item>
+    <code id="example">예: 내 방@${0}</code>
+    <code id="invalid">무효 대화방 주소.&#13;대화방 주소 입력.</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>취소</value>
+    </item>
+    <item id="txt_invite">
+      <innerText>이 사람들을 초청:</innerText>
+    </item>
+    <item id="txt_invitation">
+      <innerText>초청 메시지</innerText>
+    </item>
+    <item id="invitation">
+      <innerText>미팅 시간</innerText>
+    </item>
+    <item id="txt_server">
+      <innerText>대화방 서버 주소:</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>대화방 이름:</innerText>
+    </item>
+    <item id="txt_info">
+      <innerText>방 정보</innerText>
+    </item>
+    <code id="valid">대화방 이름을 입력하십시오.&#13;일반 문자, 숫자, 밑줄 (_) 및 대쉬 (-)만 사용하십시오.</code>
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>보내기</value>
+    </item>
+    <item id="btn_cancel">
+      <value>취소</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>다음 사람들에게 보내기:</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>일반 메시지</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>경보 통지</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>메시지 형식</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>hyperlink 붙이기</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>메시지</innerText>
+    </item>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>닫기</value>
+    </item>
+    <item id="btn_accept">
+      <value>승인</value>
+    </item>
+    <item id="btn_abort">
+      <value>중지</value>
+    </item>
+    <item id="btn_open">
+      <value>열기</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>남은 시간:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>보낸 사람:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>파일명:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>위치:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>진행 상황:</innerText>
+    </item>
+    <code id="resume">파일이 존재합니다. 파일 수신을 재개 하겠습니까?&#13;&#13;Click yes to resume the file.&#13;Click no to overwrite the file.</code>
+    <code id="cannot_overwrite">파일 덮어쓰기 불가:&#13;${0}&#13;&#13;${1}</code>
+    <code id="incorrect">수신 시작 불가.  틀린 데이터 수신.</code>
+    <code id="title_saving">${1}의 ${0}% 저장</code>
+    <code id="lessthanminute">Less than 1 minute at ${0}/s</code>
+    <code id="onehour">1 hour and</code>
+    <code id="hours">${0} hours and</code>
+    <code id="oneminute">1 minute at</code>
+    <code id="minutes">${0} minutes at</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">수신을 중지하시겠습니까?</code>
+    <code id="aborted">중지</code>
+    <code id="finished">종료</code>
+    <code id="error_timeout">타임아웃 발생.</code>
+    <code id="error_code">에러 코드: ${0}</code>
+    <code id="error_file">파일 에러 코드: ${0}</code>
+    <code id="title_completed">수신 완료 - ${0}</code>
+    <code id="title_failed">수신 실패 - ${0}</code>
+    <code id="error_move">Cannot move completed file:&#13;${0}&#13;&#13;${1}</code>
+    <code id="error_failed">수신 실패.</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>닫기</value>
+    </item>
+    <item id="btn_abort">
+      <value>중지</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>남은 시간:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>받는 사람:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>파일명:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>위치:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>진행 상황:</innerText>
+    </item>
+    <code id="socket">파일 전송 불가.&#13;네트워크 소켓 열기 실패.</code>
+    <code id="file">파일 일기 불가:&#13;${0}</code>
+    <code id="filetransfer">파일 전송:</code>
+    <code id="title_saving">${1}의 ${0}% 전송</code>
+    <code id="lessthanminute">Less than 1 minute at ${0}/s</code>
+    <code id="onehour">1 hour and</code>
+    <code id="hours">${0} hours and</code>
+    <code id="oneminute">1 minute at</code>
+    <code id="minutes">${0} minutes at</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">전송을 중지하시겠습니까?</code>
+    <code id="finished">완료</code>
+    <code id="aborted">중지</code>
+    <code id="error_denied">파일 접근 거부.</code>
+    <code id="error_timeout">타임아웃 발생.</code>
+    <code id="error_code">에러 코드: ${0}</code>
+    <code id="title_completed">전송 완료 - ${0}</code>
+    <code id="title_failed">전송 실패 - ${0}</code>
+    <code id="error_failed">전송 실패.</code>
+  </window>
+  <window name="conference_browse">
+    <item id="btn_cancel">
+      <value>취소</value>
+    </item>
+    <item id="btn_join">
+      <value>가입</value>
+    </item>
+    <item id="btn_create">
+      <value>대화방 만들기</value>
+    </item>
+    <item id="btn_other">
+      <value>다른 방 들어가기</value>
+    </item>
+    <item id="txt_rooms">
+      <innerText>이용할 수 있는 방:</innerText>
+    </item>
+    <item id="txt_people">
+      <innerText>이 방의 사람들:</innerText>
+    </item>
+    <item id="room_info_text">
+      <innerText>왼쪽의 대화방 선택</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>로딩</innerText>
+    </item>
+    <code id="empty">이 방에는 사람들이 없습니다</code>
+    <code id="wnd_conference_custom">다른 방 들어가기</code>
+  </window>
+  <window name="vcard">
+    <code id="save">주의: vCard 파일을 저장할 수 없음.&#13;&#13;${0}</code>
+    <code id="personal">사용자 상세 정보</code>
+    <code id="system">시스템 상세 정보</code>
+
+    <item id="txt_requesting1">
+      <innerText>서버로 정보 요청</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>1분 정도 걸릴 수 있습니다.&lt;BR&gt;조금만 기다려 주십시오.</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>vCard로 저장</value>
+    </item>
+    <item id="btn_refresh">
+      <value>리프레시</value>
+    </item>
+    <item id="btn_close">
+      <value>닫기</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>변경 되돌리기</value>
+    </item>
+    <item id="btn_cancel">
+      <value>취소</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>개인 정보</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>추가 세부 사항</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>홈 주소</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>비즈니스</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>비즈니스 주소</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>시스템</innerText>
+    </item>
+
+    <item id="txt_name">
+      <innerText>성명</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>이름:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>Middle Name:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>성:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>별명:</innerText>
+    </item>
+
+    <item id="txt_email1">
+      <innerText>E-Mail:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>전화:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>이동 전화:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>팩스:</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>추가 세부 사항</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>나이:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>생일:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>성별:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>혼인 여부:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>웹사이트:</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>집 주소</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>주소 1:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>주소 2:</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>시:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>우편 번호:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>도:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>국가:</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>근무처</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>근무처명:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>부서:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>직함:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>담당 업무:</innerText>
+    </item>
+
+    <item id="txt_contact">
+      <innerText>연락처</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>E-Mail:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>전화:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>이동 전화:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>팩스:</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>비즈니스 주소</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>주소 1:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>주소 2:</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>시:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>우편 번호:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>도:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>국가:</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>고객 정보</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>주소:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>리소스:</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>현지 시간:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>소프트웨어:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>버젼:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>OS:</innerText>
+    </item>
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; 뒤로</value>
+    </item>
+    <item id="btn_next">
+      <value>다음 &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>완료</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>취소</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>주소:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>별명:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>주소:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>패스워드:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>별명:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>당신은 이 트랜스포트에 등록되었습니다.&lt;BR&gt;등록 계정은:</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>트랜스포트 중지</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText>서버 접속 중</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>1분 정도 걸릴 수 있습니다.&lt;BR&gt;조금만 기다려 주십시오.</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>이 위저드를 닫기 위해서, 클릭 &lt;B&gt;완료&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>계속하기 위해서, 클릭 &lt;B&gt;다음&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <code id="error_invalid">무효한 데이터 수신</code>
+    <code id="error_server">&lt;B&gt;서버 에러:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;계속할 수 없음.</code>
+    <code id="error_unknown">&lt;B&gt;알 수 없는 에러:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;계속할 수 없음.</code>
+    <code id="error_auth">&lt;B&gt;인증 에러:&lt;/B&gt;&lt;BR&gt;틀린 주소 또는 패스워드.&lt;BR&gt;&lt;BR&gt;계속할 수 없음.</code>
+    <code id="wait">&lt;B&gt;서버 연결 중&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;1분 정도 걸릴 수 있습니다.&lt;BR&gt;조금만 기다려 주십시오.&lt;BR&gt;</code>
+
+    <code id="default_window_title">트랜스포트 설정</code>
+    <code id="default_begin_intro">이 위저드로 트랜스포트 설정을 할 수 있습니다.&lt;BR&gt;트랜스포트는 다른 인스턴트 메신저와의 연동을 지원합니다.&lt;BR&gt;다른 메신저와 연동을 하기 위해서는 해당 메신저의 계정이 필요합니다.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">당신의 계정과 패스워드를 입력하십시오.&lt;BR&gt;별명을 입력할 수도 있습니다.&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">당신의 계정이 트랜스포트에 등록되고 있습니다.</code>
+    <code id="default_removing_busy">당신의 계정이 트랜스포트에서 제거되고 있습니다.&lt;BR&gt;</code>
+    <code id="default_creating_done">당신의 계정이 트랜스포트에 성공적으로 등록되었습니다.</code>
+    <code id="default_removing_done">당신의 계정이 트랜스포트에서 성공적으로 제거되었습니다.</code>
+
+    <code id="msn_window_title">MSN Messenger - 트랜스포트 설정</code>
+    <code id="msn_begin_intro">이 위저드로 MSN 트랜스포트 설정을 할 수 있습니다.&lt;BR&gt;이 트랜스포트를 통해 당신의 MSN 메신저 계정과 연결됩니다.&lt;BR&gt;MSN 메신저 계정이 있는 지 확인하십시오.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">MSN 계정과 패스워드를 입력해 주십시오.&lt;BR&gt;다른 사람들이 볼 수 있는 별명을 입력할 수도 있습니다.&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">예: 홍길동@msn.com, prettywoman@hotmail.com</code>
+    <code id="msn_creating_busy">당신의 계정이 MSN 트랜스포트에 등록되고 있습니다.</code>
+    <code id="msn_removing_busy">당신의 MSN 계정이 트랜스포트에서 제거되고 있습니다.&lt;BR&gt;당신의 MSN 계정으로 기타 다른 서비스 (예. Hotmail, MSN Explorer, etc.)들을 계속 사용할 수 있습니다.&lt;BR&gt;</code>
+    <code id="msn_creating_done">당신의 계정이 MSN 트랜스포트에 성공적으로 등록되었습니다.</code>
+    <code id="msn_removing_done">당신의 계정이 MSN 트랜스포트에서 성공적으로 제거되었습니다.</code>
+
+    <code id="icq_window_title">ICQ - 트랜스포트 설정</code>
+    <code id="icq_begin_intro">이 위저드로 ICQ 트랜스포트 설정을 할 수 있습니다.&lt;BR&gt;이 트랜스포트를 통해 당신의 ICQ 메신저 계정과 연결됩니다.&lt;BR&gt;기존의 ICQ User Identification Number (ICQ &lt;BR&gt;number)가 있어야 합니다.&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">당신의 ICQ 번호와 ICQ 패스워드를 입력해 주십시오.&lt;BR&gt;다른 사람들이 볼 수 있는 별명을 입력할 수도 있습니다.&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">예: 39230793, 158525087</code>
+    <code id="icq_creating_busy">당신의 계정이 ICQ 트랜스포트에 등록되고 있습니다.</code>
+    <code id="icq_removing_busy">당신의 ICQ 계정이 트랜스포트에서 제거되고 있습니다.&lt;BR&gt;</code>
+    <code id="icq_creating_done">당신의 계정이 ICQ 트랜스포트에 성공적으로 등록되었습니다.</code>
+    <code id="icq_removing_done">당신의 계정이 ICQ 트랜스포트에서 성공적으로 제거되었습니다.</code>
+
+    <code id="yahoo_window_title">Yahoo! 메신저 - 트랜스포트 설정</code>
+    <code id="yahoo_begin_intro">이 위저드로 Yahoo! 트랜스포트 설정을 할 수 있습니다.&lt;BR&gt;이 트랜스포트를 통해 당신의 Yahoo! 메신저 계정과 연결됩니다.&lt;BR&gt;기존의 Yahoo! 계정이 있어야 합니다.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Yahoo! 유저명과 패스워드를 입력해 주십시오.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">당신의 계정이 Yahoo! 트랜스포트에 등록되고 있습니다.</code>
+    <code id="yahoo_removing_busy">당신의 Yahoo! 계정이 트랜스포트에서 제거되고 있습니다.&lt;BR&gt;당신의 Yahoo! 계정으로 기타 다른 서비스 (예. Yahoo! mail, Yahoo! Messenger, etc.)들을 계속 사용할 수 있습니다.&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">당신의 계정이 Yahoo! 트랜스포트에 성공적으로 등록되었습니다.</code>
+    <code id="yahoo_removing_done">당신의 계정이 Yahoo! 트랜스포트에서 성공적으로 제거되었습니다.</code>
+
+    <code id="aim_window_title">AOL Instant Messenger - 트랜스포트 설정</code>
+    <code id="aim_begin_intro">이 위저드로 AOL IM 트랜스포트 설정을 할 수 있습니다.&lt;BR&gt;이 트랜스포트를 통해 당신의 AOL 메신저 계정과 연결됩니다.&lt;BR&gt;기존의 AOL 메신저 계정이 있어야 합니다.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">당신의 AOL IM 스크린명과 패스워드를 입력해 주십시오.&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">당신의 계정이 AOL IM 트랜스포트에 등록되고 있습니다.</code>
+    <code id="aim_removing_busy">당신의 AOL IM 계정이 트랜스포트에서 제거되고 있습니다.&lt;BR&gt;다른 소프트웨어로 당신의 AOL IM 계정을 계속 사용하실 수 있습니다.&lt;BR&gt;</code>
+    <code id="aim_creating_done">당신의 계정이 AOL IM 트랜스포트에 성공적으로 등록되었습니다.</code>
+    <code id="aim_removing_done">당신의 계정이 AOL IM 트랜스포트에서 성공적으로 제거되었습니다.</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>이동</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>저장</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>인쇄</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>삭제</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>메시지 히스토리</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>찾기:</innerText>
+    </item>
+    <code id="loading">메시지 히스토리를 로딩...</code>
+    <code id="empty">메시지 히스토리가 비였음.</code>
+    <code id="error_load">메시지 히스토리를 로딩할 수 없음:&#13;${0}</code>
+    <code id="one_message">1 메시지</code>
+    <code id="many_messages">${0} 메시지</code>
+    <code id="tooltip_save">오늘의 메시지 히스토리를 저장...</code>
+    <code id="tooltip_print">오늘의 메시지 히스토리를 인쇄...</code>
+    <code id="tooltip_delete">오늘의 메시지 히스토리를 삭제...</code>
+    <code id="error_open">에러: 메시지 히스토리를 열지 못함.</code>
+    <code id="error_read">에러: 메시지 히스토리를 일기 못함.</code>
+    <code id="delete_confirm">${0}의 전체 메시지 히스토리를 정말로 삭제하시겠습니까?</code>
+    <code id="delete_confirm_date">${0} 날짜의 메시지 히스토리를 정말로 삭제하시겠습니까?</code>
+    <code id="delete_cannot">메시지 히스토리 제거 실패: ${0}&#13;&#13;메시지가 삭제되지 않았음.</code>
+    <code id="delete_cannot_temp">임시 파일 만들기 실패: ${0}&#13;&#13;메시지가 삭제되지 않았음.</code>
+    <code id="delete_cannot_open">메시지 히스토리 열기 실패: ${0}&#13;&#13;메시지가 삭제되지 않았음.</code>
+    <code id="delete_cannot_read">메시지 히스토리 읽기 실패: ${0}&#13;&#13;메시지가 삭제되지 않았음.</code>
+    <code id="delete_cannot_write">임시 파일에 쓰기 실패: ${0}&#13;&#13;메시지가 삭제되지 않았음.</code>
+    <code id="error_print">인쇄 실패.&#13;메시지 히스토리가 비였음.</code>
+    <code id="error_save">메시지 히스토리 저장 실패.&#13;${0}</code>
+  </window>
+  <window name="preferences">
+    <item id="txt_startup">
+      <innerText>시작시 자동으로 동작</innerText>
+    </item>
+    <item id="txt_autoaway">
+      <innerText>당신이 몇 분 이상 컴퓨터를 쓰지 않으면 당신의 상태가 "자리 비움" 으로 바뀌어 집니다.</innerText>
+    </item>
+    <item id="txt_displayawaymsg_left">
+      <innerText>이 메시지를 다음 시간이 지나면 표시, </innerText>
+    </item>
+    <item id="txt_displayxawaymsg_left">
+      <innerText>이 메시지를 다음 시간이 지나면 표시, </innerText>
+    </item>
+    <item id="txt_displayawaymsg_right">
+      <innerText>분:</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_right">
+      <innerText>분:</innerText>
+    </item>
+    <item id="txt_blocking">
+      <innerText>이 거부자 명단은 당신이 메시지를 받고 싶지 않은 사람들의 주소를 담고 있습니다.</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>거부자 명단에 있지 않은 사람들로부터의 메시지를 전시</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>거부자 명단</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>거부 해제</value>
+    </item>
+    <item id="block_btn_view">
+      <value>프로필 보기</value>
+    </item>
+    <item id="txt_ssl">
+      <innerText>암호화 연결 사용 (SSL)</innerText>
+    </item>
+    <item id="txt_firewall_proxy">
+      <innerText>방화벽과 프록시 서버</innerText>
+    </item>
+    <item id="txt_proxy1">
+      <innerText>없음</innerText>
+    </item>
+    <item id="txt_proxy2">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_proxy3">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_proxy4">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_proxyserver">
+      <innerText>서버:</innerText>
+    </item>
+    <item id="txt_proxyport">
+      <innerText>포트:</innerText>
+    </item>
+    <item id="txt_proxyuser">
+      <innerText>사용자명:</innerText>
+    </item>
+    <item id="txt_proxypass">
+      <innerText>패스워드:</innerText>
+    </item>
+    <item id="txt_portmap">
+      <innerText>파일전송 포트맵 (NAT, firewall)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>호스트:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>포트:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>모든 메시지를 히스토리 보관소에 저장</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>누가 나의 승인을 요청하면</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText> 나에게 물음</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>모든 요청 승인</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>내 연락처의 모든 사용자들에 대해서 승인, 다른 사람들에 대해서는 물음...</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>모든 요청에 대해서 거절</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>메시지 도착 시 음악 소리를</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>다른 사람의 온라인 상태 도착 시 음악 소리를</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>다른 사람이 오프라인 될 시 음악 소리를</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>탐색</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>탐색</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>탐색</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>취소</value>
+    </item>
+    <item id="lbl_autoaway">
+      <innerText>자동 자리비움 표시</innerText>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>거부(차단)</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>접속</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>프라이버시</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>소리</innerText>
+    </item>
+    <code id="autoaway">자동 자리비움 메시지</code>
+    <code id="blocking">거부자 명단</code>
+    <code id="connection">접속 설정</code>
+    <code id="privacy">프라이버시</code>
+    <code id="sound">공지 알림 소리</code>
+    <code id="reconnect">변경을 적용하기 위해서 접속을 해야 합니다.&#13;&#13;지금 재 접속을 하시겠습니까?</code>
+    <code id="shortcut">메시지 보내기/받기</code>
+    <code id="choose_sound">공지 알림 소리 선택</code>
+    <code id="file_audio">오디오 파일</code>
+    <code id="file_any">모든 파일</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>사람 찾기/추가</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>찾고 싶은 사람의 공개된 정보를 이용하거나 또는 그의 사용자명을 통해서 그의 관한 정보를 검색할 수 있습니다.</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>연락처를 어떻게 추가하시겠습니까?</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <!-- 이 부문을 다시 확인... s를 밑줄
+      <innerHTML>I want to &lt;U&gt;s&lt;/U&gt;earch for someone.</innerHTML>
+      -->
+      <innerHTML>사람을 검색하고 싶음.</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <!-- 이 부문을 다시 확인... r을 밑 줄
+      <innerHTML>Se&lt;U&gt;r&lt;/U&gt;vice:</innerHTML>
+      -->
+      <innerHTML>서비스:</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <!-- 이 부문을 다시 확인... a 를 밑줄
+      <innerHTML>I &lt;U&gt;a&lt;/U&gt;lready know the person's instant messaging address.</innerHTML>
+      -->
+      <innerHTML>이미 그 사람의 메신저 사용자명을 알고 있습니다.</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <!-- 이 부문을 다시 확인... e를 밑줄
+      <innerHTML>N&lt;U&gt;e&lt;/U&gt;twork:</innerHTML>
+      -->
+      <innerHTML>네트워크:</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <!-- 이 부문을 다시 확인...
+      <innerHTML>&lt;U&gt;U&lt;/U&gt;sername:</innerHTML>
+      -->
+      <innerHTML>사용자명:</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>다른 인스턴트 메신저를 쓰는 상대와 통신하기 위해서는 그 메신저 트랜스포트에 등록해야 합니다. (예, MSN 메신저 사용자와 연결되기 위해서 MSN 트랜스포트를 등록).</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>트랜스포트 설정</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>Next &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_p1_cancel">
+      <value>취소</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>사용자명 처리</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>트랜스포트가 사용자명을 검증하고 있습니다.</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; 뒤로</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>다음 &gt;</value>
+    </item>
+    <item id="page1b_btn_cancel">
+      <value>취소</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>검색틀 요청</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>검색틀은 검색할 수 있는 모든 필드들과 사용법을 담고 있습니다.</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; 뒤로</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>다음 &gt;</value>
+    </item>
+    <item id="page1c_btn_cancel">
+      <value>취소</value>
+    </item>
+
+    <item id="txt_p2_title">
+      <innerText>메시지 요청</innerText>
+    </item>
+    <item id="txt_p2_tagline">
+      <innerText>메시지를 상대에게 보내어 당신이 왜 그의 승인을 바라는 지 알게 할 수 있습니다.</innerText>
+    </item>
+    <item id="page2_btn_back">
+      <value>&lt; 뒤로</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page2_btn_finish">
+      <value>완료</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="page2_btn_cancel">
+      <value>취소</value>
+    </item>
+    <item id="txt_p2_desc">
+      <innerText>승인 요청이 다음 사람에게 전송:</innerText>
+    </item>
+    <item id="txt_p2_user">
+      <innerText>사용자명:</innerText>
+    </item>
+    <item id="txt_p2_network">
+      <innerText>네트워크:</innerText>
+    </item>
+    <item id="txt_p2_message">
+      <!--  다시 확인
+      <innerHTML>Enter a &lt;U&gt;m&lt;/U&gt;essage (optional):</innerHTML>
+      -->
+      <innerHTML>메시지 입력(옵션):</innerHTML>
+    </item>
+    <item id="page2_message">
+      <innerText>우리 인스턴트 메시징을 해요...</innerText>
+    </item>
+    <item id="txt_p2_close">
+      <innerHTML>요청을 보내고 위저드를 닫으려면, 클릭 &lt;B&gt;완료&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; 뒤로</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>검색</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="page3_btn_cancel">
+      <value>취소</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText>검색 결과</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>사용자의 개인 신상 정보를 보거나 또는 사용자를 당신의 연락처에 추가할 수 있습니다.</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; 뒤로</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>다음 &gt;</value>
+    </item>
+    <item id="page4_btn_cancel">
+      <value>취소</value>
+    </item>
+    <code id="correct">정확한 사용자명을 입력하십시오.&#13;&#13;예: 홍길동123@${0}</code>
+    <code id="example_address">예: 홍길동123@${0}</code>
+    <code id="enter_username">당신이 연결하고 싶은 사람의 사용자명을 입력하십시오.</code>
+    <code id="contacting_transport">&lt;B&gt;트랜스포트 연결 중...&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;1분 정도 걸릴 수 있습니다.&lt;BR&gt;잠시 기다려 주십시오.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;검색 서비스 연결 중...&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;1분 정도 걸릴 수 있습니다.&lt;BR&gt;잠시 기다려 주십시오.&lt;BR&gt;</code>
+    <code id="error_transport">&lt;B&gt;서버 에러:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;사용자를 당신의 연락처에 추가할 수 없음.&lt;BR&gt;정확한 사용자명을 입력하였는 지 확인해 주십시오.</code>
+    <code id="error_search">&lt;B&gt;서버 에러:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;검색틀 다운로드 실패.&lt;BR&gt;나중에 다시 시도하던 지 또는 다른 서비스를 선택해 주십시오.</code>
+    <code id="search_title">사용자 검색</code>
+    <code id="search_tagline">일치되는 매치 조건의 사람을 검색하기 위해서 필드에 입력.</code>
+    <code id="firstname">이름:</code>
+    <code id="lastname">성:</code>
+    <code id="nick">별명:</code>
+    <code id="email">Email 주소:</code>
+    <code id="searching">검색 중 ...</code>
+    <code id="add">연락처에 추가</code>
+    <code id="view">프로필 보기</code>
+  </window>
+</translation>

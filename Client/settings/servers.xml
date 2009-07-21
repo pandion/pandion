@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<servers>
+<!-- <conference public="yes" default="yes">conference.jabber.org</conference> -->
+<xmpp default="yes">pandion.be</xmpp>
+<xmpp>jabber.org</xmpp>
+</servers>

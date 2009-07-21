@@ -1,0 +1,112 @@
+﻿<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+}
+INPUT {
+	font-family: Tahoma;
+	font-size: 11px;
+	height: 23px;
+}
+</STYLE>
+
+<SCRIPT language=JScript>
+
+var template_iq = '<iq to="" type=""><query xmlns=""></query></iq>';
+var template_presence = '<presence><show></show><status></status><priority></priority></presence>';
+var template_message = '<message to="" type=""><body></body></message>';
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'console', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	external.globals( 'debug' ) = true;
+	document.getElementById( 'toggle' ).value = external.globals( 'debug' ) ? external.globals( 'Translator' ).Translate( 'console', 'toggle_on' ) : external.globals( 'Translator' ).Translate( 'console', 'toggle_off' );
+	document.getElementById( 'area' ).value = external.globals( 'stderr' ).join( '' );
+}
+
+function console_clear ()
+{
+	document.getElementById( 'area' ).value = '';
+	var buffer = external.globals( 'stderr' );
+	while ( buffer.length )
+		buffer.pop();
+}
+
+function toggle_debug ()
+{
+	if ( external.globals( 'debug' ) )
+	{
+		external.globals( 'debug' ) = false;
+		document.getElementById( 'toggle' ).value = external.globals( 'Translator' ).Translate( 'console', 'toggle_off' );
+	}
+	else
+	{
+		external.globals( 'debug' ) = true;
+		document.getElementById( 'toggle' ).value = external.globals( 'Translator' ).Translate( 'console', 'toggle_on' );
+	}
+}
+
+function toggle_wrap ( check )
+{
+	var area = document.getElementById( 'area' );
+	area.wrap = check ? 'soft' : 'off';
+}
+
+function redraw ( l )
+{
+	document.getElementById( 'area' ).value = external.globals( 'stderr' ).join( '' );
+}
+
+function send ()
+{
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( document.getElementById( 'raw' ).value );
+	if ( dom.documentElement )
+	{
+		external.wnd.params.warn( 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+	else
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'console', 'valid_xml' ), external.globals( 'softwarename' ), 0 | 64 );
+}
+
+</SCRIPT>
+
+</HEAD>
+
+<BODY style="margin: 0px;" scroll=no bgcolor=buttonface onload="init()">
+
+<TABLE height="100%" width="100%" style="table-layout: fixed;">
+<COL><COL width=110>
+<TR height=15 valign=bottom>
+	<TD colspan=2 style="font-family: Tahoma; font-size: 11px;" id=txt_traffic></TD>
+</TR>
+<TR valign=top>
+	<TD><TEXTAREA id=area readonly wrap=off style="overflow: scroll; height: 100%; width: 100%; font-family: Arial;"></TEXTAREA></TD>
+	<TD>
+		<INPUT type=button style="width: 100%;" onclick="toggle_debug()" id=toggle>
+		<INPUT type=button style="width: 100%;" onclick="console_clear()" id=btn_clear>
+		<INPUT type=checkbox id=linewrap onpropertychange="toggle_wrap(this.checked)"><LABEL for=linewrap style="font-family: Tahoma; font-size: 11px;" id=txt_break></LABEL>
+	</TD>
+</TR>
+<TR height=15 valign=bottom>
+	<TD colspan=2 style="font-family: Tahoma; font-size: 11px;" id=txt_input></TD>
+</TR>
+<TR height=100 valign=top>
+	<TD><TEXTAREA id=raw wrap=off onpropertychange="document.getElementById( 'btn_send' ).disabled = ! this.value.length" style="overflow: auto; height: 100%; width: 100%; font-family: Andale Mono, Andale, Lucida Console, Courier New;"></TEXTAREA></TD>
+	<TD>
+		<INPUT type=button style="width: 100%;" onclick="send()" id=btn_send disabled>
+		<INPUT type=button style="width: 100%;" onclick="document.getElementById( 'raw' ).value = template_iq" id=btn_iq>
+		<INPUT type=button style="width: 100%;" onclick="document.getElementById( 'raw' ).value = template_presence" id=btn_presence>
+		<INPUT type=button style="width: 100%;" onclick="document.getElementById( 'raw' ).value = template_message" id=btn_message>
+	</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>

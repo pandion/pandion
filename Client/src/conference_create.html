@@ -1,0 +1,203 @@
+﻿<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	background-color: buttonface;
+	color: buttontext;
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+TD {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: windowtext;
+}
+INPUT.button {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: buttontext;
+	width: 90px;
+	height: 24px;
+}
+INPUT.text {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: buttontext;
+	width: 220px;
+	height: 22px;
+}
+#preview {
+	border: 1px solid #555555;
+	padding: 4px;
+	width: 300px;
+	height: 23px;
+	text-align: center;
+	overflow: hidden;
+	background-color: infobackground;
+	color: infotext;
+	font-size: 11px;
+	font-family: Tahoma;
+	font-weight: bold;
+}
+</STYLE>
+
+<SCRIPT language=JScript src="main/XMPPAddress.js"></SCRIPT>
+
+<SCRIPT language=JScript>
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'conference_create', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+
+	var Keys		= new Array();
+	var Address		= new XMPPAddress( external.globals( 'cfg' )( 'conferenceroom' ) );
+	var Addresses	= new ActiveXObject( 'Scripting.Dictionary' );
+
+	if ( Address.Host.length )
+	{
+		Addresses.Add( Address.Host, null );
+		Keys.push( Address.Host );
+	}
+
+	var List = external.globals( 'ClientServices' ).FindByOptions( 0x0020 );
+	for ( var i = 0; i < List.length; ++i )
+		if ( ! Addresses.Exists( List[i].JID ) )
+		{
+			Addresses.Add( List[i].JID, true );
+			Keys.push( List[i].JID );
+		}
+
+	var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+	dom.async = false;
+	dom.resolveExternals = false;
+	dom.load( external.globals( 'cwd' ) + '..\\settings\\servers.xml' );
+	List = dom.selectNodes( '/servers/conference' );
+	for ( var i = 0; i < List.length; ++i )
+		if ( ! Addresses.Exists( List.item(i).text.toLowerCase() ) )
+		{
+			Addresses.Add( List.item(i).text.toLowerCase(), null );
+			Keys.push( List.item(i).text.toLowerCase() );
+		}
+
+	var Keys = ( new VBArray( Addresses.Keys() ) ).toArray();
+	for ( var i = 0; i < Keys.length; ++i )
+	{
+		var Option = document.createElement( 'OPTION' );
+		Option.text = Option.value = Keys[i];
+		document.getElementById( 'services' ).add( Option );
+	}
+
+	if ( Address.Host.length )
+	{
+		document.getElementById( 'service' ).value = Address.Host;
+		if ( Address.User.length )
+		{
+			document.getElementById( 'room' ).focus();
+			document.getElementById( 'room' ).value = Address.User;
+		}
+		else
+			document.getElementById( 'service' ).focus();
+	}
+	else if ( Keys.length )
+	{
+		document.getElementById( 'service' ).value = Keys[0];
+		document.getElementById( 'room' ).focus();
+	}
+	else
+		document.getElementById( 'service' ).focus();
+
+	CheckFields();
+
+	external.wnd.hide( false );
+}
+
+function CheckFields ()
+{
+	var Service	= document.getElementById( 'service' ).value.toLowerCase();
+	var Room	= document.getElementById( 'room' ).value.replace( /[\s]+/gm, '.' ).replace( /['"´`:()]/g, '' ).toLowerCase();
+	if ( Service.length && Room.length )
+	{
+		document.getElementById( 'preview' ).value = Room + '@' + Service;
+		document.getElementById( 'btn_ok' ).disabled = false;
+	}
+	else
+	{
+		document.getElementById( 'preview' ).value = external.globals( 'Translator' ).Translate( 'conference_create', 'incomplete' );
+		document.getElementById( 'btn_ok' ).disabled = true;
+	}
+}
+
+function CreateRoom ()
+{
+	external.globals( 'cfg' )( 'conferenceroom' ) = document.getElementById( 'room' ).value + '@' + document.getElementById( 'service' ).value;
+	external.wnd.params[0].dial_conference( document.getElementById( 'preview' ).value );
+	external.wnd.close();
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no onload="Begin()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="event.returnValue = false;">
+	<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0>
+		<TR valign=top>
+			<TD style="padding: 16px; padding-bottom: 0px;">
+				<SPAN id=txt_instructions></SPAN>
+				<TABLE cellspacing=0 cellpadding=0 border=0 style="margin: 20px; margin-bottom: 0px;">
+					<COLGROUP>
+						<COL width=180>
+						<COL>
+					</COLGROUP>
+					<TR>
+						<TD id=txt_service></TD>
+						<TD>
+							<SELECT id=services style="width: 220px; height: 22px; clip: rect( 0 220 22 202 ); position: absolute;" tabindex="-1" onchange="document.getElementById( 'service' ).value = this.value; document.getElementById( 'service' ).select();"></SELECT>
+							<INPUT class=text type=text id=service style="position: relative; top: -1px; padding-right: 20px;" onpropertychange="CheckFields()">
+						</TD>
+					</TR>
+					<TR>
+						<TD></TD>
+						<TD id=txt_example></TD>
+					</TR>
+					<TR height=20>
+						<TD colspan=2></TD>
+					</TR>
+					<TR>
+						<TD id=txt_room></TD>
+						<TD>
+							<INPUT class=text type=text id=room onpropertychange="CheckFields()">
+						</TD>
+					</TR>
+					<TR height=30>
+						<TD colspan=2></TD>
+					</TR>
+					<TR>
+						<TD id=txt_preview colspan=2></TD>
+					</TR>
+					<TR height=8>
+						<TD colspan=2></TD>
+					</TR>
+					<TR>
+						<TD colspan=2 align=center>
+							<INPUT id=preview readonly>
+						</TD>
+					</TR>
+				</TABLE>
+			</TD>
+		</TR>
+		<TR valign=top height=45>
+			<TD style="padding: 10px; padding-left: 0px; border-top: 2px groove;" align=right>
+				<INPUT type=submit class=button id=btn_ok onclick="CreateRoom()">
+				<INPUT type=button class=button id=btn_cancel onclick="external.wnd.close();">
+			</TD>
+		</TR>
+	</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

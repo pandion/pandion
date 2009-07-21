@@ -1,0 +1,106 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<SCRIPT language=JScript src="main/pass_code.js"></SCRIPT>
+<SCRIPT language=JScript>
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'pass_change', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	document.getElementById( 'new1' ).focus();
+	external.wnd.hide( false );
+}
+
+function ok ()
+{
+	var cfg  = external.globals( 'cfg' );
+	var new1 = document.getElementById( 'new1' ).value;
+	var new2 = document.getElementById( 'new2' ).value;
+
+	if ( new1 != new2 )
+	{
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'pass_change', 'no_match' ), external.globals( 'softwarename' ), 0 | 48 );
+		document.getElementById( 'new1' ).select();
+		return false;
+	}
+	else if ( ! new1.length )
+	{
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'pass_change', 'no_pass' ), external.globals( 'softwarename' ), 0 | 48 );
+		document.getElementById( 'new1' ).focus();
+		return false;
+	}
+	else
+	{
+		cfg( 'password' ) = new1;
+		external.globals( 'last_password' ) = pass_code( true, cfg( 'password' ) );
+		external.windows( 'MainWindow' ).Do( 'SaveCommonProfile', null );
+
+		/* Change password
+		 */
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:register"><username/><password/></query></iq>' );
+		dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
+		dom.documentElement.setAttribute( 'to', cfg( 'server' ) );
+		dom.selectSingleNode( '/iq/query/username' ).text = cfg( 'username' ) + ( external.globals( 'ClientServices' ).Admin ? '@' + cfg( 'server' ) : '' );
+		dom.selectSingleNode( '/iq/query/password' ).text = new1;
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+
+		external.windows( 'MainWindow' ).Do( 'SettingsSave', null );
+		external.wnd.close();
+	}
+}
+
+</SCRIPT>
+<STYLE>
+BODY {
+	cursor: default;
+	margin: 8px;
+	padding: 0px;
+}
+INPUT.text {
+	height: 22px;
+	font-family: Tahoma;
+	font-size: 11px;
+	width: 100%;
+}
+TD {
+	font-family: Arial;
+	font-size: 11px;
+	color: windowtext;
+}
+INPUT.btn {
+	width: 90px;
+	height: 24px;
+	font-family: Tahoma;
+	font-size: 11px;
+}
+</STYLE>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="init()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="ok(); return false;">
+<TABLE width="100%" border=0 cellpadding=2 cellspacing=0 style="table-layout: fixed;">
+<COL width=180><COL>
+<TR>
+	<TD id=txt_password></TD>
+	<TD><INPUT type=password class=text id=new1></TD>
+</TR>
+<TR>
+	<TD id=txt_confirm></TD>
+	<TD><INPUT type=password class=text id=new2></TD>
+</TR>
+<TR>
+	<TD colspan=2 align=right style="padding-top: 10px;">
+		<INPUT type=submit class=btn id=btn_ok>
+		<INPUT type=button class=btn id=btn_cancel onclick="external.wnd.close()">
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

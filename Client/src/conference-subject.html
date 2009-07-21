@@ -1,0 +1,73 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<SCRIPT language=JScript>
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'conference-subject', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	external.wnd.hide( false );
+	document.getElementById( 'subject' ).focus();
+	document.getElementById( 'subject' ).value = external.wnd.params[1].Subject;
+}
+
+function SetSubject ()
+{
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<message type="groupchat"><subject/></message>' );
+	dom.documentElement.setAttribute( 'xml:lang', external.globals( 'language' ) );
+	dom.documentElement.setAttribute( 'to', external.wnd.params[1].Address.ShortAddress() );
+	dom.documentElement.firstChild.text = document.getElementById( 'subject' ).value;
+	external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+	external.wnd.close();
+}
+
+</SCRIPT>
+<STYLE>
+BODY {
+	cursor: default;
+	margin: 8px;
+	padding: 0px;
+}
+INPUT.text {
+	height: 22px;
+	font-family: Tahoma;
+	font-size: 11px;
+	width: 100%;
+}
+TD {
+	font-family: Arial;
+	font-size: 11px;
+	color: windowtext;
+}
+INPUT.btn {
+	width: 90px;
+	height: 24px;
+	font-family: Tahoma;
+	font-size: 11px;
+}
+</STYLE>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="Begin()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="SetSubject(); return false;">
+<TABLE width="100%" border=0 cellpadding=2 cellspacing=0 style="table-layout: fixed;">
+<COL width=110><COL>
+<TR>
+	<TD id=txt_subject></TD>
+	<TD><INPUT type=text class=text id=subject></TD>
+</TR>
+<TR>
+	<TD colspan=2 align=right style="padding-top: 8px;">
+		<INPUT type=submit class=btn id=btn_ok>
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

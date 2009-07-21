@@ -1,0 +1,585 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+	background-color: buttonface;
+	color: buttontext;
+}
+LABEL {
+	cursor: default;
+}
+INPUT {
+	font-family: Tahoma;
+	font-size: 11px;
+}
+INPUT.text {
+	padding-left: 2px;
+}
+INPUT.disabled {
+	padding-left: 2px;
+	font-family: Tahoma;
+	font-size: 11px;
+	background-color: buttonface;
+	color: graytext;
+}
+TD.header {
+	padding-left: 20px;
+	padding-right: 70px;
+	padding-top: 10px;
+	font-size: 11px;
+	font-family: Tahoma;
+	color: windowtext;
+	border-bottom: 2px groove;
+	background: window url(../images/brand/default.ico) no-repeat scroll 98% center;
+}
+LABEL, LEGEND, FIELDSET {
+	cursor: default;
+}
+#page_account_id_preview {
+	border: 1px solid #555555;
+	padding: 4px;
+	width: 275px;
+	height: 23px;
+	text-align: center;
+	overflow: hidden;
+	background-color: infobackground;
+	color: infotext;
+	font-size: 11px;
+	font-family: Tahoma;
+	font-weight: bold;
+}
+</STYLE>
+<SCRIPT language=JScript src="main/XMPPAddress.js"></SCRIPT>
+<SCRIPT language=JScript src="main/XMPPHookIQ.js"></SCRIPT>
+<SCRIPT language=JScript>
+
+var gHOOK = false;
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'sign_up', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+
+	external.globals( 'cfg' ) = external.wnd.params.file2hash( external.globals( 'cwd' ) + '..\\settings\\default.xml' );
+
+	if ( external.globals( 'showsignupserver' ) != 'yes' )
+		document.getElementById( 'data_server' ).parentNode.parentNode.style.display = 'none';
+	if ( external.globals( 'showsignuppreview' ) != 'yes' )
+		document.getElementById( 'txt_page_account_preview' ).parentNode.style.display = 'none';
+	if ( external.globals( 'showsignupemail' ) != 'yes' )
+		document.getElementById( 'txt_page_account_email' ).parentNode.style.display = 'none';
+
+	if ( external.globals( 'fixedserver' ).length )
+	{
+		document.getElementById( 'data_server' ).value						= external.globals( 'fixedserver' );
+		document.getElementById( 'data_server' ).disabled					= true;
+		document.getElementById( 'page_account_server_select' ).disabled	= true;
+	}
+	else
+	{
+		var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+		dom.async = false;
+		dom.resolveExternals = false;
+		dom.load( external.globals( 'cwd' ) + '..\\settings\\servers.xml' );
+		var list = dom.selectNodes( '/servers/xmpp' );
+		for ( var i = 0; i < list.length; ++i )
+		{
+			var opt = document.createElement( 'OPTION' );
+			opt.text = opt.value = list.item(i).text;
+			if ( list.item(i).getAttribute( 'default' ) == 'yes' )
+			{
+				opt.selected = true;
+				document.getElementById( 'data_server' ).value = opt.text;
+			}
+			document.getElementById( 'page_account_server_select' ).add( opt );
+		}
+	}
+
+	Disconnect();
+	gopage( 'page_welcome' );
+	external.wnd.hide( false );
+}
+
+function End ()
+{
+	if ( gHOOK && gHOOK.TTL )
+	{
+		gHOOK.Destroy();
+		Disconnect();
+	}
+
+	if ( external.windows.Exists( 'connection_settings' ) )
+		external.windows( 'connection_settings' ).close();
+
+	if ( document.getElementById( 'page_finished' ).style.display == 'block' || ( document.getElementById( 'page_creating' ).style.display == 'block' && document.getElementById( 'btn_page_creating_cancel' ).disabled ) )
+		external.wnd.params.login( new XMPPAddress( external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) ), external.globals( 'cfg' )( 'password' ) );
+	else
+		external.wnd.params.dial_login();
+}
+
+function Cancel ()
+{
+	if ( external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'sign_up', 'close_confirm' ), external.globals( 'softwarename' ), 4 | 48 ) == 6 )
+		external.wnd.close();
+}
+
+function Disconnect ()
+{
+	if ( external.globals( 'XMPPConnected' ) )
+	{
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: </stream:stream>' );
+		external.XMPP.SendText( '</stream:stream>' );
+	}
+	external.XMPP.Disconnect();
+}
+
+function Preview ()
+{
+	var Username	= document.getElementById( 'data_username'	).value;
+	var Server		= document.getElementById( 'data_server'	).value;
+	document.getElementById( 'btn_page_account_next'	).disabled	= ! ( Username.length && Server.length );
+	document.getElementById( 'page_account_id_preview'	).value		= Username.length && Server.length ? Username + '@' + Server : external.globals( 'Translator' ).Translate( 'sign_up', 'incomplete' );
+}
+
+function gopage ( PageName )
+{
+	switch ( PageName )
+	{
+	case 'page_welcome':
+		document.getElementById( 'page_welcome'				).style.display = 'block';
+		document.getElementById( 'page_nickname'			).style.display = 'none';
+		document.getElementById( 'page_welcome'				).focus();
+		document.getElementById( 'btn_page_welcome_next'	).focus();
+	break;
+	case 'page_nickname':
+		document.getElementById( 'page_welcome'		).style.display = 'none';
+		document.getElementById( 'page_nickname'	).style.display = 'block';
+		document.getElementById( 'page_account'		).style.display = 'none';
+		document.getElementById( 'data_name'		).focus();
+		document.getElementById( 'data_name'		).select();
+	break;
+	case 'page_account':
+		document.getElementById( 'page_nickname'	).style.display = 'none';
+		document.getElementById( 'page_account'		).style.display = 'block';
+		document.getElementById( 'page_creating'	).style.display = 'none';
+
+		if ( ! document.getElementById( 'data_username' ).value.length )
+			document.getElementById( 'data_username' ).value = document.getElementById( 'data_name' ).value.replace( /\s+/gm, '.' ).toLowerCase();
+
+		if ( document.getElementById( 'data_server' ).value.length )
+		{
+			document.getElementById( 'data_password' ).focus();
+			document.getElementById( 'data_password' ).select();
+		}
+		else
+		{
+			document.getElementById( 'data_server' ).focus();
+			document.getElementById( 'data_server' ).select();
+		}
+	break;
+	case 'page_creating':
+		var cfg = external.globals( 'cfg' );
+
+		cfg( 'nick'		) = document.getElementById( 'data_name'		).value;
+		cfg( 'username'	) = document.getElementById( 'data_username'	).value;
+		cfg( 'password'	) = document.getElementById( 'data_password'	).value;
+		cfg( 'server'	) = document.getElementById( 'data_server'		).value;
+		external.globals( 'last_password_remember' ) = document.getElementById( 'data_remember' ).checked;
+
+		if ( cfg( 'password' ) != document.getElementById( 'data_password_confirm' ).value )
+		{
+			external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'sign_up', 'pass_match' ), external.globals( 'softwarename' ), 0 | 48 );
+			document.getElementById( 'data_password_confirm' ).focus();
+			document.getElementById( 'data_password_confirm' ).select();
+			return;
+		}
+
+		document.getElementById( 'progressbar1'					).innerText = document.getElementById( 'progressbar2' ).innerText = external.globals( 'Translator' ).Translate( 'sign_up', 'contacting' );
+		document.getElementById( 'progressbar2'					).style.clip = 'rect( auto auto auto 0% )';
+		document.getElementById( 'page_creating'				).style.display = 'block';
+		document.getElementById( 'page_account'					).style.display = 'none';
+		document.getElementById( 'txt_page_creating_busy'		).innerHTML = external.globals( 'Translator' ).Translate( 'sign_up', 'registered' );
+		document.getElementById( 'txt_page_creating_autherr'	).style.display = 'none';
+		document.getElementById( 'txt_page_creating_forbidden'	).style.display = 'none';
+		document.getElementById( 'page_creating_commerr'		).style.display = 'none';
+		document.getElementById( 'btn_page_creating_back'		).disabled = true;
+		document.getElementById( 'btn_page_creating_cancel'		).disabled = false;
+
+		if ( ! cfg( 'resource' ).length )
+			cfg( 'resource' ) = external.globals( 'softwarename' );
+
+		/* Proxy settings
+		 */
+		external.globals( 'proxyport' ) = isNaN( parseInt( external.globals( 'proxyport' ), 10 ) ) ? 0 : parseInt( external.globals( 'proxyport' ), 10 );
+		if ( external.globals( 'proxymethod' ) == 'http' )
+			external.XMPP.SetProxyServer(
+				external.globals( 'proxyaddress' ),
+				external.globals( 'proxyport' ),
+				'',
+				''
+			);
+		else
+			external.XMPP.SetProxyServer( '', 0, '', '' );
+
+		/* Attempt the connection
+		 */
+		external.windows( 'MainWindow' ).Do( 'warn', 'EVNT: Connecting to ' + cfg( 'server' ) );
+		external.XMPP.Connect(
+			external.globals( 'serveraddress' ).length ? external.globals( 'serveraddress' ) : cfg( 'server' ),
+			external.globals( 'serverport' ).length ? external.globals( 'serverport' ) : ( external.globals( 'encryption' ) == 'ssl' ? 5223 : 5222 ),
+			external.globals( 'encryption' ) == 'ssl' ? 1 : 0,
+			external.globals( 'proxymethod' ) == 'http' ? 1 : 0
+		);
+	break;
+	case 'page_finished':
+		document.getElementById( 'page_creating'			).style.display = 'none';
+		document.getElementById( 'page_finished'			).style.display = 'block';
+		document.getElementById( 'btn_page_finished_finish'	).focus();
+	break;
+	}
+}
+
+function step1_error ()
+{
+	/* STATUS 0%
+	 * show error information
+	 */
+	if ( document.getElementById( 'page_creating' ).style.display == 'block' && document.getElementById( 'btn_page_creating_next' ).disabled && document.getElementById( 'btn_page_creating_back' ).disabled )
+	{
+		Disconnect();
+		document.getElementById( 'progressbar2'					).style.clip = 'rect( auto auto auto 0% )';
+		document.getElementById( 'progressbar1'					).innerText = document.getElementById( 'progressbar2' ).innerText = external.globals( 'Translator' ).Translate( 'sign_up', 'failure' );
+		document.getElementById( 'txt_page_creating_busy'		).innerHTML = '&nbsp;<BR>&nbsp;<BR>';
+		document.getElementById( 'page_creating_commerr'		).style.display = 'block';
+		document.getElementById( 'btn_page_creating_back'		).disabled = false;
+		document.getElementById( 'btn_page_creating_back'		).focus();
+	}
+}
+
+function step1_recv ( iq )
+{
+	/* STATUS 25%
+	 * get jabber:iq:register
+	 */
+	document.getElementById( 'progressbar2' ).style.clip = 'rect( auto auto auto 25% )';
+	document.getElementById( 'progressbar1' ).innerText = document.getElementById( 'progressbar2' ).innerText = external.globals( 'Translator' ).Translate( 'sign_up', 'requesting' );
+
+	gHOOK			= new XMPPHookIQ();
+	gHOOK.Window	= external.wnd;
+	gHOOK.Callback	= 'step2_recv';
+
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:register"/></iq>' );
+	dom.documentElement.setAttribute( 'id', gHOOK.Id );
+	external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+}
+
+function step2_recv ( iq )
+{
+	if ( iq.Type == 'result' )
+	{
+		/* STATUS 50%
+		 * set jabber:iq:register
+		 */
+		document.getElementById( 'progressbar2' ).style.clip = 'rect( auto auto auto 50% )';
+		document.getElementById( 'progressbar1' ).innerText = document.getElementById( 'progressbar2' ).innerText = external.globals( 'Translator' ).Translate( 'sign_up', 'sending' );
+
+		gHOOK			= new XMPPHookIQ();
+		gHOOK.Window	= external.wnd;
+		gHOOK.Callback	= 'step3_recv';
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="set"><query><username/><password/></query></iq>' );
+		dom.selectSingleNode( '/iq/query/username' ).text = external.globals( 'cfg' )( 'username' );
+		dom.selectSingleNode( '/iq/query/password' ).text = external.globals( 'cfg' )( 'password' );
+		if ( external.globals( 'showsignupemail' ) == 'yes' )
+		{
+			var Email	= dom.createElement( 'email' );
+			Email.text	= document.getElementById( 'data_email' ).value;
+			dom.documentElement.firstChild.appendChild( Email );
+		}
+		dom.documentElement.setAttribute( 'id', gHOOK.Id );
+		dom.documentElement.firstChild.setAttribute( 'xmlns', 'jabber:iq:register' );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+	else
+	{
+		/* STATUS 0%
+		 * show error information
+		 */
+		Disconnect();
+		document.getElementById( 'progressbar2'					).style.clip = 'rect( auto auto auto 0% )';
+		document.getElementById( 'progressbar1'					).innerText = document.getElementById( 'progressbar2' ).innerText = external.globals( 'Translator' ).Translate( 'sign_up', 'failure' );
+		document.getElementById( 'txt_page_creating_busy'		).innerHTML = '&nbsp;<BR>&nbsp;<BR>';
+		document.getElementById( 'txt_page_creating_forbidden'	).style.display = 'block';
+		document.getElementById( 'btn_page_creating_back'		).disabled = false;
+		document.getElementById( 'btn_page_creating_back'		).focus();
+	}
+}
+
+function step3_recv ( iq )
+{
+	if ( iq.Type == 'result' )
+	{
+		recv_finish();
+	}
+	else
+	{
+		/* STATUS 0%
+		 * show error information
+		 */
+		Disconnect();
+		document.getElementById( 'progressbar2'					).style.clip = 'rect( auto auto auto 0% )';
+		document.getElementById( 'progressbar1'					).innerText = document.getElementById( 'progressbar2' ).innerText = external.globals( 'Translator' ).Translate( 'sign_up', 'failure' );
+		document.getElementById( 'txt_page_creating_busy'		).innerHTML = '&nbsp;<BR>&nbsp;<BR>';
+		document.getElementById( 'txt_page_creating_autherr'	).style.display = 'block';
+		document.getElementById( 'btn_page_creating_back'		).disabled = false;
+		document.getElementById( 'btn_page_creating_back'		).focus();
+	}
+}
+
+function recv_finish ()
+{
+	/* STATUS 100%
+	 * write profile to disk
+	 */
+	document.getElementById( 'progressbar2'				).style.clip = 'rect( auto auto auto 100% )';
+	document.getElementById( 'progressbar1'				).innerText = document.getElementById( 'progressbar2' ).innerText = external.globals( 'Translator' ).Translate( 'sign_up', 'completed' );
+	document.getElementById( 'btn_page_creating_back'	).disabled = true;
+	document.getElementById( 'btn_page_creating_next'	).disabled = false;
+	document.getElementById( 'btn_page_creating_cancel'	).disabled = true;
+	document.getElementById( 'btn_page_creating_next'	).focus();
+
+	var cfg = external.globals( 'cfg' );
+	var Address = new XMPPAddress( cfg( 'username' ) + '@' + cfg( 'server' ) );
+
+	if ( ! external.Directory.Exists( external.globals( 'usersdir' ) + 'Profiles\\' + Address.ShortAddress() ) )
+		external.Directory.Create( external.globals( 'usersdir' ) + 'Profiles\\' + Address.ShortAddress() );
+
+	external.globals( 'settingsfile' ) = external.globals( 'usersdir' ) + 'Profiles\\' + Address.ShortAddress() + '\\settings.xml';
+
+	document.getElementById( 'page_finished_details' ).value =	external.globals( 'Translator' ).Translate( 'sign_up', 'address'	) + ' ' + cfg( 'username' ) + '@' + cfg( 'server' ) + '\n' +
+																external.globals( 'Translator' ).Translate( 'sign_up', 'nickname'	) + ' ' + document.getElementById( 'data_name' ).value + '\n\n' +
+																external.globals( 'Translator' ).Translate( 'sign_up', 'userdir'	) + ' ' + external.globals( 'usersdir' ) + 'Profiles\\' + cfg( 'username' ) + '@' + cfg( 'server' ) + '\\';
+
+	var Password = cfg( 'password' );
+	cfg( 'password' ) = '';
+
+	external.wnd.params.hash2file( cfg, external.globals( 'settingsfile' ) );
+
+	cfg( 'password' ) = Password;
+
+	Disconnect();
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no onload="Begin()" onunload="End()" onkeydown="if ( event.keyCode == 27 ) Cancel(); else if ( event.keyCode == 123 ) external.wnd.params.dial_console();">
+
+<!-- Welcome -->
+<FORM onsubmit="event.returnValue = false; gopage( 'page_nickname' )">
+	<TABLE id=page_welcome width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="display: none; position: absolute; left: 0px; top: 0px; margin: 0px; table-layout: fixed;">
+		<COLGROUP>
+			<COL width=132>
+			<COL>
+		</COLGROUP>
+		<TR valign=top>
+			<TD rowspan=2 style="background: highlight url(../images/misc/add-profile-welcome.gif)">&nbsp;</TD>
+			<TD style="padding: 10px; font-size: 11px; font-family: Tahoma; color: windowtext; background-color: window;">
+				<DIV id=txt_page_welcome_title style="font-size: 16px; font-family: Tahoma; font-weight: bold;"></DIV>
+				<BR>
+				<SPAN id=txt_page_welcome_intro></SPAN>
+			</TD>
+		</TR>
+		<TR height=30 valign=top>
+			<TD id=txt_page_welcome_next style="padding: 10px; font-size: 11px; font-family: Tahoma; color: windowtext; background-color: window;"></TD>
+		</TR>
+		<TR valign=top height=45>
+			<TD colspan=2 align=right style="padding: 10px; border-top: 2px groove;">
+				<INPUT type=submit id=btn_page_welcome_next style="height: 23px; width: 80px; font-size: 11px;">&nbsp;
+				<INPUT type=button id=btn_page_welcome_cancel style="height: 23px; width: 80px; font-size: 11px;" onclick="Cancel()">
+			</TD>
+		</TR>
+	</TABLE>
+</FORM>
+
+<!-- Nickname -->
+<FORM onsubmit="event.returnValue = false; gopage( 'page_account' )">
+	<TABLE id=page_nickname width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="display: none; position: absolute; left: 0px; top: 0px; margin: 0px;">
+		<TR valign=top height=60>
+			<TD class=header>
+				<B id=txt_page_nickname_title></B><BR>
+				<DIV id=txt_page_nickname_tagline style="margin-left: 20px"></DIV>
+			</TD>
+		</TR>
+		<TR valign=top>
+			<TD style="padding-left: 20px; padding-top: 20px; font-size: 11px; font-family: Tahoma; color: windowtext;">
+				<DIV id=txt_page_nickname_desc></DIV>
+				<BR>
+				<BR>
+				<TABLE border=0 cellspacing=0 cellpadding=0 style="margin-left: 20px; margin-top: 6px;">
+					<TR>
+						<TD id=txt_page_nickname_name width=110 style="font-size: 11px; font-family: Tahoma; color: windowtext;"></TD>
+						<TD>
+							<INPUT type=text id=data_name style="font-size: 11px; width: 220px; height: 22px;" onpropertychange="document.getElementById( 'btn_page_nickname_next' ).disabled = ( /^\s*$/ ).test( this.value );">
+						</TD>
+					</TR>
+				</TABLE>
+			</TD>
+		</TR>
+		<TR valign=top height=45>
+			<TD align=right style="padding: 10px; border-top: 2px groove;">
+				<INPUT type=button id=btn_page_nickname_back style="height: 23px; width: 80px; font-size: 11px;" onclick="gopage( 'page_welcome' )"><INPUT type=submit id=btn_page_nickname_next disabled style="height: 23px; width: 80px; font-size: 11px;">&nbsp;
+				<INPUT type=button id=btn_page_nickname_cancel style="height: 23px; width: 80px; font-size: 11px;" onclick="Cancel()">
+			</TD>
+		</TR>
+	</TABLE>
+</FORM>
+
+<!-- Account -->
+<FORM onsubmit="event.returnValue = false; gopage( 'page_creating' )">
+<TABLE id=page_account width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="display: none; position: absolute; left: 0px; top: 0px; margin: 0px;">
+	<COLGROUP>
+		<COL width=145>
+		<COL>
+	</COLGROUP>
+	<TR valign=top height=60>
+		<TD colspan=2 class=header>
+			<B id=txt_page_account_title></B><BR>
+			<DIV id=txt_page_account_tagline style="margin-left: 20px"></DIV>
+		</TD>
+	</TR>
+	<TR valign=top>
+		<TD colspan=2 style="padding-left: 30px; padding-right: 30px; padding-top: 10px; font-size: 11px; font-family: Tahoma; color: windowtext;">
+			<TABLE border=0 cellspacing=0 cellpadding=0 style="margin-left: 20px; margin-top: 16px;">
+				<TR style="padding-bottom: 16px;">
+					<TD width=140 id=txt_page_account_server style="font-size: 11px; font-family: Tahoma; color: windowtext;"></TD>
+					<TD>
+						<SELECT id=page_account_server_select style="width: 220px; height: 22px; clip: rect( 0 220 22 202 ); position: absolute;" tabindex="-1" onchange="data_server.value = this.value; data_server.focus(); data_server.select();"></SELECT>
+						<INPUT type=text id=data_server onpropertychange="Preview()" style="position: relative; top: -1px; padding-right: 20px; font-size: 11px; width: 220px; height: 22px;">
+					</TD>
+				</TR>
+				<TR style="padding-bottom: 16px;">
+					<TD width=140 id=txt_page_account_username style="font-size: 11px; font-family: Tahoma; color: windowtext;"></TD>
+					<TD>
+						<INPUT type=text id=data_username onpropertychange="Preview()" style="font-size: 11px; width: 220px; height: 22px;">
+					</TD>
+				</TR>
+				<TR>
+					<TD width=140 id=txt_page_account_password style="font-size: 11px; font-family: Tahoma; color: windowtext;"></TD>
+					<TD>
+						<INPUT type=password id=data_password onpropertychange="Preview()" style="font-size: 11px; width: 220px; height: 22px;">
+					</TD>
+				</TR>
+				<TR>
+					<TD width=140 id=txt_page_account_confirm style="font-size: 11px; font-family: Tahoma; color: windowtext;"></TD>
+					<TD>
+						<INPUT type=password id=data_password_confirm style="font-size: 11px; width: 220px; height: 22px;">
+					</TD>
+				</TR>
+				<TR style="padding-bottom: 16px;">
+					<TD>&nbsp;</TD>
+					<TD style="font-size: 11px; font-family: Tahoma; color: windowtext;">
+						<INPUT type=checkbox id=data_remember>&nbsp;<LABEL for=data_remember id=txt_page_account_remember></LABEL>
+					</TD>
+				</TR>
+				<TR>
+					<TD width=140 id=txt_page_account_email style="font-size: 11px; font-family: Tahoma; color: windowtext;"></TD>
+					<TD>
+						<INPUT type=text id=data_email style="font-size: 11px; width: 220px; height: 22px;">
+					</TD>
+				</TR>
+				<TR style="padding-top: 8px;">
+					<TD width=140 id=txt_page_account_preview style="font-size: 11px; font-family: Tahoma; color: windowtext;"></TD>
+					<TD><INPUT id=page_account_id_preview readonly></TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR valign=top height=45>
+		<TD style="padding: 10px 0 0 10px; border-top: 2px groove;">
+			<INPUT type=button style="height: 24px; width: 180px; font-size: 11px;" id=btn_page_account_settings onclick="external.wnd.params.dial_connection_settings()">
+		</TD>
+		<TD align=right style="padding: 10px; border-top: 2px groove;">
+			<INPUT type=button id=btn_page_account_back style="height: 23px; width: 80px; font-size: 11px;" onclick="gopage( 'page_nickname' )"><INPUT type=submit id=btn_page_account_next disabled style="height: 23px; width: 80px; font-size: 11px;">&nbsp;
+			<INPUT type=button id=btn_page_account_cancel style="height: 23px; width: 80px; font-size: 11px;" onclick="Cancel()">
+		</TD>
+	</TR>
+</TABLE>
+</FORM>
+
+<!-- Creating -->
+<FORM onsubmit="event.returnValue = false; gopage( 'page_finished' )">
+	<TABLE id=page_creating width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="display: none; position: absolute; left: 0px; top: 0px; margin: 0px;">
+		<TR valign=top height=60>
+			<TD class=header>
+				<B id=txt_page_creating_title></B>
+			</TD>
+		</TR>
+		<TR valign=top>
+			<TD style="padding-left: 40px; padding-right: 40px; padding-top: 10px; font-size: 11px; font-family: Tahoma; color: windowtext;">
+				<SPAN id=txt_page_creating_busy></SPAN>
+				<BR>
+				<BR>
+				<BR>
+				<DIV align=center id=progressbar1 style="width: 350px; height: 24px; padding-top: 2px; border: 2px inset; position: absolute; background-color: highlight; color: highlighttext;"></DIV>
+				<DIV align=center id=progressbar2 style="width: 350px; height: 24px; padding-top: 2px; border: 2px inset; clip: rect( auto auto auto 0 ); position: absolute; background-color: window; color: windowtext;"></DIV>
+				<DIV id=txt_page_creating_autherr style="display: none; padding-top: 64px;"></DIV>
+				<DIV id=txt_page_creating_forbidden style="display: none; padding-top: 64px;"></DIV>
+				<DIV id=page_creating_commerr style="display: none; padding-top: 40px;">
+					<DIV id=txt_page_creating_commerr></DIV>
+					<CENTER style="padding-top: 20px;">
+						<INPUT type=button style="height: 24px; width: 200px; font-size: 11px;" id=btn_page_creating_retry onclick="gopage( 'page_creating' )"><BR>
+						<BR>
+						<INPUT type=button style="height: 24px; width: 200px; font-size: 11px;" id=btn_page_creating_settings onclick="external.wnd.params.dial_connection_settings()"><BR>
+					</CENTER>
+				</DIV>
+			</TD>
+		</TR>
+		<TR valign=top height=45>
+			<TD align=right style="padding: 10px; border-top: 2px groove;">
+				<INPUT type=button id=btn_page_creating_back disabled style="height: 23px; width: 80px; font-size: 11px;" onclick="gopage( 'page_account' )"><INPUT type=submit id=btn_page_creating_next disabled style="height: 23px; width: 80px; font-size: 11px;">&nbsp;
+				<INPUT type=button id=btn_page_creating_cancel style="height: 23px; width: 80px; font-size: 11px;" onclick="Cancel()">
+			</TD>
+		</TR>
+	</TABLE>
+</FORM>
+
+<!-- Finished -->
+<FORM onsubmit="event.returnValue = false; external.wnd.close();">
+	<TABLE id=page_finished width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="display: none; position: absolute; left: 0px; top: 0px; margin: 0px; table-layout: fixed;">
+		<COL width=132><COL>
+		<TR valign=top>
+			<TD rowspan=2 style="background: highlight url(../images/misc/add-profile-welcome.gif);">&nbsp;</TD>
+			<TD style="padding: 10px; font-size: 11px; font-family: Tahoma; color: windowtext; background-color: window;">
+				<DIV id=txt_page_finished_title style="font-size: 16px; font-family: Tahoma; font-weight: bold;"></DIV>
+				<BR>
+				<DIV id=txt_page_finished_intro></DIV>
+				<BR>
+				<BR>
+				<DIV id=txt_page_finished_details></DIV>
+				<TEXTAREA readonly id=page_finished_details style="padding-left: 2px; font-size: 11px; font-family: Tahoma; color: windowtext; width: 100%; height: 100px;"></TEXTAREA>
+			</TD>
+		</TR>
+		<TR height=40>
+			<TD id=txt_page_finished_finish style="padding: 10px; font-size: 11px; font-family: Tahoma; color: windowtext; background-color: window;"></TD>
+		</TR>
+		<TR valign=top height=45>
+			<TD colspan=2 align=right style="padding: 10px; border-top: 2px groove;">
+				<INPUT type=button id=btn_page_finished_back disabled style="height: 23px; width: 80px; font-size: 11px;"><INPUT type=submit id=btn_page_finished_finish style="height: 23px; width: 80px; font-size: 11px;">&nbsp;
+				<INPUT type=button id=btn_page_finished_cancel disabled style="height: 23px; width: 80px; font-size: 11px;">
+			</TD>
+		</TR>
+	</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

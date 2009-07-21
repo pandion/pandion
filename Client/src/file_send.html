@@ -1,0 +1,367 @@
+﻿<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+TD {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: buttontext;
+}
+#bar_white, #bar_black {
+	position: absolute;
+	padding-top: 2px;
+	font-size: 11px;
+	font-family: Tahoma;
+	height: 22px;
+	width: 100%;
+	border: 2px inset;
+	text-align: center;
+}
+</STYLE>
+
+<SCRIPT language=JScript src="main/XMPPHookIQ.js"></SCRIPT>
+
+<SCRIPT language=JScript>
+
+var gPath, gHost, gPort, gSession, gInterval, gHook, gCookie, gError = '';
+
+var gProgressBufferSeconds = 10;
+var gProgressTimePerUpdate = 500;
+var gProgressLastSize = 0;
+var gProgressTotalDeltas = 0;
+var gProgressCounter = 0;
+var gProgressDeltas = new Array( Math.ceil( gProgressBufferSeconds * ( 1000 / gProgressTimePerUpdate ) ) );
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'file_send', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+
+	document.getElementById( 'username' ).value = external.globals( 'ClientRoster' ).Items.Exists( external.wnd.params[0] ) ? external.globals( 'ClientRoster' ).Items( external.wnd.params[0] ).Name : external.wnd.params[0];
+
+	for ( var i = gProgressDeltas.length - 1; i >= 0; --i )
+		gProgressDeltas[i] = 0;
+
+	gHost = external.XMPP.ConnectionIP;
+	if ( external.globals( 'cfg' )( 'filetransferhost' ).length )
+		gHost = external.globals( 'cfg' )( 'filetransferhost' );
+	else if ( external.IPs.length )
+	{
+		var hosts = external.IPs.substr( 0, external.IPs.length - 1 ).split( ';' );
+		for ( var i = 0; i < hosts.length; ++i )
+			if ( ! ( hosts[i].substr( 0, 9 ) == '127.0.0.1' || hosts[i].substr( 0, 8 ) == '192.168.' || hosts[i].substr( 0, 3 ) == '10.' || hosts[i].substr( 0, 7 ) == '172.16.' ) )
+			{
+				gHost = hosts[i];
+				break;
+			}
+		if ( i == hosts.length && hosts.length )
+			gHost = hosts[0];
+	}
+
+	external.HTTPEngine.subscribe( external.wnd );
+
+	if ( ! pickfile() )
+		return external.wnd.close();
+
+	if ( ! external.globals( 'HTTPEnginePort' ) )
+	{
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'file_send', 'socket' ), external.globals( 'softwarename' ), 0 | 48 );
+		return external.wnd.close();
+	}
+
+	gPort = external.globals( 'HTTPEnginePort' );
+	gPath = '/' + external.StringToSHA1( Math.random() ) + '/' + encodeURIComponent( document.getElementById( 'filename' ).value );
+	gCookie = external.HTTPEngine.ShareFile( document.getElementById( 'location' ).value, gPath );
+	if ( ! gCookie )
+	{
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'file_recv', 'file', [ document.getElementById( 'location' ).value ] ), external.globals( 'softwarename' ), 0 | 48 );
+		return external.wnd.close();
+	}
+
+	external.wnd.hide( false );
+
+	var domain = external.wnd.params[0];
+	if ( domain.indexOf( '@' ) != -1 )
+		domain = domain.substr( 1 + domain.indexOf( '@' ) );
+
+	if ( external.globals( 'ClientServices' ).Services.Exists( domain ) && external.globals( 'ClientServices' ).Services( domain ).Options & 0x0001 )
+	{
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<message><body/></message>' );
+		dom.documentElement.firstChild.text = external.globals( 'Translator' ).Translate( 'file_send', 'filetransfer' ) + '\nhttp://' + gHost + ':' + gPort + gPath + '\n' + makeprettysize( external.File( document.getElementById( 'location' ).value ).Size, 1 );
+		dom.documentElement.setAttribute( 'to', external.wnd.params[0] + ( external.wnd.params[1].length ? '/' + external.wnd.params[1] : '' ) );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+	else
+	{
+		gHook = new XMPPHookIQ( external.wnd.params[2] );
+		gHook.Callback = 'receiveiq';
+		gHook.Window = external.wnd;
+		gHook.TTL = -1;
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:oob"><url/><desc/></query></iq>' );
+		dom.selectSingleNode( '/iq/query/url' ).text = 'http://' + gHost + ':' + gPort + gPath;
+		dom.selectSingleNode( '/iq/query/desc' ).text = makeprettysize( external.File( document.getElementById( 'location' ).value ).Size, 1 );
+		dom.documentElement.setAttribute( 'to', external.wnd.params[0] + ( external.wnd.params[1].length ? '/' + external.wnd.params[1] : '' ) );
+		dom.documentElement.setAttribute( 'id', external.wnd.params[2] );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+function outnit ()
+{
+	if ( gCookie )
+		external.HTTPEngine.UnShareFile( gCookie );
+
+	external.HTTPEngine.unsubscribe( external.wnd );
+
+	if ( gHook && gHook.TTL )
+		gHook.Destroy();
+}
+
+function updateprogress ()
+{
+	var completed = external.HTTPEngine.GetProgress( gSession );
+	var total = external.HTTPEngine.GetLength( gSession );
+	if ( completed > total )
+		completed = total;
+	document.getElementById( 'progress' ).innerText = makeprettysize( completed, 1 ) + ' / ' + makeprettysize( total, 1 );
+
+	var percentage = total > 0 ? Math.round( 100 * completed / total ) : 0;
+	external.wnd.setTitle( external.globals( 'Translator' ).Translate( 'file_send', 'title_saving', [ percentage, document.getElementById( 'filename' ).value ] ) );
+	document.getElementById( 'bar_white' ).innerText = document.getElementById( 'bar_black' ).innerText = percentage + '%';
+	document.getElementById( 'bar_black' ).style.clip = 'rect( 0 ' + percentage + '% 100% 0 )';
+
+	var i = gProgressCounter % gProgressDeltas.length;
+	var j = ( gProgressCounter + 1 ) % gProgressDeltas.length;
+	gProgressDeltas[i] = completed - gProgressLastSize;
+	gProgressTotalDeltas += gProgressDeltas[i] - gProgressDeltas[j];
+	gProgressLastSize = completed;
+	gProgressCounter++;
+
+	var bytespersecond = gProgressTotalDeltas / ( ( gProgressTimePerUpdate / 1000 ) * ( gProgressCounter < gProgressDeltas.length ? gProgressCounter : gProgressDeltas.length ) );
+	var secondsremaining = bytespersecond > 0 ? Math.round( ( total - completed ) / bytespersecond ) : 0;
+	var str = '';
+	if ( bytespersecond < 100 )
+		str = '--';
+	else if ( secondsremaining < 60 )
+		str = external.globals( 'Translator' ).Translate( 'file_send', 'lessthanminute', [ makeprettysize( bytespersecond, 1 ) ] );
+	else
+	{
+		if ( secondsremaining >= 7200 )
+			str += external.globals( 'Translator' ).Translate( 'file_send', 'hours', [ Math.floor( secondsremaining / 3600 ) ] ) + ' ';
+		else if ( secondsremaining >= 3600 )
+			str += external.globals( 'Translator' ).Translate( 'file_send', 'onehour' ) + ' ';
+		secondsremaining %= 3600;
+		if ( secondsremaining >= 120 )
+			str += external.globals( 'Translator' ).Translate( 'file_send', 'minutes', [ Math.floor( secondsremaining / 60 ) ] ) + ' ';
+		else
+			str += external.globals( 'Translator' ).Translate( 'file_send', 'oneminute' ) + ' ';
+		str += external.globals( 'Translator' ).Translate( 'file_send', 'speed', [ makeprettysize( bytespersecond, 1 ) ] );
+	}
+	document.getElementById( 'timeleft' ).innerText = str;
+}
+
+function makeprettysize ( n, precision )
+{
+	if ( n == 0 )
+		return '0 B';
+	var s = 'kMGTPEZY';
+	var times = Math.floor( Math.log( n ) / Math.log( 1024 ) );
+	return Math.round( ( n / Math.pow( 1024, times ) ) * Math.pow( 10, precision ) ) / Math.pow( 10, precision ) + ' ' + s.charAt( times - 1 ) + 'B';
+}
+
+function abortfile ()
+{
+	if ( 6 == external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'file_send', 'abort' ), external.globals( 'softwarename' ), 4 | 32 ) )
+	{
+		if ( gSession )
+			external.HTTPEngine.Abort( gSession );
+		external.wnd.close();
+	}
+}
+
+function pickfile ()
+{
+	var dialog, path;
+	try
+	{
+		dialog = external.ComCtrl.ComDlg.GetFileName;
+		dialog.Flags = 4 | 4096 | 32768;
+		path = dialog.DisplayOpen();
+	}
+	catch ( e )
+	{
+		return false;
+	}
+	document.getElementById( 'location' ).value = document.getElementById( 'filename' ).value = path;
+	if ( path.lastIndexOf( '\\' ) != -1 )
+	{
+		external.globals( 'cfg' )( 'downloaddir' ) = path.substr( 0, path.lastIndexOf( '\\' ) + 1 );
+		document.getElementById( 'filename' ).value = path.substr( path.lastIndexOf( '\\' ) + 1 );
+	}
+	return true;
+}
+
+function receiveiq ( iq )
+{
+	if ( iq.Type == 'error' )
+	{
+		clearInterval( gInterval );
+		if ( gHook && gHook.TTL )
+			gHook.Destroy();
+		document.getElementById( 'btn_close' ).style.display = 'inline';
+		document.getElementById( 'btn_abort' ).style.display = 'none';
+		document.getElementById( 'timeleft' ).innerText = external.globals( 'Translator' ).Translate( 'file_send', 'aborted' );
+		external.wnd.setTitle( external.globals( 'Translator' ).Translate( 'file_send', 'title_failed', [ document.getElementById( 'filename' ).value ] ) );
+		if ( gSession )
+		{
+			gError += '\n' + external.globals( 'Translator' ).Translate( 'file_send', 'error_denied' );
+			external.HTTPEngine.Abort( gSession );
+		}
+		else
+			external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'file_send', 'error_failed', [ gError ] ), external.globals( 'softwarename' ), 0 | 48 );
+	}
+}
+
+/* The following functions are part of the HTTPEngine API.
+ * Their names are hardcoded as handlers for various events.
+ */
+
+function HTTPOnTimeout ( session )
+{
+	if ( session != gSession )
+		return;
+	gError += '\n' + external.globals( 'Translator' ).Translate( 'file_send', 'error_timeout' );
+}
+
+function HTTPOnSockErr ( session, error )
+{
+	if ( session != gSession )
+		return;
+	gError += '\n' + external.globals( 'Translator' ).Translate( 'file_send', 'error_code', [ error ] );
+}
+
+/*
+function HTTPOnListening ( localPort )
+{
+	alert( 'Listening on ' + localPort );
+}
+
+function HTTPOnAccept ( session, remoteHost, remotePort, localPort )
+{
+	if ( session != gCookie )
+		return;
+	alert( 'Session ' + session + ' (expecting: ' + gCookie + ') launched to handle incoming data connection from ' + remoteHost+  ':' + remotePort + ' to ' + localPort );
+}
+
+function HTTPOnConnected ( session, remoteHost, remotePort, localPort )
+{
+	if ( session != gCookie )
+		return;
+}
+
+function HTTPOnPostRequest ( session, uri, saveAs )
+{
+	alert( 'Session ' + session + ' has received a request to post ' + URI + '.' );
+	saveAs = external.globals( 'cwd' ) + '..\\downloads\\' + URI;
+}
+*/
+
+function HTTPOnGetRequest ( session, fileCookie, uri, localPath )
+{
+	if ( fileCookie != gCookie || gSession )
+		return;
+	gSession = session;
+	updateprogress();
+	gInterval = setInterval( 'updateprogress()', gProgressTimePerUpdate );
+}
+
+function HTTPOnTransferComplete ( session )
+{
+	if ( session != gSession )
+		return;
+	external.HTTPEngine.UnShareFile( gCookie );
+	updateprogress();
+	clearInterval( gInterval );
+	if ( gHook && gHook.TTL )
+		gHook.Destroy();
+	document.getElementById( 'btn_close' ).style.display = 'inline';
+	document.getElementById( 'btn_abort' ).style.display = 'none';
+	document.getElementById( 'timeleft' ).innerText = external.globals( 'Translator' ).Translate( 'file_send', 'finished' );
+	external.wnd.setTitle( external.globals( 'Translator' ).Translate( 'file_send', 'title_completed', [ document.getElementById( 'filename' ).value ] ) );
+	gSession = 0;
+}
+
+function HTTPOnTransferAborted ( session )
+{
+	if ( session != gSession )
+		return;
+	external.HTTPEngine.UnShareFile( gCookie );
+	updateprogress();
+	clearInterval( gInterval );
+	if ( gHook && gHook.TTL )
+		gHook.Destroy();
+	document.getElementById( 'btn_close' ).style.display = 'inline';
+	document.getElementById( 'btn_abort' ).style.display = 'none';
+	document.getElementById( 'timeleft' ).innerText = external.globals( 'Translator' ).Translate( 'file_send', 'aborted' );
+	external.wnd.setTitle( external.globals( 'Translator' ).Translate( 'file_send', 'title_failed', [ document.getElementById( 'filename' ).value ] ) );
+	gSession = 0;
+	external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'file_send', 'error_failed', [ gError ] ), external.globals( 'softwarename' ), 0 | 48 );
+}
+
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=buttonface onload="init()" onunload="outnit()" scroll=no>
+
+<TABLE border=0 cellpadding=0 cellspacing=0 width="100%" style="table-layout: fixed; margin-top: 6px;">
+<COL width=100 style="padding-left: 15px;"><COL width="*">
+<TR height=20>
+	<TD id=txt_recipient></TD>
+	<TD><INPUT id=username readonly style="padding-left: 2px; width: 204px; border-width: 0px; font-family: tahoma; font-size: 11px; background-color: buttonface; color: buttontext;"></NOBR></TD>
+</TR>
+<TR height=20>
+	<TD id=txt_filename></TD>
+	<TD><INPUT id=filename readonly style="padding-left: 2px; width: 204px; border-width: 0px; font-family: tahoma; font-size: 11px; background-color: buttonface; color: buttontext;"></TD>
+</TR>
+<TR height=20>
+	<TD id=txt_location></TD>
+	<TD><INPUT id=location readonly style="padding-left: 2px; width: 204px; border-width: 0px; font-family: tahoma; font-size: 11px; background-color: buttonface; color: buttontext;"></TD>
+</TR>
+<TR height=8>
+	<TD colspan=2>&nbsp;</TD>
+</TR>
+<TR height=3 valign=top>
+	<TD style="padding: 15px; padding-top: 4px;" colspan=2>
+		<DIV id=bar_white style="background-color: window;    color: windowtext;">0%</DIV>
+		<DIV id=bar_black style="background-color: highlight; color: highlighttext; clip: rect( 0, 0, 100%, 0 );">0%</DIV>
+	</TD>
+</TR>
+<TR height=45 valign=bottom>
+	<TD id=txt_progress></TD>
+	<TD id=progress>--</TD>
+</TR>
+<TR height=20 valign=bottom>
+	<TD id=txt_timeleft></TD>
+	<TD id=timeleft>--</TD>
+</TR>
+<TR valign=top>
+	<TD colspan=2 align=right style="padding-right: 10px; padding-top: 14px;">
+		<INPUT type=submit id=btn_abort style="width: 80px; height: 24px; font-size: 11px; font-family: Tahoma;" onclick="abortfile()">
+		<INPUT type=submit id=btn_close style="width: 80px; height: 24px; font-size: 11px; font-family: Tahoma; display: none;" onclick="external.wnd.close()">
+	</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>

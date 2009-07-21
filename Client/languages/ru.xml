@@ -1,0 +1,2199 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+LangString DESC_SecCopyRequired		${LANG_RUSSIAN}	"Эти файлы требуются для работы ${MUI_PRODUCT}."
+LangString DESC_SecCreateStartMenu	${LANG_RUSSIAN}	"Меню Пуск предоставляет удобный доступ для ${MUI_PRODUCT}."
+LangString DESC_SecCreateQuickstart	${LANG_RUSSIAN}	"Добавить ${MUI_PRODUCT} в панель Быстрого запуска."
+LangString DESC_SecCreateDesktop	${LANG_RUSSIAN}	"Поместить ярлык на ваш рабочий стол."
+LangString DESC_SecCreateAutoStart	${LANG_RUSSIAN}	"${MUI_PRODUCT} автоматически подключится, когда стартует Windows."
+LangString ITEM_SecCreateStartMenu	${LANG_RUSSIAN}	"Ярлык в меню Пуск"
+LangString ITEM_SecCreateQuickstart	${LANG_RUSSIAN}	"Ярлык для панели Быстрого запуска"
+LangString ITEM_SecCreateDesktop	${LANG_RUSSIAN}	"Ярлык на Рабочем столе"
+LangString ITEM_SecCreateAutoStart	${LANG_RUSSIAN}	"Запускать ${MUI_PRODUCT} при загрузке"
+LangString TEXT_WindowsOutdated		${LANG_RUSSIAN}	"Не могу установить ${MUI_PRODUCT}.$\nТребуется Windows NT 4 или выше."
+LangString TEXT_AlreadyRunning		${LANG_RUSSIAN}	"Закройте ${MUI_PRODUCT} перед продолжением."
+LangString TEXT_InternetExplorer	${LANG_RUSSIAN}	"Не могу продолжить инсталяцию ${MUI_PRODUCT}.$\n$\nТребуется Microsoft Internet Explorer версии 5.5 или выше. Желаете загрузить обновление сейчас?"
+LangString TEXT_DownloadFailed		${LANG_RUSSIAN}	"Ошибка: Не могу загрузить необходимые компоненты. Убедитесь что вы подключены к интернету."
+LangString un.TEXT_RemoveProfiles	${LANG_RUSSIAN}	"Удалить профили и файлы истории?"
+LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTDIR не может быть удален."
+-->
+<translation xml:lang="ru">
+  <about>
+    <language>Русский</language>
+    <history>
+      <revision>
+        <author>
+          <name>Alexander Bykov</name>
+          <email>alardus@yandex-team.ru</email>
+          <xmpp>alardus@jabber.ru</xmpp>
+        </author>
+        <date>2005-05-05</date>
+        <description>
+          first edition.
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_pleasewait">
+      <innerText>Один момент, пожалуйста</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Отключен(а) от сервера</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>Попробовать подключиться еще раз</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>или</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Изменить настройки соединения</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>Добавить знакомых в список контактов</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>или</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>Настроить сетевые шлюзы</innerText>
+    </item>
+    
+    <item id="mode-avatar">
+      <title>Выбрать другую аватару</title>
+    </item>
+    <item id="mode-bar">
+      <title>Изменить сообщение о статусе</title>
+    </item>
+    <item id="mode-secure">
+      <title>Соединение установлено с использованием SSL/TLS шифрования</title>
+    </item>
+    <item id="rosterfield">
+      <title>Пользователи и группы в вашем списке контактов</title>
+    </item>
+
+    <code id="tt-group-hide">Свернуть группу</code>
+    <code id="tt-group-show">Развернуть группу</code>
+    <code id="emoticon_unknown">Неизвестно</code>
+    <code id="txt_welcome">Приветствуем в ${0}!</code>
+    <code id="user_online">${0} подключился к сети</code>
+    <code id="cl_tooltip">${0} Список контактов</code>
+    <code id="autoawaymessage">Отсутствую больше 5 минут</code>
+    <code id="autoxawaymessage">Отсутствую больше 30 минут</code>
+    <code id="import_files">Список контактов</code>
+    
+    <code id="import_invalid">Файл содержит неверные данные.</code>
+    <code id="import_no_new">В указанном файле новых контактов не обнаружено.</code>
+    <code id="import_confirm">Данные контакты будут добавлены в ваш список собеседников:&#13;&#13;${0}&#13;&#13;Вы уверены что хотите этого?</code>
+    <code id="import_aim_not_registered">Чтобы импортировать контакты сети AIM, необходимо настроить и активировать шлюз данной сети.&#13;Сделать это можно в разделе "Сервис -> Шлюзы".</code>
+    <code id="import_msn_not_registered">Чтобы импортировать контакты сети MSN, необходимо настроить и активировать шлюз данной сети.&#13;Сделать это можно в разделе "Сервис -> Шлюзы".</code>
+    <code id="import_gadu_not_registered">Чтобы импортировать контакты сети Gadu-Gadu, необходимо настроить и активировать шлюз данной сети.&#13;Сделать это можно в разделе "Сервис -> Шлюзы".</code>
+    <code id="conference_invitation">${0} приглашает вас в конференцию: ${1}&#13;&#13;Желаете присоединиться?</code>
+    <code id="sspi_autoreconnecting">Соединение с сервером потеряно.</code>
+    
+    <code id="menu_file">&amp;Файл</code>
+    <code id="menu_file_received">&amp;Открыть папку принятых файлов</code>
+
+    <code id="menu_file_export">&amp;Экспорт списка контактов...</code>
+    <code id="menu_file_import">&amp;Импорт списка контактов...</code>
+
+    <code id="menu_file_change">Изменить сообщение о &amp;статусе...</code>
+    <code id="menu_file_ffc">&amp;Свободен для разговоров</code>
+    <code id="menu_file_available">&amp;Доступен</code>
+    <code id="menu_file_busy">&amp;Занят</code>
+    <code id="menu_file_away">Вышел</code>
+    <code id="menu_file_xaway">&amp;Отсутствую</code>
+    <code id="menu_file_invisible">&amp;Невидимый</code>
+    <code id="menu_file_offline">&amp;Отключен</code>
+    <code id="menu_file_status">Мой &amp;статус</code>
+    <code id="menu_file_out">&amp;Отключиться</code>
+    <code id="menu_file_exit">&amp;Выход</code>
+
+    <code id="menu_axn">&amp;Действия</code>
+    <code id="menu_axn_add">&amp;Добавить контакт...</code>
+    <code id="menu_axn_addgroup">Добавить &amp;группу...</code>
+    <code id="menu_axn_bookmarks">&amp;Закладки</code>
+    <code id="menu_axn_bookmarks_add">&amp;Добавить в закладки...</code>
+    <code id="menu_axn_join">&amp;Войти в комнату...</code>
+    <code id="menu_axn_create">&amp;Создать комнату...</code>
+    <code id="menu_axn_profile">&amp;Изменить профиль...</code>    
+    <code id="menu_axn_password">Изменить &amp;пароль...</code>
+    <code id="menu_axn_avatar">Изменить &amp;аватару...</code>
+    <code id="menu_axn_bookmarks_manage">&amp;Редактировать закладки...</code>
+
+    <code id="menu_tool">&amp;Сервис</code>
+    <code id="menu_tool_transport">&amp;Шлюзы</code>
+    <code id="menu_tool_head">&amp;Уведомления</code>
+    <code id="menu_tool_plugin">&amp;Расширения</code>
+    <code id="menu_tool_admin">Настройка &amp;сервера</code>
+    <code id="menu_tool_traffic">&amp;Сетевой трафик</code>
+    <code id="menu_tool_view">&amp;Вид</code>
+    <code id="menu_tool_detailed">&amp;Детальный</code>
+    <code id="menu_tool_compact">&amp;Компактный</code>
+    <code id="menu_tool_language">&amp;Язык</code>
+    <code id="menu_tool_aot">&amp;Поверх всех окон</code>
+    <code id="menu_tool_settings">&amp;Настройки</code>
+
+    <code id="menu_help">&amp;?</code>
+    <code id="menu_help_manual">&amp;Руководство в сети</code>
+    <code id="menu_help_forum">&amp;Форум техподдержки</code>
+    <code id="menu_help_contact">&amp;Как с нами связаться</code>
+    <code id="menu_help_about">&amp;О программе</code>
+
+    <code id="menu_tray_about">&amp;О программе ${0}</code>
+    <code id="menu_tray_settings">&amp;Настройки</code>
+
+    <code id="wnd_autoupdate">Обновление ${0}</code>
+    <code id="wnd_vcard_edit">Информация о пользователе</code>
+    <code id="wnd_about">О программе ${0}</code>
+    <code id="wnd_signup">Регистрация нового пользователя - ${0}</code>
+    <code id="wnd_adduser">Добавление контакта</code>
+    <code id="wnd_avatar">Изменить аватару</code>
+    <code id="wnd_room_browse">Комнаты конференций</code>
+    <code id="wnd_room_create">Создание новой конференции</code>
+
+    <code id="wnd_conference_invite">Пригласить собеседников</code>
+    <code id="wnd_conference_other">Другие серверы конференций</code>
+    <code id="wnd_console">Консоль</code>
+    <code id="wnd_emoticon_download">Загрузить смайлики</code>
+    <code id="wnd_emoticon_list">Смайлики</code>
+    <code id="wnd_emoticon_view">Информация о смайликах</code>
+    <code id="wnd_file_send">Отправление файла для ${0}</code>
+    <code id="wnd_file_recv">Получение файла от ${0}</code>
+    <code id="wnd_group_message">Групповое сообщение</code>
+    <code id="wnd_transport_list">Шлюзы</code>
+    <code id="wnd_transport_other">Другие шлюзы</code>
+    <code id="wnd_headlines">Просмотр уведомлений</code>
+    <code id="wnd_history">${0} - История сообщений</code>
+    <code id="wnd_plugin_list">Расширения</code>
+    <code id="wnd_plugins">Расширения</code>
+    <code id="wnd_password">Изменить пароль</code>
+    <code id="wnd_settings">Настройки</code>
+    <code id="wnd_admin_server">Администрирование сервера</code>
+    <code id="wnd_status">Сообщение о статусе</code>
+    <code id="wnd_vcard_view">Информация о пользователе</code>
+    <code id="wnd_group_create">Добавление группы</code>
+    <code id="wnd_group_rename">Переименовать группу</code>
+    <code id="wnd_contact_rename">Переименовать контакт</code>
+    <code id="wnd_authrequest">Запросить авторизацию</code>
+    <code id="wnd_login">Подключение - ${0}</code>
+    <code id="wnd_extension_download">Установка ${0}</code>
+    <code id="wnd_background_list">Фон</code>
+    <code id="wnd_background_download">Другой фон</code>
+    <code id="wnd_bookmarks_add">Добавить в закладки</code>
+    <code id="wnd_bookmarks_edit">Редактировать закладки</code>
+    <code id="wnd_bookmarks_manage">Список ваших закладок</code>   
+
+    <code id="msg_emoticon_install">Выбранный набор смайликов успешно установлен.</code>
+    <code id="msg_received_files">Папка для принятых файлов была удалена.</code>
+    <code id="msg_plugin_install">Желаете установить этот плагин?&#13;&#13;Название: ${0}&#13;Описание: ${1}</code>
+    <code id="msg_plugin_exists">Этот плагин уже был установлен.</code>
+    <code id="msg_expired">Демонстрационый период этой программы истек.</code>
+    <code id="msg_cl_adding">${0} желает добавить вас в свой список контактов.</code>
+    <code id="msg_cl_added">${0} добавил(а) вас в свой список контактов.</code>
+    <code id="msg_cl_removed">${0} Удалил(а) вас из своего списка контактов.</code>
+    <code id="msg_blocked">У него(неё) вы в черном списке.</code>
+    <code id="msg_autherror">Не удается зарегистрироваться. Это может быть вызвано следующими причинами:&#13;&#13;- Вы ввели неверный пароль&#13;- Такой пользователь не существует на сервере&#13;&#13;Пожалуйста, попытайтесь снова.</code>
+
+    <code id="menu_message">Сообщение</code>
+    <code id="menu_filetransfer">Передача файла</code>
+    <code id="menu_room_create">Создать новую комнату</code>
+    <code id="menu_room_invite">Пригласить в комнату</code>
+    <code id="menu_rename">Переименовать</code>
+    <code id="menu_block">В черный список</code>
+    <code id="menu_delete">Удалить</code>
+    <code id="menu_group_create">Создать новую группу</code>
+    <code id="menu_group_merge">Объединить с</code>
+    <code id="menu_group_move">Переместить в</code>
+    <code id="menu_group_copy">Копировать в</code>
+    <code id="menu_request">Повторно запросить авторизацию</code>
+    <code id="menu_history">История</code>
+    <code id="menu_profile">Профиль</code>
+
+    <code id="cl_waiting_one">У вас 1 непрочтенное сообщение</code>
+    <code id="cl_waiting_multiple">У вас ${0} непрочтенных сообщений</code>
+    <code id="cl_error_notexist">Адрес не существует.</code>
+    <code id="cl_error_cannotadd">Не удается добавить ${0} в список контактов.&#13;${1}</code>
+    <code id="cl_default_group">Контакты</code>
+    <code id="cl_group_display_none">Скрыть пользователей в группе</code>
+    <code id="cl_group_display_online">Показывать лишь тех, кто в сети</code>
+    <code id="cl_group_display_all">Показывать всех пользователей</code>
+    <code id="cl_group_expand">Показать тех, кто не в сети</code>
+    <code id="cl_group_compact">Скрыть тех, кто не в сети</code>
+    <code id="cl_group_rename">Переименовать эту группу</code>
+    <code id="cl_group_message">Отправить сообщение всем членам группы</code>
+    <code id="cl_room_create">Создать новую комнату</code>
+    <code id="cl_room_invite">Пригласить в комнату конференций</code>
+    <code id="cl_group_empty">Никого из этой группы нет в сети.</code>
+    <code id="cl_status_empty">Нет сообщения о статусе</code>
+    <code id="cl_status_offline">Отключился(ась)</code>
+    <code id="cl_status_awaiting">Ожидаю авторизации</code>
+    <code id="cl_status_unknown">Неизвестный статус</code>
+    <code id="cl_status_waiting_one">1 непрочтенное сообщение</code>
+    <code id="cl_status_waiting_multiple">${0} непрочтенных сообщений</code>
+    <code id="cl_tooltip_offline">Адрес: ${0}</code>
+    <code id="cl_contact_remove_group">Вы уверены, что желаете удалить пользователя из этой группы?</code>
+    <code id="cl_contact_remove_list">Вы уверены, что желаете удалить этого пользователя из вашего списка контактов?</code>
+    <code id="cl_link_open">Открыть в браузере</code>
+    <code id="cl_link_copy">Копировать ссылку</code>
+    <code id="cl_link_favorite">Добавить в избранное</code>
+    <code id="cl_ffc">Свободен для разговора</code>
+    <code id="cl_available">Доступен</code>
+    <code id="cl_busy">Занят</code>
+    <code id="cl_away">Вышел</code>
+    <code id="cl_xaway">Отсутствую</code>
+    <code id="cl_invisible">Невидимый</code>
+    <code id="cl_tooltip_online">Адрес: ${0}&#13;Ресурс: ${1}</code>
+  </window>
+    <window name="auth_invitation">
+    <item id="btn_view">
+      <value>Посмотреть профиль</value>
+    </item>
+    <item id="btn_deny">
+      <value>Отказать</value>
+    </item>
+    <item id="btn_accept">
+      <value>Принять</value>
+    </item>
+    <item id="txt_from">
+      <innerText>Получен запрос на авторизацию от:</innerText>
+    </item>
+    <item id="txt_reason">
+      <innerText>Причина:</innerText>
+    </item>
+    <item id="txt_add">
+      <innerText>Добавить этого пользователя в список контактов</innerText>
+    </item>
+  </window>
+  <window name="admin_users">
+    <item id="btn_refresh">
+      <value>Обновить</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Щелкните на аккаунте, чтобы отправить сообщение. Щелкните правой кнопкой, чтобы увидеть дополнительные опции.</innerText>
+    </item>
+    <code id="add_to_list">Добавить в список контактов</code>
+    <code id="tooltip_with">Адрес: ${0}&#13;Ресурс: ${1}&#13;Времени в сети: ${2}</code>
+    <code id="tooltip_without">Адрес: ${0}&#13;Времени в сети: ${1}</code>
+    <code id="loading">Загрузка...</code>
+    <code id="invalid_data">Получены неверные даные.</code>
+    <code id="server_error">Ошибка сервера:</code>
+    <code id="server_failed">Не удалось получить список пользователей в сети.&lt;BR&gt;Убедитесь, что вы имеете права для администрирования сервера.</code>
+    <code id="user">1 пользователь в сети</code>
+    <code id="users">${0} пользователя(ей) в сети</code>
+  </window>
+
+
+ <window name="about">
+    <item id="btn_credits">
+      <value>Благодарности &gt;&gt;</value>
+    </item>
+    <item id="btn_copyright">
+      <value>Вернуться назад</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="copy_darkproject">
+      <innerHTML>Права на иконки и смайлики принадлежат &amp;copy; 2001 Greg Fleming.</innerHTML>
+    </item>
+    <item id="copy_rsa">
+      <innerHTML>Используется алгоритм MD5. Права принадлежат RSA Data Security, Inc.</innerHTML>
+    </item>
+    <item id="copy_dns">
+      <innerHTML>Основано на BIND. Права принадлежат Internet Software Consortium, Inc.</innerHTML>
+    </item>
+    <item id="txt_copyright">
+      <innerHTML>Все права защищены &amp;copy;</innerHTML>
+    </item>
+    <code id="copy_basis">Основано на ${0}. Все права защищены &amp;copy; ${1} ${2}.</code>
+  </window>
+
+
+  <window name="admin">
+    <item id="btn_view">
+      <value>Показать всех пользователей в сети</value>
+    </item>
+    <item id="btn_close">
+      <value>Закрыть</value>
+    </item>
+    <item id="admin_btn_wall">
+      <value>Отправить</value>
+    </item>
+    <item id="admin_btn_motd">
+      <value>Отправить</value>
+    </item>
+    <item id="txt_wall_desc">
+      <innerText>Это объявление будет отправлено пользователям, которые сейчас в сети.</innerText>
+    </item>
+    <item id="txt_motd_desc">
+      <innerText>Это объявление будет отправлено пользователям, когда они подключатся.</innerText>
+    </item>
+    <item id="txt_wall">
+      <innerText>Широковещательное сообщение</innerText>
+    </item>
+    <item id="txt_motd">
+      <innerText>Ежедневное сообщение</innerText>
+    </item>
+    <item id="txt_view">
+      <innerText>Наблюдать за теми, кто подключен к серверу.</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Используйте эти инструменты для администрирования IM сервера.</innerText>
+    </item>
+    <item id="txt_users">
+      <innerText>Пользователи</innerText>
+    </item>
+    <code id="wnd_users">Пользователи в сети</code>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>Очистить вывод</value>
+    </item>
+    <item id="btn_send">
+      <value>Отправить</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>Presence</value>
+    </item>
+    <item id="btn_message">
+      <value>Сообщение</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>Сетевой трафик:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>Переносы</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>Поле для XML:</innerText>
+    </item>
+    <code id="toggle_on">Трасировка вк.</code>
+    <code id="toggle_off">Трасировка вык.</code>
+    <code id="valid_xml">Убедитесь, что то что вы вводите является корректной XML-разметкой.</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>Закрыть</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Уведомления</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Специальные уведомления отображаются, когда вы получаете новость или другую информацию.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Новых уведомлений не было получено.</innerText>
+    </item>
+    <item id="alertonlinelabel">
+      <innerText>Показывать уведомления, когда кто-либо подключается к сети.</innerText>
+    </item>
+    <code id="read_more">Далее...</code>
+    <code id="replay">Еще раз</code>
+  </window>
+
+  <window name="headline-toaster">
+    <item id="options">
+      <innerText>Настроить...</innerText>
+    </item>
+  </window>
+    
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_custom">
+      <value>Другая картинка...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Выберите картинку, которая будет отображаться в вашем профиле.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Загрузка...</innerText>
+    </item>
+    <code id="error_size">Не удается загрузить картинку. Размер файла превышает 8 килобайт.</code>
+    <code id="error_empty">Не удается загрузить картинку. Файл пустой.</code>
+    <code id="error_load">Предупреждение: не удается загрузить картинки аватар.&#13;&#13;${0}</code>
+    <code id="menu_use">Использовать эту аватару</code>
+    <code id="menu_saveas">Сохранить как...</code>
+    <code id="menu_delete">Удалить</code>
+    <code id="wnd_select">Выбрать картинку аватары</code>
+    <code id="saveas_files">Файлы картинок</code>
+    <code id="image_files">Файлы картинок меньше 8kB</code>
+    <code id="all_files">Все файлы</code>
+  </window>
+    <window name="mode_select">
+    <item id="txt_message">
+      <innerText>Установите какое-либо сообщение о статусе:</innerText>
+    </item>
+    <item id="lbl_ask_status">
+      <innerText>Предлагать изменить данное сообщение при смене статуса.</innerText>
+    </item>
+    <code id="btn_ok">OK</code>
+    <code id="btn_ok_empty">OK (оставить пустым)</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Новое имя:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Новое имя:</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Новая группа:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>Подтвердите новый пароль:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Новый пароль:</innerText>
+    </item>
+    <code id="no_match">Введенные пароли не соответствуют друг другу.</code>
+    <code id="no_pass">Введите новый пароль.</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="set_version">
+      <innerText>Загрузка...</innerText>
+    </item>
+    <item id="header-images">
+      <innerText>Картинки</innerText>
+    </item>
+    <item id="header-sounds">
+      <innerText>Звуки</innerText>
+    </item>
+    <item id="header-markup">
+      <innerText>Разметка текста</innerText>
+    </item>
+    <code id="empty">Выбранный набор смайликов пуст.</code>
+    <code id="file_error">Ошибка при чтении файла</code>
+    <code id="cannot_load">Не удается загрузить смайлики.</code>
+    <code id="count_one">1 смайлик</code>
+    <code id="count_multiple">${0} смайлика(ов)</code>
+  </window>
+  <window name="emoticon_download">
+    <item id="btn_close">
+      <value>Отмена</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Загрузить смайлики</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Для просмотра каталога смайликов требуется подключение к интернету.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Загрузка...</innerText>
+    </item>
+    <code id="install">Установить</code>
+    <code id="cannot_download">Ошибка: не удается закачать смайлики.&#13;${0}</code>
+    <code id="invalid_xml">Источник содержит некорректные данные.</code>
+    <code id="no_new_styles">Новых смайликов не обнаружено.</code>
+  </window>
+  <window name="emoticon_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Доступные смайлики</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Выберите набор смайликов из списка.</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>Загрузка...</innerText>
+    </item>
+    <item id="btn_emoticon_download">
+      <value>Другие смайлики</value>
+    </item>
+    <code id="emoticon_details">Детальный просмотр</code>
+    <code id="emoticon_remove">Удалить</code>
+    <code id="emoticon_confirm">Вы уверены, что хотите удалить этот набор смайликов?</code>
+    <code id="no_emoticons">Смайликов не найдено.</code>
+  </window>
+
+  <window name="plugin_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Установленные расширения</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Добавление и удаление расширений.</innerText>
+    </item>
+    <item id="btn_plugin_download">
+      <value>Другие расширения</value>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>Расширения не установлены.</innerText>
+    </item>
+    <code id="plugin_uninstall">Удалить</code>
+    <code id="plugin_confirm">Вы уверены, что хотите удалить это расширение?</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>Отмена</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Загрузить расширение</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Для просмотра каталога расширений требуется подключение к интернету.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Загрузка...</innerText>
+    </item>
+
+    <code id="install">Установить</code>
+    <code id="cannot_download">Ошибка: Не удается закачать расширение.&#13;${0}</code>
+    <code id="invalid_xml">Источник содержит некорректные данные.</code>
+    <code id="no_new_plugins">Новых расширений не обнаружено.</code>
+
+  </window>
+  <window name="autoupdate">
+  <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="btn_install">
+      <value>Установить</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Соединение...</innerText>
+    </item>
+    <code id="download_confirm">Появилась обновленная версия: ${0} ${1}&#13;&#13;Хотите загрузить это обновление?</code>
+    <code id="downloading">Загрузка...</code>
+    <code id="complete">Загрузка завершена. Нажмите "Установить" для продолжения.</code>
+  </window>
+
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>Отправить</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>Отправить этим людям:</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>Нормальное сообщение</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>Важное уведомление</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>Тип сообщения</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>Присоединить гиперссылку.</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>Сообщение</innerText>
+    </item>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>Закрыть</value>
+    </item>
+    <item id="btn_accept">
+      <value>Принять</value>
+    </item>
+    <item id="btn_abort">
+      <value>Прервать</value>
+    </item>
+    <item id="btn_open">
+      <value>Открыть</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Прошло:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>Отправитель:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Имя файла:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Размещение:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Состояние:</innerText>
+    </item>
+    <code id="resume">Файл уже существует. Хотите продолжить передачу?</code>
+    <code id="cannot_overwrite">Не удается перезаписать файл:&#13;${0}&#13;&#13;${1}</code>
+    <code id="incorrect">Не удается начать передачу.  Получены неверные данные.</code>
+    <code id="title_saving">${0}% of ${1} Сохранено</code>
+    <code id="lessthanminute">Меньше 1 минуты при скорости ${0}/s</code>
+    <code id="onehour">1 час и</code>
+    <code id="hours">${0} часа(ов) и</code>
+    <code id="oneminute">1 минута при скорости</code>
+    <code id="minutes">${0} минут(ы) при скорости</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Хотите прервать передачу?</code>
+    <code id="aborted">Прервано</code>
+    <code id="finished">Завершено</code>
+    <code id="error_timeout">Истекло время ожидания.</code>
+    <code id="error_code">Код ошибки: ${0}</code>
+    <code id="error_file">Код ошибки файла: ${0}</code>
+    <code id="title_completed">Передача завершена - ${0}</code>
+    <code id="title_failed">Передача прервана - ${0}</code>
+    <code id="error_move">Не удается переместить полученный файл:&#13;${0}&#13;&#13;${1}</code>
+    <code id="error_failed">Передача прервана.</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>Закрыть</value>
+    </item>
+    <item id="btn_abort">
+      <value>Прервать</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Прошло:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>Получатель:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Имя файла:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Размещение:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Состояние:</innerText>
+    </item>
+    <code id="socket">Невозможно отправить файл.&#13;Не удается открыть сокет.</code>
+    <code id="file">Не удается прочитать файл:&#13;${0}</code>
+    <code id="filetransfer">Передача файла:</code>
+    <code id="title_saving">Передано ${0}% файла ${1}</code>
+    <code id="lessthanminute">Меньше 1 минуты при скорости ${0}/s</code>
+    <code id="onehour">1 час и</code>
+    <code id="hours">${0} часа(ов) и</code>
+    <code id="oneminute">1 минута при скорости</code>
+    <code id="minutes">${0} минут(ы) при скорости</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Хотите прервать передачу?</code>
+    <code id="finished">Завершено</code>
+    <code id="aborted">Прервано</code>
+    <code id="error_denied">Получатель отказался от файла.</code>
+    <code id="error_timeout">Истекло время ожидания.</code>
+    <code id="error_code">Код ошибки: ${0}</code>
+    <code id="title_completed">Передача завершена - ${0}</code>
+    <code id="title_failed">Передача прервана - ${0}</code>
+    <code id="error_failed">Передача прервана.</code>
+  </window>
+  <window name="conference_browse">
+   <item id="btn_close">
+      <value>Закрыть</value>
+    </item>
+    <item id="btn_other_service">
+      <value>Другие конференции...</value>
+    </item>
+    <item id="btn_create">
+      <value>Создать новую конференцию</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Доступные конференции:</innerText>
+    </item>
+    <item id="lbl_empty">
+      <innerText>Показывать пустые конференции</innerText>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="lbl_full">
+      <innerText>Показывать полные конференции</innerText>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="lbl_filter">
+      <innerText>Фильтр:</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Данный сервер не предоставляет сервис конференций.&#13;&#13;Выберите "Другие конференции..." чтобы указать другой сервер.</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Для того чтобы присоединиться к конференции, вы должны подключиться к серверу.</innerText>
+    </item>
+    <code id="bookmarks">Закладки</code>
+    <code id="menu_add">Добавить в закладки...</code>
+    <code id="menu_join">Присоединиться</code>
+    <code id="empty_filter">Ни одна конференция не соответствует фильтру</code>
+    <code id="empty_no_rooms">Ни одной доступной конференции на сервере</code>
+    <code id="status_connecting">Подключение...</code>
+    <code id="status_downloading">Получение списка доступных конференции...</code>
+    <code id="error_unknown">Конференция "${0}" недоступна. Попробуйте повторить попытку позже, либо выберите другую конференцию.</code>
+    <code id="error_no_services">Сервер "${0}" не поддерживает конференции. Свяжитесь с его администратором для получения более подробной информации.</code>
+    <code id="error_no_new">Новых конференций на сервере "${0}" не обнаружено.</code>
+  </window>
+
+ <window name="background_download">
+    <item id="btn_close">
+      <value>Отмена</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Скачивание фоновых заставок</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Для просмотра каталога смайликов требуется подключение к интернету.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Загрузка...</innerText>
+    </item>
+    <code id="install">Установить</code>
+    <code id="cannot_download">Ошибка: не удается загрузить заставку.&#13;${0}</code>
+    <code id="invalid_xml">Источник содержит некорректные данные.</code>
+    <code id="no_new_styles">Новых заставок не обнаружено.</code>
+  </window>
+
+ <window name="extension_download">
+    <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Соединение...</innerText>
+    </item>
+    <code id="downloading">Загрузка...</code>
+  </window>
+
+<window name="background_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Выбор фоновых заставок</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Добавление и удаление фоновых заставок.</innerText>
+    </item>
+    <item id="btn_background_download">
+      <value>Другой фон</value>
+    </item>
+    <item id="txt_background_empty">
+      <innerText>Фоновые заставки не установлены.</innerText>
+    </item>
+    <code id="background_uninstall">Удалить</code>
+    <code id="background_confirm">Вы уверены, что хотите удалить этот фон?</code>
+  </window>
+
+ <window name="conference_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Адрес сервера:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Пример: conference.example.ru</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Введите адрес сервера конференций.</innerText>
+    </item>
+    <code id="error_already_exists">Конференция "${0}" уже есть в списке.</code>
+  </window>
+
+
+ <window name="conference_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Каждая конференция имеет свой собственный уникальный адрес. Чтобы его получить, введите адрес сервера и уникальное имя для новой конференции.</innerText>
+    </item>
+    <item id="txt_service">
+      <innerText>Адрес сервера:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Пример: conference.example.ru</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>Имя конференции:</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>Адрес конференции:</innerText>
+    </item>
+    <code id="incomplete">Необходимо заполнить все поля...</code>
+  </window>
+
+
+  <window name="vcard">
+    <code id="save">Предупреждение: не удается сохранить vCard файл.&#13;&#13;${0}</code>
+    <code id="personal">Данные о пользователе</code>
+    <code id="system">Данные о системе</code>
+
+    <item id="txt_requesting1">
+      <innerText>Запрос информации с сервера</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Это может занять несколько минут.&lt;BR&gt;Пожалуйста, подождите.</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>Сохранить как vCard</value>
+    </item>
+    <item id="btn_refresh">
+      <value>Обновить</value>
+    </item>
+    <item id="btn_close">
+      <value>Закрыть</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>Отменить изменения</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>Персональная</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>Дополнительно</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>Домашний адрес</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>Рабочая</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>Рабочий адрес</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>Система</innerText>
+    </item>
+
+
+    <item id="txt_name">
+      <innerText>Общие сведения</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>Имя:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>Отчество:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>Фамилия:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>Ник:</innerText>
+    </item>
+
+
+    <item id="txt_contact">
+      <innerText>Контактная информация</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>E-mail:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>Телефон:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>Мобильный:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>Факс:</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>Дополнительные данные</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>Возраст:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>День рождения:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>Пол:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>Семейное положение:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>Домашняя страница:</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>Домашний адрес</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>Улица:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>Здание:</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>Город:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>Индекс:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>Область:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>Страна:</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>Организация</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>Название:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>Подразделение:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>Звание:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>Должность:</innerText>
+    </item>
+
+    <item id="txt_workcontact">
+      <innerText>Контактная информация</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>E-mail:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>Телефон:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>Мобильный:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>Факс:</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>Рабочий адрес</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>Улица:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>Здание:</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>Город:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>Индекс:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>Область:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>Страна:</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>Информация о Jabber-клиенте</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>Адрес:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>Клиент:</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>Местное время:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>Софт:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>Версия:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>Операционная система:</innerText>
+    </item>
+  </window>
+  <window name="transport_list">
+    <item id="btn_other">
+      <value>Другие шлюзы...</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Доступные шлюзы</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Шлюзы предоставляют возможность подключения к другим сетям интернет-пейджеров.</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;Внимание:&lt;/B&gt; Для настройки шлюза вы  должны быть подключены к Jabber-серверу.</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;Внимание:&lt;/B&gt; Сервер, к которому вы подключены, не имеет установленных шлюзов. Свяжитесь с его администратором для получения более полной информации.</innerHTML>
+    </item>
+    <item id="msnworkaroundlabel">
+      <innerText>Позволить пользователям из сети MSN изменять свои ники</innerText>
+    </item>
+    <code id="status_active">Подключен</code>
+    <code id="status_noreg">Не зарегистрирован</code>
+    <code id="status_disconnected">Отключен</code>
+    <code id="status_connecting">Соединение...</code>
+    <code id="name_unknown">Неизвестный сервис</code>
+    <code id="error_unknown">Сервис "${0}" недоступен. Повторите попытку позже, либо выберите другой адрес.</code>
+    <code id="error_no_transports">Сервер "${0}" не предоставляет сервисов. За дополнительной информацией обратитесь к его администратору.</code>
+    <code id="error_no_new_transport">Все сервисы сервера "${0}" уже присутствуют в списке.</code>
+  </window>
+
+  <window name="transport_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Адрес:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Пример: sms.example.ru</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Введите адрес шлюза.</innerText>
+    </item>
+    <code id="error_already_exists">Шлюз "${0}" уже есть в списке.</code>
+  </window>
+
+
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; Назад</value>
+    </item>
+    <item id="btn_next">
+      <value>Далее &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>Завершить</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>Отмена</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>Адрес:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>Ник:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>Адрес:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Пароль:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>Ник:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>Вы уже зарегистрированы в этом шлюзе.&lt;BR&gt;Аккаунт, зарегистрированный вами ранее:</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>Оключить шлюз</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText>Связываюсь с сервером</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Это может занять несколько минут.&lt;BR&gt;Пожалуйста, подождите.</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>Чтоб закрыть помощника, нажмите &lt;B&gt;Завершить&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>Для продолжения нажмите &lt;B&gt;Далее&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <code id="error_invalid">Получены неверные даные</code>
+    <code id="error_server">&lt;B&gt;Ошибка сервера:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Не удается продолжить.</code>
+    <code id="error_unknown">&lt;B&gt;Неизвестная ошибка:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Не удается продолжить.</code>
+    <code id="error_auth">&lt;B&gt;Ошибка авторизации:&lt;/B&gt;&lt;BR&gt;Неверный адрес или пароль.&lt;BR&gt;&lt;BR&gt;Не удается продолжить.</code>
+    <code id="wait">&lt;B&gt;Соединение с сервером&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Это может занять несколько минут.&lt;BR&gt;Пожалуйста, подождите.&lt;BR&gt;</code>
+
+    <code id="default_window_title">Настройка шлюза</code>
+    <code id="default_begin_intro">Помощник предлагает вам настроить шлюз.&lt;BR&gt;Чтобы воспользоваться шлюзом, вам необходимо иметь аккаунт в другой сети.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">Введите имя аккаунта и пароль к нему.&lt;BR&gt;Также вы можете ввести ник, который будут видеть ваши собеседники.&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">Аккаунт зарегистрирован в шлюзе.</code>
+    <code id="default_removing_busy">Аккаунт удален из шлюза.&lt;BR&gt;</code>
+    <code id="default_creating_done">Аккаунт успешно зарегистрирован в шлюзе.</code>
+    <code id="default_removing_done">Аккаунт успешно удален из шлюза.</code>
+
+    <code id="msn_window_title">MSN Messenger - настройка шлюза</code>
+    <code id="msn_begin_intro">Помощник настроит шлюз в сеть MSN.&lt;BR&gt;Чтобы воспользоваться этим шлюзом, вам потребуется Microsoft Passport.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">Введите ваш адрес и пароль в сети MSN.</code>
+    <code id="msn_newaccount_examples">Например: someone@msn.com, someone@hotmail.com</code>
+    <code id="msn_creating_busy">Ваш аккаунт уже зарегистрирован в шлюзе сети MSN.</code>
+    <code id="msn_removing_busy">Ваш MSN аккаунт удален из шлюза.&lt;BR&gt;Тем не менее, вы можете продолжить использование вашего аккаунта в сети MSN с помощью других сервисов.&lt;BR&gt;</code>
+    <code id="msn_creating_done">Аккаунт был успешно зарегистрирован в шлюзе сети MSN.</code>
+    <code id="msn_removing_done">Аккаунт был успешно удален из шлюза сети MSN.</code>
+
+    <code id="icq_window_title">ICQ - настройка шлюза</code>
+    <code id="icq_begin_intro">Помощник настроит шлюз в сеть ICQ.&lt;BR&gt;Чтобы воспользоваться этим шлюзом, вам потребуется аккаунт в сети ICQ.&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Введите ваш адрес ICQ и пароль для него.</code>
+    <code id="icq_newaccount_examples">Например: 39230793, 158525087</code>
+    <code id="icq_creating_busy">Ваш аккаунт уже зарегистрирован в шлюзе сети ICQ.</code>
+    <code id="icq_removing_busy">Ваш ICQ аккаунт удален из шлюза.&lt;BR&gt;Тем не менее, вы можете продолжить использование вашего аккаунта в сети ICQ с помощью других сервисов.&lt;BR&gt;</code>
+    <code id="icq_creating_done">Аккаунт был успешно зарегистрирован в шлюзе сети ICQ.</code>
+    <code id="icq_removing_done">Аккаунт был успешно удален из шлюза сети ICQ.</code>
+
+    <code id="yahoo_window_title">Yahoo! Messenger - настройка шлюза</code>
+    <code id="yahoo_begin_intro">Помощник настроит шлюз в сеть Yahoo!.&lt;BR&gt;Чтобы воспользоваться этим шлюзом, вам потребуется аккаунт в сети Yahoo!.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Введите ваш адрес Yahoo! и пароль для него.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">Ваш аккаунт уже зарегистрирован в шлюзе сети Yahoo!.</code>
+    <code id="yahoo_removing_busy">Ваш Yahoo! аккаунт удален из шлюза.&lt;BR&gt;Тем не менее, вы можете продолжить использование вашего аккаунта в сети Yahoo! с помощью других сервисов.&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">Аккаунт был успешно зарегистрирован в шлюзе сети Yahoo!.</code>
+    <code id="yahoo_removing_done">Аккаунт был успешно удален из шлюза сети Yahoo!.</code>
+
+    <code id="aim_window_title">AOL Instant Messenger - настройка шлюза</code>
+    <code id="aim_begin_intro">Помощник настроит шлюз в сеть AOL IM.&lt;BR&gt;Чтобы воспользоваться этим шлюзом, вам потребуется аккаунт в сети AOL IM.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">Введите ваш адрес AOL IM и пароль для него.&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">Ваш аккаунт уже зарегистрирован в шлюзе сети AOL IM.</code>
+    <code id="aim_removing_busy">Ваш AOL IM аккаунт удален из шлюза.&lt;BR&gt;Тем не менее, вы можете продолжить использование вашего аккаунта в сети AOL IM с помощью других сервисов.&lt;BR&gt;</code>
+    <code id="aim_creating_done">Аккаунт был успешно зарегистрирован в шлюзе сети AOL IM.</code>
+    <code id="aim_removing_done">Аккаунт был успешно удален из шлюза сети AOL IM.</code>
+    
+    <code id="gadu_window_title">Gadu-Gadu - настройка шлюза</code>
+    <code id="gadu_begin_intro">Помощник настроит шлюз в сеть Gadu-Gadu.&lt;BR&gt;Чтобы воспользоваться этим шлюзом, вам потребуется аккаунт в сети Gadu-Gadu.</code>
+    <code id="gadu_newaccount_instructions">Введите ваш адрес Gadu-Gadu и пароль для него.</code>
+    <code id="gadu_newaccount_examples">&amp;nbsp;</code>
+    <code id="gadu_creating_busy">Ваш аккаунт уже зарегистрирован в шлюзе сети Gadu-Gadu.</code>
+    <code id="gadu_removing_busy">Ваш Gadu-Gadu аккаунт удален из шлюза.&lt;BR&gt;Тем не менее, вы можете продолжить использование вашего аккаунта в сети Gadu-Gadu с помощью других сервисов.</code>
+    <code id="gadu_creating_done">Аккаунт был успешно зарегистрирован в шлюзе сети Gadu-Gadu.</code>
+    <code id="gadu_removing_done">Аккаунт был успешно удален из шлюза сети Gadu-Gadu.</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>ОК</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>В файл</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>Печать</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>Стереть</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>История сообщений</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>Поиск:</innerText>
+    </item>
+    <code id="loading">Загружается история сообщений...</code>
+    <code id="empty">История сообщений пуста.</code>
+    <code id="error_load">Не удается загрузить историю сообщений:&#13;${0}</code>
+    <code id="one_message">1 сообщение</code>
+    <code id="many_messages">${0} сообщения(й)</code>
+    <code id="tooltip_save">Сохранить историю сообщений за этот день</code>
+    <code id="tooltip_print">Распечатать историю сообщений за этот день</code>
+    <code id="error_open">Ошибка: не удается открыть историю сообщений.</code>
+    <code id="error_read">Ошибка: не удается прочитать историю сообщений.</code>
+    <code id="delete_confirm">Вы уверены, что хотите удалить всю историю сообщений для ${0}?</code>
+    <code id="delete_cannot">Не удается удалить файл сообщений: ${0}&#13;&#13;Сообщения не были удалены.</code>
+    <code id="error_print">Не удается распечатать что-либо.&#13;История сообщений пуста.</code>
+    <code id="error_save">Не удается сохранить историю сообщений.&#13;${0}</code>
+  </window>
+  <window name="chat-messages">
+    <code id="copy">Копировать</code>
+    <code id="copyall">Копировать все</code>
+    <code id="clear">Очистить</code>
+    <code id="selectall">Выбрать все</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>Уведомлять собеседника, когда вы набираете сообщение</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Изменить цвет текста или стиль</title>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Выберите другой фоновый рисунок</title>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="txt-emoticons">
+      <innerText>Смайлики</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Шрифт</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Фон</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>Изменить размер поля ввода сообщения</title>
+    </item>
+    <item id="mode-bar">
+      <title>Пользователь, который получит сообщение</title>
+    </item>
+    <item id="send-text">
+      <title>Введите сообщение</title>
+    </item>
+    <item id="btn-send">
+      <value>Отравить</value>
+      <value>Отправить сообщение</value>
+    </item>
+
+    <code id="tt-avatar">Показать полноразмерную аватару</code>
+    <code id="tt-messages">Сообщение было отправлено и получено</code>
+    <code id="tt-close">Закрыть данный диалог</code>
+    <code id="msg_typing">${0} набирает сообщение.</code>
+    <code id="unknown">${0} может не отвечать потому, что его или её статус неизвестен</code>
+    <code id="lastonline">Последний раз на связи: ${0}</code>
+    <code id="windowtitle">${0} - Разговор</code>
+    <code id="close_many_tabs">Вы действительно хотите закрыть все диалоги?</code>
+    <code id="close_recent_message">Получено сообщение.&#13;&#13;Вы уверены, что хотите закрыть этот диалог?</code>
+	<code id="palette_compact">Уменьшить количество смайликов</code>
+	<code id="palette_expand">Показать все смайлики этой категории</code>
+	<code id="palette_browse">Выбрать другую категорию...</code>
+	
+    <code id="background_no">Не использовать фон</code>
+    <code id="background_list">Другие фоновые заставки...</code>
+
+    <code id="menu_file_received">&amp;Открыть папку принятых файлов</code>
+    <code id="menu_file_history">История &amp;сообщений</code>
+    <code id="menu_file_close">&amp;Закрыть разговор</code>
+
+    <code id="menu_axn_contact">&amp;Контакт</code>
+    <code id="menu_axn_add">Добавить в список контактов</code>
+    <code id="menu_axn_block">&amp;В черный список</code>
+    <code id="menu_axn_rename">&amp;Переименовать</code>
+    <code id="menu_axn_panel">Показать &amp;панель действий</code>
+    <code id="menu_axn_profile">Показать &amp;профиль</code>
+    <code id="menu_axn_file">Отправить &amp;файл</code>
+
+    <code id="menu_tool_emo_style">Выбрать &amp;смайлики...</code>
+    <code id="menu_tool_font">Изменить &amp;шрифт...</code>
+    <code id="menu_tool_background">Изменить &amp;фон...</code>
+    <code id="menu_tool_aot">&amp;Поверх всех окон</code>
+    <code id="menu_tool_popup">&amp;Всплывающие сообщения</code>
+    <code id="menu_tool_tabbed">&amp;Использовать вкладки</code>
+    <code id="menu_tool_emoticons">&amp;Отображать смайлики</code>
+    <code id="menu_tool_settings">&amp;Настройки</code>
+  </window>
+
+
+  <window name="conference-bookmarks-add">
+    <item id="txt_address">
+      <innerText>Адрес конференции:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Пример: room@conference.example.ru</innerText>
+    </item>
+    <item id="lbl_autojoin">
+      <innerText>Подключаться к этой конференции при входе в сеть.</innerText>
+    </item>
+    <item id="lbl_password">
+      <innerText>Подключаться к этой конференции с паролем:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <code id="error_invalid_address">Введен несуществующий адрес конференции.</code>
+  </window>
+  <window name="conference-bookmarks-manage">
+    <item id="txt_head">
+      <innerText>Здесь можно добавить, удалить или отредактировать существующие закладки.</innerText>
+    </item>
+    <item id="btn_edit">
+      <value>Редактировать</value>
+    </item>
+    <item id="btn_delete">
+      <value>Удалить</value>
+    </item>
+    <item id="btn_add">
+      <value>Добавить</value>
+    </item>
+    <item id="btn_close">
+      <value>Закрыть</value>
+    </item>
+    <code id="confirm_delete">Вы уверены, что хотите удалить эту закладку?</code>
+  </window>
+
+
+
+ <window name="conference-configuration">
+    <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_form_loading">
+      <innerText>Загрузка...</innerText>
+    </item>
+    <item id="txt_form_empty">
+      <innerText>Настройки данной конференции не могут быть изменены</innerText>
+    </item>
+    <item id="txt_form_invalid">
+      <innerText>Ошибка: не удается получить список настроек конференции</innerText>
+    </item>
+    <code id="form_title">Настройки конференции</code>
+    <code id="form_subtitle">Заполните все приведенные ниже поля</code>
+    
+    <code id="muc#roomconfig_allowinvites">Разрешить участникам приглашать новых собеседников</code>
+    <code id="muc#roomconfig_changesubject">Разрешить участникам изменять тему конференции</code>
+    <code id="muc#roomconfig_enablelogging">Вести историю сообщений в конференции</code>
+    <code id="muc#roomconfig_lang">Язык, используемый в данной конференции</code>
+    <code id="muc#roomconfig_maxusers">Максимальное число участников в этой конференции</code>
+    <code id="muc#roomconfig_membersonly">Доступ в данную конференцию разрешен только ее членам</code>
+    <code id="muc#roomconfig_moderatedroom">Чтобы отправить сообщение необходимо разрешение модератора</code>
+    <code id="muc#roomconfig_passwordprotectedroom">Для входа в данную конференцию необходимо указать пароль</code>
+    <code id="muc#roomconfig_persistentroom">Сохранять конференцию даже тогда, когда все участники ее покинули</code>
+    <code id="muc#roomconfig_presencebroadcast">Каким ролям рассылать статусную информацию</code>
+    <code id="muc#roomconfig_publicroom">Показывать данную конференцию в списке общедоступных</code>
+    <code id="muc#roomconfig_roomadmins">Администраторы конференции</code>
+    <code id="muc#roomconfig_roomdesc">Описание конференции</code>
+    <code id="muc#roomconfig_roomname">Имя конференции</code>
+    <code id="muc#roomconfig_roomowners">Владельцы конференции</code>
+    <code id="muc#roomconfig_roomsecret">Пароль для входа в конференцию</code>
+    <code id="muc#roomconfig_whois">При подключении к конференции показывать реальные адреса участников</code>
+  </window>
+
+  <window name="conference-password">
+    <item id="txt_password">
+      <innerText>Пароль:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-name">
+    <item id="txt_name">
+      <innerText>Имя:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+
+  <window name="conference-subject">
+    <item id="txt_subject">
+      <innerText>Новая тема:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-invite">
+    <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Выберите из списка тех собеседников, которых бы вы хотели пригласить в данную конференцию.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>К сожалению, никого из вашего списка контактов нет в сети.</innerText>
+    </item>
+  </window>
+  
+    <window name="conference-accesslevel">
+    <item id="txt-name">
+      <innerText>Имя:</innerText>
+    </item>
+    <item id="txt-room">
+      <innerText>Комната:</innerText>
+    </item>
+
+	<item id="txt-role">
+      <innerText>Статус</innerText>
+    </item>
+	<item id="txt-visitor">
+      <innerText>Гость</innerText>
+    </item>
+    <item id="txt-visitor-desc">
+      <innerText>может читать сообщения.</innerText>
+    </item>
+	<item id="txt-participant">
+      <innerText>Участник</innerText>
+    </item>
+    <item id="txt-participant-desc">
+      <innerText>может читать и отправлять сообщения.</innerText>
+    </item>
+	<item id="txt-moderator">
+      <innerText>Модератор</innerText>
+    </item>
+    <item id="txt-moderator-desc">
+      <innerText>может выкидывать из конференции гостей и участников.</innerText>
+    </item>
+
+	<item id="txt-affiliation">
+      <innerText>Принять в конференцию</innerText>
+    </item>
+	<item id="txt-none">
+      <innerText>Участник</innerText>
+    </item>
+    <item id="txt-none-desc">
+      <innerText>может заходить и писать в конференцию.</innerText>
+    </item>
+	<item id="txt-admin">
+      <innerText>Администратор</innerText>
+    </item>
+    <item id="txt-admin-desc">
+      <innerText>может назначать модераторов и банить участников.</innerText>
+    </item>
+	<item id="txt-owner">
+      <innerText>Владелец</innerText>
+    </item>
+    <item id="txt-owner-desc">
+      <innerText>может назначать администраторов.</innerText>
+    </item>
+
+    <item id="btn-default">
+      <value>По умолчанию</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-cancel">
+      <value>Отмена</value>
+      <accessKey>c</accessKey>
+    </item>
+    <item id="btn-close">
+      <value>Закрыть</value>
+      <accessKey>c</accessKey>
+    </item>
+  </window>
+
+  <window name="conference-container">
+    <item id="btn-emoticons">
+      <title>Уведомлять собеседника, когда вы набираете сообщение</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Изменить цвет текста или стиль</title>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Выбрать другой фоновый рисунок</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Смайлики</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Шрифт</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Фон</innerText>
+    </item>
+    
+    <item id="resize-grip">
+      <title>Изменить размер поля ввода сообщения</title>
+    </item>
+    <item id="mode-bar">
+      <title>Имя, адрес и тема данной конференции</title>
+    </item>
+    <item id="send-text">
+      <title>Введите ваше сообщение</title>
+    </item>
+    <item id="btn-send">
+      <value>Отправить</value>
+      <title>Отправить сообщение</title>
+    </item>
+
+    <item id="occupants-panel">
+      <title>Участники конференции</title>
+    </item>
+    <item id="txt-visitors">
+      <innerText>Гости</innerText>
+      <title>Гости могут читать сообщения.</title>
+    </item>
+    <item id="txt-moderators">
+      <innerText>Модераторы</innerText>
+      <title>Модераторы могут читать и отправлять сообщения, а также выкидывать участников из конференции.</title>
+    </item>
+    <item id="txt-participants">
+      <innerText>Участники</innerText>
+      <title>Участники могут читать и отправлять сообщения.</title>
+    </item>
+
+    <code id="wnd_conference_password">Подключение по паролю</code>
+    <code id="wnd_conference_change_name">Изменить мое имя</code>
+    <code id="wnd_conference_subject">Тема конференции</code>
+    <code id="wnd_conference_configuration">Настройки конференции</code>
+    <code id="wnd_conference_accesslevel">${0} - Уровень доступа</code>
+
+    <code id="tt-messages">Сообщение было отправлено и получено</code>
+    <code id="tt-close">Покинуть данную конференцию</code>
+    <code id="confirm-kick">Вы уверены, что хотите выкинуть "${0}" из конференции?</code>
+    <code id="kick-error">Невозможно выкинуть участника: ${0}</code>
+    <code id="kicked">${0} был выкинут из конференции</code>
+    <code id="kicked-by">${1} выкинул ${0} из конференции</code>
+    <code id="confirm-ban">Вы уверены, что хотите забанить "${0}"?</code>
+    <code id="ban-error">Невозможно забанить участника: ${0}</code>
+    <code id="banned">${0} забанен</code>
+    <code id="banned-by">${1} забанил ${0}</code>
+    <code id="leaving">${0} покинул конференцию</code>
+    <code id="joining">${0} подключился к конференции</code>
+    <code id="renaming">${0} теперь под именем ${1}</code>
+    
+    <code id="menu_axn_invite">&amp;Пригласить собеседников</code>
+    <code id="menu_axn_subject">&amp;Изменить тему конференции</code>
+    <code id="menu_axn_configuration">&amp;Изменить настройки конференции</code>
+    <code id="menu_axn_destroy">&amp;Удалить данную конференцию</code>
+    <code id="menu_bookmarks">&amp;Закладки</code>
+    <code id="menu_bmrk_add">&amp;Добавить в закладки...</code>
+    
+    <code id="menu_occupant_private">Личное &amp;сообщение</code>
+    <code id="menu_occupant_kick">&amp;Выкинуть</code>
+    <code id="menu_occupant_ban">&amp;Забанить</code>
+    <code id="menu_occupant_access">&amp;Уровень доступа...</code>
+    <code id="menu_occupant_add">&amp;Добавить в список контактов</code>
+    <code id="menu_occupant_profile">&amp;Профиль</code>
+    
+    <code id="connecting">Соединение...</code>
+    <code id="connected">Подключен</code>
+    <code id="disconnected">Отключен</code>
+
+    <code id="unrecognized-error">Неизвестная ошибка</code>
+    <code id="error-service-unavailable">Сервис недоступен</code>
+    <code id="error-not-allowed">Ошибка: действие запрещено</code>
+    <code id="error-conflict">Ошибка: данное имя уже используется</code>
+    <code id="error-registration-required">Доступ запрещен: вход только для участников</code>
+    <code id="error-forbidden">Доступ запрещен: вы забанены</code>
+    <code id="error-not-authorized">Доступ запрещен: необходима авторизация</code>
+    <code id="error-item-not-found">Ошибка: конференция закрыта</code>
+    
+    <code id="default_subject">Конференция пока не имеет темы.</code>
+    <code id="windowtitle">${0} - Конференция</code>
+    <code id="destroy">Удаление конференции повлечет за собой удаление из нее всех участников и последующее ее удаление с сервера.&#13;&#13;Вы уверены, что хотите удалить данную конференцию?</code>
+
+    <code id="menu_file_close">&amp;Закрыть конференцию</code>
+
+    <code id="menu_axn_change_name">Изменить мое &amp;имя...</code>
+    <code id="menu_axn_password">Подключиться с &amp;паролем...</code>
+  </window>
+  <window name="preferences">
+    <item id="txt_autoaway">
+      <innerText>Если вы не используете компьютер несколько минут, ваш статус автоматически изменяется на "Вышел".</innerText>
+    </item>
+    <item id="txt_displayawaymsg_left">
+      <innerText>Показать это сообщение после</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_left">
+      <innerText>Показать это сообщение после</innerText>
+    </item>
+    <item id="txt_displayawaymsg_right">
+      <innerText>минут(ы):</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_right">
+      <innerText>минут(ы):</innerText>
+    </item>
+    <item id="txt_blocking">
+      <innerText>Черный список содержит адреса людей, от которых вы не хотите получать сообщения.</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>Да, я хочу принимать сообщения от людей, отсутствующих в моем списке контактов.</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>Черный список</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>Снять блокировку</value>
+    </item>
+    <item id="block_btn_view">
+      <value>Посмотреть профиль</value>
+    </item>
+    <item id="txt_ssl">
+      <innerText>Использовать защищенное соединение (SSL)</innerText>
+    </item>
+    <item id="txt_firewall_proxy">
+      <innerText>Firewall и proxy-сервер</innerText>
+    </item>
+    <item id="txt_proxy1">
+      <innerText>Нет</innerText>
+    </item>
+    <item id="txt_proxy2">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_proxy3">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_proxy4">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_proxyserver">
+      <innerText>Сервер:</innerText>
+    </item>
+    <item id="txt_proxyport">
+      <innerText>Порт:</innerText>
+    </item>
+    <item id="txt_proxyuser">
+      <innerText>Пользователь:</innerText>
+    </item>
+    <item id="txt_proxypass">
+      <innerText>Пароль:</innerText>
+    </item>
+    <item id="txt_portmap">
+      <innerText>Трансляция портов при пересылке файлов (NAT, firewall)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>Машина:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>Порт:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>Сохранять все сообщения в архив истории</innerText>
+    </item>
+    <item id="txt_startup">
+      <innerText>Запускать автоматически при загрузке</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>Когда кто-то запрашивает мою авторизацию</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>Спросить меня</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>Принимать все запросы</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>Принимать от пользователей из моего списка</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>Отказывать на все запросы</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>Проигрывать звук, когда приходит сообщение</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>Проигрывать звук, когда кто-либо подключается к сети</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>Проигрывать звук, когда кто-либо отключается от сети</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>Найти</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>Найти</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>Найти</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="lbl_autoaway">
+      <innerText>Смена статуса</innerText>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>Черный список</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>Соединение</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>Безопасность</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>Мелодии</innerText>
+    </item>
+    <code id="autoaway">Сообщения об отсутствии</code>
+    <code id="blocking">Черный список</code>
+    <code id="connection">Настройки соединения</code>
+    <code id="privacy">Безопасность</code>
+    <code id="sound">Мелодии, уведомления</code>
+    <code id="reconnect">Вы должны переподключиться, чтобы изменения вступили в силу.&#13;&#13;Хотите переподключиться сейчас?</code>
+    <code id="shortcut">Отправка и получение собщений на интернет-пейджер</code>
+    <code id="choose_sound">Выберите мелодию уведомления</code>
+    <code id="file_audio">Аудио файлы</code>
+    <code id="file_any">Все файлы</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>Добавить новый контакт</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>Вы можете найти своих знакомых, основываясь как на известных вам личных данных, так и просто указав их имя пользователя.</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>Как вы хотите добавить контакт?</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>Я желаю найти знакомых.</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>Через службу:</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML>Я уже знаю адрес интернет-пейджера.</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>Сеть:</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>Имя пользователя:</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>Чтобы связаться с кем-либо в другой сети интернет-пейджеров, вы должны быть зарегистрированы в шлюзе этой сети.</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>Для этого надо сконфигурировать шлюз.</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>Далее &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_p1_cancel">
+      <value>Отмена</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>Обработка имени пользователя</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>Шлюз производит проверку имени пользователя.</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; Назад</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>Далее &gt;</value>
+    </item>
+    <item id="page1b_btn_cancel">
+      <value>Отмена</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>Запрос формы поиска</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>Форма поиска содержит все поля, по которым может вестись поиск.</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; Назад</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>Далее &gt;</value>
+    </item>
+    <item id="page1c_btn_cancel">
+      <value>Отмена</value>
+    </item>
+
+    <item id="txt_p2_title">
+      <innerText>Запрос на авторизацию</innerText>
+    </item>
+    <item id="txt_p2_tagline">
+      <innerText>Отправив данное сообщение, вы укажете своему потенциальному собеседнику, что хотите получить от него авторизацию.</innerText>
+    </item>
+    <item id="page2_btn_back">
+      <value>&lt; Назад</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page2_btn_finish">
+      <value>Завершить</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="page2_btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="txt_p2_desc">
+      <innerText>Запрос на авторизацию будет отправлен для:</innerText>
+    </item>
+    <item id="txt_p2_user">
+      <innerText>Имя пользователя:</innerText>
+    </item>
+    <item id="txt_p2_network">
+      <innerText>Сеть:</innerText>
+    </item>
+    <item id="txt_p2_message">
+      <innerHTML>Введите сообщение (необязательно):</innerHTML>
+    </item>
+    <item id="page2_message">
+      <innerText>Я хотел бы добавить вас в свой список контактов.</innerText>
+    </item>
+    <item id="txt_p2_close">
+      <innerHTML>Чтобы отправить запрос и закрыть окно помощника нажмите &lt;B&gt;Завершить&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; Назад</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>Поиск</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="page3_btn_cancel">
+      <value>Отмена</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText>Результаты поиска</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>Вы можете посмотреть личные данные пользователя или добавить его в ваш список контактов.</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; Назад</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>Далее &gt;</value>
+    </item>
+    <item id="page4_btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <code id="correct">Введите правильное имя пользователя.&#13;&#13;Пример: someone123@${0}</code>
+    <code id="example_address">Пример: someone123@${0}</code>
+    <code id="enter_username">Введите имя пользователя, с которым вы хотите связаться.</code>
+    <code id="contacting_transport">&lt;B&gt;Соединение со шлюзом&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Это может занять несколько минут.&lt;BR&gt;Пожалуйста, подождите.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Соединение со службой поиска&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Это может занять несколько минут.&lt;BR&gt;Пожалуйста, подождите.&lt;BR&gt;</code>
+    <code id="error_transport">&lt;B&gt;Ошибка сервера:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Пользователь не может быть добавлен в ваш список контактов.&lt;BR&gt;Убедитесь что вы указали правильное имя пользователя.</code>
+    <code id="error_search">&lt;B&gt;Ошибка сервера:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Форма поиска не может быть загружена.&lt;BR&gt;Попытайтесь позже или выберите другую службу.</code>
+    <code id="error_invalid">Получены неверные данные.</code>
+    <code id="search_title">Поиск пользователя</code>
+    <code id="search_tagline">Заполните поля для поиска пользователей.</code>
+    <code id="firstname">Имя:</code>
+    <code id="lastname">Фамилия:</code>
+    <code id="nick">Ник:</code>
+    <code id="email">E-mail адрес:</code>
+    <code id="searching">Поиск ...</code>
+    <code id="add">Добавить в список контактов</code>
+    <code id="view">Посмотреть профиль</code>
+    <code id="foundone">1 найден</code>
+    <code id="foundmany">${0} найдено</code>
+  </window>
+  <window name="login">
+    <code id="invalid">Указанный адрес неправильный. Исправьте ошибку и повторите попытку.&#13;&#13;Если у вас нет адреса, нажмите кнопку Регистрация и следуйте инструкциям.</code>
+		<item id="txt_instructions">
+      <innerText>Чтобы подключиться, введите ваш адрес и пароль.</innerText>
+    </item>
+		<item id="txt_address">
+      <innerText>Адрес:</innerText>
+    </item>
+		<item id="txt_example">
+      <innerText>Пример: someone123@example.ru</innerText>
+    </item>
+		<item id="txt_password">
+      <innerText>Пароль:</innerText>
+    </item>
+		<item id="txt_remember">
+      <innerText>Запомнить мой пароль</innerText>
+    </item>
+     	        <item id="txt_autologin">
+      <innerText>Подключаться автоматически</innerText>
+    </item>
+		<item id="btn_signup">
+      <value>Регистрация</value>
+    </item>
+		<item id="btn_login">
+      <value>Вход</value>
+    </item>
+		<item id="btn_close">
+      <value>Закрыть</value>
+    </item>
+  </window>
+  <window name="sign_up">
+    <code id="close_confirm">Новый аккаунт не создан.&#13;&#13;Закрыть Помощника?</code>
+    <code id="incomplete">Необходимо заполнить все поля ...</code>
+    <code id="pass_match">Пароли, которые вы ввели, не соответствуют друг другу.</code>
+
+    <code id="contacting">Соединение с сервером...</code>
+    <code id="registered">Ваш аккаунт регистрируется. Это может занять несколько минут.&lt;BR&gt;Пожалуйста, подождите.&lt;BR&gt;</code>
+    <code id="requesting">Запрос информации...</code>
+    <code id="sending">Отправка регистрации...</code>
+    <code id="failure">Ошибка соединения</code>
+    <code id="completed">Регистрация завершена</code>
+
+    <code id="address">Адрес:</code>
+    <code id="nickname">Имя:</code>
+    <code id="userdir">Каталог пользователя:</code>
+
+		<item id="txt_page_welcome_title">
+      <innerText>Вас приветствует Помощник Регистрации</innerText>
+    </item>
+    <item id="txt_page_welcome_intro">
+      <innerText>Он поможет вам зарегистрировать адрес в сети Jabber.</innerText>
+    </item>
+    <item id="txt_page_welcome_next">
+      <innerHTML>Чтобы продолжить, нажмите &lt;B&gt;Далее&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_welcome_next">
+      <value>Далее &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_welcome_cancel">
+      <value>Отмена</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_nickname_title">
+      <innerText>Личная информация</innerText>
+    </item>
+    <item id="txt_page_nickname_tagline">
+      <innerText>Эта информация поможет другим людям найти вас в сети.</innerText>
+    </item>
+    <item id="txt_page_nickname_desc">
+      <innerText>Введите ваше имя, чтобы друзья или колеги смогли легко с вам связаться.</innerText>
+    </item>
+    <item id="txt_page_nickname_name">
+      <innerHTML>Имя:</innerHTML>
+    </item>
+    <item id="data_name">
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_back">
+      <value>&lt; Назад</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_nickname_next">
+      <value>Далее &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_cancel">
+      <value>Отмена</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_account_title">
+      <innerText>Информация о сервере</innerText>
+    </item>
+    <item id="txt_page_account_tagline">
+      <innerText>Вы можете использовать как общедоступный сервер в интернете, так и частный сервер в корпоративной сети.</innerText>
+    </item>
+    <item id="txt_page_account_server">
+      <innerHTML>Сервер:</innerHTML>
+    </item>
+    <item id="txt_page_account_username">
+      <innerHTML>Имя пользователя:</innerHTML>
+    </item>
+    <item id="txt_page_account_password">
+      <innerHTML>Пароль:</innerHTML>
+    </item>
+    <item id="txt_page_account_confirm">
+      <innerHTML>Повторите пароль:</innerHTML>
+    </item>
+    <item id="data_server">
+      <accessKey>s</accessKey>
+    </item>
+    <item id="data_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="data_password">
+      <accessKey>p</accessKey>
+    </item>
+    <item id="data_password_confirm">
+      <accessKey>c</accessKey>
+    </item>
+    <item id="txt_page_account_remember">
+      <innerHTML>Запомнить мой пароль</innerHTML>
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page_account_preview">
+      <innerText>Ваш адрес:</innerText>
+    </item>
+    <item id="btn_page_account_settings">
+      <value>Настройки подключения</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_account_back">
+      <value>&lt; Назад</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_account_next">
+      <value>Далее &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_account_cancel">
+      <value>Отмена</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_creating_title">
+      <innerText>Регистрация адреса</innerText>
+    </item>
+    <item id="txt_page_creating_autherr">
+      <innerHTML>Адрес не может быть зарегистрирован. Указано недопустимое или уже существующее имя пользователя.&lt;BR&gt;&lt;BR&gt;Нажмите &lt;B&gt;Назад&lt;/B&gt;, выберите другое имя пользователя и попытайтесь снова.</innerHTML>
+    </item>
+    <item id="txt_page_creating_forbidden">
+      <innerHTML>Адрес не может быть зарегистрирован. Выбранный вами сервер не разрешает создание новых адресов.</innerHTML>
+    </item>
+    <item id="txt_page_creating_commerr">
+      <innerHTML>Не удается связаться с сервером. Убедитесь, что вы указали правильный адрес сервера.&lt;BR&gt;Проверьте ваше соединение с сетью и попытайтесь снова.</innerHTML>
+    </item>
+    <item id="btn_page_creating_retry">
+      <value>Повторить попытку</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_creating_settings">
+      <value>Настройки подключения</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_creating_back">
+      <value>&lt; Назад</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_creating_next">
+      <value>Далее &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_creating_cancel">
+      <value>Отмена</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_conn_title">
+      <innerText>Настройка подключения</innerText>
+    </item>
+    <item id="txt_ssl">
+      <innerText>Использовать защищеное соединение (SSL)</innerText>
+    </item>
+    <item id="txt_conn_desc">
+      <innerText>Firewall и proxy-сервер</innerText>
+    </item>
+    <item id="txt_conn_none">
+      <innerText>Нет</innerText>
+    </item>
+    <item id="txt_conn_http">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_conn_s4">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_conn_s5">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_conn_host">
+      <innerText>Сервер:</innerText>
+    </item>
+    <item id="txt_conn_port">
+      <innerText>Порт:</innerText>
+    </item>
+    <item id="txt_conn_user">
+      <innerText>Имя пользователя:</innerText>
+    </item>
+    <item id="txt_conn_pass">
+      <innerText>Пароль:</innerText>
+    </item>
+    <item id="btn_conn_default">
+      <value>По умолчанию</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_conn_ok">
+      <value>OK</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn_conn_cancel">
+      <value>Отмена</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_finished_title">
+      <innerText>Завершение работы Помощника</innerText>
+    </item>
+    <item id="txt_page_finished_intro">
+      <innerText>Вы успешно заполнили все необходимые поля.</innerText>
+    </item>
+    <item id="txt_page_finished_details">
+      <innerText>Детали профиля:</innerText>
+    </item>
+    <item id="txt_page_finished_finish">
+      <innerHTML>Нажмите &lt;B&gt;Завершить&lt;/B&gt; для завершения настройки.</innerHTML>
+    </item>
+    <item id="btn_page_finished_back">
+      <value>&lt; Назад</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_finished_finish">
+      <value>Завершить</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn_page_finished_cancel">
+      <value>Отмена</value>
+      <accessKey>c</accessKey>
+    </item>
+  </window>
+</translation>

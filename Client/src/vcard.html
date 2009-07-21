@@ -1,0 +1,440 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+INPUT.text {
+	padding-left: 2px;
+	font-family: Tahoma;
+	font-size: 11px;
+	width: 100%;
+	height: 21px;
+}
+INPUT.disabled {
+	padding-left: 2px;
+	font-family: Tahoma, Arial;
+	font-size: 11px;
+	background-color: buttonface;
+	color: graytext;
+}
+FIELDSET {
+	cursor: default;
+}
+TD {
+	font-family: Arial;
+	font-size: 11px;
+	color: windowtext;
+}
+TD.tree {
+	padding: 3px;
+}
+DIV.panel {
+	display: none;
+	margin-left: 10px;
+}
+#header {
+	color: #4f575c;
+	border: 2px groove;
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 3px;
+	padding-left: 8px;
+	background-image: url( ../images/misc/tab-bar-lite.gif );
+}
+</STYLE>
+
+<SCRIPT language=JScript src="main/XMPPAddress.js"></SCRIPT>
+<SCRIPT language=JScript src="main/XMPPHookIQ.js"></SCRIPT>
+<SCRIPT language=JScript src="main/vcard.js"></SCRIPT>
+
+<SCRIPT language=JScript>
+
+function handle_keyboard ()
+{
+	var key = event.keyCode;
+
+	if ( key == 37 || key == 38 )
+	// left or up: move selection to previous item in tree
+	{
+		var rows = document.getElementById( 'tree' ).rows;
+		for ( var i = 0; i < rows.length; i++ )
+			if ( rows(i).isCurrentSelection )
+			{
+				if ( i > 0 )
+					tree_select( rows(i-1) );
+				break;
+			}
+		event.returnValue = false;
+	}
+	else if ( key == 39 || key == 40 )
+	// right or down: move selection to next item in tree
+	{
+		var rows = document.getElementById( 'tree' ).rows;
+		for ( var i = 0; i < rows.length; i++ )
+			if ( rows(i).isCurrentSelection )
+			{
+				if ( i < rows.length - 1 )
+					tree_select( rows(i+1) );
+				break;
+			}
+		event.returnValue = false;
+	}
+}
+
+function tree ()
+{
+	var row = window.event.srcElement;
+	while ( typeof row.section == 'undefined' )
+		row = row.parentElement;
+
+	if ( ! row.isCurrentSelection )
+		tree_select( row );
+
+	document.getElementById( 'tree' ).focus();
+}
+
+function tree_select ( row )
+{
+	row.style.backgroundColor = 'highlight';
+	row.cells(0).style.color = 'highlighttext';
+	document.getElementById( 'header' ).innerText = external.globals( 'Translator' ).Translate( 'vcard', row.header );
+	document.getElementById( row.section ).style.display = 'block';
+
+	var rows = row.parentElement.rows;
+	for ( var i = 0; i < rows.length; i++ )
+		if ( rows(i).isCurrentSelection )
+		{
+			tree_deselect( rows(i) );
+			break;
+		}
+
+	row.isCurrentSelection = true;
+}
+
+function tree_deselect ( row )
+{
+	document.getElementById( row.section ).style.display = 'none';
+	row.style.backgroundColor = '';
+	row.cells(0).style.color = '';
+	row.isCurrentSelection = false;
+}
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'vcard', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	var tree = document.getElementById( 'tree' );
+	tree.focus();
+	tree_select( tree.rows(0) );
+	refresh();
+	external.wnd.hide( false );
+}
+
+function refresh ()
+{
+	document.getElementById( 'waitscreen'	).style.display	= 'block';
+	document.getElementById( 'btn_save'		).disabled		= true;
+	document.getElementById( 'btn_refresh'	).disabled		= true;
+
+	var hook		= new XMPPHookIQ();
+	hook.Window		= external.wnd;
+	hook.Callback	= 'vcard_show';
+
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<iq type="get"><vCard xmlns="vcard-temp"/></iq>' );
+	dom.documentElement.setAttribute( 'id', hook.Id );
+	dom.documentElement.setAttribute( 'to', external.wnd.params[0] );
+	external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+
+	document.getElementById( 'jid' ).value = ( new XMPPAddress ( external.wnd.params[0] ) ).CleanAddress();
+	document.getElementById( 'res' ).value = external.wnd.params[1];
+	if ( external.wnd.params[1].length )
+	{
+		var hook		= new XMPPHookIQ();
+		hook.Window		= external.wnd;
+		hook.Type		= 4 | 8;
+		hook.Callback	= 'time_show';
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:time"/></iq>' );
+		dom.documentElement.setAttribute( 'id', hook.Id );
+		dom.documentElement.setAttribute( 'to', external.wnd.params[0] + '/' + external.wnd.params[1] );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+
+		var hook		= new XMPPHookIQ();
+		hook.Window		= external.wnd;
+		hook.Type		= 4 | 8;
+		hook.Callback	= 'version_show';
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:version"/></iq>' );
+		dom.documentElement.setAttribute( 'id', hook.Id );
+		dom.documentElement.setAttribute( 'to', external.wnd.params[0] + '/' + external.wnd.params[1] );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+function vcard_show ( iq )
+{
+	var vcard = new VCARD();
+	vcard.FromIQ( iq );
+	document.getElementById( 'waitscreen' ).style.display = 'none';
+	document.getElementById( 'btn_save' ).disabled = false;
+	document.getElementById( 'btn_refresh' ).disabled = false;
+
+	var list = new Array( 'given', 'middle', 'family', 'nickname', 'url', 'bday', 'age', 'gender', 'maritalstatus', 'orgname', 'orgunit', 'workcell', 'homecell', 'title', 'role', 'homeextadd', 'homestreet', 'homelocality', 'homeregion', 'homepcode', 'homecountry', 'workextadd', 'workstreet', 'worklocality', 'workregion', 'workpcode', 'workcountry', 'homevoice', 'homefax', 'workvoice', 'workfax', 'email1', 'email2' );
+	for ( var i = 0; i < list.length; i++ )
+		document.getElementById( list[i] ).value = vcard.get( list[i] );
+}
+
+function time_show ( iq )
+{
+	var Node = '';
+	if ( Node = iq.XMLDOM.selectSingleNode( '/iq/query/display' ) )
+		document.getElementById( 'time' ).value = Node.text;
+}
+
+function version_show ( iq )
+{
+	var Node = '';
+	if ( Node = iq.XMLDOM.selectSingleNode( '/iq/query/name' ) )
+		document.getElementById( 'name' ).value = Node.text;
+	if ( Node = iq.XMLDOM.selectSingleNode( '/iq/query/version' ) )
+		document.getElementById( 'version' ).value = Node.text;
+	if ( Node = iq.XMLDOM.selectSingleNode( '/iq/query/os' ) )
+		document.getElementById( 'os' ).value = Node.text;
+}
+
+function clearall ()
+{
+	var list = new Array( 'given', 'middle', 'family', 'nickname', 'url', 'bday', 'age', 'gender', 'maritalstatus', 'orgname', 'orgunit', 'workcell', 'homecell', 'title', 'role', 'homeextadd', 'homestreet', 'homelocality', 'homeregion', 'homepcode', 'homecountry', 'workextadd', 'workstreet', 'worklocality', 'workregion', 'workpcode', 'workcountry', 'homevoice', 'homefax', 'workvoice', 'workfax', 'email1', 'email2', 'name', 'version', 'os', 'time' );
+	for ( var i = 0; i < list.length; i++ )
+		document.getElementById( list[i] ).value = '';
+}
+
+function save ()
+{
+	try
+	{
+		var dialog = external.ComCtrl.ComDlg.GetFileName;
+		dialog.Flags = 32768;
+		dialog.Filter = 'vCard files (*.vcf)|*.vcf|All files|*.*';
+		var path = dialog.DisplaySave();
+		if ( path.substr( path.length - 4, 4 ) != '.vcf' )
+			path += '.vcf';
+		var file = external.File( path );
+		file.WriteLine( 'BEGIN:VCARD' );
+		file.WriteLine( 'VERSION:2.1' );
+		file.WriteLine( 'FN:' + document.getElementById( 'given' ).value + ( document.getElementById( 'middle' ).value.length ? ' ' + document.getElementById( 'middle' ).value : '' ) + ' ' + document.getElementById( 'family' ).value );
+		file.WriteLine( 'N:' + document.getElementById( 'family' ).value + ';' + document.getElementById( 'given' ).value + ';' + document.getElementById( 'middle' ).value );
+		file.WriteLine( 'NICKNAME:' + document.getElementById( 'nickname' ).value );
+		file.WriteLine( 'BDAY:' + document.getElementById( 'bday' ).value ); // BDAY:19950415 or BDAY:1995-04-15 (both ISO 8601)
+		file.WriteLine( 'ADR;HOME:;' + document.getElementById( 'homeextadd' ).value + ';' + document.getElementById( 'homestreet' ).value + ';' + document.getElementById( 'homelocality' ).value + ';' + document.getElementById( 'homeregion' ).value + ';' + document.getElementById( 'homepcode' ).value + ';' + document.getElementById( 'homecountry' ).value );
+		file.WriteLine( 'ADR;WORK:;' + document.getElementById( 'workextadd' ).value + ';' + document.getElementById( 'workstreet' ).value + ';' + document.getElementById( 'worklocality' ).value + ';' + document.getElementById( 'workregion' ).value + ';' + document.getElementById( 'workpcode' ).value + ';' + document.getElementById( 'workcountry' ).value );
+		file.WriteLine( 'TEL;HOME;VOICE:' + document.getElementById( 'homevoice' ).value );
+		file.WriteLine( 'TEL;WORK;VOICE:' + document.getElementById( 'workvoice' ).value );
+		file.WriteLine( 'TEL;HOME;FAX:' + document.getElementById( 'homefax' ).value );
+		file.WriteLine( 'TEL;WORK;FAX:' + document.getElementById( 'workfax' ).value );
+		file.WriteLine( 'TEL;HOME;CELL:' + document.getElementById( 'homecell' ).value );
+		file.WriteLine( 'TEL;WORK;CELL:' + document.getElementById( 'workcell' ).value );
+		file.WriteLine( 'EMAIL;INTERNET:' + document.getElementById( 'email1' ).value );
+		file.WriteLine( 'EMAIL;INTERNET:' + document.getElementById( 'email2' ).value );
+		file.WriteLine( 'TITLE:' + document.getElementById( 'title' ).value );
+		file.WriteLine( 'ROLE:' + document.getElementById( 'role' ).value );
+		file.WriteLine( 'ORG:' + document.getElementById( 'orgname' ).value + ';' + document.getElementById( 'orgunit' ).value );
+		file.WriteLine( 'URL:' + document.getElementById( 'url' ).value );
+		file.WriteLine( 'X-XMPP:' + document.getElementById( 'jid' ).value );
+		file.WriteLine( 'END:VCARD' );
+		file.Close();
+	}
+	catch ( e )
+	{
+		if ( e.description.length )
+			external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'vcard', 'save', [ e.description ] ), external.globals( 'softwarename' ), 0 | 48 );
+		return false;
+	}
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="init()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="event.returnValue = false; external.wnd.close();">
+
+<TABLE border=0 cellspacing=4 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=140></COL>
+<TR valign=top>
+
+<TD>
+
+<DIV style="background-color: window; border: 2px inset; width: 100%; height: 300px;" onkeydown="handle_keyboard()" tabindex=0>
+<TABLE id=tree border=0 cellspacing=0 cellpadding=0 width="100%" style="table-layout: fixed;">
+<TR section="personal1" header="personal"><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/person.gif">&nbsp;&nbsp;<SPAN id=txt_s1></SPAN></TD></TR>
+<TR section="personal2" header="personal"><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/labyrinth.gif">&nbsp;&nbsp;<SPAN id=txt_s2></SPAN></TD></TR>
+<TR section="personal3" header="personal"><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/house.gif">&nbsp;&nbsp;<SPAN id=txt_s3></SPAN></TD></TR>
+<TR section="personal4" header="personal"><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/cryo chamber.gif">&nbsp;&nbsp;<SPAN id=txt_s4></SPAN></TD></TR>
+<TR section="personal5" header="personal"><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/city.gif">&nbsp;&nbsp;<SPAN id=txt_s5></SPAN></TD></TR>
+<TR section="system" header="system"><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/config PC.gif">&nbsp;&nbsp;<SPAN id=txt_s6></SPAN></TD></TR>
+</TABLE>
+</DIV>
+
+</TD>
+
+<TD>
+
+<DIV id=header>&nbsp;</DIV>
+
+<!-- User Details -->
+<DIV id=personal1 class=panel>
+
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_name></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=90></COL>
+<TR><TD id=txt_given></TD><TD><INPUT type=text readonly class=text id=given></TD></TR>
+<TR><TD id=txt_middle></TD><TD><INPUT type=text readonly class=text id=middle></TD></TR>
+<TR><TD id=txt_family></TD><TD><INPUT type=text readonly class=text id=family></TD></TR>
+<TR><TD id=txt_nick></TD><TD><INPUT type=text readonly class=text id=nickname></TD></TR>
+</TABLE>
+</FIELDSET>
+
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_contact></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=90></COL>
+<TR><TD id=txt_email1></TD><TD><INPUT type=text readonly class=text id=email1></TD></TR>
+<TR><TD id=txt_homevoice></TD><TD><INPUT type=text readonly class=text id=homevoice></TD></TR>
+<TR><TD id=txt_homecell></TD><TD><INPUT type=text readonly class=text id=homecell></TD></TR>
+<TR><TD id=txt_homefax></TD><TD><INPUT type=text readonly class=text id=homefax></TD></TR>
+</TABLE>
+</FIELDSET>
+
+</DIV>
+
+<!-- Additional Details -->
+<DIV id=personal2 class=panel>
+
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_additional></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=90></COL>
+<TR><TD id=txt_age></TD><TD><INPUT type=text readonly class=text id=age></TD></TR>
+<TR><TD id=txt_bday></TD><TD><INPUT type=text readonly class=text id=bday></TD></TR>
+<TR><TD id=txt_gender></TD><TD><INPUT type=text readonly class=text id=gender></TD></TR>
+<TR><TD id=txt_marital></TD><TD><INPUT type=text readonly class=text id=maritalstatus></TD></TR>
+<TR><TD id=txt_url></TD><TD><INPUT type=text readonly class=text id=url></TD></TR>
+</TABLE>
+</FIELDSET>
+
+</DIV>
+
+<!-- Home Address -->
+<DIV id=personal3 class=panel>
+
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_homeaddress></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=90></COL>
+<TR><TD id=txt_homestreet></TD><TD><INPUT type=text readonly class=text id=homestreet></TD></TR>
+<TR><TD id=txt_homeextadd></TD><TD><INPUT type=text readonly class=text id=homeextadd></TD></TR>
+<TR><TD id=txt_homelocality></TD><TD><INPUT type=text readonly class=text id=homelocality></TD></TR>
+<TR><TD id=txt_homepcode></TD><TD><INPUT type=text readonly class=text id=homepcode></TD></TR>
+<TR><TD id=txt_homeregion></TD><TD><INPUT type=text readonly class=text id=homeregion></TD></TR>
+<TR><TD id=txt_homecountry></TD><TD><INPUT type=text readonly class=text id=homecountry></TD></TR>
+</TABLE>
+</FIELDSET>
+
+</DIV>
+
+<!-- Business Details -->
+<DIV id=personal4 class=panel>
+
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_organization></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=90></COL>
+<TR><TD id=txt_orgname></TD><TD><INPUT type=text readonly class=text id=orgname></TD></TR>
+<TR><TD id=txt_orgunit></TD><TD><INPUT type=text readonly class=text id=orgunit></TD></TR>
+<TR><TD id=txt_title></TD><TD><INPUT type=text readonly class=text id=title></TD></TR>
+<TR><TD id=txt_role></TD><TD><INPUT type=text readonly class=text id=role></TD></TR>
+</TABLE>
+</FIELDSET>
+
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_contact></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=90></COL>
+<TR><TD id=txt_email2></TD><TD><INPUT type=text readonly class=text id=email2></TD></TR>
+<TR><TD id=txt_workvoice></TD><TD><INPUT type=text readonly class=text id=workvoice></TD></TR>
+<TR><TD id=txt_workcell></TD><TD><INPUT type=text readonly class=text id=workcell></TD></TR>
+<TR><TD id=txt_workfax></TD><TD><INPUT type=text readonly class=text id=workfax></TD></TR>
+</TABLE>
+</FIELDSET>
+
+</DIV>
+
+<!-- Business Address -->
+<DIV id=personal5 class=panel>
+
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_business_address></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=90></COL>
+<TR><TD id=txt_workstreet></TD><TD><INPUT type=text readonly class=text id=workstreet></TD></TR>
+<TR><TD id=txt_workextadd></TD><TD><INPUT type=text readonly class=text id=workextadd></TD></TR>
+<TR><TD id=txt_worklocality></TD><TD><INPUT type=text readonly class=text id=worklocality></TD></TR>
+<TR><TD id=txt_workpcode></TD><TD><INPUT type=text readonly class=text id=workpcode></TD></TR>
+<TR><TD id=txt_workregion></TD><TD><INPUT type=text readonly class=text id=workregion></TD></TR>
+<TR><TD id=txt_workcountry></TD><TD><INPUT type=text readonly class=text id=workcountry></TD></TR>
+</TABLE>
+</FIELDSET>
+
+</DIV>
+
+<!-- System -->
+<DIV id=system class=panel>
+
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_client></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=90></COL>
+<TR><TD id=txt_jid></TD><TD><INPUT type=text readonly class=text id=jid></TD></TR>
+<TR><TD id=txt_res></TD><TD><INPUT type=text readonly class=text id=res></TD></TR>
+<TR><TD id=txt_time></TD><TD><INPUT type=text readonly class=text id=time></TD></TR>
+<TR><TD id=txt_software></TD><TD><INPUT type=text readonly class=text id=name></TD></TR>
+<TR><TD id=txt_version></TD><TD><INPUT type=text readonly class=text id=version></TD></TR>
+<TR><TD id=txt_os></TD><TD><INPUT type=text readonly class=text id=os></TD></TR>
+</TABLE>
+</FIELDSET>
+
+</DIV>
+
+</TD>
+
+</TR>
+</TABLE>
+
+<DIV id=waitscreen style="padding-top: 100px; padding-left: 130px; background-color: buttonface; color: buttontext; width: 100%; height: 306px; font-family: Tahoma; font-size: 11px; position: absolute; top: 0px; left: 0px;">
+<B id=txt_requesting1></B>&nbsp;<IMG src="../images/misc/ooo.gif"><BR>
+<BR>
+<SPAN id=txt_requesting2></SPAN>
+</DIV>
+
+<DIV style="border-top: 2px groove; width: 100%; margin-left: 4px; margin-right: 4px;">&nbsp;</DIV>
+
+<INPUT type=button style="position: absolute; top: 307px; left:  4px; margin-top: 8px; width: 140px; height: 24px; font-family: Tahoma; font-size: 11px;" disabled id=btn_save onclick="save()">
+<INPUT type=button style="position: absolute; top: 307px; left: 290px; margin-top: 8px; width: 90px; height: 24px; font-family: Tahoma; font-size: 11px;" disabled id=btn_refresh onclick="refresh(); clearall()">
+<INPUT type=submit style="position: absolute; top: 307px; left: 390px; margin-top: 8px; width: 90px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_close>
+
+</FORM>
+
+</BODY>
+</HTML>

@@ -1,0 +1,14 @@
+function dial_connection_settings ()
+{
+	if ( external.windows.Exists( 'connection_settings' ) )
+		external.windows( 'connection_settings' ).focus();
+	else
+		with ( external.createWindow( 'connection_settings', external.globals( 'cwd' ) + 'connection_settings.html', window ) )
+		{
+			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_connection_settings' ) );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\brand\\default.ico' );
+			resizeable( false );
+			setSize( 370, 440 );
+			setPos( ( screen.availWidth - 270 ) / 2, ( screen.availHeight - 440 ) / 2 );
+		}
+}

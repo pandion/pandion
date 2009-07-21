@@ -1,0 +1,204 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+INPUT {
+	font-family: Tahoma;
+}
+</STYLE>
+<SCRIPT language=JScript>
+
+var g_selected;
+
+function pick ( file )
+{
+	if ( file == g_selected )
+		return;
+	document.getElementById( file ).style.borderColor = 'highlight';
+	if ( g_selected.length )
+		document.getElementById( g_selected ).style.borderColor = 'window';
+	g_selected = file;
+	document.getElementById( 'btn_ok' ).disabled = false;
+}
+
+function ok ()
+{
+	if ( document.getElementById( g_selected ) && external.globals( 'cfg' )( 'avatar' ) != g_selected )
+	{
+		/* Store in cfg and refresh Settings window.
+		 */
+		external.globals( 'cfg' )( 'avatar' ) = g_selected;
+		external.wnd.params.SettingsSave();
+		if ( external.windows.Exists( 'preferences' ) )
+			external.windows( 'preferences' ).Do( 'avatar_show', external.globals( 'usersdir' ) + 'My Avatars\\' + g_selected );
+
+		/* Upload the new avatar's data.
+		 */
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="set"><query xmlns="storage:client:avatar"><data/></query></iq>' );
+		dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
+		dom.documentElement.firstChild.firstChild.text = external.File( external.globals( 'usersdir' ) + 'My Avatars\\' + g_selected ).ReadBase64();
+		external.wnd.params.warn( 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+
+		/* Send new hash to everyone.
+		 */
+		external.wnd.params.mode_new( external.globals( 'cfg' )( 'lastmode' ), external.globals( 'cfg' )( 'lastmsg' ) );
+	}
+	external.wnd.close();
+}
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'avatar', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	external.wnd.hide( false );
+	setTimeout( 'show()', 0 );
+}
+
+function show ()
+{
+	var path = external.globals( 'usersdir' ) + 'My Avatars\\';
+
+	try
+	{
+		if ( ! external.Directory.Exists( path ) )
+			external.Directory.Create( path );
+	}
+	catch ( e )
+	{
+		return external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'avatar', 'error_load', [ e.description ] ), external.globals( 'softwarename' ), 0 | 48 );
+	}
+
+	g_selected = external.globals( 'cfg' )( 'avatar' );
+	var avatars = document.getElementById( 'avatars' );
+	avatars.innerHTML = '';
+
+	var files = new VBArray( external.Directory.ListFiles( path ) ).toArray();
+	for ( var i = 0; i < files.length; ++i )
+		if ( files[i].Name.length == 40 )
+			avatars.insertAdjacentHTML( 'beforeEnd', '<SPAN onmousedown="pick(this.id)" oncontextmenu="menu(this.id)" ondblclick="ok()" id="' + files[i].Name + '" style="margin: 9px; border: 2px solid ' + ( files[i].Name.toLowerCase() == external.globals( 'cfg' )( 'avatar' ).toLowerCase() ? 'highlight' : 'window' ) + '; width: 70px; height: 70px; background: url(' + path + files[i].Name + ') no-repeat center center;"></SPAN>' );
+	if ( ! document.getElementById( g_selected ) )
+		g_selected = '';
+	else
+	{
+		document.getElementById( g_selected ).scrollIntoView( true );
+		document.getElementById( 'btn_ok' ).disabled = false;
+	}
+}
+
+function menu ( file )
+{
+	var menu = external.newPopupMenu;
+	menu.AddItem( true, false, false, true, 0, external.globals( 'Translator' ).Translate( 'avatar', 'menu_use' ), 1 );
+	menu.AddSeparator();
+	menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'avatar', 'menu_saveas' ), 2 );
+	menu.AddItem( file != external.globals( 'cfg' )( 'avatar' ), false, false, false, 0, external.globals( 'Translator' ).Translate( 'avatar', 'menu_delete' ), 3 );
+	menu.Show( event.screenX, event.screenY );
+	switch ( menu.Choice )
+	{
+		case 1:
+			pick( file );
+			ok();
+		break;
+		case 2:
+			saveas( file );
+		break;
+		case 3:
+			if ( external.FileExists( external.globals( 'usersdir' ) + 'My Avatars\\' + file ) )
+				external.File( external.globals( 'usersdir' ) + 'My Avatars\\' + file ).Delete();
+			if ( file == g_selected )
+				document.getElementById( 'btn_ok' ).disabled = true;
+			document.getElementById( file ).removeNode( true );
+			g_selected = '';
+		break;
+	}
+}
+
+function saveas ( file )
+{
+	var dialog, path;
+	try
+	{
+		dialog = external.ComCtrl.ComDlg.GetFileName;
+		dialog.Flags = 32768 | 2;
+		dialog.Filter = external.globals( 'Translator' ).Translate( 'avatar', 'saveas_files' ) + ' (*.gif, *.jpg, *.png)|*.gif;*.jpg;*.png;*.jpeg;*.bmp;*.wbm;*.wbmp|' + external.globals( 'Translator' ).Translate( 'avatar', 'all_files' ) + '|*.*';
+		dialog.FileName = file;
+		path = dialog.DisplaySave();
+	}
+	catch ( e )
+	{
+		return;
+	}
+
+	external.File( external.globals( 'usersdir' ) + 'My Avatars\\' + file ).Copy( path );
+}
+
+function custom ()
+{
+	var dialog, path;
+	try
+	{
+		dialog = external.ComCtrl.ComDlg.GetFileName;
+		dialog.Flags = 2048;
+		dialog.Title = external.globals( 'Translator' ).Translate( 'avatar', 'wnd_select' );
+		dialog.Filter = external.globals( 'Translator' ).Translate( 'avatar', 'image_files' ) + ' (*.gif, *.jpg, *.png)|*.gif;*.jpg;*.png;*.jpeg;*.bmp;*.wbm;*.wbmp|' + external.globals( 'Translator' ).Translate( 'avatar', 'all_files' ) + '|*.*';
+		path = dialog.DisplayOpen();
+	}
+	catch ( e )
+	{
+		return;
+	}
+
+	/* Copy file to avatar directory.
+	 */
+	var file = external.File( path );
+	if ( file.Size > 16 * 1024 )
+		return external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'avatar', 'error_size' ), external.globals( 'softwarename' ), 0 | 48 );
+	else if ( file.Size < 1 )
+		return external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'avatar', 'error_empty' ), external.globals( 'softwarename' ), 0 | 48 );
+	var hash = file.SHA1.toLowerCase();
+	file.Copy( external.globals( 'usersdir' ) + 'Avatars\\' + hash, true );
+	file.Copy( external.globals( 'usersdir' ) + 'My Avatars\\' + hash, true );
+	if ( ! document.getElementById( hash ) )
+		document.getElementById( 'avatars' ).insertAdjacentHTML( 'beforeEnd', '<SPAN onmousedown="pick(this.id)" oncontextmenu="menu(this.id)" ondblclick="ok()" id="' + hash + '" style="margin: 9px; border: 2px solid highlight; width: 70px; height: 70px; background: url(' + external.globals( 'usersdir' ) + 'My Avatars\\' + hash + ') no-repeat center center;"></SPAN>' );
+	pick( hash );
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="init()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="event.returnValue = false; ok()">
+<TABLE id=page2 width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<TR valign=top height=50 bgcolor=window>
+	<TD colspan=2 style="padding-left: 20px; padding-right: 8px; padding-top: 10px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+	<DIV id=txt_desc></DIV>
+	</TD>
+</TR>
+<TR valign=top>
+	<TD colspan=2 style="padding: 16px;">
+	<DIV id=avatars style="text-align: center; width: 100%; height: 100%; background-color: window; border: 2px inset; overflow-y: scroll; font-size: 11px; font-family: Tahoma; color: windowtext;"><SPAN style="line-height: 250px;" id=txt_loading></SPAN></DIV>
+	</TD>
+</TR>
+<TR valign=top height=45>
+	<TD style="padding: 10px; border-top: 2px groove;">
+	<INPUT type=button id=btn_custom style="height: 24px; width: 120px; font-size: 11px;" onclick="custom()">
+	</TD>
+	<TD align=right style="padding: 10px; border-top: 2px groove;">
+	<INPUT type=submit id=btn_ok style="height: 24px; width: 90px; font-size: 11px;" disabled>
+	<INPUT type=button id=btn_cancel style="height: 24px; width: 90px; font-size: 11px;" onclick="external.wnd.close()">
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

@@ -1,0 +1,221 @@
+/* General elements
+ */
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+	background-color: window;
+	color: windowtext;
+}
+A {
+	color: blue;
+}
+A:hover {
+	color: red;
+}
+
+/* Bar with status, name, avatar, etc.
+ */
+#mode-bar {
+	cursor: hand;
+	display: block;
+	background-image: url( ../../images/misc/roster-top-lite.gif );
+	background-repeat: repeat-x;
+}
+#mode-avatar {
+	margin: 5px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	border: 0px solid #0570ad;
+	height: 32px;
+	width: 32px;
+}
+#mode-top {
+	width: 100%;
+	margin-top: 6px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #4f575c;
+}
+#mode-name {
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+	color: #57a6d3;
+}
+#mode-message {
+	height: 16px;
+	width: 100%;
+	padding-left: 2px;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #4f575c;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+#mode-secure {
+	display: none;
+	margin-left: 4px;
+	border-width: 0;
+}
+
+/* Notification box for new messages
+ */
+.unread-messages-line {
+	display: block;
+	height: 23px;
+	margin: 1px;
+	border: 1px threedlightshadow solid;
+	padding-left: 6px;
+	padding-top: 4px;
+	font-family: Tahoma;
+	font-size: 11px;
+	background-color: infobackground;
+}
+
+/* Contact list
+ */
+#rosterfield {
+	height: 100%;
+	overflow: auto;
+	padding-left: 6px;
+}
+#rosterback {
+	height: 100%;
+	background-position-x: right;
+	background-position-y: bottom;
+	background-repeat: no-repeat;
+	background-image: url( ../../images/brand/background.gif );
+}
+.roster-group-header {
+	margin-top: 4px;
+	margin-bottom: 4px;
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+	color: #57a6d3;
+	border-bottom: 1px solid #d3d5d6;
+}
+.roster-group-empty {
+	display: block;
+	font-style: italic;
+	padding-bottom: 5px;
+	font-family: Arial;
+	font-size: 10px;
+	color: #b3b5b6;
+}
+.roster-item-offline {
+	display: block;
+	margin-left: 29px;
+}
+.roster-item-offline-name-blocked {
+	font-style: italic;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #b3b5b6;
+}
+.roster-item-offline-name {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #333536;
+}
+.roster-item-offline-msg {
+	font-family: Arial;
+	font-size: 10px;
+	color: #b3b5b6;
+}
+.roster-item-offline-unread {
+	font-family: Arial;
+	font-size: 10px;
+	color: orange;
+}
+.roster-resource-unread {
+	font-family: Arial;
+	font-size: 10px;
+	color: orange;
+}
+.roster-resource {
+	display: block;
+}
+.roster-resource-name-blocked {
+	font-style: italic;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #b3b5b6;
+}
+.roster-resource-name {
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #333536;
+}
+.roster-resource-msg {
+	font-family: Arial;
+	font-size: 10px;
+	color: #b3b5b6;
+}
+.roster-resource-link {
+	text-decoration: none;
+	color: #6699cc;
+}
+.roster-resource-busy {
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #f84a21;
+}
+.roster-resource-away {
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #427fd1;
+}
+
+/* Tab buttons
+ */
+#tab-area {
+	background-color: white;
+}
+#tab-bar {
+	height: 100%;
+	height: 24px;
+	background-repeat: repeat-x;
+	background-image: url( ../../images/misc/tab-bar-lite.gif );
+	text-overflow: ellipsis;
+	overflow: hidden;
+	padding-left: 2px;
+}
+.tab-bar-button {
+	width: 28px;
+	height: 23px;
+	text-align: center;
+	background-repeat: no-repeat;
+	padding-top: 4px;
+}
+.tab-bar-button-active {
+	width: 28px;
+	height: 23px;
+	text-align: center;
+	background-repeat: no-repeat;
+	padding-top: 2px;
+	background-image: url( ../../images/misc/tab-button-lite.gif );
+}
+
+/* Banner
+ */
+#banner-area {
+	display: none;
+	background-image: url( ../../images/misc/banner-60-back.gif );
+}
+
+#banner-area DIV {
+	cursor: hand;
+	width: 234px;
+	height: 60px;
+	border: 1px solid black;
+	background-color: white;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url( ../../images/brand/default.ico );
+}

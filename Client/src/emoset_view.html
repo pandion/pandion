@@ -1,0 +1,240 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+TD {
+	font-family: Arial;
+	font-size: 11px;
+	color: windowtext;
+}
+#action-list {
+	width: 100%;
+	height: 100%;
+	background-color: window;
+	border: 2px inset;
+	font-size: 11px;
+	font-family: Tahoma;
+	color: windowtext;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+.header {
+	display: none;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 4px;
+	width: 100%;
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+	color: #57a6d3;
+	border-bottom: 1px solid #d3d5d6;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.graphic-wrapper {
+	width: 150px;
+	height: 30px;
+}
+.graphic-icon {
+	width: 60px;
+	height: 30px;
+	background: no-repeat center center;
+}
+.graphic-label {
+	overflow: hidden;
+	width: 90px;
+	height: 30px;
+	text-align: center;
+	padding-top: 5px;
+}
+.sound-label {
+	margin-left: 8px;
+	margin-top: 2px;
+	padding: 1px;
+	text-align: center;
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #478ec5;
+	width: 100px;
+	height: 20px;
+	border: 1px threedlightshadow solid;
+	background-color: infobackground;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.sound-button {
+	height: 20px;
+	width: 22px;
+	margin: 2px;
+}
+.markup-wrapper {
+	width: 100px;
+	height: 30px;
+	margin-left: 8px;
+	margin-top: 2px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+</STYLE>
+<SCRIPT language=JScript>
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'emoset_view', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	external.wnd.hide( false );
+	document.getElementById( 'action-list' ).focus();
+	setTimeout( 'load()', 0 );
+}
+
+function load ()
+{
+	var Language = external.globals( 'language' );
+	if ( ! ( Language.length < 3 || Language.indexOf( 'i-' ) == 0 || Language.indexOf( 'x-' ) == 0 ) )
+		Language = Language.substr( 0, Language.indexOf( '-' ) );
+
+	var StyleName		= external.wnd.params[1];
+	var StylePath		= external.globals( 'usersdir' ) + 'Emoticons\\' + StyleName + '\\';
+	var Subset			= external.globals( 'EmoticonCache' ).GetSubset( StyleName, [ 'default', Language ] );
+	var Singularity		= new Array( Subset.Style.Actions.Length );
+
+	if ( Subset )
+	{
+		var ActionCounter = 0;
+		var SubsetStrings = ( new VBArray( Subset.StringToAction.Keys() ) ).toArray();
+		for ( var i = SubsetStrings.length - 1; i >= 0; i-- )
+		{
+			var ActionIndex = Subset.StringToAction( SubsetStrings[i] );
+			if ( ! Singularity[ ActionIndex ] )
+			{
+				Singularity[ ActionIndex ] = true;
+
+				ActionCounter++;
+
+				var Action = Subset.Style.Actions[ ActionIndex ];
+
+				if ( Action.Graphic )
+				{
+					var Wrapper					= document.createElement( 'NOBR' );
+					Wrapper.className			= 'graphic-wrapper';
+
+					var Icon					= document.createElement( 'SPAN' );
+					Icon.className				= 'graphic-icon';
+					Icon.style.backgroundImage	= 'url( ' + StylePath + Action.Graphic + ')';
+					Wrapper.insertAdjacentElement( 'beforeEnd', Icon );
+
+					var Label					= document.createElement( 'SPAN' );
+					Label.className				= 'graphic-label';
+					Label.innerText				= SubsetStrings[i];
+					Wrapper.insertAdjacentElement( 'beforeEnd', Label );
+
+					document.getElementById( 'list-images' ).insertAdjacentElement( 'beforeEnd', Wrapper );
+				}
+				else if ( Action.Sound )
+				{
+					var Wrapper				= document.createElement( 'NOBR' );
+
+					var Label				= document.createElement( 'LABEL' );
+					Label.className			= 'sound-label';
+					Label.innerText			= SubsetStrings[i];
+					Wrapper.insertAdjacentElement( 'beforeEnd', Label );
+
+					var PlayButton			= document.createElement( 'BUTTON' );
+					PlayButton.className	= 'sound-button';
+					PlayButton.SoundFile	= StylePath + Action.Sound;
+					PlayButton.attachEvent(
+						'onclick',
+						function ()
+						{
+							external.wnd.params[0].sound_play( event.srcElement.SoundFile, true );
+						}
+					);
+
+					var PlayIcon			= document.createElement( 'IMG' );
+					PlayIcon.align			= 'absmiddle';
+					PlayIcon.border			= 0;
+					PlayIcon.src			= '../images/misc/play.gif';
+					PlayButton.insertAdjacentElement( 'beforeEnd', PlayIcon );
+
+					Wrapper.insertAdjacentElement( 'beforeEnd', PlayButton );
+
+					document.getElementById( 'list-sounds' ).insertAdjacentElement( 'beforeEnd', Wrapper );
+				}
+				else if ( Action.Format )
+				{
+					var Wrapper				= document.createElement( 'NOBR' );
+					Wrapper.className		= 'markup-wrapper';
+
+					var Markup				= document.createElement( 'SPAN' );
+					Markup.style.cssText	= Action.Format;
+					Markup.innerText		= SubsetStrings[i];
+					Wrapper.insertAdjacentElement( 'beforeEnd', Markup );
+
+					document.getElementById( 'list-markup' ).insertAdjacentElement( 'beforeEnd', Wrapper );
+				}
+			}
+		}
+
+		if ( document.getElementById( 'list-images' ).children.length )
+			document.getElementById( 'header-images' ).style.display = 'block';
+		if ( document.getElementById( 'list-sounds' ).children.length )
+			document.getElementById( 'header-sounds' ).style.display = 'block';
+		if ( document.getElementById( 'list-markup' ).children.length )
+			document.getElementById( 'header-markup' ).style.display = 'block';
+
+		document.getElementById( 'set_name'			).innerText = Subset.Style.Name;
+		document.getElementById( 'set_version'		).innerText = Subset.Style.Version;
+		document.getElementById( 'set_description'	).innerText = Subset.Style.Description;
+		document.getElementById( 'set_count'		).innerText = ActionCounter == 1 ? external.globals( 'Translator' ).Translate( 'emoset_view', 'count_one' ) : external.globals( 'Translator' ).Translate( 'emoset_view', 'count_multiple', [ ActionCounter ] );
+	}
+	else
+	{
+		document.getElementById( 'set_name'			).innerText = external.globals( 'Translator' ).Translate( 'emoset_view', 'file_error' );
+		document.getElementById( 'set_version'		).innerText = '';
+		document.getElementById( 'set_description'	).innerText = external.globals( 'Translator' ).Translate( 'emoset_view', 'cannot_load' );
+		document.getElementById( 'action-list'		).innerHTML = '<DIV style="padding-top: 4px; padding-left: 4px;">' + external.globals( 'Translator' ).Translate( 'emoset_view', 'empty' ) + '</DIV>';
+	}
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="init()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="event.returnValue = false; external.wnd.close();">
+<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<TR valign=top height=60 bgcolor=window>
+	<TD colspan=2 style="padding-left: 12px; padding-right: 8px; padding-top: 7px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+	<SPAN id=set_name style="font-weight: bold;"></SPAN>&nbsp; <SPAN id=set_version></SPAN><BR><DIV id=set_description style="height: 27px; margin-left: 20px; margin-right: 20px; overflow: hidden;"></DIV>
+	</TD>
+</TR>
+<TR valign=top>
+	<TD colspan=2 style="padding: 16px;">
+		<DIV id=action-list>
+			<DIV id=header-images class=header></DIV>
+			<DIV id=list-images></DIV>
+			<DIV id=header-sounds class=header></DIV>
+			<DIV id=list-sounds></DIV>
+			<DIV id=header-markup class=header></DIV>
+			<DIV id=list-markup></DIV>
+		</DIV>
+	</TD>
+</TR>
+<TR valign=top height=45>
+	<TD id=set_count style="padding-left: 16px; padding-top: 16px; border-top: 2px groove; font-size: 11px; font-family: Tahoma; color: buttontext;">&nbsp;</TD>
+	<TD align=right style="padding: 10px; border-top: 2px groove;">
+	<INPUT type=submit style="height: 24px; width: 90px; font-size: 11px;" id=btn_ok>
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

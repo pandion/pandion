@@ -1,0 +1,1130 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<LINK rel="stylesheet" type="text/css" href="css/xdata.css"></LINK>
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+	background-color: buttonface;
+	color: buttontext;
+}
+A {
+	color: blue;
+}
+A:hover {
+	color: red;
+}
+INPUT {
+	font-family: Tahoma;
+	font-size: 11px;
+}
+INPUT.text {
+	font-family: Tahoma;
+	font-size: 11px;
+	height: 21px;
+	padding: 1px;
+}
+TR {
+	font-family: Tahoma;
+	font-size: 11px;
+}
+#resultsarea {
+	overflow: auto;
+	border: 2px inset;
+	background-color: window;
+	height: 100%;
+	width: 100%;
+}
+.result-outer {
+	font-family: Tahoma;
+	font-size: 11px;
+	border-right: 2px solid threedlightshadow;
+	border-bottom: 2px solid threedlightshadow;
+	width: 204px;
+	padding-left: 6px;
+	padding-bottom: 6px;
+	margin: 6px;
+	overflow: hidden;
+}
+.result-outer-over {
+	cursor: hand;
+	font-family: Tahoma;
+	font-size: 11px;
+	border-right: 2px solid threeddarkshadow;
+	border-bottom: 2px solid threeddarkshadow;
+	width: 204px;
+	padding-left: 6px;
+	padding-bottom: 6px;
+	margin: 6px;
+	overflow: hidden;
+}
+.result-title {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: windowtext;
+	font-weight: bold;
+}
+.result-info {
+	padding-top: 2px;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: threeddarkshadow;
+	padding-left: 4px;
+	display: block;
+}
+</STYLE>
+
+<SCRIPT language=JScript src="main/XMPPHookIQ.js"></SCRIPT>
+<SCRIPT language=JScript src="main/XMPPAddress.js"></SCRIPT>
+<SCRIPT language=JScript src="main/XMPPXData.js"></SCRIPT>
+
+<SCRIPT language=JScript>
+
+var gJID = '';
+var gXDATA = false;
+var gHOOK = false;
+
+function outnit ()
+{
+	if ( gHOOK )
+		gHOOK.Destroy();
+}
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'adduser', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	document.getElementById( 'page1_example_jid' ).innerText = external.globals( 'Translator' ).Translate( 'adduser', 'example_address', [ external.globals( 'cfg' )( 'server' ) ] );
+	document.getElementById( 'page1_default_network' ).innerText = external.globals( 'softwarename' ) + ' (XMPP)';
+	if ( external.globals( 'invitepage' ).length )
+	{
+		document.getElementById( 'txt_p1_invite_email' ).style.display = 'inline';
+		document.getElementById( 'txt_p1_invite_email' ).href = external.globals( 'invitepage' );
+	}
+	document.getElementById( 'page1' ).style.display = 'block';
+	var searches = external.globals( 'ClientServices' ).FindByOptions( 0x0100 );
+	for ( var i = 0; i < searches.length; i++ )
+	{
+		var opt = document.createElement( 'OPTION' );
+		opt.text = searches[i].Name;
+		opt.value = searches[i].JID;
+		document.getElementById( 'page1_services' ).add( opt );
+	}
+	var transports = external.globals( 'ClientServices' ).FindByOptions( 0x0001 );
+	for ( var i = 0; i < transports.length; i++ )
+	{
+		if ( transports[i].TransportMode != 0 || transports[i].Options & 0x1000 )
+		{
+			var opt = document.createElement( 'OPTION' );
+			opt.text = transports[i].Name;
+			opt.value = transports[i].JID;
+			document.getElementById( 'page1_networks' ).add( opt );
+		}
+	}
+
+	if ( ! document.getElementById( 'page1_services' ).options.length )
+	{
+		document.getElementById( 'page1_b' ).checked = true;
+		document.getElementById( 'page1_a' ).disabled = true;
+		document.getElementById( 'txt_page1_a' ).disabled = true;
+		document.getElementById( 'page1_a_table' ).disabled = true;
+		document.getElementById( 'page1_services' ).disabled = true;
+		document.getElementById( 'page1_username' ).focus();
+	}
+	else
+		document.getElementById( 'page1_username' ).focus();
+	external.wnd.hide( false );
+}
+
+function page1_next ()
+{
+	if ( document.getElementById( 'page1_b' ).checked )
+	{
+		var user = document.getElementById( 'page1_username' ).value;
+		var serv = document.getElementById( 'page1_networks' ).value;
+		user = user.replace( /^\s*(\S+)\s*$/, "$1" );
+		if ( user.length )
+		{
+			if ( ( user.indexOf( '@hotmail.com' ) > 0 || user.indexOf( '@msn.com' ) > 0 || user.indexOf( '@passport.com' ) > 0 ) && serv == '' )
+			{
+				var transports = external.globals( 'ClientServices' ).FindByOptions( 0x0002 );
+				if ( transports.length )
+					serv = transports[0].JID;
+			}
+			if ( user.indexOf( '@yahoo.com' ) > 0 && serv == '' )
+			{
+				var transports = external.globals( 'ClientServices' ).FindByOptions( 0x0010 );
+				if ( transports.length )
+					serv = transports[0].JID;
+			}
+			if ( serv.length )
+			{
+				if ( external.globals( 'ClientServices' ).Services.Exists( serv ) && ( external.globals( 'ClientServices' ).Services( serv ).Options & 0x0400 ) )
+				{
+					/* Ask the transport what the JID is for this address
+					 */
+					document.getElementById( 'page1' ).style.display = 'none';
+					document.getElementById( 'page1b' ).style.display = 'block';
+					document.getElementById( 'page1b_wait' ).innerHTML = external.globals( 'Translator' ).Translate( 'adduser', 'contacting_transport' );
+					document.getElementById( 'page1b_btn_back' ).disabled = true;
+
+					gHOOK = new XMPPHookIQ();
+					gHOOK.Window = external.wnd;
+					gHOOK.Callback = 'recv_gateway';
+					var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+					dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:gateway"><prompt/></query></iq>' );
+					dom.documentElement.firstChild.firstChild.text = user;
+					dom.documentElement.setAttribute( 'id', gHOOK.Id );
+					dom.documentElement.setAttribute( 'to', serv );
+					external.wnd.params.warn( 'SENT: ' + dom.xml );
+					external.XMPP.SendXML( dom );
+				}
+				else
+				{
+					/* This transport doesn't support jabber:iq:gateway
+					 */
+					gJID = user.replace( /@/g, '%' ) + '@' + serv;
+					document.getElementById( 'page5_username' ).innerText = document.getElementById( 'page1_username' ).value;
+					document.getElementById( 'page5_network' ).innerText = external.globals( 'ClientServices' ).Services( serv ).Name;
+					document.getElementById( 'page1' ).style.display = 'none';
+					document.getElementById( 'page5' ).style.display = 'block';
+					document.getElementById( 'page5_btn_close' ).focus();
+					send_add_roster();
+				}
+			}
+			else
+			{
+				/* Add a normal XMPP address to the contact list
+				 */
+				if ( user.indexOf( '@' ) == -1 && user.indexOf( '.' ) == -1 )
+					user += '@' + external.globals( 'cfg' )( 'server' );
+				document.getElementById( 'page5_username' ).innerText = gJID = user;
+				document.getElementById( 'page5_network' ).innerText = document.getElementById( 'page1_default_network' ).innerText;
+				document.getElementById( 'page1' ).style.display = 'none';
+				document.getElementById( 'page5' ).style.display = 'block';
+				document.getElementById( 'page5_btn_close' ).focus();
+				send_add_roster();
+			}
+		}
+		else
+		{
+			external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'adduser', 'correct', [ external.globals( 'cfg' )( 'server' ) ] ), external.globals( 'softwarename' ), 0 | 48 );
+			document.getElementById( 'page1_username' ).focus();
+		}
+	}
+	else
+	{
+		if ( document.getElementById( 'page3_table_placeholder' ).getElementsByTagName( 'INPUT' ).length || document.getElementById( 'page3_table_placeholder' ).getElementsByTagName( 'TEXTAREA' ).length || document.getElementById( 'page3_table_placeholder' ).getElementsByTagName( 'SELECT' ).length )
+		{
+			/* Show the cached search form
+			 */
+			document.getElementById( 'page1' ).style.display = 'none';
+			document.getElementById( 'page3' ).style.display = 'block';
+			var coll = document.getElementById( 'page3_table_placeholder' ).getElementsByTagName( 'INPUT' );
+			if ( coll.length )
+			{
+				for ( var i = 0; i < coll.length; ++i )
+					if ( coll[i].type == 'text' || coll[i].type == 'password' )
+					{
+						coll[i].focus();
+						break;
+					}
+			}
+			else
+			{
+				coll = document.getElementById( 'page3_table_placeholder' ).getElementsByTagName( 'TEXTAREA' );
+				if ( coll.length )
+					coll[0].focus();
+			}
+		}
+		else
+		{
+			/* Request the search form
+			 */
+			document.getElementById( 'page1' ).style.display = 'none';
+			document.getElementById( 'page1c' ).style.display = 'block';
+			document.getElementById( 'page1c_wait' ).innerHTML = external.globals( 'Translator' ).Translate( 'adduser', 'contacting_search' );
+			document.getElementById( 'page1c_btn_back' ).disabled = true;
+			gHOOK = new XMPPHookIQ();
+			gHOOK.Window = external.wnd;
+			gHOOK.Callback = 'recv_search_start';
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:search"/></iq>' );
+			dom.documentElement.firstChild.setAttribute( 'xml:lang', external.globals( 'language' ) );
+			dom.documentElement.setAttribute( 'id', gHOOK.Id );
+			dom.documentElement.setAttribute( 'to', document.getElementById( 'page1_services' ).value );
+			external.wnd.params.warn( 'SENT: ' + dom.xml );
+			external.XMPP.SendXML( dom );
+		}
+	}
+}
+
+function page1b_back ()
+{
+	document.getElementById( 'page1b' ).style.display = 'none';
+	document.getElementById( 'page1' ).style.display = 'block';
+	document.getElementById( 'page1_username' ).focus();
+}
+
+function page1c_back ()
+{
+	document.getElementById( 'page1c' ).style.display = 'none';
+	document.getElementById( 'page1' ).style.display = 'block';
+	document.getElementById( 'page1_services' ).focus();
+}
+
+function page3_back ()
+{
+	document.getElementById( 'page3' ).style.display = 'none';
+	document.getElementById( 'page1' ).style.display = 'block';
+	document.getElementById( 'page1_services' ).focus();
+}
+
+function page4_back ()
+{
+	gHOOK.Destroy();
+	document.getElementById( 'page4' ).style.display = 'none';
+	document.getElementById( 'page3' ).style.display = 'block';
+	/* Give focus to first form entry
+	 */
+	var coll = document.getElementById( 'page3_table_placeholder' ).getElementsByTagName( 'INPUT' );
+	if ( coll.length )
+	{
+		for ( var i = 0; i < coll.length; ++i )
+			if ( coll[i].type == 'text' || coll[i].type == 'password' )
+			{
+				coll[i].focus();
+				break;
+			}
+	}
+	else
+	{
+		coll = document.getElementById( 'page3_table_placeholder' ).getElementsByTagName( 'TEXTAREA' );
+		if ( coll.length )
+			coll[0].focus();
+	}
+}
+
+function page5_back ()
+{
+	document.getElementById( 'page5' ).style.display = 'none';
+	if ( document.getElementById( 'page1_a' ).checked )
+	{
+		document.getElementById( 'page4' ).style.display = 'block';
+	}
+	else
+	{
+		document.getElementById( 'page1' ).style.display = 'block';
+		document.getElementById( 'page1_username' ).focus();
+	}
+}
+
+function send_add_roster ()
+{
+	document.getElementById( 'page5_wait' ).innerHTML = external.globals( 'Translator' ).Translate( 'adduser', 'contacting_adding' );
+	/* Add item to the roster
+	 */
+	gHOOK = new XMPPHookIQ();
+	gHOOK.Window = external.wnd;
+	gHOOK.Callback = 'recv_add_roster';
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:roster"><item/></query></iq>' );
+	dom.documentElement.setAttribute( 'id', gHOOK.Id );
+	dom.documentElement.firstChild.firstChild.setAttribute( 'jid', gJID );
+	external.wnd.params.warn( 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+}
+
+function recv_add_roster ( iq )
+{
+	if ( iq.Type == 'result' )
+	{
+		/* Request a subscription
+		 */
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<presence type="subscribe"/>' );
+		dom.documentElement.setAttribute( 'to', gJID );
+		external.wnd.params.warn( 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+
+		document.getElementById( 'page6_username' ).innerText = document.getElementById( 'page5_username' ).innerText;
+		document.getElementById( 'page6_network' ).innerText = document.getElementById( 'page5_network' ).innerText;
+		document.getElementById( 'page5' ).style.display = 'none';
+		document.getElementById( 'page6' ).style.display = 'block';
+		document.getElementById( 'page6_btn_finish' ).focus();
+	}
+	else
+	{
+		document.getElementById( 'page5_btn_back' ).disabled = false;
+		var desc, code;
+		var error = iq.XMLDOM.selectSingleNode( '/iq/error' );
+		if ( error )
+		{
+			desc = error.text;
+			code = error.getAttribute( 'code' );
+		}
+		else
+		{
+			desc = external.globals( 'Translator' ).Translate( 'adduser', 'error_invalid' );
+			code = 0;
+		}
+		document.getElementById( 'page5_wait' ).innerHTML = external.globals( 'Translator' ).Translate( 'adduser', 'error_adding', [ desc, code ] );
+	}
+}
+
+function page6_again ()
+{
+	document.getElementById( 'page6' ).style.display = 'none';
+	document.getElementById( 'page1' ).style.display = 'block';
+	if ( document.getElementById( 'page1_a' ).checked )
+		document.getElementById( 'page1_services' ).focus();
+	else
+	{
+		document.getElementById( 'page1_username' ).value = '';
+		document.getElementById( 'page1_username' ).focus();
+	}
+}
+
+function recv_gateway ( iq )
+{
+	/* Extract the address
+	 */
+	var user = iq.XMLDOM.selectSingleNode( '/iq/query/prompt' );
+	if ( user )
+		user = user.text;
+	else
+		user = '';
+
+	if ( iq.Type == 'result' && external.globals( 'ClientServices' ).Services.Exists( iq.From ) && user.length )
+	{
+		gJID = user;
+		document.getElementById( 'page5_username' ).innerText = document.getElementById( 'page1_username' ).value;
+		document.getElementById( 'page5_network' ).innerText = external.globals( 'ClientServices' ).Services( iq.From ).Name;
+		document.getElementById( 'page1b' ).style.display = 'none';
+		document.getElementById( 'page5' ).style.display = 'block';
+		document.getElementById( 'page5_btn_close' ).focus();
+		send_add_roster();
+	}
+	else
+	{
+		var desc, code;
+		var error = iq.XMLDOM.selectSingleNode( '/iq/error' );
+		if ( error )
+		{
+			desc = error.text;
+			code = error.getAttribute( 'code' );
+		}
+		else
+		{
+			desc = external.globals( 'Translator' ).Translate( 'adduser', 'error_invalid' );
+			code = 0;
+		}
+
+		if ( parseInt( code, 10 ) == 501 )
+		{
+			/* This transport does not support jabber:iq:gateway
+			 */
+			gJID = document.getElementById( 'page1_username' ).value.replace( /@/g, '%' ) + '@' + document.getElementById( 'page1_networks' ).value;
+			document.getElementById( 'page5_username' ).innerText = document.getElementById( 'page1_username' ).value;
+			document.getElementById( 'page5_network' ).innerText = external.globals( 'ClientServices' ).Services( iq.From ).Name;
+			document.getElementById( 'page1b' ).style.display = 'none';
+			document.getElementById( 'page5' ).style.display = 'block';
+			document.getElementById( 'page5_btn_close' ).focus();
+			send_add_roster();
+		}
+		else
+		{
+			/* Does not work for another reason (disconnected, crashed, etc)
+			 */
+			document.getElementById( 'page1b_wait' ).innerHTML = external.globals( 'Translator' ).Translate( 'adduser', 'error_transport', [ desc, code ] );
+			document.getElementById( 'page1b_btn_back' ).disabled = false;
+			document.getElementById( 'page1b_btn_back' ).focus();
+		}
+	}
+}
+
+function recv_search_start ( iq )
+{
+	if ( iq.Type == 'error' )
+	{
+		/* Searching is not supported or service is unreachable/broken
+		 */
+		var desc, code;
+		var error = iq.XMLDOM.selectSingleNode( '/iq/error' );
+		if ( error )
+		{
+			desc = error.text;
+			code = error.getAttribute( 'code' );
+		}
+		else
+		{
+			desc = external.globals( 'Translator' ).Translate( 'adduser', 'error_invalid' );
+			code = 0;
+		}
+		document.getElementById( 'page1c_wait' ).innerHTML = external.globals( 'Translator' ).Translate( 'adduser', 'error_search', [ desc, code ] );
+		document.getElementById( 'page1c_btn_back' ).disabled = false;
+		document.getElementById( 'page1c_btn_back' ).focus();
+		return;
+	}
+
+	/* Set up the default header information
+	 */
+	if ( external.globals( 'ClientServices' ).Services.Exists( iq.From ) )
+		document.getElementById( 'page3_title' ).innerText = external.globals( 'ClientServices' ).Services( iq.From ).Name;
+	else
+		document.getElementById( 'page3_title' ).innerText = external.globals( 'Translator' ).Translate( 'adduser', 'search_title' );
+	document.getElementById( 'page3_subtitle' ).innerText = external.globals( 'Translator' ).Translate( 'adduser', 'search_tagline' );
+
+	var form = document.getElementById( 'page3_table' );
+	document.getElementById( 'page1c' ).style.display = 'none';
+	document.getElementById( 'page3' ).style.display = 'block';
+
+	var xdata = iq.XMLDOM.selectSingleNode( '/iq/query/x[@xmlns = "jabber:x:data"]' );
+	if ( xdata )
+	{
+		/* Display jabber:x:data form
+		 */
+		gXDATA = true;
+		var XDataParser	= new XMPPXData();
+		XDataParser.RenderForm( xdata, document.getElementById( 'page3_table_placeholder' ), document.getElementById( 'page3_title' ), document.getElementById( 'page3_subtitle' ) );
+		var title = xdata.selectSingleNode( 'title' );
+	}
+	else
+	{
+		/* Display jabber:iq:search form
+		 */
+		gXDATA = false;
+		var tags = iq.XMLDOM.selectNodes( '/iq/query/*' );
+		for ( var i = 0; i < tags.length; ++i )
+		{
+			var tag = tags.item( i );
+			switch ( tag.tagName )
+			{
+				case 'instructions':
+					document.getElementById( 'page3_subtitle' ).innerText = tag.text;
+				break;
+				case 'first':
+					var row = form.insertRow(-1);
+					row.insertCell(-1).innerText = external.globals( 'Translator' ).Translate( 'adduser', 'firstname' );
+					row.insertCell(-1).appendChild( document.createElement( '<INPUT style="width: 80%;" class=text name=first value="' + tag.text + '">' ) );
+				break;
+				case 'last':
+					var row = form.insertRow(-1);
+					row.insertCell(-1).innerText = external.globals( 'Translator' ).Translate( 'adduser', 'lastname' );
+					row.insertCell(-1).appendChild( document.createElement( '<INPUT style="width: 80%;" class=text name=last value="' + tag.text + '">' ) );
+				break;
+				case 'nick':
+					var row = form.insertRow(-1);
+					row.insertCell(-1).innerText = external.globals( 'Translator' ).Translate( 'adduser', 'nick' );
+					row.insertCell(-1).appendChild( document.createElement( '<INPUT style="width: 80%;" class=text name=nick value="' + tag.text + '">' ) );
+				break;
+				case 'email':
+					var row = form.insertRow(-1);
+					row.insertCell(-1).innerText = external.globals( 'Translator' ).Translate( 'adduser', 'email' );
+					row.insertCell(-1).appendChild( document.createElement( '<INPUT style="width: 80%;" class=text name=email value="' + tag.text + '">' ) );
+				break;
+				case 'key':
+					var row = form.insertRow(-1);
+					row.style.display = 'none';
+					row.insertCell(-1);
+					row.insertCell(-1).appendChild( document.createElement( '<INPUT type=hidden style="width: 80%;" name=key value="' + tag.text + '">' ) );
+				break;
+				case 'x':
+				break;
+				default:
+					var row = form.insertRow(-1);
+					row.insertCell(-1).innerText = tag.tagName.charAt(0).toUpperCase() + tag.tagName.substr(1) + ':';
+					row.insertCell(-1).appendChild( document.createElement( '<INPUT style="width: 80%;" class=text name="' + tag.tagName + '" value="' + tag.text + '">' ) );
+			}
+		}
+	}
+	/* Give focus to first form entry
+	 */
+	var coll = document.getElementById( 'page3_table_placeholder' ).getElementsByTagName( 'INPUT' );
+	if ( coll.length )
+	{
+		for ( var i = 0; i < coll.length; ++i )
+			if ( coll[i].type == 'text' || coll[i].type == 'password' )
+			{
+				coll[i].focus();
+				break;
+			}
+	}
+	else
+	{
+		coll = document.getElementById( 'page3_table_placeholder' ).getElementsByTagName( 'TEXTAREA' );
+		if ( coll.length )
+			coll[0].focus();
+	}
+}
+
+function page3_next ()
+{
+	/* Turn the HTML form back into XML
+	 */
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<iq type="set"><query>' + ( gXDATA ? '<x type="submit"/>' : '' ) + '</query></iq>' );
+
+	if ( gXDATA )
+	{
+		var XDataParser	= new XMPPXData();
+		XDataParser.BuildXML( document.getElementById( 'page3_table_placeholder' ), dom.documentElement.firstChild.firstChild );
+		dom.documentElement.firstChild.firstChild.setAttribute( 'xmlns', 'jabber:x:data' );
+	}
+	else
+	{
+		var entered = false;
+		var query = dom.documentElement.firstChild;
+		var coll = document.getElementById( 'page3_table' ).getElementsByTagName( 'INPUT' );
+		for ( var i = 0; i < coll.length; i++ )
+		{
+			var tag = dom.createElement( coll[i].name );
+			if ( coll[i].value.length )
+			{
+				tag.text = coll[i].value;
+				entered = true;
+			}
+			query.appendChild( tag );
+		}
+		var query = dom.documentElement.firstChild;
+		var coll = document.getElementById( 'page3_table' ).getElementsByTagName( 'TEXTAREA' );
+		for ( var i = 0; i < coll.length; i++ )
+		{
+			var tag = dom.createElement( coll[i].name );
+			if ( coll[i].value.length )
+			{
+				tag.text = coll[i].value;
+				entered = true;
+			}
+			query.appendChild( tag );
+		}
+		if ( ! entered )
+			query.firstChild.text = '*';
+	}
+
+	document.getElementById( 'resultsarea' ).innerHTML = '';
+	document.getElementById( 'page3' ).style.display = 'none';
+	document.getElementById( 'page4' ).style.display = 'block';
+	document.getElementById( 'page4_status' ).innerText = external.globals( 'Translator' ).Translate( 'adduser', 'searching' );
+	gHOOK = new XMPPHookIQ();
+	gHOOK.TTL = -1;
+	gHOOK.Window = external.wnd;
+	gHOOK.Callback = 'recv_search_results';
+	dom.documentElement.firstChild.setAttribute( 'xml:lang', external.globals( 'language' ) );
+	dom.documentElement.firstChild.setAttribute( 'xmlns', 'jabber:iq:search' );
+	dom.documentElement.setAttribute( 'id', gHOOK.Id );
+	dom.documentElement.setAttribute( 'to', document.getElementById( 'page1_services' ).value );
+	external.wnd.params.warn( 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+}
+
+function recv_search_results ( iq )
+{
+	var results	= document.getElementById( 'resultsarea' );
+	var xdata	= iq.XMLDOM.selectSingleNode( '/iq/query/x[@xmlns = "jabber:x:data"]' );
+	if ( xdata )
+	{
+		/* Build a list of all categories except the address and hidden fields
+		 */
+		var headers = new ActiveXObject( 'Scripting.Dictionary' );
+		var reported = xdata.selectNodes( 'reported/field[@var]' );
+		for ( var i = 0; i < reported.length; ++i )
+			with ( reported.item( i ) )
+				if (
+					! headers.Exists( getAttribute( 'var' ) )	&&
+					getAttribute( 'type' )	!= 'hidden'			&&
+					getAttribute( 'type' )	!= 'jid'
+				)
+					headers.Add( getAttribute( 'var' ), getAttribute( 'label' ).length ? getAttribute( 'label' ) : getAttribute( 'var' ) );
+
+		/* Populate the results view
+		 */
+		var items = xdata.selectNodes( 'item' );
+		for ( var i = 0; i < items.length; ++i )
+		{
+			var item = items.item( i );
+
+			/* Get the Jabber ID of this item any way we can
+			 */
+			var jid		= '';
+			var node	= null;
+			node = item.selectSingleNode( 'field[( @var = "jid" or @var = "UserJID" ) and value]' );
+			if ( node )
+				jid = node.selectSingleNode( 'value' ).text;
+			else
+				jid = item.getAttribute( 'jid' );
+			if ( ! ( jid && jid.length ) )
+				continue;
+
+			/* Draw the item
+			 */
+			var outer = document.createElement( 'SPAN' );
+			outer.tabIndex = i + 1;
+			outer.className = 'result-outer';
+			outer.JID = jid;
+			outer.attachEvent(
+				'onkeypress',
+				function ()
+				{
+					if ( event.keyCode == 13 )
+					{
+						event.cancelBubble = true;
+						event.returnValue = false;
+						page4_add( event.srcElement.JID );
+					}
+				}
+			);
+			outer.attachEvent(
+				'onmouseover',
+				function ()
+				{
+					var elem = event.srcElement;
+					while ( elem.tagName != 'SPAN' )
+						elem = elem.parentNode;
+					elem.className = 'result-outer-over';
+				}
+			);
+			outer.attachEvent(
+				'onmouseout',
+				function ()
+				{
+					var elem = event.srcElement;
+					while ( elem.tagName != 'SPAN' )
+						elem = elem.parentNode;
+					elem.className = 'result-outer';
+				}
+			);
+			outer.attachEvent(
+				'onmouseup',
+				function ()
+				{
+					var elem = event.srcElement;
+					while ( elem.tagName != 'SPAN' )
+						elem = elem.parentNode;
+					if ( event.button == 1 )
+						setTimeout( 'page4_add( \'' + elem.JID + '\' )', 0 );
+					else if ( event.button == 2 )
+					{
+						var menu = external.newPopupMenu;
+						menu.AddItem( true, false, false, true, 0, external.globals( 'Translator' ).Translate( 'adduser', 'add' ), 1 );
+						menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'adduser', 'view' ), 2 );
+						menu.Show( event.screenX, event.screenY );
+						switch ( menu.Choice )
+						{
+							case 1: setTimeout( 'page4_add( \'' + elem.JID + '\' )', 0 ); break;
+							case 2: external.wnd.params.dial_userinfo( elem.JID, '' ); break;
+						}
+					}
+				}
+			);
+
+			var title = document.createElement( 'NOBR' );
+			title.className = 'result-title';
+			title.innerText = jid + '\n';
+			outer.insertAdjacentElement( 'beforeEnd', title );
+
+			var info = document.createElement( 'NOBR' );
+			info.className = 'result-info';
+			var fields = item.selectNodes( 'field[@var and value]' );
+			for ( var j = 0; j < fields.length; ++j )
+			{
+				var col = fields.item( j ).getAttribute( 'var' );
+				if ( headers.Exists( col ) )
+					info.insertAdjacentText( 'beforeEnd', headers( col ) + ': ' + fields.item( j ).selectSingleNode( 'value' ).text + '\n' );
+			}
+			outer.insertAdjacentElement( 'beforeEnd', info );
+			results.insertAdjacentElement( 'beforeEnd', outer );
+		}
+	}
+	else
+	/* Plain old results without x:data
+	 */
+	{
+		var items = iq.XMLDOM.selectNodes( '/iq/query/item[@jid]' );
+		for ( var i = 0; i < items.length; ++i )
+		{
+			/* Must have a Jabber ID
+			 */
+			var jid = items.item( i ).getAttribute( 'jid' );
+			if ( ! jid.length )
+				continue;
+			/* Draw the item
+			 */
+			var outer = document.createElement( 'SPAN' );
+			outer.tabIndex = i + 1;
+			outer.className = 'result-outer';
+			outer.JID = jid;
+			outer.attachEvent(
+				'onkeypress',
+				function ()
+				{
+					if ( event.keyCode == 13 )
+					{
+						event.cancelBubble = true;
+						event.returnValue = false;
+						page4_add( event.srcElement.JID );
+					}
+				}
+			);
+			outer.attachEvent(
+				'onmouseover',
+				function ()
+				{
+					var elem = event.srcElement;
+					while ( elem.tagName != 'SPAN' )
+						elem = elem.parentNode;
+					elem.className = 'result-outer-over';
+				}
+			);
+			outer.attachEvent(
+				'onmouseout',
+				function ()
+				{
+					var elem = event.srcElement;
+					while ( elem.tagName != 'SPAN' )
+						elem = elem.parentNode;
+					elem.className = 'result-outer';
+				}
+			);
+			outer.attachEvent(
+				'onmouseup',
+				function ()
+				{
+					var elem = event.srcElement;
+					while ( elem.tagName != 'SPAN' )
+						elem = elem.parentNode;
+					if ( event.button == 1 )
+						setTimeout( 'page4_add( \'' + elem.JID + '\' )', 0 );
+					else if ( event.button == 2 )
+					{
+						var menu = external.newPopupMenu;
+						menu.AddItem( true, false, false, true, 0, external.globals( 'Translator' ).Translate( 'adduser', 'add' ), 1 );
+						menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'adduser', 'view' ), 2 );
+						menu.Show( event.screenX, event.screenY );
+						switch ( menu.Choice )
+						{
+							case 1: setTimeout( 'page4_add( \'' + elem.JID + '\' )', 0 ); break;
+							case 2: external.wnd.params.dial_userinfo( elem.JID, '' ); break;
+						}
+					}
+				}
+			);
+
+			var title = document.createElement( 'NOBR' );
+			title.className = 'result-title';
+			title.innerText = jid + '\n';
+			outer.insertAdjacentElement( 'beforeEnd', title );
+
+			var info = document.createElement( 'NOBR' );
+			info.className = 'result-info';
+			var children = items.item( i ).childNodes;
+			for ( var j = 0; j < children.length; ++j )
+			{
+				var tag = children.item( j );
+				info.insertAdjacentText( 'beforeEnd', tag.tagName.charAt(0).toUpperCase() + tag.tagName.substr(1) + ': ' + tag.text + '\n' );
+			}
+			outer.insertAdjacentElement( 'beforeEnd', info );
+			results.insertAdjacentElement( 'beforeEnd', outer );
+		}
+	}
+	document.getElementById( 'page4_status' ).innerText = results.children.length == 1 ? external.globals( 'Translator' ).Translate( 'adduser', 'foundone' ) : external.globals( 'Translator' ).Translate( 'adduser', 'foundmany', [ results.children.length ] );
+	document.getElementById( 'page4_btn_close' ).focus();
+}
+
+function page4_add ( jid )
+{
+	document.getElementById( 'page5_network' ).innerText = external.globals( 'softwarename' ) + ' (XMPP)';
+	var Address = new XMPPAddress( jid );
+	var Transports = external.globals( 'ClientServices' ).FindByOptions( 0x0001 );
+	for ( var i = 0; i < Transports.length; ++i )
+		if ( Transports[i].JID == Address.Host )
+			document.getElementById( 'page5_network' ).innerText = Transports[i].Name;
+
+	document.getElementById( 'page5_username' ).innerText = Address.ShortAddress();
+	document.getElementById( 'page4' ).style.display = 'none';
+	document.getElementById( 'page5' ).style.display = 'block';
+	document.getElementById( 'page5_btn_close' ).focus();
+	gJID = jid;
+	send_add_roster();
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="init()" onunload="outnit()" onkeypress="if(event.keyCode==27)external.wnd.close();">
+
+<!-- PAGE 1 - Choose Adding Method -->
+<FORM onsubmit="event.returnValue = false; page1_next()">
+	<TABLE id=page1 width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="display: none; position: absolute; left: 0px; top: 0px; margin: 0px;">
+		<TR valign=top bgcolor=window height=60>
+			<TD colspan=2 style="padding-left: 20px; padding-right: 8px; padding-top: 10px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+				<B id=txt_p1_title></B>
+				<DIV id=txt_p1_tagline style="padding-left: 20px; width: 90%;"></DIV>
+			</TD>
+		</TR>
+		<TR valign=top>
+			<TD colspan=2 style="padding-left: 40px; padding-right: 40px; padding-top: 10px; color: windowtext;">
+				<BR>
+				<DIV id=txt_p1_how></DIV>
+				<BR>
+				<INPUT type=radio name=page1_how id=page1_b checked>&nbsp;<LABEL for=page1_b id=txt_page1_b></LABEL>
+				<BR>
+				<BR>
+				<TABLE cellspacing=2 cellpadding=0 border=0 style="margin-left: 30px; table-layout: fixed;">
+					<COLGROUP>
+						<COL width=100>
+						<COL>
+					</COLGROUP>
+					<TR>
+						<TD id=txt_p1_network></TD>
+						<TD>
+							<SELECT id=page1_networks onmousedown="document.getElementById( 'page1_b' ).checked = true" onchange="document.getElementById( 'page1_jabber_help' ).style.visibility = this.value.length ? 'hidden' : 'visible'" onfocus="document.getElementById( 'page1_b' ).checked = true" style="font-family: Tahoma; font-size: 13px; width: 220px;">
+								<OPTION id=page1_default_network></OPTION>
+							</SELECT>
+						</TD>
+					</TR>
+					<TR>
+						<TD id=txt_p1_username></TD>
+						<TD>
+							<INPUT id=page1_username type=text onmousedown="document.getElementById( 'page1_b' ).checked = true" onfocus="document.getElementById( 'page1_b' ).checked = true" style="width: 220px; height: 21px; font-family: Tahoma; font-size: 11px;">
+						</TD>
+					</TR>
+					<TR id=page1_jabber_help>
+						<TD>&nbsp;</TD>
+						<TD id=page1_example_jid></TD>
+					</TR>
+					<TR style="padding-top: 6px;">
+						<TD>&nbsp;</TD>
+						<TD>
+							<DIV id=txt_p1_help style="width: 260px;"></DIV>
+							<A id=txt_p1_configure href="#" onclick="external.wnd.params.dial_transport_list(); return false;"></A>
+						</TD>
+					</TR>
+				</TABLE>
+				<BR>
+				<BR>
+				<INPUT type=radio name=page1_how id=page1_a>&nbsp;<LABEL for=page1_a id=txt_page1_a></LABEL>
+				<BR>
+				<BR>
+				<TABLE cellspacing=2 cellpadding=0 border=0 style="margin-left: 30px; table-layout: fixed;" id=page1_a_table>
+					<COLGROUP>
+						<COL width=100>
+						<COL>
+					</COLGROUP>
+					<TR style="font-family: Tahoma; font-size: 11px;">
+						<TD id=txt_p1_service></TD>
+						<TD>
+							<SELECT id=page1_services onmousedown="document.getElementById( 'page1_a' ).checked = true" onchange="document.getElementById( 'page3_table_placeholder' ).innerHTML = '<TABLE id=page3_table style=\'table-layout: fixed\'><COL width=100><COL></TABLE>'; document.getElementById( 'resultsarea' ).innerHTML = '';" style="font-family: Tahoma; font-size: 13px; width: 220px;"></SELECT>
+						</TD>
+					</TR>
+				</TABLE>
+			</TD>
+		</TR>
+		<TR valign=top height=45>
+			<TD width=250 valign=middle style="border-top: 2px groove; padding-left: 10px;"><A id=txt_p1_invite_email style="padding: 10px; display: none;" href="#" onclick="external.windows( 'MainWindow' ).Do( 'dial_webbrowser', this.href ); external.wnd.close(); return false;"></A></TD>
+			<TD align=right style="padding: 10px; border-top: 2px groove;">
+				<INPUT type=submit style="height: 24px; width: 80px; font-size: 11px;" id=btn_p1_next>&nbsp;
+				<INPUT type=button style="height: 24px; width: 80px; font-size: 11px;" id=btn_p1_close onclick="external.wnd.close()">
+			</TD>
+		</TR>
+	</TABLE>
+</FORM>
+
+<!-- PAGE 1b - Processing Username (jabber:iq:gateway) -->
+<FORM onsubmit="event.returnValue = false; page1b_back()">
+	<TABLE id=page1b width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="display: none; position: absolute; left: 0px; top: 0px; margin: 0px;">
+		<TR valign=top bgcolor=window height=60>
+			<TD style="padding-left: 20px; padding-right: 8px; padding-top: 10px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+				<B id=txt_p1b_title></B>
+				<DIV id=txt_p1b_tagline style="padding-left: 20px; width: 90%;"></DIV>
+			</TD>
+		</TR>
+		<TR valign=middle>
+			<TD align=center style="padding-left: 40px; padding-right: 40px; padding-top: 10px; color: windowtext;">
+				<DIV id=page1b_wait align=left style="border: 2px groove; padding: 20px; color: buttontext; width: 300px;"></DIV>
+			</TD>
+		</TR>
+		<TR valign=top height=45>
+			<TD align=right style="padding: 10px; border-top: 2px groove;">
+				<INPUT type=submit id=page1b_btn_back disabled style="height: 24px; width: 80px; font-size: 11px;" onclick="page1b_back()"><INPUT type=button id=page1b_btn_next disabled style="height: 24px; width: 80px; font-size: 11px;">&nbsp;
+				<INPUT type=button id=page1b_btn_close style="height: 24px; width: 80px; font-size: 11px;" onclick="external.wnd.close()">
+			</TD>
+		</TR>
+	</TABLE>
+</FORM>
+
+<!-- PAGE 1c - Requesting Search Form (jabber:iq:search / jabber:x:data) -->
+<FORM onsubmit="event.returnValue = false; page1c_back()">
+	<TABLE id=page1c width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="display: none; position: absolute; left: 0px; top: 0px; margin: 0px;">
+		<TR valign=top bgcolor=window height=60>
+			<TD style="padding-left: 20px; padding-right: 8px; padding-top: 10px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+				<B id=txt_p1c_title></B>
+				<DIV id=txt_p1c_tagline style="padding-left: 20px; width: 90%;"></DIV>
+			</TD>
+		</TR>
+		<TR valign=middle>
+			<TD align=center style="padding-left: 40px; padding-right: 40px; padding-top: 10px; color: windowtext;">
+				<DIV id=page1c_wait align=left style="border: 2px groove; padding: 20px; color: buttontext; width: 300px;"></DIV>
+			</TD>
+		</TR>
+		<TR valign=top height=45>
+			<TD align=right style="padding: 10px; border-top: 2px groove;">
+				<INPUT type=submit id=page1c_btn_back disabled style="height: 24px; width: 80px; font-size: 11px;"><INPUT type=button id=page1c_btn_next disabled style="height: 24px; width: 80px; font-size: 11px;">&nbsp;
+				<INPUT type=button id=page1c_btn_close style="height: 24px; width: 80px; font-size: 11px;" onclick="external.wnd.close()">
+			</TD>
+		</TR>
+	</TABLE>
+</FORM>
+
+<!-- PAGE 3 - Search Form -->
+<FORM onsubmit="event.returnValue = false; page3_next()">
+	<TABLE id=page3 width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="display: none; position: absolute; left: 0px; top: 0px; margin: 0px;">
+		<TR valign=top bgcolor=window height=60>
+			<TD style="padding-left: 20px; padding-right: 8px; padding-top: 10px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+				<B id=page3_title></B>
+				<DIV style="padding-left: 20px; padding-bottom: 8px; width: 90%;" id=page3_subtitle></DIV>
+			</TD>
+		</TR>
+		<TR valign=top>
+			<TD style="padding-left: 40px; padding-right: 40px; padding-bottom: 10px; padding-top: 10px; color: windowtext;">
+				<DIV id=page3_table_placeholder style="height: 100%; width: 100%; padding-right: 10px; overflow-y: auto;">
+					<TABLE id=page3_table style="table-layout: fixed;">
+						<COLGROUP>
+							<COL width=100>
+							<COL>
+						</COLGROUP>
+					</TABLE>
+				</DIV>
+			</TD>
+		</TR>
+		<TR valign=top height=45>
+			<TD align=right style="padding: 10px; border-top: 2px groove;">
+				<INPUT type=button id=page3_btn_back style="height: 24px; width: 80px; font-size: 11px;" onclick="page3_back()"><INPUT type=submit id=page3_btn_search style="height: 24px; width: 80px; font-size: 11px;">&nbsp;
+				<INPUT type=button id=page3_btn_close style="height: 24px; width: 80px; font-size: 11px;" onclick="external.wnd.close()">
+			</TD>
+		</TR>
+	</TABLE>
+</FORM>
+
+<!-- PAGE 4 - Search Results -->
+<FORM>
+	<TABLE id=page4 width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="display: none; position: absolute; left: 0px; top: 0px; margin: 0px;">
+		<TR valign=top bgcolor=window height=60>
+			<TD colspan=2 style="padding-left: 20px; padding-right: 8px; padding-top: 10px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+				<B id=txt_p4_title></B>
+				<DIV id=txt_p4_tagline style="padding-left: 20px; padding-bottom: 8px; width: 90%;"></DIV>
+			</TD>
+		</TR>
+		<TR valign=top>
+			<TD colspan=2 style="padding-left: 16px; padding-right: 16px; padding-top: 10px; padding-bottom: 10px; color: windowtext;">
+				<DIV id=resultsarea></DIV>
+			</TD>
+		</TR>
+		<TR height=45>
+			<TD width=100 valign=middle style="padding: 10px; padding-left: 20px; border-top: 2px groove;" id=page4_status></TD>
+			<TD valign=top align=right style="padding: 10px; border-top: 2px groove;">
+				<INPUT type=button id=page4_btn_back style="height: 24px; width: 80px; font-size: 11px;" onclick="page4_back()"><INPUT type=submit id=page4_btn_next disabled style="height: 24px; width: 80px; font-size: 11px;">&nbsp;
+				<INPUT type=button id=page4_btn_close style="height: 24px; width: 80px; font-size: 11px;" onclick="external.wnd.close()">
+			</TD>
+		</TR>
+	</TABLE>
+</FORM>
+
+<!-- PAGE 5 - Adding in Progress -->
+<FORM onsubmit="event.returnValue = false; page5_back()">
+	<TABLE id=page5 width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="display: none; position: absolute; left: 0px; top: 0px; margin: 0px;">
+		<TR valign=top bgcolor=window height=60>
+			<TD style="padding-left: 20px; padding-right: 8px; padding-top: 10px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+				<B id=txt_p5_title></B>
+				<DIV id=txt_p5_tagline style="padding-left: 20px; width: 90%;"></DIV>
+			</TD>
+		</TR>
+		<TR valign=top>
+			<TD style="padding-left: 40px; padding-right: 40px; padding-top: 10px; color: windowtext;">
+				<BR>
+				<DIV id=txt_p5_desc></DIV>
+				<BR>
+				<TABLE cellspacing=2 cellpadding=0 border=0 style="margin-left: 40px; table-layout: fixed;">
+					<COLGROUP>
+						<COL width=100>
+						<COL>
+					</COLGROUP>
+					<TR>
+						<TD id=txt_p5_user></TD>
+						<TD id=page5_username></TD>
+					</TR>
+					<TR>
+						<TD id=txt_p5_network></TD>
+						<TD id=page5_network></TD>
+					</TR>
+				</TABLE>
+				<BR>
+				<BR>
+				<BR>
+				<DIV id=page5_wait style="text-align: left; border: 2px groove; padding: 20px; color: buttontext; margin-left: 60px; width: 300px;"></DIV>
+			</TD>
+		</TR>
+		<TR valign=top height=45>
+			<TD align=right style="padding: 10px; border-top: 2px groove;">
+				<INPUT type=submit id=page5_btn_back disabled style="height: 24px; width: 80px; font-size: 11px;" onclick="page5_back()"><INPUT type=button id=page5_btn_next disabled style="height: 24px; width: 80px; font-size: 11px;">&nbsp;
+				<INPUT type=submit id=page5_btn_close style="height: 24px; width: 80px; font-size: 11px;" onclick="external.wnd.close()">
+			</TD>
+		</TR>
+	</TABLE>
+</FORM>
+
+<!-- PAGE 6 - Completed -->
+<FORM onsubmit="event.returnValue = false;">
+	<TABLE id=page6 width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="display: none; position: absolute; left: 0px; top: 0px; margin: 0px;">
+		<TR valign=top bgcolor=window height=60>
+			<TD style="padding-left: 20px; padding-right: 8px; padding-top: 10px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+				<B id=txt_p6_title></B>
+				<DIV id=txt_p6_tagline style="padding-left: 20px; width: 90%;"></DIV>
+			</TD>
+		</TR>
+		<TR valign=top>
+			<TD style="padding-left: 40px; padding-right: 40px; padding-top: 10px; color: windowtext;">
+				<BR>
+				<DIV id=txt_p6_desc></DIV>
+				<BR>
+				<TABLE cellspacing=2 cellpadding=0 border=0 style="margin-left: 40px; table-layout: fixed;">
+					<COLGROUP>
+						<COL width=100>
+						<COL>
+					</COLGROUP>
+					<TR>
+						<TD id=txt_p6_user></TD>
+						<TD id=page6_username></TD>
+					</TR>
+					<TR>
+						<TD id=txt_p6_network></TD>
+						<TD id=page6_network></TD>
+					</TR>
+				</TABLE>
+				<BR>
+				<BR>
+				<BR>
+				<BR>
+				<BR>
+				<DIV id=txt_p6_again></DIV>
+				<BR>
+				<INPUT type=button id=page6_btn_again style="margin-left: 40px; height: 24px; width: 190px; font-size: 11px;" onclick="page6_again()">
+			</TD>
+		</TR>
+		<TR valign=top height=24>
+			<TD style="padding-left: 40px; padding-right: 40px; color: windowtext;" id=txt_p6_finish></TD>
+		</TR>
+		<TR valign=top height=45>
+			<TD align=right style="padding: 10px; border-top: 2px groove;">
+				<INPUT type=submit id=page6_btn_back disabled style="height: 24px; width: 80px; font-size: 11px;"><INPUT type=submit id=page6_btn_finish style="height: 24px; width: 80px; font-size: 11px;" onclick="external.wnd.close()">&nbsp;
+				<INPUT type=button id=page6_btn_close disabled style="height: 24px; width: 80px; font-size: 11px;">
+			</TD>
+		</TR>
+	</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

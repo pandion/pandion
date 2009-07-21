@@ -1,0 +1,1761 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This is a template for translating the user interface.  Every item
+corresponds to an HTML element in the interface.  All porperties
+such as innerText, innerHTML or title can be translated and will
+override the default english text.
+Each <code> is a string that is used in the program's source code.
+Some of these strings don't accept HTML, so you must encode < and
+> as &lt; and &gt;
+
+The following text is used by the installation program. Replace
+them with the translated text so that they can be included with
+the installer.
+
+-begin-
+
+LangString DESC_SecCopyRequired		${LANG_ENGLISH}	"These files are required to use ${PRODUCT}."
+LangString DESC_SecCreateStartMenu	${LANG_ENGLISH}	"The Start Menu gives you easy access to ${PRODUCT}."
+LangString DESC_SecCreateQuickstart	${LANG_ENGLISH}	"Add ${PRODUCT} to your Quick Launch bar."
+LangString DESC_SecCreateDesktop	${LANG_ENGLISH}	"Place a shortcut on your desktop."
+LangString DESC_SecCreateAutoStart	${LANG_ENGLISH}	"${PRODUCT} will automatically log on when you start Windows."
+LangString ITEM_SecCreateStartMenu	${LANG_ENGLISH}	"Start Menu shortcut"
+LangString ITEM_SecCreateQuickstart	${LANG_ENGLISH}	"Quick Launch shortcut"
+LangString ITEM_SecCreateDesktop	${LANG_ENGLISH}	"Desktop shortcut"
+LangString ITEM_SecCreateAutoStart	${LANG_ENGLISH}	"Launch ${PRODUCT} on startup"
+LangString TEXT_WindowsOutdated		${LANG_ENGLISH}	"Cannot install ${PRODUCT}.$\nWindows NT 4 or higher is required."
+LangString TEXT_AlreadyRunning		${LANG_ENGLISH}	"Maak toe ${PRODUCT} before continuing."
+LangString TEXT_InternetExplorer	${LANG_ENGLISH}	"Kan nie voortgaan nie with the installation of ${PRODUCT}.$\n$\nMicrosoft Internet Explorer version 5.5 or higher is required.  Do you want to download this update now?"
+LangString TEXT_DownloadFailed		${LANG_ENGLISH}	"Error: Can not download a required component. Make sure you are connected to the Internet."
+LangString un.TEXT_RemoveProfiles	${LANG_ENGLISH}	"Remove profiles and history files?"
+LangString un.TEXT_RemoveDirectory	${LANG_ENGLISH}	"Note: $INSTDIR cannot be removed."
+
+-end-
+
+Please send your own translations to cbas@pandion.be
+Thank you,
+  Sebastiaan Deckers
+-->
+<translation xml:lang="en">
+  <about>
+    <language>Afrikaans</language>
+    <history>
+      <revision>
+        <author>
+          <name>Jaco Engelbrecht</name>
+          <email>bje@serendipity.org.za</email>
+          <xmpp>bje@jabberafrica.org</xmpp>
+        </author>
+        <date>2003-05-22</date>
+        <description>
+          Eerste weergawe.
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_pleasewait">
+      <innerText>Een oomblik asseblief</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Gediskonnekteer van die bediener</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>Herkonnekteer</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>of</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Verander die konneksie instellings</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>Voeg iemand by jou naamlys</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>of</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>Konfigureer die netwerk vervoermiddels</innerText>
+    </item>
+
+    <code id="emoticon_unknown">Onbekend</code>
+    <code id="txt_welcome">Welkom by ${0}!</code>
+    <code id="user_online">${0} is nou aanlyn</code>
+    <code id="cl_tooltip">${0} Naam Lys</code>
+    <code id="autoawaymessage">Stil vir meer as 5 minute</code>
+    <code id="autoxawaymessage">Stil vir meer as 30 minute</code>
+
+    <code id="menu_file">&amp;Leêr</code>
+    <code id="menu_file_received">&amp;Wys my inkomende leêrs</code>
+    <code id="menu_file_change">&amp;Verander my status boodskap...</code>
+    <code id="menu_file_ffc">Beskikbaar om te &amp;klets</code>
+    <code id="menu_file_available">B&amp;eskikbaar</code>
+    <code id="menu_file_busy">&amp;Besig</code>
+    <code id="menu_file_away">&amp;Weg</code>
+    <code id="menu_file_xaway">&amp;Lang periode weg</code>
+    <code id="menu_file_invisible">&amp;Onsigbaar</code>
+    <code id="menu_file_offline">&amp;Offline</code>
+    <code id="menu_file_status">My &amp;status</code>
+    <code id="menu_file_out">Teken &amp;uit</code>
+    <code id="menu_file_exit">&amp;Verlaat</code>
+
+    <code id="menu_axn">&amp;Aksies</code>
+    <code id="menu_axn_add">&amp;Voeg 'n naam by...</code>
+    <code id="menu_axn_addgroup">Voeg 'n &amp;groep by...</code>
+    <code id="menu_axn_join">&amp;Neem deel aan 'n konferensie...</code>
+    <code id="menu_axn_create">&amp;Skep 'n konferensie kamer...</code>
+    <code id="menu_axn_password">Verander my &amp;wagwoord...</code>
+    <code id="menu_axn_profile">&amp;Verander my besonderhede...</code>
+    <code id="menu_axn_avatar">Verander my &amp;prentjie...</code>
+
+    <code id="menu_tool">&amp;Gereedskap</code>
+    <code id="menu_tool_transport">&amp;Vervoermiddels</code>
+    <code id="menu_tool_head">&amp;Hoofopskifte en kennisgewings</code>
+    <code id="menu_tool_plugin">&amp;inprop programme</code>
+    <code id="menu_tool_admin">Bediener &amp;administrasie</code>
+    <code id="menu_tool_traffic">&amp;Netwerk verkeer</code>
+    <code id="menu_tool_view">&amp;Vorm</code>
+    <code id="menu_tool_detailed">&amp;Beskrywend</code>
+    <code id="menu_tool_compact">&amp;Kompak</code>
+    <code id="menu_tool_language">&amp;Language</code>
+    <code id="menu_tool_aot">&amp;Altyd bo-op</code>
+    <code id="menu_tool_settings">&amp;Instellings</code>
+
+    <code id="menu_help">&amp;Help</code>
+    <code id="menu_help_manual">&amp;Aanlyn handboek</code>
+    <code id="menu_help_forum">&amp;Ondersteuning groep</code>
+    <code id="menu_help_contact">&amp;Maak kontak met ons</code>
+    <code id="menu_help_about">&amp;Meer oor ons</code>
+
+    <code id="menu_tray_about">&amp;Meer oor ${0}</code>
+    <code id="menu_tray_settings">&amp;Instellings</code>
+
+    <code id="wnd_vcard_edit">My inligting</code>
+    <code id="wnd_about">Meer oor ${0}</code>
+    <code id="wnd_signup">Sign Up - ${0}</code>
+    <code id="wnd_adduser">Vind of voeg 'n naam by</code>
+    <code id="wnd_avatar">Verander my prentjie</code>
+    <code id="wnd_room_browse">Konferensie Kamers</code>
+    <code id="wnd_room_create">Skep Konferensie Kamer</code>
+    <code id="wnd_room_invite">Konferensie Uitnodiging</code>
+    <code id="wnd_console">Console</code>
+    <code id="wnd_emoticon_download">Laai Emotikons Af</code>
+    <code id="wnd_emoticon_list">Emotikons</code>
+    <code id="wnd_emoticon_view">Emotikon Besonderhede</code>
+    <code id="wnd_file_send">Stuur Leêr na ${0}</code>
+    <code id="wnd_file_recv">Inkomende Leêr van ${0}</code>
+    <code id="wnd_group_message">Groep boodskap</code>
+    <code id="wnd_transport_list">Vervoermiddels</code>
+    <code id="wnd_headlines">Hoofopskrif</code>
+    <code id="wnd_history">${0} - Boodskap Geskiedenis</code>
+    <code id="wnd_plugin_list">inprop programme</code>
+    <code id="wnd_plugins">inprop programme</code>
+    <code id="wnd_password">Verander Wagwoord</code>
+    <code id="wnd_settings">Instellings</code>
+    <code id="wnd_admin_server">Bediener Administrasie</code>
+    <code id="wnd_status">Status Boodskap</code>
+    <code id="wnd_vcard_view">Gebruikers Besonderhede</code>
+    <code id="wnd_group_create">Skep Groep</code>
+    <code id="wnd_group_rename">Hernoem Groep</code>
+    <code id="wnd_contact_rename">Hernoem Kontak</code>
+    <code id="wnd_authrequest">Magtigings Versoek</code>
+    <code id="wnd_login">Teken in - ${0}</code>
+    <code id="wnd_extension_download">Besig om ${0} te installeer</code>
+
+    <code id="msg_emoticon_install">Hierdie emotikon styl is alreeds geinstalleer.</code>
+    <code id="msg_received_files">Die gids vir inkomende leêrs bestaan nie meer nie.</code>
+    <code id="msg_plugin_install">Wil jy hierdie inprop program installeer?&#13;&#13;Naam: ${0}&#13;Beskrywing: ${1}</code>
+    <code id="msg_plugin_exists">Hierdie inprop program is alreeds geinstalleer.</code>
+    <code id="msg_expired">Die demonstrasie periode van hierdie sagteware het verval.</code>
+    <code id="msg_cl_adding">${0} is by jou naamlys gevoeg.</code>
+    <code id="msg_cl_added">${0} het jou by sy/haar naamlys gevoeg.</code>
+    <code id="msg_cl_removed">${0} het jou van sy/haar naamlys verwyder.</code>
+    <code id="msg_blocked">Jy is op hierdie persoon se bloklys.</code>
+    <code id="msg_autherror">Kan nie aanteken nie. Dit mag wees om een van die volgende redes:&#13;&#13;- Jy het 'n verkeerde wagwoord ingetik&#13;- Jou rekening bestaan nie op die bediener nie&#13;&#13;Probeer weer asseblief.</code>
+
+    <code id="menu_message">Boodskap</code>
+    <code id="menu_filetransfer">Leêr oorplasing</code>
+    <code id="menu_room_create">Skep 'n nuwe kamer</code>
+    <code id="menu_room_invite">Nooi uit na 'n konferensie</code>
+    <code id="menu_rename">Hernoem</code>
+    <code id="menu_block">Blok</code>
+    <code id="menu_delete">Skrap</code>
+    <code id="menu_group_create">Skep 'n nuwe groep</code>
+    <code id="menu_group_merge">Smelt saam met</code>
+    <code id="menu_group_move">Skuif na</code>
+    <code id="menu_group_copy">Kopieer na</code>
+    <code id="menu_request">Her-versoek magtiging</code>
+    <code id="menu_history">Geskiedenis</code>
+    <code id="menu_profile">Besonderhede</code>
+
+    <code id="cl_waiting_one">Jy het 1 ongeleesde boodskap</code>
+    <code id="cl_waiting_multiple">Jy het ${0} ongeleesde boodskappe</code>
+    <code id="cl_error_notexist">Die adres bestaan nie</code>
+    <code id="cl_error_cannotadd">Kan nie vir ${0} voeg by jou naam lys nie.&#13;${1}</code>
+    <code id="cl_default_group">Kontakte</code>
+    <code id="cl_group_expand">Wys kontakte wat van lyn af is</code>
+    <code id="cl_group_compact">Steek van lyn af kontakte weg</code>
+    <code id="cl_group_rename">Hernoem hierdie groep</code>
+    <code id="cl_group_message">Send a broadcast message</code>
+    <code id="cl_room_create">Skep 'n nuwe kamer</code>
+    <code id="cl_room_invite">Nooi vir konferensie</code>
+    <code id="cl_group_empty">Daar is niemand aanlyn in hierdie groep</code>
+    <code id="cl_status_empty">Geen status boodskap</code>
+    <code id="cl_status_offline">Van lyn af</code>
+    <code id="cl_status_awaiting">Wag vir magtiging</code>
+    <code id="cl_status_unknown">Onbekende status</code>
+    <code id="cl_status_waiting_one">1 ongeleesde boodskap</code>
+    <code id="cl_status_waiting_multiple">${0} ongeleesde boodskappe</code>
+    <code id="cl_tooltip_offline">Adres: ${0}</code>
+    <code id="cl_contact_remove_group">Is jy seker jy wil hierdie gebruiker verwyder van hierdie groep?</code>
+    <code id="cl_contact_remove_list">Is jy seker jy wil hierdie naam van jou naamlys verwyder?</code>
+    <code id="cl_link_open">Maak oop in 'n blaaier</code>
+    <code id="cl_link_copy">Kopieer hiperskakel adres</code>
+    <code id="cl_link_favorite">Voeg by gunstelinge</code>
+    <code id="cl_ffc">Beskikbaar om te klets</code>
+    <code id="cl_available">Beskikbaar</code>
+    <code id="cl_busy">Besig</code>
+    <code id="cl_away">Weg</code>
+    <code id="cl_xaway">Weg vir 'n lang periode</code>
+    <code id="cl_invisible">Onsigbaar</code>
+    <code id="cl_tooltip_online">Adres: ${0}&#13;Bron: ${1}</code>
+  </window>
+  <window name="about">
+    <item id="btn_credits">
+      <value>Krediet &gt;&gt;</value>
+    </item>
+    <item id="btn_copyright">
+      <value>Kopiereg &gt;&gt;</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="copy_darkproject">
+      <innerHTML>Meeste ikone en verstek emotikons is kopiereg &amp;copy; 2001 Greg Fleming.</innerHTML>
+    </item>
+    <item id="copy_rsa">
+      <innerHTML>Maak gebruik van die MD5 Message-Digest Algoritme. Kopiereg RSA Data Security, Inc.</innerHTML>
+    </item>
+    <item id="copy_dns">
+      <innerHTML>Gebaseer op BIND. Kopiereg Internet Software Consortium, Inc.</innerHTML>
+    </item>
+    <item id="txt_copyright">
+      <innerHTML>Kopiereg &amp;copy;</innerHTML>
+    </item>
+    <code id="copy_basis">Gebaseer op ${0}. Kopiereg &amp;copy; ${1} ${2}.</code>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>Kyk na Persoonlike Inligting</value>
+    </item>
+    <item id="btn_deny">
+      <value>Verbode</value>
+    </item>
+    <item id="btn_accept">
+      <value>Laat toe</value>
+    </item>
+    <item id="txt_from">
+      <innerText>Jy het 'n magtigings versoek ontvang van:</innerText>
+    </item>
+    <item id="txt_reason">
+      <innerText>Rede:</innerText>
+    </item>
+    <item id="txt_add">
+      <innerText>Voeg hierdie naam by my naamlys</innerText>
+    </item>
+  </window>
+  <window name="admin_users">
+    <item id="btn_refresh">
+      <value>Hernu</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Klik op 'n rekening om 'n boodskap te stuur.  Regs klik om meer opsies te sien.</innerText>
+    </item>
+    <code id="add_to_list">Voeg by naamlys</code>
+    <code id="tooltip_with">Adres: ${0}&#13;Bron: ${1}&#13;Aanlyn tyd: ${2}</code>
+    <code id="tooltip_without">Adres: ${0}&#13;Aanlyn tyd: ${1}</code>
+    <code id="loading">Besig om te laai...</code>
+    <code id="invalid_data">Ongeldige data ontvang.</code>
+    <code id="server_error">Bediener fout:</code>
+    <code id="server_failed">Kon nie aanlyn naamlys ontvang nie.&lt;BR&gt;Maak seker dat jy administrasie toegang tot die bediener het.</code>
+    <code id="user">1 gebruiker aanlyn</code>
+    <code id="users">${0} gebruikers aanlyn</code>
+  </window>
+  <window name="admin">
+    <item id="btn_view">
+      <value>Wys alle aanlyn gebruikers</value>
+    </item>
+    <item id="btn_close">
+      <value>Maak toe</value>
+    </item>
+    <item id="admin_btn_wall">
+      <value>Stuur</value>
+    </item>
+    <item id="admin_btn_motd">
+      <value>Stuur</value>
+    </item>
+    <item id="txt_wall_desc">
+      <innerText>Hiedie kennisgewing word aan al die huidige aanlyn gebruikers gestuur.</innerText>
+    </item>
+    <item id="txt_motd_desc">
+      <innerText>Hierdie kennisgewing word aan gebruikers gestuur wanneer hulle aanteken.</innerText>
+    </item>
+    <item id="txt_wall">
+      <innerText>Broadcast boodskap</innerText>
+    </item>
+    <item id="txt_motd">
+      <innerText>Boodskap van die dag</innerText>
+    </item>
+    <item id="txt_view">
+      <innerText>Monitor wie gekonnekteer is aan die bediener.</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Gebruik hierdie gereedskap om die IM bediener te monitor en te administreer.</innerText>
+    </item>
+    <item id="txt_users">
+      <innerText>Gebruikers</innerText>
+    </item>
+    <code id="wnd_users">Aanlyn gebruikers</code>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>Maak afvoer skoon</value>
+    </item>
+    <item id="btn_send">
+      <value>Stuur</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>Teenwoordigheid</value>
+    </item>
+    <item id="btn_message">
+      <value>Boodskap</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>Netwerk verkeer:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>Breek lyne</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>XML toevoer:</innerText>
+    </item>
+    <code id="toggle_on">Voutontleding is aan</code>
+    <code id="toggle_off">Voutontleding is af</code>
+    <code id="valid_xml">Toevoer moet geldige XML wees. Nie net 'n wit spasie of (plain) teks nie.</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>Maak toe</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Kennisgewings en Hoofopskrifte</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Spesiale kennisgewings word vertoon wanneer jy 'n nuus hoofopskrif of ander kort boodskap ontvang.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Geen kennisgewings of hoofopskrifte was ontvang nie.</innerText>
+    </item>
+    <item id="alertonlinelabel">
+      <innerText>Wys 'n kennisgewing vanneer iemand aanlyn kom</innerText>
+    </item>
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_custom">
+      <value>Selfgemaakte prentjie ...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Kies die beste prentjie wat jouself beskryf.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Besig om te laai...</innerText>
+    </item>
+    <code id="error_size">Kan nie prentjie laai nie. Leêrgrootte oorskry 8 kilogrepe.</code>
+    <code id="error_empty">Kan nie prentjie laai nie. Leêr is leeg.</code>
+    <code id="error_load">Waarskuwing: Kan nie prentjies laai nie.&#13;&#13;${0}</code>
+    <code id="menu_use">Gebruik hierdie prentjie</code>
+    <code id="menu_saveas">Stoor as...</code>
+    <code id="menu_delete">Skrap</code>
+    <code id="wnd_select">Kies 'n prentjie</code>
+    <code id="saveas_files">Prentjie leêrs</code>
+    <code id="image_files">Prentjie leêrs kleiner as 8kB</code>
+    <code id="all_files">Alle leêrs</code>
+  </window>
+  <window name="mode_select">
+    <item id="ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_preset">
+      <value>Preset message ...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Ander gebruikers kan hierdie boodskap lees wanner jy onbeskikbaar is:</innerText>
+    </item>
+    <code id="btn_1">Loop buitekant</code>
+    <code id="btn_2">Op die foon</code>
+    <code id="btn_3">Besig om te slaap</code>
+    <code id="btn_4">Besig om te eet</code>
+    <code id="btn_5">In 'n vergadering</code>
+    <code id="btn_6">Weg vir 'n drankie</code>
+    <code id="btn_7">Besig om te konsentreer</code>
+    <code id="btn_8">Besig om te werk</code>
+    <code id="btn_9">By die skool</code>
+    <code id="msg_1">Ek is besig om in die buitelig te loop.</code>
+    <code id="msg_2">Ek is op die foon.</code>
+    <code id="msg_3">Ek slaap op die oomblik.</code>
+    <code id="msg_4">Tyd om te eet!</code>
+    <code id="msg_5">Ek is in 'n vergadering.</code>
+    <code id="msg_6">Weg vir 'n drankie (of twee)</code>
+    <code id="msg_7">Wees saggies, ek moet konsentreer</code>
+    <code id="msg_8">Werk, werk, werk en geen speel...</code>
+    <code id="msg_9">Ek is by die skool.</code>
+  </window>
+  <window name="mode_select">
+    <code id="configure">Opstel van kennisgewings en hoofopskrifte</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nuwe naam:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nuwe naam:</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nuwe naam:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>Bevestig jou nuwe wagwoord:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Nuwe wagwoord:</innerText>
+    </item>
+    <code id="no_match">Die wagwoorde wat jy ingevoer het is nie dieselfde nie.&#13;&#13;Voer die wagwoord in beide velde in</code>
+    <code id="no_pass">Tik die nuwe wagwoord in.</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="set_version">
+      <innerText>Besig om te laai...</innerText>
+    </item>
+    <item id="header-images">
+      <innerText>Prentjies</innerText>
+    </item>
+    <item id="header-sounds">
+      <innerText>Klanke</innerText>
+    </item>
+    <item id="header-markup">
+      <innerText>Text Markup</innerText>
+    </item>
+    <code id="empty">Hierdie emotikon styl is leeg.</code>
+    <code id="file_error">Leêr fout</code>
+    <code id="cannot_load">Kan nie die emotikon laai nie.</code>
+    <code id="count_one">1 emotikon</code>
+    <code id="count_multiple">${0} emotikons</code>
+  </window>
+  <window name="emoticon_download">
+    <item id="btn_close">
+      <value>Maak toe</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Laai emotikons af</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>'n Internet konneskie is nodig om deur die emotikon indeks te blaai.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Besig om te laai...</innerText>
+    </item>
+    <code id="install">Installeer</code>
+    <code id="cannot_download">Fout: Kan nie emotikon aflaai.&#13;${0}</code>
+    <code id="invalid_xml">Die databron bevat ongeldige data.</code>
+    <code id="no_new_styles">Daar is geen nuwe emotikon style beskikbaar nie.</code>
+	</window>
+  <window name="emoticon_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Beskikbare emotikons</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Kies 'n emotikon styl van die lys.</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>Besig om te laai...</innerText>
+    </item>
+    <item id="btn_emoticon_all">
+      <value>Wys besonderhede</value>
+    </item>
+    <item id="btn_emoticon_download">
+      <value>Meer emotikons</value>
+    </item>
+    <code id="emoticon_details">Wys besonderhede</code>
+    <code id="emoticon_remove">Skrap</code>
+    <code id="emoticon_confirm">Is jy seker jy wil hierdie emotikon styl verwyder?</code>
+    <code id="no_emoticons">Geen emotikons gevind.</code>
+  </window>
+  <window name="plugin_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Geinstalleerde inprop programme</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Installeer of verwyder 'n inprop program.</innerText>
+    </item>
+    <item id="btn_plugin_download">
+      <value>Meer inprop programme</value>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>Geen inprop programme is geinstalleer.</innerText>
+    </item>
+    <code id="plugin_uninstall">Deïnstalleer</code>
+    <code id="plugin_confirm">Is jy seker jy wil hierdie inprop program verwyder?</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>Maak toe</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Laai inpropprogamme af</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>'n Internet konneksie is nodig om deur die inprop indeks te blaai.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Besig om te laai...</innerText>
+    </item>
+    <code id="install">Installeer</code>
+    <code id="cannot_download">Fout: Kan nie inprop program aflaai nie.&#13;${0}</code>
+    <code id="invalid_xml">Die databron bevat ongeldige data.</code>
+    <code id="no_new_plugins">Daar is geen nuwe inprop programme beskikbaar nie.</code>
+  </window>
+  <window name="conference_invitation">
+    <item id="btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_room">
+      <innerText>Kamer:</innerText>
+    </item>
+    <item id="txt_reason">
+      <innerText>Rede:</innerText>
+    </item>
+    <code id="invitation">Jy het 'n konferensie uitnodiging ontvang van&#13;${0}</code>
+  </window>
+  <window name="conference_custom">
+    <item id="btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Konferensie kamer adres:</innerText>
+    </item>
+    <code id="example">Voorbeeld: mykamer@${0}</code>
+    <code id="invalid">Ongeldige kamer adres.&#13;Voer in die adres van 'n konferensie kamer.</code>
+  </window>
+  <window name="autoupdate">
+    <code id="download_confirm">'n Nuwe weergawe van die program is beskikbaar: ${0} ${1}&#13;&#13;Wil jy die nuwe weergawe aflaai?</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+    <item id="txt_invite">
+      <innerText>Nooi hierdie mense uit:</innerText>
+    </item>
+    <item id="txt_invitation">
+      <innerText>Uitnodigings boodskap</innerText>
+    </item>
+    <item id="invitation">
+      <innerText>Tyd vir 'n vergadering</innerText>
+    </item>
+    <item id="txt_server">
+      <innerText>Konferensie bediener adres:</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>Konferensie kamer naam:</innerText>
+    </item>
+    <item id="txt_info">
+      <innerText>Kamer Informasie</innerText>
+    </item>
+    <code id="valid">Voer 'n geldige naam vir die kletskamer in.&#13;Gebruik slegs letters, nommers, die underscore (_) en die dash (-).</code>
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>Stuur</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>Stuur na hierdie mense:</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>Normale boodskap</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>Waarskuwing kennisgewing</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>Tipe boodskap</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>Voeg hiperskakel by</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>Boodskap</innerText>
+    </item>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>Maak toe</value>
+    </item>
+    <item id="btn_accept">
+      <value>Aanvaar</value>
+    </item>
+    <item id="btn_abort">
+      <value>Staak</value>
+    </item>
+    <item id="btn_open">
+      <value>Maak oop</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Tyd oor:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>Sender:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Lêernaam:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Bronadres:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Vordering:</innerText>
+    </item>
+    <code id="resume">Die leêr bestaan alreeds. Wil jy voortgaan met die oorplasing?&#13;&#13;Klik ja om voort te gaan met die leêr oorplasing.&#13;Klik nee om die leêr te oorskryf.</code>
+    <code id="cannot_overwrite">Kan nie leêr oorskryf:&#13;${0}&#13;&#13;${1}</code>
+    <code id="incorrect">Kan nie oorplasing begin nie.  Inkorrekte data ontvang.</code>
+    <code id="title_saving">${0}% of ${1} ontvang</code>
+    <code id="lessthanminute">Minder as 1 minuut teen ${0}/s</code>
+    <code id="onehour">1 uur en</code>
+    <code id="hours">${0} ure en</code>
+    <code id="oneminute">1 minuut teen</code>
+    <code id="minutes">${0} minute teen</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Wil jy die oorplasing stop?</code>
+    <code id="aborted">Aborted</code>
+    <code id="finished">Klaar</code>
+    <code id="error_timeout">Timeout occurred.</code>
+    <code id="error_code">Fout kode: ${0}</code>
+    <code id="error_file">Leêr fout kode: ${0}</code>
+    <code id="title_completed">Oorplasing klaar - ${0}</code>
+    <code id="title_failed">Oorplasing flop - ${0}</code>
+    <code id="error_move">Kan nie oorgeplaasde leêr skuif nie:&#13;${0}&#13;&#13;${1}</code>
+    <code id="error_failed">Oorplasing het geflop.</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>Maak toe</value>
+    </item>
+    <item id="btn_abort">
+      <value>Kanselleer</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Tyd oor:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>Ontvanger:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Leêrnaam:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Bronadres:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Vordering:</innerText>
+    </item>
+    <code id="socket">Kan nie die leêr stuur nie.&#13;Kan nie die netwerk konneksie oopmaak nie.</code>
+    <code id="file">Kan nie die leêr oopmaak nie:&#13;${0}</code>
+    <code id="filetransfer">Leêr oorplasing:</code>
+    <code id="title_saving">${0}% van ${1} gestuur</code>
+    <code id="lessthanminute">Minder as 1 minuut teen ${0}/s</code>
+    <code id="onehour">1 uur en</code>
+    <code id="hours">${0} ure en</code>
+    <code id="oneminute">1 minuut teen</code>
+    <code id="minutes">${0} minute teen</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Wil jy die oorplasing stop?</code>
+    <code id="finished">Klaar</code>
+    <code id="aborted">Aborted</code>
+    <code id="error_denied">File denied.</code>
+    <code id="error_timeout">Timeout occurred.</code>
+    <code id="error_code">Fout kode: ${0}</code>
+    <code id="title_completed">Oorplasing klaar - ${0}</code>
+    <code id="title_failed">Oorplasing flop - ${0}</code>
+    <code id="error_failed">Oorplasing het geflop.</code>
+  </window>
+  <window name="conference_browse">
+    <item id="btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+    <item id="btn_join">
+      <value>Neem deel</value>
+    </item>
+    <item id="btn_create">
+      <value>Skep 'n nuwe kamer</value>
+    </item>
+    <item id="btn_other">
+      <value>Neem deel in 'n ander kamer</value>
+    </item>
+    <item id="txt_rooms">
+      <innerText>Beskikbare kamers:</innerText>
+    </item>
+    <item id="txt_people">
+      <innerText>Mense in hierdie kamer:</innerText>
+    </item>
+    <item id="room_info_text">
+      <innerText>Kies 'n kamer aan die linker kant</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Besig om te laai</innerText>
+    </item>
+    <code id="empty">Daar is niemand in hierdie kamer nie</code>
+    <code id="wnd_conference_custom">Gaan na 'n ander kamer</code>
+  </window>
+  <window name="vcard">
+    <code id="save">Waarskuwing: Kan nie vCard stoor nie.&#13;&#13;${0}</code>
+    <code id="personal">My Besonderhede</code>
+    <code id="system">Stelsel Besonderhede</code>
+
+    <item id="txt_requesting1">
+      <innerText>Besig om inligting van die bediener te versoek</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Dit kan tot 'n minuut lank neem.&lt;BR&gt;Wees asseblief geduldig.</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>Stoor as vCard</value>
+    </item>
+    <item id="btn_refresh">
+      <value>Hernu</value>
+    </item>
+    <item id="btn_close">
+      <value>Maak toe</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>Herroep Veranderinge</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>Persoonlike Informasie</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>Addisionele Besonderhede</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>Huis Adres</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>Besigheid</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>Besigheids Adres</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>Stelsel Besonderhede</innerText>
+    </item>
+
+    <item id="txt_name">
+      <innerText>Naam</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>Eerste Naam:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>Middel Naam:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>Van:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>Skuilnaam:</innerText>
+    </item>
+
+    <item id="txt_contact">
+      <innerText>Kontak</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>E-pos:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>Telefoon:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>Selfoon:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>Faks:</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>Persoonlike Besonderhede</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>Ouderdom:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>Verjaarsdag:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>Geslag:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>Huwelikstatus:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>Web tuiste:</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>Huis Adres</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>Adres 1:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>Adres 2:</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>Stad:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>Poskode:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>Staat:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>Land:</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>Organisasie</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>Naam:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>Departement:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>Titel:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>Rol:</innerText>
+    </item>
+
+    <item id="txt_workcontact">
+      <innerText>Kontak</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>E-pos:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>Telefoon:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>Selfoon:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>Faks:</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>Besigheids Adres</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>Adres 1:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>Adres 2:</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>Stad:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>Poskode:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>Staat:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>Land:</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>Program Inliging</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>Adres:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>Bron:</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>Plaaslike tyd:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>Sagteware:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>Weergawe:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>Bedryfstelsel:</innerText>
+    </item>
+  </window>
+  <window name="transport_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Beskikbare vervoermiddels</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Vervoermiddels verskaf skakels met ander IM (instant messaging) netwerke.</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;Note:&lt;/B&gt; Om hierdie vervoermiddel in te stel, moet jy aanlyn met die IM bediener wees.</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;Note:&lt;/B&gt; Die bediener waaraan jy gekoppel is, het geen vervoermiddels geinstaller. Kontak die stelseloperateur vir meer inligting.</innerHTML>
+    </item>
+    <item id="msnworkaroundlabel">
+      <innerText>Laat MSN kontakte toe om hulle skuilnaam te verander</innerText>
+    </item>
+    <code id="status_active">Aktief</code>
+    <code id="status_noreg">Nie geregistreerd</code>
+    <code id="status_disconnected">Van lyn af</code>
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; Terug</value>
+    </item>
+    <item id="btn_next">
+      <value>Volgende &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>Klaar</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>Kanselleer</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>Adres:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>Skuilnaam:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>Adres:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Wagwoord:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>Skuilnaam:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>Jy is reeds geregistreerd met hierdie vervoermiddel.&lt;BR&gt;Die rekening waarmee jy geregistreer het is:</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>Disable vervoermiddel</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText>Besig om kontak te maak met die bediener</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Die proses kan tot 'n minuut lank neem.&lt;BR&gt;Wees asseblief geduldig.</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>Om hierdie wysneus klaar te maak, klik &lt;B&gt;Klaar&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>Om voort te gaan, klik &lt;B&gt;Volgende&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <code id="error_invalid">Ongeldige data ontvang</code>
+    <code id="error_server">&lt;B&gt;Bediener fout:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Kan nie voortgaan nie.</code>
+    <code id="error_unknown">&lt;B&gt;Onbekende fout:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Kan nie voortgaan nie.</code>
+    <code id="error_auth">&lt;B&gt;Magtigings fout:&lt;/B&gt;&lt;BR&gt;Verkeerde adres of wagwoord.&lt;BR&gt;&lt;BR&gt;Kan nie voortgaan nie.</code>
+    <code id="wait">&lt;B&gt;Besig om bediener te kontak&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Dit kan tot 'n minuut lank neem.&lt;BR&gt;Wees asseblief geduldig.&lt;BR&gt;</code>
+
+    <code id="default_window_title">Vervoermiddel Instellings</code>
+    <code id="default_begin_intro">Hierdie wysneus help jou om jou vervoermiddel in te stel.&lt;BR&gt;This transport is a link between you and another network.&lt;BR&gt;You need an account on the other network to use this transport.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">Enter your account and your password.&lt;BR&gt;You can also enter a nickname which others will see.&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">Your account is being registered with the transport.</code>
+    <code id="default_removing_busy">Your account is being removed from the transport.&lt;BR&gt;</code>
+    <code id="default_creating_done">The account was successfully registered with the transport.</code>
+    <code id="default_removing_done">The account was successfully unregistered from the transport.</code>
+
+    <code id="msn_window_title">MSN Messenger - Transport Configuration</code>
+    <code id="msn_begin_intro">This wizard helps you configure the MSN transport.&lt;BR&gt;This transport is a link between you and your MSN account.&lt;BR&gt;You need a Microsoft Passport to use this transport.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">Enter your MSN address and your MSN password.&lt;BR&gt;You can also enter a nickname which users will see.&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">examples: someone@msn.com, someone@hotmail.com</code>
+    <code id="msn_creating_busy">Your account is being registered with the MSN transport.</code>
+    <code id="msn_removing_busy">Your MSN account is being removed from the transport.&lt;BR&gt;You will still be able to use your MSN account with other services (eg. Hotmail, MSN Explorer, etc.).&lt;BR&gt;</code>
+    <code id="msn_creating_done">The account was successfully registered with the MSN transport.</code>
+    <code id="msn_removing_done">The account was successfully unregistered from the MSN transport.</code>
+
+    <code id="icq_window_title">ICQ - Transport Configuration</code>
+    <code id="icq_begin_intro">This wizard helps you configure the ICQ transport.&lt;BR&gt;This transport is a link between you and your ICQ account.&lt;BR&gt;You must have an existing User Identification Number (ICQ &lt;BR&gt;number) to use this transport.&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Enter your ICQ number and your ICQ password.&lt;BR&gt;You can also enter a nickname which users will see.&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">examples: 39230793, 158525087</code>
+    <code id="icq_creating_busy">Your account is being registered with the ICQ transport.</code>
+    <code id="icq_removing_busy">Your ICQ account is being removed from the transport.&lt;BR&gt;</code>
+    <code id="icq_creating_done">The account was successfully registered with the ICQ transport.</code>
+    <code id="icq_removing_done">The account was successfully unregistered from the ICQ transport.</code>
+
+    <code id="yahoo_window_title">Yahoo! Messenger - Transport Configuration</code>
+    <code id="yahoo_begin_intro">This wizard helps you configure the Yahoo! transport.&lt;BR&gt;This transport is a link between you and your Yahoo! account.&lt;BR&gt;You need an existing Yahoo! account to use this transport.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Enter your Yahoo! username and your Yahoo! password.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">Your account is being registered with the Yahoo! transport.</code>
+    <code id="yahoo_removing_busy">Your Yahoo! account is being removed from the transport.&lt;BR&gt;You will still be able to use your Yahoo! account with other services (eg. Yahoo! mail, Yahoo! Messenger, etc.).&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">The account was successfully registered with the Yahoo! transport.</code>
+    <code id="yahoo_removing_done">The account was successfully unregistered from the Yahoo! transport.</code>
+
+    <code id="aim_window_title">AOL Instant Messenger - Transport Configuration</code>
+    <code id="aim_begin_intro">This wizard helps you configure the AOL IM transport.&lt;BR&gt;This transport is a link between you and your AOL IM account.&lt;BR&gt;You need an AOL IM account to use this transport.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">Enter your AOL IM screenname and password.&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">Your account is being registered with the AOL IM transport.</code>
+    <code id="aim_removing_busy">Your AOL IM account is being removed from the transport.&lt;BR&gt;You will still be able to use your AOL IM account with other software.&lt;BR&gt;</code>
+    <code id="aim_creating_done">The account was successfully registered with the AOL IM transport.</code>
+    <code id="aim_removing_done">The account was successfully unregistered from the AOL IM transport.</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>Gaan</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>Stoor</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>Druk</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>Wis uit</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>Boodskap Geskiedenis</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>Soek:</innerText>
+    </item>
+    <code id="loading">Besig om te laai the message history...</code>
+    <code id="empty">The message history is empty.</code>
+    <code id="error_load">Cannot load the message history:&#13;${0}</code>
+    <code id="one_message">1 message</code>
+    <code id="many_messages">${0} messages</code>
+    <code id="tooltip_save">Save the message history of this day</code>
+    <code id="tooltip_print">Print the message history of this day</code>
+    <code id="tooltip_delete">Skrap the message history of this day</code>
+    <code id="error_open">Error: Cannot open the message history.</code>
+    <code id="error_read">Error: Cannot read the message history.</code>
+    <code id="delete_confirm">Are you sure you want to delete the entire message history for ${0}?</code>
+    <code id="delete_confirm_date">Are you sure you want to delete the messages dated ${0}?</code>
+    <code id="delete_cannot">Cannot remove history file: ${0}&#13;&#13;No messages have been deleted.</code>
+    <code id="delete_cannot_temp">Cannot create a temporary file: ${0}&#13;&#13;No messages have been deleted.</code>
+    <code id="delete_cannot_open">Cannot open the history: ${0}&#13;&#13;No messages have been deleted.</code>
+    <code id="delete_cannot_read">Cannot read the history: ${0}&#13;&#13;No messages have been deleted.</code>
+    <code id="delete_cannot_write">Cannot write to the temporary file: ${0}&#13;&#13;No messages have been deleted.</code>
+    <code id="error_print">Cannot print anything.&#13;The message history is empty.</code>
+    <code id="error_save">Cannot save the message history.&#13;${0}</code>
+  </window>
+	<window name="chat-messages">
+    <code id="copy">Copy</code>
+    <code id="copyall">Copy All</code>
+    <code id="clear">Clear</code>
+    <code id="selectall">Select All</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>Show what you are thinking or doing</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Change the text color or type</title>
+      <accessKey>f</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Emoticons</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Font</innerText>
+    </item>
+
+    <item id="btn-send">
+      <value>Send</value>
+    </item>
+
+    <code id="msg_typing">${0} is typing a message.</code>
+    <code id="unknown">${0} might not reply because his or her status is unknown</code>
+    <code id="lastonline">Last time online: ${0}</code>
+    <code id="windowtitle">${0} - Conversation</code>
+    <code id="choose_emoticons">View all the emoticons in this theme or choose a different set of emoticons</code>
+
+    <code id="menu_file_received">&amp;Open my Received Files</code>
+    <code id="menu_file_history">Message &amp;History</code>
+    <code id="menu_file_close">&amp;Maak toe Conversation</code>
+
+    <code id="menu_axn_contact">&amp;Contact</code>
+    <code id="menu_axn_add">Add to Contact List</code>
+    <code id="menu_axn_block">&amp;Block</code>
+    <code id="menu_axn_rename">&amp;Rename</code>
+    <code id="menu_axn_panel">Show &amp;Actions Panel</code>
+    <code id="menu_axn_profile">View &amp;Profile</code>
+    <code id="menu_axn_file">Send a &amp;File</code>
+
+    <code id="menu_tool_emo_style">Choose &amp;emoticons...</code>
+    <code id="menu_tool_font">Change &amp;Font...</code>
+    <code id="menu_tool_aot">&amp;Always on top</code>
+    <code id="menu_tool_popup">&amp;Popup new Messages</code>
+    <code id="menu_tool_tabbed">&amp;Tabbed Conversations</code>
+    <code id="menu_tool_emoticons">&amp;Display emoticons</code>
+    <code id="menu_tool_settings">&amp;Settings</code>
+  </window>
+	<window name="conference-configuration">
+    <item id="btn_cancel">
+      <value>Cancel</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_form_loading">
+      <innerText>Loading...</innerText>
+    </item>
+    <item id="txt_form_empty">
+      <innerText>This conference room has no configurable settings</innerText>
+    </item>
+    <item id="txt_form_invalid">
+      <innerText>Error: Can not retrieve the conference room configuration</innerText>
+    </item>
+		<code id="form_title">Settings for this conference room</code>
+		<code id="form_subtitle">Fill out this form to configure the conference room</code>
+  </window>
+	<window name="conference-password">
+    <item id="txt_password">
+      <innerText>Password:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+	<window name="conference-name">
+    <item id="txt_name">
+      <innerText>Name:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+<window name="conference-subject">
+    <item id="txt_subject">
+      <innerText>Subject:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-container">
+    <item id="btn-emoticons">
+      <title>Show what you are thinking or doing</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Change the text color or type</title>
+      <accessKey>f</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Emoticons</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Font</innerText>
+    </item>
+
+    <item id="btn-send">
+      <value>Send</value>
+    </item>
+
+    <item id="txt-occupants">
+      <innerText>Occupants</innerText>
+    </item>
+
+    <code id="wnd_conference_password">Connect with a Password</code>
+    <code id="wnd_conference_change_name">Change my Name</code>
+    <code id="wnd_conference_subject">Conference Room Subject</code>
+    <code id="wnd_conference_configuration">Conference Room Configuration</code>
+
+    <code id="default_subject">This conference room has no subject.</code>
+    <code id="windowtitle">${0} - Conference</code>
+    <code id="destroy">Destroying this conference room will remove all participants from the room and remove the room from the server.&#13;&#13;Are you sure you want to destroy this conference room?</code>
+
+    <code id="menu_file_close">&amp;Maak toe Conference</code>
+
+    <code id="menu_axn_change_name">Change my &amp;Name...</code>
+    <code id="menu_axn_password">Connect with a &amp;Password...</code>
+    <code id="menu_axn_subject">&amp;Change the Conference Room Subject</code>
+    <code id="menu_axn_configuration">&amp;Configure this Conference Room</code>
+    <code id="menu_axn_destroy">&amp;Destroy this Conference Room</code>
+
+  </window>
+  <window name="preferences">
+    <item id="txt_autoaway">
+      <innerText>When you do not use this computer for several minutes, your status will change to "Away".</innerText>
+    </item>
+    <item id="txt_displayawaymsg_left">
+      <innerText>Display this message after</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_left">
+      <innerText>Display this message after</innerText>
+    </item>
+    <item id="txt_displayawaymsg_right">
+      <innerText>minutes:</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_right">
+      <innerText>minutes:</innerText>
+    </item>
+    <item id="txt_blocking">
+      <innerText>The blocking list contains addresses of people you do not want to receive messages from.</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>Display messages from people not in my contact list</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>Blocking List</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>Lift block</value>
+    </item>
+    <item id="block_btn_view">
+      <value>View profile</value>
+    </item>
+    <item id="txt_ssl">
+      <innerText>Use an encrypted connection (SSL)</innerText>
+    </item>
+    <item id="txt_firewall_proxy">
+      <innerText>Firewall and proxy server</innerText>
+    </item>
+    <item id="txt_proxy1">
+      <innerText>None</innerText>
+    </item>
+    <item id="txt_proxy2">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_proxy3">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_proxy4">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_proxyserver">
+      <innerText>Server:</innerText>
+    </item>
+    <item id="txt_proxyport">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_proxyuser">
+      <innerText>Username:</innerText>
+    </item>
+    <item id="txt_proxypass">
+      <innerText>Password:</innerText>
+    </item>
+    <item id="txt_portmap">
+      <innerText>Filetransfer portmap (NAT, firewall)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>Host:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>Store all messages in the history archive</innerText>
+    </item>
+    <item id="txt_startup">
+      <innerText>Launch automatically at startup</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>When someone requests my authorization</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>Ask me</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>Accept all requests</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>Accept users that are in my contact list, ask others</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>Deny all requests</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>Play a sound when a message arrives</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>Play a sound when someone returns to online status</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>Play a sound when someone goes offline</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>Browse</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>Browse</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>Browse</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+    <item id="lbl_autoaway">
+      <innerText>Auto-away</innerText>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>Blocking</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>Connection</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>Privacy</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>Sound</innerText>
+    </item>
+    <code id="autoaway">Automatically Away Messages</code>
+    <code id="blocking">Blocking List</code>
+    <code id="connection">Connection Settings</code>
+    <code id="privacy">Privacy</code>
+    <code id="sound">Notification Sounds</code>
+    <code id="reconnect">You must reconnect to apply the changes.&#13;&#13;Do you want to reconnect now?</code>
+    <code id="shortcut">Send and receive instant messages</code>
+    <code id="choose_sound">Select a notification sound</code>
+    <code id="file_audio">Audio files</code>
+    <code id="file_any">Any file</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>Find or Add a Person</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>You can search for someone based on that person's public information or you can enter the person's username.</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>How do you want to add a contact?</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>I want to &lt;U&gt;s&lt;/U&gt;earch for someone.</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>Se&lt;U&gt;r&lt;/U&gt;vice:</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML>I &lt;U&gt;a&lt;/U&gt;lready know the person's instant messaging address.</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>N&lt;U&gt;e&lt;/U&gt;twork:</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>&lt;U&gt;U&lt;/U&gt;sername:</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>To communicate with someone on a different instant messaging network, you must register with the transport for that network.</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>Configure the transports</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>Next &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_p1_cancel">
+      <value>Kanselleer</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>Processing Username</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>The transport is now verifying the username.</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; Back</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>Next &gt;</value>
+    </item>
+    <item id="page1b_btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>Requesting Search Form</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>The search form contains instructions and all fields that can be searched.</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; Back</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>Next &gt;</value>
+    </item>
+    <item id="page1c_btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+
+    <item id="txt_p2_title">
+      <innerText>Request Message</innerText>
+    </item>
+    <item id="txt_p2_tagline">
+      <innerText>You can let the other person know why you want his or her authorization by sending a message.</innerText>
+    </item>
+    <item id="page2_btn_back">
+      <value>&lt; Back</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page2_btn_finish">
+      <value>Finish</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="page2_btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+    <item id="txt_p2_desc">
+      <innerText>The authorization request will be sent to:</innerText>
+    </item>
+    <item id="txt_p2_user">
+      <innerText>Username:</innerText>
+    </item>
+    <item id="txt_p2_network">
+      <innerText>Network:</innerText>
+    </item>
+    <item id="txt_p2_message">
+      <innerHTML>Enter a &lt;U&gt;m&lt;/U&gt;essage (optional):</innerHTML>
+    </item>
+    <item id="page2_message">
+      <innerText>I would like to add you to my contact list.</innerText>
+    </item>
+    <item id="txt_p2_close">
+      <innerHTML>To send the request and close this wizard, click &lt;B&gt;Finish&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; Terug</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>Soek</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="page3_btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText>Soek Resultate</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>Jy kan nie die persoonlike details kyk van 'n gebruiker of die gebruik toevoeg tot jou kontaktelys.</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; Terug</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>Volgende &gt;</value>
+    </item>
+    <item id="page4_btn_cancel">
+      <value>Kanselleer</value>
+    </item>
+    <code id="correct">Voer 'n geldige gebruikersnaam in.&#13;&#13;b.v.: koos123@${0}</code>
+    <code id="example_address">Voorbeeld: koos123@${0}</code>
+    <code id="enter_username">Voer die gebruikersnaam in van die persoon wat jy wil kontak.</code>
+    <code id="contacting_transport">&lt;B&gt;Besig om die vervoermiddel te kontak&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Dit kan tot een minuut lank neem.&lt;BR&gt;Wees asseblief geduldig.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Besig om die soek diens te kontak&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Dit kan tot een minuut lank neem.&lt;BR&gt;Wees asseblief geduldig.&lt;BR&gt;</code>
+    <code id="error_transport">&lt;B&gt;Probleem met die bediener:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Die gebruiker kan nie by die kontaktelys bygevoeg word nie.&lt;BR&gt;Maak seker dit is die regte gebruikersnaam.</code>
+    <code id="error_search">&lt;B&gt;Probleem met die bediener:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Die soekvorm kan nie afgelaai word nie.&lt;BR&gt;Probeer later of kies 'n ander diens.</code>
+    <code id="error_invalid">Onaanvaarbare inligting.</code>
+    <code id="search_title">Soek Gebruikers</code>
+    <code id="search_tagline">Voer 'n veld in om te soek vir enige ooreenstemmende gebruikers.</code>
+    <code id="firstname">Jou naam:</code>
+    <code id="lastname">Jou van:</code>
+    <code id="nick">Noemnaam:</code>
+    <code id="email">E-pos adres:</code>
+    <code id="searching">Besig om te soek ...</code>
+    <code id="add">Voeg by kontaktelys</code>
+    <code id="view">Nuwe profiel</code>
+    <code id="foundone">1 resultaat</code>
+    <code id="foundmany">${0} resultate</code>
+  </window>
+  <window name="login">
+    <code id="invalid">Die adres is nie geldig nie. Korrek die adres en probeer weer.&#13;&#13;As jy nie 'n adres het nie, klik Sign Up en volg die instruksies.</code>
+    <item id="txt_instructions">
+      <innerText>Enter your instant messaging address and password to log in.</innerText>
+    </item>
+    <item id="txt_address">
+      <innerText>Address:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Example: koos123@koos.com</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Wagwoord:</innerText>
+    </item>
+    <item id="txt_remember">
+      <innerText>Onthou my wagwoord</innerText>
+    </item>
+    <item id="txt_autologin">
+      <innerText>Teken outomaties in</innerText>
+    </item>
+    <item id="btn_signup">
+      <value>Sign Up</value>
+    </item>
+    <item id="btn_login">
+      <value>Login</value>
+    </item>
+    <item id="btn_close">
+      <value>Maak toe</value>
+    </item>
+  </window>
+  <window name="sign_up">
+    <code id="close_confirm">Die nuwe adres is nie volledig nie.&#13;&#13;Is jy seker jy wil die wysbediener toemaak?</code>
+    <code id="incomplete">Voltooi al die velde ...</code>
+    <code id="pass_match">Die wagwoorde wat jy ingesleutel het is nie dieselde nie.&#13;&#13;Voer die nuwe wagwoord in, in beide velde.</code>
+
+    <code id="contacting">Contacting server...</code>
+    <code id="registered">Jou identeit word geregistreer. Dit kan tot 'n minuut lank neem om te voltooi.&lt;BR&gt;Wees asseblief geduldig.&lt;BR&gt;</code>
+    <code id="requesting">Vra inligting aan...</code>
+    <code id="sending">Stuur registrasie...</code>
+    <code id="failure">Mislukte konneksie poging</code>
+    <code id="completed">Registrasie voltooi</code>
+
+    <code id="address">Adres:</code>
+    <code id="nickname">Naam:</code>
+    <code id="userdir">Gebruiker se leêr:</code>
+    <item id="txt_page_welcome_title">
+      <innerText>Welkom by die Intekenings Wysgeer</innerText>
+    </item>
+    <item id="txt_page_welcome_intro">
+      <innerText>Hierdie wysgeer help jou om 'n adres te skep om op die kletsnetwerk te gebruik.</innerText>
+    </item>
+    <item id="txt_page_welcome_next">
+      <innerHTML>Om voort te gaan, druk &lt;B&gt;Volgende&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_welcome_next">
+      <value>Volgende &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_welcome_cancel">
+      <value>Kanselleer</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_nickname_title">
+      <innerText>Persoonlike Inligting</innerText>
+    </item>
+    <item id="txt_page_nickname_tagline">
+      <innerText>Hierdie inligting sal ander mense help om jou te vind op die netwerk.</innerText>
+    </item>
+    <item id="txt_page_nickname_desc">
+      <innerText>Voer jou naam in om dit makliker vir jou vriende en kollegas te maak om jou te kontak.</innerText>
+    </item>
+    <item id="txt_page_nickname_name">
+      <innerHTML>&lt;U&gt;N&lt;/U&gt;ame:</innerHTML>
+    </item>
+    <item id="data_name">
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_back">
+      <value>&lt; Terug</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_nickname_next">
+      <value>Volgende &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_cancel">
+      <value>Kanselleer</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_account_title">
+      <innerText>Address Information</innerText>
+    </item>
+    <item id="txt_page_account_tagline">
+      <innerText>You can use a public server on the Internet or use a private server on your corporate network.</innerText>
+    </item>
+    <item id="txt_page_account_server">
+      <innerHTML>&lt;U&gt;S&lt;/U&gt;erver:</innerHTML>
+    </item>
+    <item id="txt_page_account_username">
+      <innerHTML>&lt;U&gt;U&lt;/U&gt;sername:</innerHTML>
+    </item>
+    <item id="txt_page_account_password">
+      <innerHTML>&lt;U&gt;P&lt;/U&gt;assword:</innerHTML>
+    </item>
+    <item id="txt_page_account_confirm">
+      <innerHTML>&lt;U&gt;C&lt;/U&gt;onfirm password:</innerHTML>
+    </item>
+    <item id="data_server">
+      <accessKey>s</accessKey>
+    </item>
+    <item id="data_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="data_password">
+      <accessKey>p</accessKey>
+    </item>
+    <item id="data_password_confirm">
+      <accessKey>c</accessKey>
+    </item>
+    <item id="txt_page_account_remember">
+      <innerHTML>&lt;U&gt;R&lt;/U&gt;emember my password</innerHTML>
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page_account_preview">
+      <innerText>Your IM address:</innerText>
+    </item>
+    <item id="btn_page_account_settings">
+      <value>Connection settings</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_account_back">
+      <value>&lt; Back</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_account_next">
+      <value>Next &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_account_cancel">
+      <value>Cancel</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_finished_title">
+      <innerText>Voltooi die skepping van 'n nuwe profiel</innerText>
+    </item>
+    <item id="txt_page_finished_intro">
+      <innerText>Jou nuwe profiel is geskep.</innerText>
+    </item>
+    <item id="txt_page_finished_details">
+      <innerText>Profiel besonderhede:</innerText>
+    </item>
+    <item id="txt_page_finished_finish">
+      <innerHTML>Om hierdie wysgeer toe te maak, druk &lt;B&gt;Voltooi&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_finished_back">
+      <value>&lt; Terug</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_finished_finish">
+      <value>Voltooi</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn_page_finished_cancel">
+      <value>Kanselleer</value>
+      <accessKey>c</accessKey>
+    </item>
+  </window>
+</translation>

@@ -1,0 +1,1972 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+LangString DESC_SecCopyRequired		${LANG_TRADCHINESE}	"使用 ${PRODUCT} 需要這些檔案。"
+LangString DESC_SecCreateStartMenu	${LANG_TRADCHINESE}	"開始功能表讓你能快速存取 ${PRODUCT}。"
+LangString DESC_SecCreateQuickstart	${LANG_TRADCHINESE}	"增加 ${PRODUCT} 到你的快速啟動列。"
+LangString DESC_SecCreateDesktop	${LANG_TRADCHINESE}	"在你的桌面上放置一個捷徑。"
+LangString DESC_SecCreateAutoStart	${LANG_TRADCHINESE}	"${PRODUCT} 會再你啟動 Windows 時自動登入。"
+LangString ITEM_SecCreateStartMenu	${LANG_TRADCHINESE}	"開始功能表捷徑"
+LangString ITEM_SecCreateQuickstart	${LANG_TRADCHINESE}	"快速啟動捷徑"
+LangString ITEM_SecCreateDesktop	${LANG_TRADCHINESE}	"桌面捷徑"
+LangString ITEM_SecCreateAutoStart	${LANG_TRADCHINESE}	"開機時啟動 ${PRODUCT}"
+LangString TEXT_WindowsOutdated		${LANG_TRADCHINESE}	"無法安裝 ${PRODUCT}。$\n需要 Windows NT 4 或更新。"
+LangString TEXT_AlreadyRunning		${LANG_TRADCHINESE}	"在繼續之前請關閉 ${PRODUCT}。"
+LangString TEXT_InternetExplorer	${LANG_TRADCHINESE}	"無法繼續安裝 ${PRODUCT}。$\n$\n需要 Microsoft Internet Explorer 5.5 或更新。你要現在下載這個更新嗎？"
+LangString TEXT_DownloadFailed		${LANG_TRADCHINESE}	"錯誤: 無法下載需要的元件。請確認你有連接到網際網路。"
+LangString un.TEXT_RemoveProfiles	${LANG_TRADCHINESE}	"移除設定檔和紀錄檔案?"
+LangString un.TEXT_RemoveDirectory	${LANG_TRADCHINESE}	"注意: $INSTDIR 無法移除。"
+-->
+<translation xml:lang="zh-tw">
+  <about>
+    <language>繁體中文</language>
+    <history>
+      <revision>
+        <author>
+          <name>Xian Chung Lee (kourge)</name>
+          <email>kourge@gmail.com</email>
+          <xmpp>kourge@jabber.cz</xmpp>
+        </author>
+        <date>2004-12-07</date>
+        <description>
+          第二版。
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_pleasewait">
+      <innerText>請稍候</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>已和伺服器斷線</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>重新連線</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>或</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>變更連線設定</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>將某人加入到你的聯絡人名單</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>或</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>設定網路轉植</innerText>
+    </item>
+
+    <code id="emoticon_unknown">未知</code>
+    <code id="txt_welcome">歡迎來到 ${0}!</code>
+    <code id="user_online">${0} 現在在線上</code>
+    <code id="cl_tooltip">${0} 聯絡人清單</code>
+    <code id="autoawaymessage">超過 5 分鐘閒置</code>
+    <code id="autoxawaymessage">超過 30 分鐘閒置</code>
+	<!--new things added @ Dec/11/2004-->
+    <code id="import_files">聯絡人名單</code>
+    <code id="import_invalid">檔案並未含有正確的資料。</code>
+    <code id="import_no_new">所有檔案內的聯絡人都已經在你的聯絡人名單裡了。</code>
+    <code id="import_confirm">這些聯絡人位址將新增至你的聯絡人名單:&#13;&#13;${0}&#13;&#13;你確定要將這些位址匯入到你的聯絡人名單?</code>
+    <code id="import_aim_not_registered">要匯入你的 AIM 好友名單，必須先註冊 AIM 轉植。轉值也必須作用中。&#13;請到工具功能表定選擇轉植以檢視 AIM 轉植的狀態。</code>
+    <code id="conference_invitation">${0} 邀請了你到會議室: ${1}&#13;&#13;你要加入這個會議室嗎?</code>
+	<!--new things end-->
+    <code id="menu_file">檔案(&amp;F)</code>
+    <code id="menu_file_received">開啟我接收的檔案(&amp;O)</code>
+	<!--added @ Dec/12/2004-->
+    <code id="menu_file_export">匯出聯絡人名單(&amp;E)...</code>
+    <code id="menu_file_import">匯入聯絡人名單(&amp;I)...</code>
+	<!--contact-list import/export end-->
+    <code id="menu_file_change">變更我的狀態訊息(&amp;M)...</code>
+    <code id="menu_file_ffc">有空聊天(&amp;F)</code>
+    <code id="menu_file_available">有空(&amp;A)</code>
+    <code id="menu_file_busy">忙碌(&amp;B)</code>
+    <code id="menu_file_away">離開(&amp;W)</code>
+    <code id="menu_file_xaway">延伸離開(&amp;E)</code>
+    <code id="menu_file_invisible">隱形(&amp;I)</code>
+    <code id="menu_file_offline">登出(&amp;O)</code>
+    <code id="menu_file_status">我的狀態(&amp;S)</code>
+    <code id="menu_file_out">登出(&amp;o)</code>
+    <code id="menu_file_exit">離開(&amp;E)</code>
+
+    <code id="menu_axn">動作(&amp;A)</code>
+    <code id="menu_axn_add">新增聯絡人(&amp;A)...</code>
+    <code id="menu_axn_addgroup">新增群組(&amp;G)...</code>
+    <code id="menu_axn_join">加入會議室(&amp;J)...</code>
+    <code id="menu_axn_create">建立會議室(&amp;C)...</code>
+    <code id="menu_axn_password">變更我的密碼(&amp;P)...</code>
+    <code id="menu_axn_profile">編輯我的設定檔(&amp;E)...</code>
+    <code id="menu_axn_avatar">變更我的頭圖(&amp;A)...</code>
+
+    <code id="menu_tool">工具(&amp;T)</code>
+    <code id="menu_tool_transport">轉植(&amp;T)</code>
+    <code id="menu_tool_head">頭條和快訊(&amp;H)</code>
+    <code id="menu_tool_plugin">外掛(&amp;P)</code>
+    <code id="menu_tool_admin">伺服器管理(&amp;A)</code>
+    <code id="menu_tool_traffic">網路流量(&amp;N)</code>
+    <code id="menu_tool_view">檢視(&amp;V)</code>
+    <code id="menu_tool_detailed">詳細資料(&amp;D)</code>
+    <code id="menu_tool_compact">精簡(&amp;C)</code>
+    <code id="menu_tool_language">語言(&amp;L)</code><!--added@Dec/12/2004-->
+    <code id="menu_tool_aot">保持最上層(&amp;A)</code>
+    <code id="menu_tool_settings">設定(&amp;S)</code>
+
+    <code id="menu_help">說明(&amp;H)</code>
+    <code id="menu_help_manual">線上手冊(&amp;O)</code>
+    <code id="menu_help_forum">論壇支援(&amp;S)</code>
+    <code id="menu_help_contact">聯絡我們(&amp;C)</code>
+    <code id="menu_help_about">關於(&amp;A)</code>
+
+    <code id="menu_tray_about">關於 ${0}(&amp;A)</code>
+    <code id="menu_tray_settings">設定(&amp;S)</code>
+
+    <code id="wnd_autoupdate">更新中 ${0}</code><!--added@Dec/12/2004-->
+    <code id="wnd_vcard_edit">使用者資訊</code>
+    <code id="wnd_about">關於 ${0}</code>
+    <code id="wnd_signup">註冊 - ${0}</code>
+    <code id="wnd_adduser">尋找或新增聯絡人</code>
+    <code id="wnd_avatar">變更你的頭圖</code>
+    <code id="wnd_room_browse">會議室</code>
+    <code id="wnd_room_create">建立會議室</code>
+	<!--added@dec/12/2004-->
+	<code id="wnd_conference_invite">邀請聯絡人</code>
+    <code id="wnd_conference_other">其他會議服務</code>
+	<!--new-things-end-->
+    <code id="wnd_console">主控台</code>
+    <code id="wnd_emoticon_download">下載表情符號</code>
+    <code id="wnd_emoticon_list">表情符號</code>
+    <code id="wnd_emoticon_view">表情符號詳細資料</code>
+    <code id="wnd_file_send">傳送檔案給 ${0}</code>
+    <code id="wnd_file_recv">接收檔案自 ${0}</code>
+    <code id="wnd_group_message">群組訊息</code>
+    <code id="wnd_transport_list">轉植</code>
+    <code id="wnd_transport_other">其他轉植</code><!--added@dec/12/2004-->
+    <code id="wnd_headlines">頭條檢視器</code>
+    <code id="wnd_history">${0} - 訊息紀錄</code>
+    <code id="wnd_plugin_list">外掛</code>
+    <code id="wnd_plugins">外掛</code>
+    <code id="wnd_password">變更密碼</code>
+    <code id="wnd_settings">設定</code>
+    <code id="wnd_admin_server">伺服器管理</code>
+    <code id="wnd_status">狀態訊息</code>
+    <code id="wnd_vcard_view">使用者資訊</code>
+    <code id="wnd_group_create">建立群組</code>
+    <code id="wnd_group_rename">重新命名群組</code>
+    <code id="wnd_contact_rename">重新命名聯絡人</code>
+    <code id="wnd_authrequest">授權要求</code>
+    <code id="wnd_login">登入 - ${0}</code>
+    <code id="wnd_extension_download">安裝中 ${0}</code>
+	<!--new things@dec/12/2004-->
+    <code id="wnd_background_list">背景</code>
+    <code id="wnd_background_download">下載背景</code>
+	<!--new-things-end-->
+
+    <code id="msg_emoticon_install">這個表情符號樣式已經安裝了。</code>
+    <code id="msg_received_files">接收檔案的目錄被移除了。</code>
+    <code id="msg_plugin_install">你要安裝這個外掛嗎?&#13;&#13;名稱: ${0}&#13;描述: ${1}</code>
+    <code id="msg_plugin_exists">這個外掛已經安裝了。</code>
+    <code id="msg_expired">這個軟體的展示期限已經過期。</code>
+    <code id="msg_cl_adding">${0} 被加到了你的聯絡人名單。</code>
+    <code id="msg_cl_added">${0} 把你加入了他/她的聯絡人名單。</code>
+    <code id="msg_cl_removed">${0} 把你從他/她的聯絡人名單移除了。</code>
+    <code id="msg_blocked">你在這個人的封鎖名單上。</code>
+    <code id="msg_autherror">無法登入。可能有幾個原因:&#13;&#13;- 你輸入了不正確的密碼&#13;- 帳號在伺服器上不存在&#13;&#13;請再試一次。</code>
+
+    <code id="menu_message">訊息</code>
+    <code id="menu_filetransfer">檔案傳輸</code>
+    <code id="menu_room_create">建立新房間</code>
+    <code id="menu_room_invite">邀請到會議室</code>
+    <code id="menu_rename">重新命名</code>
+    <code id="menu_block">封鎖</code>
+    <code id="menu_delete">刪除</code>
+    <code id="menu_group_create">建立新群組</code>
+    <code id="menu_group_merge">合併至</code>
+    <code id="menu_group_move">移動至</code>
+    <code id="menu_group_copy">複製至</code>
+    <code id="menu_request">重新要求授權</code>
+    <code id="menu_history">紀錄</code>
+    <code id="menu_profile">設定檔</code>
+
+    <code id="cl_waiting_one">你有 1 封未讀訊息</code>
+    <code id="cl_waiting_multiple">你有 ${0} 封未讀訊息</code>
+    <code id="cl_error_notexist">位址不存在。</code>
+    <code id="cl_error_cannotadd">無法將 ${0} 加入到聯絡人名單。&#13;${1}</code>
+    <code id="cl_default_group">聯絡人</code>
+    <code id="cl_group_expand">顯示離線聯絡人</code>
+    <code id="cl_group_compact">隱藏離線聯絡人</code>
+    <code id="cl_group_rename">重新命名這個群組</code>
+    <code id="cl_group_message">傳送廣播訊息</code>
+    <code id="cl_room_create">建立新房間</code>
+    <code id="cl_room_invite">邀請到會議室</code>
+    <code id="cl_group_empty">這個群組沒有人在線上。</code>
+    <code id="cl_status_empty">無狀態訊息</code>
+    <code id="cl_status_offline">離線</code>
+    <code id="cl_status_awaiting">等待授權</code>
+    <code id="cl_status_unknown">未知狀態</code>
+    <code id="cl_status_waiting_one">1 封未讀訊息</code>
+    <code id="cl_status_waiting_multiple">${0} 封未讀訊息</code>
+    <code id="cl_tooltip_offline">位址: ${0}</code>
+    <code id="cl_contact_remove_group">你確定要從這個群組移除使用者?</code>
+    <code id="cl_contact_remove_list">你確定要從你的聯絡人名單移除使用者?</code>
+    <code id="cl_link_open">在網頁瀏覽器開啟</code>
+    <code id="cl_link_copy">複製超連結位址</code>
+    <code id="cl_link_favorite">加入到我的最愛</code>
+    <code id="cl_ffc">有空聊天</code>
+    <code id="cl_available">有空</code>
+    <code id="cl_busy">忙碌</code>
+    <code id="cl_away">離開</code>
+    <code id="cl_xaway">延伸離開</code>
+    <code id="cl_invisible">隱形</code>
+    <code id="cl_tooltip_online">位址: ${0}&#13;資源: ${1}</code>
+  </window>
+  <window name="about">
+    <item id="btn_credits">
+      <value>感謝 &gt;&gt;</value>
+    </item>
+    <item id="btn_copyright">
+      <value>Copyrights &gt;&gt;</value>
+    </item>
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="copy_darkproject">
+      <innerHTML>大部分的圖示和預設表情符號版權屬 &amp;copy; 2001 Greg Fleming.</innerHTML>
+    </item>
+    <item id="copy_rsa">
+      <innerHTML>使用 MD5 Message-Digest Algorithm。Copyright RSA Data Security, Inc.</innerHTML>
+    </item>
+    <item id="copy_dns">
+      <innerHTML>以 BIND 為基礎。Copyright Internet Software Consortium, Inc.</innerHTML>
+    </item>
+    <item id="txt_copyright">
+      <innerHTML>Copyright &amp;copy;</innerHTML>
+    </item>
+    <code id="copy_basis">以 ${0} 為基礎。Copyright &amp;copy; ${1} ${2}.</code>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>檢視設定檔資訊</value>
+    </item>
+    <item id="btn_deny">
+      <value>拒絕</value>
+    </item>
+    <item id="btn_accept">
+      <value>接受</value>
+    </item>
+    <item id="txt_from">
+      <innerText>你收到來自下列的允許要求:</innerText>
+    </item>
+    <item id="txt_reason">
+      <innerText>原因:</innerText>
+    </item>
+    <item id="txt_add">
+      <innerText>新增這個使用者到我的聯絡人名單</innerText>
+    </item>
+  </window>
+  <window name="admin_users">
+    <item id="btn_refresh">
+      <value>重新整理</value>
+    </item>
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>點選要傳送訊息的帳號。按右鍵可以看到更多選項。</innerText>
+    </item>
+    <code id="add_to_list">新增到聯絡人名單</code>
+    <code id="tooltip_with">位址: ${0}&#13;資源: ${1}&#13;線上時間: ${2}</code>
+    <code id="tooltip_without">地址: ${0}&#13;線上時間: ${1}</code>
+    <code id="loading">載入中...</code>
+    <code id="invalid_data">接收到不正確的資料。</code>
+    <code id="server_error">伺服器錯誤:</code>
+    <code id="server_failed">接收線上使用者清單失敗。&lt;BR&gt;請確定你有伺服器的管理員權限。</code>
+    <code id="user">1 個線上使用者</code>
+    <code id="users">${0} 個線上使用者</code>
+  </window>
+  <window name="admin">
+    <item id="btn_view">
+      <value>檢視所有線上使用者</value>
+    </item>
+    <item id="btn_close">
+      <value>關閉</value>
+    </item>
+    <item id="admin_btn_wall">
+      <value>傳送</value>
+    </item>
+    <item id="admin_btn_motd">
+      <value>傳送</value>
+    </item>
+    <item id="txt_wall_desc">
+      <innerText>這個快訊會傳送給目前線上的使用者。</innerText>
+    </item>
+    <item id="txt_motd_desc">
+      <innerText>這個快訊會在使用者登入時傳送。</innerText>
+    </item>
+    <item id="txt_wall">
+      <innerText>廣播訊息</innerText>
+    </item>
+    <item id="txt_motd">
+      <innerText>每日一訊</innerText>
+    </item>
+    <item id="txt_view">
+      <innerText>監視連線到伺服器的人。</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>使用這些工具來監視和管理 IM 伺服器。</innerText>
+    </item>
+    <item id="txt_users">
+      <innerText>使用者</innerText>
+    </item>
+    <code id="wnd_users">線上使用者</code>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>清除輸出</value>
+    </item>
+    <item id="btn_send">
+      <value>傳送</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>狀態</value>
+    </item>
+    <item id="btn_message">
+      <value>訊息</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>網路流量:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>換行</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>XML 輸入:</innerText>
+    </item>
+    <code id="toggle_on">偵錯開啟</code>
+    <code id="toggle_off">偵錯關閉</code>
+    <code id="valid_xml">輸入的必須是有效的 XML。不是空格或一般文字。</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>關閉</value>
+    </item>
+    <item id="txt_title">
+      <innerText>快訊和頭條</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>當你收到新聞頭條或其他短訊息時顯示特殊警示。</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>收到快訊或頭條時不要警示。</innerText>
+    </item>
+    <item id="alertonlinelabel">
+      <innerText>當有人上線時顯示警示</innerText>
+    </item>
+    <code id="read_more">更多...</code><!--new one added @ Dec/11/2004-->
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>取消</value>
+    </item>
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="btn_custom">
+      <value>自訂影像...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>選擇一個識別你的個人影像。</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>載入中...</innerText>
+    </item>
+    <code id="error_size">無法載入影像。檔案大小超過 8 KB。</code>
+    <code id="error_empty">無法載入影像。檔案是空的。</code>
+    <code id="error_load">警告: 無法載入頭圖影像。&#13;&#13;${0}</code>
+    <code id="menu_use">使用這個頭圖</code>
+    <code id="menu_saveas">另存新檔...</code>
+    <code id="menu_delete">刪除</code>
+    <code id="wnd_select">選擇頭圖影像</code>
+    <code id="saveas_files">影像檔案</code>
+    <code id="image_files">小於 8kB 的影像檔案</code>
+    <code id="all_files">所有檔案</code>
+  </window>
+  <window name="mode_select">
+    <item id="ok">
+      <value>確定</value>
+    </item>
+    <item id="btn_preset">
+      <value>預定訊息...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>當你無法回應時其他使用者會讀到的訊息:</innerText>
+    </item>
+    <code id="btn_1">外面散步</code>
+    <code id="btn_2">電話中</code>
+    <code id="btn_3">睡覺中</code>
+    <code id="btn_4">吃飯中</code>
+    <code id="btn_5">開會中</code>
+    <code id="btn_6">喝飲料中</code>
+    <code id="btn_7">專心中</code>
+    <code id="btn_8">工作中</code>
+    <code id="btn_9">在學校</code>
+    <code id="msg_1">我出去走走。</code>
+    <code id="msg_2">我在講電話。</code>
+    <code id="msg_3">我在睡覺。</code>
+    <code id="msg_4">吃飯啦！</code>
+    <code id="msg_5">我在開會。</code>
+    <code id="msg_6">去喝一些(或一堆)飲料</code>
+    <code id="msg_7">別吵，我需要專心</code>
+    <code id="msg_8">只有工作沒有玩樂...</code>
+    <code id="msg_9">我在學校。</code>
+  </window>
+  <window name="mode_select">
+    <code id="configure">設定快訊和頭條</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="btn_cancel">
+      <value>取消</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>新名稱:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="btn_cancel">
+      <value>取消</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>新名稱:</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="btn_cancel">
+      <value>取消</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>新名稱:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="btn_cancel">
+      <value>取消</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>確認新密碼:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>新密碼:</innerText>
+    </item>
+    <code id="no_match">你輸入的密碼不相符。&#13;&#13;在兩欄都要輸入新密碼。</code>
+    <code id="no_pass">輸入新密碼。</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="set_version">
+      <innerText>載入中...</innerText>
+    </item>
+    <item id="header-images">
+      <innerText>影像</innerText>
+    </item>
+    <item id="header-sounds">
+      <innerText>音效</innerText>
+    </item>
+    <item id="header-markup">
+      <innerText>文字標記</innerText>
+    </item>
+    <code id="empty">這個表情符號樣式是空的。</code>
+    <code id="file_error">檔案錯誤</code>
+    <code id="cannot_load">無法載入表情符號。</code>
+    <code id="count_one">1 個表情符號</code>
+    <code id="count_multiple">${0} 個表情符號</code>
+  </window>
+  <window name="emoticon_download">
+    <item id="btn_close">
+      <value>關閉</value>
+    </item>
+    <item id="txt_title">
+      <innerText>下載表情符號</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>瀏覽表情符號目錄需要網際網路連線。</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>載入中...</innerText>
+    </item>
+    <code id="install">安裝</code>
+    <code id="cannot_download">錯誤: 無法下載表情符號。&#13;${0}</code>
+    <code id="invalid_xml">資料來源包含無效的資料。</code>
+    <code id="no_new_styles">沒有新的表情符號樣式可用。</code>
+	</window>
+  <window name="emoticon_list">
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="txt_title">
+      <innerText>可用的表情符號</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>從清單選擇一個表情符號樣式。</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>載入中...</innerText>
+    </item>
+<!--item "btn_emoticon_all" removed @ Dec/11/2004-->
+	<item id="btn_emoticon_download">
+      <value>更多表情符號</value>
+    </item>
+    <code id="emoticon_details">顯示詳細資料</code>
+    <code id="emoticon_remove">刪除</code>
+    <code id="emoticon_confirm">你確定要刪除這個表情符號樣式?</code>
+    <code id="no_emoticons">找不到表情符號。</code>
+  </window>
+  <window name="plugin_list">
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="txt_title">
+      <innerText>安裝的外掛</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>新增或移除外掛。</innerText>
+    </item>
+    <item id="btn_plugin_download">
+      <value>更多外掛</value>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>沒有安裝的外掛。</innerText>
+    </item>
+    <code id="plugin_uninstall">解除安裝</code>
+    <code id="plugin_confirm">你確定要移除這個外掛?</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>關閉</value>
+    </item>
+    <item id="txt_title">
+      <innerText>下載外掛</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>瀏覽外掛目錄需要網際網路連線。</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>載入中...</innerText>
+    </item>
+    <code id="install">安裝</code>
+    <code id="cannot_download">錯誤: 無法下載外掛。&#13;${0}</code>
+    <code id="invalid_xml">資料來源包含無效的資料。</code>
+    <code id="no_new_plugins">沒有新的外掛可用。</code>
+  </window>
+<!--window "conference_invitation" removed @ Dec/11/2004-->
+<!--window "conference_custom" removed @ Dec/11/24-->
+<!--added-tons-of-things-to-window-"autoupdate"-->
+  <window name="autoupdate">
+    <code id="download_confirm">這個軟體有可用的更新版: ${0} ${1}&#13;&#13;你要下載這個更新嗎?</code>
+    <item id="btn_cancel">
+      <value>取消</value>
+    </item>
+    <item id="btn_install">
+      <value>安裝</value>
+    </item>
+    <item id="txt_status">
+      <innerText>連線中...</innerText>
+    </item>
+    <code id="downloading">下載中...</code>
+    <code id="complete">下載完成。點選安裝以繼續。</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="btn_cancel">
+      <value>取消</value>
+    </item>
+    <!--removed items "txt_invite","txt_invitation","invitation","txt_server"@dec/12/2004-->
+    <item id="txt_room">
+      <innerText>會議室名稱:</innerText>
+    </item>
+    <!--removed item "txt_info"@dec/12/2004-->
+    <!--removed code "valid"@dec/12/2004-->
+	<!--added@dec/12/2004-->
+    <code id="incomplete">請完成所有欄位...</code>
+    <item id="txt_instructions">
+      <innerText>每個會議室都有獨特的位址。請輸入會議服務位址及房間的獨特名稱。</innerText>
+    </item>
+    <item id="txt_service">
+      <innerText>服務位址:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>範例: conference.example.com</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>會議室位址:</innerText>
+    </item><!--add-sec-end-->
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>傳送</value>
+    </item>
+    <item id="btn_cancel">
+      <value>取消</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>傳送給這些人:</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>正常訊息</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>警示通知</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>訊息類型</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>附加超連結</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>訊息</innerText>
+    </item>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>關閉</value>
+    </item>
+    <item id="btn_accept">
+      <value>接受</value>
+    </item>
+    <item id="btn_abort">
+      <value>終止</value>
+    </item>
+    <item id="btn_open">
+      <value>開啟</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>剩餘時間:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>傳送者:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>檔案名稱:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>位置:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>進度:</innerText>
+    </item>
+    <code id="resume">檔案已存在。你要恢復傳傳輸嗎?&#13;&#13;按是以恢復檔案。&#13;按否以覆寫檔案。</code>
+    <code id="cannot_overwrite">無法覆寫檔案:&#13;${0}&#13;&#13;${1}</code>
+    <code id="incorrect">無法初始化傳輸。接收到無效的資料。</code>
+    <code id="title_saving">${0}% 之 ${1} 已儲存。</code>
+    <code id="lessthanminute">以 ${0}/s 只剩少於一分鐘</code>
+    <code id="onehour">1 小時和</code>
+    <code id="hours">${0} 小時和</code>
+    <code id="oneminute">1 分鐘於</code>
+    <code id="minutes">${0} 分鐘於</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">你要終止傳輸嗎?</code>
+    <code id="aborted">已中止</code>
+    <code id="finished">已完成</code>
+    <code id="error_timeout">發生逾時</code>
+    <code id="error_code">錯誤碼: ${0}</code>
+    <code id="error_file">檔案錯誤碼: ${0}</code>
+    <code id="title_completed">傳輸完成 - ${0}</code>
+    <code id="title_failed">傳輸失敗 - ${0}</code>
+    <code id="error_move">無法移除完成的檔案:&#13;${0}&#13;&#13;${1}</code>
+    <code id="error_failed">傳輸失敗。</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>關閉</value>
+    </item>
+    <item id="btn_abort">
+      <value>終止</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>剩餘時間:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>接收者:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>檔案名稱:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>位置:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>進度:</innerText>
+    </item>
+    <code id="socket">無法傳送檔案。&#13;無法開啟網路插座。</code>
+    <code id="file">無法讀取檔案:&#13;${0}</code>
+    <code id="filetransfer">檔案傳輸:</code>
+    <code id="title_saving">${0}% 之 ${1} 已傳送</code>
+    <code id="lessthanminute">以 ${0}/s 只剩少於一分鐘</code>
+    <code id="onehour">1 小時和</code>
+    <code id="hours">${0} 小時和</code>
+    <code id="oneminute">1 分鐘於</code>
+    <code id="minutes">${0} 分鐘於</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">你要終止傳輸嗎?</code>
+    <code id="finished">已完成</code>
+    <code id="aborted">已終止</code>
+    <code id="error_denied">檔案拒絕。</code>
+    <code id="error_timeout">發生逾時。</code>
+    <code id="error_code">錯誤碼: ${0}</code>
+    <code id="title_completed">傳輸完成 - ${0}</code>
+    <code id="title_failed">傳輸失敗 - ${0}</code>
+    <code id="error_failed">傳輸失敗。</code>
+  </window>
+  <window name="conference_browse">
+    <!--item "btn_cancel","btn_join","btn_other" removed@dec/12/2004-->
+    <item id="btn_create">
+      <value>建立新房間</value>
+    </item>
+	<!--added items@dec/12/2004-->
+    <item id="btn_close">
+      <value>關閉</value>
+    </item>
+    <item id="btn_other_service">
+      <value>其他服務...</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>可用房間:</innerText>
+    </item>
+    <item id="lbl_empty">
+      <innerText>顯示空的房間</innerText>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="lbl_full">
+      <innerText>顯示已滿房間</innerText>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="lbl_filter">
+      <innerText>篩選器:</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>這個伺服器沒有可用會議服務。&#13;&#13;點選 "其他服務..." 按鈕以從伺其他服器新增會議服務。</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>你必須連線到即時訊息伺服器以加入會議室。</innerText>
+    </item>
+	<!--removed items "txt_rooms","txt_people","room_info_text","txt_loading"@dec/12/2004-->
+    <!--removed code "wnd_conference_custom" and "empty"@dec/12/2004-->
+	<!--new codes added-->
+	<code id="empty_filter">沒有任何房間符合篩選器</code>
+    <code id="empty_no_rooms">這個服務沒有可用的房間</code>
+    <code id="status_connecting">連線中...</code>
+    <code id="status_downloading">取得會議室清單中...</code>
+    <code id="error_unknown">服務 "${0}" 無法使用。請確認你輸入了正確的位址。請稍後再試或輸入其他位址。</code>
+    <code id="error_no_services">伺服器 "${0}" 沒有安裝任何會議服務。請聯絡管理員以獲得更多資訊。</code>
+    <code id="error_no_new">伺服器 "${0}" 所有的會議服務已列出`。</code>
+	<!--add-end-->
+  </window>
+  <window name="vcard">
+    <code id="save">警告: 無法儲存 vCard 檔案。&#13;&#13;${0}</code>
+    <code id="personal">使用者詳細資料</code>
+    <code id="system">系統詳細資料</code>
+
+    <item id="txt_requesting1">
+      <innerText>從伺服器要求資訊</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>這可能需要一分鐘。&lt;BR&gt;請耐心點。</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>儲存為 vCard</value>
+    </item>
+    <item id="btn_refresh">
+      <value>重新整理</value>
+    </item>
+    <item id="btn_close">
+      <value>關閉</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>復原變更</value>
+    </item>
+    <item id="btn_cancel">
+      <value>取消</value>
+    </item>
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>個人資訊</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>更多詳細資料</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>住家地址</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>商務</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>商務地址</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>系統</innerText>
+    </item>
+
+    <item id="txt_name">
+      <innerText>名稱</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>名字:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>中名:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>姓氏:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>暱稱:</innerText>
+    </item>
+
+    <item id="txt_contact">
+      <innerText>聯絡</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>電子郵件:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>電話:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>行動:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>傳真:</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>更多詳細資料</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>年齡:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>生日:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>性別:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>婚姻狀態:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>網站:</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>住家地址</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>地址 1:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>地址 2:</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>都市:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>郵遞區號:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>州:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>國家:</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>組織</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>名稱:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>部門:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>頭銜:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>職位:</innerText>
+    </item>
+
+    <item id="txt_workcontact">
+      <innerText>聯絡</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>電子郵件:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>電話:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>行動:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>傳真:</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>商務地址</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>地址 1:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>地址 2:</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>都市:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>郵遞區號:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>州:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>國家:</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>客戶端資訊</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>地址:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>資源:</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>本地時間:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>軟體:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>版本:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>作業系統:</innerText>
+    </item>
+  </window>
+  <window name="transport_list">
+    <item id="btn_other">
+      <value>其他轉植...</value>
+    </item><!--above added@dec/12/2004-->
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="txt_title">
+      <innerText>可用轉植</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>轉植能與其他即時訊息網路連結。</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;注意:&lt;/B&gt; 要設定轉植你必須連接至即時訊息伺服器。</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;注意:&lt;/B&gt; 你連接的伺服器沒有安裝任何轉植。請聯絡管理員以獲得更多資訊。</innerHTML>
+    </item>
+    <item id="msnworkaroundlabel">
+      <innerText>允許 MSN 聯絡人變更他們的暱稱</innerText>
+    </item>
+    <code id="status_active">作用中</code>
+    <code id="status_noreg">未註冊</code>
+    <code id="status_disconnected">已斷線</code>
+    <!--added@dec/12/2004-->
+	<code id="status_connecting">連線中...</code>
+    <code id="name_unknown">未知服務</code>
+    <code id="error_unknown">服務 "${0}" 無法使用。請確認你輸入了正確的位址。請稍後再試或輸入其他位址。</code>
+    <code id="error_no_transports">伺服器 "${0}" 沒有安裝任何轉植。請聯絡管理員以獲得更多資訊。</code>
+    <code id="error_no_new_transport">伺服器 "${0}" 所有的轉植都已列出。</code>
+	<!--end-new-->
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; 上一步</value>
+    </item>
+    <item id="btn_next">
+      <value>下一步 &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>完成</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>取消</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>位址:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>暱稱:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>位址:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>密碼:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>暱稱:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>你已經與這個轉植註冊。&lt;BR&gt;你註冊的帳號是:</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>停用轉植</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText>聯絡伺服器中</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>這可能需要一分鐘。&lt;BR&gt;請耐心點。</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>要關閉這個精靈，點選 &lt;B&gt;完成&lt;/B&gt;。</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>要繼續，點選 &lt;B&gt;下一步&lt;/B&gt;。</innerHTML>
+    </item>
+
+    <code id="error_invalid">接收到無效的資料</code>
+    <code id="error_server">&lt;B&gt;伺服器錯誤:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;無法繼續。</code>
+    <code id="error_unknown">&lt;B&gt;未知錯誤:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;無法繼續。</code>
+    <code id="error_auth">&lt;B&gt;驗證錯誤:&lt;/B&gt;&lt;BR&gt;不正確的位址和密碼。&lt;BR&gt;&lt;BR&gt;無法繼續。</code>
+    <code id="wait">&lt;B&gt;聯絡伺服器中&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;這可能需要一分鐘。&lt;BR&gt;請耐心點。&lt;BR&gt;</code>
+
+    <code id="default_window_title">轉植設定</code>
+    <code id="default_begin_intro">這個精靈會幫助你設定轉植。&lt;BR&gt;這個轉植是你和其他網路的連結。&lt;BR&gt;要使用這個轉植你需要其他網路的帳號。&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">輸入你的帳號和密碼。&lt;BR&gt;你也可以輸入給別人看的暱稱。&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">你的帳號正在和轉植註冊。</code>
+    <code id="default_removing_busy">你的帳號正在和轉植移除。&lt;BR&gt;</code>
+    <code id="default_creating_done">帳號與轉植註冊成功。</code>
+    <code id="default_removing_done">帳號與轉植解除註冊成功。</code>
+
+    <code id="msn_window_title">MSN Messenger - 轉植設定</code>
+    <code id="msn_begin_intro">這個精靈會幫你設定 MSN 轉植。&lt;BR&gt;這個轉植是你和你的 MSN 帳號的連結。&lt;BR&gt;你需要 Microsoft Passport 來使用這個轉植。&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">輸入你的 MSN 地址和你的 MSN 密碼。&lt;BR&gt;你也可以輸入其他使用者可以看的暱稱。&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">範例: someone@msn.com, someone@hotmail.com</code>
+    <code id="msn_creating_busy">你的帳號正在和 MSN 轉植註冊。</code>
+    <code id="msn_removing_busy">你的 MSN 帳號正在和轉植移除。&lt;BR&gt;你還是能用你的 MSN 帳號和其他服務 (如 Hotmail、MSN Explorer、等等)。&lt;BR&gt;</code>
+    <code id="msn_creating_done">帳號與 MSN 轉植註冊成功。</code>
+    <code id="msn_removing_done">帳號與 MSN 轉植解除註冊成功。</code>
+
+    <code id="icq_window_title">ICQ - 轉植設定</code>
+    <code id="icq_begin_intro">這個精靈會幫你設定 ICQ 轉植。&lt;BR&gt;這個轉植是你和你的 ICQ 帳號的連結。&lt;BR&gt;你必須先有使用者識別號碼 (ICQ &lt;BR&gt;號碼) 來使用這個用轉植。&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">輸入你的 ICQ 號碼和你的 ICQ 密碼。&lt;BR&gt;你也可以輸入其他使用者可以看到的名稱。&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">範例: 39230793, 158525087</code>
+    <code id="icq_creating_busy">你的帳號正在和 ICQ 轉植註冊。</code>
+    <code id="icq_removing_busy">你的 ICQ 帳號正在和轉植移除。&lt;BR&gt;</code>
+    <code id="icq_creating_done">帳號與 ICQ 轉植註冊成功。</code>
+    <code id="icq_removing_done">帳號與 ICQ 轉植解除註冊成功。</code>
+
+    <code id="yahoo_window_title">Yahoo! 即時通 - 轉植設定</code>
+    <code id="yahoo_begin_intro">這個精靈會幫你設定 Yahoo! 轉植。&lt;BR&gt;這個轉植是你和你的 Yahoo! 帳號的連結。&lt;BR&gt;你需要有個 Yahoo!帳號來使用這個轉植。&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">輸入你的 Yahoo! 使用者名稱和你的 Yahoo! 密碼。&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">你的帳號正在和 Yahoo! 轉植註冊。</code>
+    <code id="yahoo_removing_busy">你的 Yahoo! 帳號正在和轉植移除。&lt;BR&gt;你還是能用你的 Yahoo! 帳號和其他服務 (如 Yahoo! 電子郵件信箱、Yahoo! 即時通、等等)。&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">帳號與 Yahoo! 轉植註冊成功。</code>
+    <code id="yahoo_removing_done">帳號與 Yahoo! 轉植解除註冊成功。</code>
+
+    <code id="aim_window_title">AOL Instant Messenger - 轉植設定</code>
+    <code id="aim_begin_intro">這個精靈會幫你設定 AOL IM 轉植。&lt;BR&gt;這個轉植是你和你的 AOL IM 帳號的連結。&lt;BR&gt;你需要 AOL IM 帳號來使用這個轉植。&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">輸入你的 AOL IM 網路名稱(screenname) 和密碼。&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">你的帳號正在和 AOL IM 轉植註冊。</code>
+    <code id="aim_removing_busy">你的 AOL IM 帳號正在和轉植移除。&lt;BR&gt;你還是能和其他軟體使用你的 AOL IM 帳號。&lt;BR&gt;</code>
+    <code id="aim_creating_done">帳號與 AOL IM 轉植註冊成功。</code>
+    <code id="aim_removing_done">帳號與 AOL IM 轉植解除註冊成功。</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>移至</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>儲存</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>列印</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>刪除</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>訊息紀錄</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>搜尋:</innerText>
+    </item>
+    <code id="loading">載入訊息紀錄中...</code>
+    <code id="empty">訊息紀錄是空的。</code>
+    <code id="error_load">無法載入訊息紀錄:&#13;${0}</code>
+    <code id="one_message">1 個訊息</code>
+    <code id="many_messages">${0} 個訊息</code>
+    <code id="tooltip_save">儲存今天的訊息紀錄</code>
+    <code id="tooltip_print">列印今天的訊息紀錄</code>
+    <code id="tooltip_delete">刪除今天的訊息紀錄</code>
+    <code id="error_open">錯誤: 無法開啟訊息紀錄。</code>
+    <code id="error_read">錯誤: 無法讀取訊息紀錄。</code>
+    <code id="delete_confirm">你確定要刪除 ${0} 的整個訊息紀錄?</code>
+    <code id="delete_confirm_date">你確定要刪除日期為 ${0} 的訊息?</code>
+    <code id="delete_cannot">無法移除紀錄檔案: ${0}&#13;&#13;沒有任何訊息被刪除。</code>
+    <code id="delete_cannot_temp">無法建立暫存檔案: ${0}&#13;&#13;沒有任何訊息被刪除。</code>
+    <code id="delete_cannot_open">無法開啟紀錄: ${0}&#13;&#13;沒有任何訊息被刪除。</code>
+    <code id="delete_cannot_read">無法讀取記錄: ${0}&#13;&#13;沒有任何訊息被刪除。</code>
+    <code id="delete_cannot_write">無法寫入暫存檔案: ${0}&#13;&#13;沒有任何訊息被刪除。</code>
+    <code id="error_print">無法列印任何東西。&#13;訊息紀錄是空的。</code>
+    <code id="error_save">無法儲存訊息紀錄。&#13;${0}</code>
+  </window>
+	<window name="chat-messages">
+    <code id="copy">複製</code>
+    <code id="copyall">全部複製</code>
+    <code id="clear">清除</code>
+    <code id="selectall">全選</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>顯示你在想什麼或做什麼</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>變更文字色彩或類型</title>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>選擇不同的背景</title>
+      <accessKey>b</accessKey>
+    </item><!--added @dec/12/2004-->
+
+    <item id="txt-emoticons">
+      <innerText>表情符號</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>字型</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>背景</innerText>
+    </item>
+
+    <item id="btn-send">
+      <value>傳送</value>
+    </item>
+
+    <code id="msg_typing">${0} 正在輸入訊息。</code>
+    <code id="unknown">${0} 由於他/她的狀態為之可能無法回覆</code>
+    <code id="lastonline">上次上線: ${0}</code>
+    <code id="windowtitle">${0} - 對話</code>
+    <code id="choose_emoticons">顯示所有這個主題的表情符號或選擇其他組表情符號</code>
+	<!--added@dec/12/2004-->
+    <code id="background_no">無背景</code>
+    <code id="background_list">可用背景...</code>
+    <code id="close_many_tabs">你要關閉所有對話嗎?</code>
+    <code id="close_recent_message">你剛收到一個訊息。&#13;&#13;你要關閉這個對話嗎?</code><!--end-add-->
+
+    <code id="menu_file_received">開啟我接收的檔案(&amp;O)</code>
+    <code id="menu_file_history">訊息紀錄(&amp;H)</code>
+    <code id="menu_file_close">關閉對話(&amp;C)</code>
+
+    <code id="menu_axn_contact">聯絡人(&amp;C)</code>
+    <code id="menu_axn_add">新增至聯絡人名單</code>
+    <code id="menu_axn_block">封鎖(&amp;B)</code>
+    <code id="menu_axn_rename">重新命名(&amp;R)</code>
+    <code id="menu_axn_panel">顯示動作面板(&amp;A)</code>
+    <code id="menu_axn_profile">檢視設定檔(&amp;P)</code>
+    <code id="menu_axn_file">傳送檔案(&amp;F)</code>
+
+    <code id="menu_tool_emo_style">選擇表情符號(&amp;E)...</code>
+    <code id="menu_tool_font">選擇字型(&amp;F)...</code>
+    <code id="menu_tool_background">變更背景(&amp;B)...</code>
+    <code id="menu_tool_aot">保持最上層(&amp;A)</code>
+    <code id="menu_tool_popup">彈出新訊息(&amp;P)</code>
+    <code id="menu_tool_tabbed">分頁對話(&amp;T)</code>
+    <code id="menu_tool_emoticons">顯示表情符號(&amp;D)</code>
+    <code id="menu_tool_settings">設定(&amp;S)</code>
+  </window>
+  <window name="conference-configuration"><!--new window added@dec/12/2004-->
+    <item id="btn_cancel">
+      <value>取消</value>
+    </item>
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="txt_form_loading">
+      <innerText>載入中...</innerText>
+    </item>
+    <item id="txt_form_empty">
+      <innerText>這個會議是沒有可用的設定</innerText>
+    </item>
+    <item id="txt_form_invalid">
+      <innerText>錯誤: 無法取得會議室設定</innerText>
+    </item>
+    <code id="form_title">這個會議室的設定</code>
+    <code id="form_subtitle">填入這個表單以設定會議室</code>
+  </window>
+  <window name="conference-password">
+    <item id="txt_password">
+      <innerText>密碼:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+  </window>
+	<window name="conference-name">
+    <item id="txt_name">
+      <innerText>名稱:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+  </window>
+  <window name="conference-container">
+    <item id="btn-emoticons">
+      <title>顯示你在想或做什麼</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>變更文字色彩或類型</title>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn-background"><!--added@dec/12/2004-->
+      <title>選擇不同的背景</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>表情符號</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>字型</innerText>
+    </item>
+    <item id="txt-background"><!--added@dec/12/2004-->
+      <innerText>背景</innerText>
+    </item>
+
+    <item id="btn-send">
+      <value>傳送</value>
+    </item>
+
+    <item id="txt-occupants">
+      <innerText>參加者</innerText>
+    </item>
+
+    <code id="wnd_conference_password">以密碼連線</code>
+    <code id="wnd_conference_change_name">變更我的名稱</code>
+	<!--added@dec/12/2004-->
+    <code id="wnd_conference_subject">會議室主旨</code>
+    <code id="wnd_conference_configuration">會議室設定</code><!--end-add-->
+
+    <code id="default_subject">這個會議是沒有主旨。</code>
+    <code id="windowtitle">${0} - 會議</code>
+    <code id="destroy">摧毀這個會議會從房間移除所有參與者並從伺服器移除房間。&#13;&#13;你確定你要摧毀這個會議室?</code><!--added@dec/12/2004-->
+
+    <code id="menu_file_close">關閉會議(&amp;C)</code>
+
+    <code id="menu_axn_invite">邀請聯絡人(&amp;I)</code><!--new-one@dec/12/2004-->
+    <code id="menu_axn_change_name">變更我的名稱(&amp;N)...</code>
+    <code id="menu_axn_password">以密碼連線(&amp;P)...</code>
+	<!--added@dec/12/2004-->
+    <code id="menu_axn_subject">變更會議室主旨(&amp;C)</code>
+    <code id="menu_axn_configuration">設定這個會議室(&amp;C)</code>
+    <code id="menu_axn_destroy">摧毀這個會議室(&amp;D)</code><!--end-add-->
+  </window>
+  <window name="preferences">
+    <item id="txt_autoaway">
+      <innerText>當你不使用電腦幾分鐘，你的狀態會被改為 "離開"。</innerText>
+    </item>
+    <item id="txt_displayawaymsg_left">
+      <innerText>在幾分鐘後顯示這個訊息</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_left">
+      <innerText>在幾分鐘後顯示這個訊息</innerText>
+    </item>
+    <item id="txt_displayawaymsg_right">
+      <innerText>分鐘:</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_right">
+      <innerText>分鐘:</innerText>
+    </item>
+    <item id="txt_blocking">
+      <innerText>封鎖名單含有你不想要接收訊息的人之地址。</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>顯示不在我的聯絡人名單的人之訊息</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>封鎖名單</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>解除封鎖</value>
+    </item>
+    <item id="block_btn_view">
+      <value>檢視設定檔</value>
+    </item>
+    <item id="txt_ssl">
+      <innerText>使用加密連線 (SSL)</innerText>
+    </item>
+    <item id="txt_firewall_proxy">
+      <innerText>防火牆和 proxy 伺服器</innerText>
+    </item>
+    <item id="txt_proxy1">
+      <innerText>無</innerText>
+    </item>
+    <item id="txt_proxy2">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_proxy3">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_proxy4">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_proxyserver">
+      <innerText>伺服器:</innerText>
+    </item>
+    <item id="txt_proxyport">
+      <innerText>埠:</innerText>
+    </item>
+    <item id="txt_proxyuser">
+      <innerText>使用者名稱:</innerText>
+    </item>
+    <item id="txt_proxypass">
+      <innerText>密碼:</innerText>
+    </item>
+    <item id="txt_portmap">
+      <innerText>檔案傳輸 portmap (NAT、防火牆)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>主機:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>埠:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>儲存所有訊息到紀錄封存</innerText>
+    </item>
+    <item id="txt_startup">
+      <innerText>啟動時自動執行</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>當有人要求我的允許時</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>訊問我</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>接受所有要求</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>接受在我的聯絡人名單內的人，其他的則詢問</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>拒絕所有要求</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>當有訊息來的時候播放音效</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>當有人上線時播放音效</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>當有人離線時播放音效</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>瀏覽</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>瀏覽</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>瀏覽</value>
+    </item>
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="btn_cancel">
+      <value>取消</value>
+    </item>
+    <item id="lbl_autoaway">
+      <innerText>自動離開</innerText>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>封鎖</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>連線</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>隱私</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>音效</innerText>
+    </item>
+    <code id="autoaway">自動離開訊息</code>
+    <code id="blocking">封鎖名單</code>
+    <code id="connection">連線設定</code>
+    <code id="privacy">隱私</code>
+    <code id="sound">通知音效</code>
+    <code id="reconnect">你必須重新連線以套用變更。&#13;&#13;你要現在重新連線嗎?</code>
+    <code id="shortcut">傳送和接收即時訊息</code>
+    <code id="choose_sound">選擇通知音效</code>
+    <code id="file_audio">音訊檔案</code>
+    <code id="file_any">任何檔案</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>尋找或加入某人</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>你可以根據別人的公共資料尋找別人或你也可以輸入別人的使用者名稱</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>你要如何新增聯絡人?</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>我要尋找某人(&lt;U&gt;S&lt;/U&gt;)。</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>服務(&lt;U&gt;R&lt;/U&gt;)</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML>我已經知道別人的即時訊息位址(&lt;U&gt;A&lt;/U&gt;)。</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>網路(&lt;U&gt;E&lt;/U&gt;):</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>使用者名稱(&lt;U&gt;U&lt;/U&gt;):</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>要與在不同即時訊息網路的人通訊，你必須註冊該網路的轉植。</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>設定轉植</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>下一步 &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_p1_cancel">
+      <value>取消</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>處理使用者名稱</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>轉植正在驗證使用者名稱中。</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; 上一步</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>下一步 &gt;</value>
+    </item>
+    <item id="page1b_btn_cancel">
+      <value>取消</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>要求搜尋表單中</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>這個搜尋表單含有說明以及所有可搜尋的欄位。</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; 上一步</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>下一步 &gt;</value>
+    </item>
+    <item id="page1c_btn_cancel">
+      <value>取消</value>
+    </item>
+
+    <item id="txt_p2_title">
+      <innerText>要求訊息</innerText>
+    </item>
+    <item id="txt_p2_tagline">
+      <innerText>你可以傳送訊息來讓別人知道你為什麼要他/她的允許。</innerText>
+    </item>
+    <item id="page2_btn_back">
+      <value>&lt; 上一步</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page2_btn_finish">
+      <value>完成</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="page2_btn_cancel">
+      <value>取消</value>
+    </item>
+    <item id="txt_p2_desc">
+      <innerText>允許要求會被送交至:</innerText>
+    </item>
+    <item id="txt_p2_user">
+      <innerText>使用者名稱:</innerText>
+    </item>
+    <item id="txt_p2_network">
+      <innerText>網路:</innerText>
+    </item>
+    <item id="txt_p2_message">
+      <innerHTML>輸入訊息(選用)&lt;U&gt;M&lt;/U&gt;:</innerHTML>
+    </item>
+    <item id="page2_message">
+      <innerText>I would like to add you to my contact list.我要想要將你加入聯絡人名單。</innerText>
+    </item>
+    <item id="txt_p2_close">
+      <innerHTML>要傳送要求並關閉這個精靈，點選 &lt;B&gt;完成&lt;/B&gt;。</innerHTML>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; 上一步</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>搜尋</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="page3_btn_cancel">
+      <value>取消</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText>搜尋結果</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>你可以檢視使用者的個人詳細資料或加入使用者到你的聯絡人名單。</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; 上一步</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>下一步 &gt;</value>
+    </item>
+    <item id="page4_btn_cancel">
+      <value>取消</value>
+    </item>
+    <code id="correct">輸入一個正確的使用者名稱。&#13;&#13;範例: someone123@${0}</code>
+    <code id="example_address">範例: someone123@${0}</code>
+    <code id="enter_username">輸入你要聯絡的人之使用者名稱。</code>
+    <code id="contacting_transport">&lt;B&gt;聯絡轉植中&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;這可能需要一分鐘。&lt;BR&gt;請耐心點。&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;聯絡搜尋服務中&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;這可能需要一分鐘。&lt;BR&gt;請耐心點。&lt;BR&gt;</code>
+    <code id="error_transport">&lt;B&gt;伺服器錯誤:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;使用者無法加入到你的聯絡人名單。&lt;BR&gt;請確定你輸入了正確的使用者名稱。</code>
+    <code id="error_search">&lt;B&gt;伺服器錯誤:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;無法下載搜尋表單。&lt;BR&gt;稍後再試或選擇其他服務。</code>
+    <code id="error_invalid">接收到不正確的資料。</code>
+    <code id="search_title">使用者搜尋</code>
+    <code id="search_tagline">填入一個欄位以搜尋任何符合的使用者。</code>
+    <code id="firstname">名字:</code>
+    <code id="lastname">姓氏:</code>
+    <code id="nick">暱稱:</code>
+    <code id="email">電子郵件地址:</code>
+    <code id="searching">搜尋中...</code>
+    <code id="add">新增至聯絡人名單</code>
+    <code id="view">檢視設定檔</code>
+    <code id="foundone">1 個結果</code>
+    <code id="foundmany">${0} 個結果</code>
+  </window>
+	<window name="login">
+    <code id="invalid">位址不正確。修正位址並再試。&#13;&#13;如果你沒有位址，請按註冊並遵循說明。</code>
+		<item id="txt_instructions">
+      <innerText>輸入你的即時訊息位址和密碼以登入。</innerText>
+    </item>
+		<item id="txt_address">
+      <innerText>位址:</innerText>
+    </item>
+		<item id="txt_example">
+      <innerText>範例: someone123@example.com</innerText>
+    </item>
+		<item id="txt_password">
+      <innerText>密碼:</innerText>
+    </item>
+		<item id="txt_remember">
+      <innerText>記住我的密碼</innerText>
+    </item>
+		<item id="txt_autologin">
+      <innerText>自動登入</innerText>
+    </item>
+		<item id="btn_signup">
+      <value>註冊</value>
+    </item>
+		<item id="btn_login">
+      <value>登入</value>
+    </item>
+		<item id="btn_close">
+      <value>關閉</value>
+    </item>
+  </window>
+	<window name="sign_up">
+    <code id="close_confirm">新的位址尚未完成。&#13;&#13;你確定要關閉精靈?</code>
+    <code id="incomplete">請完成所有欄位...</code>
+    <code id="pass_match">你說的密碼沒有相符。&#13;&#13;請在兩欄都輸入新密碼。</code>
+
+    <code id="contacting">聯絡伺服器中...</code>
+    <code id="registered">你的帳號正在註冊。這可能需要一分鐘。&lt;BR&gt;請耐心點。&lt;BR&gt;</code>
+    <code id="requesting">要求資訊中...</code>
+    <code id="sending">傳送註冊中...</code>
+    <code id="failure">連線失敗</code>
+    <code id="completed">註冊完成</code>
+
+    <code id="address">位址:</code>
+    <code id="nickname">名稱:</code>
+    <code id="userdir">使用者目錄:</code>
+
+		<item id="txt_page_welcome_title">
+      <innerText>歡迎使用註冊精靈</innerText>
+    </item>
+    <item id="txt_page_welcome_intro">
+      <innerText>這個精靈會幫助你在即時訊息網路註冊一個位址。</innerText>
+    </item>
+    <item id="txt_page_welcome_next">
+      <innerHTML>要繼續，點選 &lt;B&gt;下一步&lt;/B&gt;。</innerHTML>
+    </item>
+    <item id="btn_page_welcome_next">
+      <value>下一步 &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_welcome_cancel">
+      <value>取消</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_nickname_title">
+      <innerText>個人資訊</innerText>
+    </item>
+    <item id="txt_page_nickname_tagline">
+      <innerText>這個資訊會幫別人在網路上找到你。</innerText>
+    </item>
+    <item id="txt_page_nickname_desc">
+      <innerText>輸入你的名稱讓你的朋友或同事更容易聯絡你。</innerText>
+    </item>
+    <item id="txt_page_nickname_name">
+      <innerHTML>名稱(&lt;U&gt;N&lt;/U&gt;):</innerHTML>
+    </item>
+    <item id="data_name">
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_back">
+      <value>&lt; 上一步</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_nickname_next">
+      <value>下一步 &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_cancel">
+      <value>取消</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_account_title">
+      <innerText>位址資訊</innerText>
+    </item>
+    <item id="txt_page_account_tagline">
+      <innerText>你可以使用網路上的公共伺服器或使用公司網路的私人伺服器。</innerText>
+    </item>
+    <item id="txt_page_account_server">
+      <innerHTML>伺服器(&lt;U&gt;S&lt;/U&gt;):</innerHTML>
+    </item>
+    <item id="txt_page_account_username">
+      <innerHTML>使用者名稱(&lt;U&gt;U&lt;/U&gt;):</innerHTML>
+    </item>
+    <item id="txt_page_account_password">
+      <innerHTML>密碼(&lt;U&gt;P&lt;/U&gt;):</innerHTML>
+    </item>
+    <item id="txt_page_account_confirm">
+      <innerHTML>確認密碼(&lt;U&gt;C&lt;/U&gt;):</innerHTML>
+    </item>
+    <item id="data_server">
+      <accessKey>s</accessKey>
+    </item>
+    <item id="data_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="data_password">
+      <accessKey>p</accessKey>
+    </item>
+    <item id="data_password_confirm">
+      <accessKey>c</accessKey>
+    </item>
+    <item id="txt_page_account_remember">
+      <innerHTML>記住我的密碼(&lt;U&gt;R&lt;/U&gt;)</innerHTML>
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page_account_preview">
+      <innerText>你的 IM 位址:</innerText>
+    </item>
+    <item id="btn_page_account_settings">
+      <value>連線設定</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_account_back">
+      <value>&lt; 上一步</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_account_next">
+      <value>下一步 &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_account_cancel">
+      <value>取消</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_creating_title">
+      <innerText>位址註冊</innerText>
+    </item>
+    <item id="txt_page_creating_autherr">
+      <innerHTML>無法註冊位址。該使用者名稱無法使用。&lt;BR&gt;&lt;BR&gt;點選 &lt;B&gt;上一步&lt;/B&gt;，輸入不同的使用者名稱並再試。</innerHTML>
+    </item>
+    <item id="txt_page_creating_forbidden">
+      <innerHTML>無法註冊位址。這個伺服器不允許建立新位址。&lt;BR&gt;&lt;BR&gt;點選 &lt;B&gt;上一步&lt;/B&gt;，選擇其他伺服器並再試。</innerHTML>
+    </item>
+    <item id="txt_page_creating_commerr">
+      <innerHTML>無法聯絡伺服器。請確認伺服器位址正確。&lt;BR&gt;檢查你的網路連線並再試。如果你在防火牆後面，&lt;BR&gt;請設定連線設定。</innerHTML>
+    </item>
+    <item id="btn_page_creating_retry">
+      <value>再試一次</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_creating_settings">
+      <value>連線設定</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_creating_back">
+      <value>&lt; 上一步</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_creating_next">
+      <value>下一步 &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_creating_cancel">
+      <value>取消</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_conn_title">
+      <innerText>連線設定</innerText>
+    </item>
+    <item id="txt_ssl">
+      <innerText>使用加密連線 (SSL)</innerText>
+    </item>
+    <item id="txt_conn_desc">
+      <innerText>防火牆和 Proxy 伺服器</innerText>
+    </item>
+    <item id="txt_conn_none">
+      <innerText>無</innerText>
+    </item>
+    <item id="txt_conn_http">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_conn_s4">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_conn_s5">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_conn_host">
+      <innerText>伺服器:</innerText>
+    </item>
+    <item id="txt_conn_port">
+      <innerText>埠:</innerText>
+    </item>
+    <item id="txt_conn_user">
+      <innerText>使用者名稱:</innerText>
+    </item>
+    <item id="txt_conn_pass">
+      <innerText>密碼:</innerText>
+    </item>
+    <item id="btn_conn_default">
+      <value>預設</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_conn_ok">
+      <value>確定</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn_conn_cancel">
+      <value>取消</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_finished_title">
+      <innerText>正在完成新增設定檔精靈</innerText>
+    </item>
+    <item id="txt_page_finished_intro">
+      <innerText>你成功地完成了新增設定檔精靈。</innerText>
+    </item>
+    <item id="txt_page_finished_details">
+      <innerText>設定檔詳細資料:</innerText>
+    </item>
+    <item id="txt_page_finished_finish">
+      <innerHTML>要關閉這個精靈，點選 &lt;B&gt;完成&lt;/B&gt;。</innerHTML>
+    </item>
+    <item id="btn_page_finished_back">
+      <value>&lt; 上一步</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_finished_finish">
+      <value>完成</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn_page_finished_cancel">
+      <value>取消</value>
+      <accessKey>c</accessKey>
+    </item>
+	</window>
+<!--added @ Dec/11/2004-->
+  <window name="background_download">
+    <item id="btn_close">
+      <value>關閉</value>
+    </item>
+    <item id="txt_title">
+      <innerText>下載背景</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>瀏覽背景目錄需要網際網路連線。</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>載入中...</innerText>
+    </item>
+    <code id="install">安裝</code>
+    <code id="cannot_download">錯誤: 無法下載背景。&#13;${0}</code>
+    <code id="invalid_xml">資料來源包含無效的資料。</code>
+    <code id="no_new_styles">沒有新的背景可用。</code>
+  </window>
+  <window name="background_list">
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="txt_title">
+      <innerText>可用背景</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>新增或移除背景。</innerText>
+    </item>
+    <item id="btn_background_download">
+      <value>更多背景</value>
+    </item>
+    <item id="txt_background_empty">
+      <innerText>沒有安裝的背景。</innerText>
+    </item>
+    <code id="background_uninstall">刪除</code>
+    <code id="background_confirm">你確定要刪除這個背景?</code>
+  </window>
+  <window name="extension_download">
+    <item id="btn_cancel">
+      <value>取消</value>
+    </item>
+    <item id="txt_status">
+      <innerText>連線中...</innerText>
+    </item>
+    <code id="downloading">下載中...</code>
+  </window>
+  <window name="conference_other">
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="btn_cancel">
+      <value>取消</value>
+    </item>
+    <item id="txt_address">
+      <innerText>位址:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>範例: conference.example.com</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>輸入會議服務或伺服器的位址。</innerText>
+    </item>
+    <code id="error_already_exists">服務 "${0}" 已在清單上。請輸入尚未在清單上的會議服務或伺服器的位址。</code>
+  </window>
+  <window name="transport_other">
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="btn_cancel">
+      <value>取消</value>
+    </item>
+    <item id="txt_address">
+      <innerText>位址:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>範例: sms.example.com</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>輸入轉植或伺服器的位址。</innerText>
+    </item>
+    <code id="error_already_exists">服務 "${0}" 已在清單上。請輸入尚未在清單上的轉植或伺服器的位址。</code>
+  </window>
+  <window name="conference-subject"><!--new window added@dec/12/2004-->
+    <item id="txt_subject">
+      <innerText>主旨:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-invite">
+    <item id="btn_cancel">
+      <value>取消</value>
+    </item>
+    <item id="btn_ok">
+      <value>確定</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>選擇你要邀請的聯絡人。</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>聯絡人名單沒有線上的聯絡人。</innerText>
+    </item>
+  </window>
+</translation>

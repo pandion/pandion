@@ -1,0 +1,2173 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+-begin-
+
+LangString DESC_SecCopyRequired		${LANG_ENGLISH}	"Šie failai reikalingi tam, kad galėtumėte naudoti ${PRODUCT}."
+LangString DESC_SecCreateStartMenu	${LANG_ENGLISH}	"Pradinis meniu lengvai leidžia naudotis ${PRODUCT}."
+LangString DESC_SecCreateQuickstart	${LANG_ENGLISH}	"Pridėkite ${PRODUCT} į savo greito paleidimo programų parankinę."
+LangString DESC_SecCreateDesktop	${LANG_ENGLISH}	"Sukurkite nuorodą savo darbastalyje"
+LangString DESC_SecCreateAutoStart	${LANG_ENGLISH}	"${PRODUCT} automatiškai prisijungs prie serverio užsikrovus kompiuteriui"
+LangString ITEM_SecCreateStartMenu	${LANG_ENGLISH}	"Pradinio meniu nuoroda"
+LangString ITEM_SecCreateQuickstart	${LANG_ENGLISH}	"Greito paleidimo programų parankinės nuoroda"
+LangString ITEM_SecCreateDesktop	${LANG_ENGLISH}	"Darbastalio nuoroda"
+LangString ITEM_SecCreateAutoStart	${LANG_ENGLISH}	"Paleisti ${PRODUCT} užsikrovus kompiuteriui"
+LangString TEXT_WindowsOutdated		${LANG_ENGLISH}	"Diegimas neįmanomas, reikalinga ${PRODUCT}.$\nWindows NT 4 ar vėlesnė Windows versija."
+LangString TEXT_AlreadyRunning		${LANG_ENGLISH}	"Išjungti ${PRODUCT} prieš tęsiant."
+LangString TEXT_InternetExplorer	${LANG_ENGLISH}	"Diegimas neįmanomas, reikalinga ${PRODUCT}.$\n$\nMicrosoft Internet Explorer 5.5 ar vėlesnė versjia.  Ar pageidaujate atnaujinti programą dabar?"
+LangString TEXT_DownloadFailed		${LANG_ENGLISH}	"Klaida: Parsisiųsti reikalingų komponentų nepavyko. Patikrinkite interneto prieigos nustatymus."
+LangString un.TEXT_RemoveProfiles	${LANG_ENGLISH}	"Ištrinti profilių ir archyvų failus?"
+LangString un.TEXT_RemoveDirectory	${LANG_ENGLISH}	"Pranešimas: $INSTDIR ištrinti negalima."
+
+-end-
+
+-->
+<translation xml:lang="lt">
+  <about>
+    <language>Lietuvių</language>
+    <history>
+      <revision>
+        <author>
+          <name>Elvinas Karalis</name>
+          <email>elvinas.karalis@gmail.com</email>
+          <xmpp> elvinas.karalis@gmail.com </xmpp>
+        </author>
+        <date>2005-08-05</date>
+        <description>
+          Pirma versija
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_pleasewait">
+      <innerText>Palaukite…</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Atsijungėte nuo serverio</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>Prisijungti prie serverio iš naujo</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>arba</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Pakeisti prisijungimo nustatymus</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>Papildyti kontaktų sąrašą</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>arba</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>Redaguoti kitų tinklų nustatymus</innerText>
+    </item>
+
+    <item id="mode-avatar">
+      <title>Pasirinkite asmeninę iliustraciją</title>
+    </item>
+    <item id="mode-bar">
+      <title>Pasirinkite savo būklę, būklės pranešimą ar profilį.</title>
+    </item>
+    <item id="mode-secure">
+      <title>Prisijungimas apsaugotas SSL/TLS kodavimu</title>
+    </item>
+    <item id="rosterfield">
+      <title>Vartotojai ir grupės jūsų kontaktų sąraše</title>
+    </item>
+
+
+    <code id="tt-group-hide">Paslėpti šį kontaktą grupėje&#13; (Spragtelkite dešiniu pelės klavišu, norėdami pamatyti daugiau pasirinkimų)</code>
+    <code id="tt-group-show">Rodyti šios grupės kontaktus&#13; (Spragtelkite dešiniu pelės klavišu, norėdami pamatyti daugiau pasirinkimų)</code>
+    <code id="emoticon_unknown">Nežinomas</code>
+    <code id="txt_welcome">Sveiki prisijungę prie ${0}!</code>
+    <code id="user_online">${0} yra prisijungęs.</code>
+    <code id="cl_tooltip">${0} Kontaktų sąrašas</code>
+    <code id="autoawaymessage">Nedalyvauja pokalbyje ilgiau nei 5 minutes</code>
+    <code id="autoxawaymessage"> Nedalyvauja pokalbyje ilgiau nei 30 minučių </code>
+    <code id="import_files">Kontaktų sąrašas</code>
+    <code id="import_invalid">Faile nėra tinkamų duomenų.</code>
+    <code id="import_no_new">Visi kontaktai, esantys šiame faile, jau egzistuoja jūsų kontaktų sąraše.</code>
+    <code id="import_confirm">Šiek kontaktiniai adresai bus patalpinti jūsų kontaktų sąraše:&#13;${0}&#13; Ar tikrai norite įrašyti šiuos adresus į savo kontaktų sąrašą? </code>
+
+	
+    <code id="import_aim_not_registered">To import your AIM buddy list, the AIM transport must be registered.  The transport must also be active.&#13;Go to the Tools menu and choose Transports to view the status of the AIM transport.</code>
+    <code id="import_msn_not_registered">To import your MSN contact list, the MSN transport must be registered.  The transport must also be active.&#13;Go to the Tools menu and choose Transports to view the status of the MSN transport.</code>
+    <code id="import_gadu_not_registered">To import your Gadu-Gadu contact list, the Gadu-Gadu transport must be registered.  The transport must also be active.&#13;Go to the Tools menu and choose Transports to view the status of the Gadu-Gadu transport.</code>
+    <code id="conference_invitation">${0} invites you to the conference room: ${1}&#13;Do you want to join this conference room?</code>
+    <code id="sspi_autoreconnecting">The connection to the instant messaging server has failed.</code>
+
+    <code id="menu_file">&amp;Failas</code>
+    <code id="menu_file_received">&amp;Atidaryti gautus failus</code>
+    <code id="menu_file_export">&amp;Eksportuoti kontaktų sąrašą…</code>
+    <code id="menu_file_import">&amp;Importuoti kontaktų sąrašą…</code>
+    <code id="menu_file_change">Pakeisti mano būseną &amp;Pranešimas...</code>
+    <code id="menu_file_ffc">&amp;Turiu laiko paplepėti</code>
+    <code id="menu_file_available">&amp;Esu</code>
+    <code id="menu_file_busy">&amp;Užsiėmęs</code>
+    <code id="menu_file_away">&amp;Manęs nėra</code>
+    <code id="menu_file_xaway">&amp;Manęs nėra dėl priežasties…</code>
+    <code id="menu_file_invisible">&amp;Nematomas</code>
+    <code id="menu_file_offline">&amp;Neprisijungęs</code>
+    <code id="menu_file_status">Mano &amp;Būsena</code>
+    <code id="menu_file_out">&amp;Atsijungti</code>
+    <code id="menu_file_exit">&amp;Uždaryti</code>
+
+    <code id="menu_axn">&amp;Veiksmai</code>
+    <code id="menu_axn_add">&amp;Naujas kontaktas…</code>
+    <code id="menu_axn_addgroup">Nauja &amp;grupė...</code>
+    <code id="menu_axn_bookmarks">&amp;Pokalbių kambarių žymės</code>
+    <code id="menu_axn_bookmarks_add">&amp;Pridėti žymę...</code>
+    <code id="menu_axn_bookmarks_manage">&amp;Tvarkyti žymes...</code>
+    <code id="menu_axn_join">&amp;Prisijungti prie pokalbių kambario...</code>
+    <code id="menu_axn_create">&amp;Sukurti pokalbių kambarį...</code>
+    <code id="menu_axn_password">Pasikeisti &amp;slaptažodį...</code>
+    <code id="menu_axn_profile">&amp;Redaguoti profilį...</code>
+    <code id="menu_axn_avatar">Pasikeisti &amp;iliustraciją...</code>
+
+    <code id="menu_tool">&amp;Įrankiai</code>
+    <code id="menu_tool_transport">&amp;Kitų tinklų nustatymai</code>
+    <code id="menu_tool_head">&amp;Antraštės ir pranešimai</code>
+    <code id="menu_tool_plugin">&amp;Priedai</code>
+    <code id="menu_tool_admin">Serverio &amp;administravimas</code>
+    <code id="menu_tool_traffic">&amp;Tinklo duomenų srautas</code>
+    <code id="menu_tool_view">&amp;Išvaizda</code>
+    <code id="menu_tool_detailed">&amp;Detali</code>
+    <code id="menu_tool_compact">&amp;Kompaktiška</code>
+    <code id="menu_tool_language">&amp;Kalba</code>
+    <code id="menu_tool_aot">&amp;Visada viršuje</code>
+    <code id="menu_tool_settings">&amp;Nustatymai</code>
+
+    <code id="menu_help">&amp;Pagalba</code>
+    <code id="menu_help_manual">&amp;Pagalba internete</code>
+    <code id="menu_help_forum">&amp;Priežiūros forumas</code>
+    <code id="menu_help_contact">&amp;Susiekite su mumis</code>
+    <code id="menu_help_about">&amp;Apie</code>
+
+    <code id="menu_tray_about">&amp;Apie${0}</code>
+    <code id="menu_tray_settings">&amp;Nustatymai</code>
+
+    <code id="wnd_autoupdate">Atnaujinama ${0}</code>
+    <code id="wnd_vcard_edit">Vartotojo informacija</code>
+    <code id="wnd_about">Apie ${0}</code>
+    <code id="wnd_signup">Registruotis - ${0}</code>
+    <code id="wnd_adduser">Ieškoti adreso</code>
+    <code id="wnd_avatar">Pasikeisti iliustraciją</code>
+    <code id="wnd_room_browse">Pokalbių kabariai</code>
+    <code id="wnd_room_create">Sukurti pokalbių kambarį</code>
+    <code id="wnd_conference_invite">Pakvieti adresą</code>
+    <code id="wnd_conference_other">Kitos pokalbių paslaugos</code>
+    <code id="wnd_console">Pultas</code>
+    <code id="wnd_emoticon_download">Atsisiųsti šypsenėles</code>
+    <code id="wnd_emoticon_list">Šypsenėlės</code>
+    <code id="wnd_emoticon_view">Šypsenėlių nustatymai</code>
+    <code id="wnd_file_send">Siunčiate failą ${0}</code>
+    <code id="wnd_file_recv">${0}siunčia jums failą</code>
+    <code id="wnd_group_message">Žinutė grupei</code>
+    <code id="wnd_transport_list">Kitų tinklų nustatymai</code>
+    <code id="wnd_transport_other">Kiti tinklai</code>
+    <code id="wnd_headlines">Antraščių naršyklė</code>
+    <code id="wnd_history">${0} – Pranešimų archyvas</code>
+    <code id="wnd_plugin_list">Priedai</code>
+    <code id="wnd_plugins">Priedai</code>
+    <code id="wnd_password">Pasikeisti slaptažodį</code>
+    <code id="wnd_settings">Nustatymai</code>
+    <code id="wnd_admin_server">Serverio administravimas</code>
+    <code id="wnd_status">Būsenos pranešimas</code>
+    <code id="wnd_vcard_view">Vartotojo informacija</code>
+    <code id="wnd_group_create">Sukurti grupę</code>
+    <code id="wnd_group_rename">Pakeisti grupės pavadinimą</code>
+    <code id="wnd_contact_rename">Pakeisti kontakto pavadinimą</code>
+    <code id="wnd_authrequest">Prašymas patvirtinti</code>
+    <code id="wnd_login">Prisijunti - ${0}</code>
+    <code id="wnd_extension_download">Diegiama ${0}</code>
+    <code id="wnd_background_list">Fonai</code>
+    <code id="wnd_background_download">Atsisiųsti foną</code>
+    <code id="wnd_bookmarks_add">Pridėti pokalbių kambario foną</code>
+    <code id="wnd_bookmarks_edit">Redaguoti pokalbių kambario foną</code>
+    <code id="wnd_bookmarks_manage">Pokalbių kambarių žymės</code>
+
+    <code id="msg_emoticon_install">Šios šypsenėlės jau yra įdiegtos.</code>
+    <code id="msg_received_files">Aplankas, skirtas gautiems failams, ištrintas.</code>
+    <code id="msg_plugin_install">Ar norite įdiegti šį papildinį?&#13;Pavadinimas: ${0}&#13;Aprašymas: ${1}</code>
+    <code id="msg_plugin_exists">Šis papildinys jau įdiegtas.</code>
+    <code id="msg_expired">Šios programinės įrangos demonstracinis laikotarpis baigėsi.</code>
+    <code id="msg_cl_adding">${0} įrašytas į jūsų kontaktų sąrašą.</code>
+    <code id="msg_cl_added">${0} įrašė jūs į savo kontaktų sąrašą.</code>
+    <code id="msg_cl_removed">${0} pašalino jus iš savo kontaktų sąrašo.</code>
+    <code id="msg_blocked">Jūs esate šio žmogaus blokuotų vartotojų sąraše.</code>
+    <code id="msg_autherror">Prisijungti nepavyko. Tai galėjo nutikti dėl kelių priežasčių:&#13;- Jūs įvedėte neteisingą slaptaždį &#13;- Toks vartotojas nėra registruotas serveryje&#13;Pabandykit dar kartą.</code>
+
+    <code id="menu_message">Pranešimas</code>
+    <code id="menu_filetransfer">Failų siuntimas</code>
+    <code id="menu_room_create">Sukurti naują pokalbių kambarį</code>
+    <code id="menu_room_invite">Pakviesti į pokalbių kambarį</code>
+    <code id="menu_rename">Pakeisti pavadinimą</code>
+    <code id="menu_block">Blokuoti</code>
+    <code id="menu_delete">Šalinti</code>
+    <code id="menu_group_create">Sukurti naują grupę</code>
+    <code id="menu_group_merge">Sujungti su</code>
+    <code id="menu_group_move">Perkelti į </code>
+    <code id="menu_group_copy">Kopijuoti į</code>
+    <code id="menu_request">Pakartotina patvirtinimo užklausa</code>
+    <code id="menu_history">Archyvas</code>
+    <code id="menu_profile">Profilis</code>
+
+    <code id="cl_waiting_one">Turite 1 neperskaitytą pranešimą</code>
+    <code id="cl_waiting_multiple">Turite ${0} neperskaitytų pranešimų.</code>
+    <code id="cl_error_notexist">Toks adresas neegzistuoja.</code>
+    <code id="cl_error_cannotadd">Nepavyko įrašyti ${0} į jūsų kontaktų sąrašą.&#13;${1}</code>
+    <code id="cl_default_group">Kontaktai</code>
+	<code id="cl_group_display_none">Kontaktų nėra</code>
+    <code id="cl_group_display_online">Kontaktai internete</code>
+    <code id="cl_group_display_all">Visi kontaktai</code>
+	<code id="cl_group_expand">Rodyti ne internetinius kontaktus</code>
+    <code id="cl_group_compact">Paslėpti ne internetinius kontaktus </code>
+    <code id="cl_group_rename">Pervadinti grupę</code>
+    <code id="cl_group_message">Siųsti pranešimą visiems</code>
+    <code id="cl_room_create">Sukurti naują pokalbių kambarį</code>
+    <code id="cl_room_invite">Pakviesti į pokalbių kambarį</code>
+    <code id="cl_group_empty">Vartotojai, esantys šioje grupėje, nėra prisijungę.</code>
+    <code id="cl_status_empty">Nėra būsenos pranešimo</code>
+    <code id="cl_status_offline">Neprisijungęs</code>
+    <code id="cl_status_awaiting">Laukia patvirtinimo</code>
+    <code id="cl_status_unknown">Būsena nežinoma</code>
+    <code id="cl_status_waiting_one">1 neperskaityta žinutė</code>
+    <code id="cl_status_waiting_multiple">${0} neperskaitytų žinučių</code>
+    <code id="cl_tooltip_offline">Adresas: ${0}</code>
+    <code id="cl_contact_remove_group">Ar tikrai norite pašalinti šį vartotoją iš grupės?</code>
+    <code id="cl_contact_remove_list"> Ar tikrai norite pašalinti šį adresą iš kontaktų sarašo?</code>
+    <code id="cl_link_open">Atidaryti naršyklėje</code>
+    <code id="cl_link_copy">Kopijuoti nuorodą</code>
+    <code id="cl_link_favorite">Pridėti interneto žymę</code>
+    <code id="cl_ffc">Galiu paplepėti</code>
+    <code id="cl_available">Esu</code>
+    <code id="cl_busy">Užsiėmęs</code>
+    <code id="cl_away">Nėra</code>
+    <code id="cl_xaway">Nėra dėl priežasties</code>
+    <code id="cl_invisible">Nematomas</code>
+    <code id="cl_tooltip_online">Adresas: ${0}&#13;Šaltinis: ${1}</code>
+  </window>
+
+   <window name="about">
+    <item id="btn_credits">
+      <value>Kreditai &gt;</value>
+    </item>
+    <item id="btn_copyright">
+      <value>Autorinės teisės &gt;</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="copy_darkproject">
+      <innerHTML>Didžiosios dalies ikonų ir standartinių šypsenėlių teisės priklauso &amp;copy; 2001 Greg Fleming.</innerHTML>
+    </item>
+    <item id="copy_rsa">
+      <innerHTML>Naudoja MD5 Message-Digest algoritma. Visos teisės prilauso RSA Data Security, Inc.</innerHTML>
+    </item>
+    <item id="copy_dns">
+      <innerHTML>Sukurta pagal BIND. Visos teisės priklauso Internet Software Consortium, Inc.</innerHTML>
+    </item>
+    <item id="txt_copyright">
+      <innerHTML>Visos teisės priklauso &amp;copy;</innerHTML>
+    </item>
+    <code id="copy_basis">Sukurta pagal ${0}. Visos teisės priklauso &amp;copy; ${1} ${2}.</code>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>Profilio informacija</value>
+    </item>
+    <item id="btn_deny">
+      <value>Atmesti</value>
+    </item>
+    <item id="btn_accept">
+      <value>Priimti</value>
+    </item>
+    <item id="txt_from">
+      <innerText>Jūs gavote patvirtinimo prašymą iš:</innerText>
+    </item>
+    <item id="txt_reason">
+      <innerText>Priežastis:</innerText>
+    </item>
+    <item id="txt_add">
+      <innerText>Pridėtį šį vartotoją į mano kontaktų sąrašą</innerText>
+    </item>
+  </window>
+  <window name="admin_users">
+    <item id="btn_refresh">
+      <value>Atnaujinti</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Norėdamis nusiųsti pranešimą paspauskite vartotojo vardą. (Spragtelkite dešiniu pelės klavišu, norėdami pamatyti daugiau pasirinkimų)</innerText>
+    </item>
+    <code id="add_to_list">Įtraukti į kontaktų sąrašą</code>
+    <code id="tooltip_with">Adresas: ${0}&#13;Šaltinis: ${1}&#13;Prisijungęs: ${2}</code>
+    <code id="tooltip_without">Adresas: ${0}&#13;Prisijungęs: ${1}</code>
+    <code id="loading">Kraunasi...</code>
+    <code id="invalid_data">Gauti neteisingi duomenys.</code>
+    <code id="server_error">Serverio klaida:</code>
+    <code id="server_failed">Nepavyko gauti prisijungusių vartotojų sąrašo.&lt;BR&gt;Patikrinkite ar turite adminstratoriaus teises šiame serveryje.</code>
+    <code id="user"> prisijungęs 1 vartotojas </code>
+    <code id="users">${0} prisijungusių vartotojų </code>
+  </window>
+  <window name="admin">
+    <item id="btn_view">
+      <value>Rodyti visus prisijungusius vartotojus.</value>
+    </item>
+    <item id="btn_close">
+      <value>Uždaryti</value>
+    </item>
+    <item id="admin_btn_wall">
+      <value>Siųsti</value>
+    </item>
+    <item id="admin_btn_motd">
+      <value> Siųsti </value>
+    </item>
+    <item id="txt_wall_desc">
+      <innerText>Šis įspėjimas nusiųstas visiems prisijungusiems vartotojams.</innerText>
+    </item>
+    <item id="txt_motd_desc">
+      <innerText> Šis įspėjimas bus nusiųstas vartotojams, kai jie prisijungs.</innerText>
+    </item>
+    <item id="txt_wall">
+      <innerText>Siųsti pranešimą visiems</innerText>
+    </item>
+    <item id="txt_motd">
+      <innerText>Dienos pranešimas</innerText>
+    </item>
+    <item id="txt_view">
+      <innerText>Žiūrėti kas prisijungę prie serverio.</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Naudokite šiuos įrankius norėdamis prižiūrėti ir administruoti IM serverį.</innerText>
+    </item>
+    <item id="txt_users">
+      <innerText>Vartotojai</innerText>
+    </item>
+    <code id="wnd_users">Prisijungę vartotojai</code>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>Išvalyti išvestus duomenis</value>
+    </item>
+    <item id="btn_send">
+      <value>Siųsti</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>Dalyvavimas</value>
+    </item>
+    <item id="btn_message">
+      <value>Pranešimas</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>Tinklo srautas:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>Nukelti eilutėmis</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>XML įvedimas:</innerText>
+    </item>
+    <code id="toggle_on">Redagavimas įjungtas</code>
+    <code id="toggle_off">Redagavimas išjungtas</code>
+    <code id="valid_xml">Įvedami duomenis turi būti XML formato. Ne tuščias failas ar standartinis tekstas.</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>Uždaryti</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Įspėjimai ir antraštės</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Kai gaunate antraštę arba kita trumpą informaciją, jums rodomas specialus įspėjimas. </innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Negauta įspėjimų ar antraščių.</innerText>
+    </item>
+    <item id="alertonlinelabel">
+      <innerText>Rodyti įspėjimą kai kas nors prisijungia</innerText>
+    </item>
+    <code id="read_more">Daugiau...</code>
+    <code id="replay">Pakartoti</code>
+  </window>
+  <window name="headline-toaster">
+    <item id="options">
+      <innerText>Pasirinkimai...</innerText>
+    </item>
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_custom">
+      <value>Pasirinkta iliustracija...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Parinkite iliustraciją, kuri identifikuos jūsų profilį.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Kraunasi...</innerText>
+    </item>
+    <code id="error_size">Nepavyko užkrauti iliustracijos. Failo dydis didesnis ,nei 8 kilobaitai.</code>
+    <code id="error_empty"> Nepavyko užkrauti iliustracijos. Failas tuščias.</code>
+    <code id="error_load">Dėmėsio: nepavyko užkrauti iliustracijų grafinių failų.&#13;${0}</code>
+    <code id="menu_use">Naudoti šią iliustraciją</code>
+    <code id="menu_saveas">Išsaugoti kaip...</code>
+    <code id="menu_delete">Šalinti</code>
+    <code id="wnd_select">Pasirinkti iliustraciją</code>
+    <code id="saveas_files">Grafiniai failai</code>
+    <code id="image_files">Grafiniai failai užimančios mažiau nei 8kB</code>
+    <code id="all_files">Visi failai</code>
+  </window>
+  <window name="mode_select">
+    <item id="txt_message">
+      <innerText>Jūsų būsenos pranešimas rodo jūsų nuotaiką, veiklą ar ką nors kito:</innerText>
+    </item>
+    <item id="lbl_ask_status">
+      <innerText>Prašyti įvesti pranešimą, kai aš pakeičiu savo būseną</innerText>
+    </item>
+    <code id="btn_ok">OK</code>
+    <code id="btn_ok_empty">OK (be pranešimo)</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Naujas vardas:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Naujas vardas:</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Naujas vardas:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>Patvirtinkite naują slaptažodį:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Naujas slaptažodis:</innerText>
+    </item>
+    <code id="no_match">Slaptažodžiai nesutampa.&#13;Įveskite naują slaptažodį abejuose laukuose.</code>
+    <code id="no_pass">Įveskite naują slaptažodį.</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="set_version">
+      <innerText>Kraunasi...</innerText>
+    </item>
+    <item id="header-images">
+      <innerText>Grafiniai failai</innerText>
+    </item>
+    <item id="header-sounds">
+      <innerText>Audio failai</innerText>
+    </item>
+    <item id="header-markup">
+      <innerText>Teksto žymėjimas</innerText>
+    </item>
+    <code id="empty">Šis šypsenėlių stilius tuščias.</code>
+    <code id="file_error">Failo klaida</code>
+    <code id="cannot_load">Nepavyko užkrauti šypsenėlių.</code>
+    <code id="count_one">1 šypsenėlė</code>
+    <code id="count_multiple">${0} šypsenėlių</code>
+  </window>
+  <window name="emoticon_download">
+    <item id="btn_close">
+      <value>Uždaryti</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Atsisiųsti šypsenėles</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Tam, kad galėtumėte naršyti šypsenėlių katalogą, reikalingas interneto ryšys.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Kraunasi...</innerText>
+    </item>
+    <code id="install">Diegti</code>
+    <code id="cannot_download">Klaida: Nepavyko atsisiųsti šypsenėlių.&#13;${0}</code>
+    <code id="invalid_xml">Duomenų šaltinyje yra neteisingi duomenys.</code>
+    <code id="no_new_styles">Naujų šypsenėlių stilių nėra.</code>
+  </window>
+  <window name="emoticon_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Esančios šypsenėlės</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Išsirinkite šypsenėlių stilių iš sąrašo.</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>Kraunasi...</innerText>
+    </item>
+    <item id="btn_emoticon_download">
+      <value>Daugiau šypsenėlių</value>
+    </item>
+    <code id="emoticon_details">Rodyti detaliau</code>
+    <code id="emoticon_remove">Šalinti</code>
+    <code id="emoticon_confirm">Ar tikrai norite pašalinti šį šypsenėlių stilių?</code>
+    <code id="no_emoticons">Šypsenėlių nėra.</code>
+  </window>
+  <window name="background_download">
+    <item id="btn_close">
+      <value>Uždaryti</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Atsisiųsti fono iliustraciją</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Tam, kad galėtumėte naršyti fono iliustracijų katalogą, reikalingas interneto ryšys.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Kraunasi...</innerText>
+    </item>
+    <code id="install">Diegti</code>
+    <code id="cannot_download">Klaida: Fono iliustracijų atsisiųsti nepavyko.&#13;${0}</code>
+    <code id="invalid_xml"> Duomenų šaltinyje yra neteisingi duomenys.</code>
+    <code id="no_new_styles">Naujų fono iliustracijų nėra .</code>
+  </window>
+  <window name="background_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Esančios fono iliustracijos</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Pridėti arba šalinti fono iliustracijas.</innerText>
+    </item>
+    <item id="btn_background_download">
+      <value>Daugiau fono iliustracijų</value>
+    </item>
+    <item id="txt_background_empty">
+      <innerText>Nėra įdiegtų fono iliustracijų.</innerText>
+    </item>
+    <code id="background_uninstall">Šalinti</code>
+    <code id="background_confirm">Ar tikrai norite pašalinti šią fono iliustraciją?</code>
+  </window>
+  <window name="plugin_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Įdiegti priedai</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Pridėti arba šalinti priedus.</innerText>
+    </item>
+    <item id="btn_plugin_download">
+      <value>Daugiau priedų</value>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>Idiegtų priedų nėra.</innerText>
+    </item>
+    <code id="plugin_uninstall">Pašalinti</code>
+    <code id="plugin_confirm">Ar tikrai noriti pašalinti šį priedą?</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>Uždaryti</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Atsisiųsti priedus</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText> Tam, kad galėtumėte naršyti priedų katalogą, reikalingas interneto ryšys </innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Kraunasi...</innerText>
+    </item>
+    <code id="install">Diegti</code>
+    <code id="cannot_download">Klaida: Nepavyko atsisiųsti priedų.&#13;${0}</code>
+    <code id="invalid_xml">Duomenų šaltinyje neteisingas XML formatas.</code>
+    <code id="no_new_plugins">Naujų priedų nėra.</code>
+  </window>
+  <window name="autoupdate">
+    <item id="btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <item id="btn_install">
+      <value>Diegti</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Jungiamasi...</innerText>
+    </item>
+    <code id="download_confirm">Galite parsisiųsti atnaujintą šios programinės įrangos versiją: ${0} ${1}&#13;Ar norite atsisiųsti šį atnaujinimą?</code>
+    <code id="downloading">Downloading...</code>
+    <code id="complete">Siuntimas baigtas. Norėdami tęsti paspauskite “Įdiegti”.</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Kiekvienas pokalbių kambarys turi savo unikalų adresą. Įveskite pokalbių kambario paslaugos adresą ir unikalų kambario pavadinimą.</innerText>
+    </item>
+    <item id="txt_service">
+      <innerText>Paslaugos adresas:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Pavyzdys: conference.pvz.lt</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>Kambario pavadinimas:</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>Pokalbių kambario adresas:</innerText>
+    </item>
+    <code id="incomplete">Užpildykit visus laukus...</code>
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>Siųsti</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>Siųsti šiems vartotojams:</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>Stadartinis pranešimas</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>Įspėjimas</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>Pranešimo tipas</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>Pridėti nuorodą</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>Pranešimas</innerText>
+    </item>
+  </window>
+  <window name="extension_download">
+    <item id="btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Jugiamasi...</innerText>
+    </item>
+    <code id="downloading">Siunčia...</code>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>Uždaryti</value>
+    </item>
+    <item id="btn_accept">
+      <value>Priimti</value>
+    </item>
+    <item id="btn_abort">
+      <value>Nutraukti</value>
+    </item>
+    <item id="btn_open">
+      <value>Atidaryti</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Laiko liko:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>Siuntėjas:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Failo pavadinimas:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Vieta:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Progresas:</innerText>
+    </item>
+    <code id="resume">Toks failais jau egzistuoja. Ar norite pratęsti failo siuntimą?&#13;Spauskite taip, jeigu norite pratęsti failo siuntimą.&#13;Spauskite ne, jeigu norite siųsti failą nuo pradžių.</code>
+    <code id="cannot_overwrite">Nepavyko išsaugoti failo vietoje jau esančio:&#13;${0}&#13;${1}</code>
+    <code id="incorrect">Siuntimo pradėti nepavyko.  Gauti neteisingi duomenys.</code>
+    <code id="title_saving">${0}% of ${1} išsaugota</code>
+    <code id="lessthanminute">Mažiau nei 1 minute ${0}/s greičiu</code>
+    <code id="onehour">1 valanda ir</code>
+    <code id="hours">${0} valandų ir</code>
+    <code id="oneminute">1 minutė</code>
+    <code id="minutes">${0} minučių</code>
+    <code id="speed">${0}/s greičiu</code>
+    <code id="abort">Ar norite nutraukti siuntimą?</code>
+    <code id="aborted">Nutraukta</code>
+    <code id="finished">Baigta</code>
+    <code id="error_timeout"> Ilga laiką nevyko duomenų perdavimas.</code>
+    <code id="error_code">Klaidos kodas: ${0}</code>
+    <code id="error_file">Failo klaidos kodas: ${0}</code>
+    <code id="title_completed">Siuntimas pabaigtas - ${0}</code>
+    <code id="title_failed">Siutimas nepavyko - ${0}</code>
+    <code id="error_move">Negalima perkelti failo:&#13;${0}&#13;${1}</code>
+    <code id="error_failed">Siuntimas nepavyko.</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>Uždaryti</value>
+    </item>
+    <item id="btn_abort">
+      <value>Nutraukti</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Liko laiko:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>Gavėjas:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Failo pavadinimas:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Vieta:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Progresas:</innerText>
+    </item>
+    <code id="socket">Nepavyko nusiųsti failo.&#13;Nepavyko atidaryti tinklo prieigos lizdo.</code>
+    <code id="file">Failo perskaityti nepavyko:&#13;${0}</code>
+    <code id="filetransfer">Failo siuntimas:</code>
+    <code id="title_saving">${0}% of ${1} Sent</code>
+    <code id="lessthanminute">Mažiau nei 1 minutė ${0}/s greičiu</code>
+    <code id="onehour">1 valanda ir </code>
+    <code id="hours">${0} valandų ir</code>
+    <code id="oneminute">1 minutė</code>
+    <code id="minutes">${0} minučių</code>
+    <code id="speed">${0}/s greičiu</code>
+    <code id="abort">Ar norite nutraukti siuntimą?</code>
+    <code id="finished">Baigta</code>
+    <code id="aborted">Nutraukta</code>
+    <code id="error_denied">Failas atmestas.</code>
+    <code id="error_timeout">Ilga laiką nevyko duomenų perdavimas.</code>
+    <code id="error_code">Klaidos kodas: ${0}</code>
+    <code id="title_completed">Siutimas baigtas - ${0}</code>
+    <code id="title_failed">Siuntimas nepavyko - ${0}</code>
+    <code id="error_failed"> Siuntimas nepavyko.</code>
+  </window>
+  <window name="conference_browse">
+    <item id="btn_close">
+      <value>Uždaryti</value>
+    </item>
+    <item id="btn_other_service">
+      <value>Kitos paslaugos...</value>
+    </item>
+    <item id="btn_create">
+      <value>Sukurti pokalbių kambarį</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Pokalbių kambariai:</innerText>
+    </item>
+    <item id="lbl_empty">
+      <innerText>Rodyti tuščius pokalbių kambarius</innerText>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="lbl_full">
+      <innerText> Rodyti pilnus pokalbių kambarius </innerText>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="lbl_filter">
+      <innerText>Filtras:</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Šiame serveryje nėra pokalbių kambarių paslaugos.&#13;Spauskite "Kitos paslaugos..." norėdami pridėtis pokalbių kambarių paslaugą esančią kitame serveryje.</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Norėdami įeiti į pokalbių kambarį jūs turite būti prisijungęs prie pranešimų serverio.</innerText>
+
+    </item>
+    <code id="bookmarks">Bookmarks</code>
+    <code id="menu_join">Prisijungti</code>
+    <code id="menu_add">Pridėti žymę...</code>
+    <code id="empty_filter">Nėra pokalbių kambarių atitinkančių jūsų filtrą</code>
+    <code id="empty_no_rooms">Pokalbių kambarių nėra</code>
+    <code id="status_connecting">Jungiamasi...</code>
+    <code id="status_downloading">Siunčiamas pokalbių kambarių sąrašas...</code>
+    <code id="error_unknown">Palauga "${0}" neteikiama. Patikrinkite įvestą adresą. Pabandykite vėliau arba įveskite kitą adresą.</code>
+    <code id="error_no_services">Serveryje  "${0}" nėra pokalbių kambarių paslaugos. Norėdami gauti daugiau informacijos susisiekite su serverio administratoriumi.</code>
+    <code id="error_no_new">Visos pokalbių paslaugos "${0}" yra parodytos.</code>
+  </window>
+  <window name="conference_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Adresas:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Pavyzdys: conference.pvz.lt</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Įveskite serverio arba pokalbių paslaugų tiekėjo adresą.</innerText>
+    </item>
+    <code id="error_already_exists">Paslauga "${0}" jau parodyta. Įveskite serverio arba pokalbių paslaugų tiekėjo adresą, kuris nėra parodytas.</code>
+  </window>
+  <window name="vcard">
+    <code id="save">Dėmėsio: nepavyko išsaugoti vCard failo.&#13;${0}</code>
+    <code id="personal">Apie vartotoją smulkiau...</code>
+    <code id="system">Apie sistemą smulkiau...</code>
+
+    <item id="txt_requesting1">
+      <innerText>Siunčiame užklausą informacijai į serverį</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Tai gali užtrukti kelias minutes.&lt;BR&gt;Būkite kantrus.</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>Išsaugoti kaip vCard</value>
+    </item>
+    <item id="btn_refresh">
+      <value>Refresh</value>
+    </item>
+    <item id="btn_close">
+      <value>Uždaryti</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>Atstatyti pakeitimus</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>Vartotojo informacija</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>Papildomos detalės</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>Namų adresas</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>Darbovietė</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>Darbovietės adresas</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>Sistema</innerText>
+    </item>
+
+    <item id="txt_name">
+      <innerText>Vardas</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>Pirmas vardas:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>Antras vardas:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>Pavardė:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>Vartotojo vardas:</innerText>
+    </item>
+
+    <item id="txt_contact">
+      <innerText>Kontaktai</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>el. paštas:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>Telefono nr.:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>Mobilaus telefono nr.:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>Faksas:</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>Papildoma informacija</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>Amžius:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>Gimimo data:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>Lytis:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>Šeimyninė padėtis:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>Tinklalapis:</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>Namų adresas</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>Adresas 1:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>Adresas 2:</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>Miestas:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>Pašto indeksas:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>Rajonas:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>Šalis:</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>Organizacija</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>Pavadinimas:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>Departamentas:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>Pareigos:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>Veikla:</innerText>
+    </item>
+
+    <item id="txt_workcontact">
+      <innerText>Kontaktai</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>el. paštas:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>Telefono nr:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>Mobilaus telefono nr.:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>Faksas:</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>Darbovietės adresas</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>Adresas 1:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>Adresas 2:</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>Miestas:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>Pašto indeksas:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>Rajonas:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>Šalis:</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>Programinės įrangos informacija</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>Adresas:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>Šaltinis:</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>Vietinė laiko juosta:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>Programinė įranga:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>Versija:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>Operacinė sistema:</innerText>
+    </item>
+  </window>
+  <window name="transport_list">
+    <item id="btn_other">
+      <value>Kiti tinklai...</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Dabartiniai kitų tinklų nustatymai</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Kitų tinklų nustatymuose yra nustatomi ryšiai su kitomis pranešimų perdavimo sistemomis</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;Dėmesio:&lt;/B&gt; Norėdami redaguoti kitų tinklų nustatymus jūs turite būti prisijungęs prie žinučių perdavimo serverio.</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;Dėmesio:&lt;/B&gt; Serveris, prie kurio prisijungėte, nepalaiko kitų tinklų nustatymų. Norėdami gauti daugiau informacijos susisiekite su serverio administratoriumi.</innerHTML>
+    </item>
+    <item id="msnworkaroundlabel">
+      <innerText>Leisti MSN kontaktuose pakeisti vartotojo vardą</innerText>
+    </item>
+    <code id="status_active">Aktyvus</code>
+    <code id="status_noreg">Neregistruotas</code>
+    <code id="status_disconnected">Atsijungęs</code>
+    <code id="status_connecting">Jungiamasi...</code>
+    <code id="name_unknown">Neatpažinta paslauga</code>
+    <code id="error_unknown">Paslauga "${0}" negalima. Patikrinite įvestą adresą. Pabandykite vėliau arba įveskite naują adresą.</code>
+    <code id="error_no_transports">Serveris "${0}" nepalaiko kitų tinklų nustatymų. Norėdami gauti daugiau informacijos susisiekite su serverio administratoriumi.</code>
+    <code id="error_no_new_transport">Kitų tinklų nustatymai, įmanomi šiame serveryje "${0}", jau parodyti.</code>
+  </window>
+  <window name="transport_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Adresas:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Pavyzdys: sms.pvz.lt</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Įveskite kito tinklo arba serverio adresą.</innerText>
+    </item>
+    <code id="error_already_exists">Paslauga "${0}" jau parodyta. Įveskite kito tinklo arba serverio adresą, kurių nėra sąraše.</code>
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; Atgal</value>
+    </item>
+    <item id="btn_next">
+      <value>Toliau &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>Baigti</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>Atšaukti</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>Adresas:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>Vartotojo vardas:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>Adresas:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Slaptažodis:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>Vartotojo vardas:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>Jūs jau užregistravęs šį tinklą.&lt;BR&gt;Vartotojo vardas, kuriuo užsiregistravote yra:</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>Išjungti šį tinklą</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText>Jugiamasi prie serverio</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Tai gali užtrukti iki vienos minutės .&lt;BR&gt;Prašome palaukti</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>Norėdami uždaryti šį vedlį spauskite &lt;B&gt;Baigti&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>Norėdami tęsti spauskite &lt;B&gt;Toliau&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <code id="error_invalid">Invalid data received</code>
+    <code id="error_server">&lt;B&gt;Serverio klaida:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(kodas ${1})&lt;BR&gt;&lt;BR&gt;Tęsti negalima.</code>
+    <code id="error_unknown">&lt;B&gt;Nežinoma klaida:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(kodas ${1})&lt;BR&gt;&lt;BR&gt;Tęsti negalimas.</code>
+    <code id="error_auth">&lt;B&gt;Autorizacijos klaida:&lt;/B&gt;&lt;BR&gt;Neteisingas adresas arba slaptažodis.&lt;BR&gt;&lt;BR&gt; Tęsti negalima.</code>
+    <code id="wait">&lt;B&gt;Jugiasi prie serverio&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Tai gali užrukti iki vienos minutės.&lt;BR&gt;Prašome palaukti.&lt;BR&gt;</code>
+
+    <code id="default_window_title">Kitų tinklų nustatymai</code>
+    <code id="default_begin_intro">Šis vedlys padės jus nustatyti kitų tinklų nustatymus.&lt;BR&gt;Šie kitų tinklų nustatymai, tai ryšys tarp jūsų ir kito pranešimų perdavimo tinklo.&lt;BR&gt;Tam, kad galėtumėte pasinaudoti kitu tinklu, jūs turite turėti prisijungimą prie kito pranešimų perdavimo tinklo.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">Įveskite savo vartotojo vardą ir slaptažodį.&lt;BR&gt;Taip pat galite įvesti slapyvardį, kurį matys kiti vartotojai.&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">Jūsų vartotojo vardu užregistruotas kitas tinklas.</code>
+    <code id="default_removing_busy">Jūsų vartojo vardu panaikintas kitas tinklas.&lt;BR&gt;</code>
+    <code id="default_creating_done">Jūsų vartotojo vardu kitas tinklas užregistruotas sėkmingai.</code>
+    <code id="default_removing_done">Jūsų vartojo vardu panaikintas kitas tinklas.</code>
+
+    <code id="msn_window_title">MSN Messenger – tinklo nustatymai</code>
+    <code id="msn_begin_intro">Šis vedlys jums padės nustatyti MSN tinklą.&lt;BR&gt;Šie kito tinklo nustatymai yra ryšys tarp jūsų ir jūsų MSN vartotojo.&lt;BR&gt;Jūs turite turėti Microsoft Passport, kad galėtumėte naudotis MSN tinklu.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">Įveskite MSN adresą ir jūsų MSN slaptažodį.&lt;BR&gt;Taip pat galite įvesti slapyvardė, kurį matys kiti vartotojai.&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">Pavzydys: pavyzdys@msn.com, pavayzdys@hotmail.com</code>
+    <code id="msn_creating_busy">Jūsų vartotojo vardu sėkmingai užregistruotas MSN tinklas.</code>
+    <code id="msn_removing_busy">Jūsų vartotojo vardu MSN tinkla pašalintas.&lt;BR&gt;Jūs ir toliau galėsite MSN vartotojo vardu naudotis kitomis paslaugomis (pvz.: Hotmail, MSN Explorer, ir kt.).&lt;BR&gt;</code>
+    <code id="msn_creating_done"> Jūsų vartotojo vardu sėkmingai užregistruotas MSN tinkla.</code>
+    <code id="msn_removing_done"> Jūsų vartotojo vardu sėkmingai panaikinta MSN tinklo registracija.</code>
+
+    <code id="icq_window_title">ICQ – tinklo nustatymai</code>
+    <code id="icq_begin_intro"> Šis vedlys jums padės nustatyti ICQ tinklą.&lt;BR&gt; Šie kito tinklo nustatymai yra ryšys tarp jūsų ir jūsų ICQ vartotojo.&lt;BR&gt; Jūs turite turėti egzistuojantį Vartotojo identifikacijos numerį (ICQ &lt;BR&gt;numerį), kad galėtumėte naudotis ICQ tinklu.&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Įveskite savo ICQ numerį ir savo ICQ slaptažodį.&lt;BR&gt; Taip pat galite įvesti slapyvardį, kurį matys kiti vartotojai.&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">Pavyzdys: 39230793, 158525087</code>
+    <code id="icq_creating_busy">Jūsų vartotojo vardu užregistuotas ICQ tinklas.</code>
+    <code id="icq_removing_busy">Jūsų vartotojo vardu ICQ tinklas panaikintas.&lt;BR&gt;</code>
+    <code id="icq_creating_done">Jūsų vartotojo vardu sėkmingai užregistruotas ICQ tinklas.</code>
+    <code id="icq_removing_done"> Jūsų vartotojo vardu sėkmingai panaikinta ICQ tinklo registracija.</code>
+
+    <code id="yahoo_window_title">Yahoo! Messenger – tinklo nustatymai</code>
+    <code id="yahoo_begin_intro"> Šis vedlys jums padės nustatyti Yahoo! tinklą.&lt;BR&gt; Šie kito tinklo nustatymai yra ryšys tarp jūsų ir jūsų Yahoo! vartotojo.&lt;BR&gt;Jūs turite turėti egzistuojantį Yahoo! vartotojo vardą, kad galėtumėte naudotis tinklu.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Įveskite savo Yahoo! vartotojo vardą ir slaptažodį.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy"> Jūsų vartotojo vardu užregistuotas Yahoo! tinklas.</code>
+    <code id="yahoo_removing_busy"> Jūsų vartotojo vardu Yahoo! tinklas panaikintas.&lt;BR&gt; Jūs ir toliau galėsite savo Yahoo! vartotojo vardu naudotis kitomis paslaugomis (pvz.: Yahoo! mail, Yahoo! Messenger, ir kt..).&lt;BR&gt;</code>
+    <code id="yahoo_creating_done"> Jūsų vartotojo vardu sėkmingai užregistruotas Yahoo! tinklas.</code>
+    <code id="yahoo_removing_done"> Jūsų vartotojo vardu sėkmingai panaikinta Yahoo! tinklo registracija.</code>
+
+    <code id="aim_window_title">AOL Instant Messenger – tinklo nustatymai</code>
+    <code id="aim_begin_intro"> Šis vedlys jums padės nustatyti AOL IM tinklą.&lt;BR&gt; ; Šie kito tinklo nustatymai yra ryšys tarp jūsų ir jūsų AOL IM vartotojo.&lt;BR&gt;Jūs turite turėti AOL IM vartotojo vardą, kad galėtumėte naudotis tinklu.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">Įveskite savo AOL IM vartotojo vardą ir slaptažodį.&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">"> Jūsų vartotojo vardu užregistuotas AOL IM tinklas.</code>
+    <code id="aim_removing_busy"> Jūsų vartotojo vardu AOL IM tinklas panaikintas.&lt;BR&gt; Jūs ir toliau galėsite savo AOL IM vartotojo vardu naudotis kitomis paslaugomis.&lt;BR&gt;</code>
+    <code id="aim_creating_done"> Jūsų vartotojo vardu sėkmingai užregistruotas AOL IM tinklas.</code>
+    <code id="aim_removing_done"> Jūsų vartotojo vardu sėkmingai panaikinta AOL IM tinklo registracija.</code>
+
+    <code id="gadu_window_title">Gadu-Gadu – tinklo nustatymai</code>
+    <code id="gadu_begin_intro"> Šis vedlys jums padės nustatyti Gadu-Gadu tinklą.&lt;BR&gt; ; Šie kito tinklo nustatymai yra ryšys tarp jūsų ir jūsų Gadu-Gadu vartotojo.&lt;BR&gt;Jūs turite turėti Gadu-Gadu numerį, kad naudotis šiuo tinklu.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_instructions">Įveskite savo Gadu-Gadu numerį ir slaptažodį.&lt;BR&gt; Taip pat galite įvesti slapyvardį, kurį matys kiti vartotojai.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_examples">&amp;nbsp;</code>
+    <code id="gadu_creating_busy"> Jūsų numeriu užregistruotas Gadu-Gadu tinklas.</code>
+    <code id="gadu_removing_busy"> Jūsų numeriu Gadu-Gadu tinklas panaikintas.&lt;BR&gt;</code>
+    <code id="gadu_creating_done">Jūsų numeriu sėkmingai užregistruotas Gadu-Gadu tinklas.</code>
+    <code id="gadu_removing_done">Jūsų numeriu Gadu-Gadu tinklo registracija sėkmingai panaikinta.</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>Eiti į</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>Išsaugoti</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>Spausdinti</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>Trinti</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>Pranešimų archyvas</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>Paieška:</innerText>
+    </item>
+    <code id="loading">Kraunamas pranešimų archyvas...</code>
+    <code id="empty">Pranešimų archyvas tuščias.</code>
+    <code id="error_load">Nepavyko užkrauti pranešimų archyvo:&#13;${0}</code>
+    <code id="one_message">1 pranešimas</code>
+    <code id="many_messages">${0} pranešimų</code>
+    <code id="tooltip_save">Išsaugoti šios dienos pranešimų archyvą</code>
+    <code id="tooltip_print">Spausdinti šios dienos pranešimų archyvą </code>
+    <code id="error_open">Klaida: Nepavyko atidaryti pranešimų archyvo.</code>
+    <code id="error_read">Klaida: Nepavyko perskaityti pranešimų archyvo.</code>
+    <code id="delete_confirm">Ar tikrai norite pašalinti visą ${0} pranešimų archyvą?</code>
+    <code id="delete_cannot">Nepavyko pašalinti archyvo: ${0}&#13;Pranešimai nebuvo pašalinti.</code>
+    <code id="error_print">Nėra ką spausdinti.&#13;Pranešimų archvyas tuščias.</code>
+    <code id="error_save">Nepavyko išsaugoti pranešimų archyvo.&#13;${0}</code>
+  </window>
+  <window name="chat-messages">
+    <code id="copy">Kopijuoti</code>
+    <code id="copyall">Kopijuoti viską</code>
+    <code id="clear">Išvaldyti</code>
+    <code id="selectall">Pažymėti viską</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>Parodyti ką jūs galvojate ar darote</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Pakeisti šrifto spalvą ar tipą</title>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Pasirinkti kitą foną</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Šypsenėlės</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Šriftas</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Fonas</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>Pakeisti pranešimo įvedimo lango dydį</title>
+    </item>
+    <item id="mode-bar">
+      <title>Vartotojas gaunantis jūsų pranešimus</title>
+    </item>
+    <item id="send-text">
+      <title>Įrašykite savo pranešimą čia</title>
+    </item>
+    <item id="btn-send">
+      <value>Siųsti</value>
+      <title>Siųsti pranešimą</title>
+    </item>
+
+    <code id="tt-avatar">Rodyti pilno dydžios asmeninę iliustraciją</code>
+    <code id="tt-messages">Pranešimai, kurie buvo gauti ir išsiųsti</code>
+    <code id="tt-close">Baigti pokalbį</code>
+    <code id="msg_typing">${0} rašo pranešimą</code>
+    <code id="unknown">${0} gali neatsakyti, nes vartotojo būklė nežinoma</code>
+    <code id="lastonline">Paskutinį kartą prisijungė: ${0}</code>
+    <code id="windowtitle">${0} - pokalbis</code>
+    <code id="background_no">Nėra fono</code>
+    <code id="background_list">Esantys fonai...</code>
+    <code id="close_many_tabs">Ar norite uždaryti visus pokalbių langus?</code>
+    <code id="close_recent_message">Jūs ką tik gavote pranešimą.&#13;Ar norite uždaryti šį pokalbio langą?</code>
+	<code id="palette_compact">Sumažinti šypsenėlių sąrašą</code>
+	<code id="palette_expand">Rodyti visas šios stiliaus šypsenėles</code>
+	<code id="palette_browse">Kiti šypsenėlių stiliai...</code>
+
+    <code id="menu_file_received">&amp;Atidaryti gautus failus</code>
+    <code id="menu_file_history">Pranešimų &amp;archyvas</code>
+    <code id="menu_file_close">&amp;Uždaryti pokalbio langą</code>
+
+    <code id="menu_axn_contact">&amp;Kontaktai</code>
+    <code id="menu_axn_add">Įraukti į kontaktų sąrašą</code>
+    <code id="menu_axn_block">&amp;Blokuoti</code>
+    <code id="menu_axn_rename">&amp;Pakeisti pavadinimą</code>
+    <code id="menu_axn_panel">Rodyti &amp;veiksmų pultą</code>
+    <code id="menu_axn_profile">Rodyti &amp;profilį</code>
+    <code id="menu_axn_file">Siųsti &amp;failą</code>
+
+    <code id="menu_tool_emo_style">Pasirinkti &amp;šypsenėlę...</code>
+    <code id="menu_tool_font">Pasikeisti &amp;šriftą...</code>
+    <code id="menu_tool_background">Pasikeisti &amp;foną...</code>
+    <code id="menu_tool_aot">&amp;Visada viršuje</code>
+    <code id="menu_tool_popup">&amp;Išokantys nauji pranešimai</code>
+    <code id="menu_tool_tabbed">&amp;Pažymėti pokalbiai</code>
+    <code id="menu_tool_emoticons">&amp;Rodyti šypsenėles</code>
+    <code id="menu_tool_settings">&amp;Nustatymai</code>
+  </window>
+  <window name="conference-bookmarks-add">
+    <item id="txt_address">
+      <innerText>Pokalbių kambario adresas:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Pavyzdys: mano_kambarys@conference.pvz.lt</innerText>
+    </item>
+    <item id="lbl_autojoin">
+      <innerText>Įeiti į šį pokalbių kambarį prisijungus</innerText>
+    </item>
+    <item id="lbl_password">
+      <innerText>Įeiti į pokalbių kambarį su slaptažodžiu:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <code id="error_invalid_address">Neteisingas pokalbių kambario adresas.</code>
+  </window>
+  <window name="conference-bookmarks-manage">
+    <item id="txt_head">
+      <innerText>Redaguoti, šalinti ir pridėti pokalbių kambarių žymes:</innerText>
+    </item>
+    <item id="btn_edit">
+      <value>Redaguoti</value>
+    </item>
+    <item id="btn_delete">
+      <value>Šalinti</value>
+    </item>
+    <item id="btn_add">
+      <value>Pridėti</value>
+    </item>
+    <item id="btn_close">
+      <value>Uždaryti</value>
+    </item>
+    <code id="confirm_delete">Ar tikrai norite pašalinti šią pokalbių kambario žymę?</code>
+  </window>
+  <window name="conference-configuration">
+    <item id="btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_form_loading">
+      <innerText>Kraunasi...</innerText>
+    </item>
+    <item id="txt_form_empty">
+      <innerText>Šis pokalbių kambarys nustatymų neturi</innerText>
+    </item>
+    <item id="txt_form_invalid">
+      <innerText>Klaida: nepavyko gauti pokalbių kambario nustatymų</innerText>
+    </item>
+    <code id="form_title">Pokalbių kambario nustatymai</code>
+    <code id="form_subtitle">Norėdami redaguoti pokalbių kambario nustatymus, užpildykite šią formą:</code>
+
+    <code id="muc#roomconfig_allowinvites">Leisti dalyviams kviesti kitus vartotojus</code>
+    <code id="muc#roomconfig_changesubject">Leisti dalyviams keisti kambario antraštę</code>
+    <code id="muc#roomconfig_enablelogging">Išsaugoti visus kambario pranešimus</code>
+    <code id="muc#roomconfig_lang">Kalbos naudojamos kambaryje</code>
+    <code id="muc#roomconfig_maxusers">Maksimalus kiekis dalyvių kambaryje</code>
+    <code id="muc#roomconfig_membersonly">Į kambarį patekti gali tik nariai</code>
+    <code id="muc#roomconfig_moderatedroom">Pranešimų siuntimui reikalauti moderatoriaus patvirtinimo</code>
+    <code id="muc#roomconfig_passwordprotectedroom">Įeinant į kambarį reikalauti slaptažodžio</code>
+    <code id="muc#roomconfig_persistentroom">Kambarys dingsta išėjus paskutiniam dalyviui</code>
+    <code id="muc#roomconfig_presencebroadcast">Pranešimų transliavimo rolės</code>
+    <code id="muc#roomconfig_publicroom">Rodyti kambarį pokalbių kambarių sąraše</code>
+    <code id="muc#roomconfig_roomadmins">Pokalbių kambario administratoriai</code>
+    <code id="muc#roomconfig_roomdesc">Kambario aprašymas</code>
+    <code id="muc#roomconfig_roomname">Kambario pavadinimas</code>
+    <code id="muc#roomconfig_roomowners">Kambario savininkas</code>
+    <code id="muc#roomconfig_roomsecret">Kambario slaptažodis</code>
+    <code id="muc#roomconfig_whois">Priveligijuoti dalyviai galintys matyti tikrus kitų dalyvių adresus</code>
+  </window>
+  <window name="conference-password">
+    <item id="txt_password">
+      <innerText>Slaptažodis:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-name">
+    <item id="txt_name">
+      <innerText>Pavadinimas:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-subject">
+    <item id="txt_subject">
+      <innerText>Antraštė:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-invite">
+    <item id="btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Pasirinkite vartotojus, kuriuos norite pakviesti.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Niekas iš jūsų kontaktų sąrašo neprisijungęs.</innerText>
+    </item>
+  </window>
+  <window name="conference-accesslevel">
+    <item id="txt-name">
+      <innerText>Pavadinimas:</innerText>
+    </item>
+    <item id="txt-room">
+      <innerText>Kambarys:</innerText>
+    </item>
+
+	<item id="txt-role">
+      <innerText>Rolė:</innerText>
+    </item>
+	<item id="txt-visitor">
+      <innerText>Svečias</innerText>
+    </item>
+    <item id="txt-visitor-desc">
+      <innerText>Gali skaityti pranešimus</innerText>
+    </item>
+	<item id="txt-participant">
+      <innerText>Dalyvis</innerText>
+    </item>
+    <item id="txt-participant-desc">
+      <innerText>Gali siųsti pranešimus</innerText>
+    </item>
+	<item id="txt-moderator">
+      <innerText>Moderatorius</innerText>
+    </item>
+    <item id="txt-moderator-desc">
+      <innerText>Gali išmesti svečius ir dalyvius</innerText>
+    </item>
+
+	<item id="txt-affiliation">
+      <innerText>Priveligijuoti dalyviai</innerText>
+    </item>
+	<item id="txt-none">
+      <innerText>Niekas/Nariai</innerText>
+    </item>
+    <item id="txt-none-desc">
+      <innerText>Gali įeiti į kambarį</innerText>
+    </item>
+	<item id="txt-admin">
+      <innerText>Administratorius</innerText>
+    </item>
+    <item id="txt-admin-desc">
+      <innerText>Gali paskirti moderatorius ir blokuoti dalyvius</innerText>
+    </item>
+	<item id="txt-owner">
+      <innerText>Savininkas</innerText>
+    </item>
+    <item id="txt-owner-desc">
+      <innerText>Gali paskirti adminstratorius</innerText>
+    </item>
+
+    <item id="btn-default">
+      <value>Standartiniai nustatymai</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-cancel">
+      <value>Atšaukti</value>
+      <accessKey>c</accessKey>
+    </item>
+    <item id="btn-close">
+      <value>Uždaryti</value>
+      <accessKey>c</accessKey>
+    </item>
+  </window>
+  <window name="conference-container">
+    <item id="btn-emoticons">
+      <title>Parodyti ką jūs manote ar darote</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Pakeisti teksto spalvą arba šriftą</title>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Pasirinkti kitą foną</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Šypsenėlės</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Šriftas</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Fonas</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>Pakeisti pranešimo įvedimo lauko dydį</title>
+    </item>
+    <item id="mode-bar">
+      <title>Pokalbių kambario pavadinimas, adresas ir tema</title>
+    </item>
+    <item id="send-text">
+      <title>Įveskite savo panešimą</title>
+    </item>
+    <item id="btn-send">
+      <value>Siųsti</value>
+      <title>Siųsti pranešimą</title>
+    </item>
+
+    <item id="occupants-panel">
+      <title>Pokalbių kambario dalyviai</title>
+    </item>
+    <item id="txt-visitors">
+      <innerText>Svečiai</innerText>
+      <title>Svečiai gali skaityti pranešimus, bet negali jų siųsti</title>
+    </item>
+    <item id="txt-moderators">
+      <innerText>Moderatoriai</innerText>
+      <title>Moderatoriai gali siųsti ir skaityti pranešimus, taip pat išmesti dalyvius iš kambario. </title>
+    </item>
+    <item id="txt-participants">
+      <innerText>Dalyviai</innerText>
+      <title>Dalyviai gali skaityti ir siųsti pranešimus</title>
+    </item>
+
+    <code id="wnd_conference_password">Prsijungti su slaptažodžiu</code>
+    <code id="wnd_conference_change_name">Pasikeisti vardą</code>
+    <code id="wnd_conference_subject">Pokalbių kambario antraštė</code>
+    <code id="wnd_conference_configuration">Pokalbių kambario nustatymai</code>
+    <code id="wnd_conference_accesslevel">${0} – priėjimo lygis</code>
+
+    <code id="tt-messages">Pranešimai kuriuos siuntėte ir gavote</code>
+    <code id="tt-close">Išeiti iš pokalbių kambario</code>
+    <code id="default_subject">Šis pokalbių kambarys netur antraštės.</code>
+    <code id="windowtitle">${0} - pokalbis</code>
+    <code id="destroy">Panaikindami pokalbių kambarį pašalinsite visus dalyvius iš kambario, taip pat pašalinsite kambarį iš serverio.&#13;Ar tikrai norite panaikinti kambarį?</code>
+    <code id="connecting">Jungiamasi...</code>
+    <code id="connected">Prisijungė</code>
+    <code id="disconnected">Atsijungė</code>
+    <code id="confirm-kick">Ar tikrai norite išmesti "${0}" iš pokalbių kambario?</code>
+    <code id="kick-error">Negalite išmesti dalyvio: ${0}</code>
+    <code id="kicked">${0} išmestas iš kambario</code>
+    <code id="kicked-by"> ${1}išmėtė iš kambario ${0} </code>
+    <code id="confirm-ban">Ar tikrai norite blokuoti "${0}" šiame pokalbių kambaryje?</code>
+    <code id="ban-error">Negalite blokuoti dalyvio: ${0}</code>
+    <code id="banned">${0} blokuotas šiame kambaryje</code>
+    <code id="banned-by">${1} blokavo šiame kambaryje ${0} </code>
+    <code id="leaving">${0} išėjo iš pokalbių kambario</code>
+    <code id="joining">${0} prisijungė prie pokalbių kambario</code>
+    <code id="renaming">${0} pakeitė vardą į ${1}</code>
+
+    <code id="menu_file_close">&amp;Uždaryti pokalbį</code>
+
+    <code id="menu_axn_invite">&amp;Pakviesti vartotoju</code>
+    <code id="menu_axn_change_name">Pakeisti mano &amp;vardą...</code>
+    <code id="menu_axn_password">Prisijungti su &amp;slaptažodžiu...</code>
+    <code id="menu_axn_subject">&amp;Pakeisti pokalbių kambario antraštę</code>
+    <code id="menu_axn_configuration">&amp;Redaguoti pokalbių kambario nustatymus</code>
+    <code id="menu_axn_destroy">&amp;Panaikinti pokalbių kambarį</code>
+
+    <code id="menu_bookmarks">&amp;Žymės</code>
+
+    <code id="menu_bmrk_add">&amp;Pridėti prie žymių...</code>
+
+    <code id="menu_occupant_private">Asmininis &amp;pranešimas</code>
+    <code id="menu_occupant_kick">&amp;Išmesti</code>
+    <code id="menu_occupant_ban">&amp;Blokuoti</code>
+    <code id="menu_occupant_access">&amp;Priėjimo lygiai...</code>
+    <code id="menu_occupant_add">&amp;Įtraukti į kontaktų sąrašą</code>
+    <code id="menu_occupant_profile">&amp;Profilis</code>
+
+    <code id="unrecognized-error">Neatpažinta klaida</code>
+    <code id="error-service-unavailable">Paslauga neegzistuoja</code>
+    <code id="error-not-allowed">Negalimas</code>
+    <code id="error-conflict">Konfliktas: Slapyvardis jau pasirinktas kito vartotojo</code>
+    <code id="error-registration-required">Reikalinga registracija: Tik nariams</code>
+    <code id="error-forbidden">Uždrausta: Vartotojas blokuotas</code>
+    <code id="error-not-authorized">Nėra pavirtinimo: reikalingas slaptažodis</code>
+    <code id="error-item-not-found">Nerasta: Kambarys užrakintas</code>
+  </window>
+  <window name="preferences">
+    <item id="txt_autoaway">
+      <innerText>Kai jūs nesinaudosite kompiuteriu ilgą laiką, jūsų būklė automatiškai pasikeis į “išėjęs”.</innerText>
+    </item>
+    <item id="txt_displayawaymsg_left">
+      <innerText>Rodyti pranešimą po</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_left">
+      <innerText> Rodyti šį pranešimą po </innerText>
+    </item>
+    <item id="txt_displayawaymsg_right">
+      <innerText>minučių:</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_right">
+      <innerText> minučių:</innerText>
+    </item>
+    <item id="txt_blocking">
+      <innerText>Blokuotų adresų sąraše yra vartotojų adresai, kurių pranešimų jūs nenorite gauti.</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>Rodyti pranešimus žmonių, kurie nėra mano kontaktų sąraše.</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>Blokuotų vartotojų sąrašas</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>Nuimti blokavimą</value>
+    </item>
+    <item id="block_btn_view">
+      <value>Rodyti profilį</value>
+    </item>
+    <item id="txt_ssl">
+      <innerText>Naudoti saugų prisijungimą (SSL)</innerText>
+    </item>
+    <item id="txt_firewall_proxy">
+      <innerText>Ugniasienė ir tarpinis serveris</innerText>
+    </item>
+    <item id="txt_proxy1">
+      <innerText>Nepasirinkta</innerText>
+    </item>
+    <item id="txt_proxy2">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_proxy3">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_proxy4">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_proxyserver">
+      <innerText>Serveris:</innerText>
+    </item>
+    <item id="txt_proxyport">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_proxyuser">
+      <innerText>Vartotojo vardas:</innerText>
+    </item>
+    <item id="txt_proxypass">
+      <innerText>Slaptažodis:</innerText>
+    </item>
+    <item id="txt_portmap">
+      <innerText>Failų siuntimo portmap (NAT, ugniasienė)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>Host:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>Išsaugoti visus pranešimus archyve</innerText>
+    </item>
+    <item id="txt_startup">
+      <innerText>Paleisti automatiškai startavus programai</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>Kai kas nors prašo mano patvirtinimo</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>Paklausti manęs</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>Priimti visus patvirtinimu</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>Priimti patvirtinimus iš vartotojų esančių mano kontaktų sąraše, paklausti manęs dėl kitų vartotojų</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>Atmesti visus patvirtinimus</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>Groti garsą, kai gaunamas pranešimas</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>Groti garsą, kai kas nors prisijungia</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText> Groti garsą, kai kas nors atsijungia </innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>Naršyti</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>Browse</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>c</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <item id="lbl_autoaway">
+      <innerText>Auto-išėjęs</innerText>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>Blokavimas</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>Prisijungimas</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>Privatumas</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>Garsas</innerText>
+    </item>
+    <code id="autoaway">Automatiniai pranešimai išėjus</code>
+    <code id="blocking">Blokuotų vartotojų sąrašas</code>
+    <code id="connection">Prisijungimo nustatymai</code>
+    <code id="privacy">Privatumas</code>
+    <code id="sound">Pranešimų garsai</code>
+    <code id="reconnect">Norėdami įvykdyti pakeitimus prisijunkite iš naujo.&#13;Ar norite prisijungti iš naujo dabar?</code>
+    <code id="shortcut">Siųsti ir gauti pranešimus</code>
+    <code id="choose_sound">Pasirinkti pranešimų garsus</code>
+    <code id="file_audio">Audio failai</code>
+    <code id="file_any">Kitos failai</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>Rasti arba pridėti vartotoją</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>Galite ieškoti vartotojo pagal bendrą jo informaciją arba galite įvesti vartotojo vardą.</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>Kaip jūs norite pridėti vartotoją?</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>Noriu &lt;U&gt;&lt;/U&gt;Ieškoti vartotojo.</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>Paslauga:</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML>&lt;U&gt;A&lt;/U&gt;š jau žinau vartotojo adresą.</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>Tinklas:</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>Vartotojo vardas:</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>Norėdami bendrauti su vartotoju esančiu kitame tinkle jūs turite nustatyti kitus tinklus.</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>Nustatyti tinklus</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>Toliau &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_p1_cancel">
+      <value>Atšaukti</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>Tikrinamas vartotojas</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>Tikrinamas vartotojo vardas.</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; Atgal</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>Toliau &gt;</value>
+    </item>
+    <item id="page1b_btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>Requesting Search Form</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>Paieškos formoje rasite nurodymus ir laukus, kuriuose galite atlikti paiešką.</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; Atgal</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>Toliau &gt;</value>
+    </item>
+    <item id="page1c_btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+
+    <item id="txt_p2_title">
+      <innerText>Reikalauti pranešimo</innerText>
+    </item>
+    <item id="txt_p2_tagline">
+      <innerText>Jūs galite informuoti kitą vartotoją pranešimu, kodėl reikalaujate jo patvirtinimo. </innerText>
+    </item>
+    <item id="page2_btn_back">
+      <value>&lt; Atgal</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page2_btn_finish">
+      <value>Baigti</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="page2_btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <item id="txt_p2_desc">
+      <innerText>Patvirtinimo reikalavimas nusiųstas:</innerText>
+    </item>
+    <item id="txt_p2_user">
+      <innerText>Vartotojo vardas:</innerText>
+    </item>
+    <item id="txt_p2_network">
+      <innerText>Tinklas:</innerText>
+    </item>
+    <item id="txt_p2_message">
+      <innerHTML>Įveskite pranešimą (pasirinktinai):</innerHTML>
+    </item>
+    <item id="page2_message">
+      <innerText>Aš noriu jus įtraukti į savo kontaktų sąrašą.</innerText>
+    </item>
+    <item id="txt_p2_close">
+      <innerHTML>Norėdami nusiųsti reikalavimą ir uždaryti vedlį spauskite &lt;B&gt;baigti&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; Atgal</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>Search</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="page3_btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText>Paieškos rezultatai</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>Jūs galite pažiūrėti asmeninę vartotojo informaciją ir įtraukti jį į savo kontaktų sąrašą.</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; Atgal</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>Toliau &gt;</value>
+    </item>
+    <item id="page4_btn_cancel">
+      <value>Atšaukti</value>
+    </item>
+    <code id="correct">Įveskite teisingą vartotojo vardą:.&#13;Pavyzdys: kazkas123@${0}</code>
+    <code id="example_address">Pavyzdys: kazkas123@${0}</code>
+    <code id="enter_username">Įveskite asmens, su kuriuo norite susisiekti, vartotojo vardą.</code>
+    <code id="contacting_transport">&lt;B&gt;Jugiamasi prie perkelto vartotojo&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Tai gali trukti iki minutės.&lt;BR&gt;Prašome palaukti.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Jugiamasi prie paieškos paslaugos&lt;/B&gt;&lt;BR&gt;&lt;BR&gt; Tai gali trukti iki minutės.&lt;BR&gt; Prašome palaukti.&lt;BR&gt;</code>
+    <code id="error_transport">&lt;B&gt;Serverio klaida:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(kodas ${1})&lt;BR&gt;&lt;BR&gt;Vartotojas negali būti įtrauktas į jūsų kontaktų sąrašą.&lt;BR&gt;Patikrinite ar teisingai įvedėte vartotojo vardą.</code>
+    <code id="error_search">&lt;B&gt;Serverio klaida:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(kodas ${1})&lt;BR&gt;&lt;BR&gt;Paieškos forma negali būti parodyta.&lt;BR&gt;Pabandykite vėliau arba pasirinkite kitą paslaugą.</code>
+    <code id="error_invalid">Gauti neteisingi duomenys.</code>
+    <code id="search_title">Vartotojo paieška</code>
+    <code id="search_tagline">Užpildykite laukus norėdami atlikti vartotojo paiešką.</code>
+    <code id="firstname">Vardas:</code>
+    <code id="lastname">Pavardė:</code>
+    <code id="nick">Slapyvardis:</code>
+    <code id="email">El. pašto adresas:</code>
+    <code id="searching">Vykdoma paieška...</code>
+    <code id="add">Įtraukti į kontaktų sąrašą</code>
+    <code id="view">Rodyti profilį</code>
+    <code id="foundone">rastas 1 įrašas</code>
+    <code id="foundmany">rasta ${0} įrašų</code>
+  </window>
+  <window name="login">
+    <code id="invalid">Adresas neteisingas. Įveskite kitą adresą ir pabandykit dar kartą.&#13;Jeigu jūs neturite adreso, spauskite “Užsiregistruoti” ir vykdykite tolimesnius nurodymus.</code>
+    <item id="txt_instructions">
+      <innerText>Įveskite savo pranešimų sistemos adresą ir slaptažodį.</innerText>
+    </item>
+    <item id="txt_address">
+      <innerText>Addresas:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Pavyzdys: kazkas123@pvz.lt</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Slaptažodis:</innerText>
+    </item>
+    <item id="txt_remember">
+      <innerText>Atsiminti mano slaptažodį</innerText>
+    </item>
+    <item id="txt_autologin">
+      <innerText>Prisijungti automatiškai</innerText>
+    </item>
+    <item id="btn_signup">
+      <value>registruotis</value>
+    </item>
+    <item id="btn_login">
+      <value>Prisijungti</value>
+    </item>
+    <item id="btn_close">
+      <value>Uždaryti</value>
+    </item>
+  </window>
+  <window name="sign_up">
+    <code id="close_confirm">Naujo adreso registracija nebaigta.&#13;ar tikrai norite uždaryti šį vedlį?</code>
+    <code id="incomplete">Užpildykit visus laukus...</code>
+    <code id="pass_match">Slaptažodžiai nesutampa.&#13;Įveskite naują slaptažodį abejuose laukuose.</code>
+
+    <code id="contacting">Jugiamasi prie serverio...</code>
+    <code id="registered">Jūsų vartotojo vardas registruojamas, tai gali u-trukti iki minutės.&lt;BR&gt;Prašome palaukti.&lt;BR&gt;</code>
+    <code id="requesting">Siunčiama informacija...</code>
+    <code id="sending">Siunčiama registracija...</code>
+    <code id="failure">Nepavyko prisijungti</code>
+    <code id="completed">Registracija baigta</code>
+
+    <code id="address">Addresas:</code>
+    <code id="nickname">Vartotojo vardas:</code>
+    <code id="userdir">Vartotojo aplankas:</code>
+    <item id="txt_page_welcome_title">
+      <innerText>Jus sveikina registracijos vedlys</innerText>
+    </item>
+    <item id="txt_page_welcome_intro">
+      <innerText>Šis vedlys jums padės prisiregistruoti prie pranešimų serverio.</innerText>
+    </item>
+    <item id="txt_page_welcome_next">
+      <innerHTML>Norėdami tęsti spauskite &lt;B&gt;Toliau&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_welcome_next">
+      <value>Toliau &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_welcome_cancel">
+      <value>Atšaukti</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_nickname_title">
+      <innerText>Asmeninė informacija</innerText>
+    </item>
+    <item id="txt_page_nickname_tagline">
+      <innerText>Ši informacija padės kitiems vartotojams jus rasti tinkle.</innerText>
+    </item>
+    <item id="txt_page_nickname_desc">
+      <innerText>Įveskite savo vardą, kad jūsų draugai ir kolegos galėtų jus lengviau rasti.</innerText>
+    </item>
+    <item id="txt_page_nickname_name">
+      <innerHTML>&lt;U&gt;&lt;/U&gt;Vardas:</innerHTML>
+    </item>
+    <item id="data_name">
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_back">
+      <value>&lt; Atgal</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_nickname_next">
+      <value>Toliau &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_cancel">
+      <value>Atšaukti</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_account_title">
+      <innerText>Adresas</innerText>
+    </item>
+    <item id="txt_page_account_tagline">
+      <innerText>Jūs galite naudotis viešu interneto serveriu arba privačiu jūsų tinklo serveriu.</innerText>
+    </item>
+    <item id="txt_page_account_server">
+      <innerHTML>&lt;U&gt;S&lt;/U&gt;erveris:</innerHTML>
+    </item>
+    <item id="txt_page_account_username">
+      <innerHTML>&lt;U&gt;&lt;/U&gt;Vartotojo vardas:</innerHTML>
+    </item>
+    <item id="txt_page_account_password">
+      <innerHTML>Sla&lt;U&gt; p&lt;/U&gt;tažodis:</innerHTML>
+    </item>
+    <item id="txt_page_account_confirm">
+      <innerHTML>&lt;U&gt;&lt;/U&gt;Patvirtinkite slaptažodį:</innerHTML>
+    </item>
+    <item id="data_server">
+      <accessKey>s</accessKey>
+    </item>
+    <item id="data_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="data_password">
+      <accessKey>p</accessKey>
+    </item>
+    <item id="data_password_confirm">
+      <accessKey>c</accessKey>
+    </item>
+    <item id="txt_page_account_remember">
+      <innerHTML>&lt;U&gt;&lt;/U&gt; Atsiminti mano slaptažodį</innerHTML>
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page_account_preview">
+      <innerText>Jūsų pranešimų perdavimo paslaugos adresas:</innerText>
+    </item>
+    <item id="btn_page_account_settings">
+      <value>Prisijungimo nustatymai</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_account_back">
+      <value>&lt; Atgal</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_account_next">
+      <value>Toliau &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_account_cancel">
+      <value>Atšaukti</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_creating_title">
+      <innerText>Adreso registracija</innerText>
+    </item>
+    <item id="txt_page_creating_autherr">
+      <innerHTML>Adresas negali būti registruotas. Vartotojas neegzistuoja.&lt;BR&gt;&lt;BR&gt;Spauskite &lt;B&gt;atgal&lt;/B&gt;, įveskite kitą vartotojo vardą ir bandykite dar kartą.</innerHTML>
+    </item>
+    <item id="txt_page_creating_forbidden">
+      <innerHTML> Adresas negali būti registruotas. Šis serveris neleidžia naujų adresų kūrimo.&lt;BR&gt;&lt;BR&gt;Spauskite &lt;B&gt;atgal&lt;/B&gt;, pasirinkite kitą serverį ir bandykite dar kartą.</innerHTML>
+    </item>
+    <item id="txt_page_creating_commerr">
+      <innerHTML>Nepavyko prisijungti prie serverio. Patikrinkite ar teisingai įvedėte serverio adresą.&lt;BR&gt;Patikrinkite savo interneto prieigos nustatymus ir bandykite dar kartą. Jeigu naudojate ungiasienę,&lt;BR&gt;patikrinkite savo interneto prieigos nustatymus.</innerHTML>
+    </item>
+    <item id="btn_page_creating_retry">
+      <value>Bandykite dar kartą</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_creating_settings">
+      <value>Prisijungimo nustatymai</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_creating_back">
+      <value>&lt; Atgal</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_creating_next">
+      <value>Toliau &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_creating_cancel">
+      <value>Atšaukti</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_conn_title">
+      <innerText>Prisijungimo nustatymai</innerText>
+    </item>
+    <item id="txt_ssl">
+      <innerText>Naudoti saugų prisijungimą (SSL)</innerText>
+    </item>
+    <item id="txt_conn_desc">
+      <innerText>Ugniasienė ir tarpinis serveris</innerText>
+    </item>
+    <item id="txt_conn_none">
+      <innerText>Nepasirinkta</innerText>
+    </item>
+    <item id="txt_conn_http">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_conn_s4">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_conn_s5">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_conn_host">
+      <innerText>Serveris:</innerText>
+    </item>
+    <item id="txt_conn_port">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_conn_user">
+      <innerText>Vartotojo vardas:</innerText>
+    </item>
+    <item id="txt_conn_pass">
+      <innerText>Slaptažodis:</innerText>
+    </item>
+    <item id="btn_conn_default">
+      <value>Standartiniai nustatymai</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_conn_ok">
+      <value>OK</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn_conn_cancel">
+      <value>Atšaukti</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_finished_title">
+      <innerText>Pabaigti profilio įvedimo vedlį</innerText>
+    </item>
+    <item id="txt_page_finished_intro">
+      <innerText>Jūs sėkmingai įvedėtė profilį.</innerText>
+    </item>
+    <item id="txt_page_finished_details">
+      <innerText>Profilio detalės:</innerText>
+    </item>
+    <item id="txt_page_finished_finish">
+      <innerHTML>Norėdami uždaryti vedlį spauskite &lt;B&gt;Baigti&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_finished_back">
+      <value>&lt; Atgal</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_finished_finish">
+      <value>Baigti</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn_page_finished_cancel">
+      <value>Atšaukti</value>
+      <accessKey>c</accessKey>
+    </item>
+  </window>
+</translation>
+
+

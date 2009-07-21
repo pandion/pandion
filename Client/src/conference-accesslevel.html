@@ -1,0 +1,201 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+TD {
+	font-family: Arial;
+	font-size: 11px;
+	color: windowtext;
+}
+FIELDSET {
+	cursor: default;
+	border-left-width: 0;
+	border-right-width: 0;
+	border-bottom-width: 0;
+	margin-bottom: 16px;
+}
+#title {
+	width: 100%;
+	margin-top: 14px;
+}
+#subtitle {
+	width: 100%;
+}
+.role-title, .affiliation-title {
+	font-weight: bold;
+}
+LABEL {
+	display: block;
+}
+</STYLE>
+
+<SCRIPT language=JScript src="main/XMPPAddress.js"></SCRIPT>
+
+<SCRIPT language=JScript>
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'conference-accesslevel', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	Refresh();
+	document.getElementById( 'txt-role' ).parentNode.focus();
+	external.wnd.hide( false );
+	external.wnd.focus();
+}
+
+function Refresh ()
+{
+	var Occupant = external.wnd.params[1];
+	document.getElementById( 'name' ).innerText = Occupant.Name;
+	document.getElementById( 'room' ).innerText = Occupant.Tracker.Address.ShortAddress();
+	if ( Occupant.Avatar.length )
+		document.getElementById( 'avatar' ).src = external.globals( 'usersdir' ) + 'Avatars\\' + Occupant.Avatar;
+	else
+		document.getElementById( 'avatar' ).src = '..\\images\\clients\\unknown-soldier.gif';
+
+	var LocalOccupant		= Occupant.Tracker.Occupants( Occupant.Tracker.Address.Resource );
+	var LocalOwner			= LocalOccupant && LocalOccupant.Affiliation == 'owner';
+	var LocalAdmin			= LocalOccupant && ( LocalOccupant.Affiliation == 'admin' || LocalOwner );
+	var LocalModerator		= LocalOccupant && LocalOccupant.Role == 'moderator';
+	var LocalParticipant	= LocalOccupant && ( LocalOccupant.Role == 'participant' || LocalModerator );
+
+	var RemoteOccupant		= Occupant;
+	var RemoteOwner			= RemoteOccupant.Affiliation == 'owner';
+	var RemoteAdmin			= RemoteOccupant.Affiliation == 'admin' || RemoteOwner;
+	var RemoteModerator		= RemoteOccupant.Role == 'moderator';
+	var RemoteParticipant	= RemoteOccupant.Role == 'participant' || RemoteModerator;
+
+	document.getElementById( 'role-visitor' ).checked		= true;
+	document.getElementById( 'role-participant' ).checked	= RemoteParticipant;
+	document.getElementById( 'role-moderator' ).checked		= RemoteModerator;
+
+	document.getElementById( 'affiliation-none' ).checked	= true;
+	document.getElementById( 'affiliation-admin' ).checked	= RemoteAdmin;
+	document.getElementById( 'affiliation-owner' ).checked	= RemoteOwner;
+
+	document.getElementById( 'role-visitor' ).parentNode.disabled		= ! ( LocalModerator || LocalAdmin );
+	document.getElementById( 'role-participant' ).parentNode.disabled	= ! ( LocalModerator || LocalAdmin );
+	document.getElementById( 'role-moderator' ).parentNode.disabled		= ! LocalAdmin;
+
+	document.getElementById( 'affiliation-none' ).parentNode.disabled	= ! LocalOwner;
+	document.getElementById( 'affiliation-admin' ).parentNode.disabled	= ! LocalOwner;
+	document.getElementById( 'affiliation-owner' ).parentNode.disabled	= ! LocalOwner;
+
+	document.getElementById( 'btn-default' ).style.display	= ( LocalModerator || LocalAdmin || LocalOwner ) ? 'inline' : 'none';
+	document.getElementById( 'btn-ok' ).style.display		= ( LocalModerator || LocalAdmin || LocalOwner ) ? 'inline' : 'none';
+	document.getElementById( 'btn-ok' ).disabled			= ! ( LocalModerator || LocalAdmin || LocalOwner );
+	document.getElementById( 'btn-cancel' ).style.display	= ( LocalModerator || LocalAdmin || LocalOwner ) ? 'inline' : 'none';
+	document.getElementById( 'btn-close' ).style.display	= ( LocalModerator || LocalAdmin || LocalOwner ) ? 'none' : 'inline';
+}
+
+function SetMode ()
+{
+	var RemoteOccupant = external.wnd.params[1];
+
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<iq type="set"><query xmlns="http://jabber.org/protocol/muc#admin"><item/></query></iq>' );
+	dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
+	dom.documentElement.setAttribute( 'to', RemoteOccupant.Tracker.Address.ShortAddress() );
+
+	var OccupantItem = dom.documentElement.firstChild.firstChild;
+	OccupantItem.setAttribute( 'nick', RemoteOccupant.Name );
+	if ( RemoteOccupant.Address.length )
+		OccupantItem.setAttribute( 'jid', ( new XMPPAddress( RemoteOccupant.Address ) ).ShortAddress() );
+
+	var ChangeFlag = 0;
+
+	if ( document.getElementById( 'role-visitor' ).checked && RemoteOccupant.Role != 'visitor' )
+		OccupantItem.setAttribute( 'role', 'visitor' );
+	else if ( document.getElementById( 'role-participant' ).checked && RemoteOccupant.Role != 'participant' )
+		OccupantItem.setAttribute( 'role', 'participant' );
+	else if ( document.getElementById( 'role-moderator' ).checked && RemoteOccupant.Role != 'moderator' )
+		OccupantItem.setAttribute( 'role', 'moderator' );
+	else
+		++ChangeFlag;
+
+	if ( document.getElementById( 'affiliation-none' ).checked && ( RemoteOccupant.Affiliation != 'none' && RemoteOccupant.Affiliation != 'member' ) )
+		OccupantItem.setAttribute( 'affiliation', 'member' );
+	else if ( document.getElementById( 'affiliation-admin' ).checked && RemoteOccupant.Affiliation != 'admin' )
+		OccupantItem.setAttribute( 'affiliation', 'admin' );
+	else if ( document.getElementById( 'affiliation-owner' ).checked && RemoteOccupant.Affiliation != 'owner' )
+		OccupantItem.setAttribute( 'affiliation', 'owner' );
+	else
+		++ChangeFlag;
+
+	if ( ChangeFlag < 2 )
+	{
+		external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+	external.wnd.close();
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="init()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="return false">
+<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<TR valign=top height=60 bgcolor=window>
+	<TD colspan=2 style="color: windowtext; border-bottom: 2px groove;">
+		<IMG id=avatar align=left style="width: 32px; height: 32px; margin: 12px 20px 0 12px;">
+		<NOBR id=title><SPAN id=txt-name style="width: 60px;"></SPAN><SPAN id=name style="font-weight: bold;"></SPAN></NOBR>
+		<NOBR id=subtitle><SPAN id=txt-room style="width: 60px;"></SPAN><SPAN id=room></SPAN></NOBR>
+	</TD>
+</TR>
+<TR valign=top>
+	<TD colspan=2 style="padding: 16px;">
+		<FIELDSET>
+			<LEGEND id=txt-role></LEGEND>
+			<LABEL for=role-visitor>
+				<INPUT id=role-visitor type=radio name=role>
+				<SPAN class=role-title id=txt-visitor></SPAN>&nbsp;-&nbsp;<SPAN id=txt-visitor-desc></SPAN>
+			</LABEL>
+			<LABEL for=role-participant>
+				<INPUT id=role-participant type=radio name=role>
+				<SPAN class=role-title id=txt-participant></SPAN>&nbsp;-&nbsp;<SPAN id=txt-participant-desc></SPAN>
+			</LABEL>
+			<LABEL for=role-moderator>
+				<INPUT id=role-moderator type=radio name=role>
+				<SPAN class=role-title id=txt-moderator></SPAN>&nbsp;-&nbsp;<SPAN id=txt-moderator-desc></SPAN>
+			</LABEL>
+		</FIELDSET>
+		<FIELDSET>
+			<LEGEND id=txt-affiliation></LEGEND>
+			<LABEL for=affiliation-none>
+				<INPUT id=affiliation-none type=radio name=affiliation>
+				<SPAN class=affiliation-title id=txt-none></SPAN>&nbsp;-&nbsp;<SPAN id=txt-none-desc></SPAN>
+			</LABEL>
+			<LABEL for=affiliation-admin>
+				<INPUT id=affiliation-admin type=radio name=affiliation>
+				<SPAN class=affiliation-title id=txt-admin></SPAN>&nbsp;-&nbsp;<SPAN id=txt-admin-desc></SPAN>
+			</LABEL>
+			<LABEL for=affiliation-owner>
+				<INPUT id=affiliation-owner type=radio name=affiliation>
+				<SPAN class=affiliation-title id=txt-owner></SPAN>&nbsp;-&nbsp;<SPAN id=txt-owner-desc></SPAN>
+			</LABEL>
+		</FIELDSET>
+	</TD>
+</TR>
+<TR valign=top height=45>
+	<TD style="padding: 10px; border-top: 2px groove;">
+		<INPUT type=button style="height: 24px; width: 110px; font-size: 11px;" id=btn-default onclick="Refresh()">
+	</TD>
+	<TD align=right style="padding: 10px; border-top: 2px groove;">
+		<INPUT type=submit style="height: 24px; width: 90px; font-size: 11px;" id=btn-ok onclick="SetMode()">
+		<INPUT type=button style="height: 24px; width: 90px; font-size: 11px;" id=btn-cancel onclick="external.wnd.close()">
+		<INPUT type=submit style="height: 24px; width: 90px; font-size: 11px;" id=btn-close onclick="external.wnd.close()">
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

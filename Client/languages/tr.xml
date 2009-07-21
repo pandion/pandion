@@ -1,0 +1,2859 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+LangString DESC_SecCopyRequired     ${LANG_TURKISH} "${PRODUCT} kullanabilmek için bu dosyalar gereklidir."
+LangString DESC_SecCreateStartMenu  ${LANG_TURKISH} "Başlat menusü size ${PRODUCT} programına hızlı erişim sağlar."
+LangString DESC_SecCreateQuickstart ${LANG_TURKISH} "Hızlı başlat araç çubuğuna ${PRODUCT} ekle."
+LangString DESC_SecCreateDesktop    ${LANG_TURKISH} "Masaüstüne kısayol ekle."
+LangString DESC_SecCreateAutoStart  ${LANG_TURKISH} "${PRODUCT} Windows'u başlattığınızda otomatik giriş yapacak."
+LangString ITEM_SecCreateStartMenu  ${LANG_TURKISH} "Başlat Menüsü Kısayolu"
+LangString ITEM_SecCreateQuickstart ${LANG_TURKISH} "Hızlı Başlat Kısayolu"
+LangString ITEM_SecCreateDesktop    ${LANG_TURKISH} "Masaüstü Kısayolu"
+LangString ITEM_SecCreateAutoStart  ${LANG_TURKISH} "${PRODUCT} açılışta başlasın"
+LangString TEXT_WindowsOutdated     ${LANG_TURKISH} "${PRODUCT} kurulamıyor.$\nWindows NT 4 veya daha yükseği gerekli."
+LangString TEXT_AlreadyRunning      ${LANG_TURKISH} "Devam etmeden önce ${PRODUCT} programını kapatın."
+LangString TEXT_InternetExplorer    ${LANG_TURKISH} "${PRODUCT} kurulumuna devam edilemez.$\n$\nMicrosoft Internet Explorer sürüm 5.5 veya daha yukarısı gerekli.  Bu güncelleştirmeyi çekmek ister misiniz?"
+LangString TEXT_DownloadFailed      ${LANG_TURKISH} "Error: Gerekli bileşen çekilemedi. Internet'e bağlı olduğunuzdan emin olun."
+LangString un.TEXT_RemoveProfiles   ${LANG_TURKISH} "Profil ve geçmiş dosyaları silinsin mi?"
+LangString un.TEXT_RemoveDirectory  ${LANG_TURKISH} "Not: $INSTDIR kaldırılamadı."
+-->
+<translation xml:lang="en">
+   <about>
+      <language>Turkish</language>
+
+      <history>
+         <revision>
+            <author>
+               <name>Onur Can ÇAKMAK</name>
+
+               <email>onur.cakmak@gmail.com</email>
+
+               <xmpp>onur.cakmak@jabber.org</xmpp>
+            </author>
+
+            <date>2004-12-18</date>
+
+            <description>First edit.</description>
+         </revision>
+      </history>
+   </about>
+
+   <window name="main">
+      <item id="txt_pleasewait">
+         <innerText>Lütfen bekleyin</innerText>
+      </item>
+
+      <item id="txt_disconnected">
+         <innerText>Sunucu bağlantısı koptu</innerText>
+      </item>
+
+      <item id="txt_reconnect">
+         <innerText>Yeniden bağlan</innerText>
+      </item>
+
+      <item id="txt_discor">
+         <innerText>veya</innerText>
+      </item>
+
+      <item id="txt_connection_settings">
+         <innerText>Bağlantı ayarlarını değiştir</innerText>
+      </item>
+
+      <item id="txt_addtolist">
+         <innerText>Listenize yeni kişi ekleyin</innerText>
+      </item>
+
+      <item id="txt_welcor">
+         <innerText>veya</innerText>
+      </item>
+
+      <item id="txt_config_transport">
+         <innerText>Ağ taşıyıcılarını ayarla</innerText>
+      </item>
+
+      <code id="emoticon_unknown">Bilinmiyor</code>
+
+      <code id="txt_welcome">${0}'a hoşgeldiniz!</code>
+
+      <code id="user_online">${0} bağlandı</code>
+
+      <code id="cl_tooltip">${0} Kişi Listesi</code>
+
+      <code id="autoawaymessage">5+ dakikadır atıl</code>
+
+      <code id="autoxawaymessage">30+ dakikadır atıl</code>
+
+      <code id="import_files">Kişi listeleri</code>
+
+      <code id="import_invalid">Dosya geçerli veri içermiyor.</code>
+
+      <code id="import_no_new">Dosyadaki kişiler zaten listenizde var.</code>
+
+      <code id="import_confirm">Bu kişilerin adresleri listenize eklenecek:
+
+${0}
+
+Eklemek istediğinize emin misiniz?</code>
+
+      <code id="import_aim_not_registered">AIM listenizi almak için, AIM taşıyıcısına kayıt olmalısınız ve taşıyıcı aktif olmalı.
+Araçlar menüsünden Taşıyıcıları seçip taşıyıcı durumunu görebilirsiniz.</code>
+
+      <code id="conference_invitation">${0} sizi ${1} adlı konferans odasina cagiriyor
+
+Odaya katılmak istiyor musunuz?</code>
+
+      <code id="menu_file">&amp;Dosya</code>
+
+      <code id="menu_file_received">&amp;Gelen Dosyalarım</code>
+
+      <code id="menu_file_export">Listeyi &amp;Aktar...</code>
+
+      <code id="menu_file_import">Listeyi A&amp;l...</code>
+
+      <code id="menu_file_change">Durum &amp;mesajımı değiştir...</code>
+
+      <code id="menu_file_ffc">&amp;Sohbete Uygun</code>
+
+      <code id="menu_file_available">&amp;Çevrimiçi</code>
+
+      <code id="menu_file_busy">&amp;Meşgul</code>
+
+      <code id="menu_file_away">U&amp;zakta</code>
+
+      <code id="menu_file_xaway">&amp;Dışarıda</code>
+
+      <code id="menu_file_invisible">&amp;Görünmez</code>
+
+      <code id="menu_file_offline">&amp;Çevrimdışı</code>
+
+      <code id="menu_file_status">&amp;Durumum</code>
+
+      <code id="menu_file_out">Oturumu &amp;kapat</code>
+
+      <code id="menu_file_exit">Ç&amp;ıkış</code>
+
+      <code id="menu_axn">&amp;Eylemler</code>
+
+      <code id="menu_axn_add">&amp;Kişi ekle...</code>
+
+      <code id="menu_axn_addgroup">&amp;Grup ekle...</code>
+
+      <code id="menu_axn_join">&amp;Konferans odasına katıl...</code>
+
+      <code id="menu_axn_create">K&amp;onferans odası yarat...</code>
+
+      <code id="menu_axn_password">Şifremi &amp;değiştir...</code>
+
+      <code id="menu_axn_profile">&amp;Profilimi değiştir...</code>
+
+      <code id="menu_axn_avatar">&amp;Resmimi değiştir...</code>
+
+      <code id="menu_tool">&amp;Araçlar</code>
+
+      <code id="menu_tool_transport">&amp;Taşıyıcılar</code>
+
+      <code id="menu_tool_head">&amp;Haberler ve uyarılar</code>
+
+      <code id="menu_tool_plugin">&amp;Eklentiler</code>
+
+      <code id="menu_tool_admin">Sunucu &amp;yönetimi</code>
+
+      <code id="menu_tool_traffic">&amp;Ağ trafiği</code>
+
+      <code id="menu_tool_view">&amp;Görünüm</code>
+
+      <code id="menu_tool_detailed">&amp;Detaylı</code>
+
+      <code id="menu_tool_compact">&amp;Küçük</code>
+
+      <code id="menu_tool_language">&amp;Dil</code>
+
+      <code id="menu_tool_aot">&amp;Her zaman üstte</code>
+
+      <code id="menu_tool_settings">&amp;Ayarlar</code>
+
+      <code id="menu_help">&amp;Yardım</code>
+
+      <code id="menu_help_manual">&amp;Çevrimiçi Yardım</code>
+
+      <code id="menu_help_forum">&amp;Destek forumu</code>
+
+      <code id="menu_help_contact">&amp;Bize ulaşın</code>
+
+      <code id="menu_help_about">&amp;Hakkında</code>
+
+      <code id="menu_tray_about">${0} H&amp;akkında</code>
+
+      <code id="menu_tray_settings">&amp;Ayarlar</code>
+
+      <code id="wnd_autoupdate">${0} Güncelleniyor</code>
+
+      <code id="wnd_vcard_edit">Kullanıcı Bilgisi</code>
+
+      <code id="wnd_about">${0} Hakkında</code>
+
+      <code id="wnd_signup">Kullanıcı Kayıdı - ${0}</code>
+
+      <code id="wnd_adduser">Kişi Bul / Ekle</code>
+
+      <code id="wnd_avatar">Resim Değiştir</code>
+
+      <code id="wnd_room_browse">Konferans Odaları</code>
+
+      <code id="wnd_room_create">Konferans Odası Yarat</code>
+
+      <code id="wnd_conference_invite">Yeni Kişi Davet Et</code>
+
+      <code id="wnd_conference_other">Diğer Konferans Servisi</code>
+
+      <code id="wnd_console">Konsol</code>
+
+      <code id="wnd_emoticon_download">Yeni Surat İndir</code>
+
+      <code id="wnd_emoticon_list">Suratlar</code>
+
+      <code id="wnd_emoticon_view">Surat Detayları</code>
+
+      <code id="wnd_file_send">Dosya Gönderiliyor: ${0}</code>
+
+      <code id="wnd_file_recv">${0} Dosya Gönderiyor</code>
+
+      <code id="wnd_group_message">Grup Mesajı</code>
+
+      <code id="wnd_transport_list">Taşıyıcılar</code>
+
+      <code id="wnd_transport_other">Diğer Taşıyıcı</code>
+
+      <code id="wnd_headlines">Haber Görüntüleyici</code>
+
+      <code id="wnd_history">${0} - Mesaj Geçmişi</code>
+
+      <code id="wnd_plugin_list">Eklentiler</code>
+
+      <code id="wnd_plugins">Eklentiler</code>
+
+      <code id="wnd_password">Şifre Değiştir</code>
+
+      <code id="wnd_settings">Ayarlar</code>
+
+      <code id="wnd_admin_server">Sunucu Yönetimi</code>
+
+      <code id="wnd_status">Durum Mesajı</code>
+
+      <code id="wnd_vcard_view">Kullanıcı Bilgisi</code>
+
+      <code id="wnd_group_create">Grup Yarat</code>
+
+      <code id="wnd_group_rename">Grubu yeniden adlandır</code>
+
+      <code id="wnd_contact_rename">Kişiyi yeniden adlandır</code>
+
+      <code id="wnd_authrequest">Onay İsteği</code>
+
+      <code id="wnd_login">Giriş - ${0}</code>
+
+      <code id="wnd_extension_download">${0} Kuruluyor</code>
+
+      <code id="wnd_background_list">Arkaplanlar</code>
+
+      <code id="wnd_background_download">Arkaplan indir</code>
+
+      <code id="msg_emoticon_install">Bu surat stili zaten kurulu.</code>
+
+      <code id="msg_received_files">Alınan dosyalar klasörü silinmiş.</code>
+
+      <code id="msg_plugin_install">Bu eklentiyi kurmak istiyor musunuz?
+
+İsim: ${0}
+Açıklama: ${1}</code>
+
+      <code id="msg_plugin_exists">Bu eklenti zaten kurulu.</code>
+
+      <code id="msg_expired">Programın demo sürümünün kullanım süresi bitti.</code>
+
+      <code id="msg_cl_adding">${0} listenize eklendi.</code>
+
+      <code id="msg_cl_added">${0} sizi listesine ekledi.</code>
+
+      <code id="msg_cl_removed">${0} sizi listesinden sildi.</code>
+
+      <code id="msg_blocked">Bu kişi sizi engellemiş.</code>
+
+      <code id="msg_autherror">Giriş yapılamıyor. Bunun sebepleri şunlar olabilir:
+
+- Yanlış şifre girdiniz
+- Böyle bir kulanıcı yok
+
+Lütfen tekrar deneyin.</code>
+
+      <code id="menu_message">Mesaj</code>
+
+      <code id="menu_filetransfer">Dosya Transferi</code>
+
+      <code id="menu_room_create">Yeni Oda Yarat</code>
+
+      <code id="menu_room_invite">Konferans odasına davet et</code>
+
+      <code id="menu_rename">Yeniden adlandır</code>
+
+      <code id="menu_block">Engelle</code>
+
+      <code id="menu_delete">Sil</code>
+
+      <code id="menu_group_create">Yeni grup yarat</code>
+
+      <code id="menu_group_merge">Birleştir</code>
+
+      <code id="menu_group_move">Taşı</code>
+
+      <code id="menu_group_copy">Kopyala</code>
+
+      <code id="menu_request">Yeniden onay iste</code>
+
+      <code id="menu_history">Geçmiş</code>
+
+      <code id="menu_profile">Profil</code>
+
+      <code id="cl_waiting_one">1 okunmamış mesajınız var</code>
+
+      <code id="cl_waiting_multiple">${0} okunmamış mesajınız var</code>
+
+      <code id="cl_error_notexist">Böyle bir adres yok.</code>
+
+      <code id="cl_error_cannotadd">${0} Listenize eklenemedi.
+${1}</code>
+
+      <code id="cl_default_group">Kişiler</code>
+
+      <code id="cl_group_expand">Çevrimdışı kişileri göster</code>
+
+      <code id="cl_group_compact">Çevrimdışı kişileri gizle</code>
+
+      <code id="cl_group_rename">Grubu yeniden adlandır</code>
+
+      <code id="cl_group_message">Mesaj yayınla</code>
+
+      <code id="cl_room_create">Yeni oda yarat</code>
+
+      <code id="cl_room_invite">Konferans odasına davet et</code>
+
+      <code id="cl_group_empty">Bu grupta çevrimiçi kişi yok.</code>
+
+      <code id="cl_status_empty">Durum mesajı yok</code>
+
+      <code id="cl_status_offline">Çevrimdışı</code>
+
+      <code id="cl_status_awaiting">Onay Bekleniyor</code>
+
+      <code id="cl_status_unknown">Bilinmeyen Durum</code>
+
+      <code id="cl_status_waiting_one">1 okunmamış mesaj</code>
+
+      <code id="cl_status_waiting_multiple">${0} okunmamış mesaj</code>
+
+      <code id="cl_tooltip_offline">Adres: ${0}</code>
+
+      <code id="cl_contact_remove_group">Kullanıcıyı bu grupdan silmek istediğinize emin misiniz?</code>
+
+      <code id="cl_contact_remove_list">Kullanıcıyı listenizden silmek istediğinize emin misiniz?</code>
+
+      <code id="cl_link_open">Gezginde aç</code>
+
+      <code id="cl_link_copy">Bağlantıyı kopyala</code>
+
+      <code id="cl_link_favorite">Sık kullanılanlara ekle</code>
+
+      <code id="cl_ffc">Sohbete Uygun</code>
+
+      <code id="cl_available">Çevrimiçi</code>
+
+      <code id="cl_busy">Meşgul</code>
+
+      <code id="cl_away">Uzak</code>
+
+      <code id="cl_xaway">Dışarıda</code>
+
+      <code id="cl_invisible">Görünmez</code>
+
+      <code id="cl_tooltip_online">Adres: ${0}
+Kaynak: ${1}</code>
+   </window>
+
+   <window name="about">
+      <item id="btn_credits">
+         <value>Yazanlar &gt;&gt;</value>
+      </item>
+
+      <item id="btn_copyright">
+         <value>Yazanlar &gt;&gt;</value>
+      </item>
+
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="copy_darkproject">
+         <innerHTML>Simgelerin bir çoğu ve suratlar copyright&amp;copy; 2001 Greg Fleming.</innerHTML>
+      </item>
+
+      <item id="copy_rsa">
+         <innerHTML>MD5 Mesaj-Özümleme Algoritması kullanır. Copyright RSA Data Security, Inc.</innerHTML>
+      </item>
+
+      <item id="copy_dns">
+         <innerHTML>BIND temellidir. Copyright Internet Software Consortium, Inc.</innerHTML>
+      </item>
+
+      <item id="txt_copyright">
+         <innerHTML>Copyright &amp;copy;</innerHTML>
+      </item>
+
+      <code id="copy_basis">${0} Temellidir. Copyright &amp;copy; ${1} ${2}.</code>
+   </window>
+
+   <window name="auth_invitation">
+      <item id="btn_view">
+         <value>Profil Bilgisini Görüntüle</value>
+      </item>
+
+      <item id="btn_deny">
+         <value>Reddet</value>
+      </item>
+
+      <item id="btn_accept">
+         <value>Kabul Et</value>
+      </item>
+
+      <item id="txt_from">
+         <innerText>Onay isteği:</innerText>
+      </item>
+
+      <item id="txt_reason">
+         <innerText>Sebep:</innerText>
+      </item>
+
+      <item id="txt_add">
+         <innerText>Kullanıcıyı listeme ekle</innerText>
+      </item>
+   </window>
+
+   <window name="admin_users">
+      <item id="btn_refresh">
+         <value>Yenile</value>
+      </item>
+
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="txt_desc">
+         <innerText>Mesaj göndermek için bir hesaba tıklayın. Diğer seçenekler için sağ klikleyin.</innerText>
+      </item>
+
+      <code id="add_to_list">Listeye ekle</code>
+
+      <code id="tooltip_with">Adres: ${0}
+Kaynak: ${1}
+Çavrimiçi zamanı: ${2}</code>
+
+      <code id="tooltip_without">Adres: ${0}
+Çevrimiçi zamanı: ${1}</code>
+
+      <code id="loading">Yükleniyor...</code>
+
+      <code id="invalid_data">Geçersiz veri alındı.</code>
+
+      <code id="server_error">Sunucu hatası:</code>
+
+      <code id="server_failed">Çevrimiçi kullanıcı listesi alınamadı.&lt;BR&gt;Lütfen erişiminiz olup olmadığını kontrol edin.</code>
+
+      <code id="user">1 kullanıcı çevrimiçi</code>
+
+      <code id="users">${0} kullanıcı çevrimiçi</code>
+   </window>
+
+   <window name="admin">
+      <item id="btn_view">
+         <value>Tüm çevrimiçi kullanıcıları görüntüle</value>
+      </item>
+
+      <item id="btn_close">
+         <value>Kapat</value>
+      </item>
+
+      <item id="admin_btn_wall">
+         <value>Gönder</value>
+      </item>
+
+      <item id="admin_btn_motd">
+         <value>Gönder</value>
+      </item>
+
+      <item id="txt_wall_desc">
+         <innerText>Bu uyarı şu an çevrimiçi olan kullanıcılara gönderilecek.</innerText>
+      </item>
+
+      <item id="txt_motd_desc">
+         <innerText>Bu uyarı kullanıcılar giriş yaptığında gönderilecek.</innerText>
+      </item>
+
+      <item id="txt_wall">
+         <innerText>Mesaj yayınla</innerText>
+      </item>
+
+      <item id="txt_motd">
+         <innerText>Günün mesajı</innerText>
+      </item>
+
+      <item id="txt_view">
+         <innerText>Sunucuya kimin bağlı olduğuna bak.</innerText>
+      </item>
+
+      <item id="txt_desc">
+         <innerText>Araçları sunucu yönetimi ve sunucuyu izlemek için kullanabilirsiniz.</innerText>
+      </item>
+
+      <item id="txt_users">
+         <innerText>Kullanıcılar</innerText>
+      </item>
+
+      <code id="wnd_users">Çevrimiçi Kullanıcılar</code>
+   </window>
+
+   <window name="console">
+      <item id="btn_clear">
+         <value>Çıktıyı Temizle</value>
+      </item>
+
+      <item id="btn_send">
+         <value>Gönder</value>
+      </item>
+
+      <item id="btn_iq">
+         <value>IQ</value>
+      </item>
+
+      <item id="btn_presence">
+         <value>Görünüm</value>
+      </item>
+
+      <item id="btn_message">
+         <value>Mesaj</value>
+      </item>
+
+      <item id="txt_traffic">
+         <innerText>Ağ trafiği:</innerText>
+      </item>
+
+      <item id="txt_break">
+         <innerText>Satır atla</innerText>
+      </item>
+
+      <item id="txt_input">
+         <innerText>XML girişi:</innerText>
+      </item>
+
+      <code id="toggle_on">Hata Ayıklama açık</code>
+
+      <code id="toggle_off">Hata Ayıklama kapalı</code>
+
+      <code id="valid_xml">Giriş geçerli XML olmalı. Sadece boşluk veya düz metin olamaz.</code>
+   </window>
+
+   <window name="headline_log">
+      <item id="btn_close">
+         <value>Kapat</value>
+      </item>
+
+      <item id="txt_title">
+         <innerText>Uyarılar ve Haberler</innerText>
+      </item>
+
+      <item id="txt_desc">
+         <innerText>Özel uyarılar siz haber veya kısa bilgi aldığınızda gösterilir.</innerText>
+      </item>
+
+      <item id="txt_empty">
+         <innerText>Hiç uyarı veya haber alınmadı.</innerText>
+      </item>
+
+      <item id="alertonlinelabel">
+         <innerText>Biri çevrimiçi olduğunda uyarı göster</innerText>
+      </item>
+
+      <code id="read_more">Devamı...</code>
+   </window>
+
+   <window name="avatar">
+      <item id="btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="btn_custom">
+         <value>Özel Resim...</value>
+      </item>
+
+      <item id="txt_desc">
+         <innerText>Profilinizi tanımlayacak resimi seçin.</innerText>
+      </item>
+
+      <item id="txt_loading">
+         <innerText>Yükleniyor...</innerText>
+      </item>
+
+      <code id="error_size">Resim yüklenemiyor. Dosya büyüklüğü 8 kb'den fazla.</code>
+
+      <code id="error_empty">Resim yüklenemiyor. Dosya boş.</code>
+
+      <code id="error_load">Uyarı: Resimler yüklenemiyor.
+
+${0}</code>
+
+      <code id="menu_use">Bu resimi kullan</code>
+
+      <code id="menu_saveas">Farklı Kaydet...</code>
+
+      <code id="menu_delete">Sil</code>
+
+      <code id="wnd_select">Resim seçin</code>
+
+      <code id="saveas_files">Resim dosyaları</code>
+
+      <code id="image_files">8kB'den küçük resim dosyaları</code>
+
+      <code id="all_files">Tüm dosyalar</code>
+   </window>
+
+   <window name="mode_select">
+      <item id="ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="btn_preset">
+         <value>Öntanımlı mesajlar...</value>
+      </item>
+
+      <item id="txt_desc">
+         <innerText>Diğer kullanıcılar siz cevap veremediğiniz zaman bu mesajı okuyabilirler:</innerText>
+      </item>
+
+      <code id="btn_1">Yürüyüş</code>
+
+      <code id="btn_2">Telefon</code>
+
+      <code id="btn_3">Uyku</code>
+
+      <code id="btn_4">Yemek</code>
+
+      <code id="btn_5">Toplantı</code>
+
+      <code id="btn_6">İçki</code>
+
+      <code id="btn_7">Odak</code>
+
+      <code id="btn_8">Çalışma</code>
+
+      <code id="btn_9">Okul</code>
+
+      <code id="msg_1">Dışarda yürüyüşteyim.</code>
+
+      <code id="msg_2">Telefondayım.</code>
+
+      <code id="msg_3">Uyuyorum.</code>
+
+      <code id="msg_4">Yemek zamanı!</code>
+
+      <code id="msg_5">Toplantıdayım.</code>
+
+      <code id="msg_6">Bi' iki içki molası :)</code>
+
+      <code id="msg_7">Sessiz ol, kafamı toplamam lazım</code>
+
+      <code id="msg_8">Çalış...</code>
+
+      <code id="msg_9">Okuldayım.</code>
+   </window>
+
+   <window name="rename_group">
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="txt_newname">
+         <innerText>Yeni ad:</innerText>
+      </item>
+   </window>
+
+   <window name="rename_user">
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="txt_newname">
+         <innerText>Yeni ad:</innerText>
+      </item>
+   </window>
+
+   <window name="group_create">
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="txt_newname">
+         <innerText>Yeni ad:</innerText>
+      </item>
+   </window>
+
+   <window name="pass_change">
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="txt_confirm">
+         <innerText>Şifreyi Onayla:</innerText>
+      </item>
+
+      <item id="txt_password">
+         <innerText>Yeni Şifre:</innerText>
+      </item>
+
+      <code id="no_match">Şifreler uymuyor.
+
+Yeni şifreyi iki alana da girin.</code>
+
+      <code id="no_pass">Yeni şifreyi girin.</code>
+   </window>
+
+   <window name="emoset_view">
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="set_version">
+         <innerText>Yükleniyor...</innerText>
+      </item>
+
+      <item id="header-images">
+         <innerText>Resimler</innerText>
+      </item>
+
+      <item id="header-sounds">
+         <innerText>Sesler</innerText>
+      </item>
+
+      <item id="header-markup">
+         <innerText>Yazı işaretleme</innerText>
+      </item>
+
+      <code id="empty">Bu surat stili boş.</code>
+
+      <code id="file_error">Dosya Hatası</code>
+
+      <code id="cannot_load">Suratlar yüklenemedi.</code>
+
+      <code id="count_one">1 surat</code>
+
+      <code id="count_multiple">${0} surat</code>
+   </window>
+
+   <window name="emoticon_download">
+      <item id="btn_close">
+         <value>Kapat</value>
+      </item>
+
+      <item id="txt_title">
+         <innerText>Surat İndir</innerText>
+      </item>
+
+      <item id="txt_subtitle">
+         <innerText>Surat kataloğunu görüntülemek için Internet bağlantısı gerekir.</innerText>
+      </item>
+
+      <item id="txt_loading">
+         <innerText>Yükleniyor...</innerText>
+      </item>
+
+      <code id="install">Kur</code>
+
+      <code id="cannot_download">Hata: Suratlar indirilemedi.
+${0}</code>
+
+      <code id="invalid_xml">Verikaynağı geçersiz veri içeriyor.</code>
+
+      <code id="no_new_styles">Yeni surat yok.</code>
+   </window>
+
+   <window name="emoticon_list">
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="txt_title">
+         <innerText>Suratlar</innerText>
+      </item>
+
+      <item id="txt_subtitle">
+         <innerText>Listeden bir surat stili seçin.</innerText>
+      </item>
+
+      <item id="txt_loadingemo">
+         <innerText>Yükleniyor...</innerText>
+      </item>
+
+      <item id="btn_emoticon_download">
+         <value>Daha fazla surat</value>
+      </item>
+
+      <code id="emoticon_details">Detayları göster</code>
+
+      <code id="emoticon_remove">Sil</code>
+
+      <code id="emoticon_confirm">Bu surat stilini silmek istediğinizden emin misiniz?</code>
+
+      <code id="no_emoticons">Hiç surat bulunamadı.</code>
+   </window>
+
+   <window name="background_download">
+      <item id="btn_close">
+         <value>Kapat</value>
+      </item>
+
+      <item id="txt_title">
+         <innerText>Arkaplan indir</innerText>
+      </item>
+
+      <item id="txt_subtitle">
+         <innerText>Arkaplan kataloğunu görüntülemek için Internet bağlantısı gerekir.</innerText>
+      </item>
+
+      <item id="txt_loading">
+         <innerText>Yükleniyor...</innerText>
+      </item>
+
+      <code id="install">Kur</code>
+
+      <code id="cannot_download">Hata: Arkaplanlar indirilemedi.
+${0}</code>
+
+      <code id="invalid_xml">Verikaynağı geçersiz veri içeriyor.</code>
+
+      <code id="no_new_styles">Yeni arkaplan yok.</code>
+   </window>
+
+   <window name="background_list">
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="txt_title">
+         <innerText>Varolan Arkaplanlar</innerText>
+      </item>
+
+      <item id="txt_subtitle">
+         <innerText>Arkaplan ekle / kaldır.</innerText>
+      </item>
+
+      <item id="btn_background_download">
+         <value>Daha fazla arkaplan</value>
+      </item>
+
+      <item id="txt_background_empty">
+         <innerText>Hiç bir arkaplan kurulmamış.</innerText>
+      </item>
+
+      <code id="background_uninstall">Sil</code>
+
+      <code id="background_confirm">Bu arkaplanı silmek istediğinize emin misiniz?</code>
+   </window>
+
+   <window name="plugin_list">
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="txt_title">
+         <innerText>Kurulu eklentiler</innerText>
+      </item>
+
+      <item id="txt_subtitle">
+         <innerText>Eklenti ekle / kaldır.</innerText>
+      </item>
+
+      <item id="btn_plugin_download">
+         <value>Daha fazla eklenti</value>
+      </item>
+
+      <item id="txt_plugin_empty">
+         <innerText>Hiçbir eklenti kurulmamış.</innerText>
+      </item>
+
+      <code id="plugin_uninstall">Kaldır</code>
+
+      <code id="plugin_confirm">Bu eklentiyi kaldırmak istediğinize emin misiniz?</code>
+   </window>
+
+   <window name="plugins">
+      <item id="btn_close">
+         <value>Kapat</value>
+      </item>
+
+      <item id="txt_title">
+         <innerText>Eklenti indir</innerText>
+      </item>
+
+      <item id="txt_subtitle">
+         <innerText>Eklenti kataloğunu görüntülemek için Internet bağlantısı gerekir.</innerText>
+      </item>
+
+      <item id="txt_loading">
+         <innerText>Yükleniyor...</innerText>
+      </item>
+
+      <code id="install">Kur</code>
+
+      <code id="cannot_download">Hata: Eklenti indirilemedi.
+${0}</code>
+
+      <code id="invalid_xml">Veri kaynağı geçerli XML verisi içermiyor.</code>
+
+      <code id="no_new_plugins">Yeni eklenti yok.</code>
+   </window>
+
+   <window name="autoupdate">
+      <code id="download_confirm">Bu programın yeni sürümü çıkmış: ${0} ${1}
+
+Bu güncellemeyi çekmek ister misiniz?</code>
+
+      <item id="btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="btn_install">
+         <value>Kur</value>
+      </item>
+
+      <item id="txt_status">
+         <innerText>Bağlanıyor...</innerText>
+      </item>
+
+      <code id="downloading">İndiriliyor...</code>
+
+      <code id="complete">İndirme tamamlandı. Kuruluma başlamak için Kur'a basın.</code>
+   </window>
+
+   <window name="conference_create">
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="txt_instructions">
+         <innerText>Her konferans odasının kendine özgü bir adresi vardır. Konferans servisi adresini veya odaya özgü isimi girin.</innerText>
+      </item>
+
+      <item id="txt_service">
+         <innerText>Servis adresi:</innerText>
+      </item>
+
+      <item id="txt_example">
+         <innerText>Örnek: konferans.ornek.com</innerText>
+      </item>
+
+      <item id="txt_room">
+         <innerText>Oda Adı:</innerText>
+      </item>
+
+      <item id="txt_preview">
+         <innerText>Konferans odası adresi:</innerText>
+      </item>
+
+      <code id="incomplete">Tüm alanları tamamlayın...</code>
+   </window>
+
+   <window name="groupmessage">
+      <item id="btn_send">
+         <value>Gönder</value>
+      </item>
+
+      <item id="btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="txt_sendto">
+         <innerText>Bu kişilere gönder:</innerText>
+      </item>
+
+      <item id="txt_normal">
+         <innerText>Normal mesaj</innerText>
+      </item>
+
+      <item id="txt_alert">
+         <innerText>Uyarı</innerText>
+      </item>
+
+      <item id="txt_type">
+         <innerText>Mesaj tipi</innerText>
+      </item>
+
+      <item id="txt_attach">
+         <innerText>Adres ekle</innerText>
+      </item>
+
+      <item id="txt_message">
+         <innerText>Mesaj</innerText>
+      </item>
+   </window>
+
+   <window name="extension_download">
+      <item id="btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="txt_status">
+         <innerText>Bağlanıyor...</innerText>
+      </item>
+
+      <code id="downloading">İndiriliyor...</code>
+   </window>
+
+   <window name="file_recv">
+      <item id="btn_close">
+         <value>Kapat</value>
+      </item>
+
+      <item id="btn_accept">
+         <value>Kabul et</value>
+      </item>
+
+      <item id="btn_abort">
+         <value>Durdur</value>
+      </item>
+
+      <item id="btn_open">
+         <value>Aç</value>
+      </item>
+
+      <item id="txt_timeleft">
+         <innerText>Kalan Süre:</innerText>
+      </item>
+
+      <item id="txt_sender">
+         <innerText>Gönderen:</innerText>
+      </item>
+
+      <item id="txt_filename">
+         <innerText>Dosya:</innerText>
+      </item>
+
+      <item id="txt_location">
+         <innerText>Yer:</innerText>
+      </item>
+
+      <item id="txt_progress">
+         <innerText>İlerleme:</innerText>
+      </item>
+
+      <code id="resume">Dosya var. Devam edilsin mi?
+
+Devam etmek için evet'e basın.
+Üzerine yazmak için hayır'a basın.</code>
+
+      <code id="cannot_overwrite">Dosya üzerine yazılamıyor:
+${0}
+
+${1}</code>
+
+      <code id="incorrect">Transfere başlanamıyor. Yanlış veri alındı.</code>
+
+      <code id="title_saving">${1} dosya, %${0} indirildi</code>
+
+      <code id="lessthanminute">1 dakikadan daha az ${0}/s</code>
+
+      <code id="onehour">1 saat ve</code>
+
+      <code id="hours">${0} saat ve</code>
+
+      <code id="oneminute">1 dakika</code>
+
+      <code id="minutes">${0} dakika</code>
+
+      <code id="speed">${0}/s</code>
+
+      <code id="abort">Transferi durdurmak istediğinize emin misiniz?</code>
+
+      <code id="aborted">Durduruldu</code>
+
+      <code id="finished">Bitti</code>
+
+      <code id="error_timeout">Zaman aşımına uğradı.</code>
+
+      <code id="error_code">Hata kodu: ${0}</code>
+
+      <code id="error_file">Dosya hata kodu: ${0}</code>
+
+      <code id="title_completed">Transfer Tamamlandı - ${0}</code>
+
+      <code id="title_failed">Transfer Başarısız - ${0}</code>
+
+      <code id="error_move">Tamamlanmış dosya taşınamadı:
+${0}
+
+${1}</code>
+
+      <code id="error_failed">Transfer başarısız.</code>
+   </window>
+
+   <window name="file_send">
+      <item id="btn_close">
+         <value>Kapat</value>
+      </item>
+
+      <item id="btn_abort">
+         <value>Durdur</value>
+      </item>
+
+      <item id="txt_timeleft">
+         <innerText>Kalan süre:</innerText>
+      </item>
+
+      <item id="txt_recipient">
+         <innerText>Alıcı:</innerText>
+      </item>
+
+      <item id="txt_filename">
+         <innerText>Dosya adı:</innerText>
+      </item>
+
+      <item id="txt_location">
+         <innerText>Yer:</innerText>
+      </item>
+
+      <item id="txt_progress">
+         <innerText>İlerleme:</innerText>
+      </item>
+
+      <code id="socket">Dosya gönderilemedi.
+Ağ soketi açılamadı.</code>
+
+      <code id="file">Dosya okunamadı:
+${0}</code>
+
+      <code id="filetransfer">Dosya transferi:</code>
+
+      <code id="title_saving">${1}% dosya, %${0} gönderildi</code>
+
+      <code id="lessthanminute">1 dakikadan daha az ${0}/s</code>
+
+      <code id="onehour">1 saat ve</code>
+
+      <code id="hours">${0} saat ve</code>
+
+      <code id="oneminute">1 dakika</code>
+
+      <code id="minutes">${0} dakika</code>
+
+      <code id="speed">${0}/s</code>
+
+      <code id="abort">Transferi durdurmak istediğinize emin misiniz?</code>
+
+      <code id="finished">Tamamlandı</code>
+
+      <code id="aborted">Durduruldu</code>
+
+      <code id="error_denied">Dosya reddedildi.</code>
+
+      <code id="error_timeout">Zaman aşımına uğradı.</code>
+
+      <code id="error_code">Hata kodu: ${0}</code>
+
+      <code id="title_completed">Transfer Tamamlandı - ${0}</code>
+
+      <code id="title_failed">Transfer Başarısız - ${0}</code>
+
+      <code id="error_failed">Transfer başarısız.</code>
+   </window>
+
+   <window name="conference_browse">
+      <item id="btn_close">
+         <value>Kapat</value>
+      </item>
+
+      <item id="btn_other_service">
+         <value>Diğer Servis...</value>
+      </item>
+
+      <item id="btn_create">
+         <value>Konferans Odası Yarat</value>
+      </item>
+
+      <item id="txt_instructions">
+         <innerText>Varolan odalar:</innerText>
+      </item>
+
+      <item id="lbl_empty">
+         <innerText>Boş odaları göster</innerText>
+
+         <accessKey>b</accessKey>
+      </item>
+
+      <item id="lbl_full">
+         <innerText>Dolu odaları göster</innerText>
+
+         <accessKey>d</accessKey>
+      </item>
+
+      <item id="lbl_filter">
+         <innerText>Filtre:</innerText>
+      </item>
+
+      <item id="txt_empty">
+         <innerText>Bu sunucu üstünde hiçbir konferans servisi yok.
+
+"Diğer Servis..." tuşuna basıp başka sunuculardan servis ekleyin.</innerText>
+      </item>
+
+      <item id="txt_disconnected">
+         <innerText>Konferans odalarına katılabilmek için mesajlaşma sunucusuna bağlı olmalısınız.</innerText>
+      </item>
+
+      <code id="empty_filter">Filtreye uyan oda yok</code>
+
+      <code id="empty_no_rooms">Bu servisde oda yok</code>
+
+      <code id="status_connecting">Bağlanılıyor...</code>
+
+      <code id="status_downloading">Konferans odası listesi alınıyor...</code>
+
+      <code id="error_unknown">"${0}" servisi ulaşılamaz. Doğru adresi girdiğinizden emin olun. Daha sonra tekrar deneyin veya başka bir adres girin.</code>
+
+      <code id="error_no_services">"${0}" sunucusu üstünde konferans servisi yok. Sistem yöneticisine başvurun.</code>
+
+      <code id="error_no_new">"${0}" sunucusu üstündeki tüm konferans servisleri zaten listelendi.</code>
+   </window>
+
+   <window name="conference_other">
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="txt_address">
+         <innerText>Adres:</innerText>
+      </item>
+
+      <item id="txt_example">
+         <innerText>Ornek: konferans.ornek.com</innerText>
+      </item>
+
+      <item id="txt_instructions">
+         <innerText>Konferans servisi veya sunucusu adresini girin.</innerText>
+      </item>
+
+      <code id="error_already_exists">"${0}" servisi zaten listelendi. Henüz listelenmemiş konferans sunucusu veya servisi adresini girin.</code>
+   </window>
+
+   <window name="vcard">
+      <code id="save">Uyarı: vCard dosyası kaydedilemedi.
+
+${0}</code>
+
+      <code id="personal">Kullanıcı Detayları</code>
+
+      <code id="system">Sistem Detayları</code>
+
+      <item id="txt_requesting1">
+         <innerText>Sunucudan bilgi isteniyor</innerText>
+      </item>
+
+      <item id="txt_requesting2">
+         <innerHTML>Bu işlem bir dakika sürebilir.&lt;BR&gt;Lütfen bekleyin.</innerHTML>
+      </item>
+
+      <item id="btn_save">
+         <value>vCard olarak kaydet</value>
+      </item>
+
+      <item id="btn_refresh">
+         <value>Yenile</value>
+      </item>
+
+      <item id="btn_close">
+         <value>Kapat</value>
+      </item>
+
+      <item id="btn_undo">
+         <value>Değişiklikleri Geri Al</value>
+      </item>
+
+      <item id="btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="txt_s1">
+         <innerText>Kişisel Bilgi</innerText>
+      </item>
+
+      <item id="txt_s2">
+         <innerText>Ek Detaylar</innerText>
+      </item>
+
+      <item id="txt_s3">
+         <innerText>Ev Adresi</innerText>
+      </item>
+
+      <item id="txt_s4">
+         <innerText>İş</innerText>
+      </item>
+
+      <item id="txt_s5">
+         <innerText>İş Adresi</innerText>
+      </item>
+
+      <item id="txt_s6">
+         <innerText>Sistem</innerText>
+      </item>
+
+      <item id="txt_name">
+         <innerText>İsim</innerText>
+      </item>
+
+      <item id="txt_given">
+         <innerText>Ad:</innerText>
+      </item>
+
+      <item id="txt_middle">
+         <innerText>2. Ad:</innerText>
+      </item>
+
+      <item id="txt_family">
+         <innerText>Soyad:</innerText>
+      </item>
+
+      <item id="txt_nick">
+         <innerText>Takma Ad:</innerText>
+      </item>
+
+      <item id="txt_contact">
+         <innerText>Ulaşım</innerText>
+      </item>
+
+      <item id="txt_email1">
+         <innerText>E-Posta:</innerText>
+      </item>
+
+      <item id="txt_homevoice">
+         <innerText>Telefon:</innerText>
+      </item>
+
+      <item id="txt_homecell">
+         <innerText>Cep:</innerText>
+      </item>
+
+      <item id="txt_homefax">
+         <innerText>Faks:</innerText>
+      </item>
+
+      <item id="txt_additional">
+         <innerText>Ek Detaylar</innerText>
+      </item>
+
+      <item id="txt_age">
+         <innerText>Yaş:</innerText>
+      </item>
+
+      <item id="txt_bday">
+         <innerText>Doğum Günü:</innerText>
+      </item>
+
+      <item id="txt_gender">
+         <innerText>Cinsiyet:</innerText>
+      </item>
+
+      <item id="txt_marital">
+         <innerText>Medeni Durumu:</innerText>
+      </item>
+
+      <item id="txt_url">
+         <innerText>Web sitesi:</innerText>
+      </item>
+
+      <item id="txt_homeaddress">
+         <innerText>Ev Adresi</innerText>
+      </item>
+
+      <item id="txt_homestreet">
+         <innerText>Adres 1:</innerText>
+      </item>
+
+      <item id="txt_homeextadd">
+         <innerText>Adres 2:</innerText>
+      </item>
+
+      <item id="txt_homelocality">
+         <innerText>Şehir:</innerText>
+      </item>
+
+      <item id="txt_homepcode">
+         <innerText>Posta Kodu:</innerText>
+      </item>
+
+      <item id="txt_homeregion">
+         <innerText>Eyalet:</innerText>
+      </item>
+
+      <item id="txt_homecountry">
+         <innerText>Ülke:</innerText>
+      </item>
+
+      <item id="txt_organization">
+         <innerText>Şirket</innerText>
+      </item>
+
+      <item id="txt_orgname">
+         <innerText>Adı:</innerText>
+      </item>
+
+      <item id="txt_orgunit">
+         <innerText>Departman:</innerText>
+      </item>
+
+      <item id="txt_title">
+         <innerText>Konum:</innerText>
+      </item>
+
+      <item id="txt_role">
+         <innerText>Rol:</innerText>
+      </item>
+
+      <item id="txt_workcontact">
+         <innerText>Ulaşım</innerText>
+      </item>
+
+      <item id="txt_email2">
+         <innerText>E-Posta:</innerText>
+      </item>
+
+      <item id="txt_workvoice">
+         <innerText>Phone:</innerText>
+      </item>
+
+      <item id="txt_workcell">
+         <innerText>Cep:</innerText>
+      </item>
+
+      <item id="txt_workfax">
+         <innerText>Faks:</innerText>
+      </item>
+
+      <item id="txt_business_address">
+         <innerText>İş Adresi</innerText>
+      </item>
+
+      <item id="txt_workstreet">
+         <innerText>Adres 1:</innerText>
+      </item>
+
+      <item id="txt_workextadd">
+         <innerText>Adres 2:</innerText>
+      </item>
+
+      <item id="txt_worklocality">
+         <innerText>Şehir:</innerText>
+      </item>
+
+      <item id="txt_workpcode">
+         <innerText>Posta Kodu:</innerText>
+      </item>
+
+      <item id="txt_workregion">
+         <innerText>Eyalet:</innerText>
+      </item>
+
+      <item id="txt_workcountry">
+         <innerText>Ülke:</innerText>
+      </item>
+
+      <item id="txt_client">
+         <innerText>İstemci Bilgisi</innerText>
+      </item>
+
+      <item id="txt_jid">
+         <innerText>Adres:</innerText>
+      </item>
+
+      <item id="txt_res">
+         <innerText>Kaynak:</innerText>
+      </item>
+
+      <item id="txt_time">
+         <innerText>Zaman:</innerText>
+      </item>
+
+      <item id="txt_software">
+         <innerText>Yazılım:</innerText>
+      </item>
+
+      <item id="txt_version">
+         <innerText>Sürüm:</innerText>
+      </item>
+
+      <item id="txt_os">
+         <innerText>İşletim Sistemi:</innerText>
+      </item>
+   </window>
+
+   <window name="transport_list">
+      <item id="btn_other">
+         <value>Diğer Taşıyıcılar...</value>
+      </item>
+
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="txt_title">
+         <innerText>Varolan Taşıyıcılar</innerText>
+      </item>
+
+      <item id="txt_subtitle">
+         <innerText>Taşıyıcılar, diğer mesajlaşma platformlarına bağlantı yaratır.</innerText>
+      </item>
+
+      <item id="transport_connected">
+         <innerHTML>&lt;B&gt;Not:&lt;/B&gt; Taşıyıcıları ayarlamak için mesajlaşma sunucusuna bağlı olmanız gerekir.</innerHTML>
+      </item>
+
+      <item id="transport_unsupported">
+         <innerHTML>&lt;B&gt;Not:&lt;/B&gt; Bağlandığınız sunucuda hiç taşıyıcı bulunmuyor.</innerHTML>
+      </item>
+
+      <item id="msnworkaroundlabel">
+         <innerText>MSN kişilerine takmaadlarını değiştirme izini ver</innerText>
+      </item>
+
+      <code id="status_active">Aktif</code>
+
+      <code id="status_noreg">Kayıt Yapılmadı</code>
+
+      <code id="status_disconnected">Bağlantı Koptu</code>
+
+      <code id="status_connecting">Bağlanıyor...</code>
+
+      <code id="name_unknown">Bilinmeyen Servis</code>
+
+      <code id="error_unknown">"${0}" servisi yok. Doğru adresi girdiğinizden emin olun. Tekrar deneyin veya değişik bir adres girin.</code>
+
+      <code id="error_no_transports">Sunucu "${0}" üstünde hiç taşıyıcı kurulu değil. Daha fazla bilgi için yöneticiye başvurun.</code>
+
+      <code id="error_no_new_transport">"${0}" sunucusundaki tüm taşıyıcılar zaten listelenmiş.</code>
+   </window>
+
+   <window name="transport_other">
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="txt_address">
+         <innerText>Adres:</innerText>
+      </item>
+
+      <item id="txt_example">
+         <innerText>Örneğin: sms.ornek.com</innerText>
+      </item>
+
+      <item id="txt_instructions">
+         <innerText>Taşıyıcı veya sunucu adresi girin.</innerText>
+      </item>
+
+      <code id="error_already_exists">"${0}" servisi zaten listelenmiş. Henüz listelenmemiş sunucu veya taşıyıcı adresi girin.</code>
+   </window>
+
+   <window name="transport_register">
+      <item id="btn_back">
+         <value>&lt; Geri</value>
+      </item>
+
+      <item id="btn_next">
+         <value>İleri &gt;</value>
+      </item>
+
+      <item id="btn_finish">
+         <value>Son</value>
+      </item>
+
+      <item id="btn_cancel">
+         <innerText>İptal</innerText>
+      </item>
+
+      <item id="txt_old_addr">
+         <innerText>Adres:</innerText>
+      </item>
+
+      <item id="txt_old_nick">
+         <innerText>Takma Ad:</innerText>
+      </item>
+
+      <item id="txt_new_addr">
+         <innerText>Adres:</innerText>
+      </item>
+
+      <item id="txt_password">
+         <innerText>Şifre:</innerText>
+      </item>
+
+      <item id="txt_new_nick">
+         <innerText>Takma Ad:</innerText>
+      </item>
+
+      <item id="txt_registered">
+         <innerHTML>Bu taşıyıcıya zaten kayıtlısınız.&lt;BR&gt;Kayıtlı hesabınız:</innerHTML>
+      </item>
+
+      <item id="btn_remove">
+         <value>Taşıyıcıyı Durdur</value>
+      </item>
+
+      <item id="txt_requesting1">
+         <innerText>Sunucuya Erişiliyor</innerText>
+      </item>
+
+      <item id="txt_requesting2">
+         <innerHTML>Bu bir dakika sürebilir.&lt;BR&gt;Lütfen bekleyin.</innerHTML>
+      </item>
+
+      <item id="clickfinish">
+         <innerHTML>Sihirbazi kapamak için, &lt;B&gt;Son&lt;/B&gt;'a basın.</innerHTML>
+      </item>
+
+      <item id="clicknext">
+         <innerHTML>Devam etmek için, &lt;B&gt;İleri&lt;/B&gt;'ye basın.</innerHTML>
+      </item>
+
+      <code id="error_invalid">Geçersiz veri alındı</code>
+
+      <code id="error_server">&lt;B&gt;Sunucu Hatası:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(kod ${1})&lt;BR&gt;&lt;BR&gt;Devam edilemez.</code>
+
+      <code id="error_unknown">&lt;B&gt;Bilinmeyen hata:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(kod ${1})&lt;BR&gt;&lt;BR&gt;Devam edilemez.</code>
+
+      <code id="error_auth">&lt;B&gt;Onay Hatası:&lt;/B&gt;&lt;BR&gt;Hatalı kullanıcı adı veya şifre.&lt;BR&gt;&lt;BR&gt;Devam edilemez.</code>
+
+      <code id="wait">&lt;B&gt;Sunucuya Erişiliyor&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Bu bir dakika kadar sürebilir.&lt;BR&gt;Lütfen bekleyin.&lt;BR&gt;</code>
+
+      <code id="default_window_title">Taşıyıcı Yapılandır</code>
+
+      <code id="default_begin_intro">Bu sihirbaz taşıyıcıyı yapılandırmanıza yardımcı olacak.&lt;BR&gt;Bu taşıyıcı, sizinle diğer mesajlaşma ağları arasındaki bağlantıdır.&lt;BR&gt;Bu yüzden taşıyıcıyı kullanmak için diğer ağda hesaba ihtiyacınız olur.&lt;BR&gt;</code>
+
+      <code id="default_newaccount_instructions">Hesabınızı ve şifrenizi girin.&lt;BR&gt;Ayrıca diğerlerinin görmesi için takma ad girebilirsiniz.&lt;BR&gt;</code>
+
+      <code id="default_newaccount_examples">&amp;nbsp;</code>
+
+      <code id="default_creating_busy">Hesabınız taşıyıcı üstünde kaydediliyor.</code>
+
+      <code id="default_removing_busy">Hesabınız taşıyıcıdan kaldırılıyor..&lt;BR&gt;</code>
+
+      <code id="default_creating_done">Hesap taşıyıcıya başarıyla kaydedildi.</code>
+
+      <code id="default_removing_done">Hesap başarıyla taşıyıcıdan kaldırıldı.</code>
+
+      <code id="msn_window_title">MSN Messenger - Taşıyıcı Yapılandırma</code>
+
+      <code id="msn_begin_intro">Bu sihirbaz MSN taşıyıcısını yapılandırmanızı sağlar.&lt;BR&gt;Bu taşıyıcı sizle MSN hesabınız arasında bağlantıdır.&lt;BR&gt;Bu yüzden bir Microsoft Passport hesabına ihtiyaç duyacaksınız.&lt;BR&gt;</code>
+
+      <code id="msn_newaccount_instructions">MSN adresinizi ve MSN şifrenizi girin.&lt;BR&gt;Ayrıca diğerlerinin görmesi için takma ad girebilirsiniz.&lt;BR&gt;</code>
+
+      <code id="msn_newaccount_examples">Örnekler: birisi@msn.com, birisi@hotmail.com</code>
+
+      <code id="msn_creating_busy">Hesabınız MSN taşıyıcısına kaydediliyor.</code>
+
+      <code id="msn_removing_busy">Hesabınız MSN taşıyıcısından kaldırılıyor.&lt;BR&gt;MSN hesabınızı diğer servislerle kullanabilirsiniz (örn. Hotmail, MSN Explorer, vs.).&lt;BR&gt;</code>
+
+      <code id="msn_creating_done">Hesap başarıyla MSN taşıyıcısına kaydedildi.</code>
+
+      <code id="msn_removing_done">Hesap MSN taşıyıcısından kaldırıldı.</code>
+
+      <code id="icq_window_title">ICQ - Taşıyıcı yapılandırma</code>
+
+      <code id="icq_begin_intro">Bu sihirbaz ICQ taşıyıcısını yapılandırmanızı sağlar.&lt;BR&gt;Bu taşıyıcı sizle ICQ hesabınız arasında bağlantıdır.&lt;BR&gt;Bu yüzden bir ICQ hesabına ihtiyaç duyacaksınız.&lt;BR&gt;</code>
+
+      <code id="icq_newaccount_instructions">ICQ numaranızı ve ICQ şifrenizi girin.&lt;BR&gt;Ayrıca diğerlerinin görmesi için takma ad girebilirsiniz.&lt;BR&gt;</code>
+
+      <code id="icq_newaccount_examples">Örnekler: 39230793, 158525087</code>
+
+      <code id="icq_creating_busy">Hesabınız ICQ taşıyıcısına kaydediliyor.</code>
+
+      <code id="icq_removing_busy">Hesabınız ICQ taşıyıcısından kaldırılıyor.&lt;BR&gt;</code>
+
+      <code id="icq_creating_done">Hesap başarıyla ICQ taşıyıcısına kaydedildi.</code>
+
+      <code id="icq_removing_done">Hesap ICQ taşıyıcısından başarıyla kaldırıldı.</code>
+
+      <code id="yahoo_window_title">Yahoo! Messenger - Taşıyıcı Yapılandırma</code>
+
+      <code id="yahoo_begin_intro">Bu sihirbaz Yahoo! taşıyıcısını yapılandırmanızı sağlar.&lt;BR&gt;Bu taşıyıcı sizle Yahoo! hesabınız arasında bağlantıdır.&lt;BR&gt;Bu yüzden bir Yahoo! hesabına ihtiyaç duyacaksınız.&lt;BR&gt;</code>
+
+      <code id="yahoo_newaccount_instructions">Yahoo! kullanıcı adınızı ve Yahoo! şifrenizi girin.&lt;BR&gt;</code>
+
+      <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+
+      <code id="yahoo_creating_busy">Hesabınız Yahoo! taşıyıcısına kaydediliyor.</code>
+
+      <code id="yahoo_removing_busy">Hesabınız Yahoo! taşıyıcısından kaldırılıyor.&lt;BR&gt;Yahoo! hesabınızı diğer servislerle kullanabilirsiniz (örn. Yahoo! mail, Yahoo! Messenger, vs.).&lt;BR&gt;</code>
+
+      <code id="yahoo_creating_done">Hesap başarıyla Yahoo! taşıyıcısına kaydedildi.</code>
+
+      <code id="yahoo_removing_done">Hesap Yahoo! taşıyıcısından başarıyla kaldırıldı.</code>
+
+      <code id="aim_window_title">AOL Instant Messenger - Taşıyıcı Yapılandırma</code>
+
+      <code id="aim_begin_intro">Bu sihirbaz AOL IM taşıyıcısını yapılandırmanızı sağlar.&lt;BR&gt;Bu taşıyıcı sizle AOL IM hesabınız arasında bağlantıdır.&lt;BR&gt;Bu yüzden bir AOL IM hesabına ihtiyaç duyacaksınız.&lt;BR&gt;</code>
+
+      <code id="aim_newaccount_instructions">AOL IM kullanıcı adınızı ve şifrenizi dirin.&lt;BR&gt;</code>
+
+      <code id="aim_newaccount_examples">&amp;nbsp;</code>
+
+      <code id="aim_creating_busy">Hesabınız AOL IM taşıyıcısına kaydediliyor.</code>
+
+      <code id="aim_removing_busy">Hesabınız AOL IM taşıyıcısından kaldırılıyor.&lt;BR&gt;AOL IM hesabınızı diğer servislerle kullanabilirsiniz.&lt;BR&gt;</code>
+
+      <code id="aim_creating_done">Hesap başarıyla AOL IM taşıyıcısına kaydedildi.</code>
+
+      <code id="aim_removing_done">Hesap AOL IM yaşıyıcısından başarıyla kaldırıldı.</code>
+   </window>
+
+   <window name="history">
+      <item id="btn_go">
+         <innerText>Git</innerText>
+      </item>
+
+      <item id="txt_save">
+         <innerText>Kaydet</innerText>
+      </item>
+
+      <item id="txt_print">
+         <innerText>Yazdır</innerText>
+      </item>
+
+      <item id="txt_erase">
+         <innerText>Sil</innerText>
+      </item>
+
+      <item id="txt_history">
+         <innerText>Mesaj Geçmişi</innerText>
+      </item>
+
+      <item id="txt_search">
+         <innerText>Arama:</innerText>
+      </item>
+
+      <code id="loading">Mesaj geçmişi yükleniyor...</code>
+
+      <code id="empty">Mesaj geçmişi boş.</code>
+
+      <code id="error_load">Mesaj geçmişi yüklenemedi:
+${0}</code>
+
+      <code id="one_message">1 mesaj</code>
+
+      <code id="many_messages">${0} mesaj</code>
+
+      <code id="tooltip_save">Bugünün mesajlarını kaydet</code>
+
+      <code id="tooltip_print">Bugünün mesajlarını yazdır</code>
+
+      <code id="tooltip_delete">Bugünün mesajlarını sil</code>
+
+      <code id="error_open">Hata: Mesaj geçmişi açılamadı.</code>
+
+      <code id="error_read">Hata: Mesaj geçmişi okunamadı.</code>
+
+      <code id="delete_confirm">${0} için tüm mesaj geçmişini silmek istediğinizden emin misiniz?</code>
+
+      <code id="delete_confirm_date">${0} tarihli tüm mesajları silmek istediğinize emin misiniz?</code>
+
+      <code id="delete_cannot">Geçmiş dosyası silinemiyor: ${0}
+
+Hiç bir mesaj silinmedi.</code>
+
+      <code id="delete_cannot_temp">Geçici dosya yaratılamıyor: ${0}
+
+Hiç bir mesaj silinmedi.</code>
+
+      <code id="delete_cannot_open">Geçmiş açılamadı: ${0}
+
+Hiç bir mesaj silinmedi.</code>
+
+      <code id="delete_cannot_read">Geçmiş okunamadı: ${0}
+
+Hiç bir mesaj silinmedi.</code>
+
+      <code id="delete_cannot_write">Geçici dosyaya yazılamadı: ${0}
+
+Hiç bir mesaj silinmedi.</code>
+
+      <code id="error_print">Hiç bir şey yazdırılamadı.
+Mesaj geçmişi yok.</code>
+
+      <code id="error_save">Mesaj geçmişi kaydedilemedi.
+${0}</code>
+   </window>
+
+   <window name="chat-messages">
+      <code id="copy">Kopyala</code>
+
+      <code id="copyall">Hepsini Kopyala</code>
+
+      <code id="clear">Temizle</code>
+
+      <code id="selectall">Tümünü Seç</code>
+   </window>
+
+   <window name="chat-container">
+      <item id="btn-emoticons">
+         <title>Ne düşündüğünüzü veya yaptığınızı gösterin</title>
+
+         <accessKey>e</accessKey>
+      </item>
+
+      <item id="btn-font">
+         <title>Yazı tipini ve rengini değiştir</title>
+
+         <accessKey>f</accessKey>
+      </item>
+
+      <item id="btn-background">
+         <title>Değişik bir arkaplan seçin</title>
+
+         <accessKey>b</accessKey>
+      </item>
+
+      <item id="txt-emoticons">
+         <innerText>Suratlar</innerText>
+      </item>
+
+      <item id="txt-font">
+         <innerText>Yazıtipi</innerText>
+      </item>
+
+      <item id="txt-background">
+         <innerText>Arkaplan</innerText>
+      </item>
+
+      <item id="btn-send">
+         <value>Gönder</value>
+      </item>
+
+      <code id="msg_typing">${0} mesaj yazıyor.</code>
+
+      <code id="unknown">${0} cevap veremeyebilir çünkü durumu 'bilinmiyor'</code>
+
+      <code id="lastonline">Son çevrimiçi olduğu zaman: ${0}</code>
+
+      <code id="windowtitle">${0} - Konuşma</code>
+
+      <code id="choose_emoticons">Bu temadaki tüm suratları gör veya değişik bir surat stili seç</code>
+
+      <code id="background_no">Arkaplan yok</code>
+
+      <code id="background_list">Varolan arkaplanlar...</code>
+
+      <code id="close_many_tabs">Tüm konuşmaları kapatmak istiyor musunuz?</code>
+
+      <code id="close_recent_message">Bir mesaj aldınız.
+
+Bu konulmayı kapatmak istiyor musunuz?</code>
+
+      <code id="menu_file_received">&amp;Alınan Dosyaları Aç</code>
+
+      <code id="menu_file_history">Mesaj &amp;Geçmişi</code>
+
+      <code id="menu_file_close">&amp;Konuşmayı Kapat</code>
+
+      <code id="menu_axn_contact">&amp;Liste</code>
+
+      <code id="menu_axn_add">Listeye Ekle</code>
+
+      <code id="menu_axn_block">&amp;Engelle</code>
+
+      <code id="menu_axn_rename">&amp;Yeniden Adlandır</code>
+
+      <code id="menu_axn_panel">&amp;Eylemler Panelini Göster</code>
+
+      <code id="menu_axn_profile">&amp;Profili Görüntüle</code>
+
+      <code id="menu_axn_file">Dosya &amp;Gönder</code>
+
+      <code id="menu_tool_emo_style">Surat &amp;Seç...</code>
+
+      <code id="menu_tool_font">&amp;Yazıtipi Seç...</code>
+
+      <code id="menu_tool_background">&amp;Arkaplanı Değiştir...</code>
+
+      <code id="menu_tool_aot">&amp;Her Zaman Üstte</code>
+
+      <code id="menu_tool_popup">&amp;Yeni Mesaj Uyarısı</code>
+
+      <code id="menu_tool_tabbed">&amp;Konuşmaları Sekmelere Ayır</code>
+
+      <code id="menu_tool_emoticons">&amp;Suratları Göster</code>
+
+      <code id="menu_tool_settings">&amp;Seçenekler</code>
+   </window>
+
+   <window name="conference-configuration">
+      <item id="btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="txt_form_loading">
+         <innerText>Yükleniyor...</innerText>
+      </item>
+
+      <item id="txt_form_empty">
+         <innerText>Bu konferans odasının değiştirilebilir ayarı yok</innerText>
+      </item>
+
+      <item id="txt_form_invalid">
+         <innerText>Hata: Konferans odası ayarları alınamadı</innerText>
+      </item>
+
+      <code id="form_title">Bu konferans odası için ayarlar</code>
+
+      <code id="form_subtitle">Konferans odasını ayarlamak için bu formu doldurun</code>
+   </window>
+
+   <window name="conference-password">
+      <item id="txt_password">
+         <innerText>Şifre:</innerText>
+      </item>
+
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+   </window>
+
+   <window name="conference-name">
+      <item id="txt_name">
+         <innerText>İsim:</innerText>
+      </item>
+
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+   </window>
+
+   <window name="conference-subject">
+      <item id="txt_subject">
+         <innerText>Konu:</innerText>
+      </item>
+
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+   </window>
+
+   <window name="conference-invite">
+      <item id="btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="txt_instructions">
+         <innerText>Davet etmek istediğiniz kişileri seçin.</innerText>
+      </item>
+
+      <item id="txt_empty">
+         <innerText>Kişi listenizde hiç çevrimiçi kullanıcı yok.</innerText>
+      </item>
+   </window>
+
+   <window name="conference-container">
+      <item id="btn-emoticons">
+         <title>Ne düşündüğünüzü veya yaptığınızı gösterin</title>
+
+         <accessKey>e</accessKey>
+      </item>
+
+      <item id="btn-font">
+         <title>Yazı tipini ve rengini değiştir</title>
+
+         <accessKey>f</accessKey>
+      </item>
+
+      <item id="btn-background">
+         <title>Değişik bir arkaplan seç</title>
+
+         <accessKey>b</accessKey>
+      </item>
+
+      <item id="txt-emoticons">
+         <innerText>Suratlar</innerText>
+      </item>
+
+      <item id="txt-font">
+         <innerText>Yazıtipi</innerText>
+      </item>
+
+      <item id="txt-background">
+         <innerText>Arkaplan</innerText>
+      </item>
+
+      <item id="btn-send">
+         <value>Gönder</value>
+      </item>
+
+      <item id="txt-occupants">
+         <innerText>Katılımcılar</innerText>
+      </item>
+
+      <code id="wnd_conference_password">Şifreyle Bağlan</code>
+
+      <code id="wnd_conference_change_name">İsmimi Değiştir</code>
+
+      <code id="wnd_conference_subject">Konferans Odası Konusu</code>
+
+      <code id="wnd_conference_configuration">Konferans Odası Ayarları</code>
+
+      <code id="default_subject">Bu konferans odasının konusu yok.</code>
+
+      <code id="windowtitle">${0} - Konferans</code>
+
+      <code id="destroy">Bu konferans odasını kapatmak, tüm katılımcıları odadan çıkarır ve odayı sunucudan siler.
+
+Konferans odasını kapatmak istediğinize emin misiniz?</code>
+
+      <code id="menu_file_close">&amp;Konferansı Kapat</code>
+
+      <code id="menu_axn_invite">&amp;Kişi Davet Et</code>
+
+      <code id="menu_axn_change_name">&amp;Adımı Değiştir...</code>
+
+      <code id="menu_axn_password">Ş&amp;ifreyle Bağlan...</code>
+
+      <code id="menu_axn_subject">&amp;Konferans Odası Konusunu Değiştir</code>
+
+      <code id="menu_axn_configuration">K&amp;onferans Odasını Ayarla</code>
+
+      <code id="menu_axn_destroy">Ko&amp;nferans Odasını Kapat</code>
+   </window>
+
+   <window name="preferences">
+      <item id="txt_autoaway">
+         <innerText>Bilgisayarı birkaç dakika kullanmadığınızda durumunuz "Uzak" olarak değiştirilecektir.</innerText>
+      </item>
+
+      <item id="txt_displayawaymsg_left">
+         <innerText>Mesajı göstermek için</innerText>
+      </item>
+
+      <item id="txt_displayxawaymsg_left">
+         <innerText>Mesajı göstermek için</innerText>
+      </item>
+
+      <item id="txt_displayawaymsg_right">
+         <innerText>dakika bekle:</innerText>
+      </item>
+
+      <item id="txt_displayxawaymsg_right">
+         <innerText>dakika bekle:</innerText>
+      </item>
+
+      <item id="txt_blocking">
+         <innerText>Engelleme listesi mesaj almak istemedğiniz insanların listesini içerir.</innerText>
+      </item>
+
+      <item id="txt_msgnotinlist">
+         <innerText>Listemde olmayan kişilerden gelen mesajları göster</innerText>
+      </item>
+
+      <item id="txt_blockinglist">
+         <innerText>Engelleme Listesi</innerText>
+      </item>
+
+      <item id="block_btn_remove">
+         <value>Engellemeyi Kaldır</value>
+      </item>
+
+      <item id="block_btn_view">
+         <value>Profili Görüntüle</value>
+      </item>
+
+      <item id="txt_ssl">
+         <innerText>Şifrelenmiş bağlantı kullan (SSL)</innerText>
+      </item>
+
+      <item id="txt_firewall_proxy">
+         <innerText>Güvenlik Duvarı ve Geçit Sunucu</innerText>
+      </item>
+
+      <item id="txt_proxy1">
+         <innerText>YOK</innerText>
+      </item>
+
+      <item id="txt_proxy2">
+         <innerText>HTTP</innerText>
+      </item>
+
+      <item id="txt_proxy3">
+         <innerText>SOCKS4</innerText>
+      </item>
+
+      <item id="txt_proxy4">
+         <innerText>SOCKS5</innerText>
+      </item>
+
+      <item id="txt_proxyserver">
+         <innerText>Sunucu:</innerText>
+      </item>
+
+      <item id="txt_proxyport">
+         <innerText>Port:</innerText>
+      </item>
+
+      <item id="txt_proxyuser">
+         <innerText>Kullanıcı Adı:</innerText>
+      </item>
+
+      <item id="txt_proxypass">
+         <innerText>Şifre:</innerText>
+      </item>
+
+      <item id="txt_portmap">
+         <innerText>Dosya transferi ayarları (NAT, güvenlik duvarı)</innerText>
+      </item>
+
+      <item id="txt_filetransferhost">
+         <innerText>Sunucu:</innerText>
+      </item>
+
+      <item id="txt_filetransferport">
+         <innerText>Port:</innerText>
+      </item>
+
+      <item id="txt_history_store">
+         <innerText>Tüm mesajları geçmiş arşivinde sakla</innerText>
+      </item>
+
+      <item id="txt_startup">
+         <innerText>Açılışta otomatik olarak başla</innerText>
+      </item>
+
+      <item id="txt_auth_request">
+         <innerText>Biri onay istediğinde</innerText>
+      </item>
+
+      <item id="txt_authorization1">
+         <innerText>Bana sor</innerText>
+      </item>
+
+      <item id="txt_authorization2">
+         <innerText>Tüm istekleri kabul et</innerText>
+      </item>
+
+      <item id="txt_authorization3">
+         <innerText>Listemdekileri kabul et, diğerlerini sor</innerText>
+      </item>
+
+      <item id="txt_authorization4">
+         <innerText>Tüm istekleri reddet</innerText>
+      </item>
+
+      <item id="txt_soundmessage">
+         <innerText>Mesaj geldiğinde şu dosyayı çal</innerText>
+      </item>
+
+      <item id="txt_soundonline">
+         <innerText>Biri çevrimiçi olduğunda şu dosyayı çal</innerText>
+      </item>
+
+      <item id="txt_soundoffline">
+         <innerText>Biri çevrimdışı olduğunda şu dosyayı çal</innerText>
+      </item>
+
+      <item id="btn_sound_message">
+         <value>Gözat</value>
+      </item>
+
+      <item id="btn_sound_online">
+         <value>Gözat</value>
+      </item>
+
+      <item id="btn_sound_offline">
+         <value>Gözat</value>
+      </item>
+
+      <item id="btn_ok">
+         <value>Tamam</value>
+      </item>
+
+      <item id="btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="lbl_autoaway">
+         <innerText>Otomatik-uzak</innerText>
+      </item>
+
+      <item id="lbl_blocking">
+         <innerText>Engelleme</innerText>
+      </item>
+
+      <item id="lbl_connection">
+         <innerText>Bağlantı</innerText>
+      </item>
+
+      <item id="lbl_privacy">
+         <innerText>Güvenlik</innerText>
+      </item>
+
+      <item id="lbl_sound">
+         <innerText>Ses</innerText>
+      </item>
+
+      <code id="autoaway">Otomatik Uzak Mesajları</code>
+
+      <code id="blocking">Engelleme Listesi</code>
+
+      <code id="connection">Bağlantı Ayarları</code>
+
+      <code id="privacy">Güvenlik</code>
+
+      <code id="sound">Uyarı Sesleri</code>
+
+      <code id="reconnect">Değişiklikleri uygulamak için tekrar bağlanmalısınız.
+
+Şimdi tekrar bağlanmak istiyor musunuz?</code>
+
+      <code id="shortcut">Mesaj gönder ve al</code>
+
+      <code id="choose_sound">Uyarı sesi seçin</code>
+
+      <code id="file_audio">Ses dosyaları</code>
+
+      <code id="file_any">Tüm dosyalar</code>
+   </window>
+
+   <window name="adduser">
+      <item id="txt_p1_title">
+         <innerText>Kullanıcı Bul veya Ekle</innerText>
+      </item>
+
+      <item id="txt_p1_tagline">
+         <innerText>Aradığınız kişiyi kullanıcı adı veya kullanıcı bilgileriyle arayabilirsiniz.</innerText>
+      </item>
+
+      <item id="txt_p1_how">
+         <innerText>Nasıl eklemek istersiniz?</innerText>
+      </item>
+
+      <item id="txt_page1_a">
+         <innerHTML>&lt;U&gt;A&lt;/U&gt;rama yapmak istiyorum.</innerHTML>
+
+         <accessKey>a</accessKey>
+      </item>
+
+      <item id="txt_p1_service">
+         <innerHTML>Se&lt;U&gt;r&lt;/U&gt;vis:</innerHTML>
+      </item>
+
+      <item id="page1_services">
+         <accessKey>r</accessKey>
+      </item>
+
+      <item id="txt_page1_b">
+         <innerHTML>Aradığım kişinin &lt;U&gt;m&lt;/U&gt;esajlaşma adresini biliyorum.</innerHTML>
+
+         <accessKey>m</accessKey>
+      </item>
+
+      <item id="txt_p1_network">
+         <innerHTML>&lt;U&gt;A&lt;/U&gt;ğ:</innerHTML>
+      </item>
+
+      <item id="page1_networks">
+         <accessKey>a</accessKey>
+      </item>
+
+      <item id="txt_p1_username">
+         <innerHTML>&lt;U&gt;K&lt;/U&gt;ullanıcı Adı:</innerHTML>
+      </item>
+
+      <item id="page1_username">
+         <accessKey>k</accessKey>
+      </item>
+
+      <item id="txt_p1_help">
+         <innerText>Başka bir mesajlaşma ağında olan kullanıcılarla haberleşmek için o ağ için taşıyıcıya kayıt olmalısınız.</innerText>
+      </item>
+
+      <item id="txt_p1_configure">
+         <innerText>Taşıyıcıları Yapılandır</innerText>
+      </item>
+
+      <item id="btn_p1_next">
+         <value>İleri &gt;</value>
+
+         <accessKey>l</accessKey>
+      </item>
+
+      <item id="btn_p1_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="txt_p1b_title">
+         <innerText>Kullanıcı Adı İşleniyor</innerText>
+      </item>
+
+      <item id="txt_p1b_tagline">
+         <innerText>Taşıyıcı kullanıcı adını işliyor.</innerText>
+      </item>
+
+      <item id="page1b_btn_back">
+         <value>&lt; Geri</value>
+      </item>
+
+      <item id="page1b_btn_next">
+         <value>İleri &gt;</value>
+      </item>
+
+      <item id="page1b_btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="txt_p1c_title">
+         <innerText>Arama Formu İsteniyor</innerText>
+      </item>
+
+      <item id="txt_p1c_tagline">
+         <innerText>Arama formu arama yapmak için talimatları ve alanları içerir.</innerText>
+      </item>
+
+      <item id="page1c_btn_back">
+         <value>&lt; Geri</value>
+      </item>
+
+      <item id="page1c_btn_next">
+         <value>İleri &gt;</value>
+      </item>
+
+      <item id="page1c_btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="txt_p2_title">
+         <innerText>İstek Mesajı</innerText>
+      </item>
+
+      <item id="txt_p2_tagline">
+         <innerText>Neden istek gönderdiğinizi bilmesi için mesaj yazabilirsiniz.</innerText>
+      </item>
+
+      <item id="page2_btn_back">
+         <value>&lt; Geri</value>
+
+         <accessKey>b</accessKey>
+      </item>
+
+      <item id="page2_btn_finish">
+         <value>Finish</value>
+
+         <accessKey>f</accessKey>
+      </item>
+
+      <item id="page2_btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="txt_p2_desc">
+         <innerText>Onay isteğinin gönderileceği kişi:</innerText>
+      </item>
+
+      <item id="txt_p2_user">
+         <innerText>Kullanıcı Adı:</innerText>
+      </item>
+
+      <item id="txt_p2_network">
+         <innerText>Ağ:</innerText>
+      </item>
+
+      <item id="txt_p2_message">
+         <innerHTML>Bir &lt;U&gt;m&lt;/U&gt;esaj girin (isteğe bağlı):</innerHTML>
+      </item>
+
+      <item id="page2_message">
+         <innerText>Listeme eklemek için izin verir misin?</innerText>
+      </item>
+
+      <item id="txt_p2_close">
+         <innerHTML>İsteği gönderip sihirbazı kapatmak için, &lt;B&gt;Son&lt;/B&gt;'a basın.</innerHTML>
+      </item>
+
+      <item id="page3_btn_back">
+         <value>&lt; Geri</value>
+
+         <accessKey>b</accessKey>
+      </item>
+
+      <item id="page3_btn_search">
+         <value>Ara</value>
+
+         <accessKey>a</accessKey>
+      </item>
+
+      <item id="page3_btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <item id="txt_p4_title">
+         <innerText>Arama Sonuçları</innerText>
+      </item>
+
+      <item id="txt_p4_tagline">
+         <innerText>Kullanıcıların bilgilerini görebilir veya listenize ekleyebilirsiniz.</innerText>
+      </item>
+
+      <item id="page4_btn_back">
+         <value>&lt; Geri</value>
+
+         <accessKey>g</accessKey>
+      </item>
+
+      <item id="page4_btn_next">
+         <value>İleri &gt;</value>
+      </item>
+
+      <item id="page4_btn_cancel">
+         <value>İptal</value>
+      </item>
+
+      <code id="correct">Doğru kullanıcı adı girin.
+
+Örnek: birisi123@${0}</code>
+
+      <code id="example_address">Örnek: birisi123@${0}</code>
+
+      <code id="enter_username">Eklenecek kişinin adresini girin.</code>
+
+      <code id="contacting_transport">&lt;B&gt;Taşıyıcıya ulaşılıyor&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Bu işlem bir dakika alabilir.&lt;BR&gt;Lütfen bekleyin.&lt;BR&gt;</code>
+
+      <code id="contacting_search">&lt;B&gt;Arama servisine ulaşılıyor&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Bu işlem bir dakika alabilir.&lt;BR&gt;Lütfen bekleyin.&lt;BR&gt;</code>
+
+      <code id="error_transport">&lt;B&gt;Sunucu hatası:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(kod ${1})&lt;BR&gt;&lt;BR&gt;Kullanıcı listenize eklenemedi.&lt;BR&gt;Lütfen doğru kullanıcı adı girdiğinizden emin olun.</code>
+
+      <code id="error_search">&lt;B&gt;Sunucu hatası:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(kod ${1})&lt;BR&gt;&lt;BR&gt;Arama formu çekilemedi.&lt;BR&gt;Tekrar deneyin veya değişik bir servis seçin.</code>
+
+      <code id="error_invalid">Geçersiz veri alındı.</code>
+
+      <code id="search_title">Kullanıcı Ara</code>
+
+      <code id="search_tagline">Arama için kriter girin.</code>
+
+      <code id="firstname">Ad:</code>
+
+      <code id="lastname">Soyad:</code>
+
+      <code id="nick">Takma Ad:</code>
+
+      <code id="email">Eposta adresi:</code>
+
+      <code id="searching">Aranıyor...</code>
+
+      <code id="add">Listeye ekle</code>
+
+      <code id="view">Profili Görüntüle</code>
+
+      <code id="foundone">1 sonuç</code>
+
+      <code id="foundmany">${0} sonuç</code>
+   </window>
+
+   <window name="login">
+      <code id="invalid">Adres geçersiz. Adresi düzeltip tekrar deneyin.
+
+Eğer bir adresiniz yoksa, Kayıt Ol tuşuna basıp talimatları takip edin.</code>
+
+      <item id="txt_instructions">
+         <innerText>Mesajlaşma adresinizi ve şifrenizi girin.</innerText>
+      </item>
+
+      <item id="txt_address">
+         <innerText>Adres:</innerText>
+      </item>
+
+      <item id="txt_example">
+         <innerText>Örnek: birisi123@ornek.com</innerText>
+      </item>
+
+      <item id="txt_password">
+         <innerText>Şifre:</innerText>
+      </item>
+
+      <item id="txt_remember">
+         <innerText>Şifremi hatırla</innerText>
+      </item>
+
+      <item id="txt_autologin">
+         <innerText>Otomatik giriş yap</innerText>
+      </item>
+
+      <item id="btn_signup">
+         <value>Kayıt Ol</value>
+      </item>
+
+      <item id="btn_login">
+         <value>Giriş</value>
+      </item>
+
+      <item id="btn_close">
+         <value>Kapat</value>
+      </item>
+   </window>
+
+   <window name="sign_up">
+      <code id="close_confirm">Yeni adres tamamlanmadı.
+
+Sihirbazı kapamak istiyor musunuz?</code>
+
+      <code id="incomplete">Tüm alanları tamamlayın...</code>
+
+      <code id="pass_match">Girdiğiniz şifreler uyuşmuyor.
+
+Yeni şifreyi her iki alana da girin.</code>
+
+      <code id="contacting">Sunucuya Erişiliyor...</code>
+
+      <code id="registered">Hesabınız açılıyor. Bu işlem bir dakika sürebilir.&lt;BR&gt;Lütfen bekleyin.&lt;BR&gt;</code>
+
+      <code id="requesting">Bilgi isteniyor...</code>
+
+      <code id="sending">Kayıt gönderiliyor...</code>
+
+      <code id="failure">Bağlantı Hatası</code>
+
+      <code id="completed">Kayıt Tamamlandı!</code>
+
+      <code id="address">Adres:</code>
+
+      <code id="nickname">İsim:</code>
+
+      <code id="userdir">Kullanıcı Dizini:</code>
+
+      <item id="txt_page_welcome_title">
+         <innerText>Kayıt Sihirbazına Hoşgeldiniz</innerText>
+      </item>
+
+      <item id="txt_page_welcome_intro">
+         <innerText>Bu sihirbaz mesajlaşma ağında yeni adres almanıza yardımcı olacaktır.</innerText>
+      </item>
+
+      <item id="txt_page_welcome_next">
+         <innerHTML>Devam etmek için, &lt;B&gt;İleri&lt;/B&gt;'ye basın.</innerHTML>
+      </item>
+
+      <item id="btn_page_welcome_next">
+         <value>İleri &gt;</value>
+
+         <accessKey>l</accessKey>
+      </item>
+
+      <item id="btn_page_welcome_cancel">
+         <value>İptal</value>
+
+         <accessKey>i</accessKey>
+      </item>
+
+      <item id="txt_page_nickname_title">
+         <innerText>Kişisel Bilgi</innerText>
+      </item>
+
+      <item id="txt_page_nickname_tagline">
+         <innerText>Bu bilgiler ağdaki diğer insanların sizi bulmasını sağlayacaktır.</innerText>
+      </item>
+
+      <item id="txt_page_nickname_desc">
+         <innerText>Diğerlerinin sizi bulabilmesi için adınızı girin.</innerText>
+      </item>
+
+      <item id="txt_page_nickname_name">
+         <innerHTML>&lt;U&gt;N&lt;/U&gt;ame:</innerHTML>
+      </item>
+
+      <item id="data_name">
+         <accessKey>n</accessKey>
+      </item>
+
+      <item id="btn_page_nickname_back">
+         <value>&lt; Geri</value>
+
+         <accessKey>b</accessKey>
+      </item>
+
+      <item id="btn_page_nickname_next">
+         <value>İleri &gt;</value>
+
+         <accessKey>l</accessKey>
+      </item>
+
+      <item id="btn_page_nickname_cancel">
+         <value>İptal</value>
+
+         <accessKey>i</accessKey>
+      </item>
+
+      <item id="txt_page_account_title">
+         <innerText>Adres Bilgisi</innerText>
+      </item>
+
+      <item id="txt_page_account_tagline">
+         <innerText>Internetteki bir sunucuyu veya kurumunuza özel bir sunucuyu kullanabilirsiniz.</innerText>
+      </item>
+
+      <item id="txt_page_account_server">
+         <innerHTML>&lt;U&gt;S&lt;/U&gt;unucu:</innerHTML>
+      </item>
+
+      <item id="txt_page_account_username">
+         <innerHTML>&lt;U&gt;K&lt;/U&gt;ullanıcı Adı:</innerHTML>
+      </item>
+
+      <item id="txt_page_account_password">
+         <innerHTML>&lt;U&gt;Ş&lt;/U&gt;ifre:</innerHTML>
+      </item>
+
+      <item id="txt_page_account_confirm">
+         <innerHTML>&lt;U&gt;Ş&lt;/U&gt;ifreyi onayı:</innerHTML>
+      </item>
+
+      <item id="data_server">
+         <accessKey>s</accessKey>
+      </item>
+
+      <item id="data_username">
+         <accessKey>u</accessKey>
+      </item>
+
+      <item id="data_password">
+         <accessKey>p</accessKey>
+      </item>
+
+      <item id="data_password_confirm">
+         <accessKey>c</accessKey>
+      </item>
+
+      <item id="txt_page_account_remember">
+         <innerHTML>Şi&lt;U&gt;f&lt;/U&gt;remi hatırla</innerHTML>
+
+         <accessKey>s</accessKey>
+      </item>
+
+      <item id="txt_page_account_preview">
+         <innerText>Adresiniz:</innerText>
+      </item>
+
+      <item id="btn_page_account_settings">
+         <value>Bağlantı Ayarları</value>
+
+         <accessKey>s</accessKey>
+      </item>
+
+      <item id="btn_page_account_back">
+         <value>&lt; Geri</value>
+
+         <accessKey>g</accessKey>
+      </item>
+
+      <item id="btn_page_account_next">
+         <value>İleri &gt;</value>
+
+         <accessKey>l</accessKey>
+      </item>
+
+      <item id="btn_page_account_cancel">
+         <value>İptal</value>
+
+         <accessKey>i</accessKey>
+      </item>
+
+      <item id="txt_page_creating_title">
+         <innerText>Adres Kayıdı</innerText>
+      </item>
+
+      <item id="txt_page_creating_autherr">
+         <innerHTML>Adres kayıdı yapılamadı. Kullanıcı adı geçersiz/kullanımda.&lt;BR&gt;&lt;BR&gt;Lütfen &lt;B&gt;Geri&lt;/B&gt; gidip, değişik kullanıcı adı seçin.</innerHTML>
+      </item>
+
+      <item id="txt_page_creating_forbidden">
+         <innerHTML>Adres kayıdı yapılamadı. Bu sunucu yeni adres yaratmaya izin vermiyor.&lt;BR&gt;&lt;BR&gt;Lütfen &lt;B&gt;Geri&lt;/B&gt; gidip, değişik sunucu seçip tekrar deneyin.</innerHTML>
+      </item>
+
+      <item id="txt_page_creating_commerr">
+         <innerHTML>Sunucuya ulaşılamadı. Sunucu adresinin doğruluğunu kontrol edin.&lt;BR&gt;Ağ bağlantınızı kontrol edin ve tekrar deneyin. Bir GüvenlikDuvarı arkasındaysanız,&lt;BR&gt;bağlantı ayarlarınızı kontrol edin.</innerHTML>
+      </item>
+
+      <item id="btn_page_creating_retry">
+         <value>Tekrar dene</value>
+
+         <accessKey>t</accessKey>
+      </item>
+
+      <item id="btn_page_creating_settings">
+         <value>Bağlantı ayarları</value>
+
+         <accessKey>b</accessKey>
+      </item>
+
+      <item id="btn_page_creating_back">
+         <value>&lt; Geri</value>
+
+         <accessKey>g</accessKey>
+      </item>
+
+      <item id="btn_page_creating_next">
+         <value>İleri &gt;</value>
+
+         <accessKey>l</accessKey>
+      </item>
+
+      <item id="btn_page_creating_cancel">
+         <value>İptal</value>
+
+         <accessKey>i</accessKey>
+      </item>
+
+      <item id="txt_conn_title">
+         <innerText>Bağlantı Ayarları</innerText>
+      </item>
+
+      <item id="txt_ssl">
+         <innerText>Şifrelenmiş bağlantı kullan (SSL)</innerText>
+      </item>
+
+      <item id="txt_conn_desc">
+         <innerText>Güvenlik Duvarı ve Geçit Sunucusu ayarları</innerText>
+      </item>
+
+      <item id="txt_conn_none">
+         <innerText>Yok</innerText>
+      </item>
+
+      <item id="txt_conn_http">
+         <innerText>HTTP</innerText>
+      </item>
+
+      <item id="txt_conn_s4">
+         <innerText>SOCKS4</innerText>
+      </item>
+
+      <item id="txt_conn_s5">
+         <innerText>SOCKS5</innerText>
+      </item>
+
+      <item id="txt_conn_host">
+         <innerText>Sunucu:</innerText>
+      </item>
+
+      <item id="txt_conn_port">
+         <innerText>Port:</innerText>
+      </item>
+
+      <item id="txt_conn_user">
+         <innerText>Kullanıcı:</innerText>
+      </item>
+
+      <item id="txt_conn_pass">
+         <innerText>Şifre:</innerText>
+      </item>
+
+      <item id="btn_conn_default">
+         <value>Öntanımlı</value>
+
+         <accessKey>ö</accessKey>
+      </item>
+
+      <item id="btn_conn_ok">
+         <value>Tamam</value>
+
+         <accessKey>t</accessKey>
+      </item>
+
+      <item id="btn_conn_cancel">
+         <value>İptal</value>
+
+         <accessKey>i</accessKey>
+      </item>
+
+      <item id="txt_page_finished_title">
+         <innerText>Profil Ekleme Sihirbazı Tamamlanıyor</innerText>
+      </item>
+
+      <item id="txt_page_finished_intro">
+         <innerText>Profil ekleme sihirbazını başarıyla bitirdiniz.</innerText>
+      </item>
+
+      <item id="txt_page_finished_details">
+         <innerText>Profil detayı:</innerText>
+      </item>
+
+      <item id="txt_page_finished_finish">
+         <innerHTML>Sihirbazı sonlandırmak için &lt;B&gt;Son&lt;/B&gt;'a basın.</innerHTML>
+      </item>
+
+      <item id="btn_page_finished_back">
+         <value>&lt; Geri</value>
+
+         <accessKey>g</accessKey>
+      </item>
+
+      <item id="btn_page_finished_finish">
+         <value>Son</value>
+
+         <accessKey>s</accessKey>
+      </item>
+
+      <item id="btn_page_finished_cancel">
+         <value>İptal</value>
+
+         <accessKey>i</accessKey>
+      </item>
+   </window>
+</translation>
+

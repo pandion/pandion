@@ -1,0 +1,154 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	background-color: buttonface;
+	color: buttontext;
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+TD {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: windowtext;
+}
+INPUT.button {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: buttontext;
+	width: 90px;
+	height: 24px;
+}
+</STYLE>
+
+<SCRIPT language=JScript>
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'conference-bookmarks-manage', document );
+	document.onselectstart = document.ondragstart = function(){return false};
+	document.oncontextmenu = function(){return false};
+	document.getElementById( 'list' ).focus();
+	external.wnd.hide( false );
+	Reload();
+}
+
+function Reload ()
+{
+	var List	= document.getElementById( 'list' );
+	var Address	= List.value;
+	while ( List.options.length )
+		List.options.remove( 0 );
+
+	var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
+	dom.async				= false;
+	dom.resolveExternals	= false;
+	dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\bookmarks.xml' );
+	if ( dom.documentElement )
+	{
+		var BookmarkNodes = dom.documentElement.selectNodes( '/bookmarks/room[@address]' );
+		for ( var i = 0; i < Math.min( BookmarkNodes.length, 999 ); ++i )
+		{
+			var Option = document.createElement( 'OPTION' );
+			Option.text = Option.value = BookmarkNodes.item(i).getAttribute( 'address' );
+			if ( Address == Option.value )
+				Option.selected = true;
+			List.add( Option );
+		}
+	}
+	ToggleControls();
+}
+
+function Edit ()
+{
+	var Address = document.getElementById( 'list' ).value;
+	if ( Address.length )
+	{
+		var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
+		dom.async				= false;
+		dom.resolveExternals	= false;
+		dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\bookmarks.xml' );
+		if ( dom.documentElement )
+		{
+			var BookmarkNodes = dom.documentElement.selectNodes( '/bookmarks/room[@address]' );
+			for ( var i = 0; i < Math.min( BookmarkNodes.length, 999 ); ++i )
+				if ( Address == BookmarkNodes.item(i).getAttribute( 'address' ) )
+				{
+					var Password = BookmarkNodes.item(i).getAttribute( 'password' );
+					var AutoJoin = BookmarkNodes.item(i).getAttribute( 'autojoin' );
+					external.wnd.params[0].dial_bookmarks_add( Address, Password, AutoJoin, true );
+					break;
+				}
+		}
+	}
+}
+
+function Delete ()
+{
+	var Address = document.getElementById( 'list' ).value;
+	if ( Address.length && 6 == external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'conference-bookmarks-manage', 'confirm_delete' ), external.globals( 'softwarename' ), 4 | 48 ) )
+	{
+		var Path				= external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\bookmarks.xml';
+		var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
+		dom.async				= false;
+		dom.resolveExternals	= false;
+		dom.load( Path );
+		if ( dom.documentElement )
+		{
+			var BookmarkNodes = dom.documentElement.selectNodes( '/bookmarks/room[@address]' );
+			for ( var i = 0; i < Math.min( BookmarkNodes.length, 999 ); ++i )
+				if ( Address == BookmarkNodes.item(i).getAttribute( 'address' ) )
+				{
+					var Node = BookmarkNodes.item(i);
+					Node.parentNode.removeChild( Node );
+					dom.save( Path );
+					external.wnd.params[0].MenuBarUpdate( 'actions' );
+					if ( external.windows.Exists( 'bookmarks_manage' ) )
+						external.windows( 'bookmarks_manage' ).Do( 'Reload', null );
+					var ContainerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Containers.Keys() ) ).toArray();
+					for ( var i = 0; i < ContainerNames.length; ++i )
+						external.globals( 'ConferenceSessionPool' ).Containers( ContainerNames[i] ).DOM.MenuBarUpdate( 'bookmarks' );
+					break;
+				}
+		}
+	}
+}
+
+function ToggleControls ()
+{
+	document.getElementById( 'btn_edit' ).disabled = document.getElementById( 'btn_delete' ).disabled = ! document.getElementById( 'list' ).value.length
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no onload="Begin()" onkeydown="if ( event.keyCode == 27 ) external.wnd.close(); else if ( event.keyCode == 46 ) Delete();">
+
+<FORM onsubmit="event.returnValue = false;">
+<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<TR valign=top height=1>
+	<TD colspan=2 style="padding: 8px 16px;" id=txt_head></TD>
+</TR>
+<TR valign=top>
+	<TD style="padding: 0 16px;" width="100%">
+		<SELECT size=2 id=list style="width: 100%; height: 100%;" ondblclick="Edit()" onpropertychange="ToggleControls()" onkeydown="if ( event.keyCode == 13 ) { event.cancelBubble = true; Edit(); }"></SELECT>
+	</TD>
+	<TD style="padding-right: 16px;">
+		<INPUT type=submit class=button id=btn_edit disabled onclick="Edit()"><BR>
+		<INPUT type=button class=button id=btn_delete disabled onclick="Delete()"><BR>
+		<BR>
+		<INPUT type=button class=button id=btn_add onclick="external.wnd.params[0].dial_bookmarks_add()"><BR>
+	</TD>
+</TR>
+<TR valign=top height=1>
+	<TD align=right colspan=2 style="padding: 16px;">
+		<INPUT type=submit class=button id=btn_close onclick="external.wnd.close();">
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

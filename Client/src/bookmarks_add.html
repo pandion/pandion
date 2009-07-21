@@ -1,0 +1,163 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0;
+	padding: 8px;
+}
+INPUT.text {
+	height: 22px;
+	font-family: Tahoma;
+	font-size: 11px;
+	width: 100%;
+}
+TD {
+	font-family: Arial;
+	font-size: 11px;
+	color: windowtext;
+}
+INPUT.btn {
+	width: 90px;
+	height: 24px;
+	font-family: Tahoma;
+	font-size: 11px;
+}
+</STYLE>
+
+<SCRIPT language=JScript src="main/XMPPAddress.js"></SCRIPT>
+
+<SCRIPT>
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'conference-bookmarks-add', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+
+	if ( external.wnd.params[2] )
+	{
+		document.getElementById( 'usepassword' ).checked = true;
+		document.getElementById( 'password' ).value = external.wnd.params[2];
+	}
+
+	if ( external.wnd.params[3] && external.wnd.params[3].toString() == 'true' )
+		document.getElementById( 'autojoin' ).checked = true;
+
+	document.getElementById( 'address' ).focus();
+	document.getElementById( 'address' ).value = external.wnd.params[1];
+
+	external.wnd.hide( false );
+	external.wnd.focus();
+}
+
+function PasswordToggle ()
+{
+	if ( document.getElementById( 'usepassword' ).checked )
+	{
+		document.getElementById( 'password' ).disabled = false;
+		document.getElementById( 'password' ).focus();
+		document.getElementById( 'password' ).value = document.getElementById( 'password' ).value;
+	}
+	else
+	{
+		document.getElementById( 'password' ).disabled = true;
+	}
+}
+
+function Add ()
+{
+	var Address = new XMPPAddress( document.getElementById( 'address' ).value );
+	if ( Address.User.length && Address.Host.length )
+	{
+		var Path				= external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\bookmarks.xml';
+		var Bookmark			= null;
+		var RoomAddress			= Address.LongAddress();
+
+		var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
+		dom.async				= false;
+		dom.resolveExternals	= false;
+		dom.load( Path );
+
+		if ( ! dom.documentElement )
+			dom.loadXML( '<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>' );
+
+		var BookmarkNodes = dom.documentElement.selectNodes( '/bookmarks/room[@address]' );
+		for ( var i = 0; i < BookmarkNodes.length; ++i )
+			if ( external.wnd.params[4] && RoomAddress != external.wnd.params[1] && external.wnd.params[1] == BookmarkNodes.item(i).getAttribute( 'address' ) )
+			{
+				var Node = BookmarkNodes.item(i);
+				Node.parentNode.removeChild( Node );
+			}
+			else if ( RoomAddress == BookmarkNodes.item(i).getAttribute( 'address' ) )
+				Bookmark = BookmarkNodes.item(i);
+
+		if ( ! Bookmark )
+		{
+			dom.documentElement.appendChild( dom.createTextNode( '\n\t' ) );
+			Bookmark = dom.createElement( 'room' );
+			dom.documentElement.appendChild( Bookmark );
+			dom.documentElement.appendChild( dom.createTextNode( '\n' ) );
+		}
+
+		Bookmark.setAttribute( 'address', RoomAddress );
+		Bookmark.setAttribute( 'autojoin', document.getElementById( 'autojoin' ).checked.toString() );
+		Bookmark.setAttribute( 'password', document.getElementById( 'usepassword' ).checked ? document.getElementById( 'password' ).value : '' );
+
+		dom.save( Path );
+		external.wnd.params[0].MenuBarUpdate( 'actions' );
+		if ( external.windows.Exists( 'bookmarks_manage' ) )
+			external.windows( 'bookmarks_manage' ).Do( 'Reload', null );
+		var ContainerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Containers.Keys() ) ).toArray();
+		for ( var i = 0; i < ContainerNames.length; ++i )
+			external.globals( 'ConferenceSessionPool' ).Containers( ContainerNames[i] ).DOM.MenuBarUpdate( 'bookmarks' );
+		external.wnd.close();
+	}
+	else
+	{
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'conference-bookmarks-add', 'error_invalid_address' ), external.globals( 'softwarename' ), 0 | 48 );
+		document.getElementById( 'address' ).select();
+	}
+}
+
+</SCRIPT>
+
+</HEAD>
+
+<BODY scroll=no bgcolor=buttonface onload="Begin()" onkeypress="if(event.keyCode==27)external.wnd.close();">
+
+<FORM onsubmit="event.returnValue = false; Add();">
+<TABLE width="100%" height="100%" border=0 cellpadding=0 cellspacing=0>
+<TR height=1>
+	<TD>
+		<SPAN id=txt_address></SPAN>
+		<INPUT type=text class=text id=address onpropertychange="document.getElementById( 'btn_ok' ).disabled = ( /^\s*$/ ).test( this.value )">
+		<SPAN id=txt_example></SPAN>
+	</TD>
+</TR>
+<TR height=1>
+	<TD style="padding-top: 8px;">
+		<INPUT type=checkbox id=autojoin>
+		<LABEL id=lbl_autojoin for=autojoin></LABEL>
+	</TD>
+</TR>
+<TR valign=top>
+	<TD style="padding-top: 8px;">
+		<INPUT type=checkbox id=usepassword onpropertychange="PasswordToggle()">
+		<LABEL id=lbl_password for=usepassword></LABEL><BR>
+		<INPUT type=password id=password disabled class=text style="margin-left: 24px; width: 70%;">
+	</TD>
+</TR>
+<TR valign=top height=28>
+	<TD align=right>
+		<INPUT type=submit class=btn id=btn_ok>
+		<INPUT type=button class=btn id=btn_cancel onclick="external.wnd.close()">
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

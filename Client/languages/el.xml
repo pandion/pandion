@@ -1,0 +1,2147 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<translation xml:lang="el">
+  <about>
+    <language>Ελληνικά</language>
+    <history>
+      <revision>
+        <author>
+          <name>George Sartzetakis</name>
+          <email>info@interworks.biz</email>
+          <xmpp>g.sartzetakis@interworks.biz</xmpp>
+        </author>
+         <author>
+          <name>Roula Kallou</name>
+        </author>
+       <date>2004-08-27</date>
+        <description>
+          Greek translation for Pandion/WebTalk. Last updated: 06-07-2005 (Including v.2.1.2 Beta)
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_pleasewait">
+      <innerText>Παρακαλώ περιμένετε</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Έγινε αποσύνδεση από το διακομιστή</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>Επανασύνδεση</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>ή</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Αλλαγή των ρυθμίσεων σύνδεσης</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>Προσθήκη στη λίστα επαφών</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>ή</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>Ρυθμίστε υπηρεσίες δικτύων</innerText>
+    </item>
+
+	<item id="mode-avatar">
+      <title>Επιλογή διαφορετικής προσωπικής εικόνας</title>
+    </item>
+    <item id="mode-bar">
+      <title>Αλλαγή της διαθεσιμότητας, του μηνύματος κατάστασης ή του προσωπικού προφίλ</title>
+    </item>
+    <item id="mode-secure">
+      <title>Η σύνδεση γίνεται με κρυπτογράφηση SSL/TLS</title>
+    </item>
+    <item id="rosterfield">
+      <title>Άτομα και ομάδες της λίστας επαφών σας</title>
+    </item>
+    
+	<code id="tt-group-hide">Απόκρυψη των επαφών αυτής της ομάδας&#13;Κάντε δεξί κλικ για περισσότερες επιλογές</code>
+    <code id="tt-group-show">Εμφάνιση των επαφών αυτής της ομάδας&#13;Κάντε δεξί κλικ για περισσότερες επιλογές</code>
+    <code id="emoticon_unknown">Άγνωστο</code>
+    <code id="txt_welcome">Καλώς ήρθατε στο ${0}!</code>
+    <code id="user_online">Ο χρήστης ${0} μόλις συνδέθηκε</code>
+    <code id="cl_tooltip">${0} Λίστα Επαφών</code>
+    <code id="autoawaymessage">Ανενεργός για περισσότερα από 5 λεπτά</code>
+    <code id="autoxawaymessage">Ανενεργός για περισσότερα από 30 λεπτά</code>
+	<code id="import_files">Λίστες Επαφών</code>
+    <code id="import_invalid">Το αρχείο δεν περιέχει έγκυρα δεδομένα.</code>
+    <code id="import_no_new">Οι επαφές του αρχείου υπάρχουν ήδη στη λίστα επαφών σας.</code>
+    <code id="import_confirm">Αυτές οι διευθύνσεις επαφών θα προστεθούν στη λίστα επαφών σας:&#13;&#13;${0}&#13;&#13;Είστε σίγουροι ότι θέλετε να προσθέσετε αυτές τις διευθύνσεις στη λίστα επαφών σας?</code>
+    <code id="import_aim_not_registered">Για να εισάγετε τη λίστα επαφών σας από το ΑOL, πρέπει να εγγραφείτε στην υπηρεσία ΑOL. Η υπηρεσία ΑOL πρέπει επιπλέον να είναι ενεργή.&#13;Μεταβείτε στο μενού Εργαλεία και επιλέξτε Υπηρεσίες για να δείτε την κατάσταση της υπηρεσίας AOL.</code>
+    <code id="import_msn_not_registered">Για να εισάγετε τη λίστα επαφών σας από το MSN πρέπει να εγγραφείτε στην υπηρεσία MSN. Η υπηρεσία MSN πρέπει επιπλέον να είναι ενεργή.&#13;Μεταβείτε στο μενού Εργαλεία και επιλέξτε Υπηρεσίες για να δείτε την κατάσταση της υπηρεσίας MSN.</code>
+    <code id="import_gadu_not_registered">Για να εισάγετε τη λίστα επαφών σας από το Gadu-Gadu πρέπει να εγγραφείτε στην υπηρεσία Gadu-Gadu. Η υπηρεσία Gadu-Gadu πρέπει επιπλέον να είναι ενεργή.&#13;Μεταβείτε στο μενού Εργαλεία και επιλέξτε Υπηρεσίες για να δείτε την κατάσταση της υπηρεσίας Gadu-Gadu.</code>
+    <code id="conference_invitation">Ο χρήστης ${0} σας προσκαλεί στο χώρο συνδιάσκεψης: ${1}&#13;&#13;Θέλετε να συμμετάσχετε σε αυτό το χώρο συνδιάσκεψης?</code>
+    <code id="sspi_autoreconnecting">Η σύνδεση με το διακομιστή άμεσων μηνυμάτων απέτυχε.</code>
+    
+    <code id="menu_file">&amp;Αρχείο</code>
+    <code id="menu_file_received">Άνοιγμα των &amp;εισερχομένων αρχείων</code>
+    <code id="menu_file_export">&amp;Εξαγωγή λίστας επαφών...</code>
+    <code id="menu_file_import">&amp;Εισαγωγή λίστας επαφών...</code>
+    <code id="menu_file_change">Αλλαγή του &amp;μηνύματος κατάστασης...</code>
+    <code id="menu_file_ffc">Διαθέσιμος για &amp;συζήτηση</code>
+    <code id="menu_file_available">&amp;Διαθέσιμος</code>
+    <code id="menu_file_busy">Απασ&amp;χολημένος</code>
+    <code id="menu_file_away">Α&amp;πομακρυσμένος</code>
+    <code id="menu_file_xaway">Απομακρυσμένος πολλή &amp;ώρα</code>
+    <code id="menu_file_invisible">Α&amp;φανής</code>
+    <code id="menu_file_offline">Α&amp;νενεργός</code>
+    <code id="menu_file_status">Η &amp;κατάστασή μου</code>
+    <code id="menu_file_out">Απ&amp;οσύνδεση</code>
+    <code id="menu_file_exit">Έ&amp;ξοδος</code>
+
+    <code id="menu_axn">&amp;Ενέργειες</code>
+    <code id="menu_axn_add">&amp;Προσθήκη επαφής...</code>
+    <code id="menu_axn_addgroup">Προσθήκη ο&amp;μάδας...</code>
+    <code id="menu_axn_bookmarks">&amp;Αποθηκευμένοι χώροι συνδιάσκεψης</code>
+    <code id="menu_axn_bookmarks_add">&amp;Προσθήκη δείκτη (Bookmark)...</code>
+    <code id="menu_axn_bookmarks_manage">&amp;Οργάνωση δεικτών (Bookmarks)...</code>
+    <code id="menu_axn_join">&amp;Συμμετοχή σε χώρο συνδιάσκεψης...</code>
+    <code id="menu_axn_create">&amp;Δημιουργία χώρου συνδιάσκεψης...</code>
+    <code id="menu_axn_password">Αλλαγή κωδικού &amp;χρήστη...</code>
+    <code id="menu_axn_profile">Επε&amp;ξεργασία του προφίλ μου...</code>
+    <code id="menu_axn_avatar">Α&amp;λλαγή προσωπικής εικόνας...</code>
+
+    <code id="menu_tool">&amp;Εργαλεία</code>
+    <code id="menu_tool_transport">&amp;Υπηρεσίες</code>
+    <code id="menu_tool_head">&amp;Μηνύματα και προειδοποιήσεις</code>
+    <code id="menu_tool_plugin">&amp;Πρόσθετες λειτουργίες</code>
+    <code id="menu_tool_admin">&amp;Διαχείριση διακομιστή</code>
+    <code id="menu_tool_traffic">&amp;Κίνηση δικτύου</code>
+    <code id="menu_tool_view">Προ&amp;βολή</code>
+    <code id="menu_tool_detailed">&amp;Λεπτομερώς</code>
+    <code id="menu_tool_compact">&amp;Συνοπτικά</code>
+    <code id="menu_tool_language">&amp;Γλώσσα</code>
+    <code id="menu_tool_aot">Σε π&amp;ρώτο πλάνο</code>
+    <code id="menu_tool_settings">Ρυ&amp;θμίσεις</code>
+
+    <code id="menu_help">&amp;Βοήθεια</code>
+    <code id="menu_help_manual">&amp;Εγχειρίδιο χρήστη</code>
+    <code id="menu_help_forum">&amp;Forum υποστήριξης</code>
+    <code id="menu_help_contact">Ε&amp;πικοινωνία</code>
+    <code id="menu_help_about">&amp;Σχετικά</code>
+
+    <code id="menu_tray_about">&amp;Σχετικά με το ${0}</code>
+    <code id="menu_tray_settings">&amp;Ρυθμίσεις</code>
+
+	<code id="wnd_autoupdate">Ανανέωση του ${0}</code>
+    <code id="wnd_vcard_edit">Πληροφορίες χρήστη</code>
+    <code id="wnd_about">Σχετικά με το ${0}</code>
+    <code id="wnd_signup">Εγγραφή - ${0}</code>
+    <code id="wnd_adduser">Εύρεση ή προσθήκη επαφής</code>
+    <code id="wnd_avatar">Αλλαγή προσωπικής εικόνας</code>
+    <code id="wnd_room_browse">Χώροι συνδιάσκεψης</code>
+    <code id="wnd_room_create">Δημιουργία χώρου συνδιάσκεψης</code>    
+    <code id="wnd_conference_invite">Πρόσκληση επαφών</code>
+    <code id="wnd_conference_other">Άλλες υπηρεσίες συνδιάσκεψης</code>
+    <code id="wnd_console">Κονσόλα</code>    
+    <code id="wnd_emoticon_download">Κατέβασμα εικονιδίων</code>
+    <code id="wnd_emoticon_list">Εικονίδια</code>
+    <code id="wnd_emoticon_view">Περιγραφή εικονιδίων</code>
+    <code id="wnd_file_send">Αποστολή αρχείου στο χρήστη ${0}</code>
+    <code id="wnd_file_recv">Αποστολή αρχείου από το χρήστη ${0}</code>
+    <code id="wnd_group_message">Ομαδικό μήνυμα</code>
+    <code id="wnd_transport_list">Υπηρεσίες</code>
+    <code id="wnd_transport_other">Άλλες Υπηρεσίες</code>
+    <code id="wnd_headlines">Προβολή ειδήσεων</code>
+    <code id="wnd_history">${0} - Ιστορικό μηνυμάτων</code>
+    <code id="wnd_plugin_list">Πρόσθετες λειτουργίες</code>
+    <code id="wnd_plugins">Πρόσθετες λειτουργίες</code>
+    <code id="wnd_password">Αλλαγή κωδικού χρήστη</code>
+    <code id="wnd_settings">Ρυθμίσεις</code>
+    <code id="wnd_admin_server">Διαχείριση διακομιστή</code>
+    <code id="wnd_status">Μήνυμα κατάστασης</code>    
+    <code id="wnd_vcard_view">Πληροφορίες χρήστη</code>
+    <code id="wnd_group_create">Δημιουργία ομάδας</code>
+    <code id="wnd_group_rename">Μετονομασία ομάδας</code>
+    <code id="wnd_contact_rename">Μετονομασία επαφής</code>
+    <code id="wnd_authrequest">Αίτηση εξουσιοδότησης</code>
+    <code id="wnd_login">Σύνδεση - ${0}</code>
+    <code id="wnd_extension_download">Γίνεται εγκατάσταση του ${0}</code>
+	<code id="wnd_background_list">Φόντο</code>
+    <code id="wnd_background_download">Λήψη φόντου</code>
+    <code id="wnd_bookmarks_add">Προσθήκη δείκτη χώρου συνδιάσκεψης</code>
+    <code id="wnd_bookmarks_edit">Επεξεργασία δείκτη χώρου συνδιάσκεψης</code>
+    <code id="wnd_bookmarks_manage">Δείκτες χώρου συνδιάσκεψης (Bookmarks)</code>
+    
+    <code id="msg_emoticon_install">Αυτή η ομάδα εικονιδίων έχει ήδη εγκατασταθεί.</code>
+    <code id="msg_received_files">Ο κατάλογος των εισερχομένων αρχείων έχει διαγραφεί.</code>
+    <code id="msg_plugin_install">Θέλετε να εγκαταστήσετε αυτή την πρόσθετη λειτουργία;&#13;&#13;Όνομα: ${0}&#13;Περιγραφή: ${1}</code>
+    <code id="msg_plugin_exists">Αυτή η πρόσθετη λειτουργία έχει ήδη εγκατασταθεί.</code>
+    <code id="msg_expired">Η προσωρινή περίοδος χρήσης της εφαρμογής έχει εκπνεύσει.</code>
+    <code id="msg_cl_adding">Ο χρήστης ${0} προστέθηκε στη λίστα επαφών.</code>
+    <code id="msg_cl_added">Ο χρήστης ${0} σας πρόσθεσε στη λίστα επαφών του.</code>
+    <code id="msg_cl_removed">Ο χρήστης ${0} σας διέγραψε από τη λίστα επαφών του.</code>
+    <code id="msg_blocked">Είστε στη λίστα φραγής αυτού του χρήστη.</code>
+    <code id="msg_autherror">Η σύνδεση δεν είναι δυνατή. Αυτό μπορεί να οφείλεται στους παρακάτω λόγους:&#13;&#13;- Ο κωδικός χρήστη δεν είναι σωστός&#13;- Ο λογαριασμός δεν υπάρχει στο διακομιστή&#13;&#13;Προσπαθείστε ξανά.</code>
+
+    <code id="menu_message">Μήνυμα</code>
+    <code id="menu_filetransfer">Μεταφορά αρχείου</code>
+    <code id="menu_room_create">Δημιουργία νέου χώρου</code>
+    <code id="menu_room_invite">Πρόσκληση στο χώρο συνδιάσκεψης</code>
+    <code id="menu_rename">Μετονομασία</code>
+    <code id="menu_block">Φραγή</code>
+    <code id="menu_delete">Διαγραφή</code>
+    <code id="menu_group_create">Δημιουργία νέας ομάδας</code>
+    <code id="menu_group_merge">Συγχώνευση</code>
+    <code id="menu_group_move">Μετακίνηση</code>
+    <code id="menu_group_copy">Αντιγραφή</code>
+    <code id="menu_request">Επαναίτηση εξουσιοδότησης</code>
+    <code id="menu_history">Ιστορικό</code>
+    <code id="menu_profile">Προφίλ</code>
+
+    <code id="cl_waiting_one">Έχετε 1 μη αναγνωσμένο μήνυμα</code>
+    <code id="cl_waiting_multiple">Έχετε ${0} μη αναγνωσμένα μηνύματα</code>
+    <code id="cl_error_notexist">Η διεύθυνση δεν υπάρχει.</code>
+    <code id="cl_error_cannotadd">Δεν είναι δυνατή η προσθήκη του χρήστη ${0} στη λίστα επαφών.&#13;${1}</code>
+    <code id="cl_default_group">Επαφές</code>
+    <code id="cl_group_display_none">Καμία επάφή</code>
+    <code id="cl_group_display_online">Συνδεδεμένες επαφές μόνο</code>
+    <code id="cl_group_display_all">Όλες τις επαφές</code>
+    <code id="cl_group_expand">Εμφάνιση μη ενεργών επαφών</code>
+    <code id="cl_group_compact">Απόκρυψη μη ενεργών επαφών</code>
+    <code id="cl_group_rename">Μετονομασία ομάδας</code>
+    <code id="cl_group_message">Αποστολή μαζικού μηνύματος</code>
+    <code id="cl_room_create">Δημιουργία νέου χώρου</code>
+    <code id="cl_room_invite">Πρόσκληση στο χώρο συνδιάσκεψης</code>
+    <code id="cl_group_empty">Δεν υπάρχουν συνδεδεμένοι χρήστες σε αυτή την ομάδα.</code>
+    <code id="cl_status_empty">Κανένα μήνυμα κατάστασης</code>
+    <code id="cl_status_offline">Εκτός σύνδεσης</code>
+    <code id="cl_status_awaiting">Εν αναμονή εξουσιοδότησης</code>
+    <code id="cl_status_unknown">Άγνωστη κατάσταση</code>
+    <code id="cl_status_waiting_one">1 μη αναγνωσμένο μήνυμα</code>
+    <code id="cl_status_waiting_multiple">${0} μη αναγνωσμένα μηνύματα</code>
+    <code id="cl_tooltip_offline">Διεύθυνση: ${0}</code>
+    <code id="cl_contact_remove_group">Είστε σίγουροι ότι θέλετε να καταργήσετε το χρήστη από την ομάδα;</code>
+    <code id="cl_contact_remove_list">Είστε σίγουροι ότι θέλετε να καταργήσετε το χρήστη από τη λίστα επαφών σας;</code>
+    <code id="cl_link_open">Άνοιγμα στο πρόγραμμα πλοήγησης</code>
+    <code id="cl_link_copy">Αντιγραφή διεύθυνσης υπερσυνδέσμου</code>
+    <code id="cl_link_favorite">Προσθήκη στα Αγαπημένα</code>
+    <code id="cl_ffc">Διαθέσιμος για συζήτηση</code>
+    <code id="cl_available">Διαθέσιμος</code>
+    <code id="cl_busy">Απασχολημένος</code>
+    <code id="cl_away">Απομακρυσμένος</code>
+    <code id="cl_xaway">Απομακρυσμένος πολλή ώρα</code>
+    <code id="cl_invisible">Αφανής</code>
+    <code id="cl_tooltip_online">Διεύθυνση: ${0}&#13;Πόροι: ${1}</code>
+  </window>
+  <window name="about">
+    <item id="btn_credits">
+      <value>Ευχαριστίες &gt;&gt;</value>
+    </item>
+    <item id="btn_copyright">
+      <value>Δικαιώματα δημιουργού &gt;&gt;</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="copy_darkproject">
+      <innerHTML>Τα περισσότερα εικονίδια αποτελούν πνευματική ιδιοκτησία &amp;copy; 2001 του Greg Fleming.</innerHTML>
+    </item>
+    <item id="copy_rsa">
+      <innerHTML>Η εφαρμογή χρησιμοποιεί τον αλγόριθμο MD5 Message-Digest. Copyright RSA Data Security, Inc.</innerHTML>
+    </item>
+    <item id="copy_dns">
+      <innerHTML>Η εφαρμογή βασίζεται στο BIND. Copyright Internet Software Consortium, Inc.</innerHTML>
+    </item>
+    <item id="txt_copyright">
+      <innerHTML>Copyright &amp;copy;</innerHTML>
+    </item>    
+    <code id="copy_basis">Η εφαρμογή βασίζεται στο ${0}. Copyright &amp;copy; ${1} ${2}.</code>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>Εμφάνιση Πληροφοριών Προφίλ</value>
+    </item>
+    <item id="btn_deny">
+      <value>Άρνηση</value>
+    </item>
+    <item id="btn_accept">
+      <value>Αποδοχή</value>
+    </item>
+    <item id="txt_from">
+      <innerText>Έχετε λάβει μία αίτηση εξουσιοδότησης από:</innerText>
+    </item>
+    <item id="txt_reason">
+      <innerText>Αιτία:</innerText>
+    </item>
+    <item id="txt_add">
+      <innerText>Προσθήκη του χρήστη στη Λίστα Επαφών</innerText>
+    </item>
+  </window>
+  <window name="admin_users">
+    <item id="btn_refresh">
+      <value>Ανανέωση</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Κάντε κλικ σε ένα λογαριασμό για να στείλετε μήνυμα. Κάντε δεξί κλικ για να δείτε περισσότερες επιλογές.</innerText>
+    </item>
+    <code id="add_to_list">Προσθήκη στη λίστα επαφών</code>
+    <code id="tooltip_with">Διεύθυνση: ${0}&#13;Πόροι: ${1}&#13;Διάρκεια σύνδεσης: ${2}</code>
+    <code id="tooltip_without">Διεύθυνση: ${0}&#13;Διάρκεια σύνδεσης: ${1}</code>
+    <code id="loading">Φόρτωση..</code>
+    <code id="invalid_data">Παραλήφθηκαν εσφαλμένα δεδομένα.</code>
+    <code id="server_error">Σφάλμα διακομιστή:</code>
+    <code id="server_failed">Η ανάκτηση της λίστας των ενεργών χρηστών απέτυχε.&lt;BR&gt;Βεβαιωθείτε ότι έχετε δικαιώματα διαχείρισης στο διακομιστή.</code>
+    <code id="user">1 συνδεδεμένος χρήστης</code>
+    <code id="users">${0} συνδεδεμένοι χρήστες</code>
+  </window>
+  <window name="admin">
+    <item id="btn_view">
+      <value>Εμφάνιση όλων των συνδεδεμένων χρηστών</value>
+    </item>
+    <item id="btn_close">
+      <value>Κλείσιμο</value>
+    </item>
+    <item id="admin_btn_wall">
+      <value>Αποστολή</value>
+    </item>
+    <item id="admin_btn_motd">
+      <value>Αποστολή</value>
+    </item>
+    <item id="txt_wall_desc">
+      <innerText>Αυτή η ειδοποίηση αποστέλλεται στους συνδεδεμένους χρήστες.</innerText>
+    </item>
+    <item id="txt_motd_desc">
+      <innerText>Αυτή η ειδοποίηση αποστέλλεται στους χρήστες όταν συνδέονται.</innerText>
+    </item>
+    <item id="txt_wall">
+      <innerText>Κοινοποίηση μηνύματος</innerText>
+    </item>
+    <item id="txt_motd">
+      <innerText>Μήνυμα της ημέρας</innerText>
+    </item>
+    <item id="txt_view">
+      <innerText>Δείτε ποιοί χρήστες είναι συνδεδεμένοι στο διακομιστή.</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Χρησιμοποιήστε αυτά τα εργαλεία για να παρακολουθήσετε και να διαχειριστείτε το διακομιστή.</innerText>
+    </item>
+    <item id="txt_users">
+      <innerText>Χρήστες</innerText>
+    </item>
+    <code id="wnd_users">Συνδεδεμένοι χρήστες</code>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>Εκκαθάριση</value>
+    </item>
+    <item id="btn_send">
+      <value>Αποστολή</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>Παρουσία</value>
+    </item>
+    <item id="btn_message">
+      <value>Μήνυμα</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>Κίνηση δικτύου:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>Κενές γραμμές</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>Εισαγωγή δεδομένων XML:</innerText>
+    </item>
+    <code id="toggle_on">Εμφάνιση Λαθών</code>
+    <code id="toggle_off">Απόκρυψη Λαθών</code>
+    <code id="valid_xml">Τα δεδομένα εισαγωγής πρέπει να έχουν έγκυρη μορφή XML και όχι μόνο κενά διαστήματα ή απλό κείμενο.</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>Κλείσιμο</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Προειδοποιήσεις και επικεφαλίδες</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Ειδικές ειδοποιήσεις εμφανίζονται όταν λαμβάνονται τίτλοι ειδήσεων ή άλλες πληροφορίες.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Δεν έχουν παραληφθεί ειδοποιήσεις ή επικεφαλίδες.</innerText>
+    </item>
+    <item id="alertonlinelabel">
+      <innerText>Εμφάνιση ειδοποίησης όταν κάποιος χρήστης συνδέεται.</innerText>
+    </item>
+    <code id="read_more">Περισσότερα...</code>
+    <code id="replay">Επανάληψη</code>
+  </window>
+  <window name="headline-toaster">
+    <item id="options">
+      <innerText>Επιλογές...</innerText>
+    </item>
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_custom">
+      <value>Προσαρμοσμένη εικόνα ...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Επιλογή προσωπικής εικόνας για την αναγνώριση του προφίλ σας.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Φόρτωση...</innerText>
+    </item>
+    <code id="error_size">Δεν είναι δυνατόν να φορτωθεί η εικόνα. Το μέγεθος του αρχείου ξεπερνάει τα 8 kilobytes.</code>
+    <code id="error_empty">Δεν είναι δυνατόν να φορτωθεί η εικόνα. Το αρχείο είναι κενό.</code>
+    <code id="error_load">Προσοχή: Δεν είναι δυνατόν να φορτωθούν προσωπικές εικόνες..&#13;&#13;${0}</code>
+    <code id="menu_use">Χρήση αυτής της προσωπικής εικόνας</code>
+    <code id="menu_saveas">Αποθήκευση ως...</code>
+    <code id="menu_delete">Διαγραφή</code>
+    <code id="wnd_select">Επιλογή προσωπικής εικόνας</code>
+    <code id="saveas_files">Αρχεία εικόνας</code>
+    <code id="image_files">Αρχεία εικόνας μικρότερα των 8ΚB</code>
+    <code id="all_files">Όλα τα αρχεία</code>
+  </window>
+  <window name="mode_select">
+	<item id="txt_message">
+      <innerText>Το μήνυμα κατάστασης δείχνει τη διάθεση, δραστηριότητα ή οτιδήποτε άλλο:</innerText>
+    </item>
+    <item id="lbl_ask_status">
+      <innerText>Να μου ζητείται να πληκτρολογώ μήνυμα όταν αλλάζω την κατάστασή μου</innerText>
+    </item>
+	<code id="btn_ok">OK</code>
+    <code id="btn_ok_empty">OK (χωρίς μήνυμα)</code>        
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Νέο όνομα:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Νέο όνομα:</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Νέο όνομα:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>Επιβεβαίωση νέου κωδικού πρόσβασης:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Νέος κωδικός:</innerText>
+    </item>
+    <code id="no_match">Οι κωδικοί πρόσβασης που καταχωρήσατε δεν ταιριάζουν.&#13;&#13;Καταχωρήστε το νέο κωδικό και στα δύο πεδία.</code>
+    <code id="no_pass">Καταχώρηση του νέου κωδικού πρόσβασης.</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="set_version">
+      <innerText>Φόρτωση...</innerText>
+    </item>
+    <item id="header-images">
+      <innerText>Εικόνες</innerText>
+    </item>
+    <item id="header-sounds">
+      <innerText>Ήχοι</innerText>
+    </item>
+    <item id="header-markup">
+      <innerText>Επιλογή κειμένου</innerText>
+    </item>
+    <code id="empty">Αυτή η συλλογή εικονιδίων είναι κενή.</code>
+    <code id="file_error">Σφάλμα αρχείου</code>
+    <code id="cannot_load">Δεν είναι δυνατή η φόρτωση των εικονιδίων.</code>
+    <code id="count_one">1 εικονίδιο</code>
+    <code id="count_multiple">${0} εικονίδια</code>
+  </window>
+  <window name="emoticon_download">
+    <item id="btn_close">
+      <value>Κλείσιμο</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Κατέβασμα εικονιδίων</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Για να δείτε τον κατάλογο εικονιδίων είναι απαραίτητη μία σύνδεση στο διαδίκτυο.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Φόρτωση...</innerText>
+    </item>
+    <code id="install">Εγκατάσταση</code>
+    <code id="cannot_download">Σφάλμα: Δεν μπορείτε να κατεβάσετε τα εικονίδια.&#13;${0}</code>
+    <code id="invalid_xml">Η πηγή δεδομένων περιέχει λάθος στοιχεία.</code>
+    <code id="no_new_styles">Δεν υπάρχουν διαθέσιμες νέες συλλογές εικονιδίων.</code>
+	</window>
+  <window name="emoticon_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Διαθέσιμα εικονίδια</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Επιλογή συλλογής εικονιδίων από τη λίστα.</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>Φόρτωση...</innerText>
+    </item>
+    <item id="btn_emoticon_download">
+      <value>Περισσότερα εικονίδια</value>
+    </item>
+    <code id="emoticon_details">Λεπτομέρειες</code>
+    <code id="emoticon_remove">Διαγραφή</code>
+    <code id="emoticon_confirm">Είστε σίγουροι ότι θέλετε να διαγράψετε αυτή τη συλλογή εικονιδίων;</code>
+    <code id="no_emoticons">Δε βρέθηκαν εικονίδια.</code>
+  </window>
+  <window name="background_download">
+    <item id="btn_close">
+      <value>Κλείσιμο</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Λήψη φόντου</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Για να πλοηγηθείτε στον κατάλογο φόντων χρειάζεται να έχετε σύνδεση με το διαδίκτυο.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Φόρτωση...</innerText>
+    </item>
+    <code id="install">Εγκατάσταση</code>
+    <code id="cannot_download">Σφάλμα: Δεν είναι δυνατή η λήψη φόντων.&#13;${0}</code>
+    <code id="invalid_xml">Η τοποθεσία προέλευσης στοιχείων δεν περιέχει έγκυρα δεδομένα.</code>
+    <code id="no_new_styles">Δεν υπάρχει κανένα νέο φόντο διαθέσιμο.</code>
+  </window>
+  <window name="background_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Διαθέσιμα φόντα</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Προσθαφαίρεση φόντου.</innerText>
+    </item>
+    <item id="btn_background_download">
+      <value>Περισσότερα φόντα</value>
+    </item>
+    <item id="txt_background_empty">
+      <innerText>Δεν υπάρχει κανένα εγκατεστημένο φόντο.</innerText>
+    </item>
+    <code id="background_uninstall">Διαγραφή</code>
+    <code id="background_confirm">Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το φόντο?</code>
+  </window>
+  <window name="plugin_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Εγκατεστημένες πρόσθετες λειτουργίες</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Προσθαφαίρεση πρόσθετων λειτουργιών.</innerText>
+    </item>
+    <item id="btn_plugin_download">
+      <value>Περισσότερες πρόσθετες λειτουργίες</value>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>Δε βρέθηκαν πρόσθετες λειτουργίες εγκατεστημένες.</innerText>
+    </item>
+    <code id="plugin_uninstall">Απεγκατάσταση</code>
+    <code id="plugin_confirm">Είστε σίγουροι ότι θέλετε να διαγράψετε αυτή την πρόσθετη λειτουργία;</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>Κλείσιμο</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Κατέβασμα πρόσθετων λειτουργιών</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Για να δείτε τον κατάλογο των πρόσθετων λειτουργιών πρέπει να είστε συνδεδεμένοι στο Internet.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Φόρτωση...</innerText>
+    </item>
+    <code id="install">Εγκατάσταση</code>
+    <code id="cannot_download">Σφάλμα: Δεν μπορείτε να κατεβάσετε τις πρόσθετες λειτουργίες.&#13;${0}</code>
+    <code id="invalid_xml">Η πηγή δεδομένων περιέχει λάθος στην XML.</code>
+    <code id="no_new_plugins">Δεν υπάρχουν διαθέσιμες νέες πρόσθετες λειτουργίες.</code>
+  </window>  
+  <window name="autoupdate">
+    <code id="download_confirm">Υπάρχει διαθέσιμη μία ενημερωμένη έκδοση του λογισμικού: ${0} ${1}&#13;&#13;Θέλετε να κατεβάσετε αυτή την έκδοση;</code>
+    <item id="btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <item id="btn_install">
+      <value>Εγκατάσταση</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Γίνεται σύνδεση...</innerText>
+    </item>
+    <code id="downloading">Γίνεται λήψη...</code>
+    <code id="complete">Η λήψη ολοκληρώθηκε. Επιλέξτε Εγκατάσταση για να συνεχίσετε.</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Κάθε χώρος συνδιάσκεψης έχει μία μοναδική διεύθυνση. Εισάγετε τη διεύθυνση της υπηρεσίας συνδιάσκεψης και ένα μοναδικό όνομα για το δωμάτιο συνδιάσκεψης.</innerText>
+    </item>
+    <item id="txt_service">
+      <innerText>Διεύθυνση υπηρεσίας:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Παράδειγμα: conference.example.com</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>Όνομα δωματίου συνδιάσκεψης:</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>Διεύθυνση δωματίου συνδιάσκεψης:</innerText>
+    </item>
+    <code id="incomplete">Συμπληρώστε όλα τα πεδία...</code>
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>Αποστολή</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>Αποστολή σε αυτά τα άτομα:</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>Κανονικό μήνυμα</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>Εμφάνιση ειδοποιήσεων</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>Τύπος μηνύματος</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>Επισύναψη υπερσυνδέσμου</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>Μήνυμα</innerText>
+    </item>
+  </window>
+  <window name="extension_download">
+    <item id="btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Γίνεται σύνδεση...</innerText>
+    </item>
+    <code id="downloading">Γίνεται λήψη...</code>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>Κλείσιμο</value>
+    </item>
+    <item id="btn_accept">
+      <value>Αποδοχή</value>
+    </item>
+    <item id="btn_abort">
+      <value>Ματαίωση</value>
+    </item>
+    <item id="btn_open">
+      <value>Άνοιγμα</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Υπολειπόμενος χρόνος:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>Αποστολέας:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Όνομα αρχείου:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Τοποθεσία:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Πρόοδος:</innerText>
+    </item>
+    <code id="resume">Το αρχείο υπάρχει ήδη. Θέλετε να συνεχίσετε τη μεταφορά;&#13;&#13;Επιλέξτε &lt;ναι&gt; για να διατηρήσετε το αρχείο.&#13;Επιλέξτε &lt;όχι&gt; για να γίνει αντικατάσταση του αρχείου.</code>
+    <code id="cannot_overwrite">Δεν είναι δυνατή η αντικατάσταση του αρχείου:&#13;${0}&#13;&#13;${1}</code>
+    <code id="incorrect">Δεν είναι δυνατή η αρχικοποίηση της μεταφοράς. Παραλήφθηκαν εσφαλμένα δεδομένα.</code>
+    <code id="title_saving">${0}% από ${1} Αποθηκεύτηκαν</code>
+    <code id="lessthanminute">Λιγότερο από 1 λεπτό στα ${0}/s</code>
+    <code id="onehour">1 ώρα και</code>
+    <code id="hours">${0} ώρες και</code>
+    <code id="oneminute">1 λεπτό στα</code>
+    <code id="minutes">${0} λεπτά στα</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Θέλετε να ματαιώσετε τη μεταφορά;</code>
+    <code id="aborted">Ματαιώθηκε</code>
+    <code id="finished">Ολοκληρώθηκε</code>
+    <code id="error_timeout">Η μεταφορά αδράνησε πέρα από το επιτρεπόμενο χρονικό όριο.</code>
+    <code id="error_code">Κωδικός σφάλματος: ${0}</code>
+    <code id="error_file">Κωδικός σφάλματος αρχείου: ${0}</code>
+    <code id="title_completed">Η μεταφορά ολοκληρώθηκε - ${0}</code>
+    <code id="title_failed">Η μεταφορά απέτυχε - ${0}</code>
+    <code id="error_move">Δεν είναι δύνατη η μετακίνηση τού αρχείου:&#13;${0}&#13;&#13;${1}</code>
+    <code id="error_failed">Η μεταφορά απέτυχε.</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>Κλείσιμο</value>
+    </item>
+    <item id="btn_abort">
+      <value>Ματαίωση</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Υπολειπόμενος χρόνος:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>Παραλήπτες:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Όνομα αρχείου:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Τοποθεσία:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Πρόοδος:</innerText>
+    </item>
+    <code id="socket">Δεν είναι δυνατή η αποστολή του αρχείου.&#13;Σφάλμα κατά την εδραίωση δικτυακής επικοινωνίας.</code>
+    <code id="file">Δεν μπορεί να διαβαστεί το αρχείο:&#13;${0}</code>
+    <code id="filetransfer">Μεταφορά αρχείου:</code>
+    <code id="title_saving">Απεστάλθηκαν ${0}% από ${1}</code>
+    <code id="lessthanminute">Λιγότερο από 1 λεπτό στα ${0}/s</code>
+    <code id="onehour">1 ώρα και</code>
+    <code id="hours">${0} ώρες και</code>
+    <code id="oneminute">1 λεπτό στα</code>
+    <code id="minutes">${0} λεπτά στα</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Θέλετε να ματαιώσετε τη μεταφορά;</code>
+    <code id="finished">Ολοκληρώθηκε</code>
+    <code id="aborted">Ματαιώθηκε</code>
+    <code id="error_denied">Το αρχείο απορρίφθηκε.</code>
+    <code id="error_timeout">Η μεταφορά αδράνησε πέρα από το επιτρεπόμενο χρονικό όριο.</code>
+    <code id="error_code">Κωδικός σφάλματος: ${0}</code>
+    <code id="title_completed">Η μεταφορά ολοκληρώθηκε - ${0}</code>
+    <code id="title_failed">Η μεταφορά απέτυχε - ${0}</code>
+    <code id="error_failed">Η μεταφορά απέτυχε.</code>
+  </window>
+  <window name="conference_browse">
+    <item id="btn_close">
+      <value>Κλείσιμο</value>
+    </item>
+    <item id="btn_other_service">
+      <value>Άλλη υπηρεσία...</value>
+    </item>
+    <item id="btn_create">
+      <value>Δημιουργία δωματίου συνδιάσκεψης</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Διαθέσιμα δωμάτια:</innerText>
+    </item>
+    <item id="lbl_empty">
+      <innerText>Εμφάνιση άδειων δωματίων</innerText>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="lbl_full">
+      <innerText>Εμφάνιση γεμάτων δωματίων</innerText>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="lbl_filter">
+      <innerText>Φίλτρο:</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Δεν υπάρχουν διαθέσιμες υπηρεσίες συνδιάσκεψης σε αυτό το διακομιστή.&#13;&#13;Πατήστε το κουμπί "Άλλη υπηρεσία..." για να προσθέσετε μία υπηρεσία συνδιάσκεψης από άλλο διακομιστή.</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Για να συνδεθείτε με ένα δωμάτιο συνδιάσκεψης πρέπει να είστε συνδεδεμένοι με το διακομιστή άμεσων μηνυμάτων.</innerText>
+    </item>
+    <code id="bookmarks">Δείκτες (Bookmarks)</code>
+    <code id="menu_join">Συμμετοχή</code>
+    <code id="menu_add">Προσθήκη στους δείκτες (Bookmarks)...</code>
+    <code id="empty_filter">Δεν βρέθηκαν δωμάτια βάσει του επιλεγμένου φίλτρου</code>
+    <code id="empty_no_rooms">Δεν υπάρχουν διαθέσιμα δωμάτια σε αυτή την υπηρεσία</code>
+    <code id="status_connecting">Γίνεται σύνδεση...</code>
+    <code id="status_downloading">Λήψη της λίστας δωματίων συνδιάσκεψης...</code>
+    <code id="error_unknown">Η υπηρεσία "${0}" δεν είναι διαθέσιμη. Βεβαιωθείτε ότι έχετε δώσει τη σωστή διεύθυνση. Δοκιμάστε ξανά αργότερα ή εισάγετε κάποια άλλη διεύθυνση.</code>
+    <code id="error_no_services">Ο διακομιστής "${0}" δεν έχει εγκατεστημένες υπηρεσίες συνδιάσκεψης. Επικοινωνήστε με τον αρμόδιο διαχειριστή για περισσότερες πληροφορίες.</code>
+    <code id="error_no_new">Όλες οι υπηρεσίες συνδιάσκεψης στο διακομιστή "${0}" έχουν ήδη καταχωρηθεί.</code>
+  </window>
+  <window name="conference_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Διεύθυνση:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Παράδειγμα: conference.example.com</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Εισάγετε τη διεύθυνση του διακομιστή ή της υπηρεσίας συνδιάσκεψης.</innerText>
+    </item>
+    <code id="error_already_exists">Η υπηρεσία "${0}" είναι ήδη καταχωρημένη. Εισάγετε τη διεύθυνση διακομιστή ή υπηρεσίας συνδιάσκεψης που δεν έχει ακόμα καταχωρηθεί.</code>
+  </window>
+  <window name="vcard">
+    <code id="save">Προσοχή: Δεν μπορεί να αποθηκευτεί το αρχείο vCard.&#13;&#13;${0}</code>
+    <code id="personal">Λεπτομέρειες χρήστη</code>
+    <code id="system">Λεπτομέρειες συστήματος</code>
+
+    <item id="txt_requesting1">
+      <innerText>Αίτηση πληροφοριών από το διακομιστή</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Αυτή η διαδικασία μπορεί να διαρκέσει μέχρι και ένα λεπτό.&lt;BR&gt;Παρακαλώ περιμένετε.</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>Αποθήκευση ως vCard</value>
+    </item>
+    <item id="btn_refresh">
+      <value>Ανανέωση</value>
+    </item>
+    <item id="btn_close">
+      <value>Κλείσιμο</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>Αναίρεση αλλαγών</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>Προσωπικές πληροφορίες</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>Πρόσθετες λεπτομέρειες</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>Διεύθυνση Σπιτιού</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>Επάγγελμα</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>Διεύθυνση εργασίας</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>Σύστημα</innerText>
+    </item>
+
+    <item id="txt_name">
+      <innerText>Όνομα</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>Όνομα:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>Μεσαίο όνομα:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>Επίθετο:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>Παρατσούκλι:</innerText>
+    </item>
+
+    <item id="txt_contact">
+      <innerText>Επαφή</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>e-mail:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>Τηλέφωνο:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>Κινητό τηλέφωνο:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>Fax:</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>Πρόσθετες λεπτομέρειες</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>Ηλικία:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>Ημερομηνία Γέννησης:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>Φύλο:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>Οικογενειακή κατάσταση:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>Ιστοσελίδα:</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>Διεύθυνση σπιτιού</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>Διεύθυνση:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>Διεύθυνση (συνέχεια):</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>Πόλη:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>Ταχ. κώδικας:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>Περιοχή:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>Χώρα:</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>Οργανισμός</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>Όνομα:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>Τμήμα:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>Τίτλος:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>Ρόλος:</innerText>
+    </item>
+
+    <item id="txt_workcontact">
+      <innerText>Επαφή</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>e-mail:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>Τηλέφωνο:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>Κινητό τηλέφωνο:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>Fax:</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>Διεύθυνση εργασίας</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>Διεύθυνση:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>Διεύθυνση (συνέχεια):</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>Πόλη:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>Ταχ. κώδικας:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>Περιοχή:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>Χώρα:</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>Πληροφορίες πελάτη</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>Διεύθυνση:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>Πόροι:</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>Τοπική ώρα:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>Λογισμικό:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>Έκδοση:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>Λειτουργικό σύστημα:</innerText>
+    </item>
+  </window>
+  <window name="transport_list">
+    <item id="btn_other">
+      <value>Άλλη υπηρεσία...</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Διαθέσιμες υπηρεσίες</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Οι υπηρεσίες παρέχουν σύνδεση με άλλα δίκτυα άμεσων μηνυμάτων (ΙΜ).</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;Σημείωση:&lt;/B&gt; Για να ρυθμίσετε τις υπηρεσίες θα πρέπει να έχετε συνδεθεί με το διακομιστή άμεσων μηνυμάτων.</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;Σημείωση:&lt;/B&gt; Ο διακομιστής στον οποίο έχετε συνδεθεί δεν έχει εγκατεστημένες τις απαραίτητες υπηρεσίες. Επικοινωνήστε με τον αρμόδιο διαχειριστή για περισσότερες πληροφορίες.</innerHTML>
+    </item>
+    <item id="msnworkaroundlabel">
+      <innerText>Επιτρέψτε στις επαφές MSN να αλλάζουν το ψευδώνυμό τους</innerText>
+    </item>
+    <code id="status_active">Ενεργή</code>
+    <code id="status_noreg">Μη εγγεγραμμένη</code>
+    <code id="status_disconnected">Έχει αποσυνδεθεί</code>
+    <code id="status_connecting">Γίνεται σύνδεση...</code>
+    <code id="name_unknown">Άγνωστη υπηρεσία</code>
+    <code id="error_unknown">Η υπηρεσία "${0}" δεν είναι διαθέσιμη. Βεβαιωθείτε ότι έχετε δώσει τη σωστή διεύθυνση. Δοκιμάστε ξανά αργότερα ή εισάγετε κάποια άλλη διεύθυνση.</code>
+    <code id="error_no_transports">Ο διακομιστής "${0}" δεν έχει εγκατεστημένες υπηρεσίες διασύνδεσης. Επικοινωνήστε με τον αρμόδιο διαχειριστή για περισσότερες πληροφορίες.</code>
+    <code id="error_no_new_transport">Όλες οι υπηρεσίες στο διακομιστή "${0}" έχουν ήδη καταχωρηθεί.</code>
+  </window>
+  <window name="transport_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Διεύθυνση:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Παράδειγμα: sms.example.com</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Εισάγετε τη διεύθυνση του διακομιστή υπηρεσίας.</innerText>
+    </item>
+    <code id="error_already_exists">Η υπηρεσία "${0}" είναι ήδη καταχωρημένη. Εισάγετε τη διεύθυνση διακομιστή υπηρεσίας που δεν έχει ακόμα καταχωρηθεί.</code>
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; Προηγούμενο</value>
+    </item>
+    <item id="btn_next">
+      <value>Επόμενο &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>Τέλος</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>Άκυρο</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>Διεύθυνση:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>Παρατσούκλι:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>Διεύθυνση:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Κωδικός πρόσβασης:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>Παρατσούκλι:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>Έχετε ήδη εγγραφεί σε αυτή την υπηρεσία.&lt;BR&gt;Ο λογαριασμός σας είναι:</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>Απενεργοποίηση υπηρεσίας</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText>Σύνδεση με το διακομιστή</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Αυτή η διαδικασία μπορεί να διαρκέσει μέχρι και ένα λεπτό.&lt;BR&gt;Παρακαλώ περιμένετε.</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>Για να κλείσετε τον οδηγό, κάντε κλικ στο &lt;B&gt;Τέλος&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>Για να συνεχίσετε, κάντε κλικ στο &lt;B&gt;Επόμενο&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <code id="error_invalid">Παραλήφθηκαν εσφαλμένα δεδομένα</code>
+    <code id="error_server">&lt;B&gt;Σφάλμα διακομιστή:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(κωδικός ${1})&lt;BR&gt;&lt;BR&gt;Δεν μπορείτε να συνεχίσετε.</code>
+    <code id="error_unknown">&lt;B&gt;Άγνωστο σφάλμα:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(κωδικός ${1})&lt;BR&gt;&lt;BR&gt;Δεν μπορείτε να συνεχίσετε.</code>
+    <code id="error_auth">&lt;B&gt;Σφάλμα εξουσιοδότησης:&lt;/B&gt;&lt;BR&gt;Εσφαλμένη διεύθυνση ή κωδικός πρόσβασης.&lt;BR&gt;&lt;BR&gt;Δεν μπορείτε να συνεχίσετε.</code>
+    <code id="wait">&lt;B&gt;Σύνδεση με το διακομιστή &lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Αυτή η διαδικασία μπορεί να διαρκέσει μέχρι και ένα λεπτό.&lt;BR&gt;Παρακαλώ περιμένετε.&lt;BR&gt;</code>
+
+    <code id="default_window_title">Ρύθμιση υπηρεσίας</code>
+    <code id="default_begin_intro">Αυτός ο οδηγός σας βοηθάει να ρυθμίσετε την υπηρεσία.&lt;BR&gt;Η υπηρεσία αυτή συνδέει εσάς με ένα άλλο δίκτυο.&lt;BR&gt;Για να τη χρησιμοποιήσετε χρειάζεστε ένα λογαριασμό στο άλλο δίκτυο.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">Καταχωρήστε το λογαριασμό σας και τον κωδικό πρόσβασης.&lt;BR&gt;Μπορείτε επίσης να καταχωρήσετε ένα όνομα που θα βλέπουν οι άλλοι χρήστες.&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">Ο Λογαριασμός σας καταχωρείται στην υπηρεσία.</code>
+    <code id="default_removing_busy">Ο Λογαριασμός σας καταργείται από την υπηρεσία.&lt;BR&gt;</code>
+    <code id="default_creating_done">Ο Λογαριασμός σας καταχωρήθηκε στην υπηρεσία επιτυχώς.</code>
+    <code id="default_removing_done">Ο Λογαριασμός σας καταργήθηκε από την υπηρεσία επιτυχώς.</code>
+
+    <code id="msn_window_title">MSN Messenger - Ρύθμιση υπηρεσίας</code>
+    <code id="msn_begin_intro">Αυτός ο οδηγός σας βοηθάει να ρυθμίσετε την υπηρεσία MSN.&lt;BR&gt;Η υπηρεσία αυτή συνδέει εσάς με το λογαριασμό σας στο MSN.&lt;BR&gt;Για να τη χρησιμοποιήσετε χρειάζεστε Microsoft Passport.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">Καταχωρήστε τη διεύθυνση σας και τον κωδικό πρόσβασης για το MSN.&lt;BR&gt;Μπορείτε επίσης να καταχωρήσετε ένα όνομα που θα βλέπουν οι άλλοι χρήστες.&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">Παραδείγματα: someone@msn.com, someone@hotmail.com</code>
+    <code id="msn_creating_busy">Ο Λογαριασμός σας καταχωρείται στην υπηρεσία MSN.</code>
+    <code id="msn_removing_busy">Ο Λογαριασμός MSN καταργείται από την υπηρεσία.&lt;BR&gt;Θα μπορείτε να χρησιμοποιείτε τον λογαριασμό MSN σας μέσω άλλων υπηρεσιών (πχ. Hotmail, MSN Explorer, κλπ.).&lt;BR&gt;</code>
+    <code id="msn_creating_done">Ο Λογαριασμός σας καταχωρήθηκε στην υπηρεσία MSN επιτυχώς.</code>
+    <code id="msn_removing_done">Ο Λογαριασμός σας καταργήθηκε από την υπηρεσία MSN επιτυχώς.</code>
+
+    <code id="icq_window_title">ICQ - Ρύθμιση υπηρεσίας</code>
+    <code id="icq_begin_intro">Αυτός ο οδηγός σας βοηθάει να ρυθμίσετε την υπηρεσία ICQ.&lt;BR&gt;Η υπηρεσία αυτή συνδέει εσάς με το λογαριασμό σας στο ICQ.&lt;BR&gt;Για να τη χρησιμοποιήσετε χρειάζεστε ένα αριθμό αναγώρισης χρήστη (User Identification Number, ICQ &lt;BR&gt;number).&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Καταχωρήστε τον αριθμό σας και τον κωδικό πρόσβασης για το ICQ .&lt;BR&gt;Μπορείτε επίσης να καταχωρήσετε ένα παρατσούκλι που θα βλέπουν οι άλλοι χρήστες.&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">Παραδείγματα: 39230793, 158525087</code>
+    <code id="icq_creating_busy">Ο Λογαριασμός σας καταχωρείται στην υπηρεσία ICQ.</code>
+    <code id="icq_removing_busy">Ο Λογαριασμός ICQ καταργείται από την υπηρεσία.&lt;BR&gt;</code>
+    <code id="icq_creating_done">Ο Λογαριασμός σας καταχωρήθηκε στην υπηρεσία ICQ επιτυχώς.</code>
+    <code id="icq_removing_done">Ο Λογαριασμός σας καταργήθηκε από την υπηρεσία ICQ επιτυχώς.</code>
+
+    <code id="yahoo_window_title">Yahoo! Messenger - Ρύθμιση υπηρεσίας</code>
+    <code id="yahoo_begin_intro">Αυτός ο οδηγός σας βοηθάει να ρυθμίσετε την υπηρεσία Yahoo!.&lt;BR&gt;Η υπηρεσία αυτή συνδέει εσάς με το λογαριασμό σας στο Yahoo!.&lt;BR&gt;Για να τη χρησιμοποιήσετε χρειάζεται να διαθέτετε λογαριασμό στο Yahoo!.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Καταχωρήστε το όνομα χρήστη και τον κωδικό πρόσβασής σας για το Yahoo!.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">Ο Λογαριασμός σας καταχωρείται στην υπηρεσία Yahoo!.</code>
+    <code id="yahoo_removing_busy">Ο Λογαριασμός Yahoo! καταργείται από την υπηρεσία.&lt;BR&gt;Θα μπορείτε να χρησιμοποιείτε το λογαριασμό σας στο Yahoo! μέσω άλλων υπηρεσιών (πχ. Yahoo! Mail, Yahoo! Messenger, κλπ.).&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">Ο Λογαριασμός σας καταχωρήθηκε στην υπηρεσία Yahoo! επιτυχώς.</code>
+    <code id="yahoo_removing_done">Ο Λογαριασμός σας καταργήθηκε από την υπηρεσία Yahoo! επιτυχώς.</code>
+
+    <code id="aim_window_title">AOL Instant Messenger - Ρύθμιση υπηρεσίας</code>
+    <code id="aim_begin_intro">Αυτός ο οδηγός σας βοηθάει να ρυθμίσετε την υπηρεσία AOL IM.&lt;BR&gt;Η υπηρεσία αυτή συνδέει εσάς με το λογαριασμό σας στο AOL IM.&lt;BR&gt;Για να τη χρησιμοποιήσετε χρειάζεται να διαθέτετε λογαριασμό στο AOL IM.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">Καταχωρήστε το όνομα και τον κωδικό πρόσβασης για το AOL IM.&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">Ο Λογαριασμός σας καταχωρείται στην υπηρεσία AOL IM.</code>
+    <code id="aim_removing_busy">Ο λογαρισμός AOL IM  καταργείται από την υπηρεσία.&lt;BR&gt;Θα μπορείτε να χρησιμοποιείτε το λογαριασμό σας στο AOL IM με άλλο λογισμικό.&lt;BR&gt;</code>
+    <code id="aim_creating_done">Ο Λογαριασμός σας καταχωρήθηκε στην υπηρεσία AOL IM επιτυχώς.</code>
+    <code id="aim_removing_done">Ο Λογαριασμός σας καταργήθηκε από την υπηρεσία AOL IM επιτυχώς.</code>
+    
+    <code id="gadu_window_title">Gadu-Gadu - Ρύθμιση υπηρεσίας</code>
+    <code id="gadu_begin_intro">Αυτός ο οδηγός σας βοηθάει να ρυθμίσετε την υπηρεσία Gadu-Gadu.&lt;BR&gt;Η υπηρεσία αυτή συνδέει εσάς με το λογαριασμό σας στο Gadu-Gadu.&lt;BR&gt;Για να τη χρησιμοποιήσετε χρειάζεται να διαθέτετε αριθμό λογαριασμού στο Gadu-Gadu.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_instructions">Καταχωρήστε τον αριθμό και τον κωδικό πρόσβασης για το Gadu-Gadu.&lt;BR&gt;Μπορείτε επίσης να καταχωρήσετε ένα παρατσούκλι που θα βλέπουν οι άλλοι χρήστες.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_examples">&amp;nbsp;</code>
+    <code id="gadu_creating_busy">Ο αριθμός σας καταχωρείται στην υπηρεσία Gadu-Gadu.</code>
+    <code id="gadu_removing_busy">Ο αριθμός σας καταργείται από την υπηρεσία Gadu-Gadu.&lt;BR&gt;</code>
+    <code id="gadu_creating_done">Ο αριθμός σας καταχωρήθηκε στην υπηρεσία Gadu-Gadu επιτυχώς.</code>
+    <code id="gadu_removing_done">Ο αριθμός σας καταργήθηκε από την υπηρεσία Gadu-Gadu επιτυχώς.</code>
+    
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>Μετάβαση</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>Αποθήκευση</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>Εκτύπωση</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>Διαγραφή</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>Ιστορικό μηνυμάτων</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>Αναζήτηση:</innerText>
+    </item>
+    <code id="loading">Φόρτωση του ιστορικού των μηνυμάτων...</code>
+    <code id="empty">Το ιστορικό των μηνυμάτων είναι κενό.</code>
+    <code id="error_load">Δεν μπορεί να ανακτηθεί το ιστορικό των μηνυμάτων:&#13;${0}</code>
+    <code id="one_message">1 μήνυμα</code>
+    <code id="many_messages">${0} μηνύματα</code>
+    <code id="tooltip_save">Αποθήκευση του ιστορικού των μηνυμάτων αυτής της ημέρας</code>
+    <code id="tooltip_print">Εκτύπωση του ιστορικού των μηνυμάτων αυτής της ημέρας</code>    
+    <code id="error_open">Σφάλμα: Δεν μπορεί να ανοιχτεί το ιστορικό των μηνυμάτων.</code>
+    <code id="error_read">Σφάλμα: Δεν μπορεί να διαβαστεί το ιστορικό των μηνυμάτων.</code>
+    <code id="delete_confirm">Είστε σίγουροι ότι θέλετε να διαγράψετε ολόκληρο το ιστορικό μηνυμάτων για το ${0};</code>
+    <code id="delete_cannot">Tο αρχείο ιστορικού: ${0} δεν μπορεί να διαγραφεί. &#13;&#13;Δεν διεγράφηκε κανένα μήνυμα.</code>
+    <code id="error_print">Δεν είναι δυνατή η εκτύπωση.&#13;Το ιστορικό των μηνυμάτων είναι άδειο.</code>
+    <code id="error_save">Δεν είναι δυνατή η αποθήκευση του ιστορικού μηνυμάτων.&#13;${0}</code>
+  </window>
+	<window name="chat-messages">
+    <code id="copy">Αντιγραφή</code>
+    <code id="copyall">Αντιγραφή όλων</code>
+    <code id="clear">Εκκαθάριση</code>
+    <code id="selectall">Επιλογή όλων</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>Εμφάνιση του τι σκέφτεσαι ή κάνεις</title>
+      <accessKey>ε</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Αλλαγή του χρώματος ή του τύπου του κειμένου</title>
+      <accessKey>χ</accessKey>
+    </item>
+	<item id="btn-background">
+      <title>Επιλογή διαφορετικού φόντου</title>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="txt-emoticons">
+      <innerText>Εικονίδια</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Γραμματοσειρά</innerText>
+    </item>
+	<item id="txt-background">
+      <innerText>Φόντο</innerText>
+    </item>
+    
+    <item id="resize-grip">
+      <title>Αλλαγή του μεγέθους του πεδίου εισόδου 'μήνυμα'</title>
+    </item>
+    <item id="mode-bar">
+      <title>Το άτομο που λαμβάνει τα μηνύματά σας</title>
+    </item>
+    <item id="send-text">
+      <title>Πληκτρολογήστε το μήνυμά σας εδώ</title>
+    </item>
+    <item id="btn-send">
+      <value>Αποστολή</value>
+      <title>Αποστολή μηνύματος</title>
+    </item>
+
+	<code id="tt-avatar">Εμφάνιση της προσωπικής εικόνας σε πλήρες μέγεθος</code>
+    <code id="tt-messages">Εισερχόμενα και εξερχόμενα μηνύματα</code>
+    <code id="tt-close">Τέλος συνδιάσκεψης</code>
+    <code id="msg_typing">Ο χρήστης ${0} πληκτρολογεί ένα μήνυμα.</code>
+    <code id="unknown">Ο χρήστης ${0} μπορεί να μην απαντήσει διότι η κατάστασή του είναι άγνωστη</code>
+    <code id="lastonline">Ενεργός για τελευταία φορά: ${0}</code>
+    <code id="windowtitle">${0} - Συζήτηση</code>
+	<code id="background_no">Χωρίς φόντο</code>
+    <code id="background_list">Διαθέσιμα φόντα...</code>
+    <code id="close_many_tabs">Θέλετε να κλείσετε όλες τις συνομιλίες?</code>
+    <code id="close_recent_message">Μόλις λάβατε ένα μήνυμα.&#13;&#13;Θέλετε να κλείσετε αυτή τη συνομιλία?</code>
+    <code id="palette_compact">Μείωση του μεγέθους της λίστας εικονιδίων</code>
+	<code id="palette_expand">Εμφάνιση όλων των εικονιδίων σε αυτή τη μορφή</code>
+	<code id="palette_browse">Άλλες μορφές εικονιδίων...</code>
+	
+    <code id="menu_file_received">&amp;Άνοιγμα των εισερχομένων αρχείων</code>
+    <code id="menu_file_history">Ιστορικό &amp;μηνυμάτων</code>
+    <code id="menu_file_close">&amp;Κλείσιμο συζήτησης</code>
+
+    <code id="menu_axn_contact">&amp;Επαφή</code>
+    <code id="menu_axn_add">&amp;Προσθήκη στη λίστα επαφών</code>
+    <code id="menu_axn_block">&amp;Φραγή</code>
+    <code id="menu_axn_rename">&amp;Μετονομασία</code>
+    <code id="menu_axn_panel">Προβολή &amp;καταλόγου ενεργειών</code>
+    <code id="menu_axn_profile">Εμφάνιση π&amp;ροφίλ</code>
+    <code id="menu_axn_file">&amp;Αποστολή αρχείου</code>
+
+    <code id="menu_tool_emo_style">Επιλογή &amp;εικονιδίων...</code>
+    <code id="menu_tool_font">Αλλαγή &amp;γραμματοσειράς...</code>
+    <code id="menu_tool_background">Αλλαγή &amp;φόντου...</code>
+    <code id="menu_tool_aot">&amp;Πάντα σε πρώτο πλάνο</code>
+    <code id="menu_tool_popup">Εμφάνιση νέων &amp;μηνυμάτων</code>
+    <code id="menu_tool_tabbed">&amp;Σελιδοποίηση συζητήσεων</code>
+    <code id="menu_tool_emoticons">Εμ&amp;φάνιση εικονιδίων</code>
+    <code id="menu_tool_settings">&amp;Ρυθμίσεις</code>
+  </window>
+  <window name="conference-bookmarks-add">
+    <item id="txt_address">
+      <innerText>Διεύθυνση χώρου συνδιάσκεψης:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Παράδειγμα: my_room@conference.example.net</innerText>
+    </item>
+    <item id="lbl_autojoin">
+      <innerText>Αυτόματη συμμετοχή σε αυτό το χώρο συνδιάσκεψης κατά τη σύνδεση</innerText>
+    </item>
+    <item id="lbl_password">
+      <innerText>Κωδικός συμμετοχής στο χώρο συνδιάσκεψης:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <code id="error_invalid_address">Η διεύθυνση του χώρου συνδιάσκεψης δεν είναι έγκυρη.</code>
+  </window>
+  <window name="conference-bookmarks-manage">
+    <item id="txt_head">
+      <innerText>Επεξεργασία, διαγραφή ή προσθήκη δεικτών (Bookmarks) χώρων συνδιάσκεψης:</innerText>
+    </item>
+    <item id="btn_edit">
+      <value>Επεξεργασία</value>
+    </item>
+    <item id="btn_delete">
+      <value>Διαγραφή</value>
+    </item>
+    <item id="btn_add">
+      <value>Προσθήκη</value>
+    </item>
+    <item id="btn_close">
+      <value>Κλείσιμο</value>
+    </item>
+    <code id="confirm_delete">Θέλετε να διαγράψετε αυτό το δείκτη χώρου συνδιάσκεψης?</code>
+  </window>
+  <window name="conference-configuration">
+    <item id="btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_form_loading">
+      <innerText>Φόρτωση...</innerText>
+    </item>
+    <item id="txt_form_empty">
+      <innerText>Αυτό το δωμάτιο συνδιάσκεψης δεν έχει δυνατότητα αλλαγής ρυθμίσεων</innerText>
+    </item>
+    <item id="txt_form_invalid">
+      <innerText>Σφάλμα: Δεν είναι δυνατή η ανάκτηση των ρυθμίσεων του δωματίου συνδιάσκεψης</innerText>
+    </item>
+    <code id="form_title">Ρυθμίσεις για αυτό το δωμάτιο συνδιάσκεψης</code>
+    <code id="form_subtitle">Συμπληρώστε αυτή τη φόρμα για να ρυθμίσετε το δωμάτιο συνδιάσκεψης</code>
+    
+    <code id="muc#roomconfig_allowinvites">Οι συμμετέχοντες επιτρέπεται να προσκαλούν άλλους χρήστες</code>
+    <code id="muc#roomconfig_changesubject">Οι συμμετέχοντες επιτρέπεται να αλλάζουν το θέμα του χώρου συνδιάσκεψης</code>
+    <code id="muc#roomconfig_enablelogging">Καταγραφή όλων των μηνυμάτων του χώρου συνδιάσκεψης</code>
+    <code id="muc#roomconfig_lang">Γλώσσα που χρησιμοποιείται στο χώρο συνδιάσκεψης</code>
+    <code id="muc#roomconfig_maxusers">Μέγιστος αριθμός συμμετέχοντων στο χώρο συνδιάσκεψης</code>
+    <code id="muc#roomconfig_membersonly">Η συμμετοχή στο χώρο συνδιάσκεψης επιτρέπεται μόνο σε μέλη</code>
+    <code id="muc#roomconfig_moderatedroom">Απαιτείται έγκριση από το διαχειριστή του χώρου για την αποστολή μηνυμάτων</code>
+    <code id="muc#roomconfig_passwordprotectedroom">Για τη συμμετοχή στο χώρο συνδιάσκεψης απαιτείται η χρήση κωδικού</code>
+    <code id="muc#roomconfig_persistentroom">Ο χώρος συνδιάσκεψης παραμένει και μετά την αποχώρηση όλων των συμμετέχοντων</code>
+    <code id="muc#roomconfig_presencebroadcast">Ρόλοι για τους οποίους μεταδίδονται πληροφορίες κατάστασης</code>
+    <code id="muc#roomconfig_publicroom">Εμφάνιση του χώρου συνδιάσκεψης στη λίστα των κοινών χώρων συνδιάσκεψης</code>
+    <code id="muc#roomconfig_roomadmins">Διαχειριστές του χώρου συνδιάσκεψης</code>
+    <code id="muc#roomconfig_roomdesc">Περιγραφή του χώρου συνδιάσκεψης</code>
+    <code id="muc#roomconfig_roomname">Όνομα του χώρου συνδιάσκεψης</code>
+    <code id="muc#roomconfig_roomowners">Κάτοχοι του χώρου συνδιάσκεψης</code>
+    <code id="muc#roomconfig_roomsecret">Κωδικός συμμετοχής στο χώρο συνδιάσκεψης</code>
+    <code id="muc#roomconfig_whois">Δεσμοί που μπορούν να ανακαλύψουν τις πραγματικές διευθύνσεις όλων των συμμετέχοντων</code>
+  </window>
+	<window name="conference-password">
+    <item id="txt_password">
+      <innerText>Κωδικός πρόσβασης:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+	<window name="conference-name">
+    <item id="txt_name">
+      <innerText>Όνομα:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-subject">
+    <item id="txt_subject">
+      <innerText>Θέμα:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-invite">
+    <item id="btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Επιλέξτε τις επαφές που θέλετε να προσκαλέσετε.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Δεν υπάρχουν συνδεδεμένες επαφές στη λίστα επαφών.</innerText>
+    </item>
+  </window>
+  <window name="conference-accesslevel">
+    <item id="txt-name">
+      <innerText>Όνομα:</innerText>
+    </item>
+    <item id="txt-room">
+      <innerText>Χώρος:</innerText>
+    </item>
+
+	<item id="txt-role">
+      <innerText>Ρόλος</innerText>
+    </item>
+	<item id="txt-visitor">
+      <innerText>Επισκέπτης</innerText>
+    </item>
+    <item id="txt-visitor-desc">
+      <innerText>Μπορεί να διαβάσει μηνύματα</innerText>
+    </item>
+	<item id="txt-participant">
+      <innerText>Συμμετέχων</innerText>
+    </item>
+    <item id="txt-participant-desc">
+      <innerText>Μπορεί επιπλέον να αποστείλει μηνύματα</innerText>
+    </item>
+	<item id="txt-moderator">
+      <innerText>Διαχειριστής</innerText>
+    </item>
+    <item id="txt-moderator-desc">
+      <innerText>Μπορεί επιπλέον να αποσυνδέσει συμμετέχοντες και επισκέπτες</innerText>
+    </item>
+
+	<item id="txt-affiliation">
+      <innerText>Δεσμός</innerText>
+    </item>
+	<item id="txt-none">
+      <innerText>Κανένας/Μέλος</innerText>
+    </item>
+    <item id="txt-none-desc">
+      <innerText>Μπορεί να συμμετάσχει στο χώρο συνδιάσκεψης</innerText>
+    </item>
+	<item id="txt-admin">
+      <innerText>Γενικός Διαχειριστής</innerText>
+    </item>
+    <item id="txt-admin-desc">
+      <innerText>Μπορεί επιπλέον να προσθέτει διαχειριστές και να απαγορεύει την πρόσβαση σε συμμετέχοντες</innerText>
+    </item>
+	<item id="txt-owner">
+      <innerText>Κάτοχος</innerText>
+    </item>
+    <item id="txt-owner-desc">
+      <innerText>Μπορεί επιπλέον να προσθέτει γενικούς διαχειριστές</innerText>
+    </item>
+
+    <item id="btn-default">
+      <value>Προεπιλεγμένη ρύθμιση</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-cancel">
+      <value>Άκυρο</value>
+      <accessKey>c</accessKey>
+    </item>
+    <item id="btn-close">
+      <value>Κλείσιμο</value>
+      <accessKey>c</accessKey>
+    </item>
+  </window>
+  <window name="conference-container">
+    <item id="btn-emoticons">
+      <title>Εμφάνιση του τι σκέπτεσαι ή κάνεις</title>
+      <accessKey>ε</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Αλλαγή του χρώματος ή του τύπου του κειμένου</title>
+      <accessKey>χ</accessKey>
+    </item>
+	<item id="btn-background">
+      <title>Επιλογή διαφορετικού φόντου</title>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="txt-emoticons">
+      <innerText>Εικονίδια</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Γραμματοσειρά</innerText>
+    </item>
+	<item id="txt-background">
+      <innerText>Φόντο</innerText>
+    </item>
+    
+	<item id="resize-grip">
+      <title>Αλλαγή του μεγέθους του πεδίου εισόδου 'μήνυμα'</title>
+    </item>
+    <item id="mode-bar">
+      <title>Όνομα, διεύθυνση και θέμα αυτού του χώρου συνδιάσκεψης</title>
+    </item>
+    <item id="send-text">
+      <title>Πληκτρολογήστε το μήνυμά σας εδώ</title>
+    </item>
+    <item id="btn-send">
+      <value>Αποστολή</value>
+      <title>Αποστολή μηνύματος</title>
+    </item>
+    
+    <item id="occupants-panel">
+      <title>Συμμετέχοντες αυτού του χώρου συνδιάσκεψης</title>
+    </item>
+    <item id="txt-visitors">
+      <innerText>Επισκέπτες</innerText>
+      <title>Οι επισκέπτες μπορούν να διαβάζουν μηνύματα αλλά δεν μπορούν να στέλνουν μηνύματα</title>
+    </item>
+    <item id="txt-moderators">
+      <innerText>Διαχειριστές</innerText>
+      <title>Οι διαχειριστές μπορούν να διαβάζουν και να στέλνουν μηνύματα και να αποσυνδέουν άλλους συμμετέχοντες από το χώρο συνδιάσκεψης</title>
+    </item>
+    <item id="txt-participants">
+      <innerText>Συμμετέχοντες</innerText>
+      <title>Οι συμμετέχοντες μπορούν να διαβάζουν και να στέλνουν μηνύματα</title>
+    </item>
+
+    <code id="wnd_conference_password">Σύνδεση με κωδικό πρόσβασης</code>
+    <code id="wnd_conference_change_name">Αλλαγή του ονόματός μου</code>
+	<code id="wnd_conference_subject">Θέμα δωματίου συνδιάσκεψης</code>
+    <code id="wnd_conference_configuration">Ρυθμίσεις δωματίου συνδιάσκεψης</code>
+    <code id="wnd_conference_accesslevel">${0} - Επίπεδο Πρόσβασης</code>
+
+    <code id="tt-messages">Εισερχόμενα και εξερχόμενα μηνύματα</code>
+    <code id="tt-close">Αποχώρηση από αυτό το χώρο συνδιάσκεψης</code>
+    <code id="default_subject">Αυτός ο χώρος συνδιάσκεψης δεν έχει θέμα.</code>
+    <code id="windowtitle">${0} - Συνδιάσκεψη</code>
+	<code id="destroy">Η κατάργηση αυτού του δωματίου συνδιάσκεψης θα αποσυνδέσει όλους τους συμμετέχοντες από το δωμάτιο και θα διαγράψει το δωμάτιο στο διακομιστή.&#13;&#13;Είστε σίγουροι ότι θέλετε να καταργήσετε αυτό το δωμάτιο συνδιάσκεψης?</code>
+	<code id="connecting">Γίνεται σύνδεση...</code>
+    <code id="connected">Έγινε σύνδεση</code>
+    <code id="disconnected">Έγινε αποσύνδεση</code>
+    <code id="confirm-kick">Είστε σίγουρος ότι θέλετε να αποσυνδέσετε το συμμετέχοντα "${0}" από αυτό το χώρο συνδιάσκεψης?</code>
+    <code id="kick-error">Δεν μπορεί να γίνει αποσύνδεση του: ${0}</code>
+    <code id="kicked">Ο ${0} έχει αποσυνδεθεί από το χώρο συνδιάσκεψης</code>
+    <code id="kicked-by">Ο ${0} αποσυνδέθηκε από το χώρο συνδιάσκεψης από τον ${1}</code>
+    <code id="confirm-ban">Είστε σίγουροι ότι θέλετε να απαγορεψετε την συμμετοχή του "${0}" από αυτό το χώρο συνδιάσκεψης?</code>
+    <code id="ban-error">Δεν μπορεί να γίνει απαγόρευση συμμετοχής στον: ${0}</code>
+    <code id="banned">Η συμμετοχή στο χώρο συνδιάσκεψης απαγορεύτηκε στον ${0}</code>
+    <code id="banned-by">Η συμμετοχή στο χώρο συνδιάσκεψης απαγορεύτηκε στον ${0} από τον ${1}</code>
+    <code id="leaving">Ο ${0} αποχωρεί από το χώρο συνδιάσκεψης</code>
+    <code id="joining">Ο ${0} εισέρχεται στο χώρο συνδιάσκεψης</code>
+    <code id="renaming">Ο ${0} είναι πλέον γνωστός ως ${1}</code>
+    
+    <code id="menu_file_close">&amp;Κλείσιμο συνδιάσκεψης</code>
+
+	<code id="menu_axn_invite">&amp;Πρόσκληση επαφών</code>
+    <code id="menu_axn_change_name">Αλλαγή του &amp;ονόματός μου...</code>
+    <code id="menu_axn_password">Συνδεση με &amp;κωδικό πρόσβασης...</code>
+    <code id="menu_axn_subject">&amp;Αλλαγή του θέματος του δωματίου συνδιάσκεψης</code>
+    <code id="menu_axn_configuration">&amp;Αλλαγή των ρυθμίσεων του δωματίου συνδιάσκεψης</code>
+    <code id="menu_axn_destroy">&amp;Κατάργηση του δωματίου συνδιάσκεψης</code>
+    
+    <code id="menu_bookmarks">&amp;Δείκτες (Bookmarks)</code>
+
+    <code id="menu_bmrk_add">&amp;Προσθήκη στους δείκτες (Bookmarks)...</code>
+
+    <code id="menu_occupant_private">Προσωπικό &amp;Μήνυμα</code>
+    <code id="menu_occupant_kick">&amp;Αποσύνδεση</code>
+    <code id="menu_occupant_ban">Α&amp;παγόρευση</code>
+    <code id="menu_occupant_access">&amp;Επίπεδο πρόσβασης...</code>
+    <code id="menu_occupant_add">Προσθήκη στη &amp;λίστα επαφών</code>
+    <code id="menu_occupant_profile">Π&amp;ροφίλ</code>
+
+    <code id="unrecognized-error">Unrecognized Error</code>
+    <code id="error-service-unavailable">Service Unavailable</code>
+    <code id="error-not-allowed">Not Allowed</code>
+    <code id="error-conflict">Conflict: Nickname already in use</code>
+    <code id="error-registration-required">Registration required: Members only</code>
+    <code id="error-forbidden">Forbidden: Banned</code>
+    <code id="error-not-authorized">Not Authorized: Password required</code>
+    <code id="error-item-not-found">Item Not Found: Room is locked</code>
+  </window>
+  <window name="preferences">
+    <item id="txt_autoaway">
+      <innerText>Ένδειξη "Δεν βρίσκομαι στον υπολογιστή", όταν ο υπολογιστής μου παραμένει ανενεργός για μερικά λεπτά.</innerText>
+    </item>
+    <item id="txt_displayawaymsg_left">
+      <innerText>Εμφάνιση αυτού του μηνύματος μετά από</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_left">
+      <innerText>Εμφάνιση αυτού του μηνύματος μετά από</innerText>
+    </item>
+    <item id="txt_displayawaymsg_right">
+      <innerText>λεπτά:</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_right">
+      <innerText>λεπτά:</innerText>
+    </item>
+    <item id="txt_blocking">
+      <innerText>Η λίστα φραγής περιέχει τις επαφές από τις οποίες δεν επιθυμείτε να λαμβάνετε μηνύματα.</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>Εμφάνιση μηνυμάτων από χρήστες που δεν ανήκουν στη λίστα επαφών μου</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>Λίστα φραγής</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>Αναίρεση φραγής</value>
+    </item>
+    <item id="block_btn_view">
+      <value>Προβολή προφίλ</value>
+    </item>
+    <item id="txt_ssl">
+      <innerText>Χρήση ασφαλούς σύνδεσης (SSL)</innerText>
+    </item>
+    <item id="txt_firewall_proxy">
+      <innerText>Τείχος προστασίας και διακομιστής proxy</innerText>
+    </item>
+    <item id="txt_proxy1">
+      <innerText>Κανένα</innerText>
+    </item>
+    <item id="txt_proxy2">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_proxy3">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_proxy4">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_proxyserver">
+      <innerText>Διακομιστής:</innerText>
+    </item>
+    <item id="txt_proxyport">
+      <innerText>Θύρα:</innerText>
+    </item>
+    <item id="txt_proxyuser">
+      <innerText>Όνομα χρήστη:</innerText>
+    </item>
+    <item id="txt_proxypass">
+      <innerText>Κωδικός πρόσβασης:</innerText>
+    </item>
+    <item id="txt_portmap">
+      <innerText>Αντιστοιχία θύρας στο τείχος προστασίας για μεταφορά αρχείων (NAT)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>Μηχάνημα (διεύθυνση):</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>Θύρα:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>Αποθήκευση όλων των μηνυμάτων στο αρχείο ιστορικού</innerText>
+    </item>
+    <item id="txt_startup">
+      <innerText>Αυτόματη εκτέλεση κατά την εκκίνηση των Windows</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>Όταν κάποιος αιτείται την εξουσιοδότησή μου</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>Να γίνεται ερώτηση</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>Αποδοχή όλων των αιτήσεων</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>Αποδοχή των χρηστών που είναι στη λίστα των επαφών μου, να γίνεται ερώτηση για τους άλλους</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>Απόρριψη όλων των αιτήσεων</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>Αναπαραγωγή ήχου κατά τη λήψη νέου μηνύματος</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>Αναπαραγωγή ήχου όταν συνδέεται κάποια επαφή</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>Αναπαραγωγή ήχου όταν αποσυνδέεται κάποια επαφή</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>Αναζήτηση</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>Αναζήτηση</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>Αναζήτηση</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <item id="lbl_autoaway">
+      <innerText>Αυτόματη απομάκρυνση</innerText>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>Φραγή</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>Σύνδεση</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>Προσωπικές ρυθμίσεις</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>Ήχος</innerText>
+    </item>
+    <code id="autoaway">Μηνύματα αυτόματης απομάκρυνσης</code>
+    <code id="blocking">Λίστα φραγής</code>
+    <code id="connection">Ρυθμίσεις σύνδεσης</code>
+    <code id="privacy">Προσωπικές ρυθμίσεις</code>
+    <code id="sound">Ήχοι ειδοποίησης</code>
+    <code id="reconnect">Πρέπει να επανασυνδεθείτε για να εφαρμοστούν οι αλλαγές.&#13;&#13;Θέλετε να επανασυνδεθείτε τώρα;</code>
+    <code id="shortcut">Αποστολή και παραλαβή άμεσων μηνυμάτων</code>
+    <code id="choose_sound">Επιλογή ήχου ειδοποίησης</code>
+    <code id="file_audio">Αρχεία ήχου</code>
+    <code id="file_any">Όλα τα αρχεία</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>Αναζήτηση ή προσθήκη χρήστη</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>Μπορείτε να αναζητήσετε κάποιο άτομο με βάση τις δημοσιοποιημένες πληροφορίες του ή να καταχωρήσετε το όνομα χρήστη του.</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>Με ποιο τρόπο θέλετε να προσθέσετε την επαφή;</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>Θέλω να &lt;U&gt;α&lt;/U&gt;ναζητήσω κάποιον.</innerHTML>
+      <accessKey>α</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>Υπ&lt;U&gt;η&lt;/U&gt;ρεσία:</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>η</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML> &lt;U&gt;Γ&lt;/U&gt;νωρίζω ήδη τη διεύθυνση ΙΜ του χρήστη.</innerHTML>
+      <accessKey>Γ</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>Δ&lt;U&gt;ί&lt;/U&gt;κτυο:</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>ι</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>&lt;U&gt;Ό&lt;/U&gt;νομα Χρήστη:</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>ο</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>Για να επικοινωνήσετε με κάποιον σε διαφορετικό δίκτυο άμεσων μηνυμάτων, πρέπει να ρυθμίσετε την υπηρεσία για το δίκτυο αυτό.</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>Ρύθμιση των υπηρεσιών</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>Επόμενο &gt;</value>
+      <accessKey>ε</accessKey>
+    </item>
+    <item id="btn_p1_cancel">
+      <value>Άκυρο</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>Επεξεργασία ονόματος χρήστη</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>Η υπηρεσία πιστοποιεί το όνομα του χρήστη.</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; Προηγούμενο</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>Επόμενο &gt;</value>
+    </item>
+    <item id="page1b_btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>Αίτηση φόρμας αναζήτησης</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>Η φόρμα αναζήτησης περιέχει όλες τις οδηγίες και όλα τα πεδία με τα οποία μπορεί να γίνει η αναζήτηση.</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; Προηγούμενο</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>Επόμενο &gt;</value>
+    </item>
+    <item id="page1c_btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+
+    <item id="txt_p2_title">
+      <innerText>Μήνυμα αίτησης</innerText>
+    </item>
+    <item id="txt_p2_tagline">
+      <innerText>Μπορείτε να επιτρέψετε στον άλλο χρήστη να μάθει γιατί θέλετε την εξουσιοδότησή του, στέλνοντάς του ένα μήνυμα.</innerText>
+    </item>
+    <item id="page2_btn_back">
+      <value>&lt; Προηγούμενο</value>
+      <accessKey>π</accessKey>
+    </item>
+    <item id="page2_btn_finish">
+      <value>Τέλος</value>
+      <accessKey>τ</accessKey>
+    </item>
+    <item id="page2_btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <item id="txt_p2_desc">
+      <innerText>Η αίτηση εξουσιοδότησης θα σταλεί στον:</innerText>
+    </item>
+    <item id="txt_p2_user">
+      <innerText>Όνομα χρήστη:</innerText>
+    </item>
+    <item id="txt_p2_network">
+      <innerText>Δίκτυο:</innerText>
+    </item>
+    <item id="txt_p2_message">
+      <innerHTML>Γράψτε ένα &lt;U&gt;μ&lt;/U&gt;ήνυμα (προαιρετικό):</innerHTML>
+    </item>
+    <item id="page2_message">
+      <innerText>Θα ήθελα να σε προσθέσω στη λίστα των επαφών μου.</innerText>
+    </item>
+    <item id="txt_p2_close">
+      <innerHTML>Για να σταλεί η αίτηση και να κλείσει ο οδηγός, κάντε κλικ στο &lt;B&gt;Τέλος&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; Προηγούμενο</value>
+      <accessKey>π</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>Αναζήτηση</value>
+      <accessKey>α</accessKey>
+    </item>
+    <item id="page3_btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText>Αποτελέσματα αναζήτησης</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>Μπορείτε να δείτε τις προσωπικές λεπτομέρειες ενός χρήστη ή να τον προσθέσετε στη λίστα επαφών σας.</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; Προηγούμενο</value>
+      <accessKey>π</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>Επόμενο &gt;</value>
+    </item>
+    <item id="page4_btn_cancel">
+      <value>Άκυρο</value>
+    </item>
+    <code id="correct">Καταχωρήστε ένα όνομα χρήστη.&#13;&#13;Παράδειγμα: someone123@${0}</code>
+    <code id="example_address">Παράδειγμα: someone123@${0}</code>
+    <code id="enter_username">Καταχωρήστε το όνομα χρήστη με τον οποίο θέλετε να έρθετε σε επαφή.</code>
+    <code id="contacting_transport">&lt;B&gt;Επικοινωνία με υπηρεσία&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Αυτή η διαδικασία μπορεί να διαρκέσει μέχρι και ένα λεπτό.&lt;BR&gt;Παρακαλώ περιμένετε.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Επικοινωνία με την υπηρεσία αναζήτησης&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Αυτή η διαδικασία μπορεί να διαρκέσει μέχρι και ένα λεπτό.&lt;BR&gt;Παρακαλώ περιμένετε.&lt;BR&gt;</code>
+    <code id="error_transport">&lt;B&gt;Σφάλμα διακομιστή:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(κωδικός ${1})&lt;BR&gt;&lt;BR&gt;Ο χρήστης δεν μπορεί να προστεθεί στη λίστα επαφών σας.&lt;BR&gt;Βεβαιωθείτε ότι έχετε γράψει σωστά το όνομα του χρήστη.</code>
+    <code id="error_search">&lt;B&gt;Σφάλμα διακομιστή:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(κωδικός ${1})&lt;BR&gt;&lt;BR&gt;Η φόρμα αναζήτησης δεν μπορεί να κατέβει.&lt;BR&gt;Προσπαθήστε ξανά αργότερα ή επιλέξτε άλλη υπηρεσία.</code>
+    <code id="error_invalid">Παραλήφθηκαν εσφαλμένα δεδομένα.</code>
+    <code id="search_title">Αναζήτηση χρήστη</code>
+    <code id="search_tagline">Συμπληρώστε ένα πεδίο για να αναζητήσετε κάποιο χρήστη.</code>
+    <code id="firstname">Όνομα:</code>
+    <code id="lastname">Επίθετο:</code>
+    <code id="nick">Παρατσούκλι:</code>
+    <code id="email">Διεύθυνση e-mail:</code>
+    <code id="searching">Αναζήτηση ...</code>
+    <code id="add">Προσθήκη στη λίστα επαφών</code>
+    <code id="view">Εμφάνιση προφίλ</code>
+    <code id="foundone">1 αποτέλεσμα</code>
+    <code id="foundmany">${0} αποτελέσματα</code>
+  </window>
+	<window name="login">
+    <code id="invalid">Η διεύθυνση δεν είναι σωστή. Διορθώστε τη διεύθυνση και προσπαθήστε ξανά.&#13;&#13;Αν δεν έχετε διεύθυνση, επιλέξτε Εγγραφή και ακολουθήστε τις οδηγίες.</code>
+		<item id="txt_instructions">
+      <innerText>Καταχωρήστε τη διεύθυνση και τον κωδικό πρόσβασης άμεσων μηνυμάτων για να συνδεθείτε.</innerText>
+    </item>
+		<item id="txt_address">
+      <innerText>Διεύθυνση:</innerText>
+    </item>
+		<item id="txt_example">
+      <innerText>Παράδειγμα: someone123@example.com</innerText>
+    </item>
+		<item id="txt_password">
+      <innerText>Κωδικός πρόσβασης:</innerText>
+    </item>
+		<item id="txt_remember">
+      <innerText>Απομνημόνευση κωδικού πρόσβασης</innerText>
+    </item>
+		<item id="txt_autologin">
+      <innerText>Αυτόματη είσοδος</innerText>
+    </item>
+		<item id="btn_signup">
+      <value>Εγγραφή</value>
+    </item>
+		<item id="btn_login">
+      <value>Είσοδος</value>
+    </item>
+		<item id="btn_close">
+      <value>Κλείσιμο</value>
+    </item>
+  </window>
+	<window name="sign_up">
+    <code id="close_confirm">Η νέα διεύθυνση δεν είναι ολοκληρωμένη.&#13;&#13;Είστε σίγουροι ότι θέλετε να κλείσετε τον οδηγό?</code>
+    <code id="incomplete">Συμπληρώστε όλα τα πεδία ...</code>
+    <code id="pass_match">Οι κωδικοί πρόσβασης που καταχωρήσατε δεν ταιριάζουν.&#13;&#13;Καταχωρήστε το νέο κωδικό πρόσβασης και στα δύο πεδία.</code>
+
+    <code id="contacting">Επικοινωνία με το διακομιστή...</code>
+    <code id="registered">Ο λογαριασμός σας καταχωρείται. Αυτή η διαδικασία μπορεί να διαρκέσει μέχρι και ένα λεπτό.&lt;BR&gt;Παρακαλώ περιμένετε.&lt;BR&gt;</code>
+    <code id="requesting">Αίτηση πληροφόρησης...</code>
+    <code id="sending">Αποστολή αίτησης εγγραφής...</code>
+    <code id="failure">Σφάλμα σύνδεσης</code>
+    <code id="completed">Η εγγραφή ολοκληρώθηκε</code>
+
+    <code id="address">Διεύθυνση:</code>
+    <code id="nickname">Όνομα:</code>
+    <code id="userdir">Φάκελος χρήστη:</code>
+
+		<item id="txt_page_welcome_title">
+      <innerText>Καλως ήρθατε στον οδηγό νέας εγγραφής</innerText>
+    </item>
+    <item id="txt_page_welcome_intro">
+      <innerText>Αυτός ο οδηγός θα σας βοηθήσει να δημιουργήσετε μία νέα διεύθυνση στο δίκτυο άμεσων μηνυμάτων.</innerText>
+    </item>
+    <item id="txt_page_welcome_next">
+      <innerHTML>Για να συνεχίσετε, επιλέξτε &lt;B&gt;Επόμενο&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_welcome_next">
+      <value>Επόμενο &gt;</value>
+      <accessKey>ε</accessKey>
+    </item>
+    <item id="btn_page_welcome_cancel">
+      <value>Άκυρο</value>
+      <accessKey>α</accessKey>
+    </item>
+
+    <item id="txt_page_nickname_title">
+      <innerText>Προσωπικές πληροφορίες</innerText>
+    </item>
+    <item id="txt_page_nickname_tagline">
+      <innerText>Αυτές οι πληροφορίες θα βοηθούν άλλους να σας βρίσκουν στο δίκτυο.</innerText>
+    </item>
+    <item id="txt_page_nickname_desc">
+      <innerText>Καταχωρήστε το όνομά σας για να είναι ευκολότερο για τους φίλους και συναδέλφους σας να έρθουν σε επαφή μαζί σας.</innerText>
+    </item>
+    <item id="txt_page_nickname_name">
+      <innerHTML>&lt;U&gt;Ό&lt;/U&gt;νομα:</innerHTML>
+    </item>
+    <item id="data_name">
+      <accessKey>ο</accessKey>
+    </item>
+    <item id="btn_page_nickname_back">
+      <value>&lt; Προηγούμενο</value>
+      <accessKey>π</accessKey>
+    </item>
+    <item id="btn_page_nickname_next">
+      <value>Επόμενο &gt;</value>
+      <accessKey>ε</accessKey>
+    </item>
+    <item id="btn_page_nickname_cancel">
+      <value>Άκυρο</value>
+      <accessKey>α</accessKey>
+    </item>
+
+    <item id="txt_page_account_title">
+      <innerText>Πληροφορίες διεύθυνσης</innerText>
+    </item>
+    <item id="txt_page_account_tagline">
+      <innerText>Μπορείτε να χρησιμοποιείτε ένα κοινό διακομιστή στο Internet ή τον ιδιωτικό διακομιστή στο εταιρικό σας δίκτυο.</innerText>
+    </item>
+    <item id="txt_page_account_server">
+      <innerHTML>&lt;U&gt;Δ&lt;/U&gt;ιακομιστής:</innerHTML>
+    </item>
+    <item id="txt_page_account_username">
+      <innerHTML>&lt;U&gt;Ό&lt;/U&gt;νομα χρήστη:</innerHTML>
+    </item>
+    <item id="txt_page_account_password">
+      <innerHTML>&lt;U&gt;Κ&lt;/U&gt;ωδικός πρόσβασης:</innerHTML>
+    </item>
+    <item id="txt_page_account_confirm">
+      <innerHTML>&lt;U&gt;Ε&lt;/U&gt;πιβεβαίωση κωδικού πρόσβασης:</innerHTML>
+    </item>
+    <item id="data_server">
+      <accessKey>δ</accessKey>
+    </item>
+    <item id="data_username">
+      <accessKey>ο</accessKey>
+    </item>
+    <item id="data_password">
+      <accessKey>κ</accessKey>
+    </item>
+    <item id="data_password_confirm">
+      <accessKey>ε</accessKey>
+    </item>
+    <item id="txt_page_account_remember">
+      <innerHTML>&lt;U&gt;Α&lt;/U&gt;πομνημόνευση του κωδικού πρόσβασης</innerHTML>
+      <accessKey>α</accessKey>
+    </item>
+    <item id="txt_page_account_preview">
+      <innerText>Η διεύθυνσή σας:</innerText>
+    </item>
+    <item id="btn_page_account_settings">
+      <value>Ρυθμίσεις σύνδεσης</value>
+      <accessKey>ρ</accessKey>
+    </item>
+    <item id="btn_page_account_back">
+      <value>&lt; Προηγούμενο</value>
+      <accessKey>π</accessKey>
+    </item>
+    <item id="btn_page_account_next">
+      <value>Επόμενο &gt;</value>
+      <accessKey>ε</accessKey>
+    </item>
+    <item id="btn_page_account_cancel">
+      <value>Άκυρο</value>
+      <accessKey>α</accessKey>
+    </item>
+
+    <item id="txt_page_creating_title">
+      <innerText>Καταχώρηση διεύθυνσης</innerText>
+    </item>
+    <item id="txt_page_creating_autherr">
+      <innerHTML>Η διεύθυνση δεν μπορεί να καταχωρηθεί. Το όνομα χρήστη δεν είναι διαθέσιμο.&lt;BR&gt;&lt;BR&gt;Επιλέξτε &lt;B&gt;Προηγούμενο&lt;/B&gt;, πληκτρολογήστε ένα άλλο όνομα χρήστη και προσπαθήστε ξανά.</innerHTML>
+    </item>
+    <item id="txt_page_creating_forbidden">
+      <innerHTML>Η διεύθυνση δεν μπορεί να καταχωρηθεί. Ο διακομιστής δεν επιτρέπει τη δημιουργία νέων διευθύνσεων.&lt;BR&gt;&lt;BR&gt;Επιλέξτε &lt;B&gt;Προηγούμενο&lt;/B&gt;, και προσπαθήστε ξανά επιλέγοντας έναν άλλο διακομιστή.</innerHTML>
+    </item>
+    <item id="txt_page_creating_commerr">
+      <innerHTML>Δεν είναι δυνατή η επικοινωνία με το διακομιστή. Βεβαιωθείτε ότι η διεύθυνση του διακομιστή είναι σωστή.&lt;BR&gt;Ελέγξτε τη σύνδεση δικτύου σας και προσπαθήστε ξανά. Αν ο υπολογιστής σας βρίσκεται πίσω από τείχος προστασίας,&lt;BR&gt;ελέγξτε τις ρυθμίσεις σύνδεσης.</innerHTML>
+    </item>
+    <item id="btn_page_creating_retry">
+      <value>Προσπαθήστε ξανά</value>
+      <accessKey>ξ</accessKey>
+    </item>
+    <item id="btn_page_creating_settings">
+      <value>Ρυθμίσεις σύνδεσης</value>
+      <accessKey>ρ</accessKey>
+    </item>
+    <item id="btn_page_creating_back">
+      <value>&lt; Προηγούμενο</value>
+      <accessKey>π</accessKey>
+    </item>
+    <item id="btn_page_creating_next">
+      <value>Επόμενο &gt;</value>
+      <accessKey>ε</accessKey>
+    </item>
+    <item id="btn_page_creating_cancel">
+      <value>Άκυρο</value>
+      <accessKey>α</accessKey>
+    </item>
+
+    <item id="txt_conn_title">
+      <innerText>Ρυθμίσεις σύνδεσης</innerText>
+    </item>
+    <item id="txt_ssl">
+      <innerText>Χρήση ασφαλούς σύνδεσης (SSL)</innerText>
+    </item>
+    <item id="txt_conn_desc">
+      <innerText>Τείχος προστασίας και διακομιστής proxy</innerText>
+    </item>
+    <item id="txt_conn_none">
+      <innerText>Κανένα</innerText>
+    </item>
+    <item id="txt_conn_http">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_conn_s4">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_conn_s5">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_conn_host">
+      <innerText>Διακομιστής:</innerText>
+    </item>
+    <item id="txt_conn_port">
+      <innerText>Θύρα:</innerText>
+    </item>
+    <item id="txt_conn_user">
+      <innerText>Όνομα Χρήστη:</innerText>
+    </item>
+    <item id="txt_conn_pass">
+      <innerText>Κωδικός πρόσβασης:</innerText>
+    </item>
+    <item id="btn_conn_default">
+      <value>Προεπιλεγμένο</value>
+      <accessKey>π</accessKey>
+    </item>
+    <item id="btn_conn_ok">
+      <value>OK</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn_conn_cancel">
+      <value>Άκυρο</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_finished_title">
+      <innerText>Ο οδηγός προσθήκης προφίλ ολοκληρώνεται</innerText>
+    </item>
+    <item id="txt_page_finished_intro">
+      <innerText>Έχετε ολοκληρώσει με επιτυχία τον οδηγό προσθήκης προφίλ.</innerText>
+    </item>
+    <item id="txt_page_finished_details">
+      <innerText>Λεπτομέρειες προφίλ:</innerText>
+    </item>
+    <item id="txt_page_finished_finish">
+      <innerHTML>Για να κλείσετε τον οδηγό, επιλέξτε &lt;B&gt;Τέλος&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_finished_back">
+      <value>&lt; Προηγούμενο</value>
+      <accessKey>π</accessKey>
+    </item>
+    <item id="btn_page_finished_finish">
+      <value>Τέλος</value>
+      <accessKey>τ</accessKey>
+    </item>
+    <item id="btn_page_finished_cancel">
+      <value>Άκυρο</value>
+      <accessKey>α</accessKey>
+    </item>
+	</window>
+</translation>

@@ -1,0 +1,398 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+
+@import url( 'css/main.css' );
+
+BODY {
+	background-color: buttonface;
+	color: buttontext;
+}
+TD {
+	font-family: Arial;
+	font-size: 11px;
+	color: windowtext;
+}
+</STYLE>
+
+<SCRIPT language=JScript src="main/XMPPHookIQ.js"></SCRIPT>
+
+<SCRIPT language=JScript>
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'admin_users', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	refresh();
+	external.wnd.hide( false );
+	document.getElementById( 'list' ).focus();
+}
+
+function refresh ()
+{
+	document.getElementById( 'server_count' ).innerText = external.globals( 'Translator' ).Translate( 'admin_users', 'loading' );
+	document.getElementById( 'list' ).innerHTML = '';
+	document.getElementById( 'server_name' ).innerText = external.globals( 'ClientServices' ).Name;
+	document.getElementById( 'server_address' ).innerText = external.globals( 'ClientServices' ).JID;
+	document.getElementById( 'btn_refresh' ).disabled = true;
+
+	if ( external.globals( 'ClientServices' ).Admin )
+	{
+		var hook = new XMPPHookIQ();
+		hook.Window = external.wnd;
+		hook.Callback = 'recv_list';
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:admin"><who/></query></iq>' );
+		dom.documentElement.setAttribute( 'id', hook.Id );
+		dom.documentElement.setAttribute( 'to', external.globals( 'ClientServices' ).JID );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+	else if ( external.globals( 'ClientServices' ).AdminJ2.length )
+	{
+		var hook = new XMPPHookIQ();
+		hook.Window = external.wnd;
+		hook.Callback = 'recv_list_J2';
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#items" node="sessions"/></iq>' );
+		dom.documentElement.setAttribute( 'id', hook.Id );
+		dom.documentElement.setAttribute( 'to', external.globals( 'ClientServices' ).AdminJ2 );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+function recv_list ( iq )
+{
+	var list = document.getElementById( 'list' );
+	document.getElementById( 'btn_refresh' ).disabled = false;
+	if ( iq.Type == 'error' )
+	{
+		var desc, code;
+		var error = iq.XMLDOM.selectSingleNode( '/iq/error' );
+		if ( error )
+		{
+			desc = error.text;
+			code = error.getAttribute( 'code' );
+		}
+		else
+		{
+			desc = external.globals( 'Translator' ).Translate( 'admin_users', 'invalid_data' );
+			code = 0;
+		}
+		document.getElementById( 'server_count' ).innerHTML = '&nbsp;';
+		list.innerHTML = '<CENTER><DIV style="text-align: left; color: windowtext; width: 200px; margin-top: 50px;"><B>' + external.globals( 'Translator' ).Translate( 'admin_users', 'server_error' ) + '</B><BR>' + desc + '<BR>(code ' + code + ')<BR><BR>' + external.globals( 'Translator' ).Translate( 'admin_users', 'server_failed' ) + '</DIV></CENTER>';
+		return;
+	}
+
+	var userlist = iq.XMLDOM.selectNodes( '/iq/query[@xmlns = "jabber:iq:admin"]/who/presence' );
+
+	document.getElementById( 'server_count' ).innerText = userlist.length == 1 ? external.globals( 'Translator' ).Translate( 'admin_users', 'user' ) : external.globals( 'Translator' ).Translate( 'admin_users', 'users', [ userlist.length ] );
+
+	for ( var i = 0; i < userlist.length; ++i )
+	{
+		var user, tag, jid, resource, username, time, avatar, status, show;
+
+		user = userlist.item( i );
+
+		jid = user.getAttribute( 'from' );
+		if ( jid.indexOf( '/' ) != -1 )
+		{
+			resource = jid.substr( jid.indexOf( '/' ) + 1 );
+			jid = jid.substr( 0, jid.indexOf( '/' ) );
+		}
+		else
+			resource = '';
+		username = jid.indexOf( '@' ) != -1 ? jid.substr( 0, jid.indexOf( '@' ) ) : jid;
+
+		tag = user.selectSingleNode( '*[@xmlns = "jabber:mod_admin:who" and @timer]' );
+		if ( tag )
+		{
+			time = parseInt( tag.getAttribute( 'timer' ), 10 );
+			if ( ! isNaN( time ) )
+			{
+				var hours = Math.floor( time / 3600 );
+				var minutes = Math.floor( ( time - ( hours * 3600 ) ) / 60 );
+				time = hours + ( minutes < 10 ? ':0' : ':' ) + minutes;
+			}
+			else
+				time = '00:00';
+		}
+		else
+			time = '00:00';
+
+		tag = user.selectSingleNode( '*[@xmlns = "jabber:x:avatar"]/hash' );
+		avatar = tag ? tag.text.replace( /[^0-9a-zA-Z]/gm, '' ) : '';
+		if ( avatar.length != 40 )
+			avatar = '';
+		if ( avatar.length == 0 || ! external.FileExists( external.globals( 'usersdir' ) + 'Avatars\\' + avatar ) && resource.length )
+			avatar = external.globals( 'ClientRoster' ).GetAvatar( resource.toLowerCase(), jid );
+		if ( avatar.length == 0 )
+			avatar = 'unknown-soldier.gif';
+
+		tag = user.selectSingleNode( 'status' );
+		status = tag ? tag.text.replace( /[\n\r]+/mg, ' - ' ) : external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' );
+
+		tag = user.selectSingleNode( 'show' );
+		show = tag ? tag.text : '';
+
+		var elem = document.createElement( 'NOBR' );
+		elem.className = 'roster-resource';
+		elem.attachEvent(
+			'onmouseover',
+			function ()
+			{
+				var elem = event.srcElement;
+				while ( elem.tagName != 'NOBR' )
+					elem = elem.parentNode;
+				elem.children( elem.firstChild.tagName == 'IMG' ? 1 : 0 ).style.textDecoration = 'underline';
+			}
+		);
+		elem.JID = jid;
+		elem.Resource = resource;
+		elem.attachEvent(
+			'onmouseout',
+			function ()
+			{
+				var elem = event.srcElement;
+				while ( elem.tagName != 'NOBR' )
+					elem = elem.parentNode;
+				elem.children( elem.firstChild.tagName == 'IMG' ? 1 : 0 ).style.textDecoration = 'none';
+			}
+		);
+		elem.attachEvent(
+			'onmouseup',
+			function ()
+			{
+				var obj = event.srcElement;
+				while ( obj.tagName != 'NOBR' )
+					obj = obj.parentNode;
+				if ( event.button == 2 )
+					mousemenu( obj.JID, obj.Resource );
+				else
+					external.wnd.params.dial_chat( obj.JID + '/' + obj.Resource );
+			}
+		);
+
+		var img = document.createElement( 'IMG' );
+		img.align = 'left';
+		img.style.marginRight = '5px';
+		img.border = 0;
+		if ( avatar.length == 40 )
+			img.src = external.globals( 'usersdir' ) + 'Avatars\\' + avatar;
+		else
+			img.src = external.globals( 'cwd' ) + '..\\images\\clients\\' + avatar;
+		img.height = img.width = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? 24 : 16;
+		elem.insertAdjacentElement( 'beforeEnd', img );
+
+		var name = document.createElement( 'SPAN' );
+		name.className = 'roster-resource-name';
+		name.style.fontWeight = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? '' : 'normal';
+		name.innerText = username;
+		elem.insertAdjacentElement( 'beforeEnd', name );
+		switch ( show )
+		{
+			case 'dnd': elem.insertAdjacentHTML( 'beforeEnd', '<SPAN class=roster-resource-busy>&nbsp;- ' + external.globals( 'Translator' ).Translate( 'main', 'cl_busy' ) + '<BR></SPAN>' ); break;
+			case 'xa':
+			case 'away': elem.insertAdjacentHTML( 'beforeEnd', '<SPAN class=roster-resource-away>&nbsp;- ' + external.globals( 'Translator' ).Translate( 'main', 'cl_away' ) + '<BR></SPAN>' ); break;
+			default: elem.insertAdjacentHTML( 'beforeEnd', '<SPAN class=roster-resource-away><BR></SPAN>' );
+		}
+		if ( external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' )
+		{
+			var msg = document.createElement( 'SPAN' );
+			msg.className = 'roster-resource-msg';
+			msg.innerText = status + '\n';
+			elem.insertAdjacentElement( 'beforeEnd', msg );
+		}
+		else
+			elem.style.paddingBottom = '5px';
+		elem.title = resource.length ? external.globals( 'Translator' ).Translate( 'admin_users', 'tooltip_with', [ jid, resource, time ] ) : external.globals( 'Translator' ).Translate( 'admin_users', 'tooltip_without', [ jid, time ] );
+		elem.style.width = '240px';
+		elem.style.display = 'inline';
+		elem.style.overflow = 'hidden';
+		elem.style.textOverflow = 'ellipsis';
+		list.insertAdjacentElement( 'beforeEnd', elem );
+	}
+}
+
+function recv_list_J2 ( iq )
+{
+	var list = document.getElementById( 'list' );
+	document.getElementById( 'btn_refresh' ).disabled = false;
+	if ( iq.Type == 'error' )
+	{
+		var desc, code;
+		var error = iq.XMLDOM.selectSingleNode( '/iq/error' );
+		if ( error )
+		{
+			desc = error.text;
+			code = error.getAttribute( 'code' );
+		}
+		else
+		{
+			desc = external.globals( 'Translator' ).Translate( 'admin_users', 'invalid_data' );
+			code = 0;
+		}
+		document.getElementById( 'server_count' ).innerHTML = '&nbsp;';
+		list.innerHTML = '<CENTER><DIV style="text-align: left; color: windowtext; width: 200px; margin-top: 50px;"><B>' + external.globals( 'Translator' ).Translate( 'admin_users', 'server_error' ) + '</B><BR>' + desc + '<BR>(code ' + code + ')<BR><BR>' + external.globals( 'Translator' ).Translate( 'admin_users', 'server_failed' ) + '</DIV></CENTER>';
+		return;
+	}
+
+	var userlist = iq.XMLDOM.selectNodes( '/iq/query[@xmlns = "http://jabber.org/protocol/disco#items" and @node="sessions"]/item[@jid and @name]' );
+
+	document.getElementById( 'server_count' ).innerText = userlist.length == 1 ? external.globals( 'Translator' ).Translate( 'admin_users', 'user' ) : external.globals( 'Translator' ).Translate( 'admin_users', 'users', [ userlist.length ] );
+
+	for ( var i = 0; i < userlist.length; ++i )
+	{
+		var user, jid, resource, username, avatar, status;
+
+		user = userlist.item( i );
+
+		jid = user.getAttribute( 'jid' );
+		if ( jid.indexOf( '/' ) != -1 )
+		{
+			resource = jid.substr( jid.indexOf( '/' ) + 1 );
+			jid = jid.substr( 0, jid.indexOf( '/' ) );
+		}
+		else
+			resource = '';
+		username = jid.indexOf( '@' ) != -1 ? jid.substr( 0, jid.indexOf( '@' ) ) : jid;
+
+		if ( resource.length )
+			avatar = external.globals( 'ClientRoster' ).GetAvatar( resource.toLowerCase(), jid );
+		if ( avatar.length == 0 )
+			avatar = 'unknown-soldier.gif';
+
+		status = user.getAttribute( 'name' );
+		status = status ? status.replace( /[\n\r]+/mg, ' - ' ) : external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' );
+
+		var elem = document.createElement( 'NOBR' );
+		elem.className = 'roster-resource';
+		elem.attachEvent(
+			'onmouseover',
+			function ()
+			{
+				var elem = event.srcElement;
+				while ( elem.tagName != 'NOBR' )
+					elem = elem.parentNode;
+				elem.children( elem.firstChild.tagName == 'IMG' ? 1 : 0 ).style.textDecoration = 'underline';
+			}
+		);
+		elem.JID = jid;
+		elem.Resource = resource;
+		elem.attachEvent(
+			'onmouseout',
+			function ()
+			{
+				var elem = event.srcElement;
+				while ( elem.tagName != 'NOBR' )
+					elem = elem.parentNode;
+				elem.children( elem.firstChild.tagName == 'IMG' ? 1 : 0 ).style.textDecoration = 'none';
+			}
+		);
+		elem.attachEvent(
+			'onmouseup',
+			function ()
+			{
+				var obj = event.srcElement;
+				while ( obj.tagName != 'NOBR' )
+					obj = obj.parentNode;
+				if ( event.button == 2 )
+					mousemenu( obj.JID, obj.Resource );
+				else
+					external.wnd.params.dial_chat( obj.JID + '/' + obj.Resource );
+			}
+		);
+
+		var img = document.createElement( 'IMG' );
+		img.align = 'left';
+		img.style.marginRight = '5px';
+		img.border = 0;
+		img.src = external.globals( 'cwd' ) + '..\\images\\clients\\' + avatar;
+		img.height = img.width = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? 24 : 16;
+		elem.insertAdjacentElement( 'beforeEnd', img );
+
+		var name = document.createElement( 'SPAN' );
+		name.className = 'roster-resource-name';
+		name.style.fontWeight = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? '' : 'normal';
+		name.innerText = username;
+		elem.insertAdjacentElement( 'beforeEnd', name );
+		elem.insertAdjacentHTML( 'beforeEnd', '<SPAN class=roster-resource-away><BR></SPAN>' );
+		if ( external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' )
+		{
+			var msg = document.createElement( 'SPAN' );
+			msg.className = 'roster-resource-msg';
+			msg.innerText = status + '\n';
+			elem.insertAdjacentElement( 'beforeEnd', msg );
+		}
+		else
+			elem.style.paddingBottom = '5px';
+		elem.title = jid + '/' + resource;
+		elem.style.width = '240px';
+		elem.style.display = 'inline';
+		elem.style.overflow = 'hidden';
+		elem.style.textOverflow = 'ellipsis';
+		list.insertAdjacentElement( 'beforeEnd', elem );
+	}
+}
+
+function mousemenu ( jid, res )
+{
+	var connected = external.globals( 'XMPPConnected' );
+	var Menu = external.newPopupMenu;
+	Menu.AddItem( connected, false, false, true, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_message' ), 1 );
+	Menu.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_filetransfer' ), 2 );
+	Menu.AddSeparator();
+	Menu.AddItem( connected && ! external.globals( 'ClientRoster' ).Items.Exists( jid ), false, false, false, 0, external.globals( 'Translator' ).Translate( 'admin_users', 'add_to_list' ), 4 );
+	Menu.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_profile' ), 5 );
+	Menu.Show( event.screenX, event.screenY );
+
+	switch ( Menu.Choice )
+	{
+		case 1: external.wnd.params.dial_chat( jid + '/' + res ); break;
+		case 2: external.wnd.params.dial_file( jid + '/' + res ); break;
+		case 5: external.wnd.params.dial_userinfo( jid + '/' + res ); break;
+		case 4:
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			dom.loadXML( '<presence type="subscribe"/>' );
+			dom.documentElement.setAttribute( 'to', jid );
+			external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+			external.XMPP.SendXML( dom );
+		break;
+	}
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="init()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="event.returnValue = false; external.wnd.close();">
+<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<TR valign=top height=60 bgcolor=window>
+	<TD colspan=2 style="padding-left: 20px; padding-right: 8px; padding-top: 10px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+	<SPAN id=server_name style="font-weight: bold;"></SPAN>&nbsp; - &nbsp;<SPAN id=server_address></SPAN><BR>
+	<DIV style="height: 27px; margin-left: 20px; margin-right: 20px; overflow: hidden;" id=txt_desc></DIV>
+	</TD>
+</TR>
+<TR valign=top>
+	<TD colspan=2 style="padding: 16px;">
+	<DIV id=list style="padding-top: 3px; padding-left: 4px; width: 100%; height: 100%; background-color: window; border: 2px inset; overflow-x: hidden; overflow-y: scroll; font-size: 11px; font-family: Tahoma; color: windowtext;"></DIV>
+	</TD>
+</TR>
+<TR valign=top height=45>
+	<TD id=server_count style="padding-left: 16px; padding-top: 16px; border-top: 2px groove; font-size: 11px; font-family: Tahoma; color: buttontext;">&nbsp;</TD>
+	<TD align=right style="padding: 10px; border-top: 2px groove;">
+	<INPUT type=button style="height: 24px; width: 90px; font-size: 11px;" id=btn_refresh onclick="refresh()">&nbsp;
+	<INPUT type=submit style="height: 24px; width: 90px; font-size: 11px;" id=btn_ok>
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

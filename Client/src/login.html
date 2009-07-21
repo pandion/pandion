@@ -1,0 +1,458 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+A {
+	color: blue;
+}
+A:hover {
+	color: red;
+}
+TD {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: windowtext;
+}
+INPUT.button {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: buttontext;
+	width: 90px;
+	height: 24px;
+}
+INPUT.text {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: buttontext;
+	width: 220px;
+	height: 22px;
+}
+</STYLE>
+<SCRIPT language=JScript src="main/XMPPAddress.js"></SCRIPT>
+<SCRIPT language=JScript src="main/file2hash.js"></SCRIPT>
+<SCRIPT language=JScript src="main/pass_code.js"></SCRIPT>
+<SCRIPT language=JScript>
+
+var gShutdownOnClose = true;
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'login', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	external.wnd.setCloseHandler( 'OnClose' );
+
+	external.globals( 'cfg' )( 'username' ) = external.globals( 'cfg' )( 'server' ) = '';
+	Reload();
+
+	/* Show password reminder link
+	 */
+	if ( external.globals( 'passwordpage' ).length )
+		document.getElementById( 'txt_forgot_password' ).href = external.globals( 'passwordpage' );
+
+	/* Show the window
+	 */
+	if ( external.wnd.params[1] )
+	{
+		external.wnd.hide( false );
+		external.wnd.focus();
+	}
+}
+
+function Reload ()
+{
+	if ( external.globals( 'authentication' ) == 'normal' )
+	{
+		ReloadGUI( true, false );
+		LoadCredentialsNormal();
+	}
+	else
+	{
+		ReloadGUI( false, true );
+		LoadCredentialsNTLM();
+	}
+}
+
+function ReloadGUI ( Normal, NTLM )
+{
+	/* Toggle the input fields
+	 */
+	document.getElementById( 'btn_signup' ).style.display			= Normal && external.globals( 'showsignup' ) == 'yes' ? 'inline' : 'none';
+	document.getElementById( 'credentials-normal' ).style.display	= Normal ? 'inline' : 'none';
+	document.getElementById( 'credentials-ntlm' ).style.display		= NTLM ? 'inline' : 'none';
+	document.getElementById( 'remember' ).parentNode.parentNode.style.display = Normal ? 'inline' : 'none';
+	document.getElementById( 'txt_forgot_password' ).parentNode.parentNode.style.display = Normal && external.globals( 'passwordpage' ).length ? 'inline' : 'none';
+}
+
+function LoadCredentialsNTLM ()
+{
+	/* Flush the list
+	 */
+	while ( document.getElementById( 'recently-used-ntlm' ).options.length )
+		document.getElementById( 'recently-used-ntlm' ).options.remove(0);
+
+	/* Show the last used server
+	 */
+	document.getElementById( 'server-ntlm' ).value	= '';
+	document.getElementById( 'remember' ).checked	= false;
+	document.getElementById( 'autologin' ).checked	= false;
+	document.getElementById( 'server-ntlm' ).focus();
+	document.getElementById( 'server-ntlm' ).focus();
+	if ( external.globals( 'last_address' ).length && external.globals( 'last_address' ).match( /^[^@]+$/ ) )
+	{
+		document.getElementById( 'server-ntlm' ).value = external.globals( 'last_address' );
+		document.getElementById( 'autologin' ).checked = external.globals( 'autologin' ).toString() == 'true';
+	}
+
+	/* Append the addresses to the pulldown
+	 */
+	var Addresses = GetAccounts( /^[^@]+$/ );
+	for ( var i = 0; i < Math.min( 6, Addresses.length ); ++i )
+	{
+		var opt = document.createElement( 'OPTION' );
+		opt.text = opt.value = Addresses[i].Name;
+		document.getElementById( 'recently-used-ntlm' ).add( opt );
+	}
+
+	ChangeNTLM();
+}
+
+function LoadCredentialsNormal ()
+{
+	/* Flush the list
+	 */
+	while ( document.getElementById( 'recently-used' ).options.length )
+		document.getElementById( 'recently-used' ).options.remove(0);
+
+	/* Show last used address and password
+	 */
+	document.getElementById( 'address' ).focus();
+	document.getElementById( 'address' ).focus();
+	document.getElementById( 'address' ).value		= '';
+	document.getElementById( 'password' ).value		= '';
+	document.getElementById( 'remember' ).checked	= false;
+	document.getElementById( 'autologin' ).checked	= false;
+	if ( external.globals( 'last_address' ).length && external.globals( 'last_address' ).match( /@/ ) )
+	{
+		document.getElementById( 'address' ).value = external.globals( 'last_address' );
+		document.getElementById( 'password' ).focus();
+		document.getElementById( 'password' ).focus();
+		if ( external.globals( 'last_password_remember' ).toString() == 'true' )
+		{
+			document.getElementById( 'remember' ).checked	= true;
+			document.getElementById( 'autologin' ).checked	= external.globals( 'autologin' ).toString() == 'true';
+			document.getElementById( 'password' ).value		= pass_code( false, external.globals( 'last_password' ) );
+		}
+	}
+
+	/* Append the addresses to the pulldown
+	 */
+	var Addresses = GetAccounts( /@/ );
+	for ( var i = 0; i < Math.min( 6, Addresses.length ); ++i )
+	{
+		var opt = document.createElement( 'OPTION' );
+		var Address = external.globals( 'fixedserver' ).length ? Addresses[i].Name.substr( 0, Addresses[i].Name.indexOf( '@' ) + 1 ) + external.globals( 'fixedserver' ) : Addresses[i].Name;
+		opt.text = opt.value = Address;
+		document.getElementById( 'recently-used' ).add( opt );
+	}
+
+	ChangeRemember();
+}
+
+function GetAccounts ( ValidAccount )
+{
+	/* Build list of recently used accounts
+	 */
+	var CurrentTime = ( new Date() ).getTime();
+	var Addresses = [];
+	var Directories = new VBArray( external.Directory.ListDirs( external.globals( 'usersdir' ) + 'Profiles\\' ) ).toArray();
+	for ( var i = 0; i < Directories.length; ++i )
+	{
+		if ( Directories[i].Name != external.globals( 'last_address' ) && Directories[i].Name.match( ValidAccount ) )
+		{
+			var Path = external.globals( 'usersdir' ) + 'Profiles\\' + Directories[i].Name + '\\settings.xml';
+			var LastWriteTime = external.FileExists( Path ) ? ( new Date( external.file( Path ).LastWriteTime ) ).getTime() : -1;
+			if ( LastWriteTime > CurrentTime - ( 30 * 24 * 3600 * 1000 ) || LastWriteTime == -1 )
+				Addresses.push(
+					new function ()
+					{
+						this.LastWriteTime	= LastWriteTime;
+						this.Name			= Directories[i].Name;
+					}
+				);
+		}
+	}
+
+	/* First entry should be the last used address
+	 */
+	if ( external.globals( 'last_address' ).length && external.globals( 'last_address' ).match( ValidAccount ) )
+		Addresses.push(
+			new function ()
+			{
+				this.LastWriteTime	= Number.MAX_VALUE;
+				this.Name			= external.globals( 'last_address' );
+			}
+		);
+
+	/* Order according to last used date
+	 */
+	Addresses.sort(
+		function ( a, b )
+		{
+			if ( a.LastWriteTime > b.LastWriteTime )
+				return -1;
+			else if ( a.LastWriteTime == b.LastWriteTime )
+				return 0;
+			else
+				return 1;
+		}
+	);
+
+	return Addresses;
+}
+
+function OnClose ()
+{
+	external.wnd.minimize();
+	external.wnd.hide( true );
+}
+
+function End ()
+{
+	if ( gShutdownOnClose )
+		external.wnd.params[0].setTimeout( 'external.wnd.close()', 0 );
+}
+
+/* Handle keyboard shortcuts.
+ */
+function Keyboard ( EventData )
+{
+	var k = EventData.keyCode;
+
+	/* esc: close
+	 */
+	if ( k == 27 )
+	{
+		external.wnd.close();
+	}
+
+	else if ( k == 112 )
+	// F1: manual
+	{
+		if ( external.globals( 'helpmanual' ).length )
+			external.wnd.params[0].dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'helpmanual' ) ) );
+	}
+
+	else if ( k == 123 )
+	// F12: show console
+	{
+		external.wnd.params[0].dial_console();
+	}
+}
+
+function Login ()
+{
+	if ( external.windows.Exists( 'connection_settings' ) )
+		external.windows( 'connection_settings' ).close();
+
+	if ( external.globals( 'authentication' ) == 'normal' )
+		LoginNormal();
+	else
+		LoginNTLM();
+}
+
+function LoginNormal ()
+{
+	var Address		= new XMPPAddress( document.getElementById( 'address' ).value );
+	var Password	= document.getElementById( 'password' ).value;
+
+	if ( external.globals( 'fixedserver' ).length )
+	{
+		if ( ! Address.User.length )
+			Address.User = Address.Host;
+		Address.Host = external.globals( 'fixedserver' );
+	}
+	else if ( ! Address.User.length )
+	{
+		Address.User = Address.Host;
+
+		var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
+		dom.async				= false;
+		dom.resolveExternals	= false;
+		dom.load( external.globals( 'cwd' ) + '..\\settings\\servers.xml' );
+		var DefaultServer = dom.selectSingleNode( '/servers/xmpp[@default="yes"]' );
+		if ( DefaultServer )
+			Address.Host = DefaultServer.text;
+	}
+
+	if ( Address.User.length && Address.Host.length )
+	{
+		gShutdownOnClose = false;
+		external.globals( 'last_password_remember' ) = document.getElementById( 'remember' ).checked;
+		external.globals( 'autologin' ) = document.getElementById( 'autologin' ).checked;
+		external.wnd.hide( true );
+		external.wnd.params[0].login( Address, Password );
+		external.wnd.close();
+	}
+	else
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'login', 'invalid' ), external.globals( 'softwarename' ), 0 | 48 );
+}
+
+function LoginNTLM ()
+{
+	var Address		= new XMPPAddress( document.getElementById( 'server-ntlm' ).value );
+	var Password	= '';
+
+	if ( Address.Host.length )
+	{
+		Address.Parse( Address.Host );
+		gShutdownOnClose = false;
+		external.globals( 'autologin' ) = document.getElementById( 'autologin' ).checked;
+		external.wnd.hide( true );
+		external.wnd.params[0].login( Address, Password );
+		external.wnd.close();
+	}
+	else
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'login', 'invalid-ntlm' ), external.globals( 'softwarename' ), 0 | 48 );
+}
+
+function SignUp ()
+{
+	if ( external.windows.Exists( 'connection_settings' ) )
+		external.windows( 'connection_settings' ).close();
+
+	/* Website
+	 */
+	if ( external.globals( 'websignup' ).length && external.globals( 'websignupmethod' ) != 'embedded' )
+		external.wnd.params[0].dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'websignup' ) ) );
+	/* XMPP
+	 */
+	else
+	{
+		gShutdownOnClose = false;
+		external.wnd.hide( true );
+		external.wnd.params[0].dial_signup();
+		external.wnd.close();
+	}
+}
+
+function Settings ()
+{
+	external.wnd.params[0].dial_connection_settings();
+}
+
+function ChangeRemember ()
+{
+	var Checked = document.getElementById( 'remember' ).checked;
+	document.getElementById( 'txt_autologin' ).disabled	= ! Checked;
+	document.getElementById( 'autologin' ).disabled		= ! Checked;
+}
+
+function ChangeNTLM ()
+{
+	var Server = document.getElementById( 'server-ntlm' );
+	document.getElementById( 'txt_autologin' ).disabled	= ! Server.value.length;
+	document.getElementById( 'autologin' ).disabled		= ! Server.value.length;
+}
+
+</SCRIPT>
+</HEAD>
+
+<BODY scroll=no bgcolor=buttonface onload="Begin()" onunload="End()" onkeydown="Keyboard( event )">
+
+<FORM onsubmit="event.returnValue = false;">
+	<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0>
+		<TR valign=top id=credentials-normal height=1>
+			<TD style="padding: 16px 16px 0 16px;" colspan=2>
+				<SPAN id=txt_instructions style="height: 32px;"></SPAN>
+				<TABLE cellspacing=0 cellpadding=0 border=0 style="margin-left: 20px; table-layout fixed;">
+					<COLGROUP>
+						<COL width=80>
+						<COL>
+					</COLGROUP>
+					<TR>
+						<TD id=txt_address></TD>
+						<TD>
+							<SELECT id=recently-used style="width: 220px; height: 22px; clip: rect( 0 220 22 202 ); position: absolute;" tabindex="-1" onchange="document.getElementById( 'address' ).value = this.value; document.getElementById( 'password' ).value = ''; document.getElementById( 'password' ).focus();"></SELECT>
+							<INPUT class=text type=text id=address style="position: relative; top: -1px; padding-right: 20px;" tabindex=1>
+						</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD id=txt_example></TD>
+					</TR>
+					<TR>
+						<TD colspan=2 height=20></TD>
+					</TR>
+					<TR>
+						<TD id=txt_password></TD>
+						<TD>
+							<INPUT class=text type=password id=password tabindex=1>
+						</TD>
+					</TR>
+				</TABLE>
+			</TD>
+		</TR>
+		<TR valign=top id=credentials-ntlm height=1>
+			<TD style="padding: 16px 16px 0 16px;" colspan=2>
+				<SPAN id=txt_instructions_ntlm style="height: 48px;"></SPAN>
+				<TABLE cellspacing=0 cellpadding=0 border=0 style="margin-left: 20px; table-layout fixed;">
+					<COLGROUP>
+						<COL width=80>
+						<COL>
+					</COLGROUP>
+					<TR>
+						<TD id=txt_server_ntlm></TD>
+						<TD>
+							<SELECT id=recently-used-ntlm style="width: 220px; height: 22px; clip: rect( 0 220 22 202 ); position: absolute;" tabindex="-1" onchange="document.getElementById( 'server-ntlm' ).value = this.value; document.getElementById( 'server-ntlm' ).focus();"></SELECT>
+							<INPUT class=text type=text id=server-ntlm style="position: relative; top: -1px; padding-right: 20px;" tabindex=1 onpropertychange="ChangeNTLM()">
+						</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD id=txt_example_ntlm></TD>
+					</TR>
+					<TR>
+						<TD colspan=2 height=8></TD>
+					</TR>
+				</TABLE>
+			</TD>
+		</TR>
+		<TR height=1>
+			<TD style="padding-left: 116px;">
+				<INPUT type=checkbox id=remember onpropertychange="ChangeRemember()" tabindex=1> <LABEL for=remember id=txt_remember></LABEL><BR>
+			</TD>
+		</TR>
+		<TR height=1>
+			<TD style="padding-left: 116px;">
+				<INPUT type=checkbox id=autologin disabled tabindex=1> <LABEL for=autologin id=txt_autologin disabled></LABEL><BR>
+			</TD>
+		</TR>
+		<TR height=1>
+			<TD align=right style="padding-right: 64px; padding-top: 4px;">
+				<A href="" id=txt_forgot_password onclick="external.windows( 'MainWindow' ).Do( 'dial_webbrowser', this.href ); return false;"></A>
+			</TD>
+		</TR>
+		<TR>
+			<TD align=right style="padding-right: 64px; padding-top: 4px;" valign=top>
+				<A href="" onclick="Settings(); return false;" tabindex=1 id=txt_connection_settings></A>
+			</TD>
+		</TR>
+		<TR valign=top height=48>
+			<TD style="padding: 10px; border-top: 2px groove;">
+				<INPUT type=button class=button id=btn_close onclick="external.wnd.close();" style="float: right;">
+				<INPUT type=submit class=button id=btn_login onclick="Login()" tabindex=1 style="float: right;">
+				<INPUT type=button class=button id=btn_signup onclick="SignUp()" style="width: 100px;">
+			</TD>
+		</TR>
+	</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

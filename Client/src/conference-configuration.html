@@ -1,0 +1,183 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<LINK rel="stylesheet" type="text/css" href="css/xdata.css"></LINK>
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+TD {
+	font-family: Tahoma;
+	font-size: 11px;
+}
+#form-area {
+	overflow-y: auto;
+	background-color: window;
+	color: windowtext;
+	border: 2px inset;
+	width: 100%;
+	height: 100%;
+	padding: 4px;
+}
+#txt_form_loading,
+#txt_form_empty,
+#txt_form_invalid {
+	text-align: center;
+	padding-top: 80px;
+}
+</STYLE>
+<SCRIPT language=JScript src="main/XMPPHookIQ.js"></SCRIPT>
+<SCRIPT language=JScript src="main/XMPPXData.js"></SCRIPT>
+<SCRIPT language=JScript>
+
+var HookIQ			= null;
+var CancelOnExit	= true;
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'conference-configuration', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	external.wnd.hide( false );
+	FormRefresh();
+}
+
+function End ()
+{
+	if ( HookIQ )
+	{
+		HookIQ.Destroy();
+		HookIQ = null;
+	}
+
+	if ( CancelOnExit )
+	{
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="set"><query xmlns="http://jabber.org/protocol/muc#owner"><x xmlns="jabber:x:data" type="cancel"/></query></iq>' );
+		dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
+		dom.documentElement.setAttribute( 'to', external.wnd.params[1].Address.ShortAddress() );
+		external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+function FormRefresh ()
+{
+	var FormArea = document.getElementById( 'form-area' );
+	while ( FormArea.children.length > 3 )
+		FormArea.children.item(-1).removeNode( true );
+	document.getElementById( 'btn_ok' ).disabled		= true;
+	document.getElementById( 'txt_title' ).innerText	= external.globals( 'Translator' ).Translate( 'conference-configuration', 'form_title' );
+	document.getElementById( 'txt_subtitle' ).innerText	= external.globals( 'Translator' ).Translate( 'conference-configuration', 'form_subtitle' );
+	FormArea.children.item(0).style.display = 'block';
+	FormArea.children.item(1).style.display = 'none';
+	FormArea.children.item(2).style.display = 'none';
+	FormArea.focus();
+
+	if ( HookIQ )
+	{
+		HookIQ.Destroy();
+		HookIQ = null;
+	}
+
+	HookIQ			= new XMPPHookIQ();
+	HookIQ.Window	= external.wnd;
+	HookIQ.Callback	= 'ReceiveForm';
+
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/muc#owner"/></iq>' );
+	dom.documentElement.firstChild.setAttribute( 'xml:lang', external.globals( 'language' ) );
+	dom.documentElement.setAttribute( 'id', HookIQ.Id );
+	dom.documentElement.setAttribute( 'to', external.wnd.params[1].Address.ShortAddress() );
+	external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+}
+
+function ReceiveForm ( IQ )
+{
+	if ( HookIQ )
+	{
+		HookIQ.Destroy();
+		HookIQ = null;
+	}
+
+	var FormArea = document.getElementById( 'form-area' );
+	FormArea.children.item(0).style.display = 'none';
+
+	if ( IQ.Type == 'result' )
+	{
+		var FormData = IQ.XMLDOM.selectSingleNode( '/iq/query[@xmlns="http://jabber.org/protocol/muc#owner"]/x[@xmlns="jabber:x:data"]' );
+
+		if ( FormData )
+		{
+			var XDataParser	= new XMPPXData;
+			XDataParser.RenderForm( FormData, FormArea, document.getElementById( 'txt_title' ), document.getElementById( 'txt_subtitle' ) );
+		}
+
+		FormArea.children.item(1).style.display			= FormArea.children.length > 3 ? 'none' : 'block';
+		document.getElementById( 'btn_ok' ).disabled	= false;
+	}
+	else
+	{
+		FormArea.children.item(0).style.display	= 'none';
+		FormArea.children.item(2).style.display	= 'block';
+		CancelOnExit							= false;
+	}
+}
+
+function SubmitForm ()
+{
+	CancelOnExit = false;
+
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<iq type="set"><query><x type="submit"/></query></iq>' );
+
+	var XDataParser	= new XMPPXData;
+	XDataParser.BuildXML( document.getElementById( 'form-area' ), dom.documentElement.firstChild.firstChild );
+
+	dom.documentElement.firstChild.firstChild.setAttribute( 'xmlns', 'jabber:x:data' );
+	dom.documentElement.firstChild.setAttribute( 'xml:lang', external.globals( 'language' ) );
+	dom.documentElement.firstChild.setAttribute( 'xmlns', 'http://jabber.org/protocol/muc#owner' );
+	dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
+	dom.documentElement.setAttribute( 'to', external.wnd.params[1].Address.ShortAddress() );
+	external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+
+	external.wnd.close();
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="Begin()" onunload="End()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="event.returnValue = false; SubmitForm();">
+<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<TR valign=top height=60 bgcolor=window>
+	<TD colspan=2 style="padding-left: 12px; padding-right: 8px; padding-top: 7px; color: windowtext; border-bottom: 2px groove;">
+	<SPAN id=txt_title style="font-weight: bold;"></SPAN>
+	<DIV id=txt_subtitle style="height: 27px; margin-left: 20px; margin-right: 20px; overflow: hidden;"></DIV>
+	</TD>
+</TR>
+<TR valign=top>
+	<TD colspan=2 style="padding: 16px;">
+		<DIV id=form-area>
+			<DIV id=txt_form_loading></DIV>
+			<DIV id=txt_form_empty></DIV>
+			<DIV id=txt_form_invalid></DIV>
+		</DIV>
+	</TD>
+</TR>
+<TR valign=top height=45>
+	<TD align=right style="padding: 10px; border-top: 2px groove;" colspan=2>
+		<INPUT type=submit style="height: 24px; width: 90px; font-family: Tahoma; font-size: 11px;" id=btn_ok disabled>
+		<INPUT type=button style="height: 24px; width: 90px; font-family: Tahoma; font-size: 11px;" id=btn_cancel onclick="external.wnd.close();">
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

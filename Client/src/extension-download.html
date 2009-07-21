@@ -1,0 +1,249 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<SCRIPT src="main/HTTPEngine.js"></SCRIPT>
+<SCRIPT language=JScript>
+
+var gFileName, gSession, gInterval, gError = '';
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'extension_download', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+
+	var url = external.wnd.params[1];
+	if ( url.indexOf( '//' ) != -1 )
+		url = url.substr( url.indexOf( '//' ) + 2 );
+	else
+		return external.wnd.close();
+
+	var path = url;
+	if ( url.indexOf( '/' ) != -1 )
+		path = url.substr( url.indexOf( '/' ) );
+	else
+		path = '/';
+
+	if ( url.indexOf( '?' ) != -1 )
+		url = url.substr( 0, url.indexOf( '?' ) );
+
+	var host = url;
+	if ( url.indexOf( '/' ) != -1 )
+		host = url.substr( 0, url.indexOf( '/' ) );
+
+	var port = 80;
+	if ( host.indexOf( ':' ) != -1 )
+	{
+		port = parseInt( host.substr( host.lastIndexOf( ':' ) + 1 ) );
+		host = host.substr( 0, host.indexOf( ':' ) );
+	}
+	if ( isNaN( port ) )
+		port = 80;
+
+	gFileName = url;
+	if ( url.lastIndexOf( '/' ) != -1 )
+		gFileName = decodeURIComponent( url.substr( url.lastIndexOf( '/' ) + 1 ).replace( /\\\:\*\?\"\<\>\|/, '' ) );
+	else
+		gFileName = 'noname';
+	if ( ! gFileName.length )
+		gFileName = 'noname';
+
+	var DownloadLocation = external.globals( 'usersdir' ) + 'Downloads\\';
+
+	if ( ! external.Directory.Exists( DownloadLocation ) )
+		external.Directory.Create( DownloadLocation );
+
+	if ( external.FileExists( DownloadLocation + gFileName ) )
+		external.file( DownloadLocation + gFileName ).Delete();
+
+	external.HTTPEngine.subscribe( external.wnd );
+	HTTPSetProxy( 'http', host, port );
+	gSession = external.HTTPEngine.Get( DownloadLocation + gFileName, path, 0, 0xFFFFFFFF, host, port );
+	if ( ! gSession )
+	{
+		if ( external.wnd.params[3] )
+			external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'file_recv', 'incorrect' ), external.globals( 'softwarename' ), 0 | 48 );
+		external.wnd.close();
+	}
+
+	if ( external.wnd.params[3] )
+	{
+		external.wnd.hide( false );
+		external.wnd.focus();
+		document.getElementById( 'bar1' ).focus();
+	}
+}
+
+function End ()
+{
+	external.HTTPEngine.unsubscribe( external.wnd );
+	if ( gSession )
+		external.HTTPEngine.Abort( gSession );
+}
+
+function UpdateProgress ()
+{
+	var completed = external.HTTPEngine.GetProgress( gSession );
+	var total = external.HTTPEngine.GetLength( gSession );
+	if ( completed > total )
+		completed = total;
+
+	var percentage = total > 0 ? Math.round( 100 * completed / total ) : 0;
+	document.getElementById( 'bar1' ).innerText = document.getElementById( 'bar2' ).innerText = percentage + '%';
+	document.getElementById( 'bar2' ).style.clip = 'rect( auto auto auto ' + percentage + '% )';
+}
+
+/* The following functions are part of the HTTPEngine API.
+ * Their names are hardcoded as handlers for various events.
+ */
+
+function HTTPOnTimeout ( session )
+{
+	if ( session != gSession )
+		return;
+	gError += '\n' + external.globals( 'Translator' ).Translate( 'file_recv', 'error_timeout' );
+}
+
+function HTTPOnSockErr ( session, error )
+{
+	if ( session != gSession )
+		return;
+	gError += '\n' + external.globals( 'Translator' ).Translate( 'file_recv', 'error_code', [ error ] );
+}
+
+function OnHTTPFileErr ( session, error )
+{
+	if ( session != gSession )
+		return;
+	if ( gSession )
+	{
+		gError += '\n' + external.globals( 'Translator' ).Translate( 'file_recv', 'error_file', [ error ] );
+		external.HTTPEngine.Abort( gSession );
+	}
+}
+
+function HTTPOnConnected ( session, remoteHost, remotePort, localPort )
+{
+	if ( session != gSession )
+		return;
+	document.getElementById( 'txt_status' ).innerText = external.globals( 'Translator' ).Translate( 'extension_download', 'downloading' );
+	gInterval = setInterval( 'UpdateProgress()', 100 );
+}
+
+function HTTPOnTransferComplete ( session )
+{
+	if ( session != gSession )
+		return;
+	clearInterval( gInterval );
+	gSession = 0;
+	var DownloadLocation = external.globals( 'usersdir' ) + 'Downloads\\';
+	if ( external.wnd.params[4] == 'emoticon' )
+	{
+		if ( external.wnd.params[3] )
+			external.wnd.params[0].CommandLine( '"" ' + DownloadLocation + gFileName );
+		else
+		{
+			external.UnZip( DownloadLocation + gFileName, external.globals( 'usersdir' ) + 'Emoticons\\' );
+			external.file( DownloadLocation + gFileName ).Delete();
+			if ( external.windows.Exists( 'emoticon_list' ) )
+				external.windows( 'emoticon_list' ).Do( 'emoticon_refresh', null );
+			if ( external.windows.Exists( 'emoticon_download' ) )
+				external.windows( 'emoticon_download' ).Do( 'Draw', null );
+		}
+	}
+	else if ( external.wnd.params[4] == 'background' )
+	{
+		external.UnZip( DownloadLocation + gFileName, external.globals( 'usersdir' ) + 'Backgrounds\\' );
+		external.file( DownloadLocation + gFileName ).Delete();
+		if ( external.windows.Exists( 'background_list' ) )
+			external.windows( 'background_list' ).Do( 'background_refresh', null );
+		if ( external.windows.Exists( 'background_download' ) )
+			external.windows( 'background_download' ).Do( 'Draw', null );
+		var TrackerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Trackers.Keys() ) ).toArray();
+		for ( var i = 0; i < TrackerNames.length; ++i )
+			external.globals( 'ChatSessionPool' ).Trackers( TrackerNames[i] ).BackgroundUpdate();
+		TrackerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Trackers.Keys() ) ).toArray();
+		for ( var i = 0; i < TrackerNames.length; ++i )
+			external.globals( 'ConferenceSessionPool' ).Trackers( TrackerNames[i] ).BackgroundUpdate();
+	}
+	else
+	{
+		external.wnd.params[0].CommandLine( '"" ' + DownloadLocation + gFileName );
+	}
+	external.wnd.close();
+}
+
+function HTTPOnTransferAborted ( session )
+{
+	if ( session != gSession )
+		return;
+	clearInterval( gInterval );
+	gSession = 0;
+	external.wnd.hide( true );
+	if ( external.wnd.params[3] )
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'file_recv', 'error_failed', [ gError ] ), external.globals( 'softwarename' ), 0 | 48 );
+	external.wnd.close();
+}
+
+</SCRIPT>
+<STYLE>
+BODY {
+	background-color: buttonface;
+	cursor: default;
+	margin: 8px;
+	padding: 0px;
+}
+TD {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: windowtext;
+}
+.progress {
+	width: 100%;
+	height: 24px;
+	padding: 3px;
+	border: 2px inset;
+	text-align: center;
+	position: absolute;
+}
+#bar1 {
+	background-color: highlight;
+	color: highlighttext;
+}
+#bar2 {
+	clip: rect( auto auto auto 0% );
+	background-color: window;
+	color: windowtext;
+}
+.btn {
+	width: 90px;
+	height: 24px;
+	font-family: Tahoma;
+	font-size: 11px;
+}
+</STYLE>
+</HEAD>
+<BODY scroll=no onload="Begin()" onunload="End()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="return false;">
+	<TABLE width="100%" border=0 cellpadding=2 cellspacing=0 style="table-layout: fixed;">
+		<TR>
+			<TD id=txt_status></TD>
+		</TR>
+		<TR height=28 valign=top>
+			<TD>
+				<DIV class=progress id=bar1>0%</DIV>
+				<DIV class=progress id=bar2>0%</DIV>
+			</TD>
+		</TR>
+		<TR>
+			<TD align=right style="padding-top: 10px;">
+				<INPUT type=submit class=btn id=btn_cancel onclick="external.wnd.close()">
+			</TD>
+		</TR>
+	</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

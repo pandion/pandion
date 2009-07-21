@@ -1,0 +1,214 @@
+TEXTAREA, INPUT, BUTTON {
+	font-family: Tahoma;
+	font-size: 11px;
+}
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+	background-color: window;
+	color: windowtext;
+}
+#mode-bar {
+	cursor: default;
+	display: block;
+	background-image: url( ../../images/misc/roster-top-lite.gif );
+	background-repeat: repeat-x;
+}
+#mode-avatar {
+	margin: 5px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	border: 0px solid #0570ad;
+	height: 32px;
+	width: 32px;
+}
+#mode-top {
+	width: 100%;
+	margin-top: 6px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #4f575c;
+}
+#mode-name {
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+	color: #57a6d3;
+}
+#mode-message {
+	height: 16px;
+	width: 100%;
+	padding-left: 2px;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #4f575c;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+#mode-address {
+	margin-left: 6px;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #4f575c;
+}
+.mode-message-link {
+	font-family: Tahoma;
+	font-size: 11px;
+	text-decoration: none;
+	color: #6699cc;
+}
+.mode-message-link:hover {
+	font-family: Tahoma;
+	font-size: 11px;
+	text-decoration: none;
+	color: red;
+}
+#tab-bar {
+	width: 100%;
+	height: 24px;
+	background-repeat: repeat-x;
+	background-image: url( ../../images/misc/tab-bar-lite.gif );
+	text-overflow: ellipsis;
+	overflow: hidden;
+	padding-left: 2px;
+}
+.tab-bar-button {
+	width: 127px;
+	height: 23px;
+	text-align: left;
+	background-repeat: no-repeat;
+	padding-left: 5px;
+	padding-top: 5px;
+}
+.tab-bar-button-active {
+	width: 127px;
+	height: 23px;
+	text-align: left;
+	background-repeat: no-repeat;
+	padding-left: 5px;
+	padding-top: 3px;
+	background-image: url( ../../images/misc/tab-button-big-lite.gif );
+}
+.tab-bar-text {
+	width: 102px;
+	height: 14px;
+	padding-left: 4px;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #4f575c;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.tab-bar-text-active {
+	width: 84px;
+	height: 14px;
+	padding-left: 4px;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #4f575c;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+#user-typing-bar {
+	display: block;
+	height: 23px;
+	margin: 1px;
+	border: 1px threedlightshadow solid;
+	padding-top: 2px;
+	font-family: Tahoma;
+	font-size: 11px;
+	background-color: infobackground;
+}
+#user-typing {
+	width: 100%;
+	height: 17px;
+	padding-left: 2px;
+	padding-top: 2px;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #478ec5;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+#actions-panel {
+/*	background-repeat: repeat-y;
+	background-image: url( ../../images/misc/action-panel-lite.png );
+*/	font-family: Tahoma;
+	font-size: 11px;
+	color: #4f575c;
+}
+#toolbar {
+	background-repeat: repeat-x;
+	background-image: url( ../../images/misc/toolbar-lite.gif );
+}
+#toolbar-wrapper {
+	height: 30px;
+	width: 100%;
+}
+BUTTON {
+	cursor: default;
+	height: 30px;
+	padding-left: 6px;
+	text-align: left;
+	font-size: 11px;
+}
+.toolbar-button {
+	color: #4f575c;
+	background-color: transparent;
+	border-width: 0px;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+.toolbar-button-over {
+	color: buttontext;
+}
+BUTTON SPAN {
+	height: 16px;
+	margin-left: 6px;
+}
+#resize-grip {
+	position: absolute;
+	overflow: hidden;
+	cursor: n-resize;
+	margin-top: 28px;
+	height: 5px;
+	width: 100%;
+}
+#btn-send {
+	height: 56px;
+	width: 100%;
+	margin-right: 2px;
+}
+#send-text {
+	overflow: auto;
+	height: 100%;
+	width: 100%;
+	border-width: 0px;
+	padding-left: 2px;
+}
+#occupants-panel {
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding-left: 6px;
+	border-left: 1px #bec0ce solid;
+}
+#banner-area {
+	display: none;
+	background-image: url( ../../images/misc/banner-60-back.gif );
+}
+
+#banner-area DIV {
+	cursor: hand;
+	width: 468px;
+	height: 60px;
+	border: 1px solid black;
+	background-color: white;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url( ../../images/brand/default.ico );
+}

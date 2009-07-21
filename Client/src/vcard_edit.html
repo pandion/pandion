@@ -1,0 +1,421 @@
+﻿<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+INPUT.text {
+	padding-left: 2px;
+	font-family: Tahoma;
+	font-size: 11px;
+	width: 100%;
+	height: 21px;
+}
+INPUT.disabled {
+	padding-left: 2px;
+	font-family: Tahoma, Arial;
+	font-size: 11px;
+	background-color: buttonface;
+	color: graytext;
+}
+FIELDSET {
+	cursor: default;
+}
+TD {
+	font-family: Arial;
+	font-size: 11px;
+	color: windowtext;
+}
+TD.tree {
+	padding: 3px;
+}
+DIV.panel {
+	display: none;
+	margin-left: 10px;
+}
+#header {
+	color: #4f575c;
+	border: 2px groove;
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 3px;
+	padding-left: 8px;
+	background-image: url( ../images/misc/tab-bar-lite.gif );
+}
+</STYLE>
+
+<SCRIPT language=JScript src="main/XMPPHookIQ.js"></SCRIPT>
+<SCRIPT language=JScript src="main/vcard.js"></SCRIPT>
+
+<SCRIPT language=JScript>
+
+var g_vcard;
+
+function handle_keyboard ()
+{
+	var key = event.keyCode;
+
+	if ( key == 37 || key == 38 )
+	// left or up: move selection to previous item in tree
+	{
+		var rows = document.getElementById( 'tree' ).rows;
+		for ( var i = 0; i < rows.length; i++ )
+			if ( rows(i).isCurrentSelection )
+			{
+				if ( i > 0 )
+					tree_select( rows(i-1) );
+				break;
+			}
+		event.returnValue = false;
+	}
+	else if ( key == 39 || key == 40 )
+	// right or down: move selection to next item in tree
+	{
+		var rows = document.getElementById( 'tree' ).rows;
+		for ( var i = 0; i < rows.length; i++ )
+			if ( rows(i).isCurrentSelection )
+			{
+				if ( i < rows.length - 1 )
+					tree_select( rows(i+1) );
+				break;
+			}
+		event.returnValue = false;
+	}
+}
+
+function tree ()
+{
+	var row = window.event.srcElement;
+	while ( typeof row.section == 'undefined' )
+		row = row.parentElement;
+
+	if ( ! row.isCurrentSelection )
+		tree_select( row );
+
+	document.getElementById( 'tree' ).focus();
+}
+
+function tree_select ( row )
+{
+	row.style.backgroundColor = 'highlight';
+	row.cells(0).style.color = 'highlighttext';
+	document.getElementById( 'header' ).innerText = external.globals( 'Translator' ).Translate( 'vcard', row.header );
+	document.getElementById( row.section ).style.display = 'block';
+
+	var rows = row.parentElement.rows;
+	for ( var i = 0; i < rows.length; i++ )
+		if ( rows(i).isCurrentSelection )
+		{
+			tree_deselect( rows(i) );
+			break;
+		}
+
+	row.isCurrentSelection = true;
+}
+
+function tree_deselect ( row )
+{
+	document.getElementById( row.section ).style.display = 'none';
+	row.style.backgroundColor = '';
+	row.cells(0).style.color = '';
+	row.isCurrentSelection = false;
+}
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'vcard', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	if ( external.globals( 'sspiserver' ).length )
+		document.getElementById( 'res' ).readonly = true;
+	var tree = document.getElementById( 'tree' );
+	tree.focus();
+	tree_select( tree.rows(0) );
+	refresh();
+	external.wnd.hide( false );
+}
+
+function refresh ()
+{
+	document.getElementById( 'waitscreen' ).style.display = 'block';
+	document.getElementById( 'btn_ok' ).disabled = true;
+	document.getElementById( 'btn_undo' ).disabled = true;
+
+	document.getElementById( 'jabberid' ).value = external.wnd.params[1];
+	document.getElementById( 'res' ).value = external.globals( 'cfg' )( 'resource' ).length ? external.globals( 'cfg' )( 'resource' ) : external.globals( 'softwarename' );
+	document.getElementById( 'time' ).value = ( new Date ).toLocaleString();
+	document.getElementById( 'name' ).value = external.globals( 'softwarename' );
+	document.getElementById( 'version' ).value = external.globals( 'softwareversion' );
+	( /(Windows[^;\)]+)/ ).test( navigator.appVersion );
+	var Windows = RegExp.$1;
+	if ( Windows == 'Windows NT 5.0' )
+		Windows = 'Windows 2000';
+	else if ( Windows == 'Windows NT 5.1' )
+		Windows = 'Windows XP';
+	else if ( Windows == 'Windows NT 5.2' )
+		Windows = 'Windows 2003';
+	document.getElementById( 'os' ).value = Windows + ' (' + navigator.userLanguage + ')';
+
+	var hook = new XMPPHookIQ();
+	hook.Window = external.wnd;
+	hook.Callback = 'vcard_show';
+
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<iq type="get"><vCard xmlns="vcard-temp"/></iq>' );
+	dom.documentElement.setAttribute( 'id', hook.Id );
+	dom.documentElement.setAttribute( 'to', external.wnd.params[1] );
+	external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+}
+
+function vcard_show ( iq )
+{
+	g_vcard = new VCARD();
+	g_vcard.FromIQ( iq );
+	document.getElementById( 'waitscreen' ).style.display = 'none';
+	document.getElementById( 'btn_ok' ).disabled = false;
+	document.getElementById( 'btn_undo' ).disabled = false;
+
+	var list = new Array( 'given', 'middle', 'family', 'nickname', 'url', 'bday', 'age', 'gender', 'maritalstatus', 'orgname', 'orgunit', 'workcell', 'homecell', 'title', 'role', 'homeextadd', 'homestreet', 'homelocality', 'homeregion', 'homepcode', 'homecountry', 'workextadd', 'workstreet', 'worklocality', 'workregion', 'workpcode', 'workcountry', 'homevoice', 'homefax', 'workvoice', 'workfax', 'email1', 'email2', 'desc' );
+	for ( var i = 0; i < list.length; i++ )
+		document.getElementById( list[i] ).value = g_vcard.get( list[i] );
+}
+
+function clearall ()
+{
+	var list = new Array( 'given', 'middle', 'family', 'nickname', 'url', 'bday', 'age', 'gender', 'maritalstatus', 'orgname', 'orgunit', 'workcell', 'homecell', 'title', 'role', 'homeextadd', 'homestreet', 'homelocality', 'homeregion', 'homepcode', 'homecountry', 'workextadd', 'workstreet', 'worklocality', 'workregion', 'workpcode', 'workcountry', 'homevoice', 'homefax', 'workvoice', 'workfax', 'email1', 'email2', 'name', 'version', 'os', 'desc' );
+	for ( var i = 0; i < list.length; i++ )
+		document.getElementById( list[i] ).value = '';
+}
+
+function save ()
+{
+	if ( ! g_vcard )
+		g_vcard = new VCARD();
+
+	var list = new Array( 'given', 'middle', 'family', 'nickname', 'url', 'bday', 'age', 'gender', 'maritalstatus', 'orgname', 'orgunit', 'workcell', 'homecell', 'title', 'role', 'homeextadd', 'homestreet', 'homelocality', 'homeregion', 'homepcode', 'homecountry', 'workextadd', 'workstreet', 'worklocality', 'workregion', 'workpcode', 'workcountry', 'homevoice', 'homefax', 'workvoice', 'workfax', 'email1', 'email2', 'desc' );
+	for ( var i = 0; i < list.length; i++ )
+		g_vcard.set( list[i], document.getElementById( list[i] ).value );
+
+	var hook = new XMPPHookIQ();
+	hook.Window = external.wnd;
+	hook.Callback = 'vcard_show';
+
+	var dom = g_vcard.IntoXMLDOM();
+	dom.documentElement.setAttribute( 'type', 'set' );
+	if ( external.wnd.params[1] != external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) )
+		dom.documentElement.setAttribute( 'to', external.wnd.params[1] );
+	external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+
+	if ( document.getElementById( 'nickname' ).value )
+		external.globals( 'cfg' )( 'nick' ) = document.getElementById( 'nickname' ).value;
+	else if ( document.getElementById( 'given' ).value.length )
+	{
+		external.globals( 'cfg' )( 'nick' ) = document.getElementById( 'given' ).value;
+		if ( document.getElementById( 'middle' ).value.length )
+			external.globals( 'cfg' )( 'nick' ) += ' ' + document.getElementById( 'middle' ).value;
+		if ( document.getElementById( 'family' ).value.length )
+			external.globals( 'cfg' )( 'nick' ) += ' ' + document.getElementById( 'family' ).value;
+	}
+	else
+		external.globals( 'cfg' )( 'nick' ) = external.globals( 'cfg' )( 'username' );
+	external.wnd.params[0].document.getElementById( 'mode-name' ).innerText = external.globals( 'cfg' )( 'nick' );
+
+	if ( external.globals( 'cfg' )( 'resource' ) != document.getElementById( 'res' ).value )
+	{
+		external.globals( 'cfg' )( 'resource' ) = document.getElementById( 'res' ).value;
+		if ( 6 == external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'preferences', 'reconnect' ), external.globals( 'softwarename' ), 4 | 32 ) )
+		{
+			external.wnd.params[0].mode_new( -1, external.globals( 'cfg' )( 'lastmsg' ) );
+			external.globals( 'XMPPConnected' ) = false;
+			external.wnd.params[0].mode_new( external.globals( 'cfg' )( 'lastmode' ), external.globals( 'cfg' )( 'lastmsg' ) );
+		}
+	}
+
+	external.wnd.params[0].SettingsSave();
+	external.wnd.close();
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="init()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="event.returnValue = false">
+
+<INPUT type=hidden id=desc>
+
+<TABLE border=0 cellspacing=4 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=140><COL>
+<TR valign=top>
+
+<TD>
+
+<DIV style="background-color: window; border: 2px inset; width: 100%; height: 300px;" onkeydown="handle_keyboard()" tabindex=0>
+<TABLE id=tree border=0 cellspacing=0 cellpadding=0 width="100%" style="table-layout: fixed;">
+<TR section="personal1" header="personal"><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/person.gif">&nbsp;&nbsp;<SPAN id=txt_s1></SPAN></TD></TR>
+<TR section="personal2" header="personal"><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/labyrinth.gif">&nbsp;&nbsp;<SPAN id=txt_s2></SPAN></TD></TR>
+<TR section="personal3" header="personal"><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/house.gif">&nbsp;&nbsp;<SPAN id=txt_s3></SPAN></TD></TR>
+<TR section="personal4" header="personal"><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/cryo chamber.gif">&nbsp;&nbsp;<SPAN id=txt_s4></SPAN></TD></TR>
+<TR section="personal5" header="personal"><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/city.gif">&nbsp;&nbsp;<SPAN id=txt_s5></SPAN></TD></TR>
+<TR section="system" header="system"><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/config PC.gif">&nbsp;&nbsp;<SPAN id=txt_s6></SPAN></TD></TR>
+</TABLE>
+</DIV>
+
+</TD>
+
+<TD>
+
+<DIV id=header>&nbsp;</DIV>
+
+<!-- User Details -->
+<DIV id=personal1 class=panel>
+
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_name></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=90><COL>
+<TR><TD id=txt_given></TD><TD><INPUT type=text class=text id=given></TD></TR>
+<TR><TD id=txt_middle></TD><TD><INPUT type=text class=text id=middle></TD></TR>
+<TR><TD id=txt_family></TD><TD><INPUT type=text class=text id=family></TD></TR>
+<TR><TD id=txt_nick></TD><TD><INPUT type=text class=text id=nickname></TD></TR>
+</TABLE>
+</FIELDSET>
+
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_contact></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=90><COL>
+<TR><TD id=txt_email1></TD><TD><INPUT type=text class=text id=email1></TD></TR>
+<TR><TD id=txt_homevoice></TD><TD><INPUT type=text class=text id=homevoice></TD></TR>
+<TR><TD id=txt_homecell></TD><TD><INPUT type=text class=text id=homecell></TD></TR>
+<TR><TD id=txt_homefax></TD><TD><INPUT type=text class=text id=homefax></TD></TR>
+</TABLE>
+</FIELDSET>
+
+</DIV>
+
+<!-- Additional Details -->
+<DIV id=personal2 class=panel>
+
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_additional></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=90><COL>
+<TR><TD id=txt_age></TD><TD><INPUT type=text class=text id=age></TD></TR>
+<TR><TD id=txt_bday></TD><TD><INPUT type=text class=text id=bday></TD></TR>
+<TR><TD id=txt_gender></TD><TD><INPUT type=text class=text id=gender></TD></TR>
+<TR><TD id=txt_marital></TD><TD><INPUT type=text class=text id=maritalstatus></TD></TR>
+<TR><TD id=txt_url></TD><TD><INPUT type=text class=text id=url></TD></TR>
+</TABLE>
+</FIELDSET>
+
+</DIV>
+
+<!-- Home Address -->
+<DIV id=personal3 class=panel>
+
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_homeaddress></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=90><COL>
+<TR><TD id=txt_homestreet></TD><TD><INPUT type=text class=text id=homestreet></TD></TR>
+<TR><TD id=txt_homeextadd></TD><TD><INPUT type=text class=text id=homeextadd></TD></TR>
+<TR><TD id=txt_homelocality></TD><TD><INPUT type=text class=text id=homelocality></TD></TR>
+<TR><TD id=txt_homepcode></TD><TD><INPUT type=text class=text id=homepcode></TD></TR>
+<TR><TD id=txt_homeregion></TD><TD><INPUT type=text class=text id=homeregion></TD></TR>
+<TR><TD id=txt_homecountry></TD><TD><SELECT style="width: 100%" id=homecountry><OPTION></OPTION><OPTION value=AF>Afghanistan<OPTION value=AL>Albania<OPTION value=DZ>Algeria<OPTION value=AS>American Samoa<OPTION value=AD>Andorra<OPTION value=AO>Angola<OPTION value=AI>Anguilla<OPTION value=AQ>Antarctica<OPTION value=AG>Antigua And Barbuda<OPTION value=AR>Argentina<OPTION value=AM>Armenia<OPTION value=AW>Aruba<OPTION value=AU>Australia<OPTION value=AT>Austria<OPTION value=AZ>Azerbaijan<OPTION value=BS>Bahamas<OPTION value=BH>Bahrain<OPTION value=BD>Bangladesh<OPTION value=BB>Barbados<OPTION value=BY>Belarus<OPTION value=BE>Belgium<OPTION value=BZ>Belize<OPTION value=BJ>Benin<OPTION value=BM>Bermuda<OPTION value=BT>Bhutan<OPTION value=BO>Bolivia<OPTION value=BA>Bosnia And Herzegovina<OPTION value=BW>Botswana<OPTION value=BV>Bouvet Island<OPTION value=BR>Brazil<OPTION value=IO>British Indian Ocean Territory<OPTION value=BN>Brunei Darussalam<OPTION value=BG>Bulgaria<OPTION value=BF>Burkina Faso<OPTION value=BI>Burundi<OPTION value=KH>Cambodia<OPTION value=CM>Cameroon<OPTION value=CA>Canada<OPTION value=CV>Cape Verde<OPTION value=KY>Cayman Islands<OPTION value=CF>Central African Republic<OPTION value=TD>Chad<OPTION value=CL>Chile<OPTION value=CN>China<OPTION value=CX>Christmas Island<OPTION value=CC>Cocos (Keeling) Islands<OPTION value=CO>Colombia<OPTION value=KM>Comoros<OPTION value=CG>Congo<OPTION value=CD>Congo, The Democratic RepublicOf The<OPTION value=CK>Cook Islands<OPTION value=CR>Costa Rica<OPTION value=CI>Cote D'Ivoire<OPTION value=HR>Croatia<OPTION value=CU>Cuba<OPTION value=CY>Cyprus<OPTION value=CZ>Czech Republic<OPTION value=DK>Denmark<OPTION value=DJ>Djibouti<OPTION value=DM>Dominica<OPTION value=DO>Dominican Republic<OPTION value=TP>East Timor<OPTION value=EC>Ecuador<OPTION value=EG>Egypt<OPTION value=SV>El Salvador<OPTION value=GQ>Equatorial Guinea<OPTION value=ER>Eritrea<OPTION value=EE>Estonia<OPTION value=ET>Ethiopia<OPTION value=FK>Falkland Islands (Malvinas)<OPTIONvalue=FO>Faroe Islands<OPTION value=FJ>Fiji<OPTION value=FI>Finland<OPTION value=FR>France<OPTION value=GF>French Guiana<OPTION value=PF>French Polynesia<OPTION value=TF>French Southern Territories<OPTION value=GA>Gabon<OPTION value=GM>Gambia<OPTION value=GE>Georgia<OPTION value=DE>Germany<OPTION value=GH>Ghana<OPTIONvalue=GI>Gibraltar<OPTION value=GR>Greece<OPTION value=GL>Greenland<OPTION value=GD>Grenada<OPTION value=GP>Guadeloupe<OPTION value=GU>Guam<OPTION value=GT>Guatemala<OPTION value=GN>Guinea<OPTION value=GW>Guinea-Bissau<OPTION value=GY>Guyana<OPTION value=HT>Haiti<OPTION value=HM>Heard Island And Mcdonald Islands<OPTION value=VA>Holy See (Vatican City State)<OPTION value=HN>Honduras<OPTION value=HK>Hong Kong<OPTION value=HU>Hungary<OPTION value=IS>Iceland<OPTION value=IN>India<OPTION value=ID>Indonesia<OPTION value=IR>Iran, Islamic Republic Of<OPTION value=IQ>Iraq<OPTION value=IE>Ireland<OPTION value=IL>Israel<OPTION value=IT>Italy<OPTION value=JM>Jamaica<OPTION value=JP>Japan<OPTION value=JO>Jordan<OPTION value=KZ>Kazakstan<OPTION value=KE>Kenya<OPTION value=KI>Kiribati<OPTION value=KP>Korea, Democratic People'S Republic Of<OPTION value=KR>Korea, Republic Of<OPTION value=KW>Kuwait<OPTION value=KG>Kyrgyzstan<OPTION value=LA>Lao People'S Democratic Republic<OPTION value=LV>Latvia<OPTION value=LB>Lebanon<OPTION value=LS>Lesotho<OPTION value=LR>Liberia<OPTION value=LY>Libyan Arab Jamahiriya<OPTION value=LI>Liechtenstein<OPTION value=LT>Lithuania<OPTION value=LU>Luxembourg<OPTION value=MO>Macau<OPTION value=MK>Macedonia, The Former Yugoslav Republic Of<OPTION value=MG>Madagascar<OPTION value=MW>Malawi<OPTION value=MY>Malaysia<OPTION value=MV>Maldives<OPTION value=ML>Mali<OPTION value=MT>Malta<OPTION value=MH>Marshall Islands<OPTION value=MQ>Martinique<OPTION value=MR>Mauritania<OPTION value=MU>Mauritius<OPTION value=YT>Mayotte<OPTION value=MX>Mexico<OPTION value=FM>Micronesia, Federated States Of<OPTION value=MD>Moldova, Republic Of<OPTION value=MC>Monaco<OPTION value=MN>Mongolia<OPTION value=MS>Montserrat<OPTION value=MA>Morocco<OPTION value=MZ>Mozambique<OPTION value=MM>Myanmar<OPTION value=NA>Namibia<OPTION value=NR>Nauru<OPTION value=NP>Nepal<OPTION value=NL>Netherlands<OPTION value=AN>Netherlands Antilles<OPTION value=NC>New Caledonia<OPTION value=NZ>New Zealand<OPTION value=NI>Nicaragua<OPTION value=NE>Niger<OPTION value=NG>Nigeria<OPTION value=NU>Niue<OPTION value=NF>Norfolk Island<OPTION value=MP>Northern Mariana Islands<OPTION value=NO>Norway<OPTION value=OM>Oman<OPTION value=PK>Pakistan<OPTION value=PW>Palau<OPTION value=PS>Palestinian Territory, Occupied<OPTION value=PA>Panama<OPTION value=PG>Papua New Guinea<OPTION value=PY>Paraguay<OPTION value=PE>Peru<OPTION value=PH>Philippines<OPTION value=PN>Pitcairn<OPTION value=PL>Poland<OPTION value=PT>Portugal<OPTION value=PR>Puerto Rico<OPTION value=QA>Qatar<OPTION value=RE>Reunion<OPTION value=RO>Romania<OPTION value=RU>Russian Federation<OPTION value=RW>Rwanda<OPTION value=SH>Saint Helena<OPTION value=KN>Saint Kitts And Nevis<OPTION value=LC>Saint Lucia<OPTION value=PM>Saint Pierre And Miquelon<OPTION value=VC>Saint Vincent And The Grenadines<OPTION value=WS>Samoa<OPTION value=SM>San Marino<OPTION value=ST>Sao Tome And Principe<OPTION value=SA>Saudi Arabia<OPTION value=SN>Senegal<OPTION value=SC>Seychelles<OPTION value=SL>Sierra Leone<OPTION value=SG>Singapore<OPTION value=SK>Slovakia<OPTION value=SI>Slovenia<OPTION value=SB>Solomon Islands<OPTION value=SO>Somalia<OPTION value=ZA>South Africa<OPTION value=GS>South Georgia And The South Sandwich Islands<OPTION value=ES>Spain<OPTION value=LK>Sri Lanka<OPTION value=SD>Sudan<OPTION value=SR>Suriname<OPTION value=SJ>Svalbard And Jan Mayen<OPTION value=SZ>Swaziland<OPTION value=SE>Sweden<OPTION value=CH>Switzerland<OPTION value=SY>Syrian Arab Republic<OPTION value=TW>Taiwan, Province Of China<OPTION value=TJ>Tajikistan<OPTION value=TZ>Tanzania, United Republic Of<OPTION value=TH>Thailand<OPTION value=TG>Togo<OPTION value=TK>Tokelau<OPTION value=TO>Tonga<OPTION value=TT>Trinidad And Tobago<OPTION value=TN>Tunisia<OPTION value=TR>Turkey<OPTION value=TM>Turkmenistan<OPTION value=TC>Turks And Caicos Islands<OPTION value=TV>Tuvalu<OPTION value=UG>Uganda<OPTION value=UA>Ukraine<OPTION value=AE>United Arab Emirates<OPTION value=GB>United Kingdom<OPTION value=US>United States<OPTION value=UM>United States Minor Outlying Islands<OPTION value=UY>Uruguay<OPTION value=UZ>Uzbekistan<OPTION value=VU>Vanuatu<OPTION value=VE>Venezuela<OPTION value=VN>Viet Nam<OPTION value=VG>Virgin Islands, British<OPTION value=VI>Virgin Islands, U.S.<OPTION value=WF>Wallis And Futuna<OPTION value=EH>Western Sahara<OPTION value=YE>Yemen<OPTION value=YU>Yugoslavia<OPTION value=ZM>Zambia<OPTION value=ZW>Zimbabwe</SELECT></TD></TR>
+</TABLE>
+</FIELDSET>
+
+</DIV>
+
+<!-- Business Details -->
+<DIV id=personal4 class=panel>
+
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_organization></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=90><COL>
+<TR><TD id=txt_orgname></TD><TD><INPUT type=text class=text id=orgname></TD></TR>
+<TR><TD id=txt_orgunit></TD><TD><INPUT type=text class=text id=orgunit></TD></TR>
+<TR><TD id=txt_title></TD><TD><INPUT type=text class=text id=title></TD></TR>
+<TR><TD id=txt_role></TD><TD><INPUT type=text class=text id=role></TD></TR>
+</TABLE>
+</FIELDSET>
+
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_workcontact></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=90><COL>
+<TR><TD id=txt_email2></TD><TD><INPUT type=text class=text id=email2></TD></TR>
+<TR><TD id=txt_workvoice></TD><TD><INPUT type=text class=text id=workvoice></TD></TR>
+<TR><TD id=txt_workcell></TD><TD><INPUT type=text class=text id=workcell></TD></TR>
+<TR><TD id=txt_workfax></TD><TD><INPUT type=text class=text id=workfax></TD></TR>
+</TABLE>
+</FIELDSET>
+
+</DIV>
+
+<!-- Business Address -->
+<DIV id=personal5 class=panel>
+
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_business_address></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=90><COL>
+<TR><TD id=txt_workstreet></TD><TD><INPUT type=text class=text id=workstreet></TD></TR>
+<TR><TD id=txt_workextadd></TD><TD><INPUT type=text class=text id=workextadd></TD></TR>
+<TR><TD id=txt_worklocality></TD><TD><INPUT type=text class=text id=worklocality></TD></TR>
+<TR><TD id=txt_workpcode></TD><TD><INPUT type=text class=text id=workpcode></TD></TR>
+<TR><TD id=txt_workregion></TD><TD><INPUT type=text class=text id=workregion></TD></TR>
+<TR><TD id=txt_workcountry></TD><TD><SELECT style="width: 100%" id=workcountry><OPTION></OPTION><OPTION value=AF>Afghanistan<OPTION value=AL>Albania<OPTION value=DZ>Algeria<OPTION value=AS>American Samoa<OPTION value=AD>Andorra<OPTION value=AO>Angola<OPTION value=AI>Anguilla<OPTION value=AQ>Antarctica<OPTION value=AG>Antigua And Barbuda<OPTION value=AR>Argentina<OPTION value=AM>Armenia<OPTION value=AW>Aruba<OPTION value=AU>Australia<OPTION value=AT>Austria<OPTION value=AZ>Azerbaijan<OPTION value=BS>Bahamas<OPTION value=BH>Bahrain<OPTION value=BD>Bangladesh<OPTION value=BB>Barbados<OPTION value=BY>Belarus<OPTION value=BE>Belgium<OPTION value=BZ>Belize<OPTION value=BJ>Benin<OPTION value=BM>Bermuda<OPTION value=BT>Bhutan<OPTION value=BO>Bolivia<OPTION value=BA>Bosnia And Herzegovina<OPTION value=BW>Botswana<OPTION value=BV>Bouvet Island<OPTION value=BR>Brazil<OPTION value=IO>British Indian Ocean Territory<OPTION value=BN>Brunei Darussalam<OPTION value=BG>Bulgaria<OPTION value=BF>Burkina Faso<OPTION value=BI>Burundi<OPTION value=KH>Cambodia<OPTION value=CM>Cameroon<OPTION value=CA>Canada<OPTION value=CV>Cape Verde<OPTION value=KY>Cayman Islands<OPTION value=CF>Central African Republic<OPTION value=TD>Chad<OPTION value=CL>Chile<OPTION value=CN>China<OPTION value=CX>Christmas Island<OPTION value=CC>Cocos (Keeling) Islands<OPTION value=CO>Colombia<OPTION value=KM>Comoros<OPTION value=CG>Congo<OPTION value=CD>Congo, The Democratic RepublicOf The<OPTION value=CK>Cook Islands<OPTION value=CR>Costa Rica<OPTION value=CI>Cote D'Ivoire<OPTION value=HR>Croatia<OPTION value=CU>Cuba<OPTION value=CY>Cyprus<OPTION value=CZ>Czech Republic<OPTION value=DK>Denmark<OPTION value=DJ>Djibouti<OPTION value=DM>Dominica<OPTION value=DO>Dominican Republic<OPTION value=TP>East Timor<OPTION value=EC>Ecuador<OPTION value=EG>Egypt<OPTION value=SV>El Salvador<OPTION value=GQ>Equatorial Guinea<OPTION value=ER>Eritrea<OPTION value=EE>Estonia<OPTION value=ET>Ethiopia<OPTION value=FK>Falkland Islands (Malvinas)<OPTIONvalue=FO>Faroe Islands<OPTION value=FJ>Fiji<OPTION value=FI>Finland<OPTION value=FR>France<OPTION value=GF>French Guiana<OPTION value=PF>French Polynesia<OPTION value=TF>French Southern Territories<OPTION value=GA>Gabon<OPTION value=GM>Gambia<OPTION value=GE>Georgia<OPTION value=DE>Germany<OPTION value=GH>Ghana<OPTIONvalue=GI>Gibraltar<OPTION value=GR>Greece<OPTION value=GL>Greenland<OPTION value=GD>Grenada<OPTION value=GP>Guadeloupe<OPTION value=GU>Guam<OPTION value=GT>Guatemala<OPTION value=GN>Guinea<OPTION value=GW>Guinea-Bissau<OPTION value=GY>Guyana<OPTION value=HT>Haiti<OPTION value=HM>Heard Island And Mcdonald Islands<OPTION value=VA>Holy See (Vatican City State)<OPTION value=HN>Honduras<OPTION value=HK>Hong Kong<OPTION value=HU>Hungary<OPTION value=IS>Iceland<OPTION value=IN>India<OPTION value=ID>Indonesia<OPTION value=IR>Iran, Islamic Republic Of<OPTION value=IQ>Iraq<OPTION value=IE>Ireland<OPTION value=IL>Israel<OPTION value=IT>Italy<OPTION value=JM>Jamaica<OPTION value=JP>Japan<OPTION value=JO>Jordan<OPTION value=KZ>Kazakstan<OPTION value=KE>Kenya<OPTION value=KI>Kiribati<OPTION value=KP>Korea, Democratic People'S Republic Of<OPTION value=KR>Korea, Republic Of<OPTION value=KW>Kuwait<OPTION value=KG>Kyrgyzstan<OPTION value=LA>Lao People'S Democratic Republic<OPTION value=LV>Latvia<OPTION value=LB>Lebanon<OPTION value=LS>Lesotho<OPTION value=LR>Liberia<OPTION value=LY>Libyan Arab Jamahiriya<OPTION value=LI>Liechtenstein<OPTION value=LT>Lithuania<OPTION value=LU>Luxembourg<OPTION value=MO>Macau<OPTION value=MK>Macedonia, The Former Yugoslav Republic Of<OPTION value=MG>Madagascar<OPTION value=MW>Malawi<OPTION value=MY>Malaysia<OPTION value=MV>Maldives<OPTION value=ML>Mali<OPTION value=MT>Malta<OPTION value=MH>Marshall Islands<OPTION value=MQ>Martinique<OPTION value=MR>Mauritania<OPTION value=MU>Mauritius<OPTION value=YT>Mayotte<OPTION value=MX>Mexico<OPTION value=FM>Micronesia, Federated States Of<OPTION value=MD>Moldova, Republic Of<OPTION value=MC>Monaco<OPTION value=MN>Mongolia<OPTION value=MS>Montserrat<OPTION value=MA>Morocco<OPTION value=MZ>Mozambique<OPTION value=MM>Myanmar<OPTION value=NA>Namibia<OPTION value=NR>Nauru<OPTION value=NP>Nepal<OPTION value=NL>Netherlands<OPTION value=AN>Netherlands Antilles<OPTION value=NC>New Caledonia<OPTION value=NZ>New Zealand<OPTION value=NI>Nicaragua<OPTION value=NE>Niger<OPTION value=NG>Nigeria<OPTION value=NU>Niue<OPTION value=NF>Norfolk Island<OPTION value=MP>Northern Mariana Islands<OPTION value=NO>Norway<OPTION value=OM>Oman<OPTION value=PK>Pakistan<OPTION value=PW>Palau<OPTION value=PS>Palestinian Territory, Occupied<OPTION value=PA>Panama<OPTION value=PG>Papua New Guinea<OPTION value=PY>Paraguay<OPTION value=PE>Peru<OPTION value=PH>Philippines<OPTION value=PN>Pitcairn<OPTION value=PL>Poland<OPTION value=PT>Portugal<OPTION value=PR>Puerto Rico<OPTION value=QA>Qatar<OPTION value=RE>Reunion<OPTION value=RO>Romania<OPTION value=RU>Russian Federation<OPTION value=RW>Rwanda<OPTION value=SH>Saint Helena<OPTION value=KN>Saint Kitts And Nevis<OPTION value=LC>Saint Lucia<OPTION value=PM>Saint Pierre And Miquelon<OPTION value=VC>Saint Vincent And The Grenadines<OPTION value=WS>Samoa<OPTION value=SM>San Marino<OPTION value=ST>Sao Tome And Principe<OPTION value=SA>Saudi Arabia<OPTION value=SN>Senegal<OPTION value=SC>Seychelles<OPTION value=SL>Sierra Leone<OPTION value=SG>Singapore<OPTION value=SK>Slovakia<OPTION value=SI>Slovenia<OPTION value=SB>Solomon Islands<OPTION value=SO>Somalia<OPTION value=ZA>South Africa<OPTION value=GS>South Georgia And The South Sandwich Islands<OPTION value=ES>Spain<OPTION value=LK>Sri Lanka<OPTION value=SD>Sudan<OPTION value=SR>Suriname<OPTION value=SJ>Svalbard And Jan Mayen<OPTION value=SZ>Swaziland<OPTION value=SE>Sweden<OPTION value=CH>Switzerland<OPTION value=SY>Syrian Arab Republic<OPTION value=TW>Taiwan, Province Of China<OPTION value=TJ>Tajikistan<OPTION value=TZ>Tanzania, United Republic Of<OPTION value=TH>Thailand<OPTION value=TG>Togo<OPTION value=TK>Tokelau<OPTION value=TO>Tonga<OPTION value=TT>Trinidad And Tobago<OPTION value=TN>Tunisia<OPTION value=TR>Turkey<OPTION value=TM>Turkmenistan<OPTION value=TC>Turks And Caicos Islands<OPTION value=TV>Tuvalu<OPTION value=UG>Uganda<OPTION value=UA>Ukraine<OPTION value=AE>United Arab Emirates<OPTION value=GB>United Kingdom<OPTION value=US>United States<OPTION value=UM>United States Minor Outlying Islands<OPTION value=UY>Uruguay<OPTION value=UZ>Uzbekistan<OPTION value=VU>Vanuatu<OPTION value=VE>Venezuela<OPTION value=VN>Viet Nam<OPTION value=VG>Virgin Islands, British<OPTION value=VI>Virgin Islands, U.S.<OPTION value=WF>Wallis And Futuna<OPTION value=EH>Western Sahara<OPTION value=YE>Yemen<OPTION value=YU>Yugoslavia<OPTION value=ZM>Zambia<OPTION value=ZW>Zimbabwe</SELECT></TD></TR>
+</TABLE>
+</FIELDSET>
+
+</DIV>
+
+<!-- System -->
+<DIV id=system class=panel>
+
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_client></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=90><COL>
+<TR><TD id=txt_jid></TD><TD><INPUT type=text class=text id=jabberid readonly></TD></TR>
+<TR><TD id=txt_res></TD><TD><INPUT type=text class=text id=res></TD></TR>
+<TR><TD id=txt_time></TD><TD><INPUT type=text class=text id=time readonly></TD></TR>
+<TR><TD id=txt_software></TD><TD><INPUT type=text class=text id=name readonly></TD></TR>
+<TR><TD id=txt_version></TD><TD><INPUT type=text class=text id=version readonly></TD></TR>
+<TR><TD id=txt_os></TD><TD><INPUT type=text class=text id=os readonly></TD></TR>
+</TABLE>
+</FIELDSET>
+
+</DIV>
+
+</TD>
+
+</TR>
+</TABLE>
+
+<DIV id=waitscreen style="padding-top: 100px; padding-left: 130px; background-color: buttonface; color: buttontext; width: 100%; height: 306px; font-family: Tahoma; font-size: 11px; position: absolute; top: 0px; left: 0px;">
+<B id=txt_requesting1></B>&nbsp;<IMG src="../images/misc/ooo.gif"><BR>
+<BR>
+<SPAN id=txt_requesting2></SPAN>
+</DIV>
+
+<DIV style="border-top: 2px groove; width: 100%; margin-left: 4px; margin-right: 4px;">&nbsp;</DIV>
+
+<INPUT type=button style="position: absolute; top: 307px; left: 178px; margin-top: 8px; width: 110px; height: 24px; font-family: Tahoma; font-size: 11px;" disabled id=btn_undo onclick="clearall(); refresh();">
+<INPUT type=submit style="position: absolute; top: 307px; left: 294px; margin-top: 8px; width: 90px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_ok onclick="save()">
+<INPUT type=button style="position: absolute; top: 307px; left: 390px; margin-top: 8px; width: 90px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_cancel onclick="external.wnd.close()">
+
+</FORM>
+
+</BODY>
+</HTML>

@@ -1,0 +1,180 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	background-color: buttonface;
+	color: buttontext;
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+TD {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: windowtext;
+}
+INPUT.button {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: buttontext;
+	width: 90px;
+	height: 24px;
+}
+UL, LI {
+	margin: 0;
+	list-style-type: none;
+}
+UL LABEL INPUT {
+	margin-right: 6px;
+}
+UL DIV LABEL {
+	border-bottom: 1px solid #d3d5d6;
+	display: block;
+	margin: 4px;
+	padding: 4px;
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+	color: #57a6d3;
+}
+UL UL LABEL {
+	display: block;
+	margin-left: 16px;
+	margin-right: 4px;
+	padding: 0;
+}
+</STYLE>
+
+<SCRIPT language=JScript>
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'conference-invite', document );
+	document.onselectstart = document.ondragstart = function(){return false};
+	document.oncontextmenu = function(){return false};
+
+	var View = document.getElementById( 'view_area' );
+	var OuterList = document.getElementById( 'list_area' );
+
+	var Groups = ( new VBArray( external.globals( 'ClientRoster' ).Groups.Keys() ) ).toArray().sort( function(a,b){return a.toLowerCase()==b.toLowerCase()?0:a.toLowerCase()<b.toLowerCase()?-1:1} );
+	for ( var i = 0; i < Groups.length; ++i )
+	{
+		var Enabled = Groups[i] == external.wnd.params[3];
+
+		var Group				= document.createElement( 'LI' );
+		var InnerList			= document.createElement( 'UL' );
+
+		var GroupHeader			= document.createElement( 'DIV' );
+		var GroupLabel			= document.createElement( 'LABEL' );
+		var GroupCheckbox		= document.createElement( '<INPUT type=checkbox onclick="Toggle_Group( this.checked, this.parentNode.parentNode.nextSibling )"' + ( Enabled ? ' checked' : '' ) + '>' );
+
+		GroupCheckbox.id		= 'group-checkbox-' + i;
+		GroupLabel.htmlFor		= GroupCheckbox.id;
+		GroupLabel.insertAdjacentElement( 'beforeEnd', GroupCheckbox );
+		GroupLabel.insertAdjacentText( 'beforeEnd', Groups[i] );
+
+		GroupHeader.insertAdjacentElement( 'beforeEnd', GroupLabel );
+		Group.insertAdjacentElement( 'beforeEnd', GroupHeader );
+
+		var Addresses = ( new VBArray( external.globals( 'ClientRoster' ).Groups( Groups[i] ).Items.Keys() ) ).toArray().sort( function(a,b){var c=external.globals('ClientRoster').Items(a).Name.toLowerCase();var d=external.globals('ClientRoster').Items(b).Name.toLowerCase();return c==d?0:c<d?-1:1} );
+		for ( var j = 0; j < Addresses.length; ++j )
+			if ( external.globals( 'ClientRoster' ).Items( Addresses[j] ).Resources.Count )
+			{
+				Enabled = Groups[i] == external.wnd.params[3] || Addresses[j] == external.wnd.params[2];
+
+				var Contact				= document.createElement( 'LI' );
+
+				var ContactLabel		= document.createElement( 'LABEL' );
+				var ContactCheckbox		= document.createElement( '<INPUT type=checkbox onclick="Toggle_Contact( this.checked, this.parentNode.parentNode.parentNode.parentNode.firstChild.firstChild.firstChild )"' + ( Enabled ? ' checked' : '' ) + '>' );
+
+				Contact.title			= Addresses[j];
+				ContactCheckbox.id		= 'contact-checkbox-' + i + '-' + j;
+				ContactLabel.htmlFor	= ContactCheckbox.id;
+				ContactLabel.insertAdjacentElement( 'beforeEnd', ContactCheckbox );
+				ContactLabel.insertAdjacentText( 'beforeEnd', external.globals( 'ClientRoster' ).Items( Addresses[j] ).Name );
+
+				Contact.insertAdjacentElement( 'beforeEnd', ContactLabel );
+				InnerList.insertAdjacentElement( 'beforeEnd', Contact );
+			}
+
+		if ( InnerList.children.length )
+		{
+			Group.insertAdjacentElement( 'beforeEnd', InnerList );
+			OuterList.insertAdjacentElement( 'beforeEnd', Group );
+		}
+	}
+
+	if ( ! OuterList.children.length )
+		document.getElementById( 'txt_empty' ).style.display = 'block';
+
+	View.focus();
+	external.wnd.hide( false );
+}
+
+function Toggle_Group ( Enabled, Group )
+{
+	for ( var i = 0; i < Group.children.length; ++i )
+		Group.children(i).firstChild.firstChild.checked = Enabled;
+}
+
+function Toggle_Contact ( Enabled, GroupCheckbox )
+{
+	if ( ! Enabled )
+		GroupCheckbox.checked = false;
+}
+
+function Invite ()
+{
+	var OuterList	= document.getElementById( 'list_area' );
+	var Contacts	= OuterList.getElementsByTagName( 'LI' );
+	var Singularity	= new ActiveXObject( 'Scripting.Dictionary' );
+
+	for ( var i = 0; i < Contacts.length; ++i )
+	{
+		var Address = Contacts[i].title;
+		if ( Address.length && Contacts[i].firstChild.firstChild.checked && ! Singularity.Exists( Address ) && external.globals( 'ClientRoster' ).Items.Exists( Address ) )
+		{
+			Singularity.Add( Address, null );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			dom.loadXML( '<message><x><invite/></x></message>' );
+			dom.documentElement.setAttribute( 'to', external.wnd.params[1].Address.ShortAddress() );
+			dom.documentElement.firstChild.firstChild.setAttribute( 'to', Address );
+			dom.documentElement.firstChild.setAttribute( 'xmlns', 'http://jabber.org/protocol/muc#user' );
+			external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+			external.XMPP.SendXML( dom );
+		}
+	}
+
+	external.wnd.close();
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no onload="Begin()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="event.returnValue = false;">
+<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<TR valign=top height=1>
+	<TD id=txt_instructions style="padding: 16px;"></TD>
+</TR>
+<TR valign=top>
+	<TD style="padding: 0 16px;">
+		<DIV id=view_area style="overflow-y: scroll; overflow-x: auto; background-color: window; border: 2px inset; width: 100%; height: 100%; padding-bottom: 8px;">
+			<DIV id=txt_empty style="display: none; padding-top: 160px; text-align: center;"></DIV>
+			<UL id=list_area></UL>
+		</DIV>
+	</TD>
+</TR>
+<TR valign=top height=1>
+	<TD align=right style="padding: 16px;">
+		<INPUT type=submit class=button id=btn_ok onclick="Invite()">
+		<INPUT type=button class=button id=btn_cancel onclick="external.wnd.close();">
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

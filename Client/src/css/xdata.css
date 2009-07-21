@@ -1,0 +1,34 @@
+.x-data-text-single,
+.x-data-text-private,
+.x-data-text-multi,
+.x-data-list-single,
+.x-data-list-multi,
+.x-data-jid-single
+{
+	width: 100%;
+}
+.x-data-text-single,
+.x-data-text-private
+{
+	height: 22px;
+}
+.x-data-fixed {
+	text-align: left;
+	margin-top: 12px;
+	margin-bottom: 8px;
+	font-size: 16px;
+	font-weight: bold;
+	border-bottom: 1px solid windowtext;
+}
+.x-data-hidden {
+	display: none;
+}
+.x-data-field {
+	margin-bottom: 6px;
+}
+.x-data-field DIV {
+	margin-bottom: 2px;
+}
+.x-data-boolean {
+	margin-right: 4px;
+}

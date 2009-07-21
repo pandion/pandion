@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<brand>
+
+<!-- Shown in the About dialog
+  -->
+<softwarecopyrightholder>Sebastiaan Deckers &amp; Dries Staelens</softwarecopyrightholder>
+
+<!-- Shown in the About dialog
+  -->
+<softwarecopyrightdate>2006</softwarecopyrightdate>
+
+<!-- Stop working after this date (DD-MM-YYYY)
+  -->
+<softwareexpiredate>9-5-2083</softwareexpiredate>
+
+<!-- Used in various locations throughout the interface
+  -->
+<softwarename>Pandion</softwarename>
+
+<!-- Used as name of files and directories
+  -->
+<softwarenamesafe>Pandion</softwarenamesafe>
+
+<!-- Shown in the About dialog
+  -->
+<softwareversion>2.5 RC1</softwareversion>
+
+<!-- Only connect to this server and only create accounts on this server
+  -->
+<fixedserver></fixedserver>
+
+<!-- Show the server hostname field in the Sign Up wizard (yes/no)
+     Use <fixedserver/> or servers.xml to set the default server when this field is not shown
+  -->
+<showsignupserver>yes</showsignupserver>
+
+<!-- Show the IM address preview in the Sign Up wizard (yes/no)
+  -->
+<showsignuppreview>yes</showsignuppreview>
+
+<!-- Show the email address field in the Sign Up wizard (yes/no)
+  -->
+<showsignupemail>no</showsignupemail>
+
+<!-- Connect to this XMPP server and use SSPI (Kerberos/NTLM) to authenticate without user interaction
+  -->
+<sspiserver></sspiserver>
+
+<!-- Show the client in the systray without access to the contact list (yes/no)
+  -->
+<trayonly>no</trayonly>
+
+<!-- Shown in the About dialog
+  -->
+<softwareurl>http://www.pandion.be/</softwareurl>
+
+<!-- Shown in the Help menu
+  -->
+<helpcontact>http://www.pandion.be/contact/</helpcontact>
+
+<!-- Shown in the Help menu
+  -->
+<helpforum>http://forums.pandion.be/</helpforum>
+
+<!-- Shown in the Help menu
+  -->
+<helpmanual>http://www.pandion.be/documentation/?n=${softwarename}&amp;v=${softwareversion}</helpmanual>
+
+<!-- URI of plug-in listing
+  -->
+<pluginlist>http://plugins.pandion.be/?n=${softwarename}&amp;v=${softwareversion}</pluginlist>
+
+<!-- URI of emoticon listing
+  -->
+<emoticonlist>http://emoticons.pandion.be/?n=${softwarename}&amp;v=${softwareversion}</emoticonlist>
+
+<!-- URI of Sign Up page
+  -->
+<websignup></websignup>
+
+<!-- Whether websignup is embedded in client window or launched in default browser (external/embedded)
+  -->
+<websignupmethod>external</websignupmethod>
+
+<!-- Whether or not to show the Sign Up button (yes/no)
+  -->
+<showsignup>yes</showsignup>
+
+<!-- URI of software version checker
+  -->
+<autoupdate>http://update.pandion.be/?n=${softwarename}&amp;v=${softwareversion}&amp;r=${random}</autoupdate>
+
+<!-- URI of background listing
+  -->
+<backgroundlist>http://backgrounds.pandion.be/?n=${softwarename}&amp;v=${softwareversion}</backgroundlist>
+
+<!-- URI of full size banner (468x60)
+  -->
+<bannerfull></bannerfull>
+
+<!-- URI of half size banner (234x60)
+  -->
+<bannerhalf></bannerhalf>
+
+<!-- URI of welcome screen (500x365)
+  -->
+<bannerwelcome></bannerwelcome>
+
+<!-- URI of email invitation webpage
+  -->
+<invitepage></invitepage>
+
+<!-- URI of password reminder/reset webpage
+  -->
+<passwordpage></passwordpage>
+
+<!-- Connection settings: Server Address
+  -->
+<serveraddress></serveraddress>
+
+<!-- Connection settings: Server Port
+  -->
+<serverport></serverport>
+
+<!-- Connection settings: Secure Communication (optional/tls/ssl/none)
+  -->
+<encryption>optional</encryption>
+
+<!-- Connection settings: Log In Authentication (normal/ntlm)
+  -->
+<authentication>normal</authentication>
+
+<!-- Connection settings: Proxy Method (none/http)
+  -->
+<proxymethod>none</proxymethod>
+
+<!-- Connection settings: Proxy Address
+  -->
+<proxyaddress></proxyaddress>
+
+<!-- Connection settings: Proxy Port
+  -->
+<proxyport></proxyport>
+
+</brand>

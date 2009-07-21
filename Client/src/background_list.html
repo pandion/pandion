@@ -1,0 +1,169 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+TD {
+	font-family: Arial;
+	font-size: 11px;
+	color: windowtext;
+}
+.name {
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #333536;
+}
+.preview {
+	margin: 4px 12px;
+}
+.uninstall {
+	height: 22px;
+	width: 90px;
+	font-size: 11px;
+}
+</STYLE>
+<SCRIPT language=JScript>
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'background_list', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	document.getElementById( 'background_list' ).focus();
+	document.getElementById( 'btn_background_download' ).style.display = external.globals( 'backgroundlist' ).length ? 'inline' : 'none';
+	background_refresh();
+	external.wnd.hide( false );
+}
+
+function background_refresh ()
+{
+	var List = document.getElementById( 'background_list' );
+	while ( List.rows.length > 1 )
+		List.deleteRow(1);
+
+	var h						= 32;
+	var w						= 192;
+	var BackgroudPath			= external.globals( 'usersdir' ) + 'Backgrounds\\';
+	var BackgroundDirectories	= new VBArray( external.Directory.ListDirs( BackgroudPath ) ).toArray();
+
+	var dom					= new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.async				= false;
+	dom.resolveExternals	= false;
+
+	for ( var i = 0; i < BackgroundDirectories.length; ++i )
+	{
+		var Path = BackgroudPath + BackgroundDirectories[i].Name + '\\';
+		if ( external.FileExists( Path + 'about.xml' ) && external.FileExists( Path + 'preview.png' ) && external.FileExists( Path + 'index.html' ) )
+		{
+			dom.load( Path + 'about.xml' );
+			var BackgroundName = dom.selectSingleNode( '/background/meta/name' );
+			if ( BackgroundName )
+			{
+				var row = List.insertRow(-1);
+				row.vAlign = 'top';
+
+				with ( row.insertCell(-1) )
+				{
+					style.paddingTop	= '2px';
+					style.paddingLeft	= '4px';
+					style.paddingBottom	= '4px';
+					style.borderBottom	= '1px solid';
+
+					var Name			= document.createElement( 'SPAN' );
+					Name.className		= 'name';
+					Name.innerText		= BackgroundName.text;
+					insertAdjacentElement( 'beforeEnd', Name );
+
+					insertAdjacentText( 'beforeEnd', '\n' );
+
+					var Preview			= document.createElement( '<IMG onmouseover="this.style.borderColor = \'highlight\'" onmouseout="this.style.borderColor = \'window\'">' );
+					Preview.className	= 'preview';
+					Preview.src			= Path + 'preview.png';
+					Preview.height		= h;
+					Preview.width		= w;
+					insertAdjacentElement( 'beforeEnd', Preview );
+				}
+
+				with ( row.insertCell(-1) )
+				{
+					vAlign				= 'middle';
+					style.borderBottom	= '1px solid';
+					style.paddingRight	= '4px';
+
+					var Uninstall		= document.createElement( 'BUTTON' );
+					Uninstall.className	= 'uninstall';
+					Uninstall.value		= external.globals( 'Translator' ).Translate( 'background_list', 'background_uninstall' );
+					Uninstall.Directory	= BackgroundDirectories[i].Name;
+					Uninstall.attachEvent(
+						'onclick',
+						function ()
+						{
+							if ( external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'background_list', 'background_confirm' ), external.globals( 'softwarename' ), 4 | 48 ) == 6 )
+							{
+								external.Directory.Delete( external.globals( 'usersdir' ) + 'Backgrounds\\' + event.srcElement.Directory );
+								background_refresh();
+								if ( event.srcElement.Directory == external.globals( 'cfg' )( 'background' ) )
+									external.globals( 'cfg' )( 'background' ) = '';
+								if ( external.FileExists( external.globals( 'cwd' ) + '..\\backgrounds\\' + event.srcElement.Directory + '.zip' ) )
+									external.file( external.globals( 'cwd' ) + '..\\backgrounds\\' + event.srcElement.Directory + '.zip' ).Delete();
+								var TrackerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Trackers.Keys() ) ).toArray();
+								for ( var i = 0; i < TrackerNames.length; ++i )
+									external.globals( 'ChatSessionPool' ).Trackers( TrackerNames[i] ).BackgroundUpdate();
+								TrackerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Trackers.Keys() ) ).toArray();
+								for ( var i = 0; i < TrackerNames.length; ++i )
+									external.globals( 'ConferenceSessionPool' ).Trackers( TrackerNames[i] ).BackgroundUpdate();
+							}
+						}
+					);
+					insertAdjacentElement( 'beforeEnd', Uninstall );
+				}
+			}
+		}
+	}
+
+	List.rows(0).style.display = List.rows.length > 1 ? 'none' : 'block';
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="Begin()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="event.returnValue = false; external.wnd.close();">
+<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<TR valign=top height=60 bgcolor=window>
+	<TD colspan=2 style="padding-left: 12px; padding-right: 8px; padding-top: 7px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+	<SPAN id=txt_title style="font-weight: bold;"></SPAN>
+	<DIV id=txt_subtitle style="height: 27px; margin-left: 20px; margin-right: 20px; overflow: hidden;"></DIV>
+	</TD>
+</TR>
+<TR valign=top>
+	<TD colspan=2 style="padding: 16px;">
+		<DIV style="overflow-y: auto; background-color: window; border: 2px inset; width: 100%; height: 100%; padding-left: 2px; padding-right: 2px;">
+			<TABLE id=background_list border=0 cellspacing=0 cellpadding=0 width="100%" style="table-layout: fixed;">
+				<COL><COL width=95>
+				<TR id=background_list_empty>
+					<TD align=center style="font-size: 11px; font-family: Tahoma; color: windowtext; padding-top: 80px;" id=txt_background_empty colspan=2></TD>
+				</TR>
+			</TABLE>
+		</DIV>
+	</TD>
+</TR>
+<TR valign=top height=45>
+	<TD align=left style="padding: 10px; border-top: 2px groove;">
+		<INPUT type=button style="width: 130px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_background_download onclick="external.wnd.params.dial_background_download()">
+	</TD>
+	<TD align=right style="padding: 10px; border-top: 2px groove;">
+		<INPUT type=submit style="height: 24px; width: 90px; font-family: Tahoma; font-size: 11px;" id=btn_ok>
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

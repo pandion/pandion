@@ -1,0 +1,87 @@
+﻿<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<SCRIPT language=JScript>
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'conference_custom', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	document.getElementById( 'room' ).focus();
+	document.getElementById( 'room' ).value = external.globals( 'cfg' )( 'conferenceroom' );
+	var server = '';
+	var services = external.globals( 'ClientServices' ).FindByOptions( 0x0040 );
+	if ( services.length )
+		server = services[0].JID;
+	document.getElementById( 'example' ).innerText = external.globals( 'Translator' ).Translate( 'conference_custom', 'example', [ server.length ? server : 'conference.' + external.globals( 'cfg' )( 'server' ) ] );
+	external.wnd.hide( false );
+}
+
+function ok ()
+{
+	var services = external.globals( 'ClientServices' ).FindByOptions( 0x0040 );
+	var address = external.globals( 'cfg' )( 'conferenceroom' ) = document.getElementById( 'room' ).value;
+	if ( address.indexOf( '@' ) < 0 && services.length )
+		address += '@' + services[0].JID;
+	address = address.toLowerCase();
+	if ( ( /^[^\s\/]+@[^\s\/]+$/ ).test( address ) )
+	{
+		external.wnd.params.dial_conference( address );
+		external.wnd.close();
+	}
+	else
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'conference_custom', 'invalid' ), external.globals( 'softwarename' ), 0 | 48 );
+}
+
+</SCRIPT>
+<STYLE>
+BODY {
+	cursor: default;
+	margin: 8px;
+	padding: 0px;
+}
+#room {
+	padding-left: 1px;
+	font-family: Tahoma;
+	font-size: 13px;
+}
+TD {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: windowtext;
+}
+INPUT.btn {
+	width: 90px;
+	height: 24px;
+	font-family: Tahoma;
+	font-size: 11px;
+}
+</STYLE>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="init()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="ok(); return false;">
+<TABLE width="100%" border=0 cellpadding=2 cellspacing=0 style="table-layout: fixed;">
+<COL width=140><COL>
+<TR height=30>
+	<TD id=txt_address></TD>
+	<TD><INPUT id=room style="width: 100%;"></TD>
+</TR>
+<TR>
+	<TD>&nbsp;</TD>
+	<TD id=example></TD>
+</TR>
+<TR>
+	<TD colspan=2 align=right>
+		<BR>
+		<INPUT type=submit class=btn id=btn_ok>
+		<INPUT type=button class=btn id=btn_cancel onclick="external.wnd.close()">
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

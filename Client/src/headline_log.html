@@ -1,0 +1,216 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+INPUT {
+	font-family: Tahoma;
+}
+</STYLE>
+<SCRIPT language=JScript src="main/XMPPAddress.js"></SCRIPT>
+<SCRIPT language=JScript src="main/XMPPMessage.js"></SCRIPT>
+<SCRIPT language=JScript src="main/XHTML-IM.js"></SCRIPT>
+<SCRIPT language=JScript>
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'headline_log', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	external.wnd.focus();
+	document.getElementById( 'page1' ).focus();
+	document.getElementById( 'alertonline' ).parentNode.parentNode.style.display = external.globals( 'trayonly' ) == 'yes' ? 'none' : '';
+	document.getElementById( 'alertonline' ).checked = external.globals( 'cfg' )( 'alertonline' ).toString() == 'true';
+	external.wnd.hide( false );
+	setTimeout( 'alerts_refresh()', 0 );
+}
+
+function End ()
+{
+	external.globals( 'cfg' )( 'alertonline' ) = document.getElementById( 'alertonline' ).checked;
+}
+
+function alerts_refresh ()
+{
+	var View = document.frames( 'view' ).document;
+
+	while ( View.body.childNodes.length )
+		View.body.childNodes.item(0).removeNode( true );
+
+	with ( View.body.style )
+	{
+		overflowY			= 'scroll';
+		margin				= '0px';
+		padding				= '0px';
+		fontFamily			= 'Tahoma';
+		fontSize			= '11px';
+	}
+
+	if ( ! external.globals( 'headlines' ).length )
+	{
+		var Error			= View.createElement( 'DIV' );
+		Error.innerText		= document.getElementById( 'txt_empty' ).innerText;
+		with ( Error.style )
+		{
+			textAlign		= 'center';
+			marginTop		= '100px';
+			cursor			= 'default';
+		}
+		View.body.appendChild( Error );
+	}
+
+	for ( var i = external.globals( 'headlines' ).length - 1; i >= 0; i-- )
+	{
+		var Headline		= external.globals( 'headlines' )[i];
+
+		var Box				= View.createElement( 'DIV' );
+		with ( Box.style )
+		{
+			clear			= 'both';
+			padding			= '4px';
+			borderBottom	= '1px solid threedlightshadow';
+		}
+
+		var Icon			= View.createElement( 'IMG' );
+
+		if ( Headline.Icon.length == 40 )
+		{
+			if ( external.FileExists( external.globals( 'usersdir' ) + 'Avatars\\' + Headline.Icon ) )
+				Icon.src = external.globals( 'usersdir' ) + 'Avatars\\' + Headline.Icon;
+			else
+				Icon.src = external.globals( 'cwd' ) + '..\\images\\brand\\default.ico';
+		}
+		else if ( Headline.Icon.length )
+			Icon.src = external.globals( 'cwd' ) + '..\\images\\clients\\' + Headline.Icon;
+		else
+			Icon.src = external.globals( 'cwd' ) + '..\\images\\brand\\default.ico';
+
+		Icon.height			= 24;
+		Icon.width			= 24;
+		with ( Icon.style )
+		{
+			styleFloat		= 'left';
+		}
+
+		var Title			= View.createElement( 'NOBR' );
+		Title.innerText		= Headline.Title;
+		with ( Title.style )
+		{
+			display			= 'block';
+			fontWeight		= 'bold';
+			marginLeft		= '32px';
+			overflow		= 'hidden';
+		}
+
+		var Message			= new XMPPMessage();
+		Message.Body		= Headline.Message;
+		Message.FromAddress	= Headline.Address;
+		if ( external.globals( 'ClientServices' ).Services.Exists( Message.FromAddress.Host ) && ( external.globals( 'ClientServices' ).Services( Message.FromAddress.Host ).Options & 0x0001 ) )
+			switch ( external.globals( 'ClientServices' ).Services( Message.FromAddress.Host ).Options & 0x881E )
+			{
+				case 0x0002: Message.EmoticonSet = 'msn_messenger';		break;
+				case 0x0004: Message.EmoticonSet = 'icq';				break;
+				case 0x0008: Message.EmoticonSet = 'aim';				break;
+				case 0x0010: Message.EmoticonSet = 'yahoo_messenger';	break;
+				case 0x0800: Message.EmoticonSet = 'gadu-gadu';			break;
+				case 0x8000: Message.EmoticonSet = 'tlen.pl';			break;
+			}
+		else if ( Message.FromAddress.Host == 'jabber.wp.pl' )
+			Message.EmoticonSet = 'wpkontakt';
+
+		if ( ! external.FileExists( external.globals( 'usersdir' ) + 'Emoticons\\' + Message.EmoticonSet + '\\icondef.xml' ) )
+		{
+			if ( Message.EmoticonSet.length )
+				external.globals( 'EmoticonCache' ).InstallStyle( Message.EmoticonSet );
+			Message.EmoticonSet = external.globals( 'cfg' )( 'emoticonset' );
+		}
+
+		var Output			= View.createElement( 'DIV' );
+		var TextLines		= Message.Body.split( '\n' );
+		FilterHyperlinks( Message, Output, TextLines[0] );
+		for ( var j = 1; j < TextLines.length; ++j )
+		{
+			Output.insertAdjacentText( 'beforeEnd', '\n' );
+			FilterHyperlinks( Message, Output, TextLines[j] );
+		}
+
+		with ( Output.style )
+		{
+			marginLeft		= '32px';
+		}
+
+		if ( Headline.OpenHyperlink.length )
+		{
+			var Hyperlink		= View.createElement( 'A' );
+			Hyperlink.href		= Hyperlink.title = Headline.OpenHyperlink;
+			Hyperlink.innerText	= '\n' + external.globals( 'Translator' ).Translate( 'headline_log', 'read_more' );
+			Hyperlink.attachEvent( 'oncontextmenu',	HyperlinkMenu );
+			Hyperlink.attachEvent( 'onclick',		HyperlinkClick );
+			Output.appendChild( Hyperlink );
+		}
+
+		if ( Headline.XMLDOM )
+		{
+			var Hyperlink		= View.createElement( 'A' );
+			Hyperlink.href		= '#';
+			Hyperlink.style.color = 'blue';
+			Hyperlink.XMLDOM	= Headline.XMLDOM;
+			Hyperlink.innerText	= '\n' + external.globals( 'Translator' ).Translate( 'headline_log', 'replay' );
+			Hyperlink.attachEvent(
+				'onclick',
+				function ( event )
+				{
+					event.returnValue	= false;
+					event.cancelBubble	= true;
+					external.wnd.params.XMPPOnMessage( event.srcElement.XMLDOM );
+				}
+			);
+			Output.appendChild( Hyperlink );
+		}
+
+		Box.appendChild( Icon );
+		Box.appendChild( Title );
+		Box.appendChild( Output );
+
+		View.body.appendChild( Box );
+	}
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="Begin()" onunload="End()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="event.returnValue = false">
+<TABLE id=page1 width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<TR valign=top height=60 bgcolor=window>
+	<TD colspan=2 style="padding-left: 20px; padding-right: 8px; padding-top: 10px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+		<SPAN style="font-weight: bold;" id=txt_title></SPAN><BR>
+		<DIV style="height: 27px; margin-left: 20px; margin-right: 20px; overflow: hidden;" id=txt_desc></DIV>
+	</TD>
+</TR>
+<TR valign=top>
+	<TD colspan=2 style="padding: 16px; padding-bottom: 8px; font-size: 11px; font-family: Tahoma; color: buttontext;">
+		<IFRAME id=view style="background-color: window; overflow-y: auto; width: 100%; height: 100%; border: 2px inset;"></IFRAME>
+		<SPAN style="display: none;" id=txt_empty></SPAN>
+	</TD>
+</TR>
+<TR valign=top height=32>
+	<TD colspan=2 style="padding-left: 16px; font-size: 11px; font-family: Tahoma; color: buttontext;">
+		<INPUT id=alertonline type=checkbox checked>&nbsp;<LABEL for=alertonline id=alertonlinelabel></LABEL>
+	</TD>
+</TR>
+<TR valign=top height=45 colspan=2>
+	<TD align=right style="padding: 10px; border-top: 2px groove;">
+		<INPUT type=submit accesskey=c style="height: 24px; width: 90px; font-size: 11px;" id=btn_close onclick="external.wnd.close()">
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

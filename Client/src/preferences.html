@@ -1,0 +1,468 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+TEXTAREA.text, INPUT.text {
+	padding-left: 1px;
+	font-family: Tahoma;
+	font-size: 11px;
+}
+INPUT.disabled {
+	padding-left: 2px;
+	font-family: Tahoma;
+	font-size: 11px;
+	background-color: buttonface;
+	color: graytext;
+}
+FIELDSET {
+	cursor: default;
+}
+TD {
+	font-family: Arial;
+	font-size: 11px;
+	color: windowtext;
+}
+TD.tree {
+	padding: 3px;
+}
+DIV.panel {
+	display: none;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+#header {
+	color: #4f575c;
+	border: 2px groove;
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 3px;
+	padding-left: 8px;
+	background-image: url( ../images/misc/tab-bar-lite.gif );
+}
+</STYLE>
+<SCRIPT language=JSCript>
+
+function handle_keyboard ()
+{
+	var key = event.keyCode;
+
+	if ( key == 37 || key == 38 )
+	// left or up: move selection to previous item in tree
+	{
+		var rows = document.getElementById( 'tree' ).rows;
+		for ( var i = 0; i < rows.length; i++ )
+			if ( rows(i).isCurrentSelection )
+			{
+				for( var j = i - 1; j >= 0 && rows(j).style.display == 'none'; --j );
+				if ( j >= 0 )
+					tree_select( rows(j) );
+				break;
+			}
+		event.returnValue = false;
+	}
+	else if ( key == 39 || key == 40 )
+	// right or down: move selection to next item in tree
+	{
+		var rows = document.getElementById( 'tree' ).rows;
+		for ( var i = 0; i < rows.length; i++ )
+			if ( rows(i).isCurrentSelection )
+			{
+				for( var j = i + 1; j < rows.length && rows(j).style.display == 'none'; ++j );
+				if ( j < rows.length )
+					tree_select( rows(j) );
+				break;
+			}
+		event.returnValue = false;
+	}
+}
+
+function tree_goto ( section )
+{
+	var rows = document.getElementById( 'tree' ).rows;
+	for ( var i = 0; i < rows.length; i++ )
+		if ( rows(i).section == section )
+		{
+			if ( ! rows(i).isCurrentSelection )
+				tree_select( rows(i) );
+			break;
+		}
+}
+
+function tree ()
+{
+	var row = window.event.srcElement;
+	while ( typeof row.section == 'undefined' )
+		row = row.parentElement;
+
+	if ( ! row.isCurrentSelection )
+		tree_select( row );
+
+	document.getElementById( 'tree' ).focus();
+}
+
+function tree_select ( row )
+{
+	external.globals( 'cfg' )( 'preferencessection' ) = row.section;
+	row.style.backgroundColor = 'highlight';
+	row.cells(0).style.color = 'highlighttext';
+	document.getElementById( 'header' ).innerText = external.globals( 'Translator' ).Translate( 'preferences', row.section );
+	document.getElementById( row.section ).style.display = 'block';
+
+	var rows = row.parentElement.rows;
+	for ( var i = 0; i < rows.length; i++ )
+		if ( rows(i).isCurrentSelection )
+		{
+			tree_deselect( rows(i) );
+			break;
+		}
+
+	row.isCurrentSelection = true;
+}
+
+function tree_deselect ( row )
+{
+	document.getElementById( row.section ).style.display = 'none';
+	row.style.backgroundColor = '';
+	row.cells(0).style.color = '';
+	row.isCurrentSelection = false;
+}
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'preferences', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	var cfg = external.globals( 'cfg' );
+	var doc = document.all;
+
+	var tree = document.getElementById( 'tree' );
+	tree.focus();
+	tree_goto( external.wnd.params[1] == '' ? cfg( 'preferencessection' ) : external.wnd.params[1] );
+
+	block_refresh();
+
+	doc.msgnotinlist.checked	= cfg( 'msgnotinlist' ).toString()	== 'true';
+	doc.startup.checked			= external.FileExists( external.GetSpecialFolder( 0x0007 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk' )
+								|| external.FileExists( external.GetSpecialFolder( 0x0018 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk' );
+
+	doc.autoawaytime.value	= isNaN( parseInt( cfg( 'autoawaytime' ), 10 ) ) ?  5 : Math.round( cfg( 'autoawaytime' ) / 60000 );
+	doc.autoxawaytime.value	= isNaN( parseInt( cfg( 'autoawaytime' ), 10 ) ) ? 30 : Math.round( cfg( 'autoxawaytime' ) / 60000 );
+	doc.autoawaytext.value	= cfg( 'autoawaytext' ).length	? cfg( 'autoawaytext' )		: external.globals( 'Translator' ).Translate( 'main', 'autoawaymessage' );
+	doc.autoxawaytext.value	= cfg( 'autoxawaytext' ).length	? cfg( 'autoxawaytext' )	: external.globals( 'Translator' ).Translate( 'main', 'autoxawaymessage' );
+
+	doc.filetransferhost.value	= cfg( 'filetransferhost' );
+	doc.filetransferport.value	= isNaN( parseInt( cfg( 'filetransferport' ), 10 ) ) ? 0 : parseInt( cfg( 'filetransferport' ), 10 );
+
+	doc.history_store.checked	= cfg( 'history_store' ).toString() == 'true';
+
+	doc.soundmessage.checked	= cfg( 'soundmessage' ).toString()	== 'true';
+	doc.soundonline.checked		= cfg( 'soundonline' ).toString()	== 'true';
+	doc.soundoffline.checked	= cfg( 'soundoffline' ).toString()	== 'true';
+	doc.soundmessagefile.value	= cfg( 'soundmessagefile' );
+	doc.soundonlinefile.value	= cfg( 'soundonlinefile' );
+	doc.soundofflinefile.value	= cfg( 'soundofflinefile' );
+
+	doc.authorization[ parseInt( cfg( 'authorization' ) ) ].checked = true;
+
+	external.wnd.hide( false );
+}
+
+function ok ()
+{
+	var cfg = external.globals( 'cfg' );
+
+	if ( save() )
+	{
+		if ( 6 == external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'preferences', 'reconnect' ), external.globals( 'softwarename' ), 4 | 32 ) )
+		{
+			external.wnd.params[0].mode_new( -1, cfg( 'lastmsg' ) );
+			external.globals( 'XMPPConnected' ) = false;
+			external.wnd.params[0].Reconnect();
+		}
+	}
+
+	external.wnd.params[0].SettingsSave();
+	external.wnd.close();
+}
+
+function save ()
+{
+	var retval	= false;
+	var cfg		= external.globals( 'cfg' );
+	var doc		= document.all;
+
+	if ( external.globals( 'HTTPEnginePort' ) != 0 && cfg( 'filetransferport' ) != doc.filetransferport.value && doc.filetransferport.value != 0 )
+	{
+		external.HTTPEngine.StopListening( external.globals( 'HTTPEnginePort' ) );
+		external.globals( 'HTTPEnginePort' ) = 0;
+		external.HTTPEngine.Listen( doc.filetransferport.value );
+	}
+	cfg( 'filetransferhost' ) = doc.filetransferhost.value;
+	cfg( 'filetransferport' ) = doc.filetransferport.value;
+
+	var time1 = parseInt( doc.autoawaytime.value, 10 );
+	var time2 = parseInt( doc.autoxawaytime.value, 10 );
+	if ( isNaN( time1 ) || time1 < 1 )
+		time1 = 5;
+	if ( isNaN( time2 ) || time2 < 1 )
+		time2 = 30;
+	if ( time1 <= time2 )
+	{
+		cfg( 'autoawaytime' )	= time1 * 60000;
+		cfg( 'autoxawaytime' )	= time2 * 60000;
+		cfg( 'autoawaytext' )	= doc.autoawaytext.value;
+		cfg( 'autoxawaytext' )	= doc.autoxawaytext.value;
+	}
+	else
+	{
+		cfg( 'autoawaytime' )	= time2 * 60000;
+		cfg( 'autoxawaytime' )	= time1 * 60000;
+		cfg( 'autoawaytext' )	= doc.autoxawaytext.value;
+		cfg( 'autoxawaytext' )	= doc.autoawaytext.value;
+	}
+
+	var LocalStartupLink	= external.GetSpecialFolder( 0x0007 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk';
+	var CommonStartupLink	= external.GetSpecialFolder( 0x0018 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk';
+	if ( doc.startup.checked )
+	{
+		if ( external.FileExists( CommonStartupLink ) && external.FileExists( LocalStartupLink ) )
+			external.File( LocalStartupLink ).Delete();
+		if ( ! external.FileExists( CommonStartupLink ) && ! external.FileExists( LocalStartupLink ) )
+		{
+			var Shortcut			= external.Shortcut;
+			Shortcut.path			= external.globals( 'cwd' ) + '..\\' + external.globals( 'softwarenamesafe' ) + '.exe';
+			Shortcut.Arguments		= '/minimized';
+			Shortcut.IconLocation	= external.globals( 'cwd' ) + '..\\images\\brand\\default.ico,0';
+			Shortcut.Save( external.GetSpecialFolder( 0x0007 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk' );
+		}
+	}
+	else
+	{
+		if ( external.FileExists( LocalStartupLink ) )
+			external.File( LocalStartupLink ).Delete();
+		if ( external.FileExists( CommonStartupLink ) )
+			external.File( CommonStartupLink ).Delete();
+	}
+
+	cfg( 'msgnotinlist' )	= doc.msgnotinlist.checked;
+	cfg( 'history_store' )	= doc.history_store.checked;
+
+	cfg( 'soundmessage' )		= doc.soundmessage.checked;
+	cfg( 'soundonline' )		= doc.soundonline.checked;
+	cfg( 'soundoffline' )		= doc.soundoffline.checked;
+	cfg( 'soundmessagefile' )	= doc.soundmessagefile.value;
+	cfg( 'soundonlinefile' )	= doc.soundonlinefile.value;
+	cfg( 'soundofflinefile' )	= doc.soundofflinefile.value;
+
+	for ( var i = 0; i < doc.authorization.length; i++ )
+		if ( doc.authorization[i].checked )
+			cfg( 'authorization' ) = i;
+
+	return retval;
+}
+
+function block_row_click ()
+{
+	document.getElementById( 'block_btn_remove' ).disabled	= false;
+	document.getElementById( 'block_btn_view' ).disabled	= false;
+	var row = event.srcElement;
+	while ( ! row.jid )
+		row = row.parentElement;
+	if ( row.isCurrentSelection )
+		return;
+	row.style.backgroundColor	= 'highlight';
+	row.cells(0).style.color	= 'highlighttext';
+	var rows = row.parentElement.rows;
+	for ( var i = 0; i < rows.length; i++ )
+		if ( rows(i).isCurrentSelection )
+		{
+			rows(i).style.backgroundColor	= '';
+			rows(i).cells(0).style.color	= '';
+			rows(i).isCurrentSelection		= false;
+			break;
+		}
+	row.isCurrentSelection = true;
+}
+
+function block_remove()
+{
+	var rows = document.getElementById( 'block_list' ).rows;
+	for ( var i = 0; i < rows.length; i++ )
+		if ( rows(i).isCurrentSelection )
+			external.wnd.params[0].dial_block( rows(i).jid );
+}
+
+function block_view_details ()
+{
+	var rows = document.getElementById( 'block_list' ).rows;
+	for ( var i = 0; i < rows.length; i++ )
+		if ( rows(i).isCurrentSelection )
+		{
+			external.wnd.params[0].dial_userinfo( rows(i).jid, '' );
+			break;
+		}
+}
+
+function block_refresh ()
+{
+	document.getElementById( 'block_btn_remove' ).disabled	= true;
+	document.getElementById( 'block_btn_view' ).disabled	= true;
+	var rows = document.getElementById( 'block_list' ).rows;
+	for ( var i = 0; i < rows.length; i++ )
+		rows.item(i).removeNode( true );
+	var list = document.getElementById( 'block_list' );
+	var keys = ( new VBArray( external.globals( 'block' ).Keys() ) ).toArray();
+	for ( var i = 0; i < keys.length; i++ )
+	{
+		var row = list.insertRow(-1);
+		row.jid = keys[i];
+		row.attachEvent( 'onmousedown', block_row_click );
+		var col = row.insertCell(-1);
+		col.style.paddingLeft = '2px';
+		col.innerText = keys[i];
+	}
+}
+
+function pick_soundfile ( field )
+{
+	var dialog;
+	try
+	{
+		var dialog = external.ComCtrl.ComDlg.GetFileName;
+		if ( document.getElementById( field ).value.length )
+			dialog.FileName = document.getElementById( field ).value;
+		dialog.Flags = 4 | 256;
+		dialog.Title = external.globals( 'Translator' ).Translate( 'preferences', 'choose_sound' );
+		dialog.Filter = external.globals( 'Translator' ).Translate( 'preferences', 'file_audio' ) + ' (*.wav, *.mp3, *.wma)|*.wav;*.mp3;*.wma;*.midi;*.mid;*.au|' + external.globals( 'Translator' ).Translate( 'preferences', 'file_any' ) + '|*.*';
+		document.getElementById( field ).value = dialog.DisplayOpen();
+	}
+	catch ( e )
+	{
+		return false;
+	}
+}
+
+</SCRIPT>
+</HEAD>
+
+<BODY scroll=no bgcolor=buttonface text=buttontext onload="init()" onkeypress="if(event.keyCode==27)external.wnd.close();">
+
+<FORM onsubmit="event.returnValue = false; ok();">
+
+<TABLE border=0 cellspacing=4 cellpadding=0 width="100%" style="table-layout: fixed;">
+<COL width=140><COL>
+<TR valign=top>
+
+<TD>
+
+<DIV style="background-color: window; border: 2px inset; width: 100%; height: 270px;" onkeydown="handle_keyboard()" tabindex=0>
+<TABLE id=tree border=0 cellspacing=0 cellpadding=0 width="100%" style="table-layout: fixed;">
+<TR section=autoaway><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/tty.gif">&nbsp;&nbsp;<SPAN id=lbl_autoaway></SPAN></TD></TR>
+<TR section=blocking><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/halt.gif">&nbsp;&nbsp;<SPAN id=lbl_blocking></SPAN></TD></TR>
+<TR section=connection><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/network.gif">&nbsp;&nbsp;<SPAN id=lbl_connection></SPAN></TD></TR>
+<TR section=privacy><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/key.gif">&nbsp;&nbsp;<SPAN id=lbl_privacy></SPAN></TD></TR>
+<TR section=sound><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/dials/speaker.gif">&nbsp;&nbsp;<SPAN id=lbl_sound></SPAN></TD></TR>
+</TABLE>
+</DIV>
+
+</TD>
+
+<TD>
+
+<DIV id=header>&nbsp;</DIV>
+
+<!-- Automatically Away Messages -->
+<DIV id=autoaway class=panel>
+<DIV id=txt_autoaway></DIV>
+<BR>
+<SPAN id=txt_displayawaymsg_left></SPAN>&nbsp;<INPUT id=autoawaytime type=text class=text style="text-align: center; width: 24px;" maxlength=2 onkeypress="event.returnValue=event.keyCode>47&&event.keyCode<58">&nbsp;<SPAN id=txt_displayawaymsg_right></SPAN><BR>
+<TEXTAREA id=autoawaytext class=text style="width: 250px; height: 40px; overflow: auto;"></TEXTAREA>
+<BR>
+<BR>
+<SPAN id=txt_displayxawaymsg_left></SPAN>&nbsp;<INPUT id=autoxawaytime type=text class=text style="text-align: center; width: 24px;" maxlength=3 onkeypress="event.returnValue=event.keyCode>47&&event.keyCode<58">&nbsp;<SPAN id=txt_displayxawaymsg_right></SPAN><BR>
+<TEXTAREA id=autoxawaytext class=text style="width: 250px; height: 40px; overflow: auto;"></TEXTAREA>
+</DIV>
+
+<!-- Blocking List -->
+<DIV id=blocking class=panel>
+<DIV id=txt_blocking></DIV>
+<BR>
+<INPUT id=msgnotinlist type=checkbox>&nbsp;<LABEL for=msgnotinlist id=txt_msgnotinlist></LABEL><BR>
+<FIELDSET style="padding: 8px;">
+<LEGEND id=txt_blockinglist></LEGEND>
+<DIV style="overflow-y: scroll; overflow-x: auto; background-color: window; border: 2px inset; width: 100%; height: 110px;">
+<TABLE id=block_list border=0 cellspacing=0 cellpadding=0 width="100%" style="table-layout: fixed;">
+</TABLE>
+</DIV>
+<CENTER>
+<INPUT type=button disabled id=block_btn_remove style="margin-top: 8px; width: 130px; height: 24px; font-family: Tahoma; font-size: 11px;" onclick="block_remove()"> &nbsp;
+<INPUT type=button disabled id=block_btn_view style="margin-top: 8px; width: 130px; height: 24px; font-family: Tahoma; font-size: 11px;" onclick="block_view_details()">
+</CENTER>
+</FIELDSET>
+</DIV>
+
+<!-- Connection -->
+<DIV id=connection class=panel>
+<FIELDSET style="padding: 8px; padding-top: 0px; margin-top: 4px;">
+<LEGEND id=txt_portmap></LEGEND>
+<TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="margin-top: 4px; table-layout: fixed;">
+<COL><COL width="136"><COL><COL width="46">
+<TR>
+	<TD id=txt_filetransferhost></TD><TD><INPUT type=text id=filetransferhost class=text style="width: 130px;"></TD>
+	<TD id=txt_filetransferport align=center></TD><TD><INPUT type=text id=filetransferport class=text style="width: 40px;" maxlength=5 onkeypress="event.returnValue=event.keyCode==13||(event.keyCode>47&&event.keyCode<58)"></TD>
+</TR>
+</TABLE>
+</FIELDSET>
+<FIELDSET style="padding: 8px; padding-top: 0px; margin-top: 4px;">
+<LEGEND id=txt_connection_settings></LEGEND>
+<SPAN id=txt_connection_desc></SPAN>
+<INPUT type=button id=btn_connection_settings style="float: right; margin-top: 8px; width: 130px; height: 24px; font-family: Tahoma; font-size: 11px;" onclick="external.wnd.params[0].dial_connection_settings()">
+</FIELDSET>
+</DIV>
+
+<!-- Privacy -->
+<DIV id=privacy class=panel>
+<INPUT id=history_store type=checkbox>&nbsp;<LABEL for=history_store id=txt_history_store></LABEL><BR>
+<INPUT id=startup type=checkbox>&nbsp;<LABEL for=startup id=txt_startup></LABEL><BR>
+<BR>
+<FIELDSET style="padding: 4px; margin-top: 4px;">
+<LEGEND id=txt_auth_request></LEGEND>
+<INPUT id=authorization1 type=radio name=authorization checked>&nbsp;<LABEL for=authorization1 id=txt_authorization1></LABEL><BR>
+<INPUT id=authorization2 type=radio name=authorization>&nbsp;<LABEL for=authorization2 id=txt_authorization2></LABEL><BR>
+<INPUT id=authorization3 type=radio name=authorization>&nbsp;<LABEL for=authorization3 id=txt_authorization3></LABEL><BR>
+<INPUT id=authorization4 type=radio name=authorization>&nbsp;<LABEL for=authorization4 id=txt_authorization4></LABEL><BR>
+</FIELDSET>
+</DIV>
+
+<!-- Sounds -->
+<DIV id=sound class=panel>
+<INPUT id=soundmessage type=checkbox checked>&nbsp;<LABEL for=soundmessage id=txt_soundmessage></LABEL><BR>
+<INPUT id=soundmessagefile type=text class=text style="margin-left: 4px; width: 200px;"><INPUT type=button class=text id=btn_sound_message style="margin-left: 4px;" onclick="pick_soundfile( 'soundmessagefile' )"><BUTTON onclick="external.wnd.params[0].sound_play( document.getElementById( 'soundmessagefile' ).value, true )" style="margin-left: 4px; height: 20px; width: 20px;"><IMG src="../images/misc/play.gif"></BUTTON><BR>
+<BR>
+<INPUT id=soundonline type=checkbox checked>&nbsp;<LABEL for=soundonline id=txt_soundonline></LABEL><BR>
+<INPUT id=soundonlinefile type=text class=text style="margin-left: 4px; width: 200px;"><INPUT type=button class=text id=btn_sound_online style="margin-left: 4px;" onclick="pick_soundfile( 'soundonlinefile' )"><BUTTON onclick="external.wnd.params[0].sound_play( document.getElementById( 'soundonlinefile' ).value, true )" style="margin-left: 4px; height: 20px; width: 20px;"><IMG src="../images/misc/play.gif"></BUTTON><BR>
+<BR>
+<INPUT id=soundoffline type=checkbox checked>&nbsp;<LABEL for=soundoffline id=txt_soundoffline></LABEL><BR>
+<INPUT id=soundofflinefile type=text class=text style="margin-left: 4px; width: 200px;"><INPUT type=button class=text id=btn_sound_offline style="margin-left: 4px;" onclick="pick_soundfile( 'soundofflinefile' )"><BUTTON onclick="external.wnd.params[0].sound_play( document.getElementById( 'soundofflinefile' ).value, true )" style="margin-left: 4px; height: 20px; width: 20px;"><IMG src="../images/misc/play.gif"></BUTTON><BR>
+</DIV>
+
+</TD>
+
+</TR>
+</TABLE>
+
+<DIV style="position: absolute; top: 278px; border-top: 2px groove; width: 100%;">&nbsp;</DIV>
+
+<INPUT type=submit style="position: absolute; top: 285px; left: 294px; width: 90px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_ok>
+<INPUT type=button style="position: absolute; top: 285px; left: 390px; width: 90px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_cancel onclick="external.wnd.close()">
+</FORM>
+
+</BODY>
+</HTML>

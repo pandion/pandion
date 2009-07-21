@@ -1,0 +1,444 @@
+﻿<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+TD {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: buttontext;
+}
+#bar_white, #bar_black {
+	position: absolute;
+	padding-top: 2px;
+	font-size: 11px;
+	font-family: Tahoma;
+	height: 22px;
+	width: 100%;
+	border: 2px inset;
+	text-align: center;
+}
+</STYLE>
+
+<SCRIPT src="main/XMPPHookIQ.js"></SCRIPT>
+<SCRIPT src="main/HTTPEngine.js"></SCRIPT>
+
+<SCRIPT language=JScript>
+
+var gPath, gHost, gPort, gFileName, gSession, gInterval, gTempFile, gError = '';
+
+var gProgressBufferSeconds = 10;
+var gProgressTimePerUpdate = 500;
+var gProgressLastSize = 0;
+var gProgressTotalDeltas = 0;
+var gProgressCounter = 0;
+var gProgressDeltas = new Array( Math.ceil( gProgressBufferSeconds * ( 1000 / gProgressTimePerUpdate ) ) );
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'file_recv', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+
+	var url = external.wnd.params[4].XMLDOM.selectSingleNode( '/iq/query/url' ).text;
+	if ( url.indexOf( '//' ) != -1 )
+		url = url.substr( url.indexOf( '//' ) + 2 );
+	else
+		return external.wnd.close();
+
+	gPath = url;
+	if ( url.indexOf( '/' ) != -1 )
+		gPath = url.substr( url.indexOf( '/' ) );
+	else
+		gPath = '/';
+
+	if ( url.indexOf( '?' ) != -1 )
+		url = url.substr( 0, url.indexOf( '?' ) );
+
+	gHost = url;
+	if ( url.indexOf( '/' ) != -1 )
+		gHost = url.substr( 0, url.indexOf( '/' ) );
+
+	gPort = 80;
+	if ( gHost.indexOf( ':' ) != -1 )
+	{
+		gPort = parseInt( gHost.substr( gHost.lastIndexOf( ':' ) + 1 ) );
+		gHost = gHost.substr( 0, gHost.indexOf( ':' ) );
+	}
+	if ( isNaN( gPort ) )
+		return external.wnd.close();
+
+	gFileName = url;
+	if ( url.lastIndexOf( '/' ) != -1 )
+		gFileName = decodeURIComponent( url.substr( url.lastIndexOf( '/' ) + 1 ).replace( /\\\:\*\?\"\<\>\|/, '' ) );
+	else
+		gFileName = 'noname';
+	if ( ! gFileName.length )
+		gFileName = 'noname';
+
+	if ( ! external.Directory.Exists( external.globals( 'cfg' )( 'downloaddir' ) + '\\' ) )
+		external.globals( 'cfg' )( 'downloaddir' ) = external.GetSpecialFolder( 0x0005 ) + '\\';
+
+	for ( var i = gProgressDeltas.length - 1; i >= 0; --i )
+		gProgressDeltas[i] = 0;
+
+	document.getElementById( 'username' ).value = external.globals( 'ClientRoster' ).Items.Exists( external.wnd.params[0] ) ? external.globals( 'ClientRoster' ).Items( external.wnd.params[0] ).Name : external.wnd.params[0];
+	document.getElementById( 'filename' ).value = gFileName;
+	document.getElementById( 'location' ).value = external.globals( 'cfg' )( 'downloaddir' ) + gFileName;
+	external.wnd.hide( false );
+	external.wnd.flash( 4 );
+}
+
+function outnit ()
+{
+	external.HTTPEngine.unsubscribe( external.wnd );
+
+	if ( gSession )
+		external.HTTPEngine.Abort( gSession );
+	if ( gSession || ! gInterval )
+	{
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="error"><error code="406">File Transfer Refused</error></iq>' );
+		dom.documentElement.setAttribute( 'to', external.wnd.params[2] );
+		if ( external.wnd.params[3].length )
+			dom.documentElement.setAttribute( 'id', external.wnd.params[3] );
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+function acceptfile ()
+{
+	var offset = 0;
+	gTempFile = external.File( '?temp' ).FileName;
+	if ( external.FileExists( document.getElementById( 'location' ).value ) )
+	{
+		switch ( external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'file_recv', 'resume' ), external.globals( 'softwarename' ), 3 | 32 ) )
+		{
+			case 6:
+				gTempFile = document.getElementById( 'location' ).value;
+				offset = external.File( document.getElementById( 'location' ).value ).Size;
+			break;
+			case 7:
+				try
+				{
+					external.File( document.getElementById( 'location' ).value ).Delete();
+				}
+				catch ( e )
+				{
+					external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'file_recv', 'cannot_overwrite', [ document.getElementById( 'location' ).value, e.description ] ), external.globals( 'softwarename' ), 0 | 48 );
+					return;
+				}
+			break;
+			default: return;
+		}
+	}
+	external.HTTPEngine.subscribe( external.wnd );
+	external.HTTPEngine.SetProxyInfo( '', 0, '', '' );
+	gSession = external.HTTPEngine.Get( gTempFile, gPath, offset, 0xFFFFFFFF - offset, gHost, gPort );
+	if ( ! gSession )
+	{
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'file_recv', 'incorrect' ), external.globals( 'softwarename' ), 0 | 48 );
+		return external.wnd.close();
+	}
+	document.getElementById( 'row_timeleft' ).disabled = document.getElementById( 'row_progress' ).disabled = document.getElementById( 'row_bar' ).disabled = false;
+	document.getElementById( 'btn_accept' ).disabled = document.getElementById( 'btn_location' ).disabled = true;
+	document.getElementById( 'btn_close' ).style.display = 'none';
+	document.getElementById( 'btn_abort' ).style.display = 'inline';
+}
+
+function updateprogress ()
+{
+	var completed = external.HTTPEngine.GetProgress( gSession );
+	var total = external.HTTPEngine.GetLength( gSession );
+	if ( completed > total )
+		completed = total;
+	document.getElementById( 'progress' ).innerText = makeprettysize( completed, 1 ) + ' / ' + makeprettysize( total, 1 );
+
+	var percentage = total > 0 ? Math.round( 100 * completed / total ) : 0;
+	external.wnd.setTitle( external.globals( 'Translator' ).Translate( 'file_recv', 'title_saving', [ percentage, document.getElementById( 'filename' ).value ] ) );
+	document.getElementById( 'bar_white' ).innerText = document.getElementById( 'bar_black' ).innerText = percentage + '%';
+	document.getElementById( 'bar_black' ).style.clip = 'rect( 0 ' + percentage + '% 100% 0 )';
+
+	var i = gProgressCounter % gProgressDeltas.length;
+	var j = ( gProgressCounter + 1 ) % gProgressDeltas.length;
+	gProgressDeltas[i] = completed - gProgressLastSize;
+	gProgressTotalDeltas += gProgressDeltas[i] - gProgressDeltas[j];
+	gProgressLastSize = completed;
+	gProgressCounter++;
+
+	var bytespersecond = gProgressTotalDeltas / ( ( gProgressTimePerUpdate / 1000 ) * ( gProgressCounter < gProgressDeltas.length ? gProgressCounter : gProgressDeltas.length ) );
+	var secondsremaining = bytespersecond > 0 ? Math.round( ( total - completed ) / bytespersecond ) : 0;
+	var str = '';
+	if ( bytespersecond < 100 )
+		str = '--';
+	else if ( secondsremaining < 60 )
+		str = external.globals( 'Translator' ).Translate( 'file_recv', 'lessthanminute', [ makeprettysize( bytespersecond, 1 ) ] );
+	else
+	{
+		if ( secondsremaining >= 7200 )
+			str += external.globals( 'Translator' ).Translate( 'file_recv', 'hours', [ Math.floor( secondsremaining / 3600 ) ] ) + ' ';
+		else if ( secondsremaining >= 3600 )
+			str += external.globals( 'Translator' ).Translate( 'file_recv', 'onehour' ) + ' ';
+		secondsremaining %= 3600;
+		if ( secondsremaining >= 120 )
+			str += external.globals( 'Translator' ).Translate( 'file_recv', 'minutes', [ Math.floor( secondsremaining / 60 ) ] ) + ' ';
+		else
+			str += external.globals( 'Translator' ).Translate( 'file_recv', 'oneminute' ) + ' ';
+		str += external.globals( 'Translator' ).Translate( 'file_recv', 'speed', [ makeprettysize( bytespersecond, 1 ) ] );
+	}
+	document.getElementById( 'timeleft' ).innerText = str;
+}
+
+function makeprettysize ( n, precision )
+{
+	if ( n == 0 )
+		return '0 B';
+	var s = 'kMGTPEZY';
+	var times = Math.floor( Math.log( n ) / Math.log( 1024 ) );
+	return Math.round( ( n / Math.pow( 1024, times ) ) * Math.pow( 10, precision ) ) / Math.pow( 10, precision ) + ' ' + s.charAt( times - 1 ) + 'B';
+}
+
+function openfile ()
+{
+	var dir = document.getElementById( 'location' ).value;
+	if ( dir.indexOf( '/' ) != -1 )
+		dir = dir.substr( 0, dir.lastIndexOf( '/' ) );
+	external.shellExec( 'open', document.getElementById( 'location' ).value, '', dir, 1 );
+	external.wnd.close();
+}
+
+function abortfile ()
+{
+	if ( 6 == external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'file_recv', 'abort' ), external.globals( 'softwarename' ), 4 | 32 ) )
+	{
+		if ( gSession )
+		{
+			external.HTTPEngine.Abort( gSession );
+			document.getElementById( 'btn_abort' ).disabled = true;
+
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			dom.loadXML( '<iq type="error"><error code="406">File Transfer Refused</error></iq>' );
+			dom.documentElement.setAttribute( 'to', external.wnd.params[2] );
+			if ( external.wnd.params[3].length )
+				dom.documentElement.setAttribute( 'id', external.wnd.params[3] );
+			external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+			external.XMPP.SendXML( dom );
+		}
+	}
+}
+
+function pickfile ()
+{
+	var dialog, path;
+	try
+	{
+		dialog = external.ComCtrl.ComDlg.GetFileName;
+		dialog.FileName = gFileName;
+		dialog.Flags = 4 | 32768;
+		path = dialog.DisplaySave();
+	}
+	catch ( e )
+	{
+		return false;
+	}
+	document.getElementById( 'location' ).value = path;
+	if ( dialog.FileName.lastIndexOf( '\\' ) != -1 )
+		external.globals( 'cfg' )( 'downloaddir' ) = path.substr( 0, path.lastIndexOf( '\\' ) + 1 );
+	acceptfile();
+}
+
+/* The following functions are part of the HTTPEngine API.
+ * Their names are hardcoded as handlers for various events.
+ */
+
+/*
+function HTTPOnListening ( localPort )
+{
+	alert( 'Listening on ' + localPort );
+//	if ( port == 3005 )
+//		external.HTTPEngine.StopListening( port );
+}
+
+function HTTPOnAccept ( session, remoteHost, remotePort, localPort )
+{
+	if ( session != gSession )
+		return;
+	alert( 'Session ' + session + ' launched to handle incoming data connection from ' + remoteHost+  ':' + remotePort + ' to ' + localPort );
+}
+*/
+
+function HTTPOnTimeout ( session )
+{
+	if ( session != gSession )
+		return;
+	gError += '\n' + external.globals( 'Translator' ).Translate( 'file_recv', 'error_timeout' );
+}
+
+function HTTPOnSockErr ( session, error )
+{
+	if ( session != gSession )
+		return;
+	gError += '\n' + external.globals( 'Translator' ).Translate( 'file_recv', 'error_code', [ error ] );
+}
+
+function OnHTTPFileErr ( session, error )
+{
+	if ( session != gSession )
+		return;
+	if ( gSession )
+	{
+		gError += '\n' + external.globals( 'Translator' ).Translate( 'file_recv', 'error_file', [ error ] );
+		external.HTTPEngine.Abort( gSession );
+		document.getElementById( 'btn_abort' ).disabled = true;
+
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="error"><error code="406">File Transfer Refused</error></iq>' );
+		dom.documentElement.setAttribute( 'to', external.wnd.params[2] );
+		if ( external.wnd.params[3].length )
+			IQ.Id = external.wnd.params[3];
+		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+function HTTPOnConnected ( session, remoteHost, remotePort, localPort )
+{
+	if ( session != gSession )
+		return;
+	gInterval = setInterval( 'updateprogress()', gProgressTimePerUpdate );
+}
+
+function HTTPOnTransferComplete ( session )
+{
+	if ( session != gSession )
+		return;
+	clearInterval( gInterval );
+	document.getElementById( 'bar_white' ).innerText = document.getElementById( 'bar_black' ).innerText = '100%';
+	document.getElementById( 'bar_black' ).style.clip = 'rect( 0 100% 100% 0 )';
+	document.getElementById( 'btn_close' ).style.display = 'inline';
+	document.getElementById( 'btn_abort' ).style.display = 'none';
+	document.getElementById( 'timeleft' ).innerText = external.globals( 'Translator' ).Translate( 'file_recv', 'finished' );
+	document.getElementById( 'btn_open' ).disabled = false;
+	external.wnd.setTitle( external.globals( 'Translator' ).Translate( 'file_recv', 'title_completed', [ document.getElementById( 'filename' ).value ] ) );
+	gSession = 0;
+
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	dom.loadXML( '<iq type="result"/>' );
+	dom.documentElement.setAttribute( 'to', external.wnd.params[2] );
+	if ( external.wnd.params[3].length )
+		dom.documentElement.setAttribute( 'id', external.wnd.params[3] );
+	external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+
+	if ( gTempFile != document.getElementById( 'location' ).value )
+	{
+		try
+		{
+			external.File( gTempFile ).Move( document.getElementById( 'location' ).value );
+		}
+		catch ( e )
+		{
+			external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'file_recv', 'error_move', [ gTempFile, e.description ] ), external.globals( 'softwarename' ), 0 | 48 );
+			document.getElementById( 'location' ).value = gTempFile;
+		}
+	}
+
+	if ( external.FileExists( document.getElementById( 'location' ).value ) )
+	{
+		var TotalSize = makeprettysize( external.file( document.getElementById( 'location' ).value ).Size, 1 );
+		document.getElementById( 'progress' ).innerText = TotalSize + '/' + TotalSize;
+	}
+	else
+		document.getElementById( 'progress' ).innerText = '--';
+}
+
+function HTTPOnTransferAborted ( session )
+{
+	if ( session != gSession )
+		return;
+	updateprogress();
+	clearInterval( gInterval );
+	document.getElementById( 'btn_close' ).style.display = 'inline';
+	document.getElementById( 'btn_abort' ).style.display = 'none';
+	document.getElementById( 'timeleft' ).innerText = external.globals( 'Translator' ).Translate( 'file_recv', 'aborted' );
+	document.getElementById( 'btn_open' ).disabled = false;
+	external.wnd.setTitle( external.globals( 'Translator' ).Translate( 'file_recv', 'title_failed', [ document.getElementById( 'filename' ).value ] ) );
+	gSession = 0;
+
+	if ( gTempFile != document.getElementById( 'location' ).value )
+	{
+		try
+		{
+			external.File( gTempFile ).Move( document.getElementById( 'location' ).value );
+		}
+		catch ( e )
+		{
+			document.getElementById( 'location' ).value = gTempFile;
+		}
+	}
+
+	if ( ! document.getElementById( 'btn_abort' ).disabled )
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'file_recv', 'error_failed', [ gError ] ), external.globals( 'softwarename' ), 0 | 48 );
+
+	if ( external.file( document.getElementById( 'location' ).value ).Size == 0 )
+		external.file( document.getElementById( 'location' ).value ).Delete();
+}
+
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=buttonface onload="init()" onunload="outnit()" scroll=no>
+
+<TABLE border=0 cellpadding=0 cellspacing=0 width="100%" style="table-layout: fixed; margin-top: 6px;">
+<COL width=100 style="padding-left: 15px;"><COL width="*">
+<TR height=20>
+	<TD id=txt_sender></TD>
+	<TD><INPUT id=username readonly style="padding-left: 2px; width: 204px; border-width: 0px; font-family: tahoma; font-size: 11px; background-color: buttonface; color: buttontext;"></NOBR></TD>
+</TR>
+<TR height=20>
+	<TD id=txt_filename></TD>
+	<TD><INPUT id=filename readonly style="padding-left: 2px; width: 204px; border-width: 0px; font-family: tahoma; font-size: 11px; background-color: buttonface; color: buttontext;"></TD>
+</TR>
+<TR height=20>
+	<TD id=txt_location></TD>
+	<TD>
+		<INPUT id=location readonly style="padding-left: 2px; width: 204px; border-width: 0px; font-family: tahoma; font-size: 11px; background-color: buttonface; color: buttontext; margin-right: 4px;">
+		<INPUT type=button id=btn_location style="width: 24px; height: 18px; font-size: 11px; font-family: Tahoma;" value="..." onclick="pickfile()">
+	</TD>
+</TR>
+<TR height=8>
+	<TD colspan=2>&nbsp;</TD>
+</TR>
+<TR height=3 valign=top disabled id=row_bar>
+	<TD style="padding: 15px; padding-top: 4px;" colspan=2>
+		<DIV id=bar_white style="background-color: window;    color: windowtext;">0%</DIV>
+		<DIV id=bar_black style="background-color: highlight; color: highlighttext; clip: rect( 0, 0, 100%, 0 );">0%</DIV>
+	</TD>
+</TR>
+<TR height=45 valign=bottom disabled id=row_progress>
+	<TD id=txt_progress></TD>
+	<TD id=progress>--</TD>
+</TR>
+<TR height=20 valign=bottom disabled id=row_timeleft>
+	<TD id=txt_timeleft></TD>
+	<TD id=timeleft>--</TD>
+</TR>
+<TR valign=top>
+	<TD style="padding-left: 10px; padding-top: 14px;">
+		<INPUT type=submit id=btn_open style="width: 80px; height: 24px; font-size: 11px; font-family: Tahoma;" onclick="openfile()" disabled>
+	</TD>
+	<TD align=right style="padding-right: 10px; padding-top: 14px;">
+		<INPUT type=submit id=btn_accept style="width: 80px; height: 24px; font-size: 11px; font-family: Tahoma;" onclick="acceptfile()">
+		<INPUT type=submit id=btn_abort style="width: 80px; height: 24px; font-size: 11px; font-family: Tahoma; display: none;" onclick="abortfile()">
+		<INPUT type=submit id=btn_close style="width: 80px; height: 24px; font-size: 11px; font-family: Tahoma;" onclick="external.wnd.close()">
+	</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>

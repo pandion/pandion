@@ -1,0 +1,189 @@
+BODY {
+	margin: 4px 0px 0px 4px;
+	cursor: text;
+}
+A {
+	color: blue;
+	text-decoration: underline;
+}
+A:hover {
+	color: red;
+	text-decoration: underline;
+}
+.name-recv {
+	width: 100%;
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+	color: #eaca35;
+	border-bottom: 1px solid #d3d5d6;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.name-send {
+	width: 100%;
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+	color: #96d444;
+	border-bottom: 1px solid #d3d5d6;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.body-recv {
+	padding: 0px 0px 4px 4px;
+	font-family: Arial;
+	font-size: 9pt;
+	color: #00396d;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.body-send {
+	padding: 0px 0px 4px 4px;
+	font-family: Arial;
+	font-size: 9pt;
+	color: #004200;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.date {
+	width: 100%;
+	padding: 0px 0px 0px 0px;
+	margin: 8px 0px 6px 0px;
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+	color: #d4dae0;
+	border-top: 1px solid #d4dae0;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.time {
+	padding: 0px 2px 0px 0px;
+	text-align: right;
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #b7babb;
+}
+.me-time {
+	padding: 0px 2px 0px 0px;
+	text-align: right;
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #b7babb;
+}
+.me {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: purple;
+	margin: 0px 4px 4px 0px;
+}
+.system {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: green;
+	margin: 0px 4px 4px 0px;
+}
+.private-send, .private-recv {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: darkblue;
+	margin: 0px 4px 4px 0px;
+}
+.error {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #df2929;
+	margin: 0px 4px 4px 0px;
+}
+.sound-label {
+	margin-top: 2px;
+	padding: 1px;
+	text-align: center;
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #478ec5;
+	width: 100px;
+	height: 20px;
+	border: 1px threedlightshadow solid;
+	background-color: infobackground;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.sound-button {
+	height: 20px;
+	width: 22px;
+	margin-left: 2px;
+	margin-bottom: 2px;
+}
+.history-date {
+	width: 100%;
+	padding: 0px 0px 0px 0px;
+	margin: 8px 0px 6px 0px;
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+	color: #DBDCDC;
+	border-top: 1px solid #E9EAEA;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.history-time {
+	padding: 0px 2px 0px 0px;
+	text-align: right;
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #DBDCDC;
+}
+.history-me-time {
+	padding: 0px 2px 0px 0px;
+	text-align: right;
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #DBDCDC;
+}
+.history-me {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #C8BAD6;
+	margin: 0px 4px 4px 0px;
+}
+.history-name-recv {
+	width: 100%;
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+	color: #D4CFB9;
+	border-bottom: 1px solid #E9EAEA;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.history-name-send {
+	width: 100%;
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+	color: #C6D0BA;
+	border-bottom: 1px solid #E9EAEA;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.history-body-recv, .history-body-send {
+	padding: 0px 0px 4px 4px;
+	font-family: Arial;
+	font-size: 9pt;
+	color: #5B7389;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.history-body-recv A, .history-body-send A {
+	color: #ACACD2;
+	text-decoration: underline;
+}
+.history-body-recv A:hover, .history-body-send A:hover {
+	color: #D2ACAC;
+	text-decoration: underline;
+}
+.history-body-recv IMG, .history-body-send IMG {
+	filter: progid:DXImageTransform.Microsoft.Alpha( opacity = 50 );
+}

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<languages>
+<language name="العربية" code="ar"/>
+<language name="简体中文" code="zh-cn"/>
+<language name="繁體中文" code="zh-tw"/>
+<language name="日本語" code="ja"/>
+<language name="한국어" code="ko"/>
+<language name="Afrikaans" code="af"/>
+<language name="Català" code="ca"/>
+<language name="Cesky" code="cs"/>
+<language name="Dansk" code="da"/>
+<language name="Deutsch" code="de"/>
+<language name="Ελληνικά" code="el"/>
+<language name="English" code="en"/>
+<language name="Español" code="es"/>
+<language name="Français" code="fr"/>
+<language name="Italiano" code="it"/>
+<language name="Lietuvių" code="lt"/>
+<language name="Nederlands" code="nl"/>
+<language name="Polski" code="pl"/>
+<language name="Português Brasileiro" code="pt-br"/>
+<language name="Português" code="pt"/>
+<language name="Русский" code="ru"/>
+<language name="Türkçe" code="tr"/>
+</languages>

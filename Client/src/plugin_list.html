@@ -1,0 +1,161 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<STYLE type="text/css">
+BODY {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+}
+TD {
+	font-family: Arial;
+	font-size: 11px;
+	color: windowtext;
+}
+.plugin-name {
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #333536;
+}
+.plugin-version {
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #737576;
+	margin-left: 5px;
+}
+.plugin-description {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #737576;
+	margin-left: 5px;
+}
+.plugin-uninstall {
+	height: 22px;
+	width: 85px;
+	font-size: 11px;
+}
+</STYLE>
+<SCRIPT language=JScript>
+
+function Begin ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'plugin_list', document );
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	document.getElementById( 'plugin_list' ).focus();
+	document.getElementById( 'btn_plugin_download' ).style.display = external.globals( 'pluginlist' ).length ? 'inline' : 'none';
+	plugin_refresh();
+	external.wnd.hide( false );
+}
+
+function plugin_refresh ()
+{
+	var list = document.getElementById( 'plugin_list' );
+	while ( list.rows.length > 1 )
+		list.deleteRow(1);
+	var allplugins = ( ( new VBArray( external.globals( 'ClientPluginContainer' ).Plugins.Keys() ) ).toArray() ).sort( function(a,b){var c=external.globals( 'ClientPluginContainer' ).Plugins(a).Name.toLowerCase();var d=external.globals( 'ClientPluginContainer' ).Plugins(b).Name.toLowerCase();return c==d?0:c<d?-1:1} );
+	for ( var i = 0; i < allplugins.length; i++ )
+	{
+		var plugin = external.globals( 'ClientPluginContainer' ).Plugins( allplugins[i] );
+		if ( plugin.Name.length && plugin.Version.length && plugin.Visible )
+		{
+			var row = list.insertRow(-1);
+			row.vAlign = 'top';
+
+			with ( row.insertCell(-1) )
+			{
+				style.padding		= '2px';
+				style.paddingBottom	= '4px';
+				style.borderBottom	= '1px solid';
+
+				var name			= document.createElement( 'SPAN' );
+				name.className		= 'plugin-name';
+				name.innerText		= plugin.Name;
+				insertAdjacentElement( 'beforeEnd', name );
+
+				var version			= document.createElement( 'SPAN' );
+				version.className	= 'plugin-version';
+				version.innerText	= plugin.Version;
+				insertAdjacentElement( 'beforeEnd', version );
+
+				insertAdjacentText( 'beforeEnd', '\n' );
+
+				var desc			= document.createElement( 'DIV' );
+				desc.innerText		= plugin.Description;
+				desc.className		= 'plugin-description';
+				insertAdjacentElement( 'beforeEnd', desc );
+			}
+
+			if ( plugin.Uninstall )
+			{
+				with ( row.insertCell(-1) )
+				{
+					style.paddingTop	= '4px';
+					style.borderBottom	= '1px solid';
+
+					var uninstall		= document.createElement( 'BUTTON' );
+					uninstall.className	= 'plugin-uninstall';
+					uninstall.value		= external.globals( 'Translator' ).Translate( 'plugin_list', 'plugin_uninstall' );
+					uninstall.plugin	= allplugins[i];
+					uninstall.attachEvent(
+						'onclick',
+						function ()
+						{
+							if ( external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'plugin_list', 'plugin_confirm' ), external.globals( 'softwarename' ), 4 | 48 ) == 6 )
+							{
+								external.globals( 'ClientPluginContainer' ).UnloadPlugin( event.srcElement.plugin );
+								plugin_refresh();
+							}
+						}
+					);
+					insertAdjacentElement( 'beforeEnd', uninstall );
+				}
+			}
+			else
+			{
+				row.firstChild.colSpan = 2;
+			}
+		}
+	}
+	list.rows(0).style.display = list.rows.length > 1 ? 'none' : 'block';
+}
+
+</SCRIPT>
+</HEAD>
+<BODY scroll=no bgcolor=buttonface onload="Begin()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+
+<FORM onsubmit="event.returnValue = false; external.wnd.close();">
+<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<TR valign=top height=60 bgcolor=window>
+	<TD colspan=2 style="padding-left: 12px; padding-right: 8px; padding-top: 7px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+	<SPAN id=txt_title style="font-weight: bold;"></SPAN>
+	<DIV id=txt_subtitle style="height: 27px; margin-left: 20px; margin-right: 20px; overflow: hidden;"></DIV>
+	</TD>
+</TR>
+<TR valign=top>
+	<TD colspan=2 style="padding: 16px;">
+		<DIV style="overflow-y: auto; background-color: window; border: 2px inset; width: 100%; height: 100%; padding-left: 2px; padding-right: 2px;">
+			<TABLE id=plugin_list border=0 cellspacing=0 cellpadding=0 width="100%" style="table-layout: fixed;">
+				<COL><COL width=85>
+				<TR id=plugin_list_empty>
+					<TD align=center style="font-size: 11px; font-family: Tahoma; color: windowtext; padding-top: 80px;" id=txt_plugin_empty colspan=2></TD>
+				</TR>
+			</TABLE>
+		</DIV>
+	</TD>
+</TR>
+<TR valign=top height=45>
+	<TD align=left style="padding: 10px; border-top: 2px groove;">
+		<INPUT type=button style="width: 130px; height: 24px; font-family: Tahoma; font-size: 11px;" id=btn_plugin_download onclick="external.wnd.params.dial_plugins()">
+	</TD>
+	<TD align=right style="padding: 10px; border-top: 2px groove;">
+		<INPUT type=submit style="height: 24px; width: 90px; font-family: Tahoma; font-size: 11px;" id=btn_ok>
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

@@ -1,0 +1,812 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
+<SCRIPT src="main/md5_obj.js"></SCRIPT>
+<SCRIPT language=JScript>
+
+var gQUERY, gCOUNT, gPRINTDAY;
+
+function init ()
+{
+	external.globals( 'Translator' ).TranslateWindow( 'history', document );
+	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
+	var cfg = external.globals( 'cfg' );
+	var myjid = cfg( 'username' ) + '@' + cfg( 'server' );
+	var mynick = ( cfg( 'nick' ).length ? cfg( 'nick' ) : cfg( 'username' ) ).replace( /&/mg, '&amp;' ).replace( / {2}/mg, ' &nbsp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' ).replace( /\n/mg, ' &nbsp;' );
+	var theirjid = external.wnd.params[1];
+	var theirnick = theirjid;
+	if ( external.globals( 'ClientRoster' ).Items.Exists( theirjid ) )
+		theirnick = external.globals( 'ClientRoster' ).Items( theirjid ).Name;
+	theirnick = theirnick.replace( /&/mg, '&amp;' ).replace( / {2}/mg, ' &nbsp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' ).replace( /\n/mg, ' &nbsp;' );
+	document.getElementById( 'printmynick' ).innerText = mynick;
+	document.getElementById( 'printmyjid' ).innerText = myjid;
+	document.getElementById( 'printtheirnick' ).innerText = theirnick;
+	document.getElementById( 'printtheirjid' ).innerText = theirjid;
+	document.getElementById( 'print_name' ).innerText = external.globals( 'softwarename' );
+	document.getElementById( 'search' ).focus();
+	document.getElementById( 'statusfield2' ).innerText = theirjid;
+	document.getElementById( 'loading' ).innerHTML = external.globals( 'Translator' ).Translate( 'history', 'loading' );
+	setTimeout( 'filter( "" )', 0 );
+	external.wnd.hide( false );
+}
+
+function filter ( query )
+{
+	gQUERY = query.replace( /%/mg, '%25' ).replace( /\r/mg, '%0d' ).replace( /\n/mg, '%0a' ).toLowerCase();
+	last = '';
+	date = '';
+	var log = document.getElementById( 'log' );
+	log.innerHTML = document.getElementById( 'loading' ).outerHTML;
+	var wnd = external.wnd.params[0];
+	var cfg = external.globals( 'cfg' );
+	var filepath = external.globals( 'usersdir' ) + 'Profiles\\' + cfg( 'username' ) + '@' + cfg( 'server' ) + '\\' + ( new MD5() ).digest( external.wnd.params[1] ) + '.log';
+
+	var file = external.File( filepath );
+
+	var date = '';
+	var elem;
+	gCOUNT = 0;
+	while ( ! file.AtEnd )
+	{
+		var line = file.ReadLine();
+		if ( line.length < 21 )
+			continue;
+		if ( gQUERY.length )
+			if ( line.toLowerCase().indexOf( gQUERY, 21 ) == -1 )
+				continue;
+		var stamp = line.substr( 0, 8 );
+		if ( date != stamp )
+		{
+			if ( ! document.getElementById( stamp ) )
+			{
+				log.insertAdjacentHTML( 'beforeEnd', '<DIV class=date day="' + stamp + '" onmousedown="toggle( this )" onmouseover="this.className=\'date-over\';// document.getElementById( this.day ).className = \'day-over\';" onmouseout="this.className=\'date\';// document.getElementById( this.day ).className = \'day\';"><NOBR><SPAN class=noprint><IMG title="' + external.globals( 'Translator' ).Translate( 'history', 'tooltip_print' ) + '" onmousedown="event.cancelBubble = true" onclick="printer(\'' + stamp + '\');" style="cursor: hand" align=right src="../images/dials/printer.gif"><IMG title="' + external.globals( 'Translator' ).Translate( 'history', 'tooltip_save' ) + '" onmousedown="event.cancelBubble = true" onclick="save(\'' + stamp + '\');" style="cursor: hand" align=right src="../images/dials/disk.gif"><IMG align=absmiddle src="../images/misc/hidden.gif"></SPAN> ' + ( new Date( stamp.substr( 0, 4 ), stamp.substr( 4, 2 ) - 1, stamp.substr( 6, 2 ) ) ).toLocaleDateString() + '</NOBR></DIV>' );
+				elem = document.createElement( 'DIV' );
+				elem.id = stamp;
+				elem.style.display = 'none';
+				elem.className = 'day';
+				log.insertAdjacentElement( 'beforeEnd', elem );
+			}
+			date = stamp;
+		}
+		++gCOUNT;
+	}
+	document.getElementById( 'statusfield1' ).innerText = gCOUNT == 1 ? external.globals( 'Translator' ).Translate( 'history', 'one_message' ) : external.globals( 'Translator' ).Translate( 'history', 'many_messages', [ gCOUNT ] );
+	if ( ! gCOUNT )
+		document.getElementById( 'loading' ).innerText = external.globals( 'Translator' ).Translate( 'history', 'empty' );
+	else
+		document.getElementById( 'loading' ).style.display = 'none';
+}
+
+function toggle ( bar )
+{
+	var day = bar.day;
+	var elem = document.getElementById( day );
+	bar.children(0).children(0).children(2).src = '../images/misc/' + ( elem.style.display == 'block' ? 'hidden' : 'shown' ) + '.gif';
+	elem.style.display = elem.style.display == 'block' ? 'none' : 'block';
+
+	if ( elem.children.length )
+		return;
+
+	var wnd = external.wnd.params[0];
+	var cfg = external.globals( 'cfg' );
+	var filepath = external.globals( 'usersdir' ) + 'Profiles\\' + cfg( 'username' ) + '@' + cfg( 'server' ) + '\\' + ( new MD5() ).digest( external.wnd.params[1] ) + '.log';
+
+	var file = external.File( filepath );
+
+	var theirnick = external.wnd.params[1];
+	if ( external.globals( 'ClientRoster' ).Items.Exists( external.wnd.params[1] ) )
+		theirnick = external.globals( 'ClientRoster' ).Items( external.wnd.params[1] ).Name;
+
+	var OUT = '<DIV class=send><NOBR>' + ( cfg( 'nick' ).length ? cfg( 'nick' ) : cfg( 'username' ) ).replace( /&/mg, '&amp;' ).replace( / {2}/mg, ' &nbsp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' ).replace( /\n/mg, ' &nbsp;' ) + '</NOBR></DIV>';
+	var IN = '<DIV class=recv><NOBR>' + theirnick.replace( /&/mg, '&amp;' ).replace( / {2}/mg, ' &nbsp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' ).replace( /\n/mg, ' &nbsp;' ) + '</NOBR></DIV>';
+	var last = '';
+	while ( ! file.AtEnd )
+	{
+		var line = file.ReadLine();
+		if ( line.substr( 0, 8 ) != day )
+			continue;
+		if ( gQUERY.length )
+			if ( line.toLowerCase().indexOf( gQUERY, 19 ) == -1 )
+				continue;
+		var fields = line.split( ';', 2 );
+		if ( fields.length != 2 )
+			continue;
+		if ( gQUERY.length || last != fields[1] )
+			elem.insertAdjacentHTML( 'beforeEnd', ( last = fields[1] ) == 'in' ? IN : OUT );
+		else
+			elem.insertAdjacentText( 'beforeEnd', '\n\n' );
+		elem.insertAdjacentText( 'beforeEnd', '[' + fields[0].substring( 9, 14 ) + '] ' );
+		elem.insertAdjacentText( 'beforeEnd', unescape( line.substr( fields[0].length + fields[1].length + 2 ) ) );
+	}
+}
+
+function receive ( params )
+{
+	var time = params[0];
+	var txt = params[1];
+	var recv_send = params[2];
+	if ( gQUERY.length && txt.indexOf( gQUERY ) == -1 )
+		return;
+	var stamp = time.substr( 0, 8 );
+	var day = document.getElementById( stamp );
+	if ( ! day )
+	{
+		document.getElementById( 'loading' ).style.display = 'none';
+		var log = document.getElementById( 'log' );
+		log.insertAdjacentHTML( 'beforeEnd', '<DIV class=date day="' + stamp + '" onmousedown="toggle( this )" onmouseover="this.className=\'date-over\';// document.getElementById( this.day ).className = \'day-over\';" onmouseout="this.className=\'date\';// document.getElementById( this.day ).className = \'day\';"><NOBR><SPAN class=noprint><IMG title="' + external.globals( 'Translator' ).Translate( 'history', 'tooltip_print' ) + '" onmousedown="event.cancelBubble = true" onclick="printer(\'' + stamp + '\');" style="cursor: hand" align=right src="../images/dials/printer.gif"><IMG title="' + external.globals( 'Translator' ).Translate( 'history', 'tooltip_save' ) + '" onmousedown="event.cancelBubble = true" onclick="save(\'' + stamp + '\');" style="cursor: hand" align=right src="../images/dials/disk.gif"><IMG align=absmiddle src="../images/misc/hidden.gif"></SPAN> ' + ( new Date( stamp.substr( 0, 4 ), stamp.substr( 4, 2 ) - 1, stamp.substr( 6, 2 ) ) ).toLocaleDateString() + '</NOBR></DIV>' );
+		day = document.createElement( 'DIV' );
+		day.id = stamp;
+		day.style.display = 'none';
+		day.className = 'day';
+		log.insertAdjacentElement( 'beforeEnd', day );
+	}
+	if ( ! day.children.length )
+		return;
+	var wnd = external.wnd.params[0];
+	var cfg = external.globals( 'cfg' );
+	var theirnick = external.wnd.params[1];
+	if ( external.globals( 'ClientRoster' ).Items.Exists( external.wnd.params[1] ) )
+		theirnick = external.globals( 'ClientRoster' ).Items( external.wnd.params[1] ).Name;
+	var OUT = '<DIV class=send><NOBR>' + ( cfg( 'nick' ).length ? cfg( 'nick' ) : cfg( 'username' ) ).replace( /&/mg, '&amp;' ).replace( / {2}/mg, ' &nbsp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' ).replace( /\n/mg, ' &nbsp;' ) + '</NOBR></DIV>';
+	var IN = '<DIV class=recv><NOBR>' + theirnick.replace( /&/mg, '&amp;' ).replace( / {2}/mg, ' &nbsp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' ).replace( /\n/mg, ' &nbsp;' ) + '</NOBR></DIV>';
+	var coll = day.children.tags( 'DIV' );
+	var last = coll.item( coll.length - 1 ).className;
+	if ( ( last == 'send' && ! recv_send ) || ( last == 'recv' && recv_send ) )
+		day.insertAdjacentText( 'beforeEnd', '\n\n' );
+	else
+		day.insertAdjacentHTML( 'beforeEnd', recv_send ? IN : OUT );
+	day.insertAdjacentText( 'beforeEnd', '[' + time.substring( 9, 14 ) + '] ' );
+	day.insertAdjacentText( 'beforeEnd', txt );
+	++gCOUNT;
+	document.getElementById( 'statusfield1' ).innerText = gCOUNT == 1 ? external.globals( 'Translator' ).Translate( 'history', 'one_message' ) : external.globals( 'Translator' ).Translate( 'history', 'many_messages', [ gCOUNT ] );
+	document.getElementById( 'loading' ).style.display = 'none';
+}
+
+function history_clear ()
+{
+	var jid = external.wnd.params[1];
+	var path = external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\';
+	var f = path + ( new MD5() ).digest( jid ) + '.log';
+	var b = path + 'Message Cache\\' + ( new MD5() ).digest( jid ) + '.buffer';
+	if ( ! external.FileExists( f ) )
+	{
+		return false;
+	}
+	if ( 6 != external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'history', 'delete_confirm', [ jid ] ), external.globals( 'softwarename' ), 4 | 48 ) )
+		return;
+	try
+	{
+		external.File( b ).Delete();
+	}
+	catch ( e )
+	{
+	}
+	try
+	{
+		external.File( f ).Delete();
+	}
+	catch ( e )
+	{
+		alert( external.globals( 'Translator' ).Translate( 'history', 'delete_cannot', [ e.description ] ) );
+	}
+	document.getElementById( 'log' ).innerHTML = document.getElementById( 'loading' ).outerHTML;
+	document.getElementById( 'loading' ).innerHTML = external.globals( 'Translator' ).Translate( 'history', 'loading' );
+	document.getElementById( 'loading' ).style.display = 'block';
+	setTimeout( 'filter( "" )', 0 );
+}
+
+function save ( day )
+{
+	var wnd = external.wnd.params[0];
+	var cfg = external.globals( 'cfg' );
+	var historypath = external.globals( 'usersdir' ) + 'Profiles\\' + cfg( 'username' ) + '@' + cfg( 'server' ) + '\\' + ( new MD5() ).digest( external.wnd.params[1] ) + '.log';
+
+	try
+	{
+		if ( ! external.FileExists( historypath ) )
+		{
+			alert( external.globals( 'Translator' ).Translate( 'history', 'empty' ) );
+			return false;
+		}
+	}
+	catch ( e )
+	{
+		alert( external.globals( 'Translator' ).Translate( 'history', 'error_open' ) );
+		return false;
+	}
+
+	var dialog, path;
+	try
+	{
+		dialog = external.ComCtrl.ComDlg.GetFileName;
+		dialog.Flags = 32768 | 2;
+		dialog.Filter = 'HTML (*.html, *.htm)|*.html;*.htm|Text (*.txt)|*.txt|XML (*.xml)|*.xml|Any file|*.*';
+		path = dialog.DisplaySave();
+	}
+	catch ( e )
+	{
+		return false;
+	}
+
+	var filetype;
+	if ( dialog.FilterIndex == 1 )
+	{
+		filetype = 'html';
+		if ( path.substr( path.length - 5, 5 ) != '.html' )
+			path += '.html';
+	}
+	else if ( dialog.FilterIndex == 2 )
+	{
+		filetype = 'txt';
+		if ( path.substr( path.length - 4, 4 ) != '.txt' )
+			path += '.txt';
+	}
+	else if ( dialog.FilterIndex == 3 )
+	{
+		filetype = 'xml';
+		if ( path.substr( path.length - 4, 4 ) != '.xml' )
+			path += '.xml';
+	}
+
+	try
+	{
+		if ( external.FileExists( path ) )
+			external.File( path ).Delete();
+		var save = external.File( path );
+	}
+	catch ( e )
+	{
+		alert( external.globals( 'Translator' ).Translate( 'history', 'error_save', [ e.description ] ) );
+		return false;
+	}
+
+	try
+	{
+		var archive = external.File( historypath );
+	}
+	catch ( e )
+	{
+		alert( external.globals( 'Translator' ).Translate( 'history', 'error_open' ) );
+		return false;
+	}
+
+	if ( filetype == 'txt' )
+	{
+		var maxnamelength = 15;
+		var maxfilewidth = 72;
+
+		var mynick = ( cfg( 'nick' ).length ? cfg( 'nick' ) : cfg( 'username' ) ).substr( 0, maxnamelength + 1 );
+		var theirnick = external.wnd.params[1];
+		if ( external.globals( 'ClientRoster' ).Items.Exists( external.wnd.params[1] ) )
+			theirnick = external.globals( 'ClientRoster' ).Items( external.wnd.params[1] ).Name;
+		theirnick = theirnick.substr( 0, maxnamelength + 1 );
+		if ( mynick.charAt( maxnamelength ) != '' && mynick.charAt( maxnamelength ) != ' ' )
+			if ( mynick.indexOf( ' ' ) > 0 )
+				mynick = mynick.substr( 0, mynick.lastIndexOf( ' ' ) );
+		if ( theirnick.charAt( maxnamelength ) != '' && theirnick.charAt( maxnamelength ) != ' ' )
+			if ( theirnick.indexOf( ' ' ) > 0 )
+				theirnick = theirnick.substr( 0, theirnick.lastIndexOf( ' ' ) );
+
+		save.WriteLine( '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *' );
+		save.WriteLine( '' );
+		save.WriteLine( '              ' + external.globals( 'softwarename' ) );
+		save.WriteLine( '' );
+		save.WriteLine( '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *' );
+		save.WriteLine( '' );
+		save.WriteLine( '' );
+		save.WriteLine( '' );
+		save.WriteLine( '    ' + mynick );
+		save.WriteLine( '    ' + cfg( 'username' ) + '@' + cfg( 'server' ) );
+		save.WriteLine( '' );
+		save.WriteLine( '    ' + theirnick );
+		save.WriteLine( '    ' + external.wnd.params[1] );
+		save.WriteLine( '' );
+		save.WriteLine( '' );
+
+		var namewidth = Math.max( mynick.length, theirnick.length );
+		var myspacer = '  ';
+		for ( var i = 0; i < namewidth - mynick.length; i++ )
+			myspacer += ' ';
+		var theirspacer = '  ';
+		for ( var i = 0; i < namewidth - theirnick.length; i++ )
+			theirspacer += ' ';
+		var linespacer = '         ';
+		for ( var i = 0; i < namewidth; i++ )
+			linespacer += ' ';
+
+		maxfilewidth -= linespacer.length;
+
+		var date = '';
+		var line = new String();
+		while ( ! archive.AtEnd )
+		{
+			try
+			{
+				line = archive.ReadLine();
+			}
+			catch ( e )
+			{
+				document.getElementById( 'statusfield1' ).innerText = external.globals( 'Translator' ).Translate( 'history', 'error_read' );
+				return false;
+			}
+			if ( day.length )
+				if ( line.substr( 0, 8 ) != day )
+					continue;
+			if ( gQUERY.length )
+				if ( line.toLowerCase().indexOf( gQUERY, 19 ) == -1 )
+					continue;
+			var fields = line.split( ';', 2 );
+			if ( fields.length != 2 )
+				continue;
+
+			var stamp = fields[0].substr( 0, 8 );
+			if ( date != stamp )
+			{
+				save.WriteLine( '' );
+				save.WriteLine( '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *' );
+				save.WriteLine( '' );
+				save.WriteLine( '    ' + ( new Date( stamp.substr( 0, 4 ), stamp.substr( 4, 2 ) - 1, stamp.substr( 6, 2 ) ) ).toLocaleDateString() );
+				save.WriteLine( '' );
+				save.WriteLine( '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *' );
+				date = stamp;
+			}
+
+			var msg = unescape( line.substr( fields[0].length + fields[1].length + 2 ) );
+			var msgheader = ( fields[1] == 'in' ? theirnick + theirspacer : mynick + myspacer ) + fields[0].substr( 9, 2 ) + ':' + fields[0].substr( 12, 2 ) + '  ';
+			var writeheader = true;
+			var lines = msg.split( '\n' );
+
+			for ( var i = 0; i < lines.length; i++ )
+			{
+				if ( lines[i].length <= maxfilewidth )
+				{
+					save.WriteLine( ( writeheader ? msgheader : linespacer ) + lines[i] );
+					writeheader = false;
+				}
+				else
+				{
+					var start = 0;
+					var end = 0;
+					while ( end < lines[i].length )
+					{
+						if ( start + maxfilewidth < lines[i].length )
+						{
+							var found = lines[i].lastIndexOf( ' ', start + maxfilewidth );
+							if ( found <= start )
+								end = start + maxfilewidth;
+							else
+								end = found;
+						}
+						else
+						{
+							end = lines[i].length;
+						}
+						save.WriteLine( ( writeheader ? msgheader : linespacer ) + lines[i].substring( start, end ) );
+						writeheader = false;
+						start = end;
+						while ( lines[i].charAt( start ) == ' ' ) ++start;
+					}
+				}
+			}
+		}
+	}
+	else if ( filetype == 'html' )
+	{
+		var mynick = ( cfg( 'nick' ).length ? cfg( 'nick' ) : cfg( 'username' ) ).replace( /&/mg, '&amp;' ).replace( / {2}/mg, ' &nbsp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' ).replace( /\n/mg, ' &nbsp;' );
+		var myjid = cfg( 'username' ) + '@' + cfg( 'server' );
+		var theirjid = external.wnd.params[1];
+		var theirnick = theirjid;
+		if ( external.globals( 'ClientRoster' ).Items.Exists( theirjid ) )
+			theirnick = external.globals( 'ClientRoster' ).Items( theirjid ).Name;
+		theirnick = theirnick.replace( /&/mg, '&amp;' ).replace( / {2}/mg, ' &nbsp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' ).replace( /\n/mg, ' &nbsp;' );
+
+		save.WriteLine( '<html>' );
+		save.WriteLine( '<head>' );
+		save.WriteLine( '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />' );
+		save.WriteLine( '<title>' + mynick + ' - ' + theirnick + ' - ' + external.globals( 'softwarename' ) + '</title>' );
+		save.WriteLine( '<style type="text/css">' );
+		save.WriteLine( '<!--' );
+		save.WriteLine( 'html, body { background-color: #fff; color: #000; }' );
+		save.WriteLine( 'td { font-size: small; font-family: Arial; }' );
+		save.WriteLine( 'hr { margin-top: 20px; margin-bottom: 20px; }' );
+		save.WriteLine( 'h4 { margin-left: 20px; }' );
+		save.WriteLine( '-->' );
+		save.WriteLine( '</style>' );
+		save.WriteLine( '</head>' );
+		save.WriteLine( '<body>' );
+		save.WriteLine( '<h1>' + external.globals( 'softwarename' ) + '</h1>' );
+		save.WriteLine( '<h3>' + mynick + '</h3>' );
+		save.WriteLine( '<h4>' + myjid + '</h5>' );
+		save.WriteLine( '<h3>' + theirnick + '</h3>' );
+		save.WriteLine( '<h4>' + theirjid + '</h5>' );
+		save.WriteLine( '<table width="100%" style="table-layout: fixed">' );
+		save.WriteLine( '<col width="100" /><col width="60" /><col />' );
+
+		var i = 0;
+		var date = '';
+		var line = new String();
+		while ( ! archive.AtEnd )
+		{
+			try
+			{
+				line = archive.ReadLine();
+			}
+			catch ( e )
+			{
+				document.getElementById( 'statusfield1' ).innerText = external.globals( 'Translator' ).Translate( 'history', 'error_read' );
+				return false;
+			}
+			if ( day.length )
+				if ( line.substr( 0, 8 ) != day )
+					continue;
+			if ( gQUERY.length )
+				if ( line.toLowerCase().indexOf( gQUERY, 19 ) == -1 )
+					continue;
+			var fields = line.split( ';', 2 );
+			if ( fields.length != 2 )
+				continue;
+
+			var stamp = fields[0].substr( 0, 8 );
+			if ( date != stamp )
+			{
+				save.WriteLine( '<tr><td colspan="3"><hr /></tr>' );
+				save.WriteLine( '<tr><td colspan="3"><h2>' + ( new Date( stamp.substr( 0, 4 ), stamp.substr( 4, 2 ) - 1, stamp.substr( 6, 2 ) ) ).toLocaleDateString() + '</h2></td></tr>' );
+				date = stamp;
+			}
+
+			var msg = unescape( line.substr( fields[0].length + fields[1].length + 2 ) ).replace( /&/mg, '&amp;' ).replace( / {2}/mg, ' &nbsp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' ).replace( /\n/mg, '<BR>' );
+			save.WriteLine( '<tr valign="top"><td>' + ( fields[1] == 'in' ? theirnick : mynick ) + '</td><td>' + fields[0].substr( 9, 2 ) + ':' + fields[0].substr( 12, 2 ) + '</td><td>' + msg + '</td></tr>' );
+			++i;
+		}
+
+		save.WriteLine( '</table>' );
+		save.WriteLine( '<hr />' );
+		save.WriteLine( '<p align="right">' + i + ' message' + ( i == 1 ? '' : 's' ) + '</p>' );
+		save.WriteLine( '</body>' );
+		save.WriteLine( '</html>' );
+	}
+	else if ( filetype == 'xml' )
+	{
+		var mynick = ( cfg( 'nick' ).length ? cfg( 'nick' ) : cfg( 'username' ) ).replace( /&/mg, '&amp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' );
+		var myjid = cfg( 'username' ) + '@' + cfg( 'server' );
+		var theirjid = external.wnd.params[1];
+		var theirnick = theirjid;
+		if ( external.globals( 'ClientRoster' ).Items.Exists( theirjid ) )
+			theirnick = external.globals( 'ClientRoster' ).Items( theirjid ).Name;
+		theirnick = theirnick.replace( /&/mg, '&amp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' );
+
+		save.WriteLine( '<?xml version="1.0"?>' );
+		save.WriteLine( '<history>' );
+		save.WriteLine( '  <participant>' );
+		save.WriteLine( '    <name>' + mynick + '</name>' );
+		save.WriteLine( '    <jid>' + myjid + '</jid>' );
+		save.WriteLine( '  </participant>' );
+		save.WriteLine( '  <participant>' );
+		save.WriteLine( '    <name>' + theirnick + '</name>' );
+		save.WriteLine( '    <jid>' + theirjid + '</jid>' );
+		save.WriteLine( '  </participant>' );
+
+		var line = new String();
+		while ( ! archive.AtEnd )
+		{
+			try
+			{
+				line = archive.ReadLine();
+			}
+			catch ( e )
+			{
+				document.getElementById( 'statusfield1' ).innerText = external.globals( 'Translator' ).Translate( 'history', 'error_read' );
+				return false;
+			}
+			if ( day.length )
+				if ( line.substr( 0, 8 ) != day )
+					continue;
+			if ( gQUERY.length )
+				if ( line.toLowerCase().indexOf( gQUERY, 19 ) == -1 )
+					continue;
+			var fields = line.split( ';', 2 );
+			if ( fields.length != 2 )
+				continue;
+
+			var msg = unescape( line.substr( fields[0].length + fields[1].length + 2 ) ).replace( /&/mg, '&amp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' );
+			save.WriteLine( '  <message>' );
+			save.WriteLine( '    <time>' + fields[0] + '</time>' );
+			save.WriteLine( '    <from>' + ( fields[1] == 'in' ? theirjid : myjid ) + '</from>' );
+			save.WriteLine( '    <body>' + msg + '</body>' );
+			save.WriteLine( '  </message>' );
+		}
+
+		save.WriteLine( '</history>' );
+	}
+
+	save.Close();
+	archive.Close();
+}
+
+function printer ( day )
+{
+	if ( ! gCOUNT )
+		return alert( external.globals( 'Translator' ).Translate( 'history', 'error_print' ) );
+	gPRINTDAY = day;
+	window.print();
+}
+
+function showprint ( day )
+{
+	var days = document.getElementById( 'log' ).children.tags( 'DIV' );
+	for ( var i = 0; i < days.length; ++i )
+	{
+		var node = days.item( i );
+		if ( node.className != 'date' && node.className != 'date-over' )
+			continue;
+		if ( node.day == day || ! day.length )
+		{
+			if ( document.getElementById( node.day ).style.display == 'none' )
+				toggle( node );
+		}
+		else
+		{
+			document.getElementById( node.day ).style.display = 'none';
+			node.style.display = 'none';
+		}
+	}
+}
+
+function hideprint ( day )
+{
+	var days = document.getElementById( 'log' ).children.tags( 'DIV' );
+	for ( var i = 0; i < days.length; ++i )
+	{
+		var node = days.item( i );
+		if ( node.className != 'date' && node.className != 'date-over' )
+			continue;
+		if ( node.day != day || ! day.length )
+		{
+			node.style.display = 'block';
+			var txt = document.getElementById( node.day );
+			node.children(0).children(0).children(2).src = '../images/misc/hidden.gif';
+			txt.style.display = 'none';
+		}
+	}
+}
+
+function RunFilter ()
+{
+	filter( document.getElementById( 'search' ).value );
+}
+
+</SCRIPT>
+<STYLE type="text/css" media=screen>
+BODY {
+	background-color: buttonface;
+	margin: 0px;
+	padding: 0px;
+	cursor: default;
+}
+.statusfield {
+	border: 1px inset;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: buttontext;
+	height: 18px;
+	padding: 1px;
+	padding-right: 6px;
+}
+.recv {
+	color: blue;
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	width: 100%;
+	overflow: hidden;
+	padding-top: 2px;
+}
+.send {
+	color: red;
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	width: 100%;
+	overflow: hidden;
+	padding-top: 2px;
+}
+BUTTON {
+	font-family: Tahoma;
+	font-size: 11px;
+	width: 50px;
+	height: 37px;
+	border-width: 0px;
+	padding: 1px;
+}
+.dial_on {
+	border-width: 1px;
+	padding: 0px;
+}
+.bar {
+	text-align: left;
+	font-family: Tahoma;
+	font-size: 11px;
+	height: 24px;
+	border-width: 0px;
+	padding: 1px;
+	padding-left: 4px;
+}
+.bar_on {
+	text-align: left;
+	height: 24px;
+	border-width: 1px;
+	padding: 0px;
+	padding-left: 2px;
+}
+.date {
+	background-color: aliceblue;
+	border: 1px solid threedlightshadow;
+	padding: 4px;
+	margin-top: 4px;
+	color: steelblue;
+	font-family: Tahoma;
+	font-size: 9pt;
+	font-weight: bold;
+	width: 100%;
+	cursor: default;
+}
+.date-over {
+	background-color: #E3F0FC;
+	border: 1px solid threeddarkshadow;
+	padding: 4px;
+	margin-top: 4px;
+	color: steelblue;
+	font-family: Tahoma;
+	font-size: 9pt;
+	font-weight: bold;
+	width: 100%;
+	cursor: default;
+}
+.day {
+	border: 1px solid threedlightshadow;
+	border-top-width: 0px;
+	padding: 6px;
+	padding-top: 2px;
+	cursor: text;
+}
+.day-over {
+	border: 1px solid threeddarkshadow;
+	border-top-width: 0px;
+	padding: 6px;
+	padding-top: 2px;
+	cursor: text;
+}
+.noscreen {
+	display: none;
+}
+#log {
+	width: 100%;
+	height: 100%;
+	overflow-y: scroll;
+	overflow-x: auto;
+	border: 2px inset;
+	padding: 4px;
+	background-color: window;
+	color: windowtext;
+	font-family: Tahoma;
+	font-size: 8pt;
+}
+</STYLE>
+<STYLE type="text/css" media=print>
+BODY {
+}
+.recv {
+	color: blue;
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	width: 100%;
+	overflow: hidden;
+	padding-top: 2px;
+}
+.send {
+	color: red;
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	width: 100%;
+	overflow: hidden;
+	padding-top: 2px;
+}
+.date, .date-over {
+	border-top: 1px solid threeddarkshadow;
+	border-left: 1px solid threeddarkshadow;
+	padding: 4px;
+	margin-top: 20px;
+	color: steelblue;
+	font-family: Tahoma;
+	font-size: 9pt;
+	font-weight: bold;
+	width: 100%;
+}
+.day, .day-over {
+	padding: 6px;
+	padding-top: 2px;
+}
+.noprint {
+	display: none;
+}
+.noscreen {
+	border: 1px solid threeddarkshadow;
+	padding: 20px;
+	margin-top: 20px;
+	color: steelblue;
+	font-family: Tahoma;
+	font-size: 16pt;
+	font-weight: bold;
+	width: 100%;
+}
+#log {
+	width: 100%;
+	color: #000;
+	font-family: Tahoma;
+	font-size: 8pt;
+}
+</STYLE>
+</HEAD>
+
+<BODY scroll=no onload="init()" onkeypress="if(event.keyCode==27)external.wnd.close();" onbeforeprint="showprint( gPRINTDAY )" onafterprint="hideprint( gPRINTDAY )">
+
+<TABLE cellspacing=0 cellpadding=0 border=0 height="100%" width="100%">
+<TR height=37 valign=bottom class=noprint>
+<TD>
+<NOBR>
+<BUTTON onmouseover="this.className='dial_on'" onmouseout="this.className=''" onclick="save( '' ); document.getElementById( 'search' ).focus();"><IMG src="../images/dials/disk.gif"><BR><SPAN id=txt_save></SPAN></BUTTON>
+<BUTTON onmouseover="this.className='dial_on'" onmouseout="this.className=''" onclick="printer( '' ); document.getElementById( 'search' ).focus();"><IMG src="../images/dials/printer.gif"><BR><SPAN id=txt_print></SPAN></BUTTON>
+<BUTTON onmouseover="this.className='dial_on'" onmouseout="this.className=''" onclick="history_clear(); document.getElementById( 'search' ).focus();"><IMG src="../images/dials/bin.gif" border=0><BR><SPAN id=txt_erase></SPAN></BUTTON>
+</NOBR>
+</TD>
+</TR>
+<TR height=10 valign=top class=noscreen>
+<TD class=noscreen>
+<SPAN id=print_name></SPAN>&nbsp;<SPAN id=txt_history></SPAN><BR>
+<BR>
+<DIV style="padding-left: 20px;">
+<DIV id=printmynick class=send></DIV>
+<DIV id=printmyjid style="color: #000; font-family: Tahoma; font-size: 8pt; padding: 10px; padding-top: 4px;"></DIV>
+<DIV id=printtheirnick class=recv style="padding-top: 10px;"></DIV>
+<DIV id=printtheirjid style="color: #000; font-family: Tahoma; font-size: 8pt; padding: 10px; padding-top: 4px;"></DIV>
+</DIV>
+</TD>
+</TR>
+<TR height=29 valign=top class=noprint>
+<TD>
+	<DIV style="margin-top: 1px; border-top: 2px groove; width: 100%; padding-top: 1px; padding-bottom: 1px;">
+	<FORM style="display: inline;" onsubmit="document.getElementById( 'log' ).innerHTML = document.getElementById( 'loading' ).outerHTML; document.getElementById( 'loading' ).innerHTML = 'Loading the message history...'; document.getElementById( 'loading' ).style.display = 'block'; setTimeout( 'RunFilter()', 0 ); return false;">
+		<TABLE cellspacing=0 cellpadding=0 border=0 width="100%">
+		<TR>
+			<TD width=50 align=center style="color: buttontext; font-family: Tahoma; font-size: 11px;" id=txt_search></TD>
+			<TD><INPUT id=search style="width: 100%; height: 22px;"></TD>
+			<TD width=50 align=center><INPUT type=submit style="width: 44px; height: 24px;" id=btn_go></TD>
+		</TR>
+		</TABLE>
+	</FORM>
+	</DIV>
+</TD>
+</TR>
+<TR valign=top>
+<TD style="padding-left: 1px; padding-right: 1px; padding-bottom: 2px;">
+<DIV id=log><SPAN id=loading></SPAN></DIV>
+</TD>
+</TR>
+<TR height=21 valign=top class=noprint>
+<TD align=right>
+	<TABLE style="table-layout: fixed;" cellpadding=0 cellspacing=1 height=22>
+	<COL><COL width=200>
+	<TR>
+	<TD class=statusfield style="padding-top: 2px"><NOBR id=statusfield1>&nbsp;</NOBR></TD>
+	<TD class=statusfield align=center style="padding-top: 2px"><NOBR id=statusfield2>&nbsp;</NOBR></TD>
+	</TR>
+	</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>
