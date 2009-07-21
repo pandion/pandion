@@ -117,8 +117,8 @@ using namespace ATL;
  * ZLib headers
  */
 #define ZLIB_WINAPI
-#include <zlib.h>
-#include <unzip.h>
+#include "../zlib-1.2.3.win32/include/zlib.h"
+#include "../zlib-1.2.3.win32/include/unzip.h"
 
 /*
  * MSXML headers
