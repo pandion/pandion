@@ -24,7 +24,7 @@
 #include "Module.h"
 #include "MainWnd.h"
 
-CMainWnd::CMainWnd() : CPdnWnd(), m_pNotIc( NULL )
+CMainWnd::CMainWnd() : CPdnWnd(), m_pNotIc(NULL)
 {
 	m_uTaskbarRestart = RegisterWindowMessage(TEXT("TaskbarCreated"));
 }
@@ -34,57 +34,57 @@ CMainWnd::~CMainWnd()
 	m_pNotIc = NULL;
 }
 
-void CMainWnd::GetNotifyIcon( VARIANT* pDisp )
+void CMainWnd::GetNotifyIcon(VARIANT* pDisp)
 {
-	if( m_pNotIc )
+	if(m_pNotIc)
 	{
-		m_pNotIc->QueryInterface( IID_IDispatch, (void **)&pDisp->pdispVal );
+		m_pNotIc->QueryInterface(IID_IDispatch, (void **)&pDisp->pdispVal);
 		pDisp->vt = VT_DISPATCH;
 	}
 	else
-		ATLASSERT( 0 );
+		ATLASSERT(0);
 }
 
-LRESULT CMainWnd::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
+LRESULT CMainWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
-	m_pNotIc = new CComObject< CNotifyIcon >;
+	m_pNotIc = new CComObject<CNotifyIcon>;
 	m_pNotIc->AddRef();
-	m_pNotIc->init( m_hWnd, WM_NOTIFYICON );
+	m_pNotIc->init(m_hWnd, WM_NOTIFYICON);
 
 	bHandled = FALSE;
 	return FALSE;
 }	
-LRESULT CMainWnd::OnNotifyIcon( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
+LRESULT CMainWnd::OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
-	if( lParam == WM_MOUSEMOVE || !lParam )
+	if(lParam == WM_MOUSEMOVE || !lParam)
 		return 1;
 
-	VARIANT* v = new _variant_t( (long) lParam );
-	FireEvent( m_pNotIc->getHandler(), v, 1 );
+	VARIANT* v = new _variant_t((long) lParam);
+	FireEvent(m_pNotIc->getHandler(), v, 1);
 	delete v;
 	return false;
 }
-LRESULT CMainWnd::OnCopyData( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
+LRESULT CMainWnd::OnCopyData(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	COPYDATASTRUCT* pCDS = (COPYDATASTRUCT*) lParam;
-	if( pCDS->dwData == COPYDATA_CMDLINE )
+	if(pCDS->dwData == COPYDATA_CMDLINE)
 	{
-		CComVariant v( (OLECHAR *) pCDS->lpData );
+		CComVariant v((OLECHAR *) pCDS->lpData);
 
-		if( m_sCmdLineHandler.Length() )
-			FireEvent( m_sCmdLineHandler, &v, 1 );
+		if(m_sCmdLineHandler.Length())
+			FireEvent(m_sCmdLineHandler, &v, 1);
 
 		return bHandled = true;
 	}
 	return bHandled = false;
 }
-LRESULT CMainWnd::OnTaskbarRestart( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
+LRESULT CMainWnd::OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	m_pNotIc->show();
 	return 0;
 }
 
-LRESULT CMainWnd::OnClose( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
+LRESULT CMainWnd::OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	PostQuitMessage(0);
 	
@@ -99,20 +99,20 @@ STDMETHODIMP CMainWnd::close()
 	VARIANT* pvElements;
 	ScrRun::IDictionary *pWindows;
 	
-	m_pModule->GetWindows( &pWindows );
-	pWindows->Items( pvWndItems );
+	m_pModule->GetWindows(&pWindows);
+	pWindows->Items(pvWndItems);
 	pWindows->Release();
 
-	SafeArrayLock( pvWndItems->parray );
+	SafeArrayLock(pvWndItems->parray);
 
-	SafeArrayAccessData( pvWndItems->parray, (void**) &pvElements );
-	for( int i = pvWndItems->parray->rgsabound->cElements-1; i >= 0; i-- )
+	SafeArrayAccessData(pvWndItems->parray, (void**) &pvElements);
+	for(int i = pvWndItems->parray->rgsabound->cElements-1; i>= 0; i--)
 	{
 		((CPdnWnd*)pvElements[i].pdispVal)->CPdnWnd::close();
 		pvElements[i].pdispVal->Release();
 		pvElements[i].pdispVal = NULL;
 	}
-	SafeArrayUnlock( pvWndItems->parray );
+	SafeArrayUnlock(pvWndItems->parray);
 
 	delete pvWndItems;
 	return S_OK;
@@ -120,7 +120,7 @@ STDMETHODIMP CMainWnd::close()
 HWND CMainWnd::GetMainWindow()
 {
 	LPCTSTR s = GetWndClassName();
-	HWND h = FindWindow( s, 0 );
+	HWND h = FindWindow(s, 0);
 	delete s;
 	return h;
 }
@@ -138,7 +138,7 @@ ATL::CWndClassInfo& CMainWnd::GetWndClassInfo()
 LPTSTR CMainWnd::GetWndClassName()
 {
 	TCHAR* strClass = new TCHAR[MAX_PATH+20];
-	GetModuleFileName( NULL, strClass, MAX_PATH );
-	StringCchCat( strClass, MAX_PATH+20, TEXT(" Main Window Class") );
+	GetModuleFileName(NULL, strClass, MAX_PATH);
+	StringCchCat(strClass, MAX_PATH+20, TEXT(" Main Window Class"));
 	return strClass;
 }

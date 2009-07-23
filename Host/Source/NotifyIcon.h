@@ -26,16 +26,16 @@ class CIcon
 	HICON m_hIcon;
 public:
 	CIcon();
-	CIcon( BSTR strIcon, int nIndex );
-	CIcon( CIcon & );
+	CIcon(BSTR strIcon, int nIndex);
+	CIcon(CIcon &);
 	~CIcon();
 
 	HICON getHandle();
 };
 
 class CNotifyIcon :
-	public CComObjectRootEx< CComSingleThreadModel >,
-	public IDispatchImpl< INotifyIcon >
+	public CComObjectRootEx<CComSingleThreadModel>,
+	public IDispatchImpl<INotifyIcon>
 {
 	/* Describes the owner */
 	HWND	m_hWnd;
@@ -53,25 +53,25 @@ public:
 	DECLARE_NO_REGISTRY()
 
 	/* QueryInterface implementation for INotifyIcon and IDispatch */
-	BEGIN_COM_MAP( CNotifyIcon )
-		COM_INTERFACE_ENTRY2( IDispatch, INotifyIcon )
+	BEGIN_COM_MAP(CNotifyIcon)
+		COM_INTERFACE_ENTRY2(IDispatch, INotifyIcon)
 	END_COM_MAP()
 
 	/* Constructor and Destructor */
 	CNotifyIcon();
 	~CNotifyIcon();
-	STDMETHOD(init)( HWND hWnd, UINT CBMsg );
+	STDMETHOD(init)(HWND hWnd, UINT CBMsg);
 
 	/* INotifyIcon implementation */
 	STDMETHOD(show)();
 	STDMETHOD(update)();
 	STDMETHOD(remove)();
-	STDMETHOD(shellNotify)( DWORD dwMessage );
+	STDMETHOD(shellNotify)(DWORD dwMessage);
 
-	STDMETHOD(setText)( BSTR text );
-	STDMETHOD(setIcon)( BSTR strIcon, int nIndex );
+	STDMETHOD(setText)(BSTR text);
+	STDMETHOD(setIcon)(BSTR strIcon, int nIndex);
 
-	STDMETHOD(setHandler)( BSTR handler );
+	STDMETHOD(setHandler)(BSTR handler);
 
 	BSTR getHandler();
 };

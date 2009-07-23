@@ -33,8 +33,8 @@ public:
 
 	HANDLE GetHandle();
 
-	static DWORD __stdcall RunProc( void *pvoid );
-	void StartThread( int nPriority = THREAD_PRIORITY_NORMAL );
+	static DWORD __stdcall RunProc(void *pvoid);
+	void StartThread(int nPriority = THREAD_PRIORITY_NORMAL);
 	void TerminateThread();
 	void TerminateThreadInternal();
 

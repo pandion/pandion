@@ -31,7 +31,7 @@ protected:
 	IEventRouter *m_pER;
 	CPile        *m_pPile;
 public:
-	CSession( CPile* p, IStream *pERStream );
+	CSession(CPile* p, IStream *pERStream);
 	virtual ~CSession();
 
 	DWORD GetSessionID();

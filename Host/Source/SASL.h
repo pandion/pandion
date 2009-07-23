@@ -20,12 +20,12 @@
  * Description: TODOTODOTODO
  */
 #pragma once
+#include "DispInterfaceImpl.h"
 
 #define PACKAGE_NAME	TEXT("Negotiate")
 
-class CSASL :
-	public CComObjectRootEx< CComSingleThreadModel >,
-	public IDispatchImpl< ISASL >
+class SASL :
+	public DispInterfaceImpl<ISASL>
 {
 private:
 	DWORD			m_dwMaxTokenSize;
@@ -37,19 +37,20 @@ private:
 	BOOL			m_fHaveCtxtHandle;
 
 public:
-	CSASL();
-	~CSASL();
+	SASL();
+	~SASL();
 
-BEGIN_COM_MAP(CSASL)
-	COM_INTERFACE_ENTRY( IDispatch )
-	COM_INTERFACE_ENTRY( ISASL )
-END_COM_MAP()
-
-	STDMETHOD(PlainGenerateResponse)( BSTR jid, BSTR username, BSTR password, BSTR *strBase64 );
-	STDMETHOD(DigestGenerateResponse)( BSTR username, BSTR realm, BSTR password, BSTR nonce, BSTR cnonce, BSTR digest_uri, BSTR nc, BSTR qop, BSTR *strDigest );
-	STDMETHOD(HexString)( const unsigned char *binaryData, char *hexString, int n );
+	STDMETHOD(PlainGenerateResponse)(
+		BSTR jid, BSTR username, BSTR password, BSTR *strBase64);
+	STDMETHOD(DigestGenerateResponse)(
+		BSTR username, BSTR realm, BSTR password, BSTR nonce,
+		BSTR cnonce, BSTR digest_uri, BSTR nc, BSTR qop, BSTR *strDigest);
 	STDMETHOD(SSPIReset)();
-	STDMETHOD(SSPIGenerateResponse)( BSTR Challenge, BOOL *Continue, BSTR *Response );
+	STDMETHOD(SSPIGenerateResponse)(
+		BSTR Challenge, BOOL *Continue, BSTR *Response);
 
-	void SSPIError( LPWSTR Where, LPWSTR WhenCalling, LPWSTR ErrorMessage );
+private:
+	STDMETHOD(HexString)(
+		const unsigned char *binaryData, char *hexString, int n);
+	void SSPIError(LPWSTR Where, LPWSTR WhenCalling, LPWSTR ErrorMessage);
 };

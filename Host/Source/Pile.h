@@ -35,7 +35,7 @@ private:
 	}
 	DWORD m_Cookie;
 public:
-	CSharedFile( _bstr_t filename, _bstr_t url ) : m_FileName( filename ), m_URL( url )
+	CSharedFile(_bstr_t filename, _bstr_t url) : m_FileName(filename), m_URL(url)
 	{
 		m_Cookie = GetNewCookie();
 	}
@@ -57,14 +57,14 @@ public:
 	CPile();
 	~CPile();
 
-	_bstr_t GetFileNameByURL( _bstr_t URL );
-	DWORD   GetCookieByURL( _bstr_t URL );
+	_bstr_t GetFileNameByURL(_bstr_t URL);
+	DWORD   GetCookieByURL(_bstr_t URL);
 
-	void    AddSharedFile( CSharedFile* sf );
-	HRESULT DelSharedFile( DWORD sfCookie  );
+	void    AddSharedFile(CSharedFile* sf);
+	HRESULT DelSharedFile(DWORD sfCookie );
 	
-	void    AddSession( CSession* );
-	HRESULT DelSession( DWORD );
+	void    AddSession(CSession*);
+	HRESULT DelSession(DWORD);
 
-	CSession* GetSession( DWORD sessionID );
+	CSession* GetSession(DWORD sessionID);
 }; 

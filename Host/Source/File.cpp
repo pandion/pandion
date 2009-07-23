@@ -86,7 +86,7 @@ HRESULT CFile::GetWriteAccess()
 STDMETHODIMP CFile::Create(BSTR strFileName,
 	unsigned dwAccess, unsigned dwShare, unsigned dwDisposition)
 {
-	if(::SysStringLen(strFileName) > MAX_PATH)
+	if(::SysStringLen(strFileName)> MAX_PATH)
 	{
 		return E_FAIL;
 	}
@@ -216,7 +216,7 @@ STDMETHODIMP CFile::Write(BYTE* pBuffer, unsigned nWrite)
 	{
         return E_FAIL;
 	}
-	else if(!::WriteFile( m_FileHandle, pBuffer, nWrite, &dwWritten, NULL))
+	else if(!::WriteFile(m_FileHandle, pBuffer, nWrite, &dwWritten, NULL))
 	{
 		return E_FAIL;
 	}
@@ -249,7 +249,7 @@ STDMETHODIMP CFile::ReadLine(BSTR* strLine)
 	if(tokenPosition != NULL)
 	{
 		*tokenPosition = '\0';
-		if(strlen(m_CurrentPosition) > 0 && *(tokenPosition - 1) == '\r')
+		if(strlen(m_CurrentPosition)> 0 && *(tokenPosition - 1) == '\r')
 		{
 			*(tokenPosition - 1) = '\0';
 		}
@@ -415,12 +415,12 @@ STDMETHODIMP CFile::get_SHA1(BSTR* strSHA1)
 
 			wchar_t hexHash[20*2+1];
 			hexHash[20*2] = 0;
-			for(int i = 0; i < 20; i++)
+			for(int i = 0; i <20; i++)
 			{
-				hexHash[2*i] = (digest[i] >> 4) + 
-					(((digest[i] >> 4) < 0xA) ? L'0' : (L'a' - 0xA));
+				hexHash[2*i] = (digest[i]>> 4) + 
+					(((digest[i]>> 4) <0xA) ? L'0' : (L'a' - 0xA));
 				hexHash[2*i+1] = (digest[i] & 0x0F) + 
-					(((digest[i] & 0x0F) < 0xA) ? L'0' : (L'a' - 0xA));
+					(((digest[i] & 0x0F) <0xA) ? L'0' : (L'a' - 0xA));
 			}
 			*strSHA1 = ::SysAllocString(hexHash);
 			return S_OK;
@@ -482,8 +482,8 @@ STDMETHODIMP CFile::Copy(BSTR strTo, BOOL bOverWrite, IPdnFile** retCopy)
 			!bOverWrite))
 		{
 			(new CComObject<CFile>)->QueryInterface(retCopy);
-			(*retCopy)->Create( strTo, GENERIC_READ, 
-				FILE_SHARE_READ|FILE_SHARE_WRITE, OPEN_EXISTING );
+			(*retCopy)->Create(strTo, GENERIC_READ, 
+				FILE_SHARE_READ|FILE_SHARE_WRITE, OPEN_EXISTING);
 			return S_OK;
 		}
 		else
@@ -579,7 +579,7 @@ STDMETHODIMP CFile::get_LastWriteTime(VARIANT* vLastWriteTime)
  */
 void CFile::fixSlashes(_bstr_t &str)
 {
-	for(register unsigned int i = 0; i < str.length(); i++)
+	for(register unsigned int i = 0; i <str.length(); i++)
 	{
 		if(str.GetBSTR()[i] == '/')
 		{

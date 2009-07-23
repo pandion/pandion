@@ -36,7 +36,7 @@ private:
 	DWORD m_nBytesToSend;
 	DWORD m_nTotalBytesToSend;
 public:
-	CServerGet( IEventRouter* pER, CPile* pPile, CHTTPRequest* pRequest, Socket* pSocket, DWORD sessionID );
+	CServerGet(IEventRouter* pER, CPile* pPile, CHTTPRequest* pRequest, Socket* pSocket, DWORD sessionID);
 	~CServerGet();
 
 	DWORD PreCommand();

@@ -35,7 +35,7 @@ private:
 	DWORD m_nBytesToSend;
 	DWORD m_nTotalBytesToSend;
 public:
-	CClientPost( IEventRouter*, CPile*, CCSInfo*, Socket*, DWORD );
+	CClientPost(IEventRouter*, CPile*, CCSInfo*, Socket*, DWORD);
 	~CClientPost();
 
 	DWORD SendRequest();

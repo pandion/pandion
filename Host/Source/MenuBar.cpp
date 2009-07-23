@@ -23,7 +23,7 @@
 #include "menubar.h"
 
 #undef InsertMenuItem
-extern BOOL InsertMenuItem( HMENU hMenu, UINT uItem, BOOL fByPosition, LPCMENUITEMINFOW lpmii );
+extern BOOL InsertMenuItem(HMENU hMenu, UINT uItem, BOOL fByPosition, LPCMENUITEMINFOW lpmii);
 
 CMenuBar::CMenuBar() : m_hWnd(0)
 {
@@ -31,61 +31,61 @@ CMenuBar::CMenuBar() : m_hWnd(0)
 }
 CMenuBar::~CMenuBar()
 {
-	DestroyMenu( m_Handle );
+	DestroyMenu(m_Handle);
 }
 
-STDMETHODIMP CMenuBar::AddItem( BSTR label, DWORD pos, DWORD ID, IDispatch *subMenu )
+STDMETHODIMP CMenuBar::AddItem(BSTR label, DWORD pos, DWORD ID, IDispatch *subMenu)
 {
-	if( !subMenu ) return S_FALSE;
+	if(!subMenu) return S_FALSE;
 
 	IPopupMenu* pPopupMenu = NULL;
-	subMenu->QueryInterface( IID_IPopupMenu, (void**) &pPopupMenu );
+	subMenu->QueryInterface(IID_IPopupMenu, (void**) &pPopupMenu);
 
 	VARIANT subHandle;
-	VariantInit( &subHandle );
-	pPopupMenu->get_Handle( &subHandle );
+	VariantInit(&subHandle);
+	pPopupMenu->get_Handle(&subHandle);
 
 	pPopupMenu->Release();
 
 
 	MENUITEMINFOW nfo;
-	nfo.cbSize      = sizeof( MENUITEMINFO );
+	nfo.cbSize      = sizeof(MENUITEMINFO);
 	nfo.fMask       = MIIM_TYPE | MIIM_ID | MIIM_SUBMENU;
 	nfo.fType       = MFT_STRING;
 	nfo.wID         = ID;
 	nfo.hSubMenu    = (HMENU)subHandle.uintVal;
-	nfo.cch         = wcslen( label ) + 1;
+	nfo.cch         = wcslen(label) + 1;
 	nfo.dwTypeData  = label;
 
-	return InsertMenuItem( m_Handle, pos, true, &nfo ) ? S_OK : GetLastError();
+	return InsertMenuItem(m_Handle, pos, true, &nfo) ? S_OK : GetLastError();
 }
-STDMETHODIMP CMenuBar::RemItem( DWORD ID )
+STDMETHODIMP CMenuBar::RemItem(DWORD ID)
 {
-	DeleteMenu( m_Handle, ID, MF_BYCOMMAND );
+	DeleteMenu(m_Handle, ID, MF_BYCOMMAND);
 
 	return S_OK;
 }
 STDMETHODIMP CMenuBar::Update()
 {
-	if( DrawMenuBar( m_hWnd ) )
+	if(DrawMenuBar(m_hWnd))
 		return S_OK;
 	else
 		return GetLastError();
 }
-STDMETHODIMP CMenuBar::get_Items( DWORD* nItems )
+STDMETHODIMP CMenuBar::get_Items(DWORD* nItems)
 {
-	*nItems = GetMenuItemCount( m_Handle );
+	*nItems = GetMenuItemCount(m_Handle);
 	return S_OK;
 }
-STDMETHODIMP CMenuBar::get_Handle( VARIANT* pHandle )
+STDMETHODIMP CMenuBar::get_Handle(VARIANT* pHandle)
 {
 	pHandle->vt = VT_UI4;
 	pHandle->uintVal = (UINT) m_Handle;
 	return S_OK;
 }
-STDMETHODIMP CMenuBar::put_hwnd( DWORD hwnd )
+STDMETHODIMP CMenuBar::put_hwnd(DWORD hwnd)
 {
-	if( !m_hWnd )
+	if(!m_hWnd)
         m_hWnd = (HWND)hwnd;
 	return S_OK;
 }

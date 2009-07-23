@@ -35,7 +35,7 @@ private:
 	DWORD m_nBytesToRecv;
 	DWORD m_nTotalBytesToRecv;
 public:
-	CClientGet( IEventRouter*, CPile*, CCSInfo*, Socket*, DWORD );
+	CClientGet(IEventRouter*, CPile*, CCSInfo*, Socket*, DWORD);
 	~CClientGet();
 
 	DWORD SendRequest();

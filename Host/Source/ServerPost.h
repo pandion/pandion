@@ -35,7 +35,7 @@ private:
 	DWORD m_nBytesToRecv;
 	DWORD m_nTotalBytesToRecv;
 public:
-	CServerPost( IEventRouter*, CPile*, CHTTPRequest*, Socket*, DWORD );
+	CServerPost(IEventRouter*, CPile*, CHTTPRequest*, Socket*, DWORD);
 	~CServerPost();
 
 	DWORD SendRequest();

@@ -36,7 +36,7 @@ private:
 
 	CTransfer* m_pTransfer;
 public:
-	CServerSession( CPile* pPile, Socket* sock, IStream *pERStream );
+	CServerSession(CPile* pPile, Socket* sock, IStream *pERStream);
 	~CServerSession();
 
 	DWORD RecvRequest();

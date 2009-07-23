@@ -38,11 +38,11 @@ private:
 
 	HANDLE          m_hMutex;
 public:
-	CListenThread( CPile* p, IStream *pStream );
+	CListenThread(CPile* p, IStream *pStream);
 	~CListenThread();
 
-	USHORT	AddPort( USHORT port );
-	void	RemPort( USHORT port );
+	USHORT	AddPort(USHORT port);
+	void	RemPort(USHORT port);
 
 	void PreCommand();
 	void PostCommand();

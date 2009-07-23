@@ -23,11 +23,11 @@
 #include "Session.h"
 #include "Pile.h"
 
-CSession::CSession( CPile* p, IStream *pERStream ) :
-	m_pPile( p ), m_pER( NULL )
+CSession::CSession(CPile* p, IStream *pERStream) :
+	m_pPile(p), m_pER(NULL)
 {
 	m_SessionID = GetNewCookie();
-	HRESULT hr = CoGetInterfaceAndReleaseStream( pERStream, IID_IEventRouter, (void **) &m_pER );
+	HRESULT hr = CoGetInterfaceAndReleaseStream(pERStream, IID_IEventRouter, (void **) &m_pER);
 }
 CSession::~CSession()
 {
@@ -45,7 +45,7 @@ DWORD CSession::GetSessionID()
 
 void CSession::PreCommand()
 {
-	m_pPile->AddSession( this );
+	m_pPile->AddSession(this);
 }
 void CSession::Command()
 {
@@ -53,5 +53,5 @@ void CSession::Command()
 void CSession::PostCommand()
 {
 	m_pER->Release();
-	m_pPile->DelSession( GetSessionID() );
+	m_pPile->DelSession(GetSessionID());
 }

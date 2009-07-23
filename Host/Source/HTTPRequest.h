@@ -32,5 +32,5 @@ public:
 	~CHTTPRequest();
 
 	BOOL IsMPFD();
-	void Parse( BYTE* buf );
+	void Parse(BYTE* buf);
 };

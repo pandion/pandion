@@ -21,38 +21,40 @@
  */
 #pragma once
 #include "XMPP.h"
+#include "SASL.h"
 
 const DWORD COPYDATA_CMDLINE = 0x0001;
 
 class CMainWnd;
 
-class CPandionModule : public CAtlExeModuleT< CPandionModule >
+class CPandionModule : public CAtlExeModuleT<CPandionModule>
 {
 private:
 	CMainWnd *m_pMainWnd;
 
 	XMPP m_XMPP;
+	SASL m_SASL;
 	IHTTP *m_pHTTP;
 	ISASL *m_pSASL;
 
-	CComQIPtr< ScrRun::IDictionary > m_spGlobals;
-	CComQIPtr< ScrRun::IDictionary > m_spWindows;
+	CComQIPtr<ScrRun::IDictionary> m_spGlobals;
+	CComQIPtr<ScrRun::IDictionary> m_spWindows;
 public :
 	DECLARE_LIBID(LIBID_PandionLib)
 	~CPandionModule();
 
-	void GetMainWnd( CMainWnd **ppMainWnd );
-	void GetHTTP( IHTTP **ppHTTP );
-	void GetXMPP( IDispatch **ppXMPP );
-	void GetSASL( ISASL **ppSASL );
-	void GetGlobals( ScrRun::IDictionary **ppGlobals );
-	void GetWindows( ScrRun::IDictionary **ppWindows );
+	void GetMainWnd(CMainWnd **ppMainWnd);
+	void GetHTTP(IHTTP **ppHTTP);
+	void GetXMPP(IDispatch** ppXMPP);
+	void GetSASL(IDispatch** ppSASL);
+	void GetGlobals(ScrRun::IDictionary **ppGlobals);
+	void GetWindows(ScrRun::IDictionary **ppWindows);
 
 	BOOL IsRunning();
 	BOOL IsIEVersionOK();
 
-	HRESULT PreMessageLoop( int nShowCmd );
+	HRESULT PreMessageLoop(int nShowCmd);
 	void    RunMessageLoop();
 	HRESULT PostMessageLoop();
-	BOOL    PreTranslateAccelerator( MSG* pMsg );
+	BOOL    PreTranslateAccelerator(MSG* pMsg);
 };

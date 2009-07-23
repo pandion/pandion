@@ -32,29 +32,29 @@ CEventRouter::~CEventRouter()
 	UnsubscribeAll();
 }
 
-STDMETHODIMP CEventRouter::Subscribe( IDispatch* pDisp )
+STDMETHODIMP CEventRouter::Subscribe(IDispatch* pDisp)
 {
 	IPdnWnd* pWnd = 0;
-	HRESULT hr = pDisp->QueryInterface( IID_IPdnWnd, (void**)&pWnd );
-	if( !pWnd )	return hr;
-	m_pTargetWnds.push_back( pWnd );
+	HRESULT hr = pDisp->QueryInterface(IID_IPdnWnd, (void**)&pWnd);
+	if(!pWnd)	return hr;
+	m_pTargetWnds.push_back(pWnd);
 	return hr;
 }
-STDMETHODIMP CEventRouter::Unsubscribe( IDispatch* pDisp )
+STDMETHODIMP CEventRouter::Unsubscribe(IDispatch* pDisp)
 {
-	if( !pDisp )
+	if(!pDisp)
 		return UnsubscribeAll();
 	IUnknown* pUnk = 0;
 	IUnknown* pUnk2 = 0;
-	pDisp->QueryInterface( IID_IUnknown, (void**)&pUnk );
+	pDisp->QueryInterface(IID_IUnknown, (void**)&pUnk);
 
-	for( DWORD i = 0; i < m_pTargetWnds.size(); i++ )
+	for(DWORD i = 0; i <m_pTargetWnds.size(); i++)
 	{
-		m_pTargetWnds[i]->QueryInterface( IID_IUnknown, (void**)&pUnk2 );
-		if( pUnk == pUnk2 )
+		m_pTargetWnds[i]->QueryInterface(IID_IUnknown, (void**)&pUnk2);
+		if(pUnk == pUnk2)
 		{
 			m_pTargetWnds[i]->Release();
-			m_pTargetWnds.erase( m_pTargetWnds.begin()+i );
+			m_pTargetWnds.erase(m_pTargetWnds.begin()+i);
 			pUnk->Release();
 			pUnk2->Release();
 			return S_OK;
@@ -76,29 +76,13 @@ STDMETHODIMP CEventRouter::UnsubscribeAll()
 	return S_OK;
 }
 
-STDMETHODIMP CEventRouter::OnListening( WORD Port )
+STDMETHODIMP CEventRouter::OnListening(WORD Port)
 {
-	for( DWORD i = 0; i < m_pTargetWnds.size(); i++ )
-		m_pTargetWnds[i]->Do( CComBSTR( L"HTTPOnListening" ), &CComVariant( Port ) );
+	for(DWORD i = 0; i <m_pTargetWnds.size(); i++)
+		m_pTargetWnds[i]->Do(CComBSTR(L"HTTPOnListening"), &CComVariant(Port));
 	return S_OK;
 }
-STDMETHODIMP CEventRouter::OnAccept( DWORD sessionID, BSTR remHost, USHORT remPort, USHORT localPort )
-{
-	VARIANT parameters[4];
-	parameters[0].vt      = VT_UI2;
-	parameters[1].vt      = VT_UI2;
-	parameters[2].vt      = VT_BSTR;
-	parameters[3].vt      = VT_UI4;
-	parameters[0].uintVal = localPort;
-	parameters[1].uintVal = remPort;
-	parameters[2].bstrVal = remHost;
-	parameters[3].uintVal = sessionID;
-
-	for( DWORD i = 0; i < m_pTargetWnds.size(); i++ )
-		m_pTargetWnds[i]->Do( CComBSTR( L"HTTPOnAccept" ), parameters, 4 );
-	return S_OK;
-}
-STDMETHODIMP CEventRouter::OnConnected( DWORD sessionID, BSTR remHost, USHORT remPort, USHORT localPort )
+STDMETHODIMP CEventRouter::OnAccept(DWORD sessionID, BSTR remHost, USHORT remPort, USHORT localPort)
 {
 	VARIANT parameters[4];
 	parameters[0].vt      = VT_UI2;
@@ -110,12 +94,28 @@ STDMETHODIMP CEventRouter::OnConnected( DWORD sessionID, BSTR remHost, USHORT re
 	parameters[2].bstrVal = remHost;
 	parameters[3].uintVal = sessionID;
 
-	for( DWORD i = 0; i < m_pTargetWnds.size(); i++ )
-		m_pTargetWnds[i]->Do( CComBSTR( L"HTTPOnConnected" ), parameters, 4 );
+	for(DWORD i = 0; i <m_pTargetWnds.size(); i++)
+		m_pTargetWnds[i]->Do(CComBSTR(L"HTTPOnAccept"), parameters, 4);
+	return S_OK;
+}
+STDMETHODIMP CEventRouter::OnConnected(DWORD sessionID, BSTR remHost, USHORT remPort, USHORT localPort)
+{
+	VARIANT parameters[4];
+	parameters[0].vt      = VT_UI2;
+	parameters[1].vt      = VT_UI2;
+	parameters[2].vt      = VT_BSTR;
+	parameters[3].vt      = VT_UI4;
+	parameters[0].uintVal = localPort;
+	parameters[1].uintVal = remPort;
+	parameters[2].bstrVal = remHost;
+	parameters[3].uintVal = sessionID;
+
+	for(DWORD i = 0; i <m_pTargetWnds.size(); i++)
+		m_pTargetWnds[i]->Do(CComBSTR(L"HTTPOnConnected"), parameters, 4);
 	return S_OK;
 }
 
-STDMETHODIMP CEventRouter::OnGetRequest( DWORD sessionID, DWORD fileID, BSTR URI, BSTR localPath )
+STDMETHODIMP CEventRouter::OnGetRequest(DWORD sessionID, DWORD fileID, BSTR URI, BSTR localPath)
 {
 	VARIANT parameters[4];
 	parameters[0].vt      = VT_BSTR;
@@ -127,11 +127,11 @@ STDMETHODIMP CEventRouter::OnGetRequest( DWORD sessionID, DWORD fileID, BSTR URI
 	parameters[2].uintVal = fileID;
 	parameters[3].uintVal = sessionID;
 
-	for( DWORD i = 0; i < m_pTargetWnds.size(); i++ )
-		m_pTargetWnds[i]->Do( CComBSTR( L"HTTPOnGetRequest" ), parameters, 4 );
+	for(DWORD i = 0; i <m_pTargetWnds.size(); i++)
+		m_pTargetWnds[i]->Do(CComBSTR(L"HTTPOnGetRequest"), parameters, 4);
 	return S_OK;
 }
-STDMETHODIMP CEventRouter::OnPostRequest( DWORD sessionID, BSTR URI, BSTR* saveAs )
+STDMETHODIMP CEventRouter::OnPostRequest(DWORD sessionID, BSTR URI, BSTR* saveAs)
 {
 	VARIANT parameters[4];
 	parameters[0].vt       = VT_UI2;
@@ -141,22 +141,22 @@ STDMETHODIMP CEventRouter::OnPostRequest( DWORD sessionID, BSTR URI, BSTR* saveA
 	parameters[1].bstrVal  = URI;
 	parameters[2].uintVal  = sessionID;
 
-	for( DWORD i = 0; i < m_pTargetWnds.size(); i++ )
-		m_pTargetWnds[i]->Do( CComBSTR( L"HTTPOnPostRequest" ), parameters, 3 );
+	for(DWORD i = 0; i <m_pTargetWnds.size(); i++)
+		m_pTargetWnds[i]->Do(CComBSTR(L"HTTPOnPostRequest"), parameters, 3);
 	return S_OK;
 }
 
-STDMETHODIMP CEventRouter::OnTimeout( DWORD sessionID )
+STDMETHODIMP CEventRouter::OnTimeout(DWORD sessionID)
 {
 	VARIANT parameters[1];
 	parameters[0].vt      = VT_UI4;
 	parameters[0].uintVal = sessionID;
 
-	for( DWORD i = 0; i < m_pTargetWnds.size(); i++ )
-		m_pTargetWnds[i]->Do( CComBSTR( L"HTTPOnTimeout" ), parameters, 1 );
+	for(DWORD i = 0; i <m_pTargetWnds.size(); i++)
+		m_pTargetWnds[i]->Do(CComBSTR(L"HTTPOnTimeout"), parameters, 1);
 	return S_OK;
 }
-STDMETHODIMP CEventRouter::OnSockErr( DWORD sessionID, DWORD err )
+STDMETHODIMP CEventRouter::OnSockErr(DWORD sessionID, DWORD err)
 {
 	VARIANT parameters[2];
 	parameters[0].vt      = VT_UI4;
@@ -164,11 +164,11 @@ STDMETHODIMP CEventRouter::OnSockErr( DWORD sessionID, DWORD err )
 	parameters[0].uintVal = err;
 	parameters[1].uintVal = sessionID;
 
-	for( DWORD i = 0; i < m_pTargetWnds.size(); i++ )
-		m_pTargetWnds[i]->Do( CComBSTR( L"HTTPOnSockErr" ), parameters, 2 );
+	for(DWORD i = 0; i <m_pTargetWnds.size(); i++)
+		m_pTargetWnds[i]->Do(CComBSTR(L"HTTPOnSockErr"), parameters, 2);
 	return S_OK;
 }
-STDMETHODIMP CEventRouter::OnHTTPErr( DWORD sessionID, DWORD err )
+STDMETHODIMP CEventRouter::OnHTTPErr(DWORD sessionID, DWORD err)
 {
 	VARIANT parameters[2];
 	parameters[0].vt      = VT_UI4;
@@ -176,11 +176,11 @@ STDMETHODIMP CEventRouter::OnHTTPErr( DWORD sessionID, DWORD err )
 	parameters[0].uintVal = err;
 	parameters[1].uintVal = sessionID;
 
-	for( DWORD i = 0; i < m_pTargetWnds.size(); i++ )
-		m_pTargetWnds[i]->Do( CComBSTR( L"HTTPOnHTTPError" ), parameters, 2 );
+	for(DWORD i = 0; i <m_pTargetWnds.size(); i++)
+		m_pTargetWnds[i]->Do(CComBSTR(L"HTTPOnHTTPError"), parameters, 2);
 	return S_OK;
 }
-STDMETHODIMP CEventRouter::OnFileErr( DWORD sessionID, DWORD err )
+STDMETHODIMP CEventRouter::OnFileErr(DWORD sessionID, DWORD err)
 {
 	VARIANT parameters[2];
 	parameters[0].vt      = VT_UI4;
@@ -188,28 +188,28 @@ STDMETHODIMP CEventRouter::OnFileErr( DWORD sessionID, DWORD err )
 	parameters[0].uintVal = err;
 	parameters[1].uintVal = sessionID;
 
-	for( DWORD i = 0; i < m_pTargetWnds.size(); i++ )
-		m_pTargetWnds[i]->Do( CComBSTR( L"HTTPOnFileErr" ), parameters, 2 );
+	for(DWORD i = 0; i <m_pTargetWnds.size(); i++)
+		m_pTargetWnds[i]->Do(CComBSTR(L"HTTPOnFileErr"), parameters, 2);
 	return S_OK;
 }
 
-STDMETHODIMP CEventRouter::OnTransferComplete( DWORD sessionID )
+STDMETHODIMP CEventRouter::OnTransferComplete(DWORD sessionID)
 {
 	VARIANT parameters[1];
 	parameters[0].vt      = VT_UI4;
 	parameters[0].uintVal = sessionID;
 
-	for( DWORD i = 0; i < m_pTargetWnds.size(); i++ )
-		m_pTargetWnds[i]->Do( CComBSTR( L"HTTPOnTransferComplete" ), parameters, 1 );
+	for(DWORD i = 0; i <m_pTargetWnds.size(); i++)
+		m_pTargetWnds[i]->Do(CComBSTR(L"HTTPOnTransferComplete"), parameters, 1);
 	return S_OK;
 }
-STDMETHODIMP CEventRouter::OnTransferAborted( DWORD sessionID )
+STDMETHODIMP CEventRouter::OnTransferAborted(DWORD sessionID)
 {
 	VARIANT parameters[1];
 	parameters[0].vt      = VT_UI4;
 	parameters[0].uintVal = sessionID;
 
-	for( DWORD i = 0; i < m_pTargetWnds.size(); i++ )
-		m_pTargetWnds[i]->Do( CComBSTR( L"HTTPOnTransferAborted" ), parameters, 1 );
+	for(DWORD i = 0; i <m_pTargetWnds.size(); i++)
+		m_pTargetWnds[i]->Do(CComBSTR(L"HTTPOnTransferAborted"), parameters, 1);
 	return S_OK;
 }

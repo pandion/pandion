@@ -52,7 +52,7 @@ private:
 	CCSInfo*       m_pCSInfo;
 	CTransfer*     m_pTransfer;
 public:
-	CClientSession( CPile* pPile, IStream* pERStream, CCSInfo* pCSInfo );
+	CClientSession(CPile* pPile, IStream* pERStream, CCSInfo* pCSInfo);
 	~CClientSession();
 
 	DWORD ClientConnect();

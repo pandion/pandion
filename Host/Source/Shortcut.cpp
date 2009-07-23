@@ -23,12 +23,15 @@
 #include "stdafx.h"
 #include "Shortcut.h"
 
+_COM_SMARTPTR_TYPEDEF(IPersistFile, __uuidof(IPersistFile)); 
+
 /*
  * Shortcut Constructor
  */
 Shortcut::Shortcut()
 {
-	m_pShellLink.CoCreateInstance(CLSID_ShellLink);
+	::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_ALL,
+		__uuidof(IShellLink), (LPVOID*) &m_ShellLink);
 }
 
 /*
@@ -36,6 +39,7 @@ Shortcut::Shortcut()
  */
 Shortcut::~Shortcut()
 {
+	m_ShellLink->Release();
 }
 
 /*
@@ -43,7 +47,7 @@ Shortcut::~Shortcut()
  */
 STDMETHODIMP Shortcut::Save(BSTR path)
 {
-	CComQIPtr<IPersistFile> pPersistFile(m_pShellLink);
+	IPersistFilePtr pPersistFile(m_ShellLink);
 	if(pPersistFile)
 	{
 		return pPersistFile->Save(path, TRUE);
@@ -59,7 +63,7 @@ STDMETHODIMP Shortcut::Save(BSTR path)
  */
 STDMETHODIMP Shortcut::Load(BSTR path)
 {
-	CComQIPtr<IPersistFile> pPersistFile(m_pShellLink);
+	IPersistFilePtr pPersistFile(m_ShellLink);
 	if(pPersistFile)
 	{
 		return pPersistFile->Load(path, STGM_READ);
@@ -75,10 +79,10 @@ STDMETHODIMP Shortcut::Load(BSTR path)
  */
 STDMETHODIMP Shortcut::get_Arguments(BSTR *arguments)
 {
-	if(m_pShellLink)
+	if(m_ShellLink)
 	{
 		TCHAR tArguments[INFOTIPSIZE] = TEXT("");
-		HRESULT res = m_pShellLink->GetArguments(tArguments, INFOTIPSIZE);
+		HRESULT res = m_ShellLink->GetArguments(tArguments, INFOTIPSIZE);
 		*arguments = ::SysAllocString(CT2W(tArguments));
 		return res;
 	}
@@ -94,9 +98,9 @@ STDMETHODIMP Shortcut::get_Arguments(BSTR *arguments)
  */
 STDMETHODIMP Shortcut::put_Arguments(BSTR arguments)
 {
-	if(m_pShellLink)
+	if(m_ShellLink)
 	{
-		return m_pShellLink->SetArguments(CW2T(arguments));
+		return m_ShellLink->SetArguments(CW2T(arguments));
 	}
 	else
 	{
@@ -109,10 +113,10 @@ STDMETHODIMP Shortcut::put_Arguments(BSTR arguments)
  */
 STDMETHODIMP Shortcut::get_Description(BSTR *description)
 {
-	if(m_pShellLink)
+	if(m_ShellLink)
 	{
 		TCHAR tDescription[INFOTIPSIZE] = TEXT("");
-		HRESULT res = m_pShellLink->GetDescription(tDescription, INFOTIPSIZE);
+		HRESULT res = m_ShellLink->GetDescription(tDescription, INFOTIPSIZE);
 		*description = ::SysAllocString(CT2W(tDescription));
 		return res;
 	}
@@ -127,9 +131,9 @@ STDMETHODIMP Shortcut::get_Description(BSTR *description)
  */
 STDMETHODIMP Shortcut::put_Description(BSTR description)
 {
-	if(m_pShellLink)
+	if(m_ShellLink)
 	{
-		return m_pShellLink->SetDescription(CW2T(description));
+		return m_ShellLink->SetDescription(CW2T(description));
 	}
 	else
 	{
@@ -142,11 +146,11 @@ STDMETHODIMP Shortcut::put_Description(BSTR description)
  */
 STDMETHODIMP Shortcut::get_IconLocation(BSTR *iconLocation)
 {
-	if(m_pShellLink)
+	if(m_ShellLink)
 	{
 		TCHAR tIconLoc[MAX_PATH + 10] = TEXT("");
 		int iIcon;
-		HRESULT res = m_pShellLink->GetIconLocation(tIconLoc,
+		HRESULT res = m_ShellLink->GetIconLocation(tIconLoc,
 			MAX_PATH, &iIcon);
 		StringCbPrintf(tIconLoc, MAX_PATH + 10, TEXT("%s,%d"),
 			tIconLoc, iIcon);
@@ -171,11 +175,11 @@ STDMETHODIMP Shortcut::put_IconLocation(BSTR iconLocation)
 	{
 		return E_INVALIDARG;
 	}
-	else if(m_pShellLink)
+	else if(m_ShellLink)
 	{
 		*comma = 0;
 
-		return m_pShellLink->SetIconLocation(CW2T(iconLocation), 
+		return m_ShellLink->SetIconLocation(CW2T(iconLocation), 
 			atoi(CW2A(comma+1)));
 	}
 	else
@@ -189,10 +193,10 @@ STDMETHODIMP Shortcut::put_IconLocation(BSTR iconLocation)
  */
 STDMETHODIMP Shortcut::get_Path(BSTR *path)
 {
-	if(m_pShellLink)
+	if(m_ShellLink)
 	{
 		TCHAR tPath[MAX_PATH] = TEXT("");
-		HRESULT res = m_pShellLink->GetPath(tPath,
+		HRESULT res = m_ShellLink->GetPath(tPath,
 			MAX_PATH, NULL, SLGP_UNCPRIORITY);
 		*path = ::SysAllocString(CT2W(tPath));
 		return res;
@@ -208,9 +212,9 @@ STDMETHODIMP Shortcut::get_Path(BSTR *path)
  */
 STDMETHODIMP Shortcut::put_Path(BSTR path)
 {
-	if(m_pShellLink)
+	if(m_ShellLink)
 	{
-		return m_pShellLink->SetPath(CW2T(path));
+		return m_ShellLink->SetPath(CW2T(path));
 	}
 	else
 	{

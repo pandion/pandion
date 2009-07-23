@@ -30,5 +30,5 @@ public:
 	CComQIPtr<ScrRun::IDictionary> m_pHeaders;
 	DWORD m_dwCode;
 
-	void Parse( BYTE* buf );
+	void Parse(BYTE* buf);
 };

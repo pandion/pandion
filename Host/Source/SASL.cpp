@@ -25,17 +25,17 @@
 #include "UTF8.h"
 #include "Hash.h"
 
-CSASL::CSASL()
+SASL::SASL()
 {
 	m_fNewConversation = TRUE;
 	m_fHaveCredHandle  = FALSE;
 	m_fHaveCtxtHandle  = FALSE;
 	SSPIReset();
 }
-CSASL::~CSASL()
+SASL::~SASL()
 {
 }
-STDMETHODIMP CSASL::PlainGenerateResponse(BSTR jid, 
+STDMETHODIMP SASL::PlainGenerateResponse(BSTR jid, 
 	BSTR username, BSTR password, BSTR *strBase64)
 {
 	CComBSTR strRetVal = "";
@@ -67,7 +67,7 @@ STDMETHODIMP CSASL::PlainGenerateResponse(BSTR jid,
 
 	return S_OK;
 }
-STDMETHODIMP CSASL::DigestGenerateResponse(BSTR username, BSTR realm, BSTR password, BSTR nonce, BSTR cnonce, BSTR digest_uri, BSTR nc, BSTR qop, BSTR *strDigest)
+STDMETHODIMP SASL::DigestGenerateResponse(BSTR username, BSTR realm, BSTR password, BSTR nonce, BSTR cnonce, BSTR digest_uri, BSTR nc, BSTR qop, BSTR *strDigest)
 {
 	/* MD5-Session algorithm:
 	var X	= Response('username') + ':' + Response('realm') + ':' + Response('password');
@@ -131,10 +131,12 @@ STDMETHODIMP CSASL::DigestGenerateResponse(BSTR username, BSTR realm, BSTR passw
 	HexString(binaryHA2, HA2, 16);
 
     /* calculate KD */
-	unsigned char KDLen = 33 + strlen(U8nonce) + 1 + strlen(U8nc) + 1 + strlen(U8cnonce) + 1 + strlen(U8qop) + 33;
+	unsigned char KDLen = 33 + strlen(U8nonce) + 1 + strlen(U8nc) +
+		1 + strlen(U8cnonce) + 1 + strlen(U8qop) + 33;
 	char *KD = new char[ KDLen + 1 ];
 	memcpy(KD, HA1, 32);
-	StringCbPrintfA(KD + 32, KDLen + 1 - 32, ":%s:%s:%s:%s:", U8nonce, U8nc, U8cnonce, U8qop);
+	StringCbPrintfA(KD + 32, KDLen + 1 - 32, ":%s:%s:%s:%s:",
+		U8nonce, U8nc, U8cnonce, U8qop);
 	memcpy(KD + 32 + strlen(KD + 32), HA2, 33);
 
 	/* calculate Z */
@@ -163,18 +165,21 @@ STDMETHODIMP CSASL::DigestGenerateResponse(BSTR username, BSTR realm, BSTR passw
 
 	return S_OK;
 }
-STDMETHODIMP CSASL::HexString(const unsigned char *binaryData, char *hexString, int n)
+STDMETHODIMP SASL::HexString(const unsigned char *binaryData,
+							  char *hexString, int n)
 {
-	for(int i = 0; i < n; i++)
+	for(int i = 0; i <n; i++)
 	{
-		hexString[2*i] = (binaryData[i] >> 4) + (((binaryData[i] >> 4) < 0xA) ? '0' : ('a' - 0xA));
-		hexString[2*i+1] = (binaryData[i] & 0x0F) +  (((binaryData[i] & 0x0F) < 0xA) ? '0' : ('a' - 0xA));
+		hexString[2*i] = (binaryData[i]>> 4) + 
+			(((binaryData[i]>> 4) <0xA) ? '0' : ('a' - 0xA));
+		hexString[2*i+1] = (binaryData[i] & 0x0F) + 
+			(((binaryData[i] & 0x0F) <0xA) ? '0' : ('a' - 0xA));
 	}
 	hexString[2*n] = '\0';
 
 	return S_OK;
 }
-STDMETHODIMP CSASL::SSPIReset()
+STDMETHODIMP SASL::SSPIReset()
 {
 	/* No windows 9x/Me */
 	if(!(GetVersion() & 0x80000000))
@@ -185,7 +190,9 @@ STDMETHODIMP CSASL::SSPIReset()
 			&SecurityPackage);
 		if (ss != SEC_E_OK)
 		{
-			SSPIError(L"SSPIReset()", L"QuerySecurityPackageInfo()", L"Unknown Error.");
+			SSPIError(L"SSPIReset()",
+				L"QuerySecurityPackageInfo()",
+				L"Unknown Error.");
 			return E_FAIL;
 		}
 		else
@@ -207,187 +214,231 @@ STDMETHODIMP CSASL::SSPIReset()
 	else
 		return S_OK;
 }
-STDMETHODIMP CSASL::SSPIGenerateResponse(BSTR Challenge, BOOL *Continue, BSTR *Response)
+STDMETHODIMP SASL::SSPIGenerateResponse(BSTR Challenge, BOOL *Continue, BSTR *Response)
 {
-	/* No windows 9x/Me */
-	if(!(GetVersion() & 0x80000000))
+	/* Acquire a credentials handle if this is the first response */
+	if(m_fNewConversation == TRUE)
 	{
-		/* Acquire a credentials handle if this is the first response */
-		if(m_fNewConversation == TRUE)
-		{
-			TimeStamp		Lifetime;
-
-			SECURITY_STATUS	ss = AcquireCredentialsHandle (
-							NULL,	// principal
-							PACKAGE_NAME,
-							SECPKG_CRED_OUTBOUND,
-							NULL,	// LOGON id
-							NULL,	// auth data
-							NULL,	// get key fn
-							NULL,	// get key arg
-							&m_hCred,
-							&Lifetime);
-
-			switch(ss)
-			{
-			case SEC_E_OK:
-				m_fHaveCredHandle = TRUE;
-				break;
-			case SEC_E_UNKNOWN_CREDENTIALS:
-				SSPIError(L"SSPIGenerateReponse()", L"AcquireCredentialsHandle()", L"The credentials supplied to the package were not recognized.");
-				return E_FAIL;
-			case SEC_E_NO_CREDENTIALS:
-				SSPIError(L"SSPIGenerateReponse()", L"AcquireCredentialsHandle()", L"No credentials are available in the security package.");
-				return E_FAIL;
-			case SEC_E_NOT_OWNER:
-				SSPIError(L"SSPIGenerateReponse()", L"AcquireCredentialsHandle()", L"The caller of the function does not have the necessary credentials.");
-				return E_FAIL;
-			case SEC_E_INSUFFICIENT_MEMORY:
-				SSPIError(L"SSPIGenerateReponse()", L"AcquireCredentialsHandle()", L"Not enough memory is available to complete the request.");
-				return E_FAIL;
-			case SEC_E_INTERNAL_ERROR:
-				SSPIError(L"SSPIGenerateReponse()", L"AcquireCredentialsHandle()", L"The Local Security Authority (LSA) cannot be contacted.");
-				return E_FAIL;
-			case SEC_E_SECPKG_NOT_FOUND:
-				SSPIError(L"SSPIGenerateReponse()", L"AcquireCredentialsHandle()", L"The requested security package does not exist.");
-				return E_FAIL;
-			default:
-				SSPIError(L"SSPIGenerateReponse()", L"AcquireCredentialsHandle()", L"Unknown Error.");
-				return E_FAIL;
-			}
-		}
-
-		/* Decode the Challenge */
-		DWORD DecodedChallengeLength = ATL::Base64DecodeGetRequiredLength(wcslen(Challenge));
-		std::vector<BYTE> DecodedChallenge(DecodedChallengeLength);
-		ATL::Base64Decode(CW2A(Challenge), wcslen(Challenge), &DecodedChallenge[0], (int *) &DecodedChallengeLength);
-
-		/* prepare input buffer */
-		SecBuffer		InSecBuff;
-		SecBufferDesc	InBuffDesc;
-
-		if(m_fNewConversation == FALSE)
-		{
-			InBuffDesc.ulVersion = SECBUFFER_VERSION;
-			InBuffDesc.cBuffers  = 1;
-			InBuffDesc.pBuffers  = &InSecBuff;
-
-			InSecBuff.cbBuffer   = DecodedChallengeLength;
-			InSecBuff.BufferType = SECBUFFER_TOKEN;
-			InSecBuff.pvBuffer   = &DecodedChallenge[0];
-		}
-
-		/* prepare output buffer */
-		SecBuffer			OutSecBuff;
-		SecBufferDesc		OutBuffDesc;
-		std::vector<BYTE>	outputBuffer(m_dwMaxTokenSize);
-
-		OutBuffDesc.ulVersion = SECBUFFER_VERSION;
-		OutBuffDesc.cBuffers  = 1;
-		OutBuffDesc.pBuffers  = &OutSecBuff;
-
-		OutSecBuff.cbBuffer   = m_dwMaxTokenSize;
-		OutSecBuff.BufferType = SECBUFFER_TOKEN;
-		OutSecBuff.pvBuffer   = &outputBuffer[0];
-
-		ULONG			ContextAttributes;
 		TimeStamp		Lifetime;
 
-		SECURITY_STATUS	ss = InitializeSecurityContext (
+		SECURITY_STATUS	ss = AcquireCredentialsHandle(
+						NULL,	// principal
+						PACKAGE_NAME,
+						SECPKG_CRED_OUTBOUND,
+						NULL,	// LOGON id
+						NULL,	// auth data
+						NULL,	// get key fn
+						NULL,	// get key arg
 						&m_hCred,
-						m_fNewConversation ? NULL : &m_hCtxt,
-						TEXT("Coversant.SSPI"),
-						0,	// context requirements
-						0,	// reserved1
-						SECURITY_NATIVE_DREP,
-						m_fNewConversation ? NULL : &InBuffDesc,
-						0,	// reserved2
-						&m_hCtxt,
-						&OutBuffDesc,
-						&ContextAttributes,
-						&Lifetime
-						);
+						&Lifetime);
 
 		switch(ss)
 		{
-		case SEC_E_INVALID_HANDLE:
-			SSPIError(L"SSPIGenerateReponse()", L"InitializeSecurityContext()", L"The handle passed to the function is invalid.");
+		case SEC_E_OK:
+			m_fHaveCredHandle = TRUE;
+			break;
+		case SEC_E_UNKNOWN_CREDENTIALS:
+			SSPIError(L"SSPIGenerateReponse()",
+				L"AcquireCredentialsHandle()",
+				L"The credentials supplied to the package were not recognized.");
 			return E_FAIL;
-		case SEC_E_TARGET_UNKNOWN:
-			SSPIError(L"SSPIGenerateReponse()", L"InitializeSecurityContext()", L"The target was not recognized.");
-			return E_FAIL; 
-		case SEC_E_LOGON_DENIED:
-			SSPIError(L"SSPIGenerateReponse()", L"InitializeSecurityContext()", L"The logon failed.");
-			return E_FAIL; 
-		case SEC_E_INTERNAL_ERROR:
-			SSPIError(L"SSPIGenerateReponse()", L"InitializeSecurityContext()", L"The Local Security Authority cannot be contacted.");
-			return E_FAIL; 
 		case SEC_E_NO_CREDENTIALS:
-			SSPIError(L"SSPIGenerateReponse()", L"InitializeSecurityContext()", L"No credentials are available in the security package.");
-			return E_FAIL; 
-		case SEC_E_NO_AUTHENTICATING_AUTHORITY:
-			SSPIError(L"SSPIGenerateReponse()", L"InitializeSecurityContext()", L"No authority could be contacted for authentication. The domain name of the authenticating party could be wrong, the domain could be unreachable, or there might have been a trust relationship failure.");
-			return E_FAIL; 
+			SSPIError(L"SSPIGenerateReponse()",
+				L"AcquireCredentialsHandle()",
+				L"No credentials are available in the security package.");
+			return E_FAIL;
+		case SEC_E_NOT_OWNER:
+			SSPIError(L"SSPIGenerateReponse()",
+				L"AcquireCredentialsHandle()",
+				L"The caller of the function does not have the necessary credentials.");
+			return E_FAIL;
 		case SEC_E_INSUFFICIENT_MEMORY:
-			SSPIError(L"SSPIGenerateReponse()", L"InitializeSecurityContext()", L"Not enough memory is available to complete the request.");
-			return E_FAIL; 
-		case SEC_E_INVALID_TOKEN:
-			SSPIError(L"SSPIGenerateReponse()", L"InitializeSecurityContext()", L"The error is due to a malformed input token, such as a token corrupted in transit, a token of incorrect size, or a token passed into the wrong security package. Passing a token to the wrong package can happen if the client and server did not negotiate the proper security package.");
-			return E_FAIL; 
-		case SEC_E_UNSUPPORTED_FUNCTION:
-			SSPIError(L"SSPIGenerateReponse()", L"InitializeSecurityContext()", L"An invalid context attribute flag (ISC_REQ_DELEGATE or ISC_REQ_PROMPT_FOR_CREDS) was specified in the fContextReq parameter.");
-			return E_FAIL; 
-		case SEC_E_WRONG_PRINCIPAL:
-			SSPIError(L"SSPIGenerateReponse()", L"InitializeSecurityContext()", L"The principal that received the authentication request is not the same as the one passed into the pszTargetName parameter. This indicates a failure in mutual authentication.");
-			return E_FAIL; 
+			SSPIError(L"SSPIGenerateReponse()",
+				L"AcquireCredentialsHandle()",
+				L"Not enough memory is available to complete the request.");
+			return E_FAIL;
+		case SEC_E_INTERNAL_ERROR:
+			SSPIError(L"SSPIGenerateReponse()",
+				L"AcquireCredentialsHandle()",
+				L"The Local Security Authority (LSA) cannot be contacted.");
+			return E_FAIL;
+		case SEC_E_SECPKG_NOT_FOUND:
+			SSPIError(L"SSPIGenerateReponse()",
+				L"AcquireCredentialsHandle()",
+				L"The requested security package does not exist.");
+			return E_FAIL;
 		default:
-			m_fHaveCtxtHandle = TRUE;
+			SSPIError(L"SSPIGenerateReponse()",
+				L"AcquireCredentialsHandle()",
+				L"Unknown Error.");
+			return E_FAIL;
 		}
-
-		// Complete token -- if applicable
-		if((SEC_I_COMPLETE_NEEDED == ss) || (SEC_I_COMPLETE_AND_CONTINUE == ss))  
-		{
-			ss = CompleteAuthToken(&m_hCtxt, &OutBuffDesc);
-			switch(ss)
-			{
-			case SEC_E_INVALID_HANDLE:
-				SSPIError(L"SSPIGenerateReponse()", L"CompleteAuthToken()", L" The handle passed to the function is invalid.");
-				return E_FAIL;
-			case SEC_E_INVALID_TOKEN:
-				SSPIError(L"SSPIGenerateReponse()", L"CompleteAuthToken()", L" The token passed to the function is invalid.");
-				return E_FAIL;
-			case SEC_E_OUT_OF_SEQUENCE:
-				SSPIError(L"SSPIGenerateReponse()", L"CompleteAuthToken()", L" The client's security context was located, but the message number is incorrect. This error return is used with the Microsoft Digest SSP.");
-				return E_FAIL;
-			case SEC_E_MESSAGE_ALTERED:
-				SSPIError(L"SSPIGenerateReponse()", L"CompleteAuthToken()", L" The client's security context was located, but the client's message has been tampered with. This error return is used with the Microsoft Digest SSP.");
-				return E_FAIL;
-			case SEC_E_INTERNAL_ERROR:
-				SSPIError(L"SSPIGenerateReponse()", L"CompleteAuthToken()", L" An unidentified internal error has occurred.");
-				return E_FAIL;
-			default:
-				break;
-			}
-		}
-
-		m_fNewConversation = FALSE;
-
-		DWORD ResponseLen = ATL::Base64EncodeGetRequiredLength(OutBuffDesc.pBuffers->cbBuffer);
-		std::vector<char> EncodedResponse(ResponseLen + 1);
-		ATL::Base64Encode((BYTE *) OutBuffDesc.pBuffers->pvBuffer, OutBuffDesc.pBuffers->cbBuffer, &EncodedResponse[0], (int *) &ResponseLen, ATL_BASE64_FLAG_NOCRLF);
-		EncodedResponse[ResponseLen] = 0;
-		*Response = SysAllocString(CA2W(&EncodedResponse[0]));
-
-		*Continue = ((SEC_I_CONTINUE_NEEDED == ss) || (SEC_I_COMPLETE_AND_CONTINUE == ss));
-		return S_OK;
 	}
-	else
-		return E_NOTIMPL; /* return error to JScript */
+
+	/* Decode the Challenge */
+	DWORD DecodedChallengeLength = 
+		ATL::Base64DecodeGetRequiredLength(wcslen(Challenge));
+	std::vector<BYTE> DecodedChallenge(DecodedChallengeLength);
+	ATL::Base64Decode(CW2A(Challenge), wcslen(Challenge),
+		&DecodedChallenge[0], (int *) &DecodedChallengeLength);
+
+	/* prepare input buffer */
+	SecBuffer		InSecBuff;
+	SecBufferDesc	InBuffDesc;
+
+	if(m_fNewConversation == FALSE)
+	{
+		InBuffDesc.ulVersion = SECBUFFER_VERSION;
+		InBuffDesc.cBuffers  = 1;
+		InBuffDesc.pBuffers  = &InSecBuff;
+
+		InSecBuff.cbBuffer   = DecodedChallengeLength;
+		InSecBuff.BufferType = SECBUFFER_TOKEN;
+		InSecBuff.pvBuffer   = &DecodedChallenge[0];
+	}
+
+	/* prepare output buffer */
+	SecBuffer			OutSecBuff;
+	SecBufferDesc		OutBuffDesc;
+	std::vector<BYTE>	outputBuffer(m_dwMaxTokenSize);
+
+	OutBuffDesc.ulVersion = SECBUFFER_VERSION;
+	OutBuffDesc.cBuffers  = 1;
+	OutBuffDesc.pBuffers  = &OutSecBuff;
+
+	OutSecBuff.cbBuffer   = m_dwMaxTokenSize;
+	OutSecBuff.BufferType = SECBUFFER_TOKEN;
+	OutSecBuff.pvBuffer   = &outputBuffer[0];
+
+	ULONG			ContextAttributes;
+	TimeStamp		Lifetime;
+
+	SECURITY_STATUS	ss = InitializeSecurityContext(
+					&m_hCred,
+					m_fNewConversation ? NULL : &m_hCtxt,
+					TEXT("Coversant.SSPI"),
+					0,	// context requirements
+					0,	// reserved1
+					SECURITY_NATIVE_DREP,
+					m_fNewConversation ? NULL : &InBuffDesc,
+					0,	// reserved2
+					&m_hCtxt,
+					&OutBuffDesc,
+					&ContextAttributes,
+					&Lifetime
+					);
+
+	switch(ss)
+	{
+	case SEC_E_INVALID_HANDLE:
+		SSPIError(L"SSPIGenerateReponse()",
+			L"InitializeSecurityContext()",
+			L"The handle passed to the function is invalid.");
+		return E_FAIL;
+	case SEC_E_TARGET_UNKNOWN:
+		SSPIError(L"SSPIGenerateReponse()",
+			L"InitializeSecurityContext()",
+			L"The target was not recognized.");
+		return E_FAIL; 
+	case SEC_E_LOGON_DENIED:
+		SSPIError(L"SSPIGenerateReponse()", 
+			L"InitializeSecurityContext()", 
+			L"The logon failed.");
+		return E_FAIL; 
+	case SEC_E_INTERNAL_ERROR:
+		SSPIError(L"SSPIGenerateReponse()", 
+			L"InitializeSecurityContext()", 
+			L"The Local Security Authority cannot be contacted.");
+		return E_FAIL; 
+	case SEC_E_NO_CREDENTIALS:
+		SSPIError(L"SSPIGenerateReponse()", 
+			L"InitializeSecurityContext()", 
+			L"No credentials are available in the security package.");
+		return E_FAIL; 
+	case SEC_E_NO_AUTHENTICATING_AUTHORITY:
+		SSPIError(L"SSPIGenerateReponse()", 
+			L"InitializeSecurityContext()", 
+			L"No authority could be contacted for authentication. The domain name of the authenticating party could be wrong, the domain could be unreachable, or there might have been a trust relationship failure.");
+		return E_FAIL; 
+	case SEC_E_INSUFFICIENT_MEMORY:
+		SSPIError(L"SSPIGenerateReponse()", 
+			L"InitializeSecurityContext()", 
+			L"Not enough memory is available to complete the request.");
+		return E_FAIL; 
+	case SEC_E_INVALID_TOKEN:
+		SSPIError(L"SSPIGenerateReponse()", 
+			L"InitializeSecurityContext()", 
+			L"The error is due to a malformed input token, such as a token corrupted in transit, a token of incorrect size, or a token passed into the wrong security package. Passing a token to the wrong package can happen if the client and server did not negotiate the proper security package.");
+		return E_FAIL; 
+	case SEC_E_UNSUPPORTED_FUNCTION:
+		SSPIError(L"SSPIGenerateReponse()", 
+			L"InitializeSecurityContext()", 
+			L"An invalid context attribute flag (ISC_REQ_DELEGATE or ISC_REQ_PROMPT_FOR_CREDS) was specified in the fContextReq parameter.");
+		return E_FAIL; 
+	case SEC_E_WRONG_PRINCIPAL:
+		SSPIError(L"SSPIGenerateReponse()", 
+			L"InitializeSecurityContext()", 
+			L"The principal that received the authentication request is not the same as the one passed into the pszTargetName parameter. This indicates a failure in mutual authentication.");
+		return E_FAIL; 
+	default:
+		m_fHaveCtxtHandle = TRUE;
+	}
+
+	// Complete token -- if applicable
+	if((SEC_I_COMPLETE_NEEDED == ss) || (SEC_I_COMPLETE_AND_CONTINUE == ss))  
+	{
+		ss = CompleteAuthToken(&m_hCtxt, &OutBuffDesc);
+		switch(ss)
+		{
+		case SEC_E_INVALID_HANDLE:
+			SSPIError(L"SSPIGenerateReponse()", 
+				L"CompleteAuthToken()", 
+				L" The handle passed to the function is invalid.");
+			return E_FAIL;
+		case SEC_E_INVALID_TOKEN:
+			SSPIError(L"SSPIGenerateReponse()", 
+				L"CompleteAuthToken()", 
+				L" The token passed to the function is invalid.");
+			return E_FAIL;
+		case SEC_E_OUT_OF_SEQUENCE:
+			SSPIError(L"SSPIGenerateReponse()", 
+				L"CompleteAuthToken()", 
+				L" The client's security context was located, but the message number is incorrect. This error return is used with the Microsoft Digest SSP.");
+			return E_FAIL;
+		case SEC_E_MESSAGE_ALTERED:
+			SSPIError(L"SSPIGenerateReponse()", 
+				L"CompleteAuthToken()", 
+				L" The client's security context was located, but the client's message has been tampered with. This error return is used with the Microsoft Digest SSP.");
+			return E_FAIL;
+		case SEC_E_INTERNAL_ERROR:
+			SSPIError(L"SSPIGenerateReponse()", 
+				L"CompleteAuthToken()", 
+				L" An unidentified internal error has occurred.");
+			return E_FAIL;
+		default:
+			break;
+		}
+	}
+
+	m_fNewConversation = FALSE;
+
+	DWORD ResponseLen = 
+		ATL::Base64EncodeGetRequiredLength(OutBuffDesc.pBuffers->cbBuffer);
+	std::vector<char> EncodedResponse(ResponseLen + 1);
+	ATL::Base64Encode((BYTE *) OutBuffDesc.pBuffers->pvBuffer, 
+		OutBuffDesc.pBuffers->cbBuffer, &EncodedResponse[0], 
+		(int *) &ResponseLen, ATL_BASE64_FLAG_NOCRLF);
+	EncodedResponse[ResponseLen] = 0;
+	*Response = SysAllocString(CA2W(&EncodedResponse[0]));
+
+	*Continue = 
+		((SEC_I_CONTINUE_NEEDED == ss) || (SEC_I_COMPLETE_AND_CONTINUE == ss));
+	return S_OK;
 }
-void CSASL::SSPIError(LPWSTR Where, LPWSTR WhenCalling, LPWSTR ErrorMessage)
+void SASL::SSPIError(LPWSTR Where, LPWSTR WhenCalling, LPWSTR ErrorMessage)
 {
 	std::wostringstream dbgMsg;
-	dbgMsg << L"SSPI error in " << Where << " when calling " << WhenCalling <<
-		": " <<	ErrorMessage << std::endl;
+	dbgMsg <<L"SSPI error in " <<Where <<" when calling " <<WhenCalling <<
+		": " <<	ErrorMessage <<std::endl;
 	OutputDebugString(CW2T(dbgMsg.str().c_str()));
 }

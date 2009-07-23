@@ -21,29 +21,22 @@
  *              facilities for creating and editing Windows shortcuts.
  */
 #pragma once
+#include "DispInterfaceImpl.h"
 
 /*
  * This COM class provides the agent with facilities for editing and creating
  * Windows shortcuts.
  */
 class Shortcut :
-	public CComObjectRootEx<CComSingleThreadModel>,
-	public IDispatchImpl<IShortcut>
+	public DispInterfaceImpl<IShortcut>
 {
 	/*
-	 * A pointer to an IShellLink object used to access shortcut properties.
+	 * A pointer to an IShellLink interface used to access shortcut properties.
 	 */
-	CComPtr<IShellLink> m_pShellLink;
+	IShellLink* m_ShellLink;
 public:
 	Shortcut();
 	~Shortcut();
-
-	DECLARE_NO_REGISTRY()
-
-	BEGIN_COM_MAP(Shortcut)
-		COM_INTERFACE_ENTRY(IDispatch)
-		COM_INTERFACE_ENTRY(IShortcut)
-	END_COM_MAP()
 
 	STDMETHOD(Save)(BSTR path);
 	STDMETHOD(Load)(BSTR path);

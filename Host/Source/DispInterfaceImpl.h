@@ -95,7 +95,7 @@ public:
 	 */
 	STDMETHODIMP_(ULONG) Release()
 	{
-		if(m_COMReferenceCounter > 1)
+		if(m_COMReferenceCounter> 1)
 		{
 			return --m_COMReferenceCounter;
 		}

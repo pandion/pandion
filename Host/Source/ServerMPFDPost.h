@@ -41,7 +41,7 @@ private:
 
 	DWORD  m_nBytesToRecv;
 public:
-	CServerMPFDPost( IEventRouter* pER, CPile* pPile, CHTTPRequest* pRequest, Socket* pSocket, DWORD sessionID );
+	CServerMPFDPost(IEventRouter* pER, CPile* pPile, CHTTPRequest* pRequest, Socket* pSocket, DWORD sessionID);
 	~CServerMPFDPost();
 
 	bool EatBoundary();

@@ -111,11 +111,11 @@ void XMPPLogger::LogLoadXMLError(MSXML2::IXMLDOMDocument* xmlDoc,
 		std::dec << lineNumber << std::endl <<
 		L"ERROR: Line position: " <<
 		linePosition <<	std::endl <<
-		L"ERROR: Reason:        " << 
-		errorReason << 
-		L"ERROR: Line Source:   " << 
+		L"ERROR: Reason:        " <<
+		errorReason <<
+		L"ERROR: Line Source:   " <<
 		sourceString << std::endl <<
-		L"ERROR: XML Source:    " << 
+		L"ERROR: XML Source:    " <<
 		parsedData << std::endl;
 	Log(errorMessage.str());
 

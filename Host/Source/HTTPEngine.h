@@ -26,8 +26,8 @@ class CProxyInfo;
 class CListenThread;
 
 class CHTTP :
-	public CComObjectRootEx< CComSingleThreadModel >,
-	public IDispatchImpl< IHTTP >
+	public CComObjectRootEx<CComSingleThreadModel>,
+	public IDispatchImpl<IHTTP>
 {
 private:	
 	CPile* m_pPile;
@@ -39,27 +39,27 @@ public:
 	~CHTTP();
 
 BEGIN_COM_MAP(CHTTP)
-	COM_INTERFACE_ENTRY( IHTTP )
-	COM_INTERFACE_ENTRY( IDispatch )
+	COM_INTERFACE_ENTRY(IHTTP)
+	COM_INTERFACE_ENTRY(IDispatch)
 END_COM_MAP()
 
 // IHTTP
-	STDMETHOD(ShareFile)( BSTR filename, BSTR URL, DWORD* retCookie );
-	STDMETHOD(UnShareFile)( DWORD sfCookie );
+	STDMETHOD(ShareFile)(BSTR filename, BSTR URL, DWORD* retCookie);
+	STDMETHOD(UnShareFile)(DWORD sfCookie);
 	
-	STDMETHOD(Listen)( USHORT port );
-	STDMETHOD(StopListening)( USHORT port );
+	STDMETHOD(Listen)(USHORT port);
+	STDMETHOD(StopListening)(USHORT port);
 
-	STDMETHOD(Get)( BSTR filename, BSTR URI, DWORD offset, DWORD len, BSTR address, USHORT port, DWORD* sessionID );
-	STDMETHOD(Post)( BSTR filename, BSTR URI, DWORD offset, DWORD len, BSTR address, USHORT port, DWORD* sessionID );
+	STDMETHOD(Get)(BSTR filename, BSTR URI, DWORD offset, DWORD len, BSTR address, USHORT port, DWORD* sessionID);
+	STDMETHOD(Post)(BSTR filename, BSTR URI, DWORD offset, DWORD len, BSTR address, USHORT port, DWORD* sessionID);
 
-	STDMETHOD(SetProxyInfo)( BSTR proxyAddress, USHORT proxyPort, BSTR proxyUName, BSTR proxyPass );
+	STDMETHOD(SetProxyInfo)(BSTR proxyAddress, USHORT proxyPort, BSTR proxyUName, BSTR proxyPass);
 
-	STDMETHOD(Subscribe)( IDispatch* wnd );
-	STDMETHOD(Unsubscribe)( IDispatch* wnd );
+	STDMETHOD(Subscribe)(IDispatch* wnd);
+	STDMETHOD(Unsubscribe)(IDispatch* wnd);
 
-	STDMETHOD(GetProgress)( DWORD sessionID, DWORD* retval );
-	STDMETHOD(GetLength)( DWORD sessionID, DWORD* retval );
+	STDMETHOD(GetProgress)(DWORD sessionID, DWORD* retval);
+	STDMETHOD(GetLength)(DWORD sessionID, DWORD* retval);
 
-	STDMETHOD(Abort)( DWORD sessionID );
+	STDMETHOD(Abort)(DWORD sessionID);
 }; 

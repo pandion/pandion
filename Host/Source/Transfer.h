@@ -40,7 +40,7 @@ protected:
 	BYTE*					m_buf;
 	DWORD					m_fp;
 public:
-	CTransfer( IEventRouter* pER, CPile* pPile, Socket* pSocket, DWORD sessionID );
+	CTransfer(IEventRouter* pER, CPile* pPile, Socket* pSocket, DWORD sessionID);
 	~CTransfer();
 
 	virtual DWORD PreCommand() = 0;

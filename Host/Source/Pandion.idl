@@ -32,7 +32,7 @@ import "atliface.idl";
     
 	[ uuid(4D7F263B-EF63-4132-9264-109E4C874ED1) ] interface IExternal : IDispatch
 	{
-		HRESULT Init([in] void* , [in] void* );
+		HRESULT Init([in] void* , [in] void*);
 		[propget] HRESULT wnd([out, retval] VARIANT* pDisp);
 		[propget] HRESULT mainWnd([out, retval] VARIANT* pDisp);
 		[propget] HRESULT windows([out, retval] VARIANT* pDisp);
@@ -246,48 +246,6 @@ import "atliface.idl";
 
 		HRESULT Abort([in] DWORD sessionID);
 	}
-
-/*	[ uuid(27D74212-5EF5-401b-AFBD-30E8DC1D9534), dual ] interface IHTTP : IDispatch
-	{
-		[propget] HRESULT Server([out,retval] IDispatch* *ppServer);
-		[propget] HRESULT Client([out,retval] IDispatch* *ppClient);
-	}
-	[ uuid(E695B6B5-F5E5-4db9-8B6C-AC30147A8385), dual ] interface IHTTPServer : IDispatch
-	{
-		HRESULT RegisterEvent([in] BSTR event, [in] BSTR handler, [in] IDispatch* pWnd);
-		HRESULT Listen([in] USHORT port, [in] BOOL useTLS, [out,retval] USHORT* retPort);
-		HRESULT StopListen([in] USHORT port);
-		HRESULT ShareFile([in] BSTR path, [in] BSTR URL);
-		HRESULT UnShareFile([in] BSTR URL);
-	}
-	[ uuid(D1428F43-C813-448b-B259-48F077CA8147), dual ] interface IServerSession : IDispatch
-	{
-		HRESULT RegisterEvent([in] BSTR event, [in] BSTR handler, [in] IDispatch* pWnd);
-		[propget] HRESULT Progress([out,retval] DWORD* Progress);
-		[propget] HRESULT Length([out,retval] DWORD* Length);
-		[propget] HRESULT Status([out,retval] BSTR* Status);
-		HRESULT Pause();
-		HRESULT Resume();
-		HRESULT Abort();
-		[propget] HRESULT Method([out,retval] BSTR* Method);
-		[propget] HRESULT RequestURI([out,retval] BSTR* RequestURI);
-		[propget] HRESULT HTTPHeaders([out,retval] BSTR* HTTPHeaders);
-	}
-	[ uuid(481536E1-6083-4432-BC09-BDBC3A7118B8), dual ] interface IHTTPClient : IDispatch
-	{
-		HRESULT Get([in] BSTR URL, [in] BSTR File, [in] DWORD Offset, [in] DWORD Length, 
-			[out,retval] IDispatch* *ppSession);
-		HRESULT Post([in] BSTR URL, [in] BSTR File, [in] DWORD Offset, [in] DWORD Length, 
-			[out,retval] IDispatch* *ppSession);
-	}
-	[ uuid(ADEE0030-BA40-405e-A466-F6B416A23FE9), dual ] interface IClientSession : IDispatch
-	{
-		HRESULT RegisterEvent([in] BSTR event, [in] BSTR handler, [out,retval] IDispatch* *ppWnd);
-		HRESULT GetProgress([out,retval] DWORD* Progress);
-		HRESULT GetLength([out,retval] DWORD* Length);
-		HRESULT GetStatus([out,retval] BSTR* Status);
-	}
-*/
 	[uuid(E9B8AA03-69C6-4ce6-96E9-1A3E38DF880C)]
 	interface IXMPP : IDispatch
 	{
@@ -329,14 +287,35 @@ import "atliface.idl";
 		[propput] HRESULT StartSCSucceededHandler([in] BSTR handler);
 		[propput] HRESULT StartSCFailedHandler([in] BSTR handler);
 	}
-	[ uuid(4DA65D01-52FA-4305-8F87-3C2124F01FB1), dual ] interface ISASL : IDispatch
+	[uuid(AE04DA67-F008-4365-A4E6-8A5094B2B774)]
+	interface ISASL : IDispatch
 	{
-		HRESULT PlainGenerateResponse([in] BSTR jid, [in] BSTR username, [in] BSTR password, [out,retval] BSTR* strBase64);
-		HRESULT DigestGenerateResponse([in] BSTR username, [in] BSTR realm, [in] BSTR password, [in] BSTR nonce, [in] BSTR cnonce, [in] BSTR digest_uri, [in] BSTR nc, [in] BSTR qop, [out,retval] BSTR* strDigest);
+		HRESULT PlainGenerateResponse(
+			[in] BSTR jid,
+			[in] BSTR username,
+			[in] BSTR password,
+			[out,retval] BSTR* strBase64
+			);
+		HRESULT DigestGenerateResponse(
+			[in] BSTR username,
+			[in] BSTR realm,
+			[in] BSTR password,
+			[in] BSTR nonce,
+			[in] BSTR cnonce,
+			[in] BSTR digest_uri,
+			[in] BSTR nc,
+			[in] BSTR qop,
+			[out,retval] BSTR* strDigest
+			);
 		HRESULT SSPIReset();
-		HRESULT SSPIGenerateResponse([in] BSTR Challenge, [out] BOOL* Continue, [out,retval] BSTR* Response);
+		HRESULT SSPIGenerateResponse(
+			[in] BSTR Challenge,
+			[out] BOOL* Continue,
+			[out,retval] BSTR* Response
+			);
 	}
-	[ uuid(86F9CBA5-DFB1-452d-A79F-F22E0DCFE567), dual ] interface IShortcut : IDispatch
+	[uuid(3AA4A7CE-829F-4b24-BB86-D96A23084F51)]
+	interface IShortcut : IDispatch
 	{
 		HRESULT Save([in] BSTR path);
 		HRESULT Load([in] BSTR path);

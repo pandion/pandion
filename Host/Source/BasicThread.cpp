@@ -34,22 +34,22 @@ HANDLE CBasicThread::GetHandle()
 {
 	return m_workerThread;
 }
-DWORD __stdcall CBasicThread::RunProc( void *pvoid )
+DWORD __stdcall CBasicThread::RunProc(void *pvoid)
 {
 	CBasicThread* pBT = (CBasicThread*) pvoid;
 	return pBT->Run();
 }
-void CBasicThread::StartThread( int nPriority )
+void CBasicThread::StartThread(int nPriority)
 {
 	DWORD ThreadID;
 	m_continue = true;
-	m_workerThread = CreateThread( NULL, 0, RunProc, (LPVOID) this, 0, &ThreadID );
-	SetThreadPriority( m_workerThread, nPriority );
+	m_workerThread = CreateThread(NULL, 0, RunProc, (LPVOID) this, 0, &ThreadID);
+	SetThreadPriority(m_workerThread, nPriority);
 }
 void CBasicThread::TerminateThread()
 {
 	SetContinue(false);
-	::WaitForSingleObject( m_workerThread, INFINITE );
+	::WaitForSingleObject(m_workerThread, INFINITE);
 }
 void CBasicThread::TerminateThreadInternal()
 {
@@ -57,9 +57,9 @@ void CBasicThread::TerminateThreadInternal()
 }
 int CBasicThread::Run()
 {
-	CoInitializeEx( NULL, COINIT_APARTMENTTHREADED  );
+	CoInitializeEx(NULL, COINIT_APARTMENTTHREADED );
 	PreCommand();
-	while( MayIContinue() )
+	while(MayIContinue())
 		Command();
 	PostCommand();
 	return 0;

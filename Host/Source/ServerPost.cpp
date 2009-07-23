@@ -26,8 +26,8 @@
 #include "HTTPRequest.h"
 #include "File.h"
 
-CServerPost::CServerPost( IEventRouter* pER, CPile* pPile, CHTTPRequest* pRequest, Socket* pSocket, DWORD sessionID ) :
-	CTransfer( pER, pPile, pSocket, sessionID ), m_pRequest( pRequest ), m_nTotalBytesToRecv( 0 )
+CServerPost::CServerPost(IEventRouter* pER, CPile* pPile, CHTTPRequest* pRequest, Socket* pSocket, DWORD sessionID) :
+	CTransfer(pER, pPile, pSocket, sessionID), m_pRequest(pRequest), m_nTotalBytesToRecv(0)
 {
 }
 CServerPost::~CServerPost()
@@ -38,25 +38,25 @@ DWORD CServerPost::PreCommand()
 	USES_CONVERSION;
 
 	BSTR strFilePath;
-	m_pER->OnPostRequest( m_SessionID, _bstr_t( m_pRequest->m_URI ), &strFilePath );
+	m_pER->OnPostRequest(m_SessionID, _bstr_t(m_pRequest->m_URI), &strFilePath);
 
-	DWORD err = m_pFile->Create( strFilePath, GENERIC_WRITE, FILE_SHARE_READ, OPEN_ALWAYS );
+	DWORD err = m_pFile->Create(strFilePath, GENERIC_WRITE, FILE_SHARE_READ, OPEN_ALWAYS);
 
-	if( err )
+	if(err)
 	{
 		BYTE* ErrorBuf = (BYTE *)"HTTP/1.1 500 Internal Server Error\r\nConnection: close\r\n\r\n";
-		m_pSocket->Send( ErrorBuf, strlen( (char*)ErrorBuf ) );
+		m_pSocket->Send(ErrorBuf, strlen((char*)ErrorBuf));
 		m_pSocket->Disconnect();
-		m_pER->OnFileErr( m_SessionID, err );
+		m_pER->OnFileErr(m_SessionID, err);
 		return -1;
 	}
 
 	_variant_t Content_Length;
-	m_pRequest->m_pHeaders->get_Item( &_variant_t( _bstr_t( "Content-Length" ) ), &Content_Length );
-	m_nBytesToRecv = _wtol( Content_Length.bstrVal );
+	m_pRequest->m_pHeaders->get_Item(&_variant_t(_bstr_t("Content-Length")), &Content_Length);
+	m_nBytesToRecv = _wtol(Content_Length.bstrVal);
 	m_fp = 0;
 
-	m_pFile->Seek( m_nBytesToRecv, 0, FILE_BEGIN );
+	m_pFile->Seek(m_nBytesToRecv, 0, FILE_BEGIN);
 	m_pFile->SetEOF();
 
 	return 0;
@@ -65,39 +65,39 @@ DWORD CServerPost::Command()
 {
 	DWORD nBytesReceived = 0, nBytesWritten = 0, err = 0;
 
-	nBytesReceived = m_pSocket->Recv( m_buf, m_nBytesToRecv >= BLOCK_SIZE ? BLOCK_SIZE : m_nBytesToRecv );
+	nBytesReceived = m_pSocket->Recv(m_buf, m_nBytesToRecv>= BLOCK_SIZE ? BLOCK_SIZE : m_nBytesToRecv);
 
-	if( nBytesReceived == SOCKET_ERROR )
+	if(nBytesReceived == SOCKET_ERROR)
 	{
-		if( m_nTotalBytesToRecv == -1 )
+		if(m_nTotalBytesToRecv == -1)
 		{
 			m_bAborted = FALSE;
 			return 1;
 		}
 
-		switch( err = WSAGetLastError() )
+		switch(err = WSAGetLastError())
 		{
 		case WSAEWOULDBLOCK:
 			return 0;
 		case WSAETIMEDOUT:
-			m_pER->OnTimeout( m_SessionID );
+			m_pER->OnTimeout(m_SessionID);
 		default:
-			m_pER->OnSockErr( m_SessionID, err );
+			m_pER->OnSockErr(m_SessionID, err);
 			return err;
 		}
 	}
 
-	m_pFile->Seek( m_fp, 0, FILE_BEGIN );
-	if( FAILED(m_pFile->Write( m_buf, nBytesReceived )) )
+	m_pFile->Seek(m_fp, 0, FILE_BEGIN);
+	if(FAILED(m_pFile->Write(m_buf, nBytesReceived)))
 	{
-		m_pER->OnFileErr( m_SessionID, GetLastError() );
+		m_pER->OnFileErr(m_SessionID, GetLastError());
 		return 2;
 	}
 
 	m_nBytesToRecv -= nBytesReceived;
 	m_fp += nBytesReceived;
 
-	if( m_nBytesToRecv == 0 )
+	if(m_nBytesToRecv == 0)
 	{
 		m_bAborted = FALSE;
 		return -1;
@@ -106,13 +106,13 @@ DWORD CServerPost::Command()
 }
 DWORD CServerPost::PostCommand()
 {
-	if( m_bAborted )
-        m_pER->OnTransferAborted( m_SessionID );
+	if(m_bAborted)
+        m_pER->OnTransferAborted(m_SessionID);
 	else
 	{
 		BYTE* ErrorBuf = (BYTE *) "HTTP/1.1 204 No Content\r\nConnection: close\r\n\r\n";
-		m_pSocket->Send( ErrorBuf, strlen( (char *) ErrorBuf ) );
-		m_pER->OnTransferComplete( m_SessionID );
+		m_pSocket->Send(ErrorBuf, strlen((char *) ErrorBuf));
+		m_pER->OnTransferComplete(m_SessionID);
 	}
 
 	delete this;

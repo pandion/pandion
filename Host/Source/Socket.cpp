@@ -302,7 +302,7 @@ SECURITY_STATUS Socket::ClientHandshakeLoop(bool initialRead)
         if(status == SEC_E_OK)
         {
 			m_pendingEncoded.clear();
-			for(unsigned long i = 0; i < outBuffer.cBuffers; i++)
+			for(unsigned long i = 0; i <outBuffer.cBuffers; i++)
 			{
 				if(outBuffers[i].BufferType == SECBUFFER_EXTRA)
 				{
@@ -365,8 +365,8 @@ DWORD Socket::StartSC()
 	decompressionStream.zfree = Z_NULL;
 	decompressionStream.opaque = Z_NULL;
 
-	if( deflateInit(&compressionStream, 9) == Z_OK &&
-		inflateInit(&decompressionStream) == Z_OK )
+	if(deflateInit(&compressionStream, 9) == Z_OK &&
+		inflateInit(&decompressionStream) == Z_OK)
 	{
 		m_bUsingSC = true;
 		LeaveCriticalSection(&m_csWriting);
@@ -464,7 +464,7 @@ DWORD Socket::Send(BYTE *buf, DWORD nBufLen)
 /*		while(true)
 		{
             iResult = SSL_write(m_ssl, outputBuffer, outputSize);
-			if( SSL_get_error(m_ssl, iResult) == SSL_ERROR_WANT_WRITE || 
+			if(SSL_get_error(m_ssl, iResult) == SSL_ERROR_WANT_WRITE || 
 				SSL_get_error(m_ssl, iResult) == SSL_ERROR_WANT_READ)
 			{
 				Sleep(1);
@@ -668,7 +668,7 @@ WORD Socket::GetLocalPort()
 {
 	sockaddr_in sinLocal;
 	int sinLocalSize = sizeof(sockaddr_in);
-	if( getsockname(m_Socket, (sockaddr*)&sinLocal, &sinLocalSize))
+	if(getsockname(m_Socket, (sockaddr*)&sinLocal, &sinLocalSize))
 		return 0;
 
 	return ntohs(sinLocal.sin_port);
@@ -826,7 +826,7 @@ SECURITY_STATUS Socket::SecureRecv(PBYTE message, DWORD messageSize,
         }
 		else
 		{
-			for(int i = 1; i < 4; i++)
+			for(int i = 1; i <4; i++)
 			{
 				if(buffers[i].BufferType == SECBUFFER_DATA)
 				{
@@ -870,7 +870,7 @@ SECURITY_STATUS Socket::SecureSend(PBYTE message, DWORD messageSize,
 		SECPKG_ATTR_STREAM_SIZES, &sizes);
 
 	// FIXME: allow for larger messages to be sent in multiple rounds
-	if(sizes.cbMaximumMessage < messageSize)
+	if(sizes.cbMaximumMessage <messageSize)
 	{
 		return SEC_E_INTERNAL_ERROR;
 	}

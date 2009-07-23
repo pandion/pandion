@@ -31,12 +31,12 @@ private:
 public:
 	CProxyInfo();
 
-	void SetAddress ( BSTR address );
-	void SetPort    ( USHORT port );
-	void SetUsername( BSTR username );
-	void SetPassword( BSTR password );
-	void GetAddress ( BSTR *address );
+	void SetAddress (BSTR address);
+	void SetPort    (USHORT port);
+	void SetUsername(BSTR username);
+	void SetPassword(BSTR password);
+	void GetAddress (BSTR *address);
 	USHORT GetPort  ();
-	void GetUsername( BSTR *username );
-	void GetPassword( BSTR *password );
+	void GetUsername(BSTR *username);
+	void GetPassword(BSTR *password);
 };
