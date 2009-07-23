@@ -30,9 +30,9 @@ Name "${PRODUCT}"
 ;!define MUI_FINISHPAGE_NOAUTOCLOSE
 
 ;!insertmacro MUI_PAGE_WELCOME
-!insertmacro MUI_PAGE_LICENSE "${SOURCEDIR}\gpl-3.0.txt";"${SOURCEDIR}\License.rtf"
-!insertmacro MUI_PAGE_COMPONENTS
-!insertmacro MUI_PAGE_DIRECTORY
+!insertmacro MUI_PAGE_LICENSE "${SOURCEDIR}\License.rtf"
+;!insertmacro MUI_PAGE_COMPONENTS
+;!insertmacro MUI_PAGE_DIRECTORY
 
 !define MUI_PAGE_CUSTOMFUNCTION_LEAVE hideWindow
 !insertmacro MUI_PAGE_INSTFILES
