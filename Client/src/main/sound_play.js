@@ -4,6 +4,6 @@ function sound_play ( file, override )
 	{
 		//document.getElementById( 'snd' ).src = file;
 		external.PlaySound(file);
-		external.globals( 'soundtime' ) = ( new Date() ).getTime() + 400;
+		external.globals( 'soundtime' ) = ( new Date() ).getTime() + 4000;
 	}
 }
