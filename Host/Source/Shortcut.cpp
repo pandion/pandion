@@ -81,9 +81,9 @@ STDMETHODIMP Shortcut::get_Arguments(BSTR *arguments)
 {
 	if(m_ShellLink)
 	{
-		TCHAR tArguments[INFOTIPSIZE] = TEXT("");
-		HRESULT res = m_ShellLink->GetArguments(tArguments, INFOTIPSIZE);
-		*arguments = ::SysAllocString(CT2W(tArguments));
+		WCHAR wArguments[INFOTIPSIZE] = L"";
+		HRESULT res = m_ShellLink->GetArguments(wArguments, INFOTIPSIZE);
+		*arguments = ::SysAllocString(wArguments);
 		return res;
 	}
 	else
@@ -100,7 +100,7 @@ STDMETHODIMP Shortcut::put_Arguments(BSTR arguments)
 {
 	if(m_ShellLink)
 	{
-		return m_ShellLink->SetArguments(CW2T(arguments));
+		return m_ShellLink->SetArguments(arguments);
 	}
 	else
 	{
@@ -115,9 +115,9 @@ STDMETHODIMP Shortcut::get_Description(BSTR *description)
 {
 	if(m_ShellLink)
 	{
-		TCHAR tDescription[INFOTIPSIZE] = TEXT("");
-		HRESULT res = m_ShellLink->GetDescription(tDescription, INFOTIPSIZE);
-		*description = ::SysAllocString(CT2W(tDescription));
+		WCHAR wDescription[INFOTIPSIZE] = L"";
+		HRESULT res = m_ShellLink->GetDescription(wDescription, INFOTIPSIZE);
+		*description = ::SysAllocString(wDescription);
 		return res;
 	}
 	else
@@ -133,7 +133,7 @@ STDMETHODIMP Shortcut::put_Description(BSTR description)
 {
 	if(m_ShellLink)
 	{
-		return m_ShellLink->SetDescription(CW2T(description));
+		return m_ShellLink->SetDescription(description);
 	}
 	else
 	{
@@ -148,13 +148,13 @@ STDMETHODIMP Shortcut::get_IconLocation(BSTR *iconLocation)
 {
 	if(m_ShellLink)
 	{
-		TCHAR tIconLoc[MAX_PATH + 10] = TEXT("");
+		WCHAR wIconLoc[MAX_PATH + 10] = L"";
 		int iIcon;
-		HRESULT res = m_ShellLink->GetIconLocation(tIconLoc,
+		HRESULT res = m_ShellLink->GetIconLocation(wIconLoc,
 			MAX_PATH, &iIcon);
-		StringCbPrintf(tIconLoc, MAX_PATH + 10, TEXT("%s,%d"),
-			tIconLoc, iIcon);
-		*iconLocation = SysAllocString(CT2W(tIconLoc));
+		::StringCbPrintf(wIconLoc, MAX_PATH + 10, L"%s,%d",
+			wIconLoc, iIcon);
+		*iconLocation = ::SysAllocString(wIconLoc);
 		return res;
 	}
 	else
@@ -170,7 +170,7 @@ STDMETHODIMP Shortcut::get_IconLocation(BSTR *iconLocation)
  */
 STDMETHODIMP Shortcut::put_IconLocation(BSTR iconLocation)
 {
-	LPWSTR comma = wcsrchr(iconLocation, L',');
+	LPWSTR comma = ::wcsrchr(iconLocation, L',');
 	if(!comma)
 	{
 		return E_INVALIDARG;
@@ -179,8 +179,8 @@ STDMETHODIMP Shortcut::put_IconLocation(BSTR iconLocation)
 	{
 		*comma = 0;
 
-		return m_ShellLink->SetIconLocation(CW2T(iconLocation), 
-			atoi(CW2A(comma+1)));
+		return m_ShellLink->SetIconLocation(iconLocation, 
+			_wtoi(comma+1));
 	}
 	else
 	{
@@ -195,10 +195,10 @@ STDMETHODIMP Shortcut::get_Path(BSTR *path)
 {
 	if(m_ShellLink)
 	{
-		TCHAR tPath[MAX_PATH] = TEXT("");
-		HRESULT res = m_ShellLink->GetPath(tPath,
+		WCHAR wPath[MAX_PATH] = L"";
+		HRESULT res = m_ShellLink->GetPath(wPath,
 			MAX_PATH, NULL, SLGP_UNCPRIORITY);
-		*path = ::SysAllocString(CT2W(tPath));
+		*path = ::SysAllocString(wPath);
 		return res;
 	}
 	else
@@ -214,7 +214,7 @@ STDMETHODIMP Shortcut::put_Path(BSTR path)
 {
 	if(m_ShellLink)
 	{
-		return m_ShellLink->SetPath(CW2T(path));
+		return m_ShellLink->SetPath(path);
 	}
 	else
 	{
