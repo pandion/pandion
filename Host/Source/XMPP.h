@@ -17,50 +17,42 @@
  * Filename:    XMPP.h
  * Author(s):   Dries Staelens
  * Copyright:   Copyright (c) 2009 Dries Staelens
- * Description: TODOTODOTODO
+ * Description: Declaration of the XMPP class.
  */
 #pragma once
 
 #include "XMPPLogger.h"
 #include "XMPPHandlers.h"
 #include "XMPPConnectionManager.h"
+#include "DispInterfaceImpl.h"
 
-class CXMPP :
-	public IDispatch
+/*
+ * The XMPP class implements the (COM) interface to the XMPP functionality. 
+ */
+class XMPP :
+	public DispInterfaceImpl<IXMPP>
 {
 private:
-	unsigned long			m_COMReferenceCounter;
-	ITypeInfo*				m_TypeInfo;
-
+	/*
+	 * The XMPP event handler.
+	 */
 	XMPPHandlers			m_Handlers;
+	/*
+	 * The XMPP event logger.
+	 */
 	XMPPLogger				m_Logger;
+	/*
+	 * The XMPP connection manager.
+	 */
 	XMPPConnectionManager	m_ConnectionManager;
 public:
-	CXMPP();
-	~CXMPP();
-
-	virtual void SetMainWnd(CMainWnd* pMainWnd);
-
-	/* IUnknown implementation */
-	STDMETHOD(QueryInterface)(REFIID riid, void** ppvObject);
-	STDMETHOD_(ULONG,AddRef)();
-	STDMETHOD_(ULONG,Release)();
-
-	/* IDispatch implementation */
-	STDMETHOD(GetTypeInfoCount)(UINT* pctinfo);
-	STDMETHOD(GetTypeInfo)(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo);
-	STDMETHOD(GetIDsOfNames)(REFIID riid, LPOLESTR* rgszNames,
-		UINT cNames, LCID lcid, DISPID* rgDispId);
-	STDMETHOD(Invoke)(DISPID dispidMember, REFIID riid, LCID lcid, WORD wFlags,
-		DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo,
-		UINT* puArgErr);
+	XMPP();
+	~XMPP();
 
 	/* IXMPP implementation */
 	STDMETHOD(SetProxyServer)(BSTR server, 
 		USHORT port, BSTR username, BSTR password);
 	STDMETHOD(SetProxyPollURL)(BSTR pollURL);
-
-	STDMETHOD(get_ConnectionIP)(BSTR *strIP);
 
 	STDMETHOD(Connect)(BSTR server, 
 		USHORT port, BOOL useSSL = FALSE, DWORD proxyMethod = 0);
@@ -71,6 +63,7 @@ public:
 	STDMETHOD(SendXML)(IDispatch* pDisp);
 	STDMETHOD(SendText)(BSTR strText);
 
+	STDMETHOD(get_ConnectionIP)(BSTR *strIP);
 	STDMETHOD(put_ConnectedHandler)(BSTR handler);
 	STDMETHOD(put_DisconnectedHandler)(BSTR handler);
 	STDMETHOD(put_IQHandler)(BSTR handler);
@@ -83,4 +76,7 @@ public:
 	STDMETHOD(put_StartTLSFailedHandler)(BSTR handler);
 	STDMETHOD(put_StartSCSucceededHandler)(BSTR handler);
 	STDMETHOD(put_StartSCFailedHandler)(BSTR handler);
+
+	/* Other methods */
+	virtual void SetMainWnd(CMainWnd* pMainWnd);
 };

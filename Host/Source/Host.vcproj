@@ -120,8 +120,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Performing registration"
-				CommandLine="&quot;$(TargetPath)&quot; /RegServer"
+				Description=""
+				CommandLine=""
 			/>
 		</Configuration>
 		<Configuration
@@ -247,6 +247,10 @@
 		<Filter
 			Name="Utilities"
 			>
+			<File
+				RelativePath=".\DispInterfaceImpl.h"
+				>
+			</File>
 			<File
 				RelativePath=".\Hash.cpp"
 				>

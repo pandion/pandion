@@ -288,16 +288,34 @@ import "atliface.idl";
 		HRESULT GetStatus([out,retval] BSTR* Status);
 	}
 */
-/*	[ uuid(AA1128C2-C1DD-40be-9F04-CCAC37D9C576), dual ] interface IXMPP : IDispatch
+	[uuid(E9B8AA03-69C6-4ce6-96E9-1A3E38DF880C)]
+	interface IXMPP : IDispatch
 	{
-		HRESULT SetMainWnd([in] void* mainwnd);
-		HRESULT Connect([in] BSTR server, [in] USHORT port, [in,defaultvalue(FALSE)] BOOL useSSL,
-			[in,defaultvalue(0)] DWORD ProxyMethod);
+		HRESULT SetProxyServer(
+			[in] BSTR server, 
+			[in] USHORT port, 
+			[in] BSTR username, 
+			[in] BSTR password
+			);
+		HRESULT SetProxyPollURL(
+			[in] BSTR pollURL
+			);
+		HRESULT Connect(
+			[in] BSTR server,
+			[in] USHORT port,
+			[in,defaultvalue(FALSE)] BOOL useSSL,
+			[in,defaultvalue(0)] DWORD ProxyMethod
+			);
+		HRESULT Disconnect();
 		HRESULT StartTLS();
 		HRESULT StartSC();
-		HRESULT Disconnect();
-		HRESULT SendXML([in] VARIANT pDisp);
-		HRESULT SendText([in] BSTR strText);
+		HRESULT SendXML(
+			[in] IDispatch* pDisp
+			);
+		HRESULT SendText(
+			[in] BSTR strText
+			);
+		[propget] HRESULT ConnectionIP([out, retval] BSTR* connIP);
 		[propput] HRESULT ConnectedHandler([in] BSTR handler);
 		[propput] HRESULT DisconnectedHandler([in] BSTR handler);
 		[propput] HRESULT IQHandler([in] BSTR handler);
@@ -310,10 +328,7 @@ import "atliface.idl";
 		[propput] HRESULT StartTLSFailedHandler([in] BSTR handler);
 		[propput] HRESULT StartSCSucceededHandler([in] BSTR handler);
 		[propput] HRESULT StartSCFailedHandler([in] BSTR handler);
-		[propget] HRESULT ConnectionIP([out,retval] BSTR* strIP);
-		HRESULT SetProxyServer([in] BSTR server, [in] USHORT port, [in] BSTR username, [in] BSTR password);
-		HRESULT SetProxyPollURL([in] BSTR pollURL);
-	}*/
+	}
 	[ uuid(4DA65D01-52FA-4305-8F87-3C2124F01FB1), dual ] interface ISASL : IDispatch
 	{
 		HRESULT PlainGenerateResponse([in] BSTR jid, [in] BSTR username, [in] BSTR password, [out,retval] BSTR* strBase64);

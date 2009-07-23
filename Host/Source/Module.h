@@ -31,7 +31,7 @@ class CPandionModule : public CAtlExeModuleT< CPandionModule >
 private:
 	CMainWnd *m_pMainWnd;
 
-	CXMPP m_XMPP;
+	XMPP m_XMPP;
 	IHTTP *m_pHTTP;
 	ISASL *m_pSASL;
 

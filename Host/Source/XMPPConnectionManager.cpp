@@ -274,7 +274,7 @@ DWORD XMPPConnectionManager::AsyncConnect()
 	}
 	else
 	{
-//		OutputDebugString(TEXT("CXMPP::AsyncConnect(): Could not connect to XMPP server!\n"));
+//		OutputDebugString(TEXT("XMPP::AsyncConnect(): Could not connect to XMPP server!\n"));
 	}
 	m_Handlers.OnDisconnected();
 	return 0;

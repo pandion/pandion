@@ -17,205 +17,31 @@
  * Filename:    XMPP.cpp
  * Author(s):   Dries Staelens
  * Copyright:   Copyright (c) 2009 Dries Staelens
- * Description: TODOTODOTODO
+ * Description: Implementation of the XMPP class.
  */
 #include "stdafx.h"
 #include "XMPP.h"
 #include "MainWnd.h"
 
-static PARAMDATA SetProxyServerParamData[] =
-{
-	{L"server", VT_BSTR},
-	{L"port", VT_UI2},
-	{L"username", VT_BSTR},
-	{L"password", VT_BSTR}
-};
-
-static PARAMDATA SetProxyPollURLParamData =
-{
-	L"pollURL", VT_BSTR
-};
-
-static PARAMDATA ConnectParamData[] =
-{
-	{L"server", VT_BSTR},
-	{L"port", VT_UI2},
-	{L"useSSL", VT_BOOL},
-	{L"proxyMethod", VT_UI4}
-};
-
-static PARAMDATA SendXMLParamData =
-{
-	L"pDisp", VT_DISPATCH
-};
-
-static PARAMDATA SendTextParamData =
-{
-	L"strText", VT_BSTR
-};
-
-static PARAMDATA SetHandlerParamData =
-{
-	L"handler", VT_BSTR
-};
-
-static METHODDATA XMPPMethodData[] = 
-{
-	{L"SetProxyServer",				SetProxyServerParamData,
-		8, 8, CC_STDCALL, 4, DISPATCH_METHOD, VT_EMPTY},
-	{L"SetProxyPollURL",			&SetProxyPollURLParamData,
-		9, 9, CC_STDCALL, 1, DISPATCH_METHOD, VT_EMPTY},
-	{L"ConnectionIP",				NULL,
-		10, 10, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR | VT_BYREF},
-	{L"Connect",					ConnectParamData,
-		11, 11, CC_STDCALL, 4, DISPATCH_METHOD, VT_EMPTY},
-	{L"Disconnect",					NULL,
-		12, 12, CC_STDCALL, 0, DISPATCH_METHOD, VT_EMPTY},
-	{L"StartTLS",					NULL,
-		13, 13, CC_STDCALL, 0, DISPATCH_METHOD, VT_EMPTY},
-	{L"StartSC",					NULL,
-		14, 14, CC_STDCALL, 0, DISPATCH_METHOD, VT_EMPTY},
-	{L"SendXML",					&SendXMLParamData,
-		15, 15, CC_STDCALL, 1, DISPATCH_METHOD, VT_EMPTY},
-	{L"SendText",					&SendTextParamData,
-		16, 16, CC_STDCALL, 1, DISPATCH_METHOD, VT_EMPTY},
-	{L"ConnectedHandler",			&SetHandlerParamData,
-		17, 17, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_EMPTY},
-	{L"DisconnectedHandler",		&SetHandlerParamData,
-		18, 18, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_EMPTY},
-	{L"IQHandler",					&SetHandlerParamData,
-		19, 19, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_EMPTY},
-	{L"MessageHandler",				&SetHandlerParamData,
-		20, 20, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_EMPTY},
-	{L"PresenceHandler",			&SetHandlerParamData,
-		21, 21, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_EMPTY},
-	{L"DocumentStartHandler",		&SetHandlerParamData,
-		22, 22, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_EMPTY},
-	{L"DocumentEndHandler",			&SetHandlerParamData,
-		23, 23, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_EMPTY},
-	{L"StreamHandler",				&SetHandlerParamData,
-		24, 24, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_EMPTY},
-	{L"StartTLSSucceededHandler",	&SetHandlerParamData,
-		25, 25, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_EMPTY},
-	{L"StartTLSFailedHandler",		&SetHandlerParamData,
-		26, 26, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_EMPTY},
-	{L"StartSCSucceededHandler",	&SetHandlerParamData,
-		27, 27, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_EMPTY},
-	{L"StartSCFailedHandler",		&SetHandlerParamData,
-		28, 28, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_EMPTY}
-};
-
-static INTERFACEDATA XMPPInterfaceData =
-{
-	XMPPMethodData, sizeof(XMPPMethodData)
-};
-
 /*
  * Constructor
  */
-CXMPP::CXMPP() :
+XMPP::XMPP() :
 	m_Handlers(), m_Logger(), m_ConnectionManager(m_Handlers, m_Logger)
 {
-	m_COMReferenceCounter = 0;
-	::CreateDispTypeInfo(&XMPPInterfaceData,
-		LOCALE_SYSTEM_DEFAULT, &m_TypeInfo);
 }
 
 /*
  * Destructor
  */
-CXMPP::~CXMPP()
+XMPP::~XMPP()
 {
-	m_TypeInfo->Release();
 }
 
 /*
- *
+ * Sets information about the proxy server to use.
  */
-void CXMPP::SetMainWnd(CMainWnd* pMainWnd)
-{
-	m_Handlers.SetMainWindow((CMainWnd*) pMainWnd);
-}
-
-STDMETHODIMP CXMPP::QueryInterface(REFIID riid, void** ppvObject)
-{
-	if(ppvObject == NULL)
-	{
-		return E_POINTER;
-	}
-	else if(riid == IID_IUnknown ||
-		riid == IID_IDispatch)
-	{
-		*ppvObject = (void*) this;
-		return S_OK;
-	}
-	else
-	{
-		return E_NOINTERFACE;
-	}
-}
-
-STDMETHODIMP_(ULONG) CXMPP::AddRef()
-{
-	return ++m_COMReferenceCounter;
-}
-
-/*
- * IUnknown::Release() implementation.
- * Does not actually delete the object as this object is only created once on
- * the stack.
- */
-STDMETHODIMP_(ULONG) CXMPP::Release()
-{
-	if(m_COMReferenceCounter > 1)
-	{
-		return --m_COMReferenceCounter;
-	}
-	else
-	{
-		return 0;
-	}
-}
-
-STDMETHODIMP CXMPP::GetTypeInfoCount(UINT* pctinfo)
-{
-	if(pctinfo == NULL)
-	{
-		return E_POINTER;
-	}
-	*pctinfo = 1;
-	return S_OK;
-}
-
-STDMETHODIMP CXMPP::GetTypeInfo(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo)
-{
-	if(ppTInfo == NULL)
-	{
-		return E_POINTER;
-	}
-	m_TypeInfo->AddRef();
-	*ppTInfo = m_TypeInfo;
-	return S_OK;
-}
-
-STDMETHODIMP CXMPP::GetIDsOfNames(REFIID riid, LPOLESTR* rgszNames,
-	UINT cNames, LCID lcid, DISPID* rgDispId)
-{
-	return DispGetIDsOfNames(m_TypeInfo, rgszNames, cNames, rgDispId);
-}
-
-STDMETHODIMP CXMPP::Invoke(DISPID dispidMember, REFIID riid, LCID lcid, 
-	WORD wFlags, DISPPARAMS* pDispParams, VARIANT* pVarResult,
-	EXCEPINFO* pExcepInfo, UINT* puArgErr)
-{
-	return DispInvoke(this, m_TypeInfo, dispidMember, wFlags, pDispParams,
-		pVarResult, pExcepInfo, puArgErr);
-}
-
-/*
- *
- */
-STDMETHODIMP CXMPP::SetProxyServer(BSTR server, USHORT port, 
+STDMETHODIMP XMPP::SetProxyServer(BSTR server, USHORT port, 
 								   BSTR username, BSTR password)
 {
 	m_ConnectionManager.SetProxyServer(server, port, username, password);
@@ -223,27 +49,25 @@ STDMETHODIMP CXMPP::SetProxyServer(BSTR server, USHORT port,
 }
 
 /*
- *
+ * Sets information for a polling proxy.
  */
-STDMETHODIMP CXMPP::SetProxyPollURL(BSTR pollURL)
+STDMETHODIMP XMPP::SetProxyPollURL(BSTR pollURL)
 {
-	m_ConnectionManager.SetProxyPollURL(std::wstring(pollURL));
-	return S_OK;
+	if(pollURL != NULL)
+	{
+		m_ConnectionManager.SetProxyPollURL(std::wstring(pollURL));
+		return S_OK;
+	}
+	else
+	{
+		return E_POINTER;
+	}
 }
 
 /*
- *
+ * Attempts to connect to the given XMPP server.
  */
-STDMETHODIMP CXMPP::get_ConnectionIP(BSTR *strIP)
-{
-	*strIP = ::SysAllocString(m_ConnectionManager.GetConnectionIP().c_str());
-	return S_OK;
-}
-
-/*
- *
- */
-STDMETHODIMP CXMPP::Connect(BSTR server,
+STDMETHODIMP XMPP::Connect(BSTR server,
 	USHORT port, BOOL useSSL, DWORD proxyMethod)
 {
 	if(proxyMethod == 0)
@@ -262,36 +86,37 @@ STDMETHODIMP CXMPP::Connect(BSTR server,
 }
 
 /*
- *
+ * Disconnects from the server (when connected).
  */
-STDMETHODIMP CXMPP::Disconnect()
+STDMETHODIMP XMPP::Disconnect()
 {
 	m_ConnectionManager.Disconnect();
 	return S_OK;
 }
 
 /*
- *
+ * Initiates TLS negotiation.
  */
-STDMETHODIMP CXMPP::StartTLS()
+STDMETHODIMP XMPP::StartTLS()
 {
 	m_ConnectionManager.StartTLS();
 	return S_OK;
 }
 
 /*
- *
+ * Initiates Stream Compression.
  */
-STDMETHODIMP CXMPP::StartSC()
+STDMETHODIMP XMPP::StartSC()
 {
 	m_ConnectionManager.StartSC();
 	return S_OK;
 }
 
 /*
- *
+ * Sends XML to the XMPP server. The XML is stored in an MSXML IXMLDOMDocument
+ * object.
  */
-STDMETHODIMP CXMPP::SendXML(IDispatch* pDisp)
+STDMETHODIMP XMPP::SendXML(IDispatch* pDisp)
 {
 	MSXML2::IXMLDOMDocument *pXMLDoc = NULL;
 	BSTR xmlString;
@@ -314,118 +139,143 @@ STDMETHODIMP CXMPP::SendXML(IDispatch* pDisp)
 }
 
 /*
- *
+ * Sends a string of text to the XMPP server.
  */
-STDMETHODIMP CXMPP::SendText(BSTR strText)
+STDMETHODIMP XMPP::SendText(BSTR strText)
 {
 	m_ConnectionManager.SendText(std::wstring(strText));
 	return S_OK;
 }
 
 /*
- *
+ * Returns the local IP used by the client to connect to the server.
  */
-STDMETHODIMP CXMPP::put_ConnectedHandler(BSTR handler)
+STDMETHODIMP XMPP::get_ConnectionIP(BSTR *strIP)
+{
+	*strIP = ::SysAllocString(m_ConnectionManager.GetConnectionIP().c_str());
+	return S_OK;
+}
+
+/*
+ * Sets the handler for the event generated when connection is set up.
+ */
+STDMETHODIMP XMPP::put_ConnectedHandler(BSTR handler)
 {
 	m_Handlers.SetConnectedHandler(handler);
 	return S_OK;
 }
 
 /*
- *
+ * Sets the handler for the event generated when the connection has ended.
  */
-STDMETHODIMP CXMPP::put_DisconnectedHandler(BSTR handler)
+STDMETHODIMP XMPP::put_DisconnectedHandler(BSTR handler)
 {
 	m_Handlers.SetDisconnectedHandler(handler);
 	return S_OK;
 }
 
 /*
- *
+ * Sets the handler for the event generated when an iq stanza is received.
  */
-STDMETHODIMP CXMPP::put_IQHandler(BSTR handler)
+STDMETHODIMP XMPP::put_IQHandler(BSTR handler)
 {
 	m_Handlers.SetIQHandler(handler);
 	return S_OK;
 }
 
 /*
- *
+ * Sets the handler for the event generated when a message stanza is received.
  */
-STDMETHODIMP CXMPP::put_MessageHandler(BSTR handler)
+STDMETHODIMP XMPP::put_MessageHandler(BSTR handler)
 {
 	m_Handlers.SetMessageHandler(handler);
 	return S_OK;
 }
 
 /*
- *
+ * Sets the handler for the event generated when a presence
+ * stanza is received.
  */
-STDMETHODIMP CXMPP::put_PresenceHandler(BSTR handler)
+STDMETHODIMP XMPP::put_PresenceHandler(BSTR handler)
 {
 	m_Handlers.SetPresenceHandler(handler);
 	return S_OK;
 }
 
 /*
- *
+ * Sets the handler for the event generated the initial XML is received from
+ * the server.
  */
-STDMETHODIMP CXMPP::put_DocumentStartHandler(BSTR handler)
+STDMETHODIMP XMPP::put_DocumentStartHandler(BSTR handler)
 {
 	m_Handlers.SetDocumentStartHandler(handler);
 	return S_OK;
 }
 
 /*
- *
+ * Sets the handler for the event generated when </stream:stream> is
+ * received from the server.
  */
-STDMETHODIMP CXMPP::put_DocumentEndHandler(BSTR handler)
+STDMETHODIMP XMPP::put_DocumentEndHandler(BSTR handler)
 {
 	m_Handlers.SetDocumentEndHandler(handler);
 	return S_OK;
 }
 
 /*
- *
+ * Sets the handler for the event generated for XMPP stanzas with the stream
+ * prefix.
  */
-STDMETHODIMP CXMPP::put_StreamHandler(BSTR handler)
+STDMETHODIMP XMPP::put_StreamHandler(BSTR handler)
 {
 	m_Handlers.SetStreamHandler(handler);
 	return S_OK;
 }
 
 /*
- *
+ * Sets the handler for the event generated if a TLS connection is
+ * successfully negotiated.
  */
-STDMETHODIMP CXMPP::put_StartTLSSucceededHandler(BSTR handler)
+STDMETHODIMP XMPP::put_StartTLSSucceededHandler(BSTR handler)
 {
 	m_Handlers.SetStartTLSSucceededHandler(handler);
 	return S_OK;
 }
 
 /*
- *
+ * Sets the handler for the event generated if a TLS connection could not be
+ * negotiated.
  */
-STDMETHODIMP CXMPP::put_StartTLSFailedHandler(BSTR handler)
+STDMETHODIMP XMPP::put_StartTLSFailedHandler(BSTR handler)
 {
 	m_Handlers.SetStartTLSFailedHandler(handler);
 	return S_OK;
 }
 
 /*
- *
+ * Sets the handler for the event generated if Stream Compression was
+ * successfully initiated.
  */
-STDMETHODIMP CXMPP::put_StartSCSucceededHandler(BSTR handler)
+STDMETHODIMP XMPP::put_StartSCSucceededHandler(BSTR handler)
 {
 	m_Handlers.SetStartSCSucceededHandler(handler);
 	return S_OK;
 }
 
 /*
- *
+ * Sets the handler for the event generated if Stream Compression initiation
+ * has failed.
  */
-STDMETHODIMP CXMPP::put_StartSCFailedHandler(BSTR handler)
+STDMETHODIMP XMPP::put_StartSCFailedHandler(BSTR handler)
 {
 	m_Handlers.SetStartSCFailedHandler(handler);
 	return S_OK;
+}
+
+/*
+ * Sets the receiver of the events generated by this class.
+ */
+void XMPP::SetMainWnd(CMainWnd* pMainWnd)
+{
+	m_Handlers.SetMainWindow((CMainWnd*) pMainWnd);
 }

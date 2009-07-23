@@ -224,6 +224,8 @@ HRESULT CPandionModule::PreMessageLoop( int nShowCmd )
 		m_pMainWnd->GetWndClassInfo().Register(&(m_pMainWnd->m_pfnSuperWindowProc)), (void*) p );
 	delete p;
 
+	/* prevent XMPP object from deleting itself */
+	m_XMPP.AddRef();
 	m_XMPP.SetMainWnd( m_pMainWnd );
 
 	return S_OK;
@@ -272,7 +274,6 @@ HRESULT CPandionModule::PostMessageLoop()
 	/* Release the main window */
 	m_pMainWnd->Release();
 
-	m_XMPP.Release();
 	m_pHTTP->Release();
 
 	/* Cleanup winsock */
