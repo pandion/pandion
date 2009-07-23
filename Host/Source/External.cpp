@@ -36,34 +36,27 @@
 
 #include "pdnwnd.h"
 
-CExternal::CExternal() : m_pWnd(0), m_pModule(0), m_pComCtrl(0)
+CExternal::CExternal(CPdnWnd& Wnd) : 
+	m_pModule(0), m_ComCtrl(Wnd), m_Wnd(Wnd)
 {
+	m_ComCtrl.DisableSelfDelete();
 }
 CExternal::~CExternal()
 {
-	m_pComCtrl->Release();
-	m_pWnd->Release();
 }
 
 // IExternal
-HRESULT CExternal::Init(void* pWnd, void* pModule)
+HRESULT CExternal::Init(void* pModule)
 {
-	m_pWnd = (CPdnWnd *) pWnd;
-	m_pWnd->AddRef();
-
 	m_pModule = (CPandionModule *) pModule;
-
-	(new CComObject<CComCtrl>)->QueryInterface(&m_pComCtrl);
-	m_pComCtrl->SetWnd(m_pWnd);
 
 	return S_OK;
 }
 
 STDMETHODIMP CExternal::get_wnd(VARIANT* pDisp)
 {
-	m_pWnd->QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
 	pDisp->vt = VT_DISPATCH;
-	return S_OK;
+	return m_Wnd.QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
 }
 STDMETHODIMP CExternal::get_mainWnd(VARIANT* pDisp)
 {
@@ -100,7 +93,7 @@ STDMETHODIMP CExternal::get_globals(VARIANT* pDisp)
 }
 STDMETHODIMP CExternal::get_ComCtrl(VARIANT* pDisp)
 {
-	m_pComCtrl->QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
+	m_ComCtrl.QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
     pDisp->vt = VT_DISPATCH;
 	return S_OK;
 }

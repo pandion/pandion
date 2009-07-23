@@ -32,7 +32,6 @@ import "atliface.idl";
     
 	[ uuid(4D7F263B-EF63-4132-9264-109E4C874ED1) ] interface IExternal : IDispatch
 	{
-		HRESULT Init([in] void* , [in] void*);
 		[propget] HRESULT wnd([out, retval] VARIANT* pDisp);
 		[propget] HRESULT mainWnd([out, retval] VARIANT* pDisp);
 		[propget] HRESULT windows([out, retval] VARIANT* pDisp);
@@ -330,20 +329,22 @@ import "atliface.idl";
 		[propput] HRESULT Path([in] BSTR Path);
 		[propput] HRESULT Arguments([in] BSTR Arguments);
 	}
-	[ uuid(E4F835D5-4787-4c89-8283-BD18715E6DA8), dual ] interface IComCtrl : IDispatch
+	[uuid(46602B9A-CA4F-488b-B2EE-C4A045159BAC)]
+	interface IComCtrl : IDispatch
 	{
-		HRESULT SetWnd([in] IPdnWnd* pWnd);
-		[propget] HRESULT ComDlg([out,retval] IDispatch* *ppComDlg);
+		[propget] HRESULT ComDlg([out,retval] IDispatch** ppCComDlg);
 	}
-	[ uuid(41392656-E8C6-40fe-9ACF-05C1EAD4ABFE), dual ] interface IComDlg : IDispatch
+	[uuid(402544AD-D1D7-4148-AB1C-7DB0018D43F4)]
+	interface IComDlg : IDispatch
 	{
-		HRESULT SetWnd([in] IPdnWnd* pWnd);
-		[propget] HRESULT GetFileName([out,retval] IDispatch* *ppGetOpenFileName);
-		[propget] HRESULT ChooseFont([out,retval] IDispatch* *ppChooseFont);
+		[propget] HRESULT GetFileName(
+			[out,retval] IDispatch* *ppGetOpenFileName);
+		[propget] HRESULT ChooseFont(
+			[out,retval] IDispatch* *ppChooseFont);
 	}
-	[ uuid(A1FA76F8-E23E-47c1-9081-9FC9DF992B90), dual ] interface IGetFileName : IDispatch
+	[uuid(0338850F-4536-4885-AE89-3974D54776D6)]
+	interface IGetFileName : IDispatch
 	{
-		HRESULT SetWnd([in] IPdnWnd* pWnd);
 		[propput] HRESULT Filter([in] BSTR strFilter);
 		[propput] HRESULT FilterIndex([in] DWORD dwFilterIndex);
 		[propget] HRESULT FilterIndex([out,retval] DWORD* dwFilterIndex);
@@ -356,9 +357,9 @@ import "atliface.idl";
 		HRESULT DisplayOpen([out,retval] BSTR* strFileName);
 		HRESULT DisplaySave([out,retval] BSTR* strFileName);
 	}
-	[ uuid(4CC85506-A713-4896-A773-FA57B883EDA8), dual ] interface IChooseFont : IDispatch
+	[uuid(0A4377A3-8FD8-41ae-B8ED-077EE160A209)]
+	interface IChooseFont : IDispatch
 	{
-		HRESULT SetWnd([in] IPdnWnd* pWnd);
 		[propget] HRESULT FontHeight([out,retval] LONG* lfHeight);
 		[propput] HRESULT FontHeight([in] LONG lfHeight);
 		[propget] HRESULT FontWidth([out,retval] LONG* lfWidth);

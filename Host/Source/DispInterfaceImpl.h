@@ -36,12 +36,17 @@ private:
 	 * This object's TypeInfo, used by the IDispatch implementation.
 	 */
 	ITypeInfo*				m_TypeInfo;
+	/*
+	 *
+	 */
+	bool					m_CannotSelfDelete;
 public:
 	/*
 	 * Constructor
 	 */
 	DispInterfaceImpl()
 	{
+		m_CannotSelfDelete = false;
 		m_COMReferenceCounter = 0;
 
 		TCHAR moduleFileName[MAX_PATH];
@@ -70,7 +75,9 @@ public:
 		{
 			return E_POINTER;
 		}
-		else if(riid == IID_IUnknown || riid == IID_IDispatch)
+		else if(riid == IID_IUnknown || 
+			riid == IID_IDispatch || 
+			riid == __uuidof(T))
 		{
 			*ppvObject = (void*) this;
 			AddRef();
@@ -101,7 +108,10 @@ public:
 		}
 		else
 		{
-			delete this;
+			if(!m_CannotSelfDelete)
+			{
+				delete this;
+			}
 			return 0;
 		}
 	}
@@ -153,5 +163,13 @@ public:
 		HRESULT hr = DispInvoke(this, m_TypeInfo, dispidMember, wFlags,
 			pDispParams, pVarResult, pExcepInfo, puArgErr);
 		return hr;
+	}
+
+	/*
+	 *
+	 */
+	void DisableSelfDelete()
+	{
+		m_CannotSelfDelete = true;
 	}
 };

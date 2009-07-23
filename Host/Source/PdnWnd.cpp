@@ -46,10 +46,14 @@ public:
 	}
 };
 
-CPdnWnd::CPdnWnd(): m_hWndLastFocusedWindow(0), m_hWndActiveWindow(0), m_hWndFocus(0),
-	m_bPopUnder(false), m_sMinHandler(""), 	m_sCloseHandler(""), m_sMenuHandler(""), m_sCmdLineHandler(""), 
-	m_sRestoreHandler(""), m_sName(""), m_sURL(""), m_vParams(0)
+CPdnWnd::CPdnWnd() :
+	m_hWndLastFocusedWindow(0), m_hWndActiveWindow(0), m_hWndFocus(0),
+	m_bPopUnder(false), m_sMinHandler(""), 	m_sCloseHandler(""),
+	m_sMenuHandler(""), m_sCmdLineHandler(""), 
+	m_sRestoreHandler(""), m_sName(""), m_sURL(""), m_vParams(0),
+	m_External(*this)
 {
+	m_External.DisableSelfDelete();
 	m_minSize.x  = 160;
 	m_minSize.y  = 200;
 	_CrtMemCheckpoint(&state);
@@ -75,9 +79,6 @@ void CPdnWnd::OnFinalMessage(HWND hWnd)
 
 	/* Free the internet security manager */
 	m_pSecurityMgr->Release();
-
-	/* Destroy the external object */
-	m_pExternal->Release();  // CPdnWnd destructor will be called here!
 }
 
 // General Functionality
@@ -116,8 +117,7 @@ LRESULT CPdnWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandle
 	m_pSecurityMgr->AddRef();
 
 	/* Create the External object */
-	(new CComObject<CExternal>)->QueryInterface(&m_pExternal);
-	m_pExternal->Init(this, m_pModule);
+	m_External.Init(m_pModule);
 
 	/* Create the Internet Explorer control */
 	if(SUCCEEDED(ContainerCreate()))
@@ -344,14 +344,7 @@ STDMETHODIMP CPdnWnd::GetDropTarget(IDropTarget *pDropTarget, IDropTarget **ppDr
 }
 STDMETHODIMP CPdnWnd::GetExternal(IDispatch **ppDispatch)
 {
-	if(m_pExternal)
-	{
-        *ppDispatch = m_pExternal;
-		(*ppDispatch)->AddRef();
-		return S_OK;
-	}
-	*ppDispatch = NULL;
-	return S_FALSE;
+	return m_External.QueryInterface(IID_IDispatch, (LPVOID*) ppDispatch);
 }
 STDMETHODIMP CPdnWnd::TranslateUrl(DWORD dwTranslate, OLECHAR *pchURLIn, OLECHAR **ppchURLOut)
 {

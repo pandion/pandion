@@ -20,8 +20,8 @@
  * Description: TODOTODOTODO
  */
 #pragma once
+#include "External.h"
 
-class CExternal;
 class CPandionModule;
 
 class CCreateParams
@@ -69,9 +69,9 @@ protected:
 	CComVariant m_vParams;
 	POINT		m_minSize;
 
-    CPandionModule       *m_pModule;
+	CExternal            m_External;
+	CPandionModule       *m_pModule;
 	IWebBrowser2         *m_pBrowser;
-	IExternal            *m_pExternal;
 	IMenuBar             *m_pMenuBar;
 
 	IInternetSecurityManager* m_pSecurityMgr;

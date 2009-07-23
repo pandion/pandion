@@ -21,6 +21,7 @@
  */
 
 #pragma once
+#include "ComCtrlWrapper.h"
 
 struct CTypeInfo
 {
@@ -32,26 +33,19 @@ class CPdnWnd;
 class CPandionModule;
 
 class CExternal :
-	public CComObjectRootEx<CComSingleThreadModel>,
-	public IDispatchImpl<IExternal>
+	public DispInterfaceImpl<IExternal>
 {
 private:
-	CPdnWnd        *m_pWnd;
-	IComCtrl       *m_pComCtrl;
-	CPandionModule *m_pModule;
+	CComCtrl		m_ComCtrl;
+	CPdnWnd&		m_Wnd;
+	CPandionModule*	m_pModule;
 public:
-	CExternal();
+	CExternal(CPdnWnd& Wnd);
 	~CExternal();
 
-//	DECLARE_NO_REGISTRY()
-
-	BEGIN_COM_MAP(CExternal)
-		COM_INTERFACE_ENTRY(IDispatch)
-		COM_INTERFACE_ENTRY(IExternal)
-	END_COM_MAP()
+	STDMETHOD(Init)(void *pModule);
 
 	/* IExternal implementation */
-	STDMETHOD(Init)(void *pWnd, void *pModule);
 	STDMETHOD(get_wnd)(VARIANT *pDisp);
 	STDMETHOD(get_mainWnd)(VARIANT *pDisp);
 	STDMETHOD(get_windows)(VARIANT *pDisp);
