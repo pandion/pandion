@@ -1,3 +1,7 @@
+; This file is part of Pandion instant messenger
+; Copyright (c) 2001-2009 Sebastiaan Deckers
+; License: GNU General Public License version 3 or later
+
 !insertmacro MUI_LANGUAGE "Dutch"
 
 LangString DESC_SecCopyRequired		${LANG_DUTCH}	"Deze bestanden zijn vereist voor ${PRODUCT}."

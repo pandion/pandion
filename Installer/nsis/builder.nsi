@@ -1,3 +1,7 @@
+; This file is part of Pandion instant messenger
+; Copyright (c) 2001-2009 Sebastiaan Deckers
+; License: GNU General Public License version 3 or later
+
 ;--------------------------------
 ;Basic Settings
 
@@ -26,7 +30,7 @@ Name "${PRODUCT}"
 ;!define MUI_FINISHPAGE_NOAUTOCLOSE
 
 ;!insertmacro MUI_PAGE_WELCOME
-!insertmacro MUI_PAGE_LICENSE "${SOURCEDIR}\License.rtf"
+!insertmacro MUI_PAGE_LICENSE "${SOURCEDIR}\gpl-3.0.txt";"${SOURCEDIR}\License.rtf"
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 
