@@ -24,6 +24,7 @@
 #include "Socket.h"
 #include "XMPPSendQueue.h"
 #include "XMPPXMLParser.h"
+#include "SRVLookup.h"
 
 typedef enum
 {
@@ -72,9 +73,15 @@ public:
 	void SetProxyServer(const std::wstring& server, unsigned short port,
 		const std::wstring& username, const std::wstring& password);
 private:
-	static DWORD __stdcall AsyncConnectProc(void *pThis);
-	DWORD AsyncConnect();
-	void ProxyConnect();
+	static DWORD __stdcall ConnectionMainProc(void *pThis);
+	DWORD ConnectionMain();
+	bool DoConnect();
+	bool DoConnectWithSRV(SRVLookup& srvLookup);
+	bool DoConnectWithoutSRV();
+	bool ProxyConnect();
+	bool DoRecvData();
+	void DoStartTLS();
+	void DoStartSC();
 
 	void AsyncSend(BYTE *data, DWORD len);
 };

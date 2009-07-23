@@ -23,6 +23,11 @@
 #include "XMPPLogger.h"
 
 /*
+ * Only log in debug builds.
+ */
+#define CANLOG _DEBUG
+
+/*
  * Constructor
  */
 XMPPLogger::XMPPLogger()
@@ -41,10 +46,12 @@ XMPPLogger::~XMPPLogger()
  */
 void XMPPLogger::LogReceived(const std::wstring& dataReceived)
 {
+#ifdef CANLOG
 	std::wostringstream dbgmsg;
 	dbgmsg << L"RECV (" << dataReceived.size() << L" bytes): \t" <<
 		dataReceived << std::endl;
 	Log(dbgmsg.str());
+#endif
 }
 
 /*
@@ -52,6 +59,7 @@ void XMPPLogger::LogReceived(const std::wstring& dataReceived)
  */
 void XMPPLogger::LogSent(const std::wstring& dataSent)
 {
+#ifdef CANLOG
 	bool hasEndline = (*(dataSent.end() - 1) == L'\n');
 	std::wostringstream dbgmsg;
 	dbgmsg << L"SENT (" << dataSent.size() << L" bytes): \t" << dataSent;
@@ -60,6 +68,7 @@ void XMPPLogger::LogSent(const std::wstring& dataSent)
 		dbgmsg << std::endl;
 	}
 	Log(dbgmsg.str());
+#endif
 }
 
 /*
@@ -67,9 +76,11 @@ void XMPPLogger::LogSent(const std::wstring& dataSent)
  */
 void XMPPLogger::LogReadError()
 {
+#ifdef CANLOG
 	std::wostringstream dbgmsg;
 	dbgmsg << L"Read error: 0x" << std::hex << WSAGetLastError() << std::endl;
 	Log(dbgmsg.str());
+#endif
 }
 
 /*
@@ -78,6 +89,7 @@ void XMPPLogger::LogReadError()
 void XMPPLogger::LogLoadXMLError(MSXML2::IXMLDOMDocument* xmlDoc,
 									const std::wstring& parsedData)
 {
+#ifdef CANLOG
 	MSXML2::IXMLDOMParseError *errorObj;
 	long errorCode, lineNumber, linePosition;
 	BSTR errorReason, sourceString;
@@ -109,6 +121,7 @@ void XMPPLogger::LogLoadXMLError(MSXML2::IXMLDOMDocument* xmlDoc,
 
 	::SysFreeString(errorReason);
 	::SysFreeString(sourceString);
+#endif
 }
 
 /*
@@ -116,7 +129,7 @@ void XMPPLogger::LogLoadXMLError(MSXML2::IXMLDOMDocument* xmlDoc,
  */
 void XMPPLogger::Log(const std::wstring& logEntry)
 {
-#ifdef _DEBUG
+#ifdef CANLOG
 	::OutputDebugString(CW2T(logEntry.c_str()));
 #endif
 }

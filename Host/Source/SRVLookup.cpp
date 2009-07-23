@@ -29,7 +29,8 @@
 /*
  * SRVRecord constructor
  */
-SRVRecord::SRVRecord(_bstr_t targetName, WORD port, WORD priority, WORD weight)
+SRVRecord::SRVRecord(std::wstring targetName,
+	WORD port, WORD priority, WORD weight)
 {
 	this->targetName = targetName;
 	this->port = port;
@@ -47,7 +48,7 @@ SRVRecord::~SRVRecord()
 /*
  * Getter for the SRV server name
  */
-_bstr_t SRVRecord::getTargetName()
+std::wstring SRVRecord::getTargetName() const
 {
 	return targetName;
 }
@@ -55,7 +56,7 @@ _bstr_t SRVRecord::getTargetName()
 /*
  * Getter for the SRV port
  */
-WORD SRVRecord::getPort()
+WORD SRVRecord::getPort() const
 {
 	return port;
 }
@@ -63,7 +64,7 @@ WORD SRVRecord::getPort()
 /*
  * Getter for the SRV priority
  */
-WORD SRVRecord::getPriority()
+WORD SRVRecord::getPriority() const
 {
 	return priority;
 }
@@ -71,7 +72,7 @@ WORD SRVRecord::getPriority()
 /*
  * Getter for the SRV weight
  */
-WORD SRVRecord::getWeight()
+WORD SRVRecord::getWeight() const
 {
 	return weight;
 }
@@ -80,12 +81,15 @@ WORD SRVRecord::getWeight()
  * SRVLookup constructor, takes a service, protocol and domain string and ties
  * them together into an SRV request string. This value is stored in m_srvname.
  */
-SRVLookup::SRVLookup(_bstr_t service, _bstr_t protocol, _bstr_t domain)
+SRVLookup::SRVLookup(std::wstring service, std::wstring protocol,
+	std::wstring domain)
 {
-	m_srvname = 
-		_bstr_t(L"_") + service + 
-		_bstr_t(L"._") + protocol + 
-		_bstr_t(L".") + domain;
+	m_srvname = L"_";
+	m_srvname += service;
+	m_srvname += L"._";
+	m_srvname += protocol;
+	m_srvname += L".";
+	m_srvname += domain;
 }
 
 /*
@@ -102,7 +106,7 @@ SRVLookup::~SRVLookup()
 HRESULT SRVLookup::DoLookup()
 {
 	PDNS_RECORD dnsRecordList = NULL;
-	DNS_STATUS dnsStatus = ::DnsQuery(m_srvname, DNS_TYPE_SRV,
+	DNS_STATUS dnsStatus = ::DnsQuery(m_srvname.c_str(), DNS_TYPE_SRV,
 		DNS_QUERY_STANDARD, NULL, &dnsRecordList, NULL);
 	if(DNS_RCODE_NOERROR == dnsStatus)
 	{
@@ -184,7 +188,7 @@ HRESULT SRVLookup::SortAndStoreRecords(const PDNS_RECORD dnsRecordList)
 /*
  * Getter that supplies an iterator on the sorted SRV records to the agent.
  */
-std::vector<SRVRecord>::iterator SRVLookup::getRecordsIterator()
+const std::vector<SRVRecord>& SRVLookup::getRecords()
 {
-	return m_records.begin();
+	return m_records;
 }

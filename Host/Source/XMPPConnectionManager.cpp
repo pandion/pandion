@@ -22,7 +22,6 @@
 #include "stdafx.h"
 #include "XMPPConnectionManager.h"
 #include "UTF8.h"
-#include "SRVLookup.h"
 
 /*
  * Constructor
@@ -47,7 +46,7 @@ XMPPConnectionManager::~XMPPConnectionManager()
 }
 
 /*
- *
+ * Creates a new thread that attempts to connect to the XMPP server.
  */
 void XMPPConnectionManager::Connect(const std::wstring& server,
 			   unsigned short port, bool useSSL, ProxyMethod proxyMethod)
@@ -59,11 +58,11 @@ void XMPPConnectionManager::Connect(const std::wstring& server,
 	m_ProxyMethod = proxyMethod;
 
 	DWORD threadID;
-	::CreateThread(NULL, 0, AsyncConnectProc, (LPVOID) this, 0, &threadID);
+	::CreateThread(NULL, 0, ConnectionMainProc, (LPVOID) this, 0, &threadID);
 }
 
 /*
- *
+ * Flags the connection thread to disconnect.
  */
 void XMPPConnectionManager::Disconnect()
 {
@@ -71,7 +70,7 @@ void XMPPConnectionManager::Disconnect()
 }
 
 /*
- *
+ * Flags the connection thread to start negotiating TLS.
  */
 void XMPPConnectionManager::StartTLS()
 {
@@ -79,7 +78,7 @@ void XMPPConnectionManager::StartTLS()
 }
 
 /*
- *
+ * Flags the connection thread to initiate stream compression.
  */
 void XMPPConnectionManager::StartSC()
 {
@@ -87,7 +86,8 @@ void XMPPConnectionManager::StartSC()
 }
 
 /*
- *
+ * Translates a string to UTF-8 and queues it up for transmission to the XMPP
+ * server.
  */
 void XMPPConnectionManager::SendText(const std::wstring& utf16Text)
 {
@@ -97,7 +97,7 @@ void XMPPConnectionManager::SendText(const std::wstring& utf16Text)
 }
 
 /*
- *
+ * Get the local IP used by the connection with the server.
  */
 std::wstring XMPPConnectionManager::GetConnectionIP()
 {
@@ -131,160 +131,126 @@ void XMPPConnectionManager::SetProxyServer(const std::wstring& server,
 /*
  *
  */
-DWORD __stdcall XMPPConnectionManager::AsyncConnectProc(void *pThis)
+DWORD __stdcall XMPPConnectionManager::ConnectionMainProc(void *pThis)
 {
 	::CoInitialize(NULL);
-	return ((XMPPConnectionManager*) pThis)->AsyncConnect();
+	return ((XMPPConnectionManager*) pThis)->ConnectionMain();
 }
 
 /*
  *
  */
-DWORD XMPPConnectionManager::AsyncConnect()
+DWORD XMPPConnectionManager::ConnectionMain()
 {
-	SRVLookup theLookup = SRVLookup(_bstr_t(TEXT("xmpp-client")),
-		_bstr_t(TEXT("tcp")), _bstr_t(m_Server.c_str()));
-	if(SUCCEEDED(theLookup.DoLookup()))
+	m_DoStartTLS = false;
+	m_DoStartSC = false;
+	m_DoDisconnect = false;
+
+	bool canContinue = DoConnect();
+
+	while(!m_DoDisconnect && canContinue)
 	{
-		m_Server = 
-			(wchar_t*)(*theLookup.getRecordsIterator()).getTargetName();
-		WORD srvport = 
-			(*theLookup.getRecordsIterator()).getPort();
-		
-		if(m_ProxyMethod == ProxyMethodDontUse)
+		if(m_DoStartTLS)
 		{
-			if(srvport != 0 && !m_UseSSL)
-			{
-				m_Port = srvport;
-			}
+			m_DoStartTLS = false;
+			DoStartTLS();
+		}
+		else if(m_DoStartSC)
+		{
+			m_DoStartSC = false;
+			DoStartSC();
+		}
+		else
+		{
+			canContinue = DoRecvData();
 		}
 	}
+	m_SendQueue.SetDisconnected();
+	m_XMLParser.SetDisconnected();
+	m_Socket.Disconnect();
+	m_Handlers.OnDisconnected();
 
-	DWORD err = -1;
+	return 0;
+}
+
+bool XMPPConnectionManager::DoConnect()
+{
+	bool useSRV = false;
+	SRVLookup theLookup = SRVLookup(L"xmpp-client", L"tcp", m_Server);
+
+	if(SUCCEEDED(theLookup.DoLookup()))
+	{
+		return DoConnectWithSRV(theLookup);
+	}
+	else
+	{
+		return DoConnectWithoutSRV();
+	}
+}
+
+bool XMPPConnectionManager::DoConnectWithSRV(SRVLookup& srvLookup)
+{
+	bool success = false;
+	std::vector<SRVRecord> vec = srvLookup.getRecords();
+	std::vector<SRVRecord>::const_iterator it = vec.begin();
+	
+	while(!success && it != vec.end())
+	{
+		m_Server = it->getTargetName();
+		if(!m_UseSSL && it->getPort())
+		{
+			m_Port = it->getPort();
+		}
+		success = DoConnectWithoutSRV();
+		it++;
+	}
+
+	return success;
+}
+
+bool XMPPConnectionManager::DoConnectWithoutSRV()
+{
+	bool success;
 	if(m_ProxyMethod == ProxyMethodDontUse)
 	{
-		err = m_Socket.Connect((BSTR) m_Server.c_str(), m_Port);
+		success = 
+			m_Socket.Connect((BSTR) m_Server.c_str(), m_Port) == 0;
 	}
 	else if(m_ProxyMethod == ProxyMethodConnect)
 	{
-		err = m_Socket.Connect((BSTR) m_ProxyServer.c_str(), m_ProxyPort);
-		if(!err)
+		success = 
+			m_Socket.Connect((BSTR) m_ProxyServer.c_str(), m_ProxyPort) == 0;
+		if(success)
 		{
-			ProxyConnect();
+			success = ProxyConnect();
 		}
 	}
-	else if(m_ProxyMethod == ProxyMethodPoll)
+	else
 	{
-		err = -1;
+		success = false;
 	}
 
-	if(!err && m_UseSSL)
+	if(success)
 	{
-		m_Socket.StartTLS();
-	}
-
-	if(!err)
-	{
+		if(m_UseSSL)
+		{
+			m_Socket.StartTLS();
+		}
 		m_Socket.SetNonBlocking();
 		m_SendQueue.SetConnected(&m_Socket);
 		m_XMLParser.SetConnected();
 		m_Handlers.OnConnected();
-
-		std::vector<BYTE> recvBuffer(0x10000);
-		m_DoStartTLS = false;
-		m_DoStartSC = false;
-		m_DoDisconnect = false;
-
-		while(!m_DoDisconnect)
-		{
-			if(m_DoStartTLS)
-			{
-				m_DoStartTLS = false;
-				if(m_Socket.StartTLS())
-				{
-					m_Handlers.OnStartTLSSucceeded();
-					continue;
-				}
-				else
-				{
-					m_Handlers.OnStartTLSFailed();
-					continue;
-				}
-			}
-			else if(m_DoStartSC)
-			{
-				m_DoStartSC = false;
-				if(m_Socket.StartSC())
-				{
-					m_Handlers.OnStartSCSucceeded();
-					continue;
-				}
-				else
-				{
-					m_Handlers.OnStartSCFailed();
-				}
-			}
-			else
-			{
-				timeval tv = { 0, 32 }; // 32ms
-				int select = m_Socket.Select(true, false, &tv);
-				if(select == 1)
-				{
-					int bytesRead = m_Socket.Recv(&recvBuffer[0], 
-						recvBuffer.size() - 1);
-					if(bytesRead > 0)
-					{
-						recvBuffer[bytesRead] = L'\0';
-						std::wstring recvString(
-							CUTF82W((char*)&recvBuffer[0]));
-
-						m_Logger.LogReceived(recvString);
-						if(m_XMLParser.ParseChunk(recvString) == false)
-						{
-							break;
-						}
-					}
-					else if(bytesRead == 0)
-					{
-						/* server disconnected */
-						break;
-					}
-					else /* if(bytesRead < 0) */
-					{
-						/* socket read error */
-						m_Logger.LogReadError();
-						break;
-					}
-				}
-				else if(select == 0)
-				{
-					/* select timed out */
-					continue;
-				}
-				else /* if (select < 0) */
-				{
-					/* disconnected somewhere else */
-					break;
-				}
-			}
-		}
-		m_SendQueue.SetDisconnected();
-		m_XMLParser.SetDisconnected();
-		m_Socket.Disconnect();
 	}
-	else
-	{
-//		OutputDebugString(TEXT("XMPP::AsyncConnect(): Could not connect to XMPP server!\n"));
-	}
-	m_Handlers.OnDisconnected();
-	return 0;
+
+	return success;
 }
 
 /* 
- *
+ * TODO: clean up this mess
  */
-void XMPPConnectionManager::ProxyConnect()
+bool XMPPConnectionManager::ProxyConnect()
 {
+	bool success = false;
 	WCHAR SendBuffer[4096];
 	StringCbPrintfW(SendBuffer, 4096, L"CONNECT %s:%d HTTP/1.1", m_Server, m_Port);
 	m_Socket.SendLine(SendBuffer);
@@ -310,18 +276,84 @@ void XMPPConnectionManager::ProxyConnect()
 			break;
 		if(i > 4 && RecvBuffer[i] == '\n' && RecvBuffer[i-1] == '\r' && RecvBuffer[i-2] == '\n' && RecvBuffer[i-3] == '\r')
 		{
-			err = 0;
+			RecvBuffer[strlen("HTTP/1.0 200 Connection established\r\n")] = 0;
+			if(!strcmp((char *)RecvBuffer, "HTTP/1.0 200 Connection established\r\n"))
+			{
+				success = true;
+			}
 			break;
 		}
 	}
-	if(!err)
+	return success;
+}
+
+bool XMPPConnectionManager::DoRecvData()
+{
+	static std::vector<BYTE> recvBuffer(0x10000);
+	bool canContinue = false;
+	timeval tv = { 0, 32 }; // 32ms
+	int select = m_Socket.Select(true, false, &tv);
+	if(select == 1)
 	{
-		err = -1;
-		RecvBuffer[strlen("HTTP/1.0 200 Connection established\r\n")] = 0;
-		if(!strcmp((char *)RecvBuffer, "HTTP/1.0 200 Connection established\r\n"))
+		int bytesRead = m_Socket.Recv(&recvBuffer[0], 
+			recvBuffer.size() - 1);
+		if(bytesRead > 0)
 		{
-			err = 0;
+			recvBuffer[bytesRead] = L'\0';
+			std::wstring recvString(
+				CUTF82W((char*)&recvBuffer[0]));
+
+			m_Logger.LogReceived(recvString);
+			canContinue = m_XMLParser.ParseChunk(recvString);
 		}
+		else if(bytesRead == 0) /* server disconnected */
+		{
+			canContinue = false;
+		}
+		else /* if(bytesRead < 0) *//* socket read error */
+		{
+			m_Logger.LogReadError();
+		}
+	}
+	else if(select == 0)
+	{
+		/* select timed out */
+		canContinue = true;
+	}
+	else /* if (select < 0) *//* disconnected somewhere else */
+	{	
+		canContinue = false;
+	}
+	return canContinue;
+}
+
+/*
+ *
+ */
+void XMPPConnectionManager::DoStartTLS()
+{
+	if(m_Socket.StartTLS())
+	{
+		m_Handlers.OnStartTLSSucceeded();
+	}
+	else
+	{
+		m_Handlers.OnStartTLSFailed();
+	}
+}
+
+/*
+ *
+ */
+void XMPPConnectionManager::DoStartSC()
+{
+	if(m_Socket.StartSC())
+	{
+		m_Handlers.OnStartSCSucceeded();
+	}
+	else
+	{
+		m_Handlers.OnStartSCFailed();
 	}
 }
 

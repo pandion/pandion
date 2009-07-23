@@ -31,17 +31,17 @@
 class SRVRecord
 {
 private:
-	_bstr_t targetName;
+	std::wstring targetName;
 	WORD port;
 	WORD priority;
 	WORD weight;
 public:
-	SRVRecord(_bstr_t targetName, WORD port, WORD priority, WORD weight);
+	SRVRecord(std::wstring targetName, WORD port, WORD priority, WORD weight);
 	~SRVRecord();
-	_bstr_t getTargetName();
-	WORD getPort();
-	WORD getPriority();
-	WORD getWeight();
+	std::wstring getTargetName() const;
+	WORD getPort() const;
+	WORD getPriority() const;
+	WORD getWeight() const;
 };
 
 /*
@@ -51,15 +51,16 @@ public:
 class SRVLookup
 {
 private:
-	_bstr_t m_srvname;
+	std::wstring m_srvname;
 	std::vector<SRVRecord> m_records;
 public:
-	SRVLookup(_bstr_t service, _bstr_t protocol, _bstr_t domain);
+	SRVLookup(std::wstring service, std::wstring protocol, 
+		std::wstring domain);
 	~SRVLookup();
 
 	HRESULT DoLookup();
 
-	std::vector<SRVRecord>::iterator getRecordsIterator();
+	const std::vector<SRVRecord>& getRecords();
 private:
 	HRESULT SortAndStoreRecords(const PDNS_RECORD dnsRecordList);
 };

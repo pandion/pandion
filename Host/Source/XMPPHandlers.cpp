@@ -50,7 +50,6 @@ void XMPPHandlers::OnDisconnected()
 {
 	m_pMainWnd->Do(m_DisconnectedHandler, &CComVariant(""));
 }
-
 void XMPPHandlers::OnStanza(MSXML2::IXMLDOMDocument *pXMLDoc, 
 							const BSTR stanzaName)
 {
