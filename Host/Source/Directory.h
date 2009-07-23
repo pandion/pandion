@@ -17,7 +17,7 @@
  * Filename:    Directory.h
  * Author(s):   Dries Staelens
  * Copyright:   Copyright (c) 2009 Dries Staelens
- * Description: TODOTODOTODO
+ * Description: This file declares the Directory and ListEntry classes.
  */
 #pragma once
 #include "DispInterfaceImpl.h"

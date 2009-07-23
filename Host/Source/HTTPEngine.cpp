@@ -84,8 +84,8 @@ STDMETHODIMP CHTTP::Get(BSTR filename, BSTR URI, DWORD offset, DWORD len, BSTR a
 		return S_FALSE;
 
 
-	IPdnFile* pFile = new CComObject<CFile>;
-	pFile->AddRef();
+	IPdnFile* pFile;
+	(new CFile)->QueryInterface(IID_IPdnFile, (LPVOID*) &pFile);
 	DWORD err = pFile->Create(filename, GENERIC_WRITE, FILE_SHARE_READ, OPEN_ALWAYS);
 	if(err == (DWORD)INVALID_HANDLE_VALUE)
 	{
@@ -119,8 +119,8 @@ STDMETHODIMP CHTTP::Post(BSTR filename, BSTR URI, DWORD offset, DWORD len, BSTR 
 		return S_FALSE;
 
 
-	IPdnFile* pFile = new CComObject<CFile>;
-	pFile->AddRef();
+	IPdnFile* pFile;
+	(new CFile)->QueryInterface(IID_IPdnFile, (LPVOID*) &pFile);
 	DWORD err = pFile->Create(filename, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, OPEN_ALWAYS);
 	if(err == (DWORD)INVALID_HANDLE_VALUE)
 	{

@@ -21,14 +21,14 @@
  *              facilities for creating, editing and deleting files.
  */
 #pragma once
+#include "DispInterfaceImpl.h"
 
 /*
  * This COM class provides the agent with facilities for creating, editing
  * deleting files.
  */
 class CFile :
-	public CComObjectRootEx<CComSingleThreadModel>,
-	public IDispatchImpl<IPdnFile>
+	public DispInterfaceImpl<IPdnFile>
 {
 private:
 	HANDLE   m_FileHandle;
@@ -37,16 +37,11 @@ private:
 	BOOL     m_HasWriteAccess;
 	BOOL	 m_AtEnd;
 
-	LPSTR    m_DataBuffer;
-	LPSTR    m_CurrentPosition;
+	LPBYTE    m_DataBuffer;
+	LPBYTE    m_CurrentPosition;
 public:
 	CFile();
 	~CFile();
-
-BEGIN_COM_MAP(CFile)
-	COM_INTERFACE_ENTRY(IDispatch)
-	COM_INTERFACE_ENTRY(IPdnFile)
-END_COM_MAP()
 
 	HRESULT GetWriteAccess();
 

@@ -17,7 +17,7 @@
  * Filename:    Directory.cpp
  * Author(s):   Dries Staelens
  * Copyright:   Copyright (c) 2009 Dries Staelens
- * Description: TODOTODOTODO
+ * Description: This file defines the Directory and ListEntry classes.
  */
 #include "stdafx.h"
 #include "Directory.h"

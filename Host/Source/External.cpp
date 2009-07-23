@@ -204,7 +204,7 @@ STDMETHODIMP CExternal::sleep(DWORD dwMilliseconds)
 STDMETHODIMP CExternal::File(BSTR path, VARIANT *pDisp)
 {
 	pDisp->vt = VT_DISPATCH;
-	(new CComObject<CFile>)->QueryInterface(&pDisp->pdispVal);
+	(new CFile)->QueryInterface(IID_IDispatch, (LPVOID*) &pDisp->pdispVal);
     
 	((IPdnFile*)pDisp->pdispVal)->Create(path, GENERIC_READ, FILE_SHARE_READ|FILE_SHARE_WRITE, OPEN_ALWAYS);
 	
@@ -365,7 +365,7 @@ STDMETHODIMP CExternal::UnZip(BSTR path, BSTR targetDir, int *nSuccess)
 					StringCchCopyA(file_path, 2*MAX_PATH, CW2A(targetDir));
 					PathAppendA(file_path, file_name);
 
-					(new CComObject<CFile>)->QueryInterface(&target_file);
+					(new CFile)->QueryInterface(IID_IPdnFile, (LPVOID*) &target_file);
     				if(target_file->Create(CA2W(file_path), GENERIC_WRITE, FILE_SHARE_READ, OPEN_ALWAYS) == S_OK)
 					{
 						target_file->Seek(file_info.uncompressed_size, 0, FILE_BEGIN);

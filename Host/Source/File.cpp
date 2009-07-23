@@ -103,7 +103,7 @@ STDMETHODIMP CFile::Create(BSTR strFileName,
 			createFileDirectory(m_FileName);
 		}
 
-		m_FileHandle = ::CreateFile(CW2T(strFileName),
+		m_FileHandle = ::CreateFile(strFileName,
 			dwAccess, dwShare, NULL, 
 			dwDisposition, FILE_ATTRIBUTE_NORMAL, NULL);
 		Seek(0, 0, FILE_BEGIN);
@@ -235,17 +235,17 @@ STDMETHODIMP CFile::ReadLine(BSTR* strLine)
 	{
 		unsigned uFileSize;
 		get_Size(&uFileSize);
-		m_DataBuffer = new char[uFileSize];
+		m_DataBuffer = new BYTE[uFileSize];
 		Read((BYTE *) m_DataBuffer,uFileSize);
 		m_CurrentPosition = m_DataBuffer;
 	}
 
-	LPSTR tokenPosition = strchr(m_CurrentPosition, '\n');
+	LPBYTE tokenPosition = (LPBYTE) strchr((LPSTR)m_CurrentPosition, '\n');
 
 	if(tokenPosition != NULL)
 	{
 		*tokenPosition = '\0';
-		if(strlen(m_CurrentPosition)> 0 && *(tokenPosition - 1) == '\r')
+		if(strlen((LPSTR)m_CurrentPosition)> 0 && *(tokenPosition - 1) == '\r')
 		{
 			*(tokenPosition - 1) = '\0';
 		}
@@ -300,7 +300,8 @@ STDMETHODIMP CFile::ReadBase64(BSTR* strBase64)
 		std::string b64Buffer(b64Size + 1, '\0');
 
 		if(SUCCEEDED(Read(&fileBuffer[0], fileSize)) &&
-			ATL::Base64Encode(&fileBuffer[0], fileSize, &b64Buffer[0], &b64Size))
+			ATL::Base64Encode(&fileBuffer[0],
+				fileSize, &b64Buffer[0], &b64Size))
 		{
 			*strBase64 = ::SysAllocString(CA2W(b64Buffer.c_str()));
 			return S_OK;
@@ -329,7 +330,8 @@ STDMETHODIMP CFile::WriteBase64(BSTR strBase64)
 		int fileBufferSize = ATL::Base64DecodeGetRequiredLength(b64Size);
 		std::vector<BYTE> fileBuffer(fileBufferSize);
 
-		ATL::Base64Decode(b64Buffer.c_str(), b64Size, &fileBuffer[0], &fileBufferSize);
+		ATL::Base64Decode(b64Buffer.c_str(), 
+			b64Size, &fileBuffer[0], &fileBufferSize);
 		Write(&fileBuffer[0], fileBufferSize);
 
 		return S_OK;
@@ -445,7 +447,7 @@ STDMETHODIMP CFile::Move(BSTR strTo)
 
 		createFileDirectory(_bstr_t(strTo));
 
-		if(::MoveFile(CW2TEX<MAX_PATH>(strFrom), CW2TEX<MAX_PATH>(strTo)))
+		if(::MoveFile(strFrom, strTo))
 		{
 			Create(strTo, GENERIC_READ, FILE_SHARE_READ|FILE_SHARE_WRITE,
 				OPEN_EXISTING);
@@ -474,10 +476,9 @@ STDMETHODIMP CFile::Copy(BSTR strTo, BOOL bOverWrite, IPdnFile** retCopy)
 		MAX_PATH)
 	{
 		_bstr_t strFrom = m_FileName;
-		if(::CopyFile(CW2TEX<MAX_PATH>(strFrom), CW2TEX<MAX_PATH>(strTo), 
-			!bOverWrite))
+		if(::CopyFile(strFrom, strTo, !bOverWrite))
 		{
-			(new CComObject<CFile>)->QueryInterface(retCopy);
+			(new CFile)->QueryInterface(IID_IPdnFile, (LPVOID*) retCopy);
 			(*retCopy)->Create(strTo, GENERIC_READ, 
 				FILE_SHARE_READ|FILE_SHARE_WRITE, OPEN_EXISTING);
 			return S_OK;
@@ -503,7 +504,7 @@ STDMETHODIMP CFile::Delete()
 	{
 		_bstr_t FileName = m_FileName;
 		Close();
-		::DeleteFile(CW2TEX<MAX_PATH>(FileName));
+		::DeleteFile(FileName);
 		return S_OK;
 	}
 	else
