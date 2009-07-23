@@ -20,23 +20,16 @@
  * Description: TODOTODOTODO
  */
 #pragma once
+#include "DispInterfaceImpl.h"
 
 class CListEntry :
-	public CComObjectRootEx<CComSingleThreadModel>,
-	public IDispatchImpl<IListEntry>
+	public DispInterfaceImpl<IListEntry>
 {
 private:
-	WIN32_FIND_DATAW m_Data;
+	WIN32_FIND_DATA m_Data;
 public:
-	CListEntry();
+	CListEntry(WIN32_FIND_DATA& data);
 	~CListEntry();
-
-BEGIN_COM_MAP(CListEntry)
-	COM_INTERFACE_ENTRY(IDispatch)
-	COM_INTERFACE_ENTRY(IListEntry)
-END_COM_MAP()
-
-	void SetData(WIN32_FIND_DATAW *pData);
 
 	STDMETHOD(get_IsArchive)(BOOL *b);
 	STDMETHOD(get_IsCompressed)(BOOL *b);
@@ -66,26 +59,20 @@ END_COM_MAP()
 };
 
 class CDirectory :
-	public CComObjectRootEx<CComSingleThreadModel>,
-	public IDispatchImpl<IPdnDirectory>
+	public DispInterfaceImpl<IPdnDirectory>
 {
 public:
 	CDirectory();
 	~CDirectory();
-
-	void Clear(BSTR path);
-	STDMETHOD(List)(BSTR path, DWORD dwFlag, VARIANT *list);
-	int FindSlash(BSTR path);
-
-BEGIN_COM_MAP(CDirectory)
-	COM_INTERFACE_ENTRY(IDispatch)
-	COM_INTERFACE_ENTRY(IPdnDirectory)
-END_COM_MAP()
 
 	STDMETHOD(Create)(BSTR path);
 	STDMETHOD(Exists)(BSTR path, BOOL *bExists);
 	STDMETHOD(ListDirs)(BSTR path, VARIANT *list); 
 	STDMETHOD(ListFiles)(BSTR path, VARIANT *list);
 	STDMETHOD(Delete)(BSTR path);
+private:
+	void Clear(BSTR path);
+	STDMETHOD(List)(BSTR path, DWORD dwFlag, VARIANT *list);
+	int FindLastSlash(LPWSTR path);
 };
 

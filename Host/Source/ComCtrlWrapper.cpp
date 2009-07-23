@@ -223,7 +223,7 @@ CChooseFont::CChooseFont(CPdnWnd& wnd) :
 
 	::ZeroMemory(&m_cf, sizeof(m_cf));
 	m_cf.lStructSize = sizeof(m_cf);
-	m_cf.hwndOwner = 0;
+	wnd.get_Handle((DWORD*)&m_cf.hwndOwner);
 	m_cf.hDC = GetDC(0);
 	m_cf.lpLogFont = &m_lf;
 	m_cf.iPointSize = 0;
@@ -434,7 +434,7 @@ STDMETHODIMP CChooseFont::Display()
 	}
 	else
 	{
-		return E_ABORT;
+		return S_FALSE;
 	}
 }
 /* CComCtrl Implementation */

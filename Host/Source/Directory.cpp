@@ -22,91 +22,12 @@
 #include "stdafx.h"
 #include "Directory.h"
 
-#undef FindFirstFile
-HANDLE FindFirstFile(LPWSTR lpFileName, LPWIN32_FIND_DATAW lpFindFileData)
+CListEntry::CListEntry(WIN32_FIND_DATA& data)
 {
-	if((GetVersion() & 0x80000000))
-	{
-		WIN32_FIND_DATAA wfd;
-		HANDLE h = FindFirstFileA(CW2A(lpFileName), &wfd);
-		StringCchCopyW(lpFindFileData->cAlternateFileName, 14, CA2W(wfd.cAlternateFileName));
-		StringCchCopyW(lpFindFileData->cFileName, 260, CA2W(wfd.cFileName));
-		lpFindFileData->dwFileAttributes = wfd.dwFileAttributes;
-		lpFindFileData->dwReserved0 = wfd.dwReserved0;
-		lpFindFileData->dwReserved1 = wfd.dwReserved1;
-		lpFindFileData->ftCreationTime = wfd.ftCreationTime;
-		lpFindFileData->ftLastAccessTime = wfd.ftLastAccessTime;
-		lpFindFileData->ftLastWriteTime = wfd.ftLastWriteTime;
-		lpFindFileData->nFileSizeHigh = wfd.nFileSizeHigh;
-		lpFindFileData->nFileSizeLow = wfd.nFileSizeLow;
-		return h;
-	}
-	else
-		return FindFirstFileW(lpFileName, lpFindFileData);
-}
-#undef FindNextFile
-BOOL FindNextFile(HANDLE hFindFile, LPWIN32_FIND_DATAW lpFindFileData)
-{
-	if((GetVersion() & 0x80000000))
-	{
-		WIN32_FIND_DATAA wfd;
-		BOOL b = FindNextFileA(hFindFile, &wfd);
-		StringCchCopyW(lpFindFileData->cAlternateFileName, 14, CA2W(wfd.cAlternateFileName));
-		StringCchCopyW(lpFindFileData->cFileName, 260, CA2W(wfd.cFileName));
-		lpFindFileData->dwFileAttributes = wfd.dwFileAttributes;
-		lpFindFileData->dwReserved0 = wfd.dwReserved0;
-		lpFindFileData->dwReserved1 = wfd.dwReserved1;
-		lpFindFileData->ftCreationTime = wfd.ftCreationTime;
-		lpFindFileData->ftLastAccessTime = wfd.ftLastAccessTime;
-		lpFindFileData->ftLastWriteTime = wfd.ftLastWriteTime;
-		lpFindFileData->nFileSizeHigh = wfd.nFileSizeHigh;
-		lpFindFileData->nFileSizeLow = wfd.nFileSizeLow;
-		return b;
-	}
-	else
-		return FindNextFileW(hFindFile, lpFindFileData);
-}
-#undef CreateDirectory
-BOOL CreateDirectory(LPCWSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
-{
-	if((GetVersion() & 0x80000000))
-		return CreateDirectoryA(CW2A(lpPathName), lpSecurityAttributes);
-	else
-		return CreateDirectoryW(lpPathName, lpSecurityAttributes);
-}
-#undef GetCurrentDirectory
-DWORD GetCurrentDirectory(DWORD nBufferLength, LPWSTR lpBuffer)
-{
-	if((GetVersion() & 0x80000000))
-	{
-		LPSTR lpBufferA = new char[nBufferLength];
-		DWORD dw = GetCurrentDirectoryA(nBufferLength, lpBufferA);
-		StringCchCopyW(lpBuffer, nBufferLength, CA2W(lpBufferA));
-		delete lpBufferA;
-		return dw;
-	}
-	else
-		return GetCurrentDirectoryW(nBufferLength, lpBuffer);
-}
-#undef SetCurrentDirectory
-BOOL SetCurrentDirectory(LPCWSTR lpPathName)
-{
-	if((GetVersion() & 0x80000000))
-		return SetCurrentDirectoryA(CW2A(lpPathName));
-	else
-		return SetCurrentDirectoryW(lpPathName);
-}
-
-CListEntry::CListEntry()
-{
+	memcpy((LPVOID) &m_Data, (LPVOID) &data, sizeof(WIN32_FIND_DATA));
 }
 CListEntry::~CListEntry()
 {
-}
-
-void CListEntry::SetData(WIN32_FIND_DATAW *pData)
-{
-	memcpy((void *) &m_Data, (void *) pData, sizeof(WIN32_FIND_DATAW));
 }
 
 STDMETHODIMP CListEntry::get_IsArchive(BOOL *b)
@@ -173,28 +94,40 @@ STDMETHODIMP CListEntry::get_IsTemporary(BOOL *b)
 STDMETHODIMP CListEntry::get_CreationTime(BSTR *str)
 {
 	SYSTEMTIME st;
-	FileTimeToSystemTime(&m_Data.ftCreationTime, &st);
-	WCHAR Buffer[8192];
-	StringCbPrintfW(Buffer, 8192, L"%u-%u-%u %u:%u:%u:%u", st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond, st.wMilliseconds);
-    *str = SysAllocString(Buffer);
+	::FileTimeToSystemTime(&m_Data.ftCreationTime, &st);
+
+	std::wstringstream buffer;
+	buffer << st.wYear << L'-' << st.wMonth << L'-' << st.wDay << L' ' <<
+		st.wHour << L':' << st.wMinute << L':' << st.wSecond << L':' << 
+		st.wMilliseconds;
+
+	*str = ::SysAllocString(buffer.str().c_str());
 	return S_OK;
 }
 STDMETHODIMP CListEntry::get_LastAccessTime(BSTR *str)
 {
 	SYSTEMTIME st;
-	FileTimeToSystemTime(&m_Data.ftCreationTime, &st);
-	WCHAR Buffer[8192];
-	StringCbPrintfW(Buffer, 8192, L"%u-%u-%u %u:%u:%u:%u", st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond, st.wMilliseconds);
-    *str = SysAllocString(Buffer);
+	::FileTimeToSystemTime(&m_Data.ftLastAccessTime, &st);
+
+	std::wstringstream buffer;
+	buffer << st.wYear << L'-' << st.wMonth << L'-' << st.wDay << L' ' <<
+		st.wHour << L':' << st.wMinute << L':' << st.wSecond << L':' << 
+		st.wMilliseconds;
+	
+	*str = ::SysAllocString(buffer.str().c_str());
 	return S_OK;
 }
 STDMETHODIMP CListEntry::get_LastWriteTime(BSTR *str)
 {
 	SYSTEMTIME st;
-	FileTimeToSystemTime(&m_Data.ftCreationTime, &st);
-	WCHAR Buffer[8192];
-	StringCbPrintfW(Buffer, 8192, L"%u-%u-%u %u:%u:%u:%u", st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond, st.wMilliseconds);
-    *str = SysAllocString(Buffer);
+	::FileTimeToSystemTime(&m_Data.ftLastWriteTime, &st);
+
+	std::wstringstream buffer;
+	buffer << st.wYear << L'-' << st.wMonth << L'-' << st.wDay << L' ' <<
+		st.wHour << L':' << st.wMinute << L':' << st.wSecond << L':' << 
+		st.wMilliseconds;
+	
+	*str = ::SysAllocString(buffer.str().c_str());
 	return S_OK;
 }
 
@@ -222,12 +155,12 @@ STDMETHODIMP CListEntry::get_Reserved1(DWORD *dw)
 
 STDMETHODIMP CListEntry::get_Name(BSTR *str)
 {
-	*str = SysAllocString(m_Data.cFileName);
+	*str = ::SysAllocString(m_Data.cFileName);
 	return S_OK;
 }
 STDMETHODIMP CListEntry::get_AlternateName(BSTR *str)
 {
-	*str = SysAllocString(m_Data.cAlternateFileName);
+	*str = ::SysAllocString(m_Data.cAlternateFileName);
 	return S_OK;
 }
 
@@ -237,152 +170,58 @@ CDirectory::CDirectory()
 CDirectory::~CDirectory()
 {
 }
-/* dwFlag: 0 -> all
- * dwFlag: 1 -> files only
- * dwFlag: 2 -> dirs only
- */
-STDMETHODIMP CDirectory::List(BSTR path, DWORD dwFlag, VARIANT *list)
-{
-	WCHAR Buffer[MAX_PATH];
-	StringCchCopyW(Buffer, MAX_PATH, path);
-	PathAddBackslashW(Buffer);
-	Buffer[wcslen(Buffer)+1] = 0;
-	Buffer[wcslen(Buffer)] = '*';
-
-	WIN32_FIND_DATAW FindFileData;
-	HANDLE hFind = FindFirstFile(Buffer, &FindFileData);
-
-	CComSafeArray<VARIANT> array;
-	array.Create();
-
-	if(hFind != INVALID_HANDLE_VALUE)
-	{
-		do
-		{
-			if(wcscmp(FindFileData.cFileName, L"..") && wcscmp(FindFileData.cFileName, L"."))
-			{
-				if(dwFlag == 0 || 
-					(dwFlag == 1 && ! (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) ||
-					(dwFlag == 2 && (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)))
-				{
-					CListEntry *pLE = (CListEntry *) new CComObject<CListEntry>;
-					pLE->SetData(&FindFileData);
-					array.Add(CComVariant((IDispatch *) pLE));
-				}
-			}
-		}
-		while(FindNextFile(hFind, &FindFileData));
-	}
-	FindClose(hFind);
-
-	list->parray = array.Detach();
-	list->vt = VT_ARRAY | VT_VARIANT;
-	return S_OK;
-}
-int CDirectory::FindSlash(BSTR path)
-{
-	for(int i = wcslen(path); i != 0; i--)
-		if(path[i] == '\\' || path[i] == '/')
-			return i;
-	return -1;
-}
 STDMETHODIMP CDirectory::Create(BSTR path)
 {
-	WCHAR CleanPath[MAX_PATH];
-	PathCanonicalizeW(CleanPath, path);
-	PathRemoveBackslashW(CleanPath);
+	TCHAR cleanPath[MAX_PATH];
+	::PathCanonicalize(cleanPath, path);
+	::PathRemoveBackslash(cleanPath);
 
 	BOOL bAlreadyExists;
-	Exists(CleanPath, &bAlreadyExists);
+	Exists(cleanPath, &bAlreadyExists);
 
 	if(!bAlreadyExists)
 	{
-		WCHAR Parent[MAX_PATH];
-		StringCchCopyW(Parent, MAX_PATH, CleanPath);
-		Parent[FindSlash(CleanPath)] = 0;
+		WCHAR parentPath[MAX_PATH];
+		::StringCchCopy(parentPath, MAX_PATH, cleanPath);
+		parentPath[FindLastSlash(cleanPath)] = 0;
 
-		Exists(Parent, &bAlreadyExists);
+		Exists(parentPath, &bAlreadyExists);
 		if(!bAlreadyExists)
 		{
-			return Create(Parent);
+			return Create(parentPath);
 		}
 		else
 		{
-			if(CreateDirectory(CleanPath, NULL))
+			if(::CreateDirectory(cleanPath, NULL))
 				return S_OK;
 			else
-				return GetLastError();
+				return ::GetLastError();
 		}
 	}
 	else
 	{
 		return ERROR_ALREADY_EXISTS;
 	}
-
-/*	int len = FindSlash(path);
-	if(len != -1 && path[0] != '\\' && wcslen(path) != len)
-	{
-		WCHAR ThisComponent[MAX_PATH];
-		memcpy(ThisComponent, path, len * sizeof(WCHAR));
-		ThisComponent[len] = 0;
-
-		BOOL bAlreadyExists;
-		Exists(ThisComponent, &bAlreadyExists);
-
-		if(!bAlreadyExists)
-		{
-			if(CreateDirectory(ThisComponent, NULL))
-			{
-				SetCurrentDirectory(ThisComponent);
-				HRESULT retVal = Create(path + len);
-				SetCurrentDirectory(CurrentDir);
-				return retVal;
-			}
-			else
-				return E_FAIL;
-		}
-		else
-		{
-			SetCurrentDirectory(ThisComponent);
-			HRESULT retVal = Create(path + len);
-			SetCurrentDirectory(CurrentDir);
-			return retVal;
-		}
-	}
-	else
-	{
-		BOOL bAlreadyExists;
-		Exists(path, &bAlreadyExists);
-		if(!bAlreadyExists)
-		{
-			if(CreateDirectory(path, NULL))
-				return S_OK;
-			else
-				return E_FAIL;
-		}
-		else
-			return E_FAIL;
-	}*/
 }
 STDMETHODIMP CDirectory::Exists(BSTR path, BOOL *bExists)
 {
-	WCHAR searchPath[MAX_PATH];
-	StringCchCopyW(searchPath, MAX_PATH, path);
-	PathAddBackslashW(searchPath);
-	int len = wcslen(searchPath);
-	searchPath[len] = '*';
-	searchPath[len+1] = 0;
+	TCHAR searchPath[MAX_PATH];
+	::StringCchCopy(searchPath, MAX_PATH, path);
+	::PathAddBackslash(searchPath);
+	::PathAppend(searchPath, L"*");
 
 	WIN32_FIND_DATAW FindFileData;
-	HANDLE hFind = FindFirstFile(searchPath, &FindFileData);
+	HANDLE hFind = ::FindFirstFile(searchPath, &FindFileData);
 
 	if(hFind != INVALID_HANDLE_VALUE)
 	{
-		FindClose(hFind);
+		::FindClose(hFind);
 		*bExists = TRUE;
 	}
 	else
+	{
 		*bExists = FALSE;
+	}
     return S_OK;
 }
 STDMETHODIMP CDirectory::ListDirs(BSTR path, VARIANT *list)
@@ -403,32 +242,100 @@ void CDirectory::Clear(BSTR path)
 	VARIANT vList;
 	List(path, 0, &vList);
 
-	CComSafeArray<VARIANT> array;
-	array.Attach(vList.parray);
+	long upperBound;
+	::SafeArrayGetUBound(vList.parray, 0, &upperBound);
 
-	for(UINT i = 0; i <array.GetCount(); i++)
+	for(long i = 0; i < upperBound; i++)
 	{
-		IListEntry * pLE;
-		HRESULT hr = (CComVariant((VARIANT) array.GetAt(i)).pdispVal)->QueryInterface(IID_IListEntry, (void **) &pLE);
+		IListEntry* listEntry;
+		::SafeArrayGetElement(vList.parray, &i, &listEntry);
 
-		if(SUCCEEDED(hr))
+		BSTR name;
+		listEntry->get_Name(&name);
+
+		TCHAR newPath[MAX_PATH];
+		::StringCchCopy(newPath, MAX_PATH, path);
+		::PathAppend(newPath, name);
+		::SysFreeString(name);
+
+		BOOL bDir;
+		listEntry->get_IsDirectory(&bDir);
+
+		if(bDir)
 		{
-			BSTR name;
-			pLE->get_Name(&name);
-
-			TCHAR newPath[MAX_PATH];
-			StringCchCopy(newPath, MAX_PATH, CW2T(path));
-			PathAppend(newPath, CW2T(name));
-
-			BOOL bDir;
-			pLE->get_IsDirectory(&bDir);
-
-			if(bDir)
-				Clear(CT2W(newPath));
-			else
-				DeleteFile(newPath);
-			pLE->Release();
+			Clear(newPath);
+		}
+		else
+		{
+			::DeleteFile(newPath);
 		}
 	}
-	RemoveDirectory(CW2T(path));
+	::SafeArrayDestroy(vList.parray);
+	::RemoveDirectory(path);
+}
+
+/* dwFlag: 0 -> all
+ * dwFlag: 1 -> files only
+ * dwFlag: 2 -> dirs only
+ */
+STDMETHODIMP CDirectory::List(BSTR path, DWORD dwFlag, VARIANT *list)
+{
+	WCHAR searchPath[MAX_PATH];
+	::StringCchCopyW(searchPath, sizeof(searchPath), path);
+	::PathAddBackslashW(searchPath);
+	::PathAppend(searchPath, L"*");
+
+	WIN32_FIND_DATA FindFileData;
+	HANDLE hFind = FindFirstFile(searchPath, &FindFileData);
+
+	std::vector<VARIANT> results;
+
+	if(hFind != INVALID_HANDLE_VALUE)
+	{
+		do
+		{
+			if(wcscmp(FindFileData.cFileName, L"..") &&
+				wcscmp(FindFileData.cFileName, L".") &&
+				(dwFlag == 0 || 
+				(dwFlag == 1 &&	
+				!(FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) ||
+				(dwFlag == 2 && 
+				(FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))))
+			{
+				IDispatch* ListEntryDispatch;
+				(new CListEntry(FindFileData))->QueryInterface(
+					IID_IDispatch, (LPVOID*) &ListEntryDispatch);
+				results.push_back(_variant_t(ListEntryDispatch));
+			}
+		}
+		while(FindNextFile(hFind, &FindFileData));
+	}
+	FindClose(hFind);
+
+	SAFEARRAYBOUND resultsArrayBound;
+	resultsArrayBound.cElements = results.size();
+	resultsArrayBound.lLbound = 0;
+	SAFEARRAY* resultsArray = ::SafeArrayCreate(VT_VARIANT, 1, 
+		&resultsArrayBound);
+
+	LONG index = 0;
+	for(std::vector<VARIANT>::iterator it = results.begin();
+		it != results.end();
+		it++)
+	{
+		::SafeArrayPutElement(resultsArray, &index, &(*it));
+		index++;
+	}
+
+	list->parray = resultsArray;
+	list->vt = VT_ARRAY | VT_VARIANT;
+	return S_OK;
+}
+
+int CDirectory::FindLastSlash(LPWSTR path)
+{
+	for(int i = ::wcslen(path); i != 0; i--)
+		if(path[i] == L'\\' || path[i] == L'/')
+			return i;
+	return -1;
 }

@@ -120,7 +120,6 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description=""
 				CommandLine=""
 			/>
 		</Configuration>
@@ -536,18 +535,6 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Common Controls"
-				>
-				<File
-					RelativePath="ComCtrlWrapper.cpp"
-					>
-				</File>
-				<File
-					RelativePath="ComCtrlWrapper.h"
-					>
-				</File>
-			</Filter>
-			<Filter
 				Name="SASL"
 				>
 				<File
@@ -563,6 +550,14 @@
 		<Filter
 			Name="Windowing"
 			>
+			<File
+				RelativePath="ComCtrlWrapper.cpp"
+				>
+			</File>
+			<File
+				RelativePath="ComCtrlWrapper.h"
+				>
+			</File>
 			<File
 				RelativePath="MainWnd.cpp"
 				>

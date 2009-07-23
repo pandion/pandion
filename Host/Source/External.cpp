@@ -227,9 +227,8 @@ STDMETHODIMP CExternal::FileExists(BSTR path, BOOL *bExists)
 STDMETHODIMP CExternal::get_Directory(VARIANT *pDisp)
 {
 	pDisp->vt = VT_DISPATCH;
-	(new CComObject<CDirectory>)->QueryInterface(&pDisp->pdispVal);
-
-	return S_OK;
+	return (new CDirectory)->QueryInterface(
+		IID_IDispatch, (LPVOID*) &pDisp->pdispVal);
 }
 STDMETHODIMP CExternal::get_XMPP(VARIANT *pDisp)
 {

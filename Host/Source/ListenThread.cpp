@@ -111,5 +111,5 @@ void CListenThread::PostCommand()
 {
 	RemPort(0);
 //	m_pER->Release();
-	delete this;
+//	delete this;
 }

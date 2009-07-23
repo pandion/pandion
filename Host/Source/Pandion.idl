@@ -92,7 +92,8 @@ import "atliface.idl";
 
 		[propget] HRESULT LastWriteTime([out,retval] VARIANT* vLastWriteTime);
 	}
-	[ uuid(E8AC5D21-E54C-4401-B87E-DB242C6F83F2) ] interface IPdnDirectory : IDispatch
+	[uuid(5173F9CB-79AD-4ee3-AD7B-C48C6FD3B23A)]
+	interface IPdnDirectory : IDispatch
 	{
 		HRESULT Create([in] BSTR path);
 		HRESULT Exists([in] BSTR path, [out,retval] bool* bExists);
@@ -100,7 +101,8 @@ import "atliface.idl";
 		HRESULT ListFiles([in] BSTR path, [out,retval] VARIANT* list);
 		HRESULT Delete([in] BSTR path);
 	}
-	[ uuid(A373BD14-D034-461c-9ADA-6B95B5C03A27) ] interface IListEntry : IDispatch
+	[uuid(1EC2886F-99F0-4553-BEAD-D75962B66286)]
+	interface IListEntry : IDispatch
 	{
 		[propget] HRESULT IsArchive([out,retval] BOOL* b);
 		[propget] HRESULT IsCompressed([out,retval] BOOL* b);

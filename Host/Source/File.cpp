@@ -39,10 +39,6 @@ CFile::CFile() : m_FileHandle(INVALID_HANDLE_VALUE), m_FileName(L""),
  */
 CFile::~CFile()
 {
-	if(m_DataBuffer)
-	{
-		delete m_DataBuffer;
-	}
 	Close();
 }
 
@@ -610,7 +606,7 @@ void CFile::createFileDirectory(_bstr_t &str)
 	PathRemoveFileSpecW(strDirNameW);
 
 	IPdnDirectory *pDir;
-	(new CComObject<CDirectory>())->QueryInterface(&pDir);
+	(new CDirectory())->QueryInterface(IID_IPdnDirectory, (LPVOID*) &pDir);
 	pDir->Create(strDirNameW);
 	pDir->Release();
 }
