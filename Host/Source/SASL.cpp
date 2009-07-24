@@ -35,184 +35,117 @@ SASL::SASL()
 SASL::~SASL()
 {
 }
-STDMETHODIMP SASL::PlainGenerateResponse(BSTR jid, 
-	BSTR username, BSTR password, BSTR *strBase64)
+STDMETHODIMP SASL::PlainGenerateResponse(BSTR jid, BSTR username,
+	BSTR password, BSTR* strBase64)
 {
-	CComBSTR strRetVal = "";
+	std::stringstream stringBuffer;
+	stringBuffer << CW2UTF8(jid) << '\0' << CW2UTF8(username) << '\0' <<
+		CW2UTF8(password) << '\0';
 
-	DWORD UTF8jidLen = strlen(CW2UTF8(jid));
-	DWORD UTF8usernameLen = strlen(CW2UTF8(username));
-	DWORD UTF8passwordLen = strlen(CW2UTF8(password));
+	DWORD b64Size;
+	::CryptBinaryToString((LPBYTE)&stringBuffer.str()[0], stringBuffer.str().length(),
+		CRYPT_STRING_BASE64, NULL, &b64Size);
+	std::wstring b64Buffer(b64Size, L'\0');
+	::CryptBinaryToString((LPBYTE)&stringBuffer.str()[0], stringBuffer.str().length(),
+		CRYPT_STRING_BASE64, &b64Buffer[0], &b64Size);
 
-	DWORD reqBuffersize = UTF8jidLen + UTF8usernameLen + UTF8passwordLen + 2;
-	BYTE* pBuffer = new BYTE[reqBuffersize+1];
-
-	memcpy((void*)pBuffer, CW2UTF8(jid), UTF8jidLen);
-	*((BYTE *)pBuffer + UTF8jidLen) = '\0';
-	memcpy((void*)(pBuffer + UTF8jidLen + 1), CW2UTF8(username), UTF8usernameLen);
-	*((BYTE *)pBuffer + UTF8jidLen + 1 + UTF8usernameLen) = '\0';
-	memcpy((void*)(pBuffer + UTF8jidLen + 1 + UTF8usernameLen + 1), CW2UTF8(password), UTF8passwordLen);
-
-	int iReqLen = ATL::Base64EncodeGetRequiredLength(reqBuffersize);
-	LPSTR pB64Buffer = new char[iReqLen+1];
-	if(ATL::Base64Encode(pBuffer, reqBuffersize, pB64Buffer, &iReqLen, ATL_BASE64_FLAG_NOCRLF))
-	{
-		pB64Buffer[iReqLen] = 0;
-		strRetVal = CA2W(pB64Buffer);
-	}
-	delete pB64Buffer;
-
-	delete pBuffer;
-	*strBase64 = strRetVal.Detach();
-
+	*strBase64 = ::SysAllocString(b64Buffer.c_str());
 	return S_OK;
 }
-STDMETHODIMP SASL::DigestGenerateResponse(BSTR username, BSTR realm, BSTR password, BSTR nonce, BSTR cnonce, BSTR digest_uri, BSTR nc, BSTR qop, BSTR *strDigest)
+STDMETHODIMP SASL::DigestGenerateResponse(BSTR username, BSTR realm,
+	BSTR password, BSTR nonce, BSTR cnonce, BSTR digest_uri, BSTR nc,
+	BSTR qop, BSTR *strDigest)
 {
 	/* MD5-Session algorithm:
-	var X	= Response('username') + ':' + Response('realm') + ':' + Response('password');
-	var Y	= md5.digest(X); // This should be binary data instead of the hexadecimal string
-	var A1	= Y + ':' + Response('nonce') + ':' + Response('cnonce'); // + ':' + Response('authzid')
+	var X	= Response('username') + ':' + Response('realm') + ':' +
+		Response('password');
+	var Y	= md5.digest(X); // This should be binary data instead of the 
+							 // hexadecimal string
+	var A1	= Y + ':' + Response('nonce') + ':' +
+		Response('cnonce'); // + ':' + Response('authzid')
 	var A2	= 'AUTHENTICATE:' + Response('digest-uri');
 	var HA1	= md5.digest(A1);
 	var HA2	= md5.digest(A2);
-	var KD	= HA1 + ':' + Response('nonce') + ':' + Response('nc') + ':' + Response('cnonce') + ':' + Response('qop') + ':' + HA2;
+	var KD	= HA1 + ':' + Response('nonce') + ':' + Response('nc') + ':' + 
+		Response('cnonce') + ':' + Response('qop') + ':' + HA2;
 	var Z	= md5.digest(KD);
 	*/
-
-	/* convert all strings to UTF-8 and store them in new buffers */
-	char *U8username     = new char[ strlen(CW2UTF8(username))   + 1 ];
-	char *U8realm        = new char[ strlen(CW2UTF8(realm))      + 1 ];
-	char *U8password     = new char[ strlen(CW2UTF8(password))   + 1 ];
-	char *U8nonce        = new char[ strlen(CW2UTF8(nonce))      + 1 ];
-	char *U8cnonce       = new char[ strlen(CW2UTF8(cnonce))     + 1 ];
-	char *U8digest_uri   = new char[ strlen(CW2UTF8(digest_uri)) + 1 ];
-	char *U8nc           = new char[ strlen(CW2UTF8(nc))         + 1 ];
-	char *U8qop          = new char[ strlen(CW2UTF8(qop))        + 1 ];
-	StringCchCopyA(U8username,   strlen(CW2UTF8(username))   + 1, CW2UTF8(username));
-	StringCchCopyA(U8realm,      strlen(CW2UTF8(realm))      + 1, CW2UTF8(realm));
-	StringCchCopyA(U8password,   strlen(CW2UTF8(password))   + 1, CW2UTF8(password));
-	StringCchCopyA(U8nonce,      strlen(CW2UTF8(nonce))      + 1, CW2UTF8(nonce));
-	StringCchCopyA(U8cnonce,     strlen(CW2UTF8(cnonce))     + 1, CW2UTF8(cnonce));
-	StringCchCopyA(U8digest_uri, strlen(CW2UTF8(digest_uri)) + 1, CW2UTF8(digest_uri));
-	StringCchCopyA(U8nc,         strlen(CW2UTF8(nc))         + 1, CW2UTF8(nc));
-	StringCchCopyA(U8qop,        strlen(CW2UTF8(qop))        + 1, CW2UTF8(qop));
+	std::string colon = std::string(":");
 
 	/* calculate X */
-	unsigned int Xlen = strlen(U8username) + 1 + strlen(U8realm) + 1 + strlen(U8password) + 1;
-	char *X = new char[ Xlen ];
-	StringCbPrintfA(X, Xlen, "%s:%s:%s", U8username, U8realm, U8password);
+	std::string X = std::string(CW2UTF8(username)) + colon +
+		std::string(CW2UTF8(realm)) + colon + std::string(CW2UTF8(password));
 
 	/* calculate Y */
-	unsigned char Y[16];
-	Hash::MD5((unsigned char *) X, strlen(X), Y);
+	std::string Y(16,'\0');
+	Hash::MD5((unsigned char*)X.c_str(), X.length(), (unsigned char*) &Y[0]);
 
 	/* calculate A1 */
-	unsigned int A1Len = 16 + 1 + strlen(U8nonce) + 1 + strlen(U8cnonce);
-	char *A1 = new char[ A1Len + 1 ];
-	memcpy(A1, Y, 16);
-	StringCbPrintfA(A1 + 16, A1Len + 1 - 16, ":%s:%s", U8nonce, U8cnonce);
+	std::string A1 = Y + colon + std::string(CW2UTF8(nonce)) + colon + 
+		std::string(CW2UTF8(cnonce));
 
 	/* calculate A2 */
-	unsigned int A2Len = 13 + strlen(U8digest_uri);
-	char *A2 = new char[ A2Len + 1 ];
-	StringCbPrintfA(A2, A2Len + 1, "AUTHENTICATE:%s", U8digest_uri);
+	std::string A2 = std::string("AUTHENTICATE:") + 
+		std::string(CW2UTF8(digest_uri));
 
 	/* calculate HA1 */
 	unsigned char binaryHA1[16];
-	Hash::MD5((unsigned char *) A1, A1Len, binaryHA1);
-	char HA1[2*16+1];
-	HexString(binaryHA1, HA1, 16);
+	Hash::MD5((unsigned char*)A1.c_str(), A1.length(), binaryHA1);
+	std::string HA1(2*16+1, '\0');
+	HexString(binaryHA1, &HA1[0], 16);
 
 	/* calculate HA2 */
 	unsigned char binaryHA2[16];
-	Hash::MD5((unsigned char *) A2, strlen(A2), binaryHA2);
-	char HA2[2*16+1];
-	HexString(binaryHA2, HA2, 16);
+	Hash::MD5((unsigned char*)A2.c_str(), A2.length(), binaryHA2);
+	std::string HA2(2*16+1, '\0');
+	HexString(binaryHA2, &HA2[0], 16);
 
     /* calculate KD */
-	unsigned char KDLen = 33 + strlen(U8nonce) + 1 + strlen(U8nc) +
-		1 + strlen(U8cnonce) + 1 + strlen(U8qop) + 33;
-	char *KD = new char[ KDLen + 1 ];
-	memcpy(KD, HA1, 32);
-	StringCbPrintfA(KD + 32, KDLen + 1 - 32, ":%s:%s:%s:%s:",
-		U8nonce, U8nc, U8cnonce, U8qop);
-	memcpy(KD + 32 + strlen(KD + 32), HA2, 33);
+	std::string KD = HA2 + colon + std::string(CW2UTF8(nonce)) + colon +
+		std::string(CW2UTF8(nc)) + colon + std::string(CW2UTF8(cnonce)) + 
+		colon +	std::string(CW2UTF8(qop)) + colon + HA2;
 
 	/* calculate Z */
-	unsigned char  binaryZ[16];
-	Hash::MD5((unsigned char *) KD, KDLen, binaryZ);
-	char Z[2*16+1];
-	HexString(binaryZ, Z, 16);
+	unsigned char binaryZ[16];
+	Hash::MD5((unsigned char*) KD.c_str(), KD.length(), binaryZ);
+	std::string Z(2*16+1, '\0');
+	HexString(binaryZ, &Z[0], 16);
 
-	*strDigest = SysAllocString(CA2W(Z));
-
-	/* cleanup */
-
-	delete KD;
-	delete A2;
-	delete A1;
-	delete X;
-
-	delete U8username;
-	delete U8realm;
-	delete U8password;
-	delete U8nonce;
-	delete U8cnonce;
-	delete U8digest_uri;
-	delete U8nc;
-	delete U8qop;
+	*strDigest = ::SysAllocString(CUTF82W(Z.c_str()));
 
 	return S_OK;
 }
-STDMETHODIMP SASL::HexString(const unsigned char *binaryData,
-							  char *hexString, int n)
-{
-	for(int i = 0; i <n; i++)
-	{
-		hexString[2*i] = (binaryData[i]>> 4) + 
-			(((binaryData[i]>> 4) <0xA) ? '0' : ('a' - 0xA));
-		hexString[2*i+1] = (binaryData[i] & 0x0F) + 
-			(((binaryData[i] & 0x0F) <0xA) ? '0' : ('a' - 0xA));
-	}
-	hexString[2*n] = '\0';
 
-	return S_OK;
-}
 STDMETHODIMP SASL::SSPIReset()
 {
-	/* No windows 9x/Me */
-	if(!(GetVersion() & 0x80000000))
+	/* Query Security Package Information */
+	PSecPkgInfo SecurityPackage;
+	SECURITY_STATUS ss = 
+		::QuerySecurityPackageInfo(PACKAGE_NAME, &SecurityPackage);
+	if (ss != SEC_E_OK)
 	{
-		/* Query Security Package Information */
-		PSecPkgInfo SecurityPackage;
-		SECURITY_STATUS ss = QuerySecurityPackageInfo(PACKAGE_NAME,
-			&SecurityPackage);
-		if (ss != SEC_E_OK)
-		{
-			SSPIError(L"SSPIReset()",
-				L"QuerySecurityPackageInfo()",
-				L"Unknown Error.");
-			return E_FAIL;
-		}
-		else
-		{
-			m_dwMaxTokenSize = SecurityPackage->cbMaxToken;
-			FreeContextBuffer(SecurityPackage);
-		}
-
-		/* Clean up existing handles */
-		if(m_fHaveCredHandle)
-			FreeCredentialsHandle(&m_hCred);
-
-		/* Reset flags */
-		m_fNewConversation = TRUE;
-		m_fHaveCredHandle  = FALSE;
-		m_fHaveCtxtHandle  = FALSE;
-		return S_OK;
+		SSPIError(L"SSPIReset()",
+			L"QuerySecurityPackageInfo()",
+			L"Unknown Error.");
+		return E_FAIL;
 	}
 	else
-		return S_OK;
+	{
+		m_dwMaxTokenSize = SecurityPackage->cbMaxToken;
+		FreeContextBuffer(SecurityPackage);
+	}
+
+	/* Clean up existing handles */
+	if(m_fHaveCredHandle)
+	{
+		FreeCredentialsHandle(&m_hCred);
+	}
+
+	/* Reset flags */
+	m_fNewConversation = TRUE;
+	m_fHaveCredHandle  = FALSE;
+	m_fHaveCtxtHandle  = FALSE;
+	return S_OK;
 }
 STDMETHODIMP SASL::SSPIGenerateResponse(BSTR Challenge, BOOL *Continue, BSTR *Response)
 {
@@ -276,11 +209,13 @@ STDMETHODIMP SASL::SSPIGenerateResponse(BSTR Challenge, BOOL *Continue, BSTR *Re
 	}
 
 	/* Decode the Challenge */
-	DWORD DecodedChallengeLength = 
-		ATL::Base64DecodeGetRequiredLength(wcslen(Challenge));
+	DWORD DecodedChallengeLength;
+	::CryptStringToBinary(Challenge, ::SysStringLen(Challenge),
+		CRYPT_STRING_BASE64, NULL, &DecodedChallengeLength, NULL, NULL);
 	std::vector<BYTE> DecodedChallenge(DecodedChallengeLength);
-	ATL::Base64Decode(CW2A(Challenge), wcslen(Challenge),
-		&DecodedChallenge[0], (int *) &DecodedChallengeLength);
+	::CryptStringToBinary(Challenge, ::SysStringLen(Challenge),
+		CRYPT_STRING_BASE64, &DecodedChallenge[0], &DecodedChallengeLength,
+		NULL, NULL);
 
 	/* prepare input buffer */
 	SecBuffer		InSecBuff;
@@ -422,18 +357,31 @@ STDMETHODIMP SASL::SSPIGenerateResponse(BSTR Challenge, BOOL *Continue, BSTR *Re
 
 	m_fNewConversation = FALSE;
 
-	DWORD ResponseLen = 
-		ATL::Base64EncodeGetRequiredLength(OutBuffDesc.pBuffers->cbBuffer);
-	std::vector<char> EncodedResponse(ResponseLen + 1);
-	ATL::Base64Encode((BYTE *) OutBuffDesc.pBuffers->pvBuffer, 
-		OutBuffDesc.pBuffers->cbBuffer, &EncodedResponse[0], 
-		(int *) &ResponseLen, ATL_BASE64_FLAG_NOCRLF);
-	EncodedResponse[ResponseLen] = 0;
-	*Response = SysAllocString(CA2W(&EncodedResponse[0]));
+	DWORD ResponseLen;
+	::CryptBinaryToString((BYTE *) OutBuffDesc.pBuffers->pvBuffer,
+		OutBuffDesc.pBuffers->cbBuffer,	CRYPT_STRING_BASE64,
+		NULL, &ResponseLen);
+	std::wstring EncodedResponse(ResponseLen, L'\0');
+	::CryptBinaryToString((BYTE *) OutBuffDesc.pBuffers->pvBuffer,
+		OutBuffDesc.pBuffers->cbBuffer,	CRYPT_STRING_BASE64,
+		&EncodedResponse[0], &ResponseLen);
+	*Response = ::SysAllocString(EncodedResponse.c_str());
 
 	*Continue = 
 		((SEC_I_CONTINUE_NEEDED == ss) || (SEC_I_COMPLETE_AND_CONTINUE == ss));
 	return S_OK;
+}
+void SASL::HexString(const unsigned char *binaryData, char *hexString, int n)
+{
+	for(int i = 0; i < n; i++)
+	{
+		hexString[2 * i] =
+			(binaryData[i] >> 4) + 
+			(((binaryData[i] >> 4) < 0xA) ? '0' : ('a' - 0xA));
+		hexString[2 * i + 1] = (binaryData[i] & 0x0F) + 
+			(((binaryData[i] & 0x0F) < 0xA) ? '0' : ('a' - 0xA));
+	}
+	hexString[2*n] = '\0';
 }
 void SASL::SSPIError(LPWSTR Where, LPWSTR WhenCalling, LPWSTR ErrorMessage)
 {

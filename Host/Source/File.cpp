@@ -287,7 +287,7 @@ STDMETHODIMP CFile::WriteLine(BSTR strLine)
 }
 
 /*
- * Read an entire file into a Base64 encode string.
+ * Read an entire file into a Base64-encoded string.
  */
 STDMETHODIMP CFile::ReadBase64(BSTR* strBase64)
 {
@@ -296,14 +296,16 @@ STDMETHODIMP CFile::ReadBase64(BSTR* strBase64)
 		DWORD fileSize = ::GetFileSize(m_FileHandle, 0);
 		std::vector<BYTE> fileBuffer(fileSize);
 
-		int b64Size = ATL::Base64EncodeGetRequiredLength(fileSize);
-		std::string b64Buffer(b64Size + 1, '\0');
+		DWORD b64Size;
+		::CryptBinaryToString(&fileBuffer[0], fileSize,
+			CRYPT_STRING_BASE64, NULL, &b64Size);
+		std::wstring b64Buffer(b64Size, L'\0');
 
 		if(SUCCEEDED(Read(&fileBuffer[0], fileSize)) &&
-			ATL::Base64Encode(&fileBuffer[0],
-				fileSize, &b64Buffer[0], &b64Size))
+			::CryptBinaryToString(&fileBuffer[0], fileSize,
+				CRYPT_STRING_BASE64, &b64Buffer[0], &b64Size))
 		{
-			*strBase64 = ::SysAllocString(CA2W(b64Buffer.c_str()));
+			*strBase64 = ::SysAllocString(b64Buffer.c_str());
 			return S_OK;
 		}
 		else
@@ -324,14 +326,12 @@ STDMETHODIMP CFile::WriteBase64(BSTR strBase64)
 {
 	if(SUCCEEDED(GetWriteAccess()))
 	{
-		size_t b64Size = ::SysStringLen(strBase64);
-		std::string b64Buffer = std::string(CW2AEX<0x8000>(strBase64));
-
-		int fileBufferSize = ATL::Base64DecodeGetRequiredLength(b64Size);
+		DWORD fileBufferSize;
+		::CryptStringToBinary(strBase64, ::SysStringLen(strBase64),
+			CRYPT_STRING_BASE64, NULL, &fileBufferSize, NULL, NULL);
 		std::vector<BYTE> fileBuffer(fileBufferSize);
-
-		ATL::Base64Decode(b64Buffer.c_str(), 
-			b64Size, &fileBuffer[0], &fileBufferSize);
+		::CryptStringToBinary(strBase64, ::SysStringLen(strBase64),
+			CRYPT_STRING_BASE64, &fileBuffer[0], &fileBufferSize, NULL, NULL);
 		Write(&fileBuffer[0], fileBufferSize);
 
 		return S_OK;

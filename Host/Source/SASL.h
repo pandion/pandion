@@ -50,7 +50,6 @@ public:
 		BSTR Challenge, BOOL *Continue, BSTR *Response);
 
 private:
-	STDMETHOD(HexString)(
-		const unsigned char *binaryData, char *hexString, int n);
+	void HexString(const unsigned char *binaryData, char *hexString, int n);
 	void SSPIError(LPWSTR Where, LPWSTR WhenCalling, LPWSTR ErrorMessage);
 };
