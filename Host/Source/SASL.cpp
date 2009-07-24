@@ -386,7 +386,7 @@ void SASL::HexString(const unsigned char *binaryData, char *hexString, int n)
 void SASL::SSPIError(LPWSTR Where, LPWSTR WhenCalling, LPWSTR ErrorMessage)
 {
 	std::wostringstream dbgMsg;
-	dbgMsg <<L"SSPI error in " <<Where <<" when calling " <<WhenCalling <<
-		": " <<	ErrorMessage <<std::endl;
-	OutputDebugString(CW2T(dbgMsg.str().c_str()));
+	dbgMsg << L"SSPI error in " << Where <<" when calling " << WhenCalling <<
+		": " <<	ErrorMessage << std::endl;
+	OutputDebugString(dbgMsg.str().c_str());
 }
