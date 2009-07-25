@@ -22,7 +22,6 @@
 
 #include "stdafx.h"
 #include "MainWnd.h"
-#include "HTTPEngine.h"
 #include "Module.h"
 
 CPandionModule::~CPandionModule()
@@ -38,18 +37,12 @@ void CPandionModule::GetMainWnd(CMainWnd **ppMainWnd)
 	else
 	{
 		*ppMainWnd = NULL;
-		ATLASSERT(0);
 	}
 }
 void CPandionModule::GetHTTP(IHTTP **ppHTTP)
 {
-	if(m_pHTTP)
-		m_pHTTP->QueryInterface(ppHTTP);
-	else
-	{
-		*ppHTTP = NULL;
-		ATLASSERT(0);
-	}
+	*ppHTTP = &m_HTTP;
+	m_HTTP.AddRef();
 }
 void CPandionModule::GetXMPP(IDispatch **ppXMPP)
 {
@@ -66,7 +59,6 @@ void CPandionModule::GetGlobals(ScrRun::IDictionary **ppGlobals)
 	else
 	{
 		*ppGlobals = NULL;
-		ATLASSERT(0);
 	}
 }
 void CPandionModule::GetWindows(ScrRun::IDictionary **ppWindows)
@@ -76,7 +68,6 @@ void CPandionModule::GetWindows(ScrRun::IDictionary **ppWindows)
 	else
 	{
 		*ppWindows = NULL;
-		ATLASSERT(0);
 	}
 }
 
@@ -89,7 +80,7 @@ BOOL CPandionModule::IsRunning()
 		if(str[i] == '\\')
 			str[i] = '$';
 	}
-	_tcslwr(str);
+	_wcslwr(str);
 	CreateMutex(0, 0, str);
 	if(GetLastError() == ERROR_ALREADY_EXISTS)
 	{
@@ -130,16 +121,7 @@ BOOL CPandionModule::IsIEVersionOK()
 
 HRESULT CPandionModule::PreMessageLoop(int nShowCmd)
 {
-	/* attempt to register the application */
-	if(SUCCEEDED(RegisterAppId()))
-		RegisterServer(TRUE);
-
-	//_CrtSetBreakAlloc(2654);
 	_CrtSetDbgFlag(_CRTDBG_LEAK_CHECK_DF | _CRTDBG_ALLOC_MEM_DF);
-	/* Let ATL Initialize */
-	HRESULT hr = CAtlExeModuleT<CPandionModule>::PreMessageLoop(nShowCmd);
-	if(FAILED(hr))
-		return hr;
 
 	/* Check if the software is already running and take action accordingly */
 	if(IsRunning())
@@ -169,35 +151,24 @@ HRESULT CPandionModule::PreMessageLoop(int nShowCmd)
 		::ExitProcess(-1);
 	}
 
-	/* Initialize COM */
-	if(FAILED(InitializeCom()))
-	{
-		::MessageBox(NULL, TEXT("Failed to initialize COM."), TEXT("Pandion"), MB_OK | MB_ICONERROR);
-		::ExitProcess(-1);
-	}
-
-	/* Initialize ATL ActiveX support */
-	AtlAxWinInit();
-
 	/* Initialize globals Dictionary */
-	m_spGlobals.CoCreateInstance(OLESTR("Scripting.Dictionary"));
+	m_spGlobals.CreateInstance(OLESTR("Scripting.Dictionary"));
 
 	TCHAR cwd[MAX_PATH];
 	GetModuleFileName(NULL, cwd, MAX_PATH);
 	PathRemoveFileSpec(cwd);
 	PathAppend(cwd, TEXT("src"));
 	PathAddBackslash(cwd);
-	m_spGlobals->Add(&CComVariant(TEXT("cwd")), &CComVariant(cwd));
+	m_spGlobals->Add(&_variant_t(TEXT("cwd")), &_variant_t(cwd));
 	::SetCurrentDirectory(cwd);
 
 	/* Initialize Global Objects */
-	m_spWindows.CoCreateInstance(OLESTR("Scripting.Dictionary"));
-	(new CComObject<CHTTP>)->QueryInterface(&m_pHTTP);
+	m_spWindows.CreateInstance(OLESTR("Scripting.Dictionary"));
 
 	/* Create the main window */
 	RECT rc = { 100, 100, rc.left + 420, rc.top + 310 };
 
-	m_pMainWnd = (CMainWnd*) new CComObject<CMainWnd>;
+	m_pMainWnd = new CMainWnd;
 	m_pMainWnd->AddRef();
 
 	TCHAR strURL[MAX_PATH];
@@ -207,16 +178,12 @@ HRESULT CPandionModule::PreMessageLoop(int nShowCmd)
 	PathAddBackslash(strURL);
 	PathAppend(strURL, TEXT("main.html"));
 
-	CCreateParams *p = new CCreateParams(OLESTR("MainWindow"), CComBSTR(strURL), &_variant_t(0), this);
-
-	((CWindowImplBase*)m_pMainWnd)->Create(0, &rc, TEXT(""),
-		m_pMainWnd->GetWndStyle(0), m_pMainWnd->GetWndExStyle(0), (HMENU)0,
-		m_pMainWnd->GetWndClassInfo().Register(&(m_pMainWnd->m_pfnSuperWindowProc)), (void*) p);
-	delete p;
+	m_pMainWnd->Create(rc, L"MainWindow", strURL, _variant_t(0), this);
 
 	m_XMPP.AddRef();
 	m_XMPP.SetMainWnd(m_pMainWnd);
 	m_SASL.AddRef();
+	m_HTTP.AddRef();
 
 	return S_OK;
 }
@@ -240,9 +207,9 @@ BOOL CPandionModule::PreTranslateAccelerator(MSG* pMsg)
 	}
 	else
 	{
-*/		if(::SendMessage(TargetWnd, WM_FORWARDMSG, 0, (LPARAM) pMsg))
+*//*		if(::SendMessage(TargetWnd, WM_FORWARDMSG, 0, (LPARAM) pMsg))
 			return true;
-		return false;
+*/		return false;
 /*	}*/
 }
 
@@ -264,23 +231,13 @@ HRESULT CPandionModule::PostMessageLoop()
 	/* Release the main window */
 	m_pMainWnd->Release();
 
-	m_pHTTP->Release();
+	//m_pHTTP->Release();
 
-	/* Cleanup winsock */
-	WSACleanup();
-
-	/* Unload ATL ActiveX support */
-	AtlAxWinTerm();
-
-	/* Uninitialize COM */
-	UninitializeCom();
-
-	CAtlExeModuleT<CPandionModule>::PostMessageLoop();
 	return S_OK;
 }
 
-extern "C" int WINAPI _tWinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, 
-                                LPTSTR /*lpCmdLine*/, int nShowCmd)
+int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, 
+                                LPSTR /*lpCmdLine*/, int nShowCmd)
 {
 	/* Initialize Winsock 2.0 */
 	WSADATA wsad;
@@ -289,11 +246,20 @@ extern "C" int WINAPI _tWinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstan
 		::MessageBox(NULL, TEXT("Failed to initialize Winsock 2.0"), TEXT("Pandion"), MB_OK | MB_ICONERROR);
 	}
 
+	::OleInitialize(NULL);
+
 	STARTUPINFO StartupInfo;
 	StartupInfo.dwFlags = 0;
 	GetStartupInfo(&StartupInfo);
 	
-	CPandionModule _AtlModule;
-    return _AtlModule.WinMain(StartupInfo.dwFlags & STARTF_USESHOWWINDOW ? StartupInfo.wShowWindow : SW_SHOWDEFAULT);
+	CPandionModule theModule;
+	theModule.PreMessageLoop(StartupInfo.dwFlags & STARTF_USESHOWWINDOW ? StartupInfo.wShowWindow : SW_SHOWDEFAULT);
+	theModule.RunMessageLoop();
+	theModule.PostMessageLoop();
+
+
+	::WSACleanup();
+	::OleUninitialize();
+	return 0;
 }
 

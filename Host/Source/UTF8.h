@@ -64,10 +64,6 @@ private:
 		if(nLen+1 > t_nBufferLength)
 		{
 			m_psz = new CHAR[nLen+1];
-			if(m_psz == NULL)
-			{
-				AtlThrow(E_OUTOFMEMORY);
-			}
 		}
 
 		m_psz[::WideCharToMultiByte(CP_UTF8, 0, psz, lstrlenW(psz), m_psz, nLen, NULL, NULL)] = 0;
@@ -125,10 +121,6 @@ private:
 		if(nLen+1 > t_nBufferLength)
 		{
 			m_psz = new wchar_t[nLen+1];
-			if (m_psz == NULL)
-			{
-				AtlThrow(E_OUTOFMEMORY);
-			}
 		}
 
 		m_psz[::MultiByteToWideChar(CP_UTF8, 0, psz, lstrlenA(psz), m_psz, nLen)] = 0;

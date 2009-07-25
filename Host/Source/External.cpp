@@ -36,29 +36,29 @@
 
 #include "pdnwnd.h"
 
-CExternal::CExternal(CPdnWnd& Wnd) : 
+External::External(CPdnWnd& Wnd) : 
 	m_pModule(0), m_ComCtrl(Wnd), m_Wnd(Wnd)
 {
 	m_ComCtrl.DisableSelfDelete();
 }
-CExternal::~CExternal()
+External::~External()
 {
 }
 
-// IExternal
-HRESULT CExternal::Init(void* pModule)
+/* IExternal */
+HRESULT External::Init(void* pModule)
 {
 	m_pModule = (CPandionModule *) pModule;
 
 	return S_OK;
 }
 
-STDMETHODIMP CExternal::get_wnd(VARIANT* pDisp)
+STDMETHODIMP External::get_wnd(VARIANT* pDisp)
 {
 	pDisp->vt = VT_DISPATCH;
 	return m_Wnd.QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
 }
-STDMETHODIMP CExternal::get_mainWnd(VARIANT* pDisp)
+STDMETHODIMP External::get_mainWnd(VARIANT* pDisp)
 {
 	CMainWnd *pMainWnd;
 
@@ -69,7 +69,7 @@ STDMETHODIMP CExternal::get_mainWnd(VARIANT* pDisp)
 	pDisp->vt = VT_DISPATCH;
 	return S_OK;
 }
-STDMETHODIMP CExternal::get_windows(VARIANT* pDisp)
+STDMETHODIMP External::get_windows(VARIANT* pDisp)
 {
 	ScrRun::IDictionary *pWindows;
 
@@ -80,7 +80,7 @@ STDMETHODIMP CExternal::get_windows(VARIANT* pDisp)
 	pDisp->vt = VT_DISPATCH;
 	return S_OK;
 }
-STDMETHODIMP CExternal::get_globals(VARIANT* pDisp)
+STDMETHODIMP External::get_globals(VARIANT* pDisp)
 {
 	ScrRun::IDictionary *pGlobals;
 	
@@ -91,50 +91,44 @@ STDMETHODIMP CExternal::get_globals(VARIANT* pDisp)
 	pDisp->vt = VT_DISPATCH;
 	return S_OK;
 }
-STDMETHODIMP CExternal::get_ComCtrl(VARIANT* pDisp)
+STDMETHODIMP External::get_ComCtrl(VARIANT* pDisp)
 {
-	m_ComCtrl.QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
-    pDisp->vt = VT_DISPATCH;
-	return S_OK;
+	pDisp->vt = VT_DISPATCH;
+	return m_ComCtrl.QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
 }
-STDMETHODIMP CExternal::get_HTTPEngine(VARIANT* pDisp)
+STDMETHODIMP External::get_HTTPEngine(VARIANT* pDisp)
 {
 	IHTTP *pHTTP;
-
 	m_pModule->GetHTTP(&pHTTP);
 	pHTTP->QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
 	pHTTP->Release();
-
 	pDisp->vt = VT_DISPATCH;
 	return S_OK;
 }
-STDMETHODIMP CExternal::get_SASL(VARIANT* pDisp)
+STDMETHODIMP External::get_SASL(VARIANT* pDisp)
 {
 	m_pModule->GetSASL(&pDisp->pdispVal);
 	pDisp->vt = VT_DISPATCH;
 	return S_OK;
 }
-STDMETHODIMP CExternal::createWindow(BSTR name, BSTR file, VARIANT* params, BOOL bPopUnder, VARIANT* pDisp)
+STDMETHODIMP External::createWindow(BSTR name, BSTR file, VARIANT* params,
+									BOOL bPopUnder, VARIANT* pDisp)
 {
 	RECT rc = { 300, 300, rc.left + 500, rc.top + 300 };
+	CPdnWnd* newWindow = new CPdnWnd;
+    newWindow->Create(rc, name, file, _variant_t(params), m_pModule);
 
-	CComPtr<CPdnWnd> spNewWnd = new CComObject<CPdnWnd>;
-
-	CCreateParams *p = new CCreateParams(name, file, params, m_pModule);
-    spNewWnd->Create(0, &rc, NULL, 0, 0, 0U, p);
-	delete p;
-
-	spNewWnd->QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
+	newWindow->QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
 	pDisp->vt = VT_DISPATCH;
 	return S_OK;
 }
-STDMETHODIMP CExternal::shellExec(BSTR verb, BSTR file, BSTR params, BSTR dir, DWORD nShowCmd)
+STDMETHODIMP External::shellExec(BSTR verb, BSTR file, BSTR params,
+	BSTR dir, DWORD nShowCmd)
 {
-	USES_CONVERSION;
-	ShellExecute(GetDesktopWindow(), W2T(verb), W2T(file), W2T(params), W2T(dir), nShowCmd);
+	::ShellExecute(::GetDesktopWindow(), verb, file, params, dir, nShowCmd);
 	return S_OK;
 }
-STDMETHODIMP CExternal::get_cursorX(VARIANT* retVal)
+STDMETHODIMP External::get_cursorX(VARIANT* retVal)
 {
 	POINT pt;
 	::GetCursorPos(&pt);
@@ -142,7 +136,7 @@ STDMETHODIMP CExternal::get_cursorX(VARIANT* retVal)
 	retVal->vt = VT_I4;
 	return S_OK;
 }
-STDMETHODIMP CExternal::get_cursorY(VARIANT* retVal)
+STDMETHODIMP External::get_cursorY(VARIANT* retVal)
 {
 	POINT pt;
 	::GetCursorPos(&pt);
@@ -150,7 +144,7 @@ STDMETHODIMP CExternal::get_cursorY(VARIANT* retVal)
 	retVal->vt = VT_I4;
 	return S_OK;
 }
-STDMETHODIMP CExternal::get_notifyIcon(VARIANT* pDisp)
+STDMETHODIMP External::get_notifyIcon(VARIANT* pDisp)
 {
 	CMainWnd *pMain;
 
@@ -160,13 +154,13 @@ STDMETHODIMP CExternal::get_notifyIcon(VARIANT* pDisp)
 
 	return S_OK;
 }
-STDMETHODIMP CExternal::get_newPopupMenu(VARIANT* pDisp)
+STDMETHODIMP External::get_newPopupMenu(VARIANT* pDisp)
 {
-	(new CComObject<CPopupMenu>)->QueryInterface(IID_IDispatch, (void**)&(pDisp->pdispVal));
+	(new CPopupMenu)->QueryInterface(IID_IDispatch, (void**)&(pDisp->pdispVal));
 	pDisp->vt = VT_DISPATCH;
 	return S_OK;
 }
-STDMETHODIMP CExternal::get_IPs(VARIANT* pStr)
+STDMETHODIMP External::get_IPs(VARIANT* pStr)
 {
 	pStr->vt = VT_BSTR;
 	pStr->bstrVal = SysAllocString(L"error");
@@ -179,8 +173,11 @@ STDMETHODIMP CExternal::get_IPs(VARIANT* pStr)
 	_bstr_t retStr = "";
 	for(int i = 0; pHost->h_addr_list[i] != 0; i++)
 	{
-		_stprintf(strAddr, TEXT("%u.%u.%u.%u"), (UCHAR) pHost->h_addr_list[i][0], (UCHAR) pHost->h_addr_list[i][1],
-			(UCHAR) pHost->h_addr_list[i][2], (UCHAR) pHost->h_addr_list[i][3]);
+		_stprintf(strAddr, TEXT("%u.%u.%u.%u"),
+			(UCHAR) pHost->h_addr_list[i][0],
+			(UCHAR) pHost->h_addr_list[i][1],
+			(UCHAR) pHost->h_addr_list[i][2],
+			(UCHAR) pHost->h_addr_list[i][3]);
 		retStr += strAddr;
 		retStr += TEXT(";");
 	}
@@ -190,30 +187,31 @@ STDMETHODIMP CExternal::get_IPs(VARIANT* pStr)
 
 	return S_OK;
 }
-STDMETHODIMP CExternal::get_CmdLine(VARIANT* pStr)
+STDMETHODIMP External::get_CmdLine(VARIANT* pStr)
 {
 	pStr->vt = VT_BSTR;
-	pStr->bstrVal = SysAllocString(GetCommandLineW());
+	pStr->bstrVal = ::SysAllocString(GetCommandLineW());
 	return S_OK;
 }
-STDMETHODIMP CExternal::sleep(DWORD dwMilliseconds)
+STDMETHODIMP External::sleep(DWORD dwMilliseconds)
 {
 	::Sleep(dwMilliseconds);
 	return S_OK;
 }
-STDMETHODIMP CExternal::File(BSTR path, VARIANT *pDisp)
+STDMETHODIMP External::File(BSTR path, VARIANT *pDisp)
 {
 	pDisp->vt = VT_DISPATCH;
 	(new CFile)->QueryInterface(IID_IDispatch, (LPVOID*) &pDisp->pdispVal);
     
-	((IPdnFile*)pDisp->pdispVal)->Create(path, GENERIC_READ, FILE_SHARE_READ|FILE_SHARE_WRITE, OPEN_ALWAYS);
+	((IPdnFile*)pDisp->pdispVal)->Create(path, GENERIC_READ,
+		FILE_SHARE_READ | FILE_SHARE_WRITE, OPEN_ALWAYS);
 	
 	return S_OK;
 }
-STDMETHODIMP CExternal::FileExists(BSTR path, BOOL *bExists)
+STDMETHODIMP External::FileExists(BSTR path, BOOL *bExists)
 {
 	WIN32_FIND_DATA FindFileData;
-	HANDLE hFind = FindFirstFile(CW2T(path), &FindFileData);
+	HANDLE hFind = FindFirstFile(path, &FindFileData);
 
 	if(hFind != INVALID_HANDLE_VALUE)
 	{
@@ -224,20 +222,20 @@ STDMETHODIMP CExternal::FileExists(BSTR path, BOOL *bExists)
 		*bExists = FALSE;
     return S_OK;
 }
-STDMETHODIMP CExternal::get_Directory(VARIANT *pDisp)
+STDMETHODIMP External::get_Directory(VARIANT *pDisp)
 {
 	pDisp->vt = VT_DISPATCH;
 	return (new CDirectory)->QueryInterface(
 		IID_IDispatch, (LPVOID*) &pDisp->pdispVal);
 }
-STDMETHODIMP CExternal::get_XMPP(VARIANT *pDisp)
+STDMETHODIMP External::get_XMPP(VARIANT *pDisp)
 {
 	m_pModule->GetXMPP(&pDisp->pdispVal);
 	pDisp->vt = VT_DISPATCH;
 
 	return S_OK;
 }
-STDMETHODIMP CExternal::StringToSHA1(BSTR str, BSTR *strSHA1)
+STDMETHODIMP External::StringToSHA1(BSTR str, BSTR *strSHA1)
 {
 	LPSTR szUTF8Buf = CW2UTF8(str);
 	unsigned char digest[20];
@@ -248,101 +246,83 @@ STDMETHODIMP CExternal::StringToSHA1(BSTR str, BSTR *strSHA1)
 	hexHash[20*2] = 0;
 	for(unsigned i = 0; i <20; i++)
 	{
-		hexHash[2*i] = (digest[i]>> 4) + (((digest[i]>> 4) <0xA) ? L'0' : (L'a' - 0xA));
-		hexHash[2*i+1] = (digest[i] & 0x0F) +  (((digest[i] & 0x0F) <0xA) ? L'0' : (L'a' - 0xA));
+		hexHash[2*i] = (digest[i] >> 4) + 
+			(((digest[i] >> 4) < 0xA) ? L'0' : (L'a' - 0xA));
+		hexHash[2*i+1] = (digest[i] & 0x0F) + 
+			(((digest[i] & 0x0F) < 0xA) ? L'0' : (L'a' - 0xA));
 	}
 	*strSHA1 = _bstr_t(hexHash).Detach();
 	return S_OK;
 }
-STDMETHODIMP CExternal::GetSpecialFolder(int nFolder, BSTR *Path)
+STDMETHODIMP External::GetSpecialFolder(int nFolder, BSTR *Path)
 {
 	TCHAR szPath[MAX_PATH];
-	if(SUCCEEDED(SHGetFolderPath(NULL, nFolder, NULL, SHGFP_TYPE_CURRENT, szPath)))
-		*Path = SysAllocString(CT2W(szPath));
-	else
-        *Path = SysAllocString(L"");
-	return S_OK;
-}
-CRegKey CExternal::Crawl(CRegKey RegKey, BSTR strKey)
-{
-	CRegKey retVal;
-	if(RegKey)
+
+	if(SUCCEEDED(::SHGetFolderPath(NULL, nFolder, NULL,
+		SHGFP_TYPE_CURRENT, szPath)))
 	{
-		LPWSTR pSlash = wcsstr(strKey, L"\\");
-		if(pSlash)
-		{
-			*pSlash = 0;
-			retVal.Open(RegKey, CW2T(strKey), KEY_READ);
-			if(pSlash + 1 != 0)
-                retVal = Crawl(retVal, pSlash + 1);
-			*pSlash = '\\';
-		}
-		else
-			retVal.Open(RegKey, CW2T(strKey), KEY_READ);
-		return retVal;
+		*Path = ::SysAllocString(szPath);
 	}
 	else
-		return CRegKey();
+	{
+        *Path = ::SysAllocString(L"");
+	}
+	return S_OK;
 }
-STDMETHODIMP CExternal::RegRead(BSTR strHKey, BSTR strKey, BSTR value, VARIANT* vRetVal)
+
+STDMETHODIMP External::RegRead(BSTR strHKey, BSTR strKey, BSTR value,
+	VARIANT* vRetVal)
 {
-	HRESULT hr = S_OK;
-	CRegKey RegKey;
+	HKEY RootKey;
 	if(wcsstr(strHKey, L"HKEY_CLASSES_ROOT"))
-		RegKey.Attach(HKEY_CLASSES_ROOT);
-	else   if(wcsstr(strHKey, L"HKEY_CURRENT_USER"))
-		RegKey.Attach(HKEY_CURRENT_USER);
-	else   if(wcsstr(strHKey, L"HKEY_LOCAL_MACHINE"))
-		RegKey.Attach(HKEY_LOCAL_MACHINE);
-	else   if(wcsstr(strHKey, L"HKEY_USERS"))
-		RegKey.Attach(HKEY_USERS);
-	else   if(wcsstr(strHKey, L"HKEY_PERFORMANCE_DATA"))
-		RegKey.Attach(HKEY_PERFORMANCE_DATA);
-	else   if(wcsstr(strHKey, L"HKEY_PERFORMANCE_TEXT"))
-		RegKey.Attach(HKEY_PERFORMANCE_TEXT);
-	else   if(wcsstr(strHKey, L"HKEY_PERFORMANCE_NLSTEXT"))
-		RegKey.Attach(HKEY_PERFORMANCE_NLSTEXT);
+		RootKey = HKEY_CLASSES_ROOT;
+	else if(wcsstr(strHKey, L"HKEY_CURRENT_USER"))
+		RootKey = HKEY_CURRENT_USER;
+	else if(wcsstr(strHKey, L"HKEY_LOCAL_MACHINE"))
+		RootKey = HKEY_LOCAL_MACHINE;
+	else if(wcsstr(strHKey, L"HKEY_USERS"))
+		RootKey = HKEY_USERS;
+	else if(wcsstr(strHKey, L"HKEY_PERFORMANCE_DATA"))
+		RootKey = HKEY_PERFORMANCE_DATA;
+	else if(wcsstr(strHKey, L"HKEY_PERFORMANCE_TEXT"))
+		RootKey = HKEY_PERFORMANCE_TEXT;
+	else if(wcsstr(strHKey, L"HKEY_PERFORMANCE_NLSTEXT"))
+		RootKey = HKEY_PERFORMANCE_NLSTEXT;
+	else if(wcsstr(strHKey, L"HKEY_CURRENT_CONFIG"))
+		RootKey = HKEY_CURRENT_CONFIG;
+	else if(wcsstr(strHKey, L"HKEY_DYN_DATA"))
+		RootKey = HKEY_DYN_DATA;
 	else
 		return E_FAIL;
 
-	DWORD dwType = 0;
-	ULONG nBytes = 8192;
-	void *pData  = new BYTE[nBytes];
-	CRegKey key = Crawl(RegKey, strKey);
-	if(key)
-	{
-		LONG err = key.QueryValue(CW2T(value), &dwType, pData, &nBytes);
-		if(err == ERROR_SUCCESS)
-			switch(dwType)
-			{
-			case REG_DWORD:
-				CComVariant(*(DWORD*)pData).Detach(vRetVal);
-				break;
-			case REG_SZ:
-				CComVariant(CComBSTR(CT2W((LPTSTR)pData))).Detach(vRetVal);
-				break;
-			}
-		else
-		{
-			hr =  E_FAIL;
-		}
-	}
+	HKEY RegKey;
+	ULONG uBytes = 0, dwType = 0;
+	LSTATUS err = ::RegOpenKeyEx(RootKey, strKey, 0, KEY_READ, &RegKey);
+	err = ::RegQueryValueEx(RegKey, value, NULL, &dwType, NULL, &uBytes);
+	BYTE* pData = new BYTE[uBytes];
+	err = ::RegQueryValueEx(RegKey, value, NULL, &dwType, pData, &uBytes);
+	::RegCloseKey(RegKey);
+
+	HRESULT hr = S_OK;
+	if(err == ERROR_SUCCESS && dwType == REG_DWORD)
+		*vRetVal = _variant_t(*(DWORD*)pData).Detach();
+	else if(err == ERROR_SUCCESS && dwType == REG_SZ)
+		*vRetVal = _variant_t((LPTSTR)pData).Detach();
 	else
-	{
 		hr = E_FAIL;
-	}
-	delete pData;
+
+	delete[] pData;
 	return hr;
 }
-STDMETHODIMP CExternal::get_Shortcut(VARIANT *pDisp)
+STDMETHODIMP External::get_Shortcut(VARIANT *pDisp)
 {
 	pDisp->vt = VT_DISPATCH;
 	return (new Shortcut)->QueryInterface(IID_IDispatch,
 		(LPVOID*) &pDisp->pdispVal);
 }
-STDMETHODIMP CExternal::UnZip(BSTR path, BSTR targetDir, int *nSuccess)
+STDMETHODIMP External::UnZip(BSTR path, BSTR targetDir, int *nSuccess)
 {
-	unzFile pFile = unzOpen(CW2A(path));
+	unzFile pFile = unzOpen(CW2UTF8(path));
 	*nSuccess = 0;
 
 	if(pFile)
@@ -362,11 +342,11 @@ STDMETHODIMP CExternal::UnZip(BSTR path, BSTR targetDir, int *nSuccess)
 				{
 					unzGetCurrentFileInfo(pFile, &file_info, file_name, MAX_PATH, 0, 0, 0, 0);
 
-					StringCchCopyA(file_path, 2*MAX_PATH, CW2A(targetDir));
+					StringCchCopyA(file_path, 2*MAX_PATH, CW2UTF8(targetDir));
 					PathAppendA(file_path, file_name);
 
-					(new CFile)->QueryInterface(IID_IPdnFile, (LPVOID*) &target_file);
-    				if(target_file->Create(CA2W(file_path), GENERIC_WRITE, FILE_SHARE_READ, OPEN_ALWAYS) == S_OK)
+					(new CFile)->QueryInterface(__uuidof(IPdnFile), (LPVOID*) &target_file);
+    				if(target_file->Create(CUTF82W(file_path), GENERIC_WRITE, FILE_SHARE_READ, OPEN_ALWAYS) == S_OK)
 					{
 						target_file->Seek(file_info.uncompressed_size, 0, FILE_BEGIN);
 						target_file->SetEOF();
@@ -406,40 +386,29 @@ STDMETHODIMP CExternal::UnZip(BSTR path, BSTR targetDir, int *nSuccess)
 	}
 	return S_OK;
 }
-STDMETHODIMP CExternal::Base64ToString(BSTR b64String, BSTR *UTF16String)
+STDMETHODIMP External::Base64ToString(BSTR b64String, BSTR *UTF16String)
 {
-	unsigned int b64bufLen = strlen(CW2A(b64String)) + 1;
-	LPSTR b64buf = new char[ b64bufLen ];
-	StringCchCopyA(b64buf, b64bufLen, CW2A(b64String));
-
-	int reqLen = ATL::Base64DecodeGetRequiredLength(strlen(b64buf));
-	BYTE* decodebuf = new BYTE[reqLen+1];
-
-	ATL::Base64Decode(b64buf, strlen(b64buf), decodebuf, &reqLen);
-	decodebuf[reqLen] = 0;
-	*UTF16String = SysAllocString(CUTF82W((LPSTR) decodebuf));
-
-	delete decodebuf;
-	delete b64buf;
+	DWORD decodeBufferSize;
+	::CryptStringToBinary(b64String, ::SysStringLen(b64String),
+		CRYPT_STRING_BASE64, NULL, &decodeBufferSize, NULL, NULL);
+	std::vector<BYTE> decodeBuffer(decodeBufferSize);
+	::CryptStringToBinary(b64String, ::SysStringLen(b64String),
+		CRYPT_STRING_BASE64, &decodeBuffer[0], &decodeBufferSize, NULL, NULL);
+	decodeBuffer.push_back('\0');
+	*UTF16String = ::SysAllocString(CUTF82W((LPSTR) &decodeBuffer[0]));
 
 	return S_OK;
 }
-STDMETHODIMP CExternal::StringToBase64(BSTR UTF16String, BSTR *b64String)
+STDMETHODIMP External::StringToBase64(BSTR UTF16String, BSTR *b64String)
 {
-	unsigned int UTF8StringLen = strlen(CW2UTF8(UTF16String)) + 1;
-	char* UTF8String = new char[ UTF8StringLen ];
-	StringCchCopyA(UTF8String, UTF8StringLen, CW2UTF8(UTF16String));
-
-	int iReqLen = ATL::Base64EncodeGetRequiredLength(strlen(UTF8String));
-	LPSTR pB64Buffer = new char[iReqLen+1];
-
-	if(ATL::Base64Encode((BYTE*)UTF8String, strlen(UTF8String), pB64Buffer, &iReqLen, ATL_BASE64_FLAG_NOCRLF))
-	pB64Buffer[iReqLen] = 0;
-	*b64String = SysAllocString(CA2W(pB64Buffer));
-
-	delete pB64Buffer;
-	delete UTF8String;
-
+	DWORD b64Size;
+	std::string UTF8String = std::string(CW2UTF8(UTF16String));
+	::CryptBinaryToString((BYTE*) &UTF8String[0], UTF8String.length(),
+		CRYPT_STRING_BASE64, NULL, &b64Size);
+	std::wstring b64Buffer(b64Size, L'\0');
+	::CryptBinaryToString((BYTE*) &UTF8String[0], UTF8String.length(),
+		CRYPT_STRING_BASE64, &b64Buffer[0], &b64Size);
+	*b64String = ::SysAllocString(b64Buffer.c_str());
 	return S_OK;
 }
 BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam)
@@ -448,36 +417,25 @@ BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam)
 	RECT WindowRect;
 	GetWindowRect(hwnd, &WindowRect);
 
-	if(WindowRect.left == 0 && WindowRect.top == 0 && WindowRect.right == GetSystemMetrics(SM_CXSCREEN) && WindowRect.bottom == GetSystemMetrics(SM_CYSCREEN))
+	if(WindowRect.left == 0 && WindowRect.top == 0 &&
+		WindowRect.right == GetSystemMetrics(SM_CXSCREEN) &&
+		WindowRect.bottom == GetSystemMetrics(SM_CYSCREEN))
 	{
-/*		char strTitle[256];
-		GetWindowText(hwnd, strTitle, 256);
-		FILE *f = fopen("c:\\pandiondebug.log", "a");
-		fprintf(f, "%s\t%d:%d:%d:%d\n", strTitle, WindowRect.left, WindowRect.top, WindowRect.right, WindowRect.bottom);
-		fclose(f);
-*/		nFullScreen++;
+		nFullScreen++;
 		if(nFullScreen> 2)
 			*((bool *)lParam) = true;
 	}
 	return true;
 }
-STDMETHODIMP CExternal::Fullscreen(BOOL *bFullscreen)
+STDMETHODIMP External::Fullscreen(BOOL *bFullscreen)
 {
-/*	SYSTEMTIME st;
-	GetSystemTime(&st);
-
-	FILE *f = fopen("c:\\pandiondebug.log", "a");
-	fprintf(f, "Enumerating window sizes at %d:%d:%d\n", st.wHour, st.wMinute, st.wSecond);
-	fclose(f);
-*/
 	*bFullscreen = false;
 	EnumWindows(EnumWindowsProc, (LPARAM) bFullscreen);
 	return S_OK;
 }
-
-STDMETHODIMP CExternal::PlaySound(BSTR soundFile)
+STDMETHODIMP External::PlaySound(BSTR soundFile)
 {
 	DWORD flags = SND_FILENAME | SND_ASYNC;
-	::PlaySound(CW2T(soundFile), NULL, flags);
+	::PlaySound(soundFile, NULL, flags);
 	return S_OK;
 }

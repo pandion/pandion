@@ -22,9 +22,6 @@
 #include "stdafx.h"
 #include "menubar.h"
 
-#undef InsertMenuItem
-extern BOOL InsertMenuItem(HMENU hMenu, UINT uItem, BOOL fByPosition, LPCMENUITEMINFOW lpmii);
-
 CMenuBar::CMenuBar() : m_hWnd(0)
 {
 	m_Handle = CreateMenu();
@@ -39,7 +36,7 @@ STDMETHODIMP CMenuBar::AddItem(BSTR label, DWORD pos, DWORD ID, IDispatch *subMe
 	if(!subMenu) return S_FALSE;
 
 	IPopupMenu* pPopupMenu = NULL;
-	subMenu->QueryInterface(IID_IPopupMenu, (void**) &pPopupMenu);
+	subMenu->QueryInterface(__uuidof(IPopupMenu), (void**) &pPopupMenu);
 
 	VARIANT subHandle;
 	VariantInit(&subHandle);

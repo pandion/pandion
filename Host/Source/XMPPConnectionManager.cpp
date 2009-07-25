@@ -256,10 +256,12 @@ bool XMPPConnectionManager::ProxyConnect()
 	m_Socket.SendLine(SendBuffer);
 	if(m_ProxyUsername.length())
 	{
-		int len = 1029;
+		DWORD len = 1029;
 		BYTE strdec[258], strenc[1029];
-		StringCbPrintfA((LPSTR) strdec, 258, "%s:%s", CW2A(m_ProxyUsername.c_str()), CW2A(m_ProxyPassword.c_str()));
-		Base64Encode(strdec, strlen((LPSTR) strdec), (LPSTR) strenc, &len, ATL_BASE64_FLAG_NOCRLF);
+		StringCbPrintfA((LPSTR) strdec, 258, "%s:%s", CW2UTF8(m_ProxyUsername.c_str()), CW2UTF8(m_ProxyPassword.c_str()));
+		/*Base64Encode(strdec, strlen((LPSTR) strdec), (LPSTR) strenc, &len, ATL_BASE64_FLAG_NOCRLF);*/
+		::CryptStringToBinaryA((LPCSTR)strdec, strlen((LPSTR) strdec),
+			CRYPT_STRING_BASE64, &strenc[0], &len, NULL, NULL);
 		strenc[len] = 0;
 
 		StringCbPrintfW(SendBuffer, 4096, L"Proxy-Authorization: Basic %s", strenc);

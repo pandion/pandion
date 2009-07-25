@@ -22,36 +22,16 @@
 #include "stdafx.h"
 #include "NotifyIcon.h"
 
-CIcon::CIcon()
-{
-	m_hIcon = 0;
-}
-CIcon::CIcon(BSTR strIcon, int nIndex)
-{
-	m_hIcon = ::ExtractIcon(GetModuleHandle(NULL), CW2T(strIcon), nIndex);
-}
-CIcon::CIcon(CIcon& copy)
-{
-	m_hIcon = copy.getHandle();
-}
-CIcon::~CIcon()
-{
-	if(m_hIcon != 0)
-		DeleteObject(m_hIcon);
-}
-HICON CIcon::getHandle()
-{
-	return m_hIcon;
-}
-
-
 CNotifyIcon::CNotifyIcon() :
-	m_text(L""), m_handler(L""), m_currentIcon(L"")
+	m_text(L""), m_handler(L""), m_hIcon(0)
 {
-	m_icons.InitHashTable(16, true);
 }
 CNotifyIcon::~CNotifyIcon()
 {
+	if(m_hIcon != 0)
+	{
+		DeleteObject(m_hIcon);
+	}
 }
 
 STDMETHODIMP CNotifyIcon::init(HWND hWnd, UINT CBMsg)
@@ -75,7 +55,7 @@ STDMETHODIMP CNotifyIcon::remove()
 }
 STDMETHODIMP CNotifyIcon::shellNotify(DWORD dwMessage)
 {
-	if(!m_CBMsg || !m_hWnd || (m_text.Length() == 0 && !m_icons.Lookup(m_currentIcon)))
+	if(!m_CBMsg || !m_hWnd || (m_text.length() == 0 && m_hIcon == 0))
 		return S_FALSE;
 
 	NOTIFYICONDATA NotifyIconData;
@@ -85,15 +65,15 @@ STDMETHODIMP CNotifyIcon::shellNotify(DWORD dwMessage)
 	NotifyIconData.uFlags = NIF_MESSAGE;
 	NotifyIconData.uCallbackMessage = m_CBMsg;
 
-	if(m_icons.Lookup(m_currentIcon))
+	if(m_hIcon != 0)
 	{
-        NotifyIconData.hIcon = m_icons[m_currentIcon].getHandle();
+        NotifyIconData.hIcon = m_hIcon;
 		NotifyIconData.uFlags |= NIF_ICON;
 	}
 
-	if(m_text.Length())
+	if(m_text.length())
 	{
-		StringCchCopy(NotifyIconData.szTip, 64, CW2T(m_text));
+		StringCchCopy(NotifyIconData.szTip, 64, m_text.c_str());
 		NotifyIconData.uFlags |= NIF_TIP;
 	}
 
@@ -107,15 +87,11 @@ STDMETHODIMP CNotifyIcon::setText(BSTR text)
 }
 STDMETHODIMP CNotifyIcon::setIcon(BSTR strIcon, int nIndex)
 {
-	if(m_icons.Lookup(CComBSTR(strIcon)))
+	if(m_hIcon != 0)
 	{
-		m_currentIcon = strIcon;
+		DeleteObject(m_hIcon);
 	}
-	else
-	{
-        m_icons[strIcon] = CIcon(strIcon, nIndex);
-		m_currentIcon = strIcon;
-	}
+	m_hIcon = ::ExtractIcon(GetModuleHandle(NULL), strIcon, nIndex);
 	return S_OK;
 }
 STDMETHODIMP CNotifyIcon::setHandler(BSTR handler)

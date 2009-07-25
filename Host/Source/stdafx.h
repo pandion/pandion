@@ -43,25 +43,10 @@
 #define STRICT
 
 /*
- * Configure the ATL library:
- * http://msdn.microsoft.com/en-us/library/kewhz9ce(VS.80).aspx
- */
-#define _ATL_APARTMENT_THREADED
-#define _ATL_NO_AUTOMATIC_NAMESPACE
-#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS
-#define _ATL_ALL_WARNINGS
-
-/*
  * Report memory leaks after running a debug build:
  * http://msdn.microsoft.com/en-us/library/10t349zs(VS.80).aspx
  */
 #define _CRTDBG_MAP_ALLOC 
-
-/*
- * Disable warnings about unsafe string methods used by ATL:
- * http://msdn.microsoft.com/en-us/library/8ef0s5kh(VS.80).aspx
- */
-#define _CRT_SECURE_NO_WARNINGS
 
 /*
  * Use Win32 security API.
@@ -82,6 +67,20 @@
 #include <Security.h>
 
 /*
+ * Compiler-specific headers
+ */
+#include <comdef.h>
+#include <strsafe.h>
+#include <crtdbg.h>
+
+/*
+ * Script Runtime headers
+ */
+#import <scrrun.dll> auto_rename \
+	rename("FreeSpace", "FSpace") rename("Unknown", "Unk") \
+	exclude("Folder") rename_namespace("ScrRun")
+
+/*
  * Microsoft Internet Explorer-related headers and interfaces
  */
 #include <mshtml.h>
@@ -89,29 +88,9 @@
 #include <mshtmhst.h>
 #include <exdispid.h>
 #pragma warning(disable : 4192)
-#import "mshtml.tlb" \
+#import <mshtml.tlb> \
 	rename("TranslateAccelerator", "MSHTMLTranslateAccelerator")
-#import "shdocvw.dll" exclude("tagREADYSTATE")
-
-/*
- * ScrRun has to be loaded in a separate namespace because of a naming conflict
- * with ShlObj.
- */
-namespace ScrRun
-{
-	#include "scrrun.h"
-}
-
-/*
- * ATL headers
- */
-#include <atlbase.h>
-#include <atlcom.h>
-#include <atlwin.h>
-#include <atlenc.h>
-#include <atlsafe.h>
-#include <atlcoll.h>
-using namespace ATL;
+#import <shdocvw.dll> exclude("tagREADYSTATE")
 
 /*
  * ZLib headers
@@ -123,13 +102,7 @@ using namespace ATL;
 /*
  * MSXML headers
  */
-#import <msxml3.dll> raw_interfaces_only
-
-/*
- * Compiler-specific headers
- */
-#include <comdef.h>
-#include <strsafe.h>
+#import <msxml3.dll>
 
 /*
  * Pandion COM interfaces
@@ -152,6 +125,11 @@ using namespace ATL;
 #pragma warning(disable : 4800)
 
 /*
+ * disable warning about using this in base member initializer list
+ */
+#pragma warning(disable : 4355)
+
+/*
  * STL headers
  */
 #include <vector>
@@ -168,19 +146,3 @@ using namespace ATL;
 const DWORD WM_JSINVOKE = WM_USER + 1001;
 const DWORD WM_NOTIFYICON = WM_USER + 1002;
 
-/*
- * HTTP Constants
- */
-const DWORD BLOCK_SIZE = 0x2000;
-enum HTTP_METHOD {
-	HTTP_METHOD_UNKNOWN = -1, // Unknown request method
-	HTTP_METHOD_GET,          // GET request
-	HTTP_METHOD_PUT,          // PUT request
-	HTTP_METHOD_POST,         // POST request
-	HTTP_METHOD_MPFDPOST,     // multipart/form-data encoded POST request
-	HTTP_METHOD_HEAD,         // HEAD request
-	HTTP_METHOD_DELETE,       // DELETE request
-	HTTP_METHOD_LINK,         // LINK request
-	HTTP_METHOD_UNLINK,       // UNLINK request
-	HTTP_METHOD_DEBUG         // Debugging support
-};

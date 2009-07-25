@@ -478,7 +478,7 @@ STDMETHODIMP CFile::Copy(BSTR strTo, BOOL bOverWrite, IPdnFile** retCopy)
 		_bstr_t strFrom = m_FileName;
 		if(::CopyFile(strFrom, strTo, !bOverWrite))
 		{
-			(new CFile)->QueryInterface(IID_IPdnFile, (LPVOID*) retCopy);
+			(new CFile)->QueryInterface(__uuidof(IPdnFile), (LPVOID*) retCopy);
 			(*retCopy)->Create(strTo, GENERIC_READ, 
 				FILE_SHARE_READ|FILE_SHARE_WRITE, OPEN_EXISTING);
 			return S_OK;
@@ -607,7 +607,7 @@ void CFile::createFileDirectory(_bstr_t &str)
 	PathRemoveFileSpecW(strDirNameW);
 
 	IPdnDirectory *pDir;
-	(new CDirectory())->QueryInterface(IID_IPdnDirectory, (LPVOID*) &pDir);
+	(new CDirectory())->QueryInterface(__uuidof(IPdnDirectory), (LPVOID*) &pDir);
 	pDir->Create(strDirNameW);
 	pDir->Release();
 }

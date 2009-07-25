@@ -479,15 +479,11 @@ bool XMPPXMLParser::NotifyHandler(const std::wstring& stanzaName)
 
 	FixXMLNS();
 
-	VARIANT_BOOL bSuccess;
-	MSXML2::IXMLDOMDocument* xmlDoc = NULL;
-	HRESULT hr = ::CoCreateInstance(CLSID_DOMDocument, NULL, CLSCTX_ALL,
-		__uuidof(MSXML2::IXMLDOMDocument), (LPVOID*) &xmlDoc);
-	BSTR xmlToLoad = ::SysAllocString(m_ParsedData.c_str());
-	hr = xmlDoc->loadXML(xmlToLoad, &bSuccess);
-	::SysFreeString(xmlToLoad);
+	MSXML2::IXMLDOMDocumentPtr xmlDoc;
+	xmlDoc.CreateInstance(CLSID_DOMDocument);
+	HRESULT hr = xmlDoc->loadXML(_bstr_t(m_ParsedData.c_str()));
 
-	if(SUCCEEDED(hr) && bSuccess)
+	if(SUCCEEDED(hr))
 	{
 		m_Handlers.OnStanza(xmlDoc,_bstr_t(stanzaName.c_str()));
 		continueParsing = true;
@@ -498,7 +494,6 @@ bool XMPPXMLParser::NotifyHandler(const std::wstring& stanzaName)
 		continueParsing = false;
 	}
 
-	xmlDoc->Release();
 	return continueParsing;
 }
 

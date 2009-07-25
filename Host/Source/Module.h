@@ -22,25 +22,28 @@
 #pragma once
 #include "XMPP.h"
 #include "SASL.h"
+#include "HTTP.h"
+
+using ScrRun::IDictionary;
+_COM_SMARTPTR_TYPEDEF(IDictionary, __uuidof(IDictionary));
 
 const DWORD COPYDATA_CMDLINE = 0x0001;
 
 class CMainWnd;
 
-class CPandionModule : public CAtlExeModuleT<CPandionModule>
+class CPandionModule
 {
 private:
 	CMainWnd *m_pMainWnd;
 
 	XMPP m_XMPP;
 	SASL m_SASL;
-	IHTTP *m_pHTTP;
+	HTTP m_HTTP;
 	ISASL *m_pSASL;
 
-	CComQIPtr<ScrRun::IDictionary> m_spGlobals;
-	CComQIPtr<ScrRun::IDictionary> m_spWindows;
+	IDictionaryPtr m_spGlobals;
+	IDictionaryPtr m_spWindows;
 public :
-	DECLARE_LIBID(LIBID_PandionLib)
 	~CPandionModule();
 
 	void GetMainWnd(CMainWnd **ppMainWnd);

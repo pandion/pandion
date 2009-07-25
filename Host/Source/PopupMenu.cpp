@@ -23,30 +23,6 @@
 #include "MainWnd.h"
 #include "PopupMenu.h"
 
-#undef InsertMenuItem
-BOOL InsertMenuItem(HMENU hMenu, UINT uItem, BOOL fByPosition, LPCMENUITEMINFOW lpmii)
-{
-	if((GetVersion() & 0x80000000))
-	{
-		MENUITEMINFOA nfo;
-		nfo.cbSize = sizeof(nfo);
-		nfo.cch = lpmii->cch;
-		nfo.dwItemData = lpmii->dwItemData;
-		nfo.dwTypeData = CW2A((LPWSTR) lpmii->dwTypeData);
-		nfo.fMask = lpmii->fMask;
-		nfo.fState = lpmii->fState;
-		nfo.fType = lpmii->fType;
-		nfo.hbmpChecked = lpmii->hbmpChecked;
-		nfo.hbmpUnchecked = lpmii->hbmpUnchecked;
-		nfo.hSubMenu = lpmii->hSubMenu;
-		nfo.wID = lpmii->wID;
-		return InsertMenuItemA(hMenu, uItem, fByPosition, &nfo);
-	}
-	else
-        return InsertMenuItemW(hMenu, uItem, fByPosition, lpmii);
-}
-
-
 CPopupMenu::CPopupMenu()
 {
 	m_Handle = CreatePopupMenu();
@@ -60,7 +36,7 @@ CPopupMenu::~CPopupMenu()
 STDMETHODIMP CPopupMenu::AddItem(BOOL bEnabled, BOOL bChecked, BOOL bRadio, BOOL bDefault,
 	DWORD hSubMenu, BSTR label, DWORD ID)
 {
-	MENUITEMINFOW nfo;
+	MENUITEMINFO nfo;
 	nfo.cbSize     = sizeof(MENUITEMINFO);
 	nfo.fMask      = MIIM_STATE | MIIM_TYPE | MIIM_ID |
 					 (hSubMenu ? MIIM_SUBMENU : 0);
@@ -74,7 +50,8 @@ STDMETHODIMP CPopupMenu::AddItem(BOOL bEnabled, BOOL bChecked, BOOL bRadio, BOOL
 	nfo.cch        = wcslen(label) + 1;
 	nfo.dwTypeData = label;
 
-	return InsertMenuItem(m_Handle, m_Position++, true, &nfo) ? S_OK : GetLastError();
+	return InsertMenuItem(m_Handle, m_Position++, true, &nfo) ? 
+		S_OK : GetLastError();
 }
 
 STDMETHODIMP CPopupMenu::Show(DWORD x, DWORD y, BOOL fromTray)
@@ -82,7 +59,8 @@ STDMETHODIMP CPopupMenu::Show(DWORD x, DWORD y, BOOL fromTray)
 	if(fromTray)
 		SetForegroundWindow(CMainWnd::GetMainWindow());
 	m_Choice = TrackPopupMenu(m_Handle,
-		TPM_LEFTALIGN | TPM_TOPALIGN | TPM_RETURNCMD | TPM_RIGHTBUTTON | TPM_NONOTIFY,
+		TPM_LEFTALIGN | TPM_TOPALIGN | TPM_RETURNCMD |
+		TPM_RIGHTBUTTON | TPM_NONOTIFY,
 		x, y, NULL, CMainWnd::GetMainWindow(), NULL);
 	if(fromTray)
 		PostMessage(CMainWnd::GetMainWindow(), WM_NULL, 0, 0);

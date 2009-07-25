@@ -44,11 +44,11 @@ void XMPPHandlers::SetMainWindow(CMainWnd* mainWnd)
 
 void XMPPHandlers::OnConnected()
 {
-	m_pMainWnd->Do(m_ConnectedHandler, &CComVariant(""));
+	m_pMainWnd->Do(m_ConnectedHandler, &_variant_t(""));
 }
 void XMPPHandlers::OnDisconnected()
 {
-	m_pMainWnd->Do(m_DisconnectedHandler, &CComVariant(""));
+	m_pMainWnd->Do(m_DisconnectedHandler, &_variant_t(""));
 }
 void XMPPHandlers::OnStanza(MSXML2::IXMLDOMDocument *pXMLDoc, 
 							const BSTR stanzaName)
@@ -63,7 +63,10 @@ void XMPPHandlers::OnStanza(MSXML2::IXMLDOMDocument *pXMLDoc,
 	else
 		Handler = m_StreamHandler;
 
-    m_pMainWnd->Do(Handler, &CComVariant(CComQIPtr<IDispatch>(pXMLDoc)));
+	//IDispatch* pDispatch = NULL;
+	//pXMLDoc->QueryInterface(IID_IDispatch, (LPVOID*) pDispatch);
+    m_pMainWnd->Do(Handler, &_variant_t(pXMLDoc));
+	//pDispatch->Release();
 }
 void XMPPHandlers::OnDocumentStart(const _bstr_t& xmlFragment)
 {
@@ -75,19 +78,19 @@ void XMPPHandlers::OnDocumentEnd(const _bstr_t& xmlFragment)
 }
 void XMPPHandlers::OnStartTLSSucceeded()
 {
-	m_pMainWnd->Do(m_StartTLSSucceededHandler, &CComVariant(""));
+	m_pMainWnd->Do(m_StartTLSSucceededHandler, &_variant_t(""));
 }
 void XMPPHandlers::OnStartTLSFailed()
 {
-	m_pMainWnd->Do(m_StartTLSFailedHandler, &CComVariant(""));
+	m_pMainWnd->Do(m_StartTLSFailedHandler, &_variant_t(""));
 }
 void XMPPHandlers::OnStartSCSucceeded()
 {
-	m_pMainWnd->Do(m_StartSCSucceededHandler, &CComVariant(""));
+	m_pMainWnd->Do(m_StartSCSucceededHandler, &_variant_t(""));
 }
 void XMPPHandlers::OnStartSCFailed()
 {
-	m_pMainWnd->Do(m_StartSCFailedHandler, &CComVariant(""));
+	m_pMainWnd->Do(m_StartSCFailedHandler, &_variant_t(""));
 }
 
 void XMPPHandlers::SetConnectedHandler(const BSTR handler)

@@ -20,12 +20,12 @@
  * Description: TODOTODOTODO
  */
 #pragma once
+#include "DispInterfaceImpl.h"
 
 class CMainWnd;
 
 class CPopupMenu :
-	public CComObjectRootEx<CComSingleThreadModel>,
-	public IDispatchImpl<IPopupMenu>
+	public DispInterfaceImpl<IPopupMenu>
 {
 private:
 	HMENU m_Handle;
@@ -35,13 +35,7 @@ public:
 	CPopupMenu();
 	~CPopupMenu();
 
-	DECLARE_NO_REGISTRY()
-	BEGIN_COM_MAP(CPopupMenu)
-		COM_INTERFACE_ENTRY(IDispatch)
-		COM_INTERFACE_ENTRY(IPopupMenu)
-	END_COM_MAP()
-
-// IPopupMenu
+	/* IPopupMenu */
 	STDMETHOD(AddItem)(BOOL bEnabled, BOOL bChecked, BOOL bRadio, BOOL bDefault, DWORD hSubMenu, BSTR label, DWORD ID);
 	STDMETHOD(Show)(DWORD x, DWORD y, BOOL fromTray = FALSE);
 	STDMETHOD(get_Handle)(VARIANT* pVal);

@@ -25,15 +25,6 @@
 #include "Module.h"
 #include "PdnWnd.h"
 
-
-CCreateParams::CCreateParams(BSTR name, BSTR url, VARIANT* pParams, CPandionModule* pModule)
-{
-	m_name = name;
-	m_url = url;
-	m_pParams = pParams;
-	m_pModule = pModule;
-}
-
 class CJSInvoke
 {
 public:
@@ -50,9 +41,15 @@ CPdnWnd::CPdnWnd() :
 	m_hWndLastFocusedWindow(0), m_hWndActiveWindow(0), m_hWndFocus(0),
 	m_bPopUnder(false), m_sMinHandler(""), 	m_sCloseHandler(""),
 	m_sMenuHandler(""), m_sCmdLineHandler(""), 
-	m_sRestoreHandler(""), m_sName(""), m_sURL(""), m_vParams(0),
-	m_External(*this)
+	m_sRestoreHandler(""), m_External(*this), 
+	m_ActiveXHost(dynamic_cast<IPdnWnd*>(this))
 {
+	m_COMCannotSelfDelete = false;
+	m_COMReferenceCounter = 0;
+
+	m_TaskbarRestart = -1;
+
+	m_hWnd = NULL;
 	m_External.DisableSelfDelete();
 	m_minSize.x  = 160;
 	m_minSize.y  = 200;
@@ -63,14 +60,150 @@ CPdnWnd::~CPdnWnd()
 	_CrtMemDumpAllObjectsSince(&state);
 }
 
+int CPdnWnd::Create(RECT& rect, std::wstring Name, std::wstring URL,
+	_variant_t& windowParams, CPandionModule* Module)
+{
+	m_Name          = Name;
+	m_URL           = URL;
+	m_windowParams  = windowParams;
+	m_Module        = Module;
+
+	::RegisterClassEx(&GetWndClassInfo());
+	m_hWnd = ::CreateWindowEx(0, GetWndClassName(), L"", 
+		WS_OVERLAPPEDWINDOW ,
+		rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top,
+		0, 0, GetModuleHandle(NULL), this);
+
+	/* Init COM in case window is created from a different thread */
+	::OleInitialize(NULL);
+
+	/* Create Internet Security Manager Object */
+	CoCreateInstance(CLSID_InternetSecurityManager, NULL, CLSCTX_INPROC_SERVER, IID_IInternetSecurityManager, (void**)&m_pSecurityMgr);
+	m_pSecurityMgr->AddRef();
+
+	/* Create the External object */
+	m_External.Init(m_Module);
+
+	/* Create the menu bar */
+	(new CMenuBar)->QueryInterface(__uuidof(IMenuBar), (LPVOID*)&m_pMenuBar);
+	VARIANT handle;
+	m_pMenuBar->get_Handle(&handle);
+	::SetMenu(m_hWnd, (HMENU)handle.uintVal);
+	m_pMenuBar->put_hwnd((DWORD)m_hWnd);
+
+	/* Add the window to the global window dictionary */
+	ScrRun::IDictionary* pWindows;
+	m_Module->GetWindows(&pWindows);
+	pWindows->Add(&_variant_t(m_Name.c_str()),
+		&_variant_t((IDispatch*)this));
+	pWindows->Release();
+
+	/* Create the Internet Explorer control */
+	ContainerCreate();
+
+	return 0;
+}
+
+LRESULT CALLBACK CPdnWnd::StartWindowProc(HWND hWnd, UINT uMsg,
+	WPARAM wParam, LPARAM lParam)
+{
+	if(uMsg == WM_CREATE)
+	{
+		CREATESTRUCT* cs = (CREATESTRUCT*) lParam;
+		::SetWindowLong(hWnd, GWL_USERDATA, (LONG) cs->lpCreateParams);
+	}
+	CPdnWnd *pandionWindow = (CPdnWnd*) ::GetWindowLong(hWnd, GWL_USERDATA);
+	if(pandionWindow != NULL)
+	{
+		return pandionWindow->WindowProc(hWnd, uMsg, wParam, lParam);
+	}
+	else
+	{
+		return ::DefWindowProc(hWnd, uMsg, wParam, lParam);
+	}
+}
+
+LRESULT CPdnWnd::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	BOOL bHandled;
+	if(uMsg == WM_CREATE)
+	{
+		m_hWnd = hWnd;
+		return OnCreate(uMsg, wParam, lParam, bHandled);
+	}
+	else if(uMsg == WM_CLOSE)
+	{
+		return OnClose(uMsg, wParam, lParam, bHandled);
+	}
+	else if(uMsg == WM_JSINVOKE)
+	{
+		return OnJSInvoke(uMsg, wParam, lParam, bHandled);
+	}
+	else if(uMsg == WM_GETMINMAXINFO)
+	{
+		return OnGetMinMaxInfo(uMsg, wParam, lParam, bHandled);
+	}
+	else if(uMsg == WM_SIZE)
+	{
+		OnSize(uMsg, wParam, lParam, bHandled);
+		m_ActiveXHost.OnSize(uMsg, wParam, lParam);
+		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
+	}
+	else if(uMsg == WM_COMMAND)
+	{
+		return OnCommand(uMsg, wParam, lParam, bHandled);
+	}
+	else if(uMsg == WM_ENDSESSION)
+	{
+		return OnEndSession(uMsg, wParam, lParam, bHandled);
+	}
+	else if(uMsg == WM_NCDESTROY)
+	{
+		OnFinalMessage(m_hWnd);
+		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
+	}
+	else if(uMsg == m_TaskbarRestart)
+	{
+		return OnTaskbarRestart(uMsg, wParam, lParam, bHandled);
+	}
+	else if(uMsg == WM_COPYDATA)
+	{
+		return OnCopyData(uMsg, wParam, lParam, bHandled);
+	}
+	else if(uMsg == WM_NOTIFYICON)
+	{
+		return OnNotifyIcon(uMsg, wParam, lParam, bHandled);
+	}
+	else
+	{
+		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
+	}
+}
+
+WNDCLASSEX& CPdnWnd::GetWndClassInfo()
+{
+	static WNDCLASSEX wc =
+	{ 
+		sizeof(WNDCLASSEX), CS_DBLCLKS, StartWindowProc, 0, 0, NULL, NULL,
+		NULL, (HBRUSH)(COLOR_BTNFACE), NULL, GetWndClassName(), NULL 
+	};
+	return wc;
+}
+
+LPCWSTR CPdnWnd::GetWndClassName()
+{
+	return TEXT("Pandion Window Class");
+}
+
 void CPdnWnd::OnFinalMessage(HWND hWnd)
 {
 	/* Remove the window from the global window dictionary */
-	CComPtr<ScrRun::IDictionary> pWindows;
-	m_pModule->GetWindows(&pWindows);
-	pWindows->Remove(&CComVariant(m_sName));
+	ScrRun::IDictionary* pWindows;
+	m_Module->GetWindows(&pWindows);
+	pWindows->Remove(&_variant_t(m_Name.c_str()));
+	pWindows->Release();
 
-	/* The internet explorer control is automatically destroyed by ATL, we just have to free the reference */
+	/* free the browser reference */
 	m_pBrowser->Quit();
 	m_pBrowser->Release();
 
@@ -102,68 +235,17 @@ void CPdnWnd::PopUnder(BOOL b)
 // Message Handlers
 LRESULT CPdnWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
-	CCreateParams *p = (CCreateParams*) ((CREATESTRUCT*)lParam)->lpCreateParams;
-	m_sName = p->m_name;
-	m_sURL  = p->m_url;
-	m_vParams  = *(p->m_pParams);
-	m_pModule = p->m_pModule;
-
-	/* Init COM in case window is created from a different thread */
-	::OleInitialize(NULL);
-	AtlAxWinInit();
-
-	/* Create Internet Security Manager Object */
-	CoCreateInstance(CLSID_InternetSecurityManager, NULL, CLSCTX_INPROC_SERVER, IID_IInternetSecurityManager, (void**)&m_pSecurityMgr);
-	m_pSecurityMgr->AddRef();
-
-	/* Create the External object */
-	m_External.Init(m_pModule);
-
-	/* Create the Internet Explorer control */
-	if(SUCCEEDED(ContainerCreate()))
-	{
-		/* Create the menu bar */
-		(new CComObject<CMenuBar>)->QueryInterface(&m_pMenuBar);
-		VARIANT handle;
-		m_pMenuBar->get_Handle(&handle);
-		SetMenu((HMENU)handle.uintVal);
-		m_pMenuBar->put_hwnd((DWORD)m_hWnd);
-
-		/* Add the window to the global window dictionary */
-		CComPtr<ScrRun::IDictionary> pWindows;
-		m_pModule->GetWindows(&pWindows);
-		pWindows->Add(&CComVariant(m_sName), &CComVariant((IDispatch*)this));
-	}
-	else
-		return -1;
-
 	return 0;
 }
 HRESULT CPdnWnd::ContainerCreate()
 {
 	// Create the control
-	CreateControl(L"Shell.Explorer.2");
-
-	// Set the host
-	CComPtr<IUnknown> spHostUnk;
-	HRESULT hr = AtlAxGetHost(m_hWnd, &spHostUnk);
-	CComQIPtr<IAxWinHostWindow> spAxWin(spHostUnk);
-	CComQIPtr<IObjectWithSite> pOWS(spAxWin);
-
-	CComPtr<IUnknown> pUnk;
-	QueryInterface(IID_IUnknown, (void **) &pUnk);
-
-	if(FAILED(pOWS->SetSite(pUnk)))
-		return hr;
+	IOleObject* activeXControl = 
+		m_ActiveXHost.Create(m_hWnd, L"Shell.Explorer.2");
 
 	// Get the webbrowser control
-	hr = spAxWin->QueryControl(IID_IWebBrowser2, (void**) &m_pBrowser);
-	if(FAILED(hr))
-		return hr;
-
-	// Set the webbrowser event sink
-	CComQIPtr<IWebBrowser2, &IID_IUnknown> pSourceUnk(m_pBrowser);
-	hr = Advise(pSourceUnk);
+	HRESULT hr = activeXControl->QueryInterface(IID_IWebBrowser2,
+		(void**) &m_pBrowser);
 	if(FAILED(hr))
 		return hr;
 
@@ -171,20 +253,21 @@ HRESULT CPdnWnd::ContainerCreate()
 	m_pBrowser->put_RegisterAsBrowser(VARIANT_FALSE);
 	m_pBrowser->put_RegisterAsDropTarget(VARIANT_TRUE);
 	m_pBrowser->put_Silent(VARIANT_FALSE);
-	m_pBrowser->Navigate(m_sURL, 0, 0, 0, 0);
+	m_pBrowser->Navigate(_bstr_t(m_URL.c_str()), 0, 0, 0, 0);
 
 	return S_OK;
 }
+
 LRESULT CPdnWnd::OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
-	if(m_sCloseHandler.Length())
+	if(m_sCloseHandler.length())
 	{
 		FireEvent(m_sCloseHandler, 0, 0);
-		DestroyWindow();
+		::DestroyWindow(m_hWnd);
 	}
 	else
 	{
-		DestroyWindow();
+		::DestroyWindow(m_hWnd);
 	}
 	return 0;
 }
@@ -201,8 +284,8 @@ LRESULT CPdnWnd::OnJSInvoke(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHand
 LRESULT CPdnWnd::OnGetMinMaxInfo(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	RECT windowRect, clientRect;
-	GetWindowRect(&windowRect);
-	GetClientRect(&clientRect);
+	::GetWindowRect(m_hWnd, &windowRect);
+	::GetClientRect(m_hWnd, &clientRect);
 	DWORD deltaWidth  = (windowRect.right - windowRect.left) - (clientRect.right - clientRect.left);
 	DWORD deltaHeight = (windowRect.bottom - windowRect.top) - (clientRect.bottom - clientRect.top);
 
@@ -213,18 +296,22 @@ LRESULT CPdnWnd::OnGetMinMaxInfo(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& 
 }
 LRESULT CPdnWnd::OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
-	switch(wParam)
+	RECT rect;
+	::GetClientRect(m_hWnd, &rect);
+	m_ActiveXHost.SetWindowPos(HWND_TOP, rect.left, rect.top, 
+		rect.right - rect.left, rect.bottom - rect.top, 0);
+	if(wParam == SIZE_MINIMIZED && m_sMinHandler.length())
 	{
-	case SIZE_MINIMIZED:
-		if(m_sMinHandler.Length())
-            FireEvent(m_sMinHandler, 0, 0);
+        FireEvent(m_sMinHandler, 0, 0);
 		return 0;
-	case SIZE_RESTORED:
-		if(m_sRestoreHandler.Length())
-			FireEvent(m_sRestoreHandler, 0, 0);
+	}
+	else if(wParam == SIZE_RESTORED && m_sRestoreHandler.length())
+	{
+		FireEvent(m_sRestoreHandler, 0, 0);
 		return 0;
-	default:
-		bHandled = false;
+	}
+	else
+	{
 		return 1;
 	}
 }
@@ -234,7 +321,7 @@ LRESULT CPdnWnd::OnCommand(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandl
 	parameters[0].vt      = VT_UI4;
 	parameters[0].uintVal = wParam;
 
-	if(m_sMenuHandler.Length())
+	if(m_sMenuHandler.length())
 	{
 		FireEvent(m_sMenuHandler, parameters, 1);
 		return 0;
@@ -247,24 +334,38 @@ LRESULT CPdnWnd::OnEndSession(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHa
         OnClose(WM_CLOSE, 0, 0, bHandled);
 	return 0;
 }
+LRESULT CPdnWnd::OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+{
+	return 1;
+}
+LRESULT CPdnWnd::OnCopyData(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+{
+	return 1;
+}
+LRESULT CPdnWnd::OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+{
+	return 1;
+}
 
-// IWebBrowserEvents2 Implementation
-STDMETHODIMP CPdnWnd::OnWindowClosing(VARIANT_BOOL IsChildWindow, VARIANT_BOOL* &Cancel)
+// DWebBrowserEvents2 Implementation
+STDMETHODIMP_(void) CPdnWnd::WindowClosing(VARIANT_BOOL IsChildWindow,
+										   VARIANT_BOOL* Cancel)
 {
 	Cancel = new VARIANT_BOOL;
 	*Cancel = false;
 	close();
-	return S_OK;
 }
-STDMETHODIMP CPdnWnd::OnNavigateComplete2(IDispatch* pDisp, VARIANT URL)
+STDMETHODIMP_(void) CPdnWnd::NavigateComplete2(IDispatch* pDisp, VARIANT* URL)
 {
-	CComPtr<IDispatch> pDocDisp;
+	IDispatch* pDocDisp;
 	m_pBrowser->get_Document(&pDocDisp);
-	CComQIPtr<ICustomDoc, &IID_ICustomDoc> pCustomDoc(pDocDisp);
-
-	return pCustomDoc->SetUIHandler(this);
+	ICustomDoc* pCustomDoc;
+	pDocDisp->QueryInterface(IID_ICustomDoc, (LPVOID*) &pCustomDoc);
+	pDocDisp->Release();
+	pCustomDoc->SetUIHandler(this);
+	pCustomDoc->Release();
 }
-// IDocHostUIHandler implementation
+/* IDocHostUIHandler */
 STDMETHODIMP CPdnWnd::ShowContextMenu(DWORD dwID, POINT *ppt, IUnknown *pcmdtReserved, IDispatch *pdispReserved)
 {
 	return (dwID & 0x2) ? S_FALSE : S_OK;
@@ -356,7 +457,7 @@ STDMETHODIMP CPdnWnd::FilterDataObject(IDataObject *pDO, IDataObject **ppDORet)
 	*ppDORet = NULL;
 	return S_FALSE;
 }
-// IDocHostShowUI
+/* IDocHostShowUI */
 STDMETHODIMP CPdnWnd::ShowMessage(HWND hwnd, LPOLESTR lpstrText,
 								  LPOLESTR lpstrCaption, DWORD dwType,
 								  LPOLESTR lpstrHelpFile, DWORD dwHelpContext,
@@ -371,7 +472,14 @@ STDMETHODIMP CPdnWnd::ShowHelp(HWND hwnd, LPOLESTR pszHelpFile, UINT uCommand,
 	return S_OK;
 }
 
-// IInternetSecurityManager
+/* IServiceProvider */
+STDMETHODIMP CPdnWnd::QueryService(REFGUID guidService, REFIID riid, void **ppv)
+{
+	*ppv = this;
+	return S_OK;
+}
+
+/* IInternetSecurityManager */
 STDMETHODIMP CPdnWnd::SetSecuritySite(IInternetSecurityMgrSite *pSite)
 { 
 	return m_pSecurityMgr->SetSecuritySite(pSite);
@@ -408,45 +516,38 @@ STDMETHODIMP CPdnWnd::GetZoneMappings(DWORD dwZone, IEnumString  **ppenumString,
 {
 	return m_pSecurityMgr->GetZoneMappings(dwZone, ppenumString, dwFlags);
 }
-// IPdnWnd implementation
+
+/* IPdnWnd */
 STDMETHODIMP CPdnWnd::setTitle(BSTR Title)
 {
-	::SetWindowText(m_hWnd, CW2T(Title));
+	::SetWindowText(m_hWnd, Title);
 
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::setAOT(BOOL b)
 {
-	SetWindowPos(b ? HWND_TOPMOST : HWND_NOTOPMOST, 0, 0, 0, 0,
+	::SetWindowPos(m_hWnd, b ? HWND_TOPMOST : HWND_NOTOPMOST, 0, 0, 0, 0,
 		SWP_NOMOVE | SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOACTIVATE);
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::minimize()
 {
-	ShowWindow(SW_MINIMIZE);
+	::ShowWindow(m_hWnd, SW_MINIMIZE);
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::maximize()
 {
-	ShowWindow(SW_MAXIMIZE);
+	::ShowWindow(m_hWnd, SW_MAXIMIZE);
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::restore()
 {
-	ShowWindow(SW_RESTORE);
+	::ShowWindow(m_hWnd, SW_RESTORE);
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::close()
 {
-/*	CComQIPtr<IWebBrowser2, &IID_IUnknown> pSourceUnk(m_pBrowser);
-	if(FAILED(Unadvise(pSourceUnk)))
-		return S_FALSE;
-
-	//m_pBrowser->Quit();
-
-	//DestroyWindow();
-*/
-	PostMessage(WM_CLOSE);
+	::PostMessage(m_hWnd, WM_CLOSE, 0, 0);
 
 	return S_OK;
 }
@@ -454,40 +555,43 @@ STDMETHODIMP CPdnWnd::close()
 STDMETHODIMP CPdnWnd::setSize(DWORD width, DWORD height)
 {
 	RECT windowRect, clientRect;
-	GetWindowRect(&windowRect);
-	GetClientRect(&clientRect);
+	::GetWindowRect(m_hWnd, &windowRect);
+	::GetClientRect(m_hWnd, &clientRect);
 	DWORD deltaWidth  = (windowRect.right - windowRect.left) - (clientRect.right - clientRect.left);
 	DWORD deltaHeight = (windowRect.bottom - windowRect.top) - (clientRect.bottom - clientRect.top);
 	windowRect.right = windowRect.left + width + deltaWidth;
 	windowRect.bottom = windowRect.top + height + deltaHeight;
 
-	SetWindowPos(0, &windowRect, SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
+	::SetWindowPos(m_hWnd, 0, windowRect.left, windowRect.top,
+		windowRect.right - windowRect.left, windowRect.bottom - windowRect.top,
+		SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
 
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::setPos(int left, int top)
 {
-	SetWindowPos(0, left, top, 0, 0, SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOZORDER);
+	::SetWindowPos(m_hWnd, 0, left, top, 0, 0, 
+		SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOZORDER);
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::setIcon(BSTR IconPath)
 {
-	HICON hIcon16 = (HICON) ::LoadImage(0, CW2T(IconPath), IMAGE_ICON, 16, 16,
+	HICON hIcon16 = (HICON) ::LoadImage(0, IconPath, IMAGE_ICON, 16, 16,
 		LR_LOADFROMFILE | LR_DEFAULTCOLOR);
-	HICON hIcon32 = (HICON) ::LoadImage(0, CW2T(IconPath), IMAGE_ICON, 32, 32,
+	HICON hIcon32 = (HICON) ::LoadImage(0, IconPath, IMAGE_ICON, 32, 32,
 		LR_LOADFROMFILE | LR_DEFAULTCOLOR);
 
 	if(!hIcon16 || !hIcon32)
 		return S_FALSE;
 
-	PostMessage(WM_SETICON, ICON_BIG, (LPARAM) hIcon32);
-	PostMessage(WM_SETICON, ICON_SMALL, (LPARAM) hIcon16);
+	::PostMessage(m_hWnd, WM_SETICON, ICON_BIG, (LPARAM) hIcon32);
+	::PostMessage(m_hWnd, WM_SETICON, ICON_SMALL, (LPARAM) hIcon16);
 
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::hide(BOOL b)
 {
-	ShowWindow(b ? SW_HIDE : SW_SHOWNA);
+	ShowWindow(m_hWnd, b ? SW_HIDE : SW_SHOWNA);
 	return S_OK;
 }
 /*
@@ -510,15 +614,10 @@ typedef BOOL (__stdcall *FWEXPROC)(PFLASHWINFO);
 */
 STDMETHODIMP CPdnWnd::flash(DWORD u)
 {
-//	HWND Wnd = ::GetFocus();
-//	while(m_hWnd != Wnd && Wnd != ::GetParent(Wnd)) Wnd = ::GetParent(Wnd);
-//	if(Wnd == m_hWnd)
-//		return S_OK;
 	HWND FGWindow = ::GetForegroundWindow();
 	if(FGWindow == m_hWnd)
 		return S_FALSE;
 
-	//PTC 1/13/2003 - FlashWindowEx is not compatible with Windows95/NT4
 	FLASHWINFO fwi;
 	fwi.cbSize = sizeof(FLASHWINFO);
 	fwi.hwnd = m_hWnd;
@@ -526,22 +625,9 @@ STDMETHODIMP CPdnWnd::flash(DWORD u)
 	fwi.dwFlags = FLASHW_ALL | FLASHW_TIMERNOFG;
     fwi.uCount = u;
 
-	HMODULE user32_dll = LoadLibrary(TEXT("User32.dll"));
+	::FlashWindowEx(&fwi);
 
-	if(user32_dll) 
-	{
-		FWEXPROC FlashWindowEx = (FWEXPROC)GetProcAddress(user32_dll, "FlashWindowEx"); 
- 
-        if(FlashWindowEx)
-           		FlashWindowEx(&fwi);
-
-		else
-			FlashWindow(true);
-
-		FreeLibrary(user32_dll); 
-    } 
-
-	SetForegroundWindow(FGWindow);
+	::SetForegroundWindow(FGWindow);
 	
 	return S_OK;
 }
@@ -549,27 +635,29 @@ STDMETHODIMP CPdnWnd::resizeable(BOOL b)
 {
 	if(!b)
 	{
-        SetWindowLong(GWL_STYLE, GetWindowLong(GWL_STYLE) &
-			!(WS_THICKFRAME | WS_MAXIMIZEBOX | WS_MINIMIZEBOX) | WS_CAPTION | WS_SYSMENU );
-		SetWindowLong(GWL_EXSTYLE, GetWindowLong(GWL_EXSTYLE) | WS_EX_WINDOWEDGE);
+		::SetWindowLong(m_hWnd, GWL_STYLE, ::GetWindowLong(m_hWnd, GWL_STYLE) &
+			!(WS_THICKFRAME | WS_MAXIMIZEBOX | WS_MINIMIZEBOX) |
+				WS_CAPTION | WS_SYSMENU );
+		::SetWindowLong(m_hWnd, GWL_EXSTYLE, ::GetWindowLong(m_hWnd, GWL_EXSTYLE) | 
+			WS_EX_WINDOWEDGE);
 	}
 	else
 	{
-        SetWindowLong(GWL_STYLE, GetWindowLong(GWL_STYLE) |
+        ::SetWindowLong(m_hWnd, GWL_STYLE, ::GetWindowLong(m_hWnd, GWL_STYLE) |
 			WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_CAPTION | WS_SYSMENU);
-		SetWindowLong(GWL_EXSTYLE, GetWindowLong(GWL_EXSTYLE) | WS_EX_WINDOWEDGE);
+		::SetWindowLong(m_hWnd, GWL_EXSTYLE, ::GetWindowLong(m_hWnd, GWL_EXSTYLE) | WS_EX_WINDOWEDGE);
 	}
 	
-	SetWindowPos(0, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOZORDER | SWP_FRAMECHANGED);
+	::SetWindowPos(m_hWnd, 0, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOZORDER | SWP_FRAMECHANGED);
 	return S_OK;
 
 }
 STDMETHODIMP CPdnWnd::showMinBox(BOOL b)
 {
 	if(!b)
-        SetWindowLong(GWL_STYLE, GetWindowLong(GWL_STYLE) & !WS_MINIMIZEBOX);
+        ::SetWindowLong(m_hWnd, GWL_STYLE, ::GetWindowLong(m_hWnd, GWL_STYLE) & !WS_MINIMIZEBOX);
 	else
-		SetWindowLong(GWL_STYLE, GetWindowLong(GWL_STYLE) | WS_MINIMIZEBOX);
+		::SetWindowLong(m_hWnd, GWL_STYLE, ::GetWindowLong(m_hWnd, GWL_STYLE) | WS_MINIMIZEBOX);
 
 	return S_OK;
 }
@@ -580,21 +668,21 @@ STDMETHODIMP CPdnWnd::showMaxBox(BOOL b)
 STDMETHODIMP CPdnWnd::showTitlebar(BOOL b)
 {
 	RECT rc;
-	GetClientRect(&rc);
+	::GetClientRect(m_hWnd, &rc);
 	if(!b)
 	{
-		SetWindowLong(GWL_STYLE, GetWindowLong(GWL_STYLE) & !(WS_OVERLAPPEDWINDOW));
-		SetWindowLong(GWL_EXSTYLE, (GetWindowLong(GWL_EXSTYLE) &
+		::SetWindowLong(m_hWnd, GWL_STYLE, ::GetWindowLong(m_hWnd, GWL_STYLE) & !(WS_OVERLAPPEDWINDOW));
+		::SetWindowLong(m_hWnd, GWL_EXSTYLE, (::GetWindowLong(m_hWnd, GWL_EXSTYLE) &
 			!(WS_EX_APPWINDOW)) | WS_EX_TOOLWINDOW);
 	}
 	else
 	{
-		SetWindowLong(GWL_STYLE, GetWindowLong(GWL_STYLE) | (WS_OVERLAPPEDWINDOW));
-		SetWindowLong(GWL_EXSTYLE, (GetWindowLong(GWL_EXSTYLE) &
+		::SetWindowLong(m_hWnd, GWL_STYLE, ::GetWindowLong(m_hWnd, GWL_STYLE) | (WS_OVERLAPPEDWINDOW));
+		::SetWindowLong(m_hWnd, GWL_EXSTYLE, (::GetWindowLong(m_hWnd, GWL_EXSTYLE) &
 			!(WS_EX_TOOLWINDOW)) | WS_EX_APPWINDOW);
 	}
 	
-	SetWindowPos(0, 0, 0, rc.right - rc.left, rc.bottom - rc.top,
+	::SetWindowPos(m_hWnd, 0, 0, 0, rc.right - rc.left, rc.bottom - rc.top,
 		SWP_NOMOVE | SWP_NOACTIVATE | SWP_NOZORDER | SWP_FRAMECHANGED);
 	return S_OK;
 }
@@ -622,11 +710,11 @@ STDMETHODIMP CPdnWnd::translucent(DWORD percent)
 			if(percent == 100)
 			{
            		SetLayeredWindowAttributes(m_hWnd, 0, 255, LWA_ALPHA);
-				SetWindowLong(GWL_EXSTYLE, GetWindowLong(GWL_EXSTYLE) & !WS_EX_LAYERED);
+				::SetWindowLong(m_hWnd, GWL_EXSTYLE, ::GetWindowLong(m_hWnd, GWL_EXSTYLE) & !WS_EX_LAYERED);
 			}
 			else
 			{
-				SetWindowLong(GWL_EXSTYLE, GetWindowLong(GWL_EXSTYLE) | WS_EX_LAYERED);
+				::SetWindowLong(m_hWnd, GWL_EXSTYLE, ::GetWindowLong(m_hWnd, GWL_EXSTYLE) | WS_EX_LAYERED);
            		SetLayeredWindowAttributes(m_hWnd, 0, (255 * LOBYTE(LOWORD(percent))) / 100, LWA_ALPHA);
 			}
 		}
@@ -667,13 +755,13 @@ STDMETHODIMP CPdnWnd::Do(BSTR funcName, VARIANT *params, DWORD nParams)
 			VariantCopy(&par[i], &params[i]);
 		}
 		CJSInvoke *jsi = new CJSInvoke(SysAllocString(funcName), nParams);
-		PostMessage(WM_JSINVOKE, (WPARAM)jsi, (LPARAM)par);
+		::PostMessage(m_hWnd, WM_JSINVOKE, (WPARAM)jsi, (LPARAM)par);
 	}
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::get_params(VARIANT* retVal)
 {
-	::VariantCopy(retVal, &m_vParams);
+	::VariantCopy(retVal, &m_windowParams.GetVARIANT());
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::focus()
@@ -683,7 +771,7 @@ STDMETHODIMP CPdnWnd::focus()
 STDMETHODIMP CPdnWnd::get_left(VARIANT* retVal)
 {
 	RECT rc;
-	GetWindowRect(&rc);
+	::GetWindowRect(m_hWnd, &rc);
 	retVal->intVal = rc.left;
 	retVal->vt = VT_I4;
 	return S_OK;
@@ -691,7 +779,7 @@ STDMETHODIMP CPdnWnd::get_left(VARIANT* retVal)
 STDMETHODIMP CPdnWnd::get_top(VARIANT* retVal)
 {
 	RECT rc;
-	GetWindowRect(&rc);
+	::GetWindowRect(m_hWnd, &rc);
 	retVal->intVal = rc.top;
 	retVal->vt = VT_I4;
 	return S_OK;
@@ -699,7 +787,7 @@ STDMETHODIMP CPdnWnd::get_top(VARIANT* retVal)
 STDMETHODIMP CPdnWnd::get_width(VARIANT* retVal)
 {
 	RECT rc;
-	GetClientRect(&rc);
+	::GetClientRect(m_hWnd, &rc);
 	retVal->intVal = rc.right - rc.left;
 	retVal->vt = VT_I4;
 	return S_OK;
@@ -707,7 +795,7 @@ STDMETHODIMP CPdnWnd::get_width(VARIANT* retVal)
 STDMETHODIMP CPdnWnd::get_height(VARIANT* retVal)
 {
 	RECT rc;
-	GetClientRect(&rc);
+	::GetClientRect(m_hWnd, &rc);
 	retVal->intVal = rc.bottom - rc.top;
 	retVal->vt = VT_I4;
 	return S_OK;
@@ -744,7 +832,7 @@ LRESULT CPdnWnd::OnActivate (UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHan
 		::SetActiveWindow(::GetWindow(m_hWnd, GW_CHILD));
 		if (m_hWndLastFocusedWindow)
 			::SetFocus(m_hWndLastFocusedWindow);
-		if(m_sActivationHandler)
+		if(m_sActivationHandler.length())
             FireEvent(m_sActivationHandler, 0, 0);
 	}
 	return 0;
@@ -777,17 +865,17 @@ STDMETHODIMP CPdnWnd::popFocus()
 
 STDMETHODIMP CPdnWnd::get_isMinimized(BOOL* pBool)
 {
-	*pBool = IsIconic();
+	*pBool = ::IsIconic(m_hWnd);
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::get_isMaximized(BOOL* pBool)
 {
-	*pBool = IsZoomed();
+	*pBool = ::IsZoomed(m_hWnd);
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::get_isHidden(BOOL* pBool)
 {
-	*pBool = !(WS_VISIBLE & GetWindowLong(GWL_STYLE));
+	*pBool = !(WS_VISIBLE & ::GetWindowLong(m_hWnd, GWL_STYLE));
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::setMinHandler(BSTR str)
@@ -822,12 +910,12 @@ STDMETHODIMP CPdnWnd::setActivationHandler(BSTR str)
 }
 STDMETHODIMP CPdnWnd::FireEvent(BSTR handler, VARIANT* parameters, DWORD nParams)
 {
-	CComPtr<IHTMLDocument2> pHTDoc = NULL;
+	IHTMLDocument2* pHTDoc;
 	HRESULT hr;
 	hr = m_pBrowser->get_Document((IDispatch**) &pHTDoc);
 	if(SUCCEEDED(hr))
 	{
-		CComPtr<IHTMLWindow2> pHTWnd = NULL;
+		IHTMLWindow2* pHTWnd = NULL;
 		hr = pHTDoc->get_parentWindow(&pHTWnd);	
 		if(SUCCEEDED(hr))
 		{
@@ -841,10 +929,14 @@ STDMETHODIMP CPdnWnd::FireEvent(BSTR handler, VARIANT* parameters, DWORD nParams
                 hr = pHTWnd->Invoke(dispid, IID_NULL, LOCALE_SYSTEM_DEFAULT, DISPATCH_METHOD, &dParams, 0, 0, &errArg);
 				if(SUCCEEDED(hr))
 				{
+					pHTWnd->Release();
+					pHTDoc->Release();
 					return S_OK;
 				}
 			}
+			pHTWnd->Release();
 		}
+		pHTDoc->Release();
 	}
     return hr;
 }
@@ -864,3 +956,108 @@ STDMETHODIMP CPdnWnd::get_Handle(DWORD *pHandle)
 	*pHandle = (DWORD) m_hWnd;
 	return S_OK;
 }
+
+/*
+ * IUnknown::QueryInterface() implementation
+ */
+STDMETHODIMP CPdnWnd::QueryInterface(REFIID riid, void** ppvObject)
+{
+	if(ppvObject == NULL)
+		return E_POINTER;
+	else
+		*ppvObject = NULL;
+	
+	if(::IsEqualGUID(riid, IID_IUnknown))
+		*ppvObject = dynamic_cast<IPdnWnd*>(this);
+	else if(::IsEqualGUID(riid, IID_IDispatch))
+		*ppvObject = dynamic_cast<IDispatch*>(this);
+	else if(::IsEqualGUID(riid, __uuidof(IPdnWnd)))
+		*ppvObject = dynamic_cast<IPdnWnd*>(this);
+	else if(::IsEqualGUID(riid, IID_IServiceProvider))
+		return E_NOINTERFACE;
+	else if(::IsEqualGUID(riid, IID_IDocHostUIHandler))
+		*ppvObject = dynamic_cast<IDocHostUIHandler*>(this);
+	else if(::IsEqualGUID(riid, IID_IDocHostShowUI))
+		*ppvObject = dynamic_cast<IDocHostShowUI*>(this);
+	else
+		return E_NOINTERFACE;
+
+	AddRef();
+	return S_OK;
+}
+
+/*
+ * IUnknown::AddRef() implementation
+ */
+STDMETHODIMP_(ULONG) CPdnWnd::AddRef()
+{
+	return ++m_COMReferenceCounter;
+}
+
+/*
+ * IUnknown::Release() implementation
+ */
+STDMETHODIMP_(ULONG) CPdnWnd::Release()
+{
+	if(m_COMReferenceCounter> 1)
+	{
+		return --m_COMReferenceCounter;
+	}
+	else
+	{
+		if(!m_COMCannotSelfDelete)
+		{
+			delete this;
+		}
+		return 0;
+	}
+}
+//
+///*
+// * IDispatch::GetTypeInfoCount() implementation
+// */
+//STDMETHODIMP CPdnWnd::GetTypeInfoCount(UINT* pctinfo)
+//{
+//	if(pctinfo == NULL)
+//	{
+//		return E_POINTER;
+//	}
+//	*pctinfo = 1;
+//	return S_OK;
+//}
+//
+///*
+// * IDispatch::GetTypeInfo() implementation
+// */
+//STDMETHODIMP CPdnWnd::GetTypeInfo(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo)
+//{
+//	if(ppTInfo == NULL)
+//	{
+//		return E_POINTER;
+//	}
+//	m_TypeInfo->AddRef();
+//	*ppTInfo = m_TypeInfo;
+//	return S_OK;
+//}
+//
+///*
+// * IDispatch::GetIDsOfNames() implementation
+// */
+//STDMETHODIMP CPdnWnd::GetIDsOfNames(REFIID riid,
+//	LPOLESTR* rgszNames, UINT cNames, LCID lcid, DISPID* rgDispId)
+//{
+//	return DispGetIDsOfNames(m_TypeInfo, rgszNames, cNames, rgDispId);
+//}
+//
+///*
+// * IDispatch::Invoke() implementation
+// */
+//STDMETHODIMP CPdnWnd::Invoke(
+//	DISPID dispidMember, REFIID riid, LCID lcid, WORD wFlags, 
+//	DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo, 
+//	UINT* puArgErr)
+//{
+//	HRESULT hr = DispInvoke(this, m_TypeInfo, dispidMember, wFlags,
+//		pDispParams, pVarResult, pExcepInfo, puArgErr);
+//	return hr;
+//}

@@ -21,56 +21,60 @@
  */
 #pragma once
 #include "External.h"
+#include "DispInterfaceImpl.h"
+#include "AxHostWnd.h"
 
 class CPandionModule;
 
-class CCreateParams
-{
-public:
-	CComBSTR m_name;
-	CComBSTR m_url;
-	VARIANT *m_pParams;
-	CPandionModule *m_pModule;
-	CCreateParams(BSTR name, BSTR url, VARIANT* pParams, CPandionModule* pModule);
-};
-
-
-static _ATL_FUNC_INFO OnWindowClosingInfo = { CC_STDCALL, VT_EMPTY, 2, { VT_BOOL, VT_BYREF } };
-static _ATL_FUNC_INFO OnNavigateComplete2Info = { CC_STDCALL, VT_EMPTY, 2, { VT_DISPATCH, VT_VARIANT } };
-
-
 class CPdnWnd :
-	public CComObjectRootEx<CComSingleThreadModel>,
-	public CWindowImpl<CPdnWnd, CAxWindow, CFrameWinTraits>,
-	public IDispatchImpl<IPdnWnd>,
-	public IDispEventSimpleImpl<0, CPdnWnd, &__uuidof(SHDocVw::DWebBrowserEvents2)>,
+	public DispInterfaceImpl<IPdnWnd>,
 	public IDocHostUIHandler,
 	public IDocHostShowUI,
-	public IInternetSecurityManager,
-	public IServiceProviderImpl<CPdnWnd>
+	public IInternetSecurityManager
+//	public IServiceProvider 
 {
 protected:
 	_CrtMemState state;
-	HWND	m_hWndFocus;
-	HWND	m_hWndActiveWindow;
-	HWND	m_hWndLastFocusedWindow;
 
-	BOOL	m_bPopUnder;
+	/*
+	 * The internal COM reference counter, used by the IUnknown implementation.
+	 */
+	unsigned long			m_COMReferenceCounter;
+	/*
+	 * This object's TypeInfo, used by the IDispatch implementation.
+	 */
+//	ITypeInfo*				m_TypeInfo;
+	/*
+	 *
+	 */
+	bool					m_COMCannotSelfDelete;
 
-	CComBSTR m_sMinHandler;
-	CComBSTR m_sCloseHandler;
-	CComBSTR m_sMenuHandler;
-	CComBSTR m_sCmdLineHandler;
-	CComBSTR m_sRestoreHandler;
-	CComBSTR m_sActivationHandler;
-	CComBSTR m_sName;
-	CComBSTR m_sURL;
+	AxHostWnd    m_ActiveXHost;
 
-	CComVariant m_vParams;
-	POINT		m_minSize;
+	HWND         m_hWnd;
+	HWND	     m_hWndFocus;
+	HWND	     m_hWndActiveWindow;
+	HWND	     m_hWndLastFocusedWindow;
 
-	CExternal            m_External;
-	CPandionModule       *m_pModule;
+	UINT			m_TaskbarRestart;
+
+	BOOL	     m_bPopUnder;
+
+	_bstr_t     m_sMinHandler;
+	_bstr_t     m_sCloseHandler;
+	_bstr_t     m_sMenuHandler;
+	_bstr_t     m_sCmdLineHandler;
+	_bstr_t     m_sRestoreHandler;
+	_bstr_t     m_sActivationHandler;
+
+	std::wstring m_Name;
+	std::wstring m_URL;
+	_variant_t   m_windowParams;
+
+	POINT		 m_minSize;
+
+	CPandionModule*      m_Module;
+	External             m_External;
 	IWebBrowser2         *m_pBrowser;
 	IMenuBar             *m_pMenuBar;
 
@@ -79,58 +83,44 @@ public:
 	CPdnWnd();
 	~CPdnWnd();
 
-	DECLARE_NO_REGISTRY()
-	DECLARE_NOT_AGGREGATABLE(CPdnWnd);
+	int Create(RECT& rect, std::wstring Name, std::wstring URL,
+		_variant_t& windowParams, CPandionModule* Module);
 
-	BEGIN_COM_MAP(CPdnWnd)
-		COM_INTERFACE_ENTRY(IPdnWnd)
-        COM_INTERFACE_ENTRY(IDispatch)
-		COM_INTERFACE_ENTRY(IDocHostUIHandler)
-		COM_INTERFACE_ENTRY(IServiceProvider)
-		COM_INTERFACE_ENTRY(IInternetSecurityManager)
-	END_COM_MAP()
+	static LRESULT CALLBACK StartWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+	LRESULT WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
+private:
+	static WNDCLASSEX& GetWndClassInfo();
+	static LPCWSTR GetWndClassName();
 	void ChangeIcon(int icon);
 	void PopUnder(BOOL b);
 	HRESULT ContainerCreate();
 
-	// Message Handlers
-	BEGIN_MSG_MAP(CPdnWnd)
-		MESSAGE_HANDLER(WM_CREATE, OnCreate)
-		MESSAGE_HANDLER(WM_CLOSE, OnClose)
-		MESSAGE_HANDLER(WM_JSINVOKE, OnJSInvoke)
-		MESSAGE_HANDLER(WM_GETMINMAXINFO, OnGetMinMaxInfo)
-		MESSAGE_HANDLER(WM_ACTIVATE, OnActivate)
-		MESSAGE_HANDLER(WM_SIZE, OnSize)
-		MESSAGE_HANDLER(WM_COMMAND, OnCommand)
-		MESSAGE_HANDLER(WM_ENDSESSION, OnEndSession)
-	END_MSG_MAP()
-
+public:
 	/* Handler prototypes:
 	 *  LRESULT MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 	 *  LRESULT CommandHandler(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled);
 	 *  LRESULT NotifyHandler(int idCtrl, LPNMHDR pnmh, BOOL& bHandled);
 	 */
+	/* Window Messages */
 
-    LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	LRESULT OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	LRESULT OnJSInvoke(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	LRESULT OnGetMinMaxInfo(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	LRESULT OnActivate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	LRESULT OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	LRESULT OnCommand(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	LRESULT OnEndSession(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+    virtual LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	virtual LRESULT OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	virtual LRESULT OnJSInvoke(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	virtual LRESULT OnGetMinMaxInfo(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	virtual LRESULT OnActivate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	virtual LRESULT OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	virtual LRESULT OnCommand(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	virtual LRESULT OnEndSession(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	virtual LRESULT OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	virtual LRESULT OnCopyData(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	virtual LRESULT OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 
-	// Webbrowser Events
-	BEGIN_SINK_MAP(CPdnWnd)
-		SINK_ENTRY_INFO(0, __uuidof(SHDocVw::DWebBrowserEvents2), DISPID_WINDOWCLOSING, OnWindowClosing, &OnWindowClosingInfo)
-		SINK_ENTRY_INFO(0, __uuidof(SHDocVw::DWebBrowserEvents2), DISPID_NAVIGATECOMPLETE2, OnNavigateComplete2, &OnNavigateComplete2Info)
-	END_SINK_MAP()
+	/* Webbrowser Events */
+	STDMETHOD_(void, WindowClosing)(VARIANT_BOOL IsChildWindow, VARIANT_BOOL* Cancel);
+	STDMETHOD_(void, NavigateComplete2)(IDispatch* pDisp, VARIANT* URL);
 
-	STDMETHOD(OnWindowClosing)(VARIANT_BOOL IsChildWindow, VARIANT_BOOL* &Cancel);
-	STDMETHOD(OnNavigateComplete2)(IDispatch* pDisp, VARIANT URL);
-
-	// IDocHostUIHandler implementation
+	/* IDocHostUIHandler */
     STDMETHOD(ShowContextMenu)(DWORD dwID, POINT *ppt, IUnknown *pcmdtReserved, IDispatch *pdispReserved);
     STDMETHOD(GetHostInfo)(DOCHOSTUIINFO *pInfo);
     STDMETHOD(ShowUI)(DWORD dwID, IOleInPlaceActiveObject *pActiveObject, IOleCommandTarget *pCommandTarget, IOleInPlaceFrame *pFrame, IOleInPlaceUIWindow *pDoc);
@@ -147,22 +137,18 @@ public:
     STDMETHOD(TranslateUrl)(DWORD dwTranslate, OLECHAR *pchURLIn, OLECHAR **ppchURLOut);
     STDMETHOD(FilterDataObject)(IDataObject *pDO, IDataObject **ppDORet);
 
-	// IDocHostShowUI implementation
+	/* IDocHostShowUI */
 	STDMETHOD(ShowMessage)(HWND hwnd, LPOLESTR lpstrText,
 		LPOLESTR lpstrCaption, DWORD dwType, LPOLESTR lpstrHelpFile,
 		DWORD dwHelpContext, LRESULT *plResult);
 	STDMETHOD(ShowHelp)(HWND hwnd, LPOLESTR pszHelpFile,
 		UINT uCommand, DWORD dwData, POINT ptMouse,
 		IDispatch *pDispatchObjectHit);
-        
 
+	/* IServiceProvider */
+	STDMETHOD(QueryService)(REFGUID guidService, REFIID riid, void **ppv);
 
-	// IServiceProviderImpl
-	BEGIN_SERVICE_MAP(CRBSite)
-		SERVICE_ENTRY(SID_SInternetSecurityManager)
-	END_SERVICE_MAP()
-
-	// IInternetSecurityManager implementation
+	/* IInternetSecurityManager */
 	STDMETHOD(SetSecuritySite)(IInternetSecurityMgrSite *pSite);
 	STDMETHOD(GetSecuritySite)(IInternetSecurityMgrSite **ppSite);
 	STDMETHOD(MapUrlToZone)(LPCWSTR pwszUrl, DWORD* pdwZone, DWORD dwFlags);
@@ -172,7 +158,7 @@ public:
 	STDMETHOD(SetZoneMapping)(DWORD dwZone, LPCWSTR lpszPattern, DWORD dwFlags);
 	STDMETHOD(GetZoneMappings)(DWORD dwZone, IEnumString  **ppenumString, DWORD dwFlags);
 
-	// IPdnWnd
+	/* IPdnWnd */
 	STDMETHOD(setTitle)(BSTR);
 	STDMETHOD(setAOT)(BOOL);
 	STDMETHOD(minimize)();
@@ -216,4 +202,19 @@ public:
 	STDMETHOD(get_menuBar)(VARIANT*);
 	STDMETHOD(messageBox)(BOOL, BSTR, BSTR, DWORD, DWORD*);
 	STDMETHOD(get_Handle)(DWORD *pHandle);
+
+	/* IUnknown */
+	STDMETHOD(QueryInterface)(const IID &riid, void **ppvObject);
+	STDMETHOD_(ULONG, AddRef)();
+	STDMETHOD_(ULONG, Release)();
+
+	///* IDispatch */
+	//STDMETHOD(GetTypeInfoCount)(UINT* pctinfo);
+	//STDMETHOD(GetTypeInfo)(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo);
+	//STDMETHOD(GetIDsOfNames)(REFIID riid,
+	//	LPOLESTR* rgszNames, UINT cNames, LCID lcid, DISPID* rgDispId);
+	//STDMETHOD(Invoke)(
+	//	DISPID dispidMember, REFIID riid, LCID lcid, WORD wFlags, 
+	//	DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo, 
+	//	UINT* puArgErr);
 };

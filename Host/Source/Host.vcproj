@@ -21,7 +21,7 @@
 			OutputDirectory="..\..\Client\"
 			IntermediateDirectory="..\Intermediate\Debug\"
 			ConfigurationType="1"
-			UseOfATL="1"
+			UseOfATL="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="1"
 			>
@@ -43,23 +43,23 @@
 				MkTypLibCompatible="false"
 				TargetEnvironment="1"
 				GenerateStublessProxies="true"
-				TypeLibraryName="$(IntDir)/Pandion.tlb"
-				HeaderFileName="Pandion.h"
+				TypeLibraryName="$(IntDir)Pandion.tlb"
+				HeaderFileName="$(IntDir)Pandion.h"
 				DLLDataFileName=""
-				InterfaceIdentifierFileName="Pandion_i.c"
-				ProxyFileName="Pandion_p.c"
+				InterfaceIdentifierFileName="$(IntDir)Pandion_i.c"
+				ProxyFileName="$(IntDir)Pandion_p.c"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/EHsc"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="$(IntDir)"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;_MT;i386"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				BufferSecurityCheck="false"
-				EnableFunctionLevelLinking="true"
+				EnableFunctionLevelLinking="false"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="2"
 				WarningLevel="3"
@@ -93,6 +93,7 @@
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)/$(TargetName).pdb"
 				SubSystem="2"
+				EnableCOMDATFolding="0"
 				OptimizeForWindows98="0"
 				RandomizedBaseAddress="0"
 				DataExecutionPrevention="0"
@@ -128,7 +129,7 @@
 			OutputDirectory="..\..\Client\"
 			IntermediateDirectory="..\Intermediate\Release\"
 			ConfigurationType="1"
-			UseOfATL="1"
+			UseOfATL="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -151,11 +152,11 @@
 				MkTypLibCompatible="false"
 				TargetEnvironment="1"
 				GenerateStublessProxies="true"
-				TypeLibraryName="$(IntDir)/Pandion.tlb"
-				HeaderFileName="Pandion.h"
+				TypeLibraryName="$(IntDir)Pandion.tlb"
+				HeaderFileName="$(IntDir)Pandion.h"
 				DLLDataFileName=""
-				InterfaceIdentifierFileName="Pandion_i.c"
-				ProxyFileName="Pandion_p.c"
+				InterfaceIdentifierFileName="$(IntDir)Pandion_i.c"
+				ProxyFileName="$(IntDir)Pandion_p.c"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
@@ -166,7 +167,7 @@
 				FavorSizeOrSpeed="1"
 				OmitFramePointers="true"
 				EnableFiberSafeOptimizations="true"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="$(IntDir)"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_MT;i386"
 				StringPooling="true"
 				ExceptionHandling="1"
@@ -235,8 +236,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Performing registration"
-				CommandLine="&quot;$(TargetPath)&quot; /RegServer"
+				Description=""
+				CommandLine=""
 			/>
 		</Configuration>
 	</Configurations>
@@ -318,139 +319,11 @@
 				Name="HTTP"
 				>
 				<File
-					RelativePath="BasicThread.cpp"
+					RelativePath=".\HTTP.cpp"
 					>
 				</File>
 				<File
-					RelativePath="BasicThread.h"
-					>
-				</File>
-				<File
-					RelativePath="ClientGet.cpp"
-					>
-				</File>
-				<File
-					RelativePath="ClientGet.h"
-					>
-				</File>
-				<File
-					RelativePath="ClientPost.cpp"
-					>
-				</File>
-				<File
-					RelativePath="ClientPost.h"
-					>
-				</File>
-				<File
-					RelativePath="ClientSession.cpp"
-					>
-				</File>
-				<File
-					RelativePath="ClientSession.h"
-					>
-				</File>
-				<File
-					RelativePath="EventRouter.cpp"
-					>
-				</File>
-				<File
-					RelativePath="EventRouter.h"
-					>
-				</File>
-				<File
-					RelativePath="HTTPEngine.cpp"
-					>
-				</File>
-				<File
-					RelativePath="HTTPEngine.h"
-					>
-				</File>
-				<File
-					RelativePath="HTTPRequest.cpp"
-					>
-				</File>
-				<File
-					RelativePath="HTTPRequest.h"
-					>
-				</File>
-				<File
-					RelativePath="HTTPResponse.cpp"
-					>
-				</File>
-				<File
-					RelativePath="HTTPResponse.h"
-					>
-				</File>
-				<File
-					RelativePath="ListenThread.cpp"
-					>
-				</File>
-				<File
-					RelativePath="ListenThread.h"
-					>
-				</File>
-				<File
-					RelativePath="Pile.cpp"
-					>
-				</File>
-				<File
-					RelativePath="Pile.h"
-					>
-				</File>
-				<File
-					RelativePath="ProxyInfo.cpp"
-					>
-				</File>
-				<File
-					RelativePath="ProxyInfo.h"
-					>
-				</File>
-				<File
-					RelativePath="ServerGet.cpp"
-					>
-				</File>
-				<File
-					RelativePath="ServerGet.h"
-					>
-				</File>
-				<File
-					RelativePath="ServerMPFDPost.cpp"
-					>
-				</File>
-				<File
-					RelativePath="ServerMPFDPost.h"
-					>
-				</File>
-				<File
-					RelativePath="ServerPost.cpp"
-					>
-				</File>
-				<File
-					RelativePath="ServerPost.h"
-					>
-				</File>
-				<File
-					RelativePath="ServerSession.cpp"
-					>
-				</File>
-				<File
-					RelativePath="ServerSession.h"
-					>
-				</File>
-				<File
-					RelativePath="Session.cpp"
-					>
-				</File>
-				<File
-					RelativePath="Session.h"
-					>
-				</File>
-				<File
-					RelativePath="Transfer.cpp"
-					>
-				</File>
-				<File
-					RelativePath="Transfer.h"
+					RelativePath=".\HTTP.h"
 					>
 				</File>
 			</Filter>
@@ -551,6 +424,14 @@
 			Name="Windowing"
 			>
 			<File
+				RelativePath=".\AxHostWnd.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\AxHostWnd.h"
+				>
+			</File>
+			<File
 				RelativePath="ComCtrlWrapper.cpp"
 				>
 			</File>
@@ -615,30 +496,6 @@
 			Name="Auto-Generated Files"
 			SourceControlFiles="false"
 			>
-			<File
-				RelativePath="Pandion.h"
-				>
-			</File>
-			<File
-				RelativePath="Pandion_i.c"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"

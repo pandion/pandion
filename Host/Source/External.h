@@ -32,7 +32,7 @@ struct CTypeInfo
 class CPdnWnd;
 class CPandionModule;
 
-class CExternal :
+class External :
 	public DispInterfaceImpl<IExternal>
 {
 private:
@@ -40,8 +40,8 @@ private:
 	CPdnWnd&		m_Wnd;
 	CPandionModule*	m_pModule;
 public:
-	CExternal(CPdnWnd& Wnd);
-	~CExternal();
+	External(CPdnWnd& Wnd);
+	~External();
 
 	STDMETHOD(Init)(void *pModule);
 
@@ -53,8 +53,10 @@ public:
 	STDMETHOD(get_ComCtrl)(VARIANT *pDisp);
 	STDMETHOD(get_HTTPEngine)(VARIANT *pDisp);
 	STDMETHOD(get_SASL)(VARIANT *pDisp);
-	STDMETHOD(createWindow)(BSTR name, BSTR file, VARIANT *params, BOOL bPopUnder = TRUE, VARIANT *pDisp = NULL);
-	STDMETHOD(shellExec)(BSTR verb, BSTR file, BSTR params, BSTR dir, DWORD nShowCmd);
+	STDMETHOD(createWindow)(BSTR name, BSTR file, VARIANT *params,
+		BOOL bPopUnder = TRUE, VARIANT *pDisp = NULL);
+	STDMETHOD(shellExec)(BSTR verb, BSTR file, BSTR params, BSTR dir,
+		DWORD nShowCmd);
 
 	STDMETHOD(get_cursorX)(VARIANT *retVal);
 	STDMETHOD(get_cursorY)(VARIANT *retVal);
@@ -74,8 +76,8 @@ public:
 	STDMETHOD(StringToSHA1)(BSTR str, BSTR *strSHA1);
 	STDMETHOD(GetSpecialFolder)(int nFolder, BSTR* Path);
 	
-	CRegKey Crawl(CRegKey RegKey, BSTR strKey);
-	STDMETHOD(RegRead)(BSTR strHKey, BSTR strKey, BSTR value, VARIANT* vRetVal);
+	STDMETHOD(RegRead)(BSTR strHKey, BSTR strKey, BSTR value,
+		VARIANT* vRetVal);
 	STDMETHOD(get_Shortcut)(VARIANT *pDisp);
 	STDMETHOD(UnZip)(BSTR path, BSTR targetDir, int *nSuccess);
 	STDMETHOD(Base64ToString)(BSTR b64String, BSTR *UTF16String);

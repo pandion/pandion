@@ -20,6 +20,7 @@
  * Description: TODOTODOTODO
  */
 #pragma once
+#include "DispInterfaceImpl.h"
 
 class CIcon
 {
@@ -27,35 +28,26 @@ class CIcon
 public:
 	CIcon();
 	CIcon(BSTR strIcon, int nIndex);
-	CIcon(CIcon &);
+	CIcon(const CIcon &);
 	~CIcon();
 
-	HICON getHandle();
+	HICON getHandle() const;
 };
 
 class CNotifyIcon :
-	public CComObjectRootEx<CComSingleThreadModel>,
-	public IDispatchImpl<INotifyIcon>
+	public DispInterfaceImpl<INotifyIcon>
 {
 	/* Describes the owner */
 	HWND	m_hWnd;
 	UINT	m_CBMsg;
 
 	/* Describes the icon */
-	CComBSTR m_text;
-	CAtlMap<CComBSTR,CIcon>	 m_icons;
-	CComBSTR                 m_currentIcon;
+	std::wstring                m_text;
+	HICON						m_hIcon;
 
 	/* The callback function to send events to the JScript */
-    CComBSTR m_handler;
+    _bstr_t m_handler;
 public:
-	/* Do not register this class in the registry */
-	DECLARE_NO_REGISTRY()
-
-	/* QueryInterface implementation for INotifyIcon and IDispatch */
-	BEGIN_COM_MAP(CNotifyIcon)
-		COM_INTERFACE_ENTRY2(IDispatch, INotifyIcon)
-	END_COM_MAP()
 
 	/* Constructor and Destructor */
 	CNotifyIcon();
