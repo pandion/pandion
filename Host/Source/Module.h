@@ -19,45 +19,41 @@
  * Copyright:   Copyright (c) 2009 Dries Staelens
  * Description: TODOTODOTODO
  */
+
 #pragma once
+
 #include "XMPP.h"
 #include "SASL.h"
 #include "HTTP.h"
-
-using ScrRun::IDictionary;
-_COM_SMARTPTR_TYPEDEF(IDictionary, __uuidof(IDictionary));
+#include "MainWnd.h"
 
 const DWORD COPYDATA_CMDLINE = 0x0001;
 
-class CMainWnd;
-
-class CPandionModule
+class PdnModule
 {
 private:
-	CMainWnd *m_pMainWnd;
+	MainWnd                m_MainWnd;
+	XMPP                   m_XMPP;
+	SASL                   m_SASL;
+	HTTP                   m_HTTP;
 
-	XMPP m_XMPP;
-	SASL m_SASL;
-	HTTP m_HTTP;
-	ISASL *m_pSASL;
-
-	IDictionaryPtr m_spGlobals;
-	IDictionaryPtr m_spWindows;
+	ScrRun::IDictionaryPtr m_Globals;
+	ScrRun::IDictionaryPtr m_Windows;
 public :
-	~CPandionModule();
+	PdnModule();
+	~PdnModule();
 
-	void GetMainWnd(CMainWnd **ppMainWnd);
-	void GetHTTP(IHTTP **ppHTTP);
-	void GetXMPP(IDispatch** ppXMPP);
-	void GetSASL(IDispatch** ppSASL);
-	void GetGlobals(ScrRun::IDictionary **ppGlobals);
-	void GetWindows(ScrRun::IDictionary **ppWindows);
+	MainWnd*             GetMainWnd();
+	IDispatch*           GetHTTP();
+	IDispatch*           GetXMPP();
+	IDispatch*           GetSASL();
+	ScrRun::IDictionary* GetGlobals();
+	ScrRun::IDictionary* GetWindows();
 
-	BOOL IsRunning();
-	BOOL IsIEVersionOK();
+	void PreMessageLoop(int nShowCmd);
+	void RunMessageLoop();
+	void PostMessageLoop();
 
-	HRESULT PreMessageLoop(int nShowCmd);
-	void    RunMessageLoop();
-	HRESULT PostMessageLoop();
-	BOOL    PreTranslateAccelerator(MSG* pMsg);
+private:
+	bool PreTranslateAccelerator(MSG* pMsg);
 };

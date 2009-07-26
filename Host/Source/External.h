@@ -30,7 +30,7 @@ struct CTypeInfo
 };
 
 class CPdnWnd;
-class CPandionModule;
+class PdnModule;
 
 class External :
 	public DispInterfaceImpl<IExternal>
@@ -38,7 +38,7 @@ class External :
 private:
 	CComCtrl		m_ComCtrl;
 	CPdnWnd&		m_Wnd;
-	CPandionModule*	m_pModule;
+	PdnModule*	m_pModule;
 public:
 	External(CPdnWnd& Wnd);
 	~External();

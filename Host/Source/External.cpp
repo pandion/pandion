@@ -48,7 +48,7 @@ External::~External()
 /* IExternal */
 HRESULT External::Init(void* pModule)
 {
-	m_pModule = (CPandionModule *) pModule;
+	m_pModule = (PdnModule *) pModule;
 
 	return S_OK;
 }
@@ -60,55 +60,47 @@ STDMETHODIMP External::get_wnd(VARIANT* pDisp)
 }
 STDMETHODIMP External::get_mainWnd(VARIANT* pDisp)
 {
-	CMainWnd *pMainWnd;
+	pDisp->vt = VT_DISPATCH;
 
-	m_pModule->GetMainWnd(&pMainWnd);
+	MainWnd *pMainWnd = m_pModule->GetMainWnd();
 	pMainWnd->QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
 	pMainWnd->Release();
 
-	pDisp->vt = VT_DISPATCH;
 	return S_OK;
 }
 STDMETHODIMP External::get_windows(VARIANT* pDisp)
 {
-	ScrRun::IDictionary *pWindows;
-
-	m_pModule->GetWindows(&pWindows);
-	pWindows->QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
-	pWindows->Release();
-
 	pDisp->vt = VT_DISPATCH;
-	return S_OK;
+	ScrRun::IDictionaryPtr pWindows = m_pModule->GetWindows();
+	return pWindows->QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
 }
 STDMETHODIMP External::get_globals(VARIANT* pDisp)
 {
-	ScrRun::IDictionary *pGlobals;
-	
-	m_pModule->GetGlobals(&pGlobals);
-	pGlobals->QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
-	pGlobals->Release();
-
 	pDisp->vt = VT_DISPATCH;
-	return S_OK;
+	ScrRun::IDictionaryPtr pGlobals = m_pModule->GetGlobals();
+	return pGlobals->QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
 }
 STDMETHODIMP External::get_ComCtrl(VARIANT* pDisp)
 {
 	pDisp->vt = VT_DISPATCH;
 	return m_ComCtrl.QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
 }
-STDMETHODIMP External::get_HTTPEngine(VARIANT* pDisp)
+STDMETHODIMP External::get_XMPP(VARIANT *pDisp)
 {
-	IHTTP *pHTTP;
-	m_pModule->GetHTTP(&pHTTP);
-	pHTTP->QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
-	pHTTP->Release();
 	pDisp->vt = VT_DISPATCH;
+	pDisp->pdispVal = m_pModule->GetXMPP();
 	return S_OK;
 }
 STDMETHODIMP External::get_SASL(VARIANT* pDisp)
 {
-	m_pModule->GetSASL(&pDisp->pdispVal);
 	pDisp->vt = VT_DISPATCH;
+	pDisp->pdispVal = m_pModule->GetSASL();
+	return S_OK;
+}
+STDMETHODIMP External::get_HTTPEngine(VARIANT* pDisp)
+{
+	pDisp->vt = VT_DISPATCH;
+	pDisp->pdispVal = m_pModule->GetHTTP();
 	return S_OK;
 }
 STDMETHODIMP External::createWindow(BSTR name, BSTR file, VARIANT* params,
@@ -146,9 +138,7 @@ STDMETHODIMP External::get_cursorY(VARIANT* retVal)
 }
 STDMETHODIMP External::get_notifyIcon(VARIANT* pDisp)
 {
-	CMainWnd *pMain;
-
-	m_pModule->GetMainWnd(&pMain);
+	MainWnd *pMain = m_pModule->GetMainWnd();
 	pMain->GetNotifyIcon(pDisp);
 	pMain->Release();
 
@@ -227,13 +217,6 @@ STDMETHODIMP External::get_Directory(VARIANT *pDisp)
 	pDisp->vt = VT_DISPATCH;
 	return (new CDirectory)->QueryInterface(
 		IID_IDispatch, (LPVOID*) &pDisp->pdispVal);
-}
-STDMETHODIMP External::get_XMPP(VARIANT *pDisp)
-{
-	m_pModule->GetXMPP(&pDisp->pdispVal);
-	pDisp->vt = VT_DISPATCH;
-
-	return S_OK;
 }
 STDMETHODIMP External::StringToSHA1(BSTR str, BSTR *strSHA1)
 {
@@ -346,7 +329,7 @@ STDMETHODIMP External::UnZip(BSTR path, BSTR targetDir, int *nSuccess)
 					PathAppendA(file_path, file_name);
 
 					(new CFile)->QueryInterface(__uuidof(IPdnFile), (LPVOID*) &target_file);
-    				if(target_file->Create(CUTF82W(file_path), GENERIC_WRITE, FILE_SHARE_READ, OPEN_ALWAYS) == S_OK)
+    				if(target_file->Create(_bstr_t(CUTF82W(file_path)), GENERIC_WRITE, FILE_SHARE_READ, OPEN_ALWAYS) == S_OK)
 					{
 						target_file->Seek(file_info.uncompressed_size, 0, FILE_BEGIN);
 						target_file->SetEOF();

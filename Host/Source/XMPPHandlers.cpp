@@ -36,7 +36,7 @@ XMPPHandlers::~XMPPHandlers()
 }
 
 
-void XMPPHandlers::SetMainWindow(CMainWnd* mainWnd)
+void XMPPHandlers::SetMainWindow(MainWnd* mainWnd)
 {
 	m_pMainWnd = mainWnd;
 	mainWnd->AddRef();

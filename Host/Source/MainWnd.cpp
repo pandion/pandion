@@ -24,17 +24,17 @@
 #include "Module.h"
 #include "MainWnd.h"
 
-CMainWnd::CMainWnd() : CPdnWnd(), m_pNotIc(NULL)
+MainWnd::MainWnd() : CPdnWnd(), m_pNotIc(NULL)
 {
-	
+	m_WindowClass.lpszClassName = GetMainWindowClassname();
 }
-CMainWnd::~CMainWnd()
+MainWnd::~MainWnd()
 {
 	m_pNotIc->Release();
 	m_pNotIc = NULL;
 }
 
-void CMainWnd::GetNotifyIcon(VARIANT* pDisp)
+void MainWnd::GetNotifyIcon(VARIANT* pDisp)
 {
 	if(m_pNotIc)
 	{
@@ -48,18 +48,18 @@ void CMainWnd::GetNotifyIcon(VARIANT* pDisp)
 	}
 }
 
-LRESULT CMainWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+LRESULT MainWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
+	m_TaskbarRestartMessage = RegisterWindowMessage(TEXT("TaskbarCreated"));
+
 	m_pNotIc = new CNotifyIcon;
 	m_pNotIc->AddRef();
 	m_pNotIc->init(m_hWnd, WM_NOTIFYICON);
 
-	m_TaskbarRestart = RegisterWindowMessage(TEXT("TaskbarCreated"));
-
 	bHandled = FALSE;
 	return CPdnWnd::OnCreate(uMsg, wParam, lParam, bHandled);
 }	
-LRESULT CMainWnd::OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+LRESULT MainWnd::OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	if(lParam == WM_MOUSEMOVE || !lParam)
 		return 1;
@@ -69,7 +69,7 @@ LRESULT CMainWnd::OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 	delete v;
 	return false;
 }
-LRESULT CMainWnd::OnCopyData(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+LRESULT MainWnd::OnCopyData(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	COPYDATASTRUCT* pCDS = (COPYDATASTRUCT*) lParam;
 	if(pCDS->dwData == COPYDATA_CMDLINE)
@@ -83,56 +83,46 @@ LRESULT CMainWnd::OnCopyData(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHan
 	}
 	return bHandled = false;
 }
-LRESULT CMainWnd::OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+LRESULT MainWnd::OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	m_pNotIc->show();
 	return 0;
 }
 
-LRESULT CMainWnd::OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+LRESULT MainWnd::OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	PostQuitMessage(0);
 	
 	return CPdnWnd::OnClose(uMsg, wParam, lParam, bHandled);
 }
 
-STDMETHODIMP CMainWnd::close()
+STDMETHODIMP MainWnd::close()
 {
-//	PostMessage(WM_CLOSE);
-
-	VARIANT* pvWndItems = new VARIANT;
 	VARIANT* pvElements;
-	ScrRun::IDictionary *pWindows;
-	
-	m_Module->GetWindows(&pWindows);
-	*pvWndItems = pWindows->Items();
-	pWindows->Release();
+	ScrRun::IDictionaryPtr pWindows = m_Module->GetWindows();
+	_variant_t vWndItems = pWindows->Items();
+	pWindows->RemoveAll();
 
-	SafeArrayLock(pvWndItems->parray);
-
-	SafeArrayAccessData(pvWndItems->parray, (void**) &pvElements);
-	for(int i = pvWndItems->parray->rgsabound->cElements-1; i>= 0; i--)
+	::SafeArrayLock(vWndItems.parray);
+	::SafeArrayAccessData(vWndItems.parray, (void**) &pvElements);
+	for(int i = vWndItems.parray->rgsabound->cElements - 1; i >= 0; i--)
 	{
 		((CPdnWnd*)pvElements[i].pdispVal)->CPdnWnd::close();
 		pvElements[i].pdispVal->Release();
 		pvElements[i].pdispVal = NULL;
 	}
-	SafeArrayUnlock(pvWndItems->parray);
+	::SafeArrayUnlock(vWndItems.parray);
 
-	delete pvWndItems;
 	return S_OK;
 }
-HWND CMainWnd::GetMainWindow()
+HWND MainWnd::GetMainWindow()
 {
-	LPCTSTR s = GetWndClassName();
-	HWND h = FindWindow(s, 0);
-	return h;
+	return ::FindWindow(GetMainWindowClassname(), NULL);
 }
-
-LPCWSTR CMainWnd::GetWndClassName()
+LPCWSTR MainWnd::GetMainWindowClassname()
 {
-	static TCHAR strClass[MAX_PATH+20];
+	static WCHAR strClass[MAX_PATH+20];
 	GetModuleFileName(NULL, strClass, MAX_PATH);
-	StringCchCat(strClass, MAX_PATH+20, TEXT(" Main Window Class"));
+	StringCchCat(strClass, MAX_PATH+20, L" Main Window Class");
 	return strClass;
 }

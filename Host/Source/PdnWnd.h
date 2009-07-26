@@ -24,7 +24,7 @@
 #include "DispInterfaceImpl.h"
 #include "AxHostWnd.h"
 
-class CPandionModule;
+class PdnModule;
 
 class CPdnWnd :
 	public DispInterfaceImpl<IPdnWnd>,
@@ -47,36 +47,36 @@ protected:
 	/*
 	 *
 	 */
-	bool					m_COMCannotSelfDelete;
+	bool            m_COMCannotSelfDelete;
 
-	AxHostWnd    m_ActiveXHost;
+	WNDCLASSEX      m_WindowClass;
+	HWND            m_hWnd;
+	HWND	        m_hWndFocus;
+	HWND	        m_hWndActiveWindow;
+	HWND	        m_hWndLastFocusedWindow;
+	AxHostWnd       m_ActiveXHost;
 
-	HWND         m_hWnd;
-	HWND	     m_hWndFocus;
-	HWND	     m_hWndActiveWindow;
-	HWND	     m_hWndLastFocusedWindow;
+	UINT            m_TaskbarRestartMessage;
 
-	UINT			m_TaskbarRestart;
+	BOOL	        m_bPopUnder;
 
-	BOOL	     m_bPopUnder;
+	_bstr_t         m_sMinHandler;
+	_bstr_t         m_sCloseHandler;
+	_bstr_t         m_sMenuHandler;
+	_bstr_t         m_sCmdLineHandler;
+	_bstr_t         m_sRestoreHandler;
+	_bstr_t         m_sActivationHandler;
 
-	_bstr_t     m_sMinHandler;
-	_bstr_t     m_sCloseHandler;
-	_bstr_t     m_sMenuHandler;
-	_bstr_t     m_sCmdLineHandler;
-	_bstr_t     m_sRestoreHandler;
-	_bstr_t     m_sActivationHandler;
+	std::wstring    m_Name;
+	std::wstring    m_URL;
+	_variant_t      m_windowParams;
 
-	std::wstring m_Name;
-	std::wstring m_URL;
-	_variant_t   m_windowParams;
+	POINT		    m_minSize;
 
-	POINT		 m_minSize;
-
-	CPandionModule*      m_Module;
-	External             m_External;
-	IWebBrowser2         *m_pBrowser;
-	IMenuBar             *m_pMenuBar;
+	PdnModule* m_Module;
+	External        m_External;
+	IWebBrowser2*   m_pBrowser;
+	IMenuBar*       m_pMenuBar;
 
 	IInternetSecurityManager* m_pSecurityMgr;
 public:
@@ -84,14 +84,14 @@ public:
 	~CPdnWnd();
 
 	int Create(RECT& rect, std::wstring Name, std::wstring URL,
-		_variant_t& windowParams, CPandionModule* Module);
+		_variant_t& windowParams, PdnModule* Module);
 
-	static LRESULT CALLBACK StartWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-	LRESULT WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+	static LRESULT CALLBACK StartWindowProc(HWND hWnd, UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
+	LRESULT WindowProc(HWND hWnd, UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
 
 private:
-	static WNDCLASSEX& GetWndClassInfo();
-	static LPCWSTR GetWndClassName();
 	void ChangeIcon(int icon);
 	void PopUnder(BOOL b);
 	HRESULT ContainerCreate();

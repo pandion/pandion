@@ -78,5 +78,5 @@ public:
 	STDMETHOD(put_StartSCFailedHandler)(BSTR handler);
 
 	/* Other methods */
-	virtual void SetMainWnd(CMainWnd* pMainWnd);
+	virtual void SetMainWnd(MainWnd* pMainWnd);
 };

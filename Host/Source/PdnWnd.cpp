@@ -38,18 +38,31 @@ public:
 };
 
 CPdnWnd::CPdnWnd() :
-	m_hWndLastFocusedWindow(0), m_hWndActiveWindow(0), m_hWndFocus(0),
-	m_bPopUnder(false), m_sMinHandler(""), 	m_sCloseHandler(""),
-	m_sMenuHandler(""), m_sCmdLineHandler(""), 
-	m_sRestoreHandler(""), m_External(*this), 
+	m_bPopUnder(false), m_External(*this), 
 	m_ActiveXHost(dynamic_cast<IPdnWnd*>(this))
 {
 	m_COMCannotSelfDelete = false;
 	m_COMReferenceCounter = 0;
 
-	m_TaskbarRestart = -1;
-
+	m_WindowClass.cbSize = sizeof(WNDCLASSEX);
+	m_WindowClass.style = CS_DBLCLKS;
+	m_WindowClass.lpfnWndProc = StartWindowProc;
+	m_WindowClass.cbClsExtra = 0;
+	m_WindowClass.cbWndExtra = 0;
+	m_WindowClass.hInstance = ::GetModuleHandle(NULL);
+	m_WindowClass.hIcon = NULL;
+	m_WindowClass.hCursor = NULL;
+	m_WindowClass.hbrBackground = (HBRUSH)(COLOR_BTNFACE);
+	m_WindowClass.lpszMenuName = NULL;
+	m_WindowClass.lpszClassName = L"Pandion Window";
+	m_WindowClass.hIconSm = NULL;
 	m_hWnd = NULL;
+	m_hWndFocus = NULL;
+	m_hWndActiveWindow = NULL;
+	m_hWndLastFocusedWindow = NULL;
+
+	m_TaskbarRestartMessage = -1;
+
 	m_External.DisableSelfDelete();
 	m_minSize.x  = 160;
 	m_minSize.y  = 200;
@@ -61,16 +74,16 @@ CPdnWnd::~CPdnWnd()
 }
 
 int CPdnWnd::Create(RECT& rect, std::wstring Name, std::wstring URL,
-	_variant_t& windowParams, CPandionModule* Module)
+	_variant_t& windowParams, PdnModule* Module)
 {
 	m_Name          = Name;
 	m_URL           = URL;
 	m_windowParams  = windowParams;
 	m_Module        = Module;
 
-	::RegisterClassEx(&GetWndClassInfo());
-	m_hWnd = ::CreateWindowEx(0, GetWndClassName(), L"", 
-		WS_OVERLAPPEDWINDOW ,
+	::RegisterClassEx(&m_WindowClass);
+	m_hWnd = ::CreateWindowEx(0, m_WindowClass.lpszClassName, L"", 
+		WS_OVERLAPPEDWINDOW,
 		rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top,
 		0, 0, GetModuleHandle(NULL), this);
 
@@ -92,11 +105,9 @@ int CPdnWnd::Create(RECT& rect, std::wstring Name, std::wstring URL,
 	m_pMenuBar->put_hwnd((DWORD)m_hWnd);
 
 	/* Add the window to the global window dictionary */
-	ScrRun::IDictionary* pWindows;
-	m_Module->GetWindows(&pWindows);
+	ScrRun::IDictionaryPtr pWindows = m_Module->GetWindows();
 	pWindows->Add(&_variant_t(m_Name.c_str()),
-		&_variant_t((IDispatch*)this));
-	pWindows->Release();
+		&_variant_t(dynamic_cast<IDispatch*>(this)));
 
 	/* Create the Internet Explorer control */
 	ContainerCreate();
@@ -162,7 +173,7 @@ LRESULT CPdnWnd::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		OnFinalMessage(m_hWnd);
 		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
 	}
-	else if(uMsg == m_TaskbarRestart)
+	else if(uMsg == m_TaskbarRestartMessage)
 	{
 		return OnTaskbarRestart(uMsg, wParam, lParam, bHandled);
 	}
@@ -179,29 +190,11 @@ LRESULT CPdnWnd::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
 	}
 }
-
-WNDCLASSEX& CPdnWnd::GetWndClassInfo()
-{
-	static WNDCLASSEX wc =
-	{ 
-		sizeof(WNDCLASSEX), CS_DBLCLKS, StartWindowProc, 0, 0, NULL, NULL,
-		NULL, (HBRUSH)(COLOR_BTNFACE), NULL, GetWndClassName(), NULL 
-	};
-	return wc;
-}
-
-LPCWSTR CPdnWnd::GetWndClassName()
-{
-	return TEXT("Pandion Window Class");
-}
-
 void CPdnWnd::OnFinalMessage(HWND hWnd)
 {
 	/* Remove the window from the global window dictionary */
-	ScrRun::IDictionary* pWindows;
-	m_Module->GetWindows(&pWindows);
+	ScrRun::IDictionaryPtr pWindows = m_Module->GetWindows();
 	pWindows->Remove(&_variant_t(m_Name.c_str()));
-	pWindows->Release();
 
 	/* free the browser reference */
 	m_pBrowser->Quit();

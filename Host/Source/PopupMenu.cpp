@@ -57,13 +57,13 @@ STDMETHODIMP CPopupMenu::AddItem(BOOL bEnabled, BOOL bChecked, BOOL bRadio, BOOL
 STDMETHODIMP CPopupMenu::Show(DWORD x, DWORD y, BOOL fromTray)
 {
 	if(fromTray)
-		SetForegroundWindow(CMainWnd::GetMainWindow());
+		SetForegroundWindow(MainWnd::GetMainWindow());
 	m_Choice = TrackPopupMenu(m_Handle,
 		TPM_LEFTALIGN | TPM_TOPALIGN | TPM_RETURNCMD |
 		TPM_RIGHTBUTTON | TPM_NONOTIFY,
-		x, y, NULL, CMainWnd::GetMainWindow(), NULL);
+		x, y, NULL, MainWnd::GetMainWindow(), NULL);
 	if(fromTray)
-		PostMessage(CMainWnd::GetMainWindow(), WM_NULL, 0, 0);
+		PostMessage(MainWnd::GetMainWindow(), WM_NULL, 0, 0);
 
 	DestroyMenu(m_Handle);
 	if(m_Choice)

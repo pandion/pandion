@@ -24,242 +24,194 @@
 #include "MainWnd.h"
 #include "Module.h"
 
-CPandionModule::~CPandionModule()
+PdnModule::PdnModule()
+{
+	m_XMPP.SetMainWnd(&m_MainWnd);
+
+	/* Disable Self Deletion for objects created on the stack */
+	m_MainWnd.DisableSelfDelete();
+	m_XMPP.DisableSelfDelete();
+	m_SASL.DisableSelfDelete();
+	m_HTTP.DisableSelfDelete();
+
+	/* Create the COM objects */
+	m_Globals.CreateInstance(OLESTR("Scripting.Dictionary"));
+	m_Windows.CreateInstance(OLESTR("Scripting.Dictionary"));
+
+	/* Add the path to this module to the globals dictionary */
+	wchar_t cwd[MAX_PATH];
+	::GetModuleFileName(NULL, cwd, MAX_PATH);
+	::PathRemoveFileSpec(cwd);
+	::PathAppend(cwd, L"src");
+	::PathAddBackslash(cwd);
+	m_Globals->Add(&_variant_t(L"cwd"), &_variant_t(cwd));
+
+	/* Set the path to this module as the working dictionary */
+	::SetCurrentDirectory(cwd);
+}
+PdnModule::~PdnModule()
 {
 }
-void CPandionModule::GetMainWnd(CMainWnd **ppMainWnd)
+MainWnd* PdnModule::GetMainWnd()
 {
-	if(m_pMainWnd)
-	{
-		m_pMainWnd->AddRef();
-		*ppMainWnd = m_pMainWnd;
-	}
-	else
-	{
-		*ppMainWnd = NULL;
-	}
+	m_MainWnd.AddRef();
+	return &m_MainWnd;
 }
-void CPandionModule::GetHTTP(IHTTP **ppHTTP)
+IDispatch* PdnModule::GetHTTP()
 {
-	*ppHTTP = &m_HTTP;
 	m_HTTP.AddRef();
+	return dynamic_cast<IDispatch*>(&m_HTTP);
 }
-void CPandionModule::GetXMPP(IDispatch **ppXMPP)
+IDispatch* PdnModule::GetXMPP()
 {
-	m_XMPP.QueryInterface(IID_IDispatch, (void**) ppXMPP);
+	m_XMPP.AddRef();
+	return dynamic_cast<IDispatch*>(&m_XMPP);
 }
-void CPandionModule::GetSASL(IDispatch **ppSASL)
+IDispatch* PdnModule::GetSASL()
 {
-	m_SASL.QueryInterface(IID_IDispatch, (void**) ppSASL);
+	m_SASL.AddRef();
+	return dynamic_cast<IDispatch*>(&m_SASL);
 }
-void CPandionModule::GetGlobals(ScrRun::IDictionary **ppGlobals)
+ScrRun::IDictionary* PdnModule::GetGlobals()
 {
-	if(m_spGlobals)
-		m_spGlobals->QueryInterface(ppGlobals);
-	else
-	{
-		*ppGlobals = NULL;
-	}
+	m_Globals.AddRef();
+	return m_Globals.GetInterfacePtr();
 }
-void CPandionModule::GetWindows(ScrRun::IDictionary **ppWindows)
+ScrRun::IDictionary* PdnModule::GetWindows()
 {
-	if(m_spWindows)
-		m_spWindows->QueryInterface(ppWindows);
-	else
-	{
-		*ppWindows = NULL;
-	}
+	m_Windows.AddRef();
+	return m_Windows.GetInterfacePtr();
 }
+void PdnModule::PreMessageLoop(int nShowCmd)
+{
+	wchar_t path[MAX_PATH];
+	::GetCurrentDirectory(MAX_PATH, &path[0]);
+	::PathAddBackslash(path);
+	::PathAppend(path, L"main.html");
 
-BOOL CPandionModule::IsRunning()
-{
-	LPTSTR str = new TCHAR[MAX_PATH];
-	int len = GetModuleFileName(NULL, str, MAX_PATH);
-	for(int i = 0; i<len; i++)
-	{
-		if(str[i] == '\\')
-			str[i] = '$';
-	}
-	_wcslwr(str);
-	CreateMutex(0, 0, str);
-	if(GetLastError() == ERROR_ALREADY_EXISTS)
-	{
-		return true;
-	}
-	delete str;
-
-	return false;
+	RECT rc = {100, 100, rc.left + 420, rc.top + 310};
+	m_MainWnd.Create(rc, L"MainWindow", path, _variant_t(0), this);
 }
-BOOL CPandionModule::IsIEVersionOK()
+void PdnModule::RunMessageLoop()
 {
-	BOOL bVersionOK = FALSE;
-
-	HINSTANCE hDllInst = LoadLibrary(TEXT("shdocvw.dll"));
-	if(NULL != hDllInst)
+	MSG msg;
+	while(::GetMessage(&msg, 0, 0, 0))
 	{
-		DLLGETVERSIONPROC pDllGetVersion = (DLLGETVERSIONPROC) GetProcAddress(hDllInst, "DllGetVersion");
-		if(NULL != pDllGetVersion)
+		if(!PreTranslateAccelerator(&msg))
 		{
-			DLLVERSIONINFO dvi;
-			ZeroMemory(&dvi, sizeof(dvi));
-			dvi.cbSize = sizeof(dvi);
-			HRESULT hr = (*pDllGetVersion)(&dvi);
-
-			if(dvi.dwMajorVersion == 5 && dvi.dwMinorVersion>= 50)
-			{
-				bVersionOK = TRUE;
-			}
-			else if(dvi.dwMajorVersion>= 6)
-			{
-				bVersionOK = TRUE;
-			}
+			::TranslateMessage(&msg);
+			::DispatchMessage(&msg);
 		}
-		FreeLibrary(hDllInst);
 	}
-	return bVersionOK;
+}
+void PdnModule::PostMessageLoop()
+{
+}
+bool PdnModule::PreTranslateAccelerator(MSG* pMsg)
+{
+	if((pMsg->message < WM_KEYFIRST || pMsg->message > WM_KEYLAST) &&
+		(pMsg->message < WM_MOUSEFIRST || pMsg->message > WM_MOUSELAST))
+	{
+		return false;
+	}
+
+	HWND TargetWnd = pMsg->hwnd;
+	while(HWND parent = ::GetParent(TargetWnd)) TargetWnd = parent;
+
+	return ::SendMessage(TargetWnd, WM_FORWARDMSG, 0, (LPARAM) pMsg);
 }
 
-HRESULT CPandionModule::PreMessageLoop(int nShowCmd)
+static bool IsIEVersionOK()
 {
-	_CrtSetDbgFlag(_CRTDBG_LEAK_CHECK_DF | _CRTDBG_ALLOC_MEM_DF);
-
-	/* Check if the software is already running and take action accordingly */
-	if(IsRunning())
+	HINSTANCE hDllInst = ::LoadLibrary(L"shdocvw.dll");
+	if(NULL == hDllInst)
 	{
-		HWND h = CMainWnd::GetMainWindow();
-
-		if(!(WS_VISIBLE & GetWindowLong(h, GWL_STYLE)))
-            ShowWindow(h, SW_RESTORE);
-		SetForegroundWindow(h);
-
-        COPYDATASTRUCT CDS;
-		CDS.dwData = COPYDATA_CMDLINE;
-		CDS.lpData = GetCommandLineW();
-		CDS.cbData = (wcslen((const wchar_t *) CDS.lpData) + 1) * sizeof(wchar_t);
-		SendMessage(h, WM_COPYDATA, (WPARAM) 0, (LPARAM) &CDS);
-
-		if(IsWindow(h))
-			ExitProcess(0);
-		else
-            TerminateProcess((HANDLE)GetWindowLong(h, GWL_HINSTANCE), 0);
+		return false;
 	}
+	FARPROC pDllGetVersion = ::GetProcAddress(hDllInst, "DllGetVersion");
+	if(NULL == pDllGetVersion)
+	{
+		::FreeLibrary(hDllInst);
+		return false;
+	}
+	DLLVERSIONINFO dvi = {sizeof(dvi), 0, 0, 0, 0};
+	HRESULT hr = (*(DLLGETVERSIONPROC)pDllGetVersion)(&dvi);
+	::FreeLibrary(hDllInst);
+
+	return (dvi.dwMajorVersion == 5 && dvi.dwMinorVersion >= 50) ||
+		dvi.dwMajorVersion >= 6;
+}
+static void HandleAlreadyRunning()
+{
+	HWND h = MainWnd::GetMainWindow();
+	if(!h)
+	{
+		return;
+	}
+
+	/* Make the already running main window visible and put it on foreground */
+	if(!(WS_VISIBLE & ::GetWindowLong(h, GWL_STYLE)))
+	{
+		::ShowWindow(h, SW_RESTORE);
+	}
+	::SetForegroundWindow(h);
+
+	/* Send our command line to the already running window */
+    COPYDATASTRUCT CDS;
+	CDS.dwData = COPYDATA_CMDLINE;
+	CDS.lpData = ::GetCommandLine();
+	CDS.cbData = (::wcslen((const wchar_t *) CDS.lpData) + 1) * sizeof(wchar_t);
+	::SendMessage(h, WM_COPYDATA, (WPARAM) 0, (LPARAM) &CDS);
+
+	/* Kill this process */
+	::ExitProcess(0);
+}
+int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, 
+                                LPSTR /*lpCmdLine*/, int nShowCmd)
+{
+	/* Check for memory leaks in the debug builds */
+#ifdef _DEBUG
+	_CrtSetDbgFlag(_CRTDBG_LEAK_CHECK_DF | _CRTDBG_ALLOC_MEM_DF);
+#endif
 
 	/* Check The Version of Internet Explorer */
 	if(!IsIEVersionOK())
 	{
-		::MessageBox(NULL, TEXT("This program requires Microsoft Internet Explorer version 5.5 or higher.\nVisit this website to upgrade: http://www.microsoft.com/ie"), TEXT("Error"), MB_OK | MB_ICONERROR);
-		::ExitProcess(-1);
+		::MessageBox(NULL,
+			L"This program requires Microsoft Internet Explorer "
+			L"version 5.5 or higher.\nVisit this website to upgrade: "
+			L"http://www.microsoft.com/ie",
+			L"Failed to load program", MB_OK | MB_ICONERROR);
+		return -1;
 	}
 
-	/* Initialize globals Dictionary */
-	m_spGlobals.CreateInstance(OLESTR("Scripting.Dictionary"));
-
-	TCHAR cwd[MAX_PATH];
-	GetModuleFileName(NULL, cwd, MAX_PATH);
-	PathRemoveFileSpec(cwd);
-	PathAppend(cwd, TEXT("src"));
-	PathAddBackslash(cwd);
-	m_spGlobals->Add(&_variant_t(TEXT("cwd")), &_variant_t(cwd));
-	::SetCurrentDirectory(cwd);
-
-	/* Initialize Global Objects */
-	m_spWindows.CreateInstance(OLESTR("Scripting.Dictionary"));
-
-	/* Create the main window */
-	RECT rc = { 100, 100, rc.left + 420, rc.top + 310 };
-
-	m_pMainWnd = new CMainWnd;
-	m_pMainWnd->AddRef();
-
-	TCHAR strURL[MAX_PATH];
-	GetModuleFileName(NULL, strURL, MAX_PATH);
-	PathRemoveFileSpec(strURL);
-	PathAppend(strURL, TEXT("src"));
-	PathAddBackslash(strURL);
-	PathAppend(strURL, TEXT("main.html"));
-
-	m_pMainWnd->Create(rc, L"MainWindow", strURL, _variant_t(0), this);
-
-	m_XMPP.AddRef();
-	m_XMPP.SetMainWnd(m_pMainWnd);
-	m_SASL.AddRef();
-	m_HTTP.AddRef();
-
-	return S_OK;
-}
-BOOL CPandionModule::PreTranslateAccelerator(MSG* pMsg)
-{
-	if((pMsg->message <WM_KEYFIRST || pMsg->message> WM_KEYLAST) &&
-		(pMsg->message <WM_MOUSEFIRST || pMsg->message> WM_MOUSELAST))
-		return false;
-
-	HWND TargetWnd = pMsg->hwnd;
-	while(HWND parent = GetParent(TargetWnd)) TargetWnd = parent;
-
-	// Temporary fix for random crash when user presses escape.
-/*	if(pMsg->message == 256 &&
-		pMsg->wParam == 27 &&
-		pMsg->lParam == 65537)
-	{
-		if(::SendMessage(TargetWnd, WM_FORWARDMSG, 0, (LPARAM) pMsg))
-			return true;
-		return false;
-	}
-	else
-	{
-*//*		if(::SendMessage(TargetWnd, WM_FORWARDMSG, 0, (LPARAM) pMsg))
-			return true;
-*/		return false;
-/*	}*/
-}
-
-void CPandionModule::RunMessageLoop()
-{
-	MSG msg;
-    while(GetMessage(&msg, 0, 0, 0))
-	{
-        if(!PreTranslateAccelerator(&msg))
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-	}
-}
-
-HRESULT CPandionModule::PostMessageLoop()
-{
-	/* Release the main window */
-	m_pMainWnd->Release();
-
-	//m_pHTTP->Release();
-
-	return S_OK;
-}
-
-int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, 
-                                LPSTR /*lpCmdLine*/, int nShowCmd)
-{
 	/* Initialize Winsock 2.0 */
 	WSADATA wsad;
-	if(WSAStartup(MAKEWORD(2,0), &wsad))
+	if(::WSAStartup(MAKEWORD(2,0), &wsad))
 	{
-		::MessageBox(NULL, TEXT("Failed to initialize Winsock 2.0"), TEXT("Pandion"), MB_OK | MB_ICONERROR);
+		::MessageBox(NULL,
+			L"Failed to initialize Winsock 2.0", 
+			L"Failed to load program", MB_OK | MB_ICONERROR);
+		return -1;
 	}
 
+	/* Initialize OLE */
 	::OleInitialize(NULL);
 
-	STARTUPINFO StartupInfo;
-	StartupInfo.dwFlags = 0;
-	GetStartupInfo(&StartupInfo);
-	
-	CPandionModule theModule;
-	theModule.PreMessageLoop(StartupInfo.dwFlags & STARTF_USESHOWWINDOW ? StartupInfo.wShowWindow : SW_SHOWDEFAULT);
+	/* Check if the software is already running and take action accordingly */
+	HandleAlreadyRunning();
+
+	/* Main Program */
+	PdnModule theModule;
+	theModule.PreMessageLoop(nShowCmd);
 	theModule.RunMessageLoop();
 	theModule.PostMessageLoop();
 
-
-	::WSACleanup();
+	/* Cleanup OLE */
 	::OleUninitialize();
+
+	/* Cleanup Winsock */
+	::WSACleanup();
+
 	return 0;
 }
-

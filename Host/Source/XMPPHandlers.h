@@ -21,7 +21,7 @@
  */
 #pragma once
 
-class CMainWnd;
+class MainWnd;
 
 class XMPPHandlers
 {
@@ -38,12 +38,12 @@ class XMPPHandlers
 	_bstr_t m_StartSCSucceededHandler;
 	_bstr_t m_StartSCFailedHandler;
 
-	CMainWnd* m_pMainWnd;
+	MainWnd* m_pMainWnd;
 public:
 	XMPPHandlers();
 	~XMPPHandlers();
 
-	void SetMainWindow(CMainWnd* mainWindow);
+	void SetMainWindow(MainWnd* mainWindow);
 
 	void OnConnected();
 	void OnDisconnected();

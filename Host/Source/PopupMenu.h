@@ -22,7 +22,7 @@
 #pragma once
 #include "DispInterfaceImpl.h"
 
-class CMainWnd;
+class MainWnd;
 
 class CPopupMenu :
 	public DispInterfaceImpl<IPopupMenu>

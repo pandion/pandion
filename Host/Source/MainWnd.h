@@ -24,7 +24,7 @@
 
 class CNotifyIcon;
 
-class CMainWnd : 
+class MainWnd : 
 	public CPdnWnd
 {
 private:
@@ -32,9 +32,9 @@ private:
 	CNotifyIcon* m_pNotIc;
 
 public:
-	CMainWnd();
-	~CMainWnd();
-	void Init(CPandionModule* pModule);
+	MainWnd();
+	~MainWnd();
+	void Init(PdnModule* pModule);
 	void GetNotifyIcon(VARIANT* pDisp);
 
 	virtual LRESULT OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
@@ -46,7 +46,6 @@ public:
 	// IPdnWnd
 	STDMETHOD(close)();
 
-	static HWND GetMainWindow();
-private:
-	static LPCWSTR GetWndClassName();
+	static HWND	GetMainWindow();
+	static LPCWSTR GetMainWindowClassname();
 };
