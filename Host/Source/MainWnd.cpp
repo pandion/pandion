@@ -48,7 +48,7 @@ void MainWnd::GetNotifyIcon(VARIANT* pDisp)
 	}
 }
 
-LRESULT MainWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+LRESULT MainWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	m_TaskbarRestartMessage = RegisterWindowMessage(TEXT("TaskbarCreated"));
 
@@ -56,10 +56,9 @@ LRESULT MainWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandle
 	m_pNotIc->AddRef();
 	m_pNotIc->init(m_hWnd, WM_NOTIFYICON);
 
-	bHandled = FALSE;
-	return CPdnWnd::OnCreate(uMsg, wParam, lParam, bHandled);
+	return CPdnWnd::OnCreate(uMsg, wParam, lParam);
 }	
-LRESULT MainWnd::OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+LRESULT MainWnd::OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	if(lParam == WM_MOUSEMOVE || !lParam)
 		return 1;
@@ -69,7 +68,7 @@ LRESULT MainWnd::OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHa
 	delete v;
 	return false;
 }
-LRESULT MainWnd::OnCopyData(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+LRESULT MainWnd::OnCopyData(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	COPYDATASTRUCT* pCDS = (COPYDATASTRUCT*) lParam;
 	if(pCDS->dwData == COPYDATA_CMDLINE)
@@ -79,21 +78,21 @@ LRESULT MainWnd::OnCopyData(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHand
 		if(m_sCmdLineHandler.length())
 			FireEvent(m_sCmdLineHandler, &v, 1);
 
-		return bHandled = true;
+		return 1;
 	}
-	return bHandled = false;
+	return 0;
 }
-LRESULT MainWnd::OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+LRESULT MainWnd::OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	m_pNotIc->show();
 	return 0;
 }
 
-LRESULT MainWnd::OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+LRESULT MainWnd::OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	PostQuitMessage(0);
 	
-	return CPdnWnd::OnClose(uMsg, wParam, lParam, bHandled);
+	return CPdnWnd::OnClose(uMsg, wParam, lParam);
 }
 
 STDMETHODIMP MainWnd::close()
@@ -108,10 +107,9 @@ STDMETHODIMP MainWnd::close()
 	for(int i = vWndItems.parray->rgsabound->cElements - 1; i >= 0; i--)
 	{
 		((CPdnWnd*)pvElements[i].pdispVal)->CPdnWnd::close();
-		pvElements[i].pdispVal->Release();
-		pvElements[i].pdispVal = NULL;
 	}
 	::SafeArrayUnlock(vWndItems.parray);
+	::SafeArrayDestroy(vWndItems.parray);
 
 	return S_OK;
 }

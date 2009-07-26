@@ -37,6 +37,7 @@ private:
 	IUnknown*          m_ParentWindow;
 	IOleObject*        m_ActiveXControl;
 	IOleInPlaceObject* m_InPlaceObject;
+	IOleInPlaceActiveObjectPtr m_ActiveObject;
 
 public:
 	AxHostWnd(IUnknown *parentWindow);
@@ -49,6 +50,8 @@ public:
 	LRESULT WindowProc(
 		HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
+	LRESULT OnForwardMessage(HWND hWnd, UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
 	LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam);
 	LRESULT OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam);
 	LRESULT OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -87,22 +90,6 @@ public:
 	STDMETHOD(OnInPlaceActivateEx)(BOOL *pfNoRedraw, DWORD dwFlags);
 	STDMETHOD(OnInPlaceDeactivateEx)(BOOL fNoRedraw);
 	STDMETHOD(RequestUIActivate)();
-
-	/* IOleInPlaceSiteWindowless */
-/*	STDMETHOD(CanWindowlessActivate)();
-	STDMETHOD(GetCapture)();
-	STDMETHOD(SetCapture)(BOOL fCapture);
-	STDMETHOD(GetFocus)();
-	STDMETHOD(SetFocus)(BOOL fFocus);
-	STDMETHOD(GetDC)(LPCRECT pRect, DWORD grfFlags, HDC *phDC);
-	STDMETHOD(ReleaseDC)(HDC hDC);
-	STDMETHOD(InvalidateRect)(LPCRECT pRect, BOOL fErase);
-	STDMETHOD(InvalidateRgn)(HRGN hRGN, BOOL fErase);
-	STDMETHOD(ScrollRect)(INT dx, INT dy, LPCRECT pRectScroll,
-		LPCRECT pRectClip);
-	STDMETHOD(AdjustRect)(LPRECT prc);
-	STDMETHOD(OnDefWindowMessage)(UINT msg, 
-		WPARAM wParam, LPARAM lParam, LRESULT *plResult);*/
       
 	/* IOleWindow */
 	STDMETHOD(GetWindow)(HWND *phwnd);

@@ -31,23 +31,9 @@ class CPdnWnd :
 	public IDocHostUIHandler,
 	public IDocHostShowUI,
 	public IInternetSecurityManager
-//	public IServiceProvider 
 {
 protected:
 	_CrtMemState state;
-
-	/*
-	 * The internal COM reference counter, used by the IUnknown implementation.
-	 */
-	unsigned long			m_COMReferenceCounter;
-	/*
-	 * This object's TypeInfo, used by the IDispatch implementation.
-	 */
-//	ITypeInfo*				m_TypeInfo;
-	/*
-	 *
-	 */
-	bool            m_COMCannotSelfDelete;
 
 	WNDCLASSEX      m_WindowClass;
 	HWND            m_hWnd;
@@ -83,42 +69,51 @@ public:
 	CPdnWnd();
 	~CPdnWnd();
 
-	int Create(RECT& rect, std::wstring Name, std::wstring URL,
+	HRESULT Create(RECT& rect, std::wstring Name, std::wstring URL,
 		_variant_t& windowParams, PdnModule* Module);
+private:
+	HRESULT ContainerCreate();
+	void ChangeIcon(int icon);
+	void PopUnder(BOOL b);
 
+public:
+	/* Window Messages */
 	static LRESULT CALLBACK StartWindowProc(HWND hWnd, UINT uMsg,
 		WPARAM wParam, LPARAM lParam);
 	LRESULT WindowProc(HWND hWnd, UINT uMsg,
 		WPARAM wParam, LPARAM lParam);
 
-private:
-	void ChangeIcon(int icon);
-	void PopUnder(BOOL b);
-	HRESULT ContainerCreate();
-
-public:
-	/* Handler prototypes:
-	 *  LRESULT MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	 *  LRESULT CommandHandler(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled);
-	 *  LRESULT NotifyHandler(int idCtrl, LPNMHDR pnmh, BOOL& bHandled);
-	 */
-	/* Window Messages */
-
-    virtual LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	virtual LRESULT OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	virtual LRESULT OnJSInvoke(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	virtual LRESULT OnGetMinMaxInfo(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	virtual LRESULT OnActivate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	virtual LRESULT OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	virtual LRESULT OnCommand(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	virtual LRESULT OnEndSession(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	virtual LRESULT OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	virtual LRESULT OnCopyData(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	virtual LRESULT OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	virtual LRESULT OnForwardMessage(HWND hWnd, UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
+    virtual LRESULT OnCreate(UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnClose(UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnJSInvoke(UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnGetMinMaxInfo(UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnActivate(UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnSize(UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnCommand(UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnEndSession(UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnFinalMessage(HWND hWnd, UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnNotifyIcon(UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnCopyData(UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnTaskbarRestart(UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
 
 	/* Webbrowser Events */
-	STDMETHOD_(void, WindowClosing)(VARIANT_BOOL IsChildWindow, VARIANT_BOOL* Cancel);
-	STDMETHOD_(void, NavigateComplete2)(IDispatch* pDisp, VARIANT* URL);
+	STDMETHOD_(void, NavigateComplete2)(IDispatch *pDisp, VARIANT *URL);
+	STDMETHOD_(void, WindowClosing)(VARIANT_BOOL IsChildWindow,
+		VARIANT_BOOL* Cancel);
 
 	/* IDocHostUIHandler */
     STDMETHOD(ShowContextMenu)(DWORD dwID, POINT *ppt, IUnknown *pcmdtReserved, IDispatch *pdispReserved);
@@ -165,7 +160,6 @@ public:
 	STDMETHOD(maximize)();
 	STDMETHOD(restore)();
 	STDMETHOD(close)();
-	void OnFinalMessage(HWND);
 	STDMETHOD(setSize)(DWORD, DWORD);
 	STDMETHOD(setPos)(int, int);
 	STDMETHOD(setIcon)(BSTR);

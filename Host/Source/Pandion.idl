@@ -47,57 +47,45 @@ library PandionLib
 			[in] BSTR file, 
 			[in] VARIANT* params, 
 			[in, defaultvalue(FALSE)] BOOL bPopUnder, 
-			[out, retval] VARIANT* pDisp
-			);
+			[out, retval] VARIANT* pDisp);
 		HRESULT shellExec(
 			[in] BSTR verb, 
 			[in] BSTR file, 
 			[in] BSTR params, 
 			[in] BSTR dir, 
-			[in] DWORD nShowCmd
-			);
+			[in] DWORD nShowCmd);
 		HRESULT sleep(
-			[in] DWORD dwMilliseconds
-			);
+			[in] DWORD dwMilliseconds);
 		HRESULT File(
 			[in] BSTR path, 
-			[out,retval] VARIANT* pDisp
-			);
+			[out,retval] VARIANT* pDisp);
 		HRESULT FileExists(
 			[in] BSTR path, 
-			[out,retval] BOOL* bExists
-			);
+			[out,retval] BOOL* bExists);
 		HRESULT StringToSHA1(
 			[in] BSTR str, 
-			[out,retval] BSTR* strSHA1
-			);
+			[out,retval] BSTR* strSHA1);
 		HRESULT GetSpecialFolder(
 			[in] int nFolder, 
 			[out,retval] BSTR* Path);
 		HRESULT RegRead([in] BSTR strHKey, 
 			[in] BSTR strKey, 
 			[in] BSTR value, 
-			[out,retval] VARIANT* vRetVal
-			);
+			[out,retval] VARIANT* vRetVal);
 		HRESULT UnZip(
 			[in] BSTR path, 
 			[in] BSTR targetDir, 
-			[out,retval] int* nSuccess
-			);
+			[out,retval] int* nSuccess);
 		HRESULT Base64ToString(
 			[in] BSTR b64String, 
-			[out,retval] BSTR* UTF16String
-			);
+			[out,retval] BSTR* UTF16String);
 		HRESULT StringToBase64(
 			[in] BSTR UTF16String, 
-			[out,retval] BSTR* b64String
-			);
+			[out,retval] BSTR* b64String);
 		HRESULT Fullscreen(
-			[out,retval] BOOL* bFullscreen
-			);
+			[out,retval] BOOL* bFullscreen);
 		HRESULT PlaySound(
-			[in] BSTR soundFile
-			);
+			[in] BSTR soundFile);
 	}
 	[uuid(A2691BAF-EEFE-4e1a-BD58-30D3DE8F85FF)]
 	interface IPdnFile : IDispatch
@@ -106,14 +94,12 @@ library PandionLib
 			[in] BSTR strFileName, 
 			[in] unsigned dwAccess, 
 			[in] unsigned dwShare, 
-			[in] unsigned dwDisposition
-			);
+			[in] unsigned dwDisposition);
 
 		HRESULT Seek(
 			[in] int fpLow, 
 			[in] int fpHigh, 
-			[in] unsigned dwMethod
-			);
+			[in] unsigned dwMethod);
 		HRESULT SetEOF();
 
 		HRESULT Read([out] BYTE* pBuffer, [in] unsigned nRead);
@@ -128,8 +114,7 @@ library PandionLib
 		HRESULT Move([in] BSTR strTo);
 		HRESULT Copy([in] BSTR strTo, 
 			[in,defaultvalue(FALSE)] bool bOverWrite, 
-			[out,retval] IPdnFile** retCopy
-			);
+			[out,retval] IPdnFile** retCopy);
 		HRESULT Delete();
 		HRESULT Flush();
 		HRESULT Close();
@@ -200,8 +185,7 @@ library PandionLib
 		HRESULT Do(
 			[in] BSTR funcName, 
 			[in] VARIANT* params, 
-			[in,defaultvalue(1)] DWORD nParams
-			);
+			[in,defaultvalue(1)] DWORD nParams);
 		HRESULT focus();
 		HRESULT isActive ([out,retval] BOOL*);
 		HRESULT pushFocus();
@@ -216,15 +200,13 @@ library PandionLib
 		HRESULT FireEvent(
 			[in] BSTR handler,
 			[in] VARIANT* parameters,
-			[in] DWORD nParams
-			);
+			[in] DWORD nParams);
 		HRESULT messageBox(
 			[in] BOOL modal,
 			[in] BSTR text,
 			[in] BSTR caption,
 			[in] DWORD type,
-			[out,retval] DWORD* retval
-			);
+			[out,retval] DWORD* retval);
 		[propget] HRESULT params([out, retval] VARIANT* retVal);
 		[propget] HRESULT left([out, retval] VARIANT* retVal);
 		[propget] HRESULT top([out, retval] VARIANT* retVal);
@@ -239,12 +221,12 @@ library PandionLib
 		[propget] HRESULT Handle([out,retval] DWORD* pHandle);
 
 		/* from DWebBrowserEvents2 */
+		[id(252)]void NavigateComplete2(
+			[in] IDispatch *pDisp,
+			[in] VARIANT *URL);
 		[id(263)]void WindowClosing(
 			[in] VARIANT_BOOL IsChildWindow,
 			[in, out] VARIANT_BOOL* Cancel);
-		[id(250)]void NavigateComplete2(
-			[in] IDispatch* pDisp,
-			[in] VARIANT* URL);
 	}
 	[uuid(C1850B73-2AF0-49a3-B82F-4F4458D922AA)]
 	interface INotifyIcon : IDispatch
@@ -266,13 +248,11 @@ library PandionLib
 			[in] BOOL bDefault,
 			[in] DWORD hSubMenu,
 			[in] BSTR label,
-			[in] DWORD ID
-			);
+			[in] DWORD ID);
 		HRESULT Show(
 			[in] DWORD x,
 			[in] DWORD y,
-			[in, defaultvalue(FALSE)] BOOL fromTray
-			);
+			[in, defaultvalue(FALSE)] BOOL fromTray);
 		HRESULT Clear();
 		HRESULT AddSeparator();
 
@@ -286,8 +266,7 @@ library PandionLib
 			[in] BSTR label,
 			[in] DWORD pos,
 			[in] DWORD ID,
-			[in] IDispatch* subMenu
-			);
+			[in] IDispatch* subMenu);
 		HRESULT RemItem([in] DWORD ID);
 		HRESULT Update();
 
@@ -307,26 +286,22 @@ library PandionLib
 			[in] DWORD sessionID,
 			[in] BSTR remHost,
 			[in] USHORT remPort,
-			[in] USHORT localPort
-			);
+			[in] USHORT localPort);
 		HRESULT OnConnected(
 			[in] DWORD sessionID,
 			[in] BSTR remHost,
 			[in] USHORT remPort,
-			[in] USHORT localPort
-			);
+			[in] USHORT localPort);
 
 		HRESULT OnGetRequest(
 			[in] DWORD sessionID,
 			[in] DWORD fileID,
 			[in] BSTR URI,
-			[in] BSTR localPath
-			);
+			[in] BSTR localPath);
 		HRESULT OnPostRequest(
 			[in] DWORD sessionID,
 			[in] BSTR URI,
-			[out] BSTR* saveAs
-			);
+			[out] BSTR* saveAs);
 
 		HRESULT OnTimeout([in] DWORD sessionID);
 		HRESULT OnSockErr([in] DWORD sessionID, [in] DWORD err);
@@ -342,11 +317,9 @@ library PandionLib
 		HRESULT ShareFile(
 			[in] BSTR filename,
 			[in] BSTR URL,
-			[out, retval] DWORD* retCookie
-			);
+			[out, retval] DWORD* retCookie);
 		HRESULT UnShareFile(
-			[in] DWORD fileCookie
-			);
+			[in] DWORD fileCookie);
 		
 		HRESULT Listen([in] USHORT port);
 		HRESULT StopListening([in] USHORT port);
@@ -358,8 +331,7 @@ library PandionLib
 			[in] DWORD len,
 			[in] BSTR address,
 			[in] USHORT port,
-			[out, retval] DWORD* sessionID
-			);
+			[out, retval] DWORD* sessionID);
 		HRESULT Post(
 			[in] BSTR filename,
 			[in] BSTR URI,
@@ -367,24 +339,20 @@ library PandionLib
 			[in] DWORD len,
 			[in] BSTR address,
 			[in] USHORT port,
-			[out, retval] DWORD* sessionID
-			);
+			[out, retval] DWORD* sessionID);
 
 		HRESULT SetProxyInfo(
 			[in] BSTR proxyAddress,
 			[in] USHORT proxyPort,
 			[in] BSTR proxyUName,
-			[in] BSTR proxyPass
-			);
+			[in] BSTR proxyPass);
 
 		HRESULT GetProgress(
 			[in] DWORD sessionID,
-			[out,retval] DWORD* progress
-			);
+			[out,retval] DWORD* progress);
 		HRESULT GetLength(
 			[in] DWORD sessionID,
-			[out,retval] DWORD* length
-			);
+			[out,retval] DWORD* length);
 
 		HRESULT Subscribe([in] IDispatch* wnd);
 		HRESULT Unsubscribe([in] IDispatch* wnd);
@@ -398,26 +366,21 @@ library PandionLib
 			[in] BSTR server, 
 			[in] USHORT port, 
 			[in] BSTR username, 
-			[in] BSTR password
-			);
+			[in] BSTR password);
 		HRESULT SetProxyPollURL(
-			[in] BSTR pollURL
-			);
+			[in] BSTR pollURL);
 		HRESULT Connect(
 			[in] BSTR server,
 			[in] USHORT port,
 			[in,defaultvalue(FALSE)] BOOL useSSL,
-			[in,defaultvalue(0)] DWORD ProxyMethod
-			);
+			[in,defaultvalue(0)] DWORD ProxyMethod);
 		HRESULT Disconnect();
 		HRESULT StartTLS();
 		HRESULT StartSC();
 		HRESULT SendXML(
-			[in] IDispatch* pDisp
-			);
+			[in] IDispatch* pDisp);
 		HRESULT SendText(
-			[in] BSTR strText
-			);
+			[in] BSTR strText);
 		[propget] HRESULT ConnectionIP([out, retval] BSTR* connIP);
 		[propput] HRESULT ConnectedHandler([in] BSTR handler);
 		[propput] HRESULT DisconnectedHandler([in] BSTR handler);
@@ -439,8 +402,7 @@ library PandionLib
 			[in] BSTR jid,
 			[in] BSTR username,
 			[in] BSTR password,
-			[out,retval] BSTR* strBase64
-			);
+			[out,retval] BSTR* strBase64);
 		HRESULT DigestGenerateResponse(
 			[in] BSTR username,
 			[in] BSTR realm,
@@ -450,14 +412,12 @@ library PandionLib
 			[in] BSTR digest_uri,
 			[in] BSTR nc,
 			[in] BSTR qop,
-			[out,retval] BSTR* strDigest
-			);
+			[out,retval] BSTR* strDigest);
 		HRESULT SSPIReset();
 		HRESULT SSPIGenerateResponse(
 			[in] BSTR Challenge,
 			[out] BOOL* Continue,
-			[out,retval] BSTR* Response
-			);
+			[out,retval] BSTR* Response);
 	}
 	[uuid(3AA4A7CE-829F-4b24-BB86-D96A23084F51)]
 	interface IShortcut : IDispatch

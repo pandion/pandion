@@ -76,6 +76,8 @@ IOleObject* AxHostWnd::Create(HWND hWndParent, std::wstring controlName)
 	
 	hr = m_ActiveXControl->QueryInterface(IID_IOleInPlaceObject,
 		(void**) &m_InPlaceObject);
+	hr = m_ActiveXControl->QueryInterface(IID_IOleInPlaceActiveObject,
+		(LPVOID*) &m_ActiveObject);
 
 	hr = ::OleSetContainedObject(m_ActiveXControl, TRUE);
 	hr = ::OleRun(m_ActiveXControl);
@@ -125,6 +127,12 @@ LRESULT AxHostWnd::WindowProc(
 	}
 }
 
+LRESULT AxHostWnd::OnForwardMessage(HWND hWnd, UINT uMsg,
+	WPARAM wParam, LPARAM lParam)
+{
+	HRESULT hr = m_ActiveObject->TranslateAccelerator((LPMSG)lParam);
+	return hr == S_OK;
+}
 LRESULT AxHostWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	return 0;
@@ -177,8 +185,6 @@ STDMETHODIMP AxHostWnd::QueryInterface(REFIID riid, void** ppvObject)
 		*ppvObject = dynamic_cast<IOleInPlaceSite*>(this);
 	else if(::IsEqualGUID(riid, IID_IOleInPlaceSiteEx))
 		*ppvObject = dynamic_cast<IOleInPlaceSiteEx*>(this);
-//	else if(::IsEqualGUID(riid, IID_IOleWindow))
-//		*ppvObject = dynamic_cast<IOleWindow*>(this);
 	else if(::IsEqualGUID(riid, IID_IOleInPlaceUIWindow))
 		*ppvObject = dynamic_cast<IOleInPlaceUIWindow*>(this);
 	else if(::IsEqualGUID(riid, IID_IOleInPlaceFrame))
@@ -241,23 +247,6 @@ STDMETHODIMP AxHostWnd::RequestNewObjectLayout()
 {
 	return E_NOTIMPL;
 }
-
-/* IAdviseSink */
-/*STDMETHODIMP_(void) AxHostWnd::OnDataChange(FORMATETC *pFormatetc, STGMEDIUM *pStgmed)
-{
-}
-STDMETHODIMP_(void) AxHostWnd::OnViewChange(DWORD dwAspect, LONG lindex)
-{
-}
-STDMETHODIMP_(void) AxHostWnd::OnRename(IMoniker *pmk)
-{
-}
-STDMETHODIMP_(void) AxHostWnd::OnSave()
-{
-}
-STDMETHODIMP_(void) AxHostWnd::OnClose()
-{
-}*/
 
 /* IOleInPlaceSite */
 STDMETHODIMP AxHostWnd::CanInPlaceActivate()
@@ -334,60 +323,6 @@ STDMETHODIMP AxHostWnd::RequestUIActivate()
 	return S_OK;
 }
 
-/* IOleInPlaceSiteWindowless */
-/*STDMETHODIMP AxHostWnd::CanWindowlessActivate()
-{
-	return S_OK;
-}
-STDMETHODIMP AxHostWnd::GetCapture()
-{
-	return S_FALSE;
-}
-STDMETHODIMP AxHostWnd::SetCapture(BOOL fCapture)
-{
-	return S_FALSE;
-}
-STDMETHODIMP AxHostWnd::GetFocus()
-{
-	return S_OK;
-}
-STDMETHODIMP AxHostWnd::SetFocus(BOOL fFocus)
-{
-	return S_OK;
-}
-STDMETHODIMP AxHostWnd::GetDC(LPCRECT pRect, DWORD grfFlags, HDC *phDC)
-{
-	return S_FALSE;
-}
-STDMETHODIMP AxHostWnd::ReleaseDC(HDC hDC)
-{
-	return S_FALSE;
-}
-STDMETHODIMP AxHostWnd::InvalidateRect(LPCRECT pRect, BOOL fErase)
-{
-	BOOL bHandled;
-	OnPaint(WM_PAINT, 0, 0, bHandled);
-	return S_OK;
-}
-STDMETHODIMP AxHostWnd::InvalidateRgn(HRGN hRGN, BOOL fErase)
-{
-	return S_OK;
-}
-STDMETHODIMP AxHostWnd::ScrollRect(INT dx, INT dy, LPCRECT pRectScroll,
-	LPCRECT pRectClip)
-{
-	return E_NOTIMPL;
-}
-STDMETHODIMP AxHostWnd::AdjustRect(LPRECT prc)
-{
-	return S_FALSE;
-}
-STDMETHODIMP AxHostWnd::OnDefWindowMessage(UINT msg,
-	WPARAM wParam, LPARAM lParam, LRESULT *plResult)
-{
-	return S_FALSE;
-}*/
-
 /* IOleWindow */
 STDMETHODIMP AxHostWnd::GetWindow(HWND *phwnd)
 {
@@ -398,6 +333,23 @@ STDMETHODIMP AxHostWnd::ContextSensitiveHelp(BOOL fEnterMode)
 {
 	return E_NOTIMPL;
 }
+
+/* IAdviseSink */
+/*STDMETHODIMP_(void) AxHostWnd::OnDataChange(FORMATETC *pFormatetc, STGMEDIUM *pStgmed)
+{
+}
+STDMETHODIMP_(void) AxHostWnd::OnViewChange(DWORD dwAspect, LONG lindex)
+{
+}
+STDMETHODIMP_(void) AxHostWnd::OnRename(IMoniker *pmk)
+{
+}
+STDMETHODIMP_(void) AxHostWnd::OnSave()
+{
+}
+STDMETHODIMP_(void) AxHostWnd::OnClose()
+{
+}*/
 
 /* IOleControlSite */
 /*STDMETHODIMP AxHostWnd::OnControlInfoChanged()
@@ -434,7 +386,7 @@ STDMETHODIMP AxHostWnd::ShowPropertyFrame()
 STDMETHODIMP AxHostWnd::InsertMenus(HMENU hmenuShared,
 	LPOLEMENUGROUPWIDTHS lpMenuWidths)
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 STDMETHODIMP AxHostWnd::SetMenu(HMENU hmenuShared, HOLEMENU holemenu,
 	HWND hwndActiveObject)
@@ -443,7 +395,7 @@ STDMETHODIMP AxHostWnd::SetMenu(HMENU hmenuShared, HOLEMENU holemenu,
 }
 STDMETHODIMP AxHostWnd::RemoveMenus(HMENU hmenuShared)
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 STDMETHODIMP AxHostWnd::SetStatusText(LPCOLESTR pszStatusText)
 {
@@ -455,7 +407,7 @@ STDMETHODIMP AxHostWnd::EnableModeless(BOOL fEnable)
 }
 STDMETHODIMP AxHostWnd::TranslateAccelerator(LPMSG lpmsg, WORD wID)
 {
-	return E_NOTIMPL;
+	return S_FALSE;
 }
 
 /* IOleInPlaceUIWindow */

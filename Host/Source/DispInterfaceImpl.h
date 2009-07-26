@@ -27,7 +27,7 @@
 template<class T> class DispInterfaceImpl :
 	public T
 {
-private:
+protected:
 	/*
 	 * The internal COM reference counter, used by the IUnknown implementation.
 	 */

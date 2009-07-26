@@ -37,11 +37,11 @@ public:
 	void Init(PdnModule* pModule);
 	void GetNotifyIcon(VARIANT* pDisp);
 
-	virtual LRESULT OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	virtual LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	virtual LRESULT OnCopyData(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	virtual LRESULT OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	virtual LRESULT OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	virtual LRESULT OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnCopyData(UINT uMsg, WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 	// IPdnWnd
 	STDMETHOD(close)();
