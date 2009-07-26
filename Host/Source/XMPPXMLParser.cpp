@@ -432,7 +432,8 @@ bool XMPPXMLParser::HandleXMPPStanza()
 	continueParsing = NotifyHandler(m_ElementName);
 
 	if(m_ElementName.find(L"proceed") != std::wstring::npos ||
-		m_ElementName.find(L"success") != std::wstring::npos)
+		m_ElementName.find(L"success") != std::wstring::npos ||
+		m_ElementName.find(L"compressed") != std::wstring::npos)
 	{
 		RestartParser();
 	}
@@ -481,9 +482,9 @@ bool XMPPXMLParser::NotifyHandler(const std::wstring& stanzaName)
 
 	MSXML2::IXMLDOMDocumentPtr xmlDoc;
 	xmlDoc.CreateInstance(CLSID_DOMDocument);
-	HRESULT hr = xmlDoc->loadXML(_bstr_t(m_ParsedData.c_str()));
+	BOOL bSuccess = xmlDoc->loadXML(_bstr_t(m_ParsedData.c_str()));
 
-	if(SUCCEEDED(hr))
+	if(bSuccess)
 	{
 		m_Handlers.OnStanza(xmlDoc,_bstr_t(stanzaName.c_str()));
 		continueParsing = true;

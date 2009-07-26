@@ -173,7 +173,7 @@ DWORD Socket::StartTLS()
 				m_contextRequests = ISC_REQ_SEQUENCE_DETECT |
 					ISC_REQ_REPLAY_DETECT | ISC_REQ_CONFIDENTIALITY |
 					ISC_RET_EXTENDED_ERROR | ISC_REQ_ALLOCATE_MEMORY |
-					ISC_REQ_STREAM;
+					ISC_REQ_STREAM | ISC_REQ_MANUAL_CRED_VALIDATION;
 
 				TimeStamp expiry;
 				status = InitializeSecurityContext(&m_clientCreds,
@@ -460,21 +460,7 @@ DWORD Socket::Send(BYTE *buf, DWORD nBufLen)
 	}
 	if(m_bUsingSSL)
 	{
-		SECURITY_STATUS status = SecureSend(buf, nBufLen, (DWORD *)&iResult);
-/*		while(true)
-		{
-            iResult = SSL_write(m_ssl, outputBuffer, outputSize);
-			if(SSL_get_error(m_ssl, iResult) == SSL_ERROR_WANT_WRITE || 
-				SSL_get_error(m_ssl, iResult) == SSL_ERROR_WANT_READ)
-			{
-				Sleep(1);
-				continue;
-			}
-			else
-			{
-				break;
-			}
-		}*/
+		SECURITY_STATUS status = SecureSend(outputBuffer, outputSize, (DWORD *)&iResult);
 	}
 	else
 	{

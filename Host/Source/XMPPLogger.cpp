@@ -90,7 +90,7 @@ void XMPPLogger::LogLoadXMLError(MSXML2::IXMLDOMDocument* xmlDoc,
 									const std::wstring& parsedData)
 {
 #ifdef CANLOG
-	MSXML2::IXMLDOMParseError *errorObj;
+	MSXML2::IXMLDOMParseErrorPtr errorObj;
 	long errorCode, lineNumber, linePosition;
 	BSTR errorReason, sourceString;
 	xmlDoc->get_parseError(&errorObj);
@@ -99,7 +99,6 @@ void XMPPLogger::LogLoadXMLError(MSXML2::IXMLDOMDocument* xmlDoc,
 	errorObj->get_linepos(&linePosition);
 	errorObj->get_reason(&errorReason);
 	errorObj->get_srcText(&sourceString);
-	errorObj->Release();
 
 	std::wostringstream errorMessage;
 	errorMessage << L"ERROR: MSXML2::IXMLDOMDocument::loadXML failed " <<

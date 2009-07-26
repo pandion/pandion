@@ -493,11 +493,6 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Auto-Generated Files"
-			SourceControlFiles="false"
-			>
-		</Filter>
-		<Filter
 			Name="Resource Files"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
