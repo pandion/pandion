@@ -72,6 +72,7 @@
     <code id="import_gadu_not_registered">Om uw Gadu-Gadu contactpersonen te importeren moet het Gadu-Gadu transport geregistreerd zijn.  Het transport moet ook actief zijn.&#13;Open het Gereedschap menu en kies Transporten om de status van het Gadu-Gadu transport te zien.</code>
     <code id="conference_invitation">${0} nodigt u uit tot de gespreksruimte: ${1}&#13;&#13;Wilt u deze gespreksruimte bezoeken?</code>
     <code id="sspi_autoreconnecting">De verbinding met de instant messaging server is mislukt.</code>
+    <code id="search_info">Zoeken in contactpersonen...</code>
 
     <code id="menu_file">&amp;Bestand</code>
     <code id="menu_file_received">&amp;Ontvangen bestanden openen</code>

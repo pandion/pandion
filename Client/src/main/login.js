@@ -47,6 +47,7 @@ function login ( Address, Password )
 	external.notifyIcon.update();
 	external.wnd.setIcon( external.globals(	'cwd' )	+ '..\\images\\brand\\default.ico' );
 	external.globals( 'ClientPluginContainer' ).Plugins( '/roster' ).ClientPluginTab.Activate();
+	external.globals( 'ClientRoster' ).Search.Close();
 
 	/* Save the login data
 	 */

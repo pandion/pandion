@@ -109,6 +109,7 @@ Thank you,
     <code id="import_gadu_not_registered">To import your Gadu-Gadu contact list, the Gadu-Gadu transport must be registered.  The transport must also be active.&#13;Go to the Tools menu and choose Transports to view the status of the Gadu-Gadu transport.</code>
     <code id="conference_invitation">${0} invites you to the conference room: ${1}&#13;&#13;Do you want to join this conference room?</code>
     <code id="sspi_autoreconnecting">The connection to the instant messaging server has failed.</code>
+    <code id="search_info">Find a contact...</code>
 
     <code id="menu_file">&amp;File</code>
     <code id="menu_file_received">&amp;Open my Received Files</code>

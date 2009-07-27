@@ -272,6 +272,7 @@ function ClientRoster ()
 	this.DragNDropOrigin	= '';
 
 	this.Clear				= Clear;
+	this.Search				= new ClientRosterSearch();
 	this.FromIQ				= FromIQ;
 	this.GetAvatar			= GetAvatar;
 	this.AllOffline			= AllOffline;
@@ -1112,6 +1113,9 @@ function ClientRosterGroup ( roster, name )
 			'onmouseover',
 			function ()
 			{
+				if ( external.globals( 'ClientRoster' ).Search.Query.length )
+					return;
+
 				event.srcElement.style.color = '#0570AD';
 			}
 		);
@@ -1127,6 +1131,9 @@ function ClientRosterGroup ( roster, name )
 			'onclick',
 			function ()
 			{
+				if ( external.globals( 'ClientRoster' ).Search.Query.length )
+					return;
+
 				external.globals( 'ClientRoster' ).Groups( event.srcElement.GroupName ).ToggleOnline();
 			}
 		);
@@ -1134,6 +1141,9 @@ function ClientRosterGroup ( roster, name )
 			'oncontextmenu',
 			function ()
 			{
+				if ( external.globals( 'ClientRoster' ).Search.Query.length )
+					return;
+
 				event.cancelBubble	= true;
 				var connected		= external.globals( 'XMPPConnected' );
 				var cfg				= external.globals( 'cfg' );
@@ -1913,6 +1923,7 @@ function ClientRosterItem ( roster, jid )
 				var obj = event.srcElement;
 				while ( obj.tagName != 'NOBR' )
 					obj = obj.parentNode;
+				external.globals( 'ClientRoster' ).Search.Close();
 				dial_chat( obj.JID );
 			}
 		);
@@ -2272,6 +2283,7 @@ function ClientRosterResource ( item, name )
 				var obj = event.srcElement;
 				while ( obj.tagName != 'NOBR' )
 					obj = obj.parentNode;
+				external.globals( 'ClientRoster' ).Search.Close();
 				dial_chat( obj.JID + '/' + obj.Resource );
 			}
 		);

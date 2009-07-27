@@ -11,6 +11,7 @@
 <SCRIPT src="main/login.js"></SCRIPT>
 <SCRIPT src="main/outnit.js"></SCRIPT>
 <SCRIPT src="main/handle_keyboard.js"></SCRIPT>
+<SCRIPT src="main/OnWindowActivate.js"></SCRIPT>
 <SCRIPT src="main/mousemenu.js"></SCRIPT>
 <SCRIPT src="main/sound_play.js"></SCRIPT>
 <SCRIPT src="main/login_check.js"></SCRIPT>
@@ -42,6 +43,7 @@
 <SCRIPT src="main/ClientBrowse.js"></SCRIPT>
 <SCRIPT src="main/ClientPlugin.js"></SCRIPT>
 <SCRIPT src="main/ClientRoster.js"></SCRIPT>
+<SCRIPT src="main/ClientRosterSearch.js"></SCRIPT>
 <SCRIPT src="main/ChatSession.js"></SCRIPT>
 <SCRIPT src="main/ConferenceSession.js"></SCRIPT>
 <SCRIPT src="main/Emoticon.js"></SCRIPT>
@@ -105,14 +107,11 @@
 <SCRIPT src="main/XMPPOnStartSCSucceeded.js"></SCRIPT>
 <SCRIPT src="main/XMPPOnStream.js"></SCRIPT>
 
-<!-- Sound Engine -->
-<BGSOUND id=snd volume=0 loop=0>
-
 </HEAD>
 
 <BODY id=body onload="init()" scroll=no>
 
-<TABLE cellspacing=0 cellpadding=0 border=0 height="100%" width="100%" style="table-layout: fixed;">
+<TABLE id=content-dialog cellspacing=0 cellpadding=0 border=0 height="100%" width="100%" style="table-layout: fixed;">
 
 	<!-- Mode Indicator -->
 	<TR valign=top height=42>
@@ -134,6 +133,27 @@
 		</TD>
 	</TR>
 	<!-- / Unread Messages -->
+
+	<!-- Find As You Type -->
+	<TR valign=top height=34 id=find-area>
+		<TD>
+			<DIV id=find-frame>
+				<DIV id=find-wrapper>
+					<TABLE width="100%" cellspacing=0 cellpadding=0 border=0>
+						<TR>
+							<TD>
+								<INPUT id=find-query type=text tabindex=0>
+							</TD>
+							<TD width=20>
+								<A id=find-close href="#"></A>
+							</TD>
+						</TR>
+					</TABLE>
+				</DIV>
+			</DIV>
+		</TD>
+	</TR>
+	<!-- / Find As You Type -->
 
 	<!-- Roster -->
 	<TR valign=top height="100%">
