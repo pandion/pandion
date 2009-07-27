@@ -182,11 +182,12 @@ function init ()
 	 */
 	external.globals( 'BackgroundList' ).onreadystatechange = BackgroundBrowse;
 
-	/* DOM events
+	/* DOM and input events
 	 */
-	document.onselectstart	= document.ondragstart = function(){return false};
+	document.onselectstart	= document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
 	document.onkeydown		= handle_keyboard;
 	window.onunload			= outnit;
+	external.wnd.setActivationHandler( 'OnWindowActivate' );
 
 	/* Handlers for XMPP connection
 	 */
