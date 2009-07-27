@@ -19,7 +19,7 @@
  * Copyright:   Copyright (c) 2009 Dries Staelens
  * Description: TODOTODOTODO
  */
-#include "atlenc.h"
+
 #include "stdafx.h"
 #include "XMPPConnectionManager.h"
 #include "UTF8.h"
