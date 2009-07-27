@@ -492,8 +492,16 @@ STDMETHODIMP CPdnWnd::ShowHelp(HWND hwnd, LPOLESTR pszHelpFile, UINT uCommand,
 /* IServiceProvider */
 STDMETHODIMP CPdnWnd::QueryService(REFGUID guidService, REFIID riid, void **ppv)
 {
-	*ppv = this;
-	return S_OK;
+	if(guidService == SID_SInternetSecurityManager)
+	{
+		*ppv = dynamic_cast<IInternetSecurityManager*>(this);
+		((IInternetSecurityManager*)*ppv)->AddRef();
+		return S_OK;
+	}
+	else
+	{
+		return E_NOINTERFACE;
+	}
 }
 
 /* IInternetSecurityManager */
@@ -967,11 +975,13 @@ STDMETHODIMP CPdnWnd::QueryInterface(REFIID riid, void** ppvObject)
 	else if(::IsEqualGUID(riid, __uuidof(IPdnWnd)))
 		*ppvObject = dynamic_cast<IPdnWnd*>(this);
 	else if(::IsEqualGUID(riid, IID_IServiceProvider))
-		return E_NOINTERFACE;
+		*ppvObject = dynamic_cast<IServiceProvider*>(this);
 	else if(::IsEqualGUID(riid, IID_IDocHostUIHandler))
 		*ppvObject = dynamic_cast<IDocHostUIHandler*>(this);
 	else if(::IsEqualGUID(riid, IID_IDocHostShowUI))
 		*ppvObject = dynamic_cast<IDocHostShowUI*>(this);
+	else if(::IsEqualGUID(riid, IID_IInternetSecurityManager))
+		*ppvObject = dynamic_cast<IInternetSecurityManager*>(this);
 	else
 		return E_NOINTERFACE;
 
@@ -994,52 +1004,3 @@ STDMETHODIMP_(ULONG) CPdnWnd::Release()
 {
 	return DispInterfaceImpl::AddRef();
 }
-//
-///*
-// * IDispatch::GetTypeInfoCount() implementation
-// */
-//STDMETHODIMP CPdnWnd::GetTypeInfoCount(UINT* pctinfo)
-//{
-//	if(pctinfo == NULL)
-//	{
-//		return E_POINTER;
-//	}
-//	*pctinfo = 1;
-//	return S_OK;
-//}
-//
-///*
-// * IDispatch::GetTypeInfo() implementation
-// */
-//STDMETHODIMP CPdnWnd::GetTypeInfo(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo)
-//{
-//	if(ppTInfo == NULL)
-//	{
-//		return E_POINTER;
-//	}
-//	m_TypeInfo->AddRef();
-//	*ppTInfo = m_TypeInfo;
-//	return S_OK;
-//}
-//
-///*
-// * IDispatch::GetIDsOfNames() implementation
-// */
-//STDMETHODIMP CPdnWnd::GetIDsOfNames(REFIID riid,
-//	LPOLESTR* rgszNames, UINT cNames, LCID lcid, DISPID* rgDispId)
-//{
-//	return DispGetIDsOfNames(m_TypeInfo, rgszNames, cNames, rgDispId);
-//}
-//
-///*
-// * IDispatch::Invoke() implementation
-// */
-//STDMETHODIMP CPdnWnd::Invoke(
-//	DISPID dispidMember, REFIID riid, LCID lcid, WORD wFlags, 
-//	DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo, 
-//	UINT* puArgErr)
-//{
-//	HRESULT hr = DispInvoke(this, m_TypeInfo, dispidMember, wFlags,
-//		pDispParams, pVarResult, pExcepInfo, puArgErr);
-//	return hr;
-//}
