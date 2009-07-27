@@ -337,6 +337,7 @@ function ClientRoster ()
 	AvatarMap.Add( 'palm',				'palm'			);
 	AvatarMap.Add( 'pandion',			'pandion'		);
 	AvatarMap.Add( 'papla',				'papla'			);
+	AvatarMap.Add( 'pidgin',			'pidgin'		);
 	AvatarMap.Add( 'pocket',			'palm'			);
 	AvatarMap.Add( 'psi',				'psi'			);
 	AvatarMap.Add( 'punjab',			'punjab'		);
@@ -1886,6 +1887,8 @@ function ClientRosterItem ( roster, jid )
 		 *   <SPAN class="roster-item-offline-msg|unread">Offline|Awaiting|Unknown|Unread</SPAN>
 		 * </NOBR>
 		 */
+		if ( this.HTMLElements.Exists( group.Name ) )
+			return;
 		var elem = document.createElement( 'NOBR' );
 		elem.className = 'roster-item-offline';
 		elem.style.paddingBottom = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? '' : '5px';
