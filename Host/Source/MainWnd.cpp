@@ -57,7 +57,7 @@ LRESULT MainWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	m_pNotIc->init(m_hWnd, WM_NOTIFYICON);
 
 	return CPdnWnd::OnCreate(uMsg, wParam, lParam);
-}	
+}
 LRESULT MainWnd::OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	if(lParam == WM_MOUSEMOVE || !lParam)
@@ -90,9 +90,12 @@ LRESULT MainWnd::OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 LRESULT MainWnd::OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	PostQuitMessage(0);
-	
 	return CPdnWnd::OnClose(uMsg, wParam, lParam);
+}
+LRESULT MainWnd::OnFinalMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	PostQuitMessage(0);
+	return CPdnWnd::OnFinalMessage(hWnd, uMsg, wParam, lParam);
 }
 
 STDMETHODIMP MainWnd::close()

@@ -41,7 +41,7 @@ private:
 	LPBYTE   m_CurrentPosition;
 public:
 	CFile();
-	~CFile();
+	virtual ~CFile();
 
 	void OnFinalRelease();
 

@@ -61,7 +61,7 @@ public:
 	/*
 	 * Destructor
 	 */
-	~DispInterfaceImpl()
+	virtual ~DispInterfaceImpl()
 	{
 		m_TypeInfo->Release();
 	}

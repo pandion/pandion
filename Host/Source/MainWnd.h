@@ -42,6 +42,8 @@ public:
 	virtual LRESULT OnCopyData(UINT uMsg, WPARAM wParam, LPARAM lParam);
 	virtual LRESULT OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam);
 	virtual LRESULT OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnFinalMessage(HWND hWnd, UINT uMsg, WPARAM wParam,
+		LPARAM lParam);
 
 	// IPdnWnd
 	STDMETHOD(close)();

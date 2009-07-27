@@ -331,6 +331,7 @@ STDMETHODIMP CDirectory::List(BSTR path, DWORD dwFlag, VARIANT *list)
 		it++)
 	{
 		::SafeArrayPutElement(resultsArray, &index, &(*it));
+		it->pdispVal->Release();
 		index++;
 	}
 

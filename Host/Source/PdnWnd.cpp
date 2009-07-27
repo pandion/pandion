@@ -329,18 +329,15 @@ LRESULT CPdnWnd::OnEndSession(UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 LRESULT CPdnWnd::OnFinalMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	/* Remove the window from the global window dictionary */
-	ScrRun::IDictionaryPtr pWindows = m_Module->GetWindows();
-	pWindows->Remove(&_variant_t(m_Name.c_str()));
-
-	/* free the browser reference */
-	m_pBrowser->Quit();
-
 	/* Destroy the menu bar */
 	m_pMenuBar->Release();
 
 	/* Free the internet security manager */
 	m_pSecurityMgr->Release();
+
+	/* Remove the window from the global window dictionary */
+	ScrRun::IDictionaryPtr pWindows = m_Module->GetWindows();
+	pWindows->Remove(&_variant_t(m_Name.c_str()));
 
 	return 0;
 }
@@ -576,6 +573,7 @@ STDMETHODIMP CPdnWnd::restore()
 }
 STDMETHODIMP CPdnWnd::close()
 {
+	m_pBrowser->Quit();
 	::PostMessage(m_hWnd, WM_CLOSE, 0, 0);
 
 	return S_OK;

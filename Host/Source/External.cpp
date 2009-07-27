@@ -361,7 +361,6 @@ STDMETHODIMP External::UnZip(BSTR path, BSTR targetDir, int *nSuccess)
 		{
 			*nSuccess = -1;
 		}
-		target_file->Close();
 		target_file->Release();
 		unzCloseCurrentFile(pZipFile);
 	}
