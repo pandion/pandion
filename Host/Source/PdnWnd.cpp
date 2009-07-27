@@ -424,21 +424,20 @@ STDMETHODIMP CPdnWnd::ResizeBorder(LPCRECT prcBorder, IOleInPlaceUIWindow *pUIWi
 STDMETHODIMP CPdnWnd::TranslateAccelerator(LPMSG lpMsg, const GUID *pguidCmdGroup, DWORD nCmdID)
 {
 	BYTE keys[256];
+	::GetKeyboardState(keys);
 
-	GetKeyboardState(keys);
-
-	if((keys[VK_F5]> 1) ||                       // Disable F5
-		((keys['P'] > 1 && keys[VK_CONTROL] > 1) && 
-			!(keys['N'] > 1 && keys[VK_CONTROL] > 1 && 
-			keys[VK_MENU] > 1)) || // Disable Ctrl + P
-		((keys['F'] > 1 && keys[VK_CONTROL] > 1) && 
-			!(keys['N'] > 1 && keys[VK_CONTROL] > 1 &&
-				keys[VK_MENU] > 1)) || // Disable Ctrl + F
-		((keys['N'] > 1 && keys[VK_CONTROL] > 1) &&
-			!(keys['N'] > 1 && keys[VK_CONTROL] > 1 &&
-				keys[VK_MENU] > 1)))  // Disable Ctrl + N
-		return S_OK;
-	return S_FALSE;
+	if(keys[VK_F5] > 1)
+		return S_OK; // Disable F5
+	else if(keys['R'] > 1 && keys[VK_CONTROL] > 1 && keys[VK_MENU] <= 1)
+		return S_OK; // Disable Ctrl + R
+	else if(keys['P'] > 1 && keys[VK_CONTROL] > 1 && keys[VK_MENU] <= 1)
+		return S_OK; // Disable Ctrl + P
+	else if(keys['F'] > 1 && keys[VK_CONTROL] > 1 && keys[VK_MENU] <= 1)
+		return S_OK; // Disable Ctrl + F
+	else if(keys['N'] > 1 && keys[VK_CONTROL] > 1 && keys[VK_MENU] <= 1)
+		return S_OK; // Disable Ctrl + N
+	else
+		return S_FALSE;
 }
 STDMETHODIMP CPdnWnd::GetOptionKeyPath(LPOLESTR *pchKey, DWORD dw)
 {
