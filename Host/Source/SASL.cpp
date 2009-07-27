@@ -77,12 +77,13 @@ STDMETHODIMP SASL::DigestGenerateResponse(BSTR username, BSTR realm,
 		std::string(CW2UTF8(realm)) + colon + std::string(CW2UTF8(password));
 
 	/* calculate Y */
-	std::string Y(16,'\0');
-	Hash::MD5((unsigned char*)X.c_str(), X.length(), (unsigned char*) &Y[0]);
+	unsigned char binaryY[16];
+	Hash::MD5((unsigned char*)X.c_str(), X.length(), binaryY);
 
 	/* calculate A1 */
-	std::string A1 = Y + colon + std::string(CW2UTF8(nonce)) + colon + 
-		std::string(CW2UTF8(cnonce));
+	std::string A1 = "1234567890123456" + colon + std::string(CW2UTF8(nonce)) +
+		colon + std::string(CW2UTF8(cnonce));
+	std::copy(binaryY, binaryY + 16, &A1[0]);
 
 	/* calculate A2 */
 	std::string A2 = std::string("AUTHENTICATE:") + 

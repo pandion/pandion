@@ -247,6 +247,10 @@
 			Name="Utilities"
 			>
 			<File
+				RelativePath=".\Base64.h"
+				>
+			</File>
+			<File
 				RelativePath=".\DispInterfaceImpl.h"
 				>
 			</File>
@@ -306,14 +310,6 @@
 		<Filter
 			Name="Services"
 			>
-			<File
-				RelativePath="External.cpp"
-				>
-			</File>
-			<File
-				RelativePath="External.h"
-				>
-			</File>
 			<Filter
 				Name="HTTP"
 				>
@@ -436,6 +432,14 @@
 			</File>
 			<File
 				RelativePath="ComCtrlWrapper.h"
+				>
+			</File>
+			<File
+				RelativePath="External.cpp"
+				>
+			</File>
+			<File
+				RelativePath="External.h"
 				>
 			</File>
 			<File

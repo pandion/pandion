@@ -33,6 +33,7 @@
 #include "comctrlwrapper.h"
 #include "module.h"
 #include "Hash.h"
+#include "Base64.h"
 
 #include "pdnwnd.h"
 
@@ -384,14 +385,9 @@ STDMETHODIMP External::Base64ToString(BSTR b64String, BSTR *UTF16String)
 }
 STDMETHODIMP External::StringToBase64(BSTR UTF16String, BSTR *b64String)
 {
-	DWORD b64Size;
-	std::string UTF8String = std::string(CW2UTF8(UTF16String));
-	::CryptBinaryToString((BYTE*) &UTF8String[0], UTF8String.length(),
-		CRYPT_STRING_BASE64 | CRYPT_STRING_NOCRLF, NULL, &b64Size);
-	std::wstring b64Buffer(b64Size, L'\0');
-	::CryptBinaryToString((BYTE*) &UTF8String[0], UTF8String.length(),
-		CRYPT_STRING_BASE64 | CRYPT_STRING_NOCRLF, &b64Buffer[0], &b64Size);
-	*b64String = ::SysAllocString(b64Buffer.c_str());
+	*b64String = ::SysAllocString(
+		Base64::Base64Encode(UTF16String,
+		::SysStringLen(UTF16String), false).c_str());
 	return S_OK;
 }
 BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam)

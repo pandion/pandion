@@ -227,6 +227,14 @@ library PandionLib
 		[id(263)]void WindowClosing(
 			[in] VARIANT_BOOL IsChildWindow,
 			[in, out] VARIANT_BOOL* Cancel);
+		[id(250)]void BeforeNavigate2(
+			[in] IDispatch *pDisp,
+			[in] VARIANT *url,
+			[in] VARIANT *Flags,
+			[in] VARIANT *TargetFrameName,
+			[in] VARIANT *PostData,
+			[in] VARIANT *Headers,
+			[in, out] VARIANT_BOOL *Cancel);
 	}
 	[uuid(C1850B73-2AF0-49a3-B82F-4F4458D922AA)]
 	interface INotifyIcon : IDispatch

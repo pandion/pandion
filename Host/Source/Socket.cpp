@@ -47,13 +47,6 @@ Socket::~Socket()
 {
 	Disconnect();
 
-	if(m_bUsingSC)
-	{
-		deflateEnd(&compressionStream);
-		inflateEnd(&decompressionStream);
-		if(pendingCompressed)
-			delete pendingCompressed;
-	}
 	DeleteCriticalSection(&m_csReading);
 	DeleteCriticalSection(&m_csWriting);
 }
@@ -110,6 +103,15 @@ DWORD Socket::Disconnect()
 		m_bUsingSSL = false;
 		FreeCredentialsHandle(&m_clientCreds);
 		DeleteSecurityContext(&m_context);
+	}
+	if(m_bUsingSC)
+	{
+		deflateEnd(&compressionStream);
+		inflateEnd(&decompressionStream);
+		if(pendingCompressed)
+			delete pendingCompressed;
+		pendingCompressed = NULL;
+		m_bUsingSC = false;
 	}
 
 	//FIXME: Second parameter should be SD_BOTH instead of 0x02.

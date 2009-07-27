@@ -363,14 +363,19 @@ STDMETHODIMP_(void) CPdnWnd::NavigateComplete2(IDispatch *pDisp, VARIANT *URL)
  	HRESULT hr = pCustomDoc->SetUIHandler(dynamic_cast<IDocHostUIHandler*>(this));
 	pCustomDoc->Release();
 }
-
 STDMETHODIMP_(void) CPdnWnd::WindowClosing(VARIANT_BOOL IsChildWindow,
 										   VARIANT_BOOL* Cancel)
 {
-	Cancel = new VARIANT_BOOL;
-	*Cancel = false;
+	*Cancel = VARIANT_FALSE;
 	close();
 }
+STDMETHODIMP_(void) CPdnWnd::BeforeNavigate2(IDispatch *pDisp, VARIANT *url,
+	VARIANT *Flags, VARIANT *TargetFrameName, VARIANT *PostData,
+	VARIANT *Headers, VARIANT_BOOL *Cancel)
+{
+	*Cancel = VARIANT_FALSE;
+}
+
 /* IDocHostUIHandler */
 STDMETHODIMP CPdnWnd::ShowContextMenu(DWORD dwID, POINT *ppt, IUnknown *pcmdtReserved, IDispatch *pdispReserved)
 {
