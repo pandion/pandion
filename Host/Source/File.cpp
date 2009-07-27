@@ -42,6 +42,11 @@ CFile::~CFile()
 	Close();
 }
 
+void CFile::OnFinalRelease()
+{
+	Close();
+}
+
 /*
  * Attempts to upgrade the file access rights to write access
  */

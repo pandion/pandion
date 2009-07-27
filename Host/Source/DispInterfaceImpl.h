@@ -110,6 +110,7 @@ public:
 		{
 			if(!m_CannotSelfDelete)
 			{
+				OnFinalRelease();
 				delete this;
 			}
 			return 0;
@@ -171,5 +172,9 @@ public:
 	void DisableSelfDelete()
 	{
 		m_CannotSelfDelete = true;
+	}
+
+	virtual void OnFinalRelease()
+	{
 	}
 };

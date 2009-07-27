@@ -37,11 +37,13 @@ private:
 	BOOL     m_HasWriteAccess;
 	BOOL	 m_AtEnd;
 
-	LPBYTE    m_DataBuffer;
-	LPBYTE    m_CurrentPosition;
+	LPBYTE   m_DataBuffer;
+	LPBYTE   m_CurrentPosition;
 public:
 	CFile();
 	~CFile();
+
+	void OnFinalRelease();
 
 	HRESULT GetWriteAccess();
 
