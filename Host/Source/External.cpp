@@ -306,69 +306,68 @@ STDMETHODIMP External::get_Shortcut(VARIANT *pDisp)
 }
 STDMETHODIMP External::UnZip(BSTR path, BSTR targetDir, int *nSuccess)
 {
-	unzFile pFile = unzOpen(CW2UTF8(path));
 	*nSuccess = 0;
+	unzFile pZipFile = unzOpen(CW2UTF8(path));
 
-	if(pFile)
+	if(!pZipFile)
 	{
-		if(unzGoToFirstFile(pFile) == UNZ_OK)
+        *nSuccess = -1;
+		return S_OK;
+	}
+
+	if(unzGoToFirstFile(pZipFile) != UNZ_OK)
+	{
+		*nSuccess = -1;
+		unzClose(pZipFile);
+		return S_OK;
+	}
+
+	do
+	{
+		if(unzOpenCurrentFile(pZipFile) != UNZ_OK)
 		{
-			IPdnFile *target_file;
+			*nSuccess = -1;
+			break;
+		}
+		unz_file_info_s file_info;
+		char file_name[MAX_PATH] = "";
+		char file_path[MAX_PATH] = "";
+
+		unzGetCurrentFileInfo(pZipFile, &file_info,
+			file_name, MAX_PATH, 0, 0, 0, 0);
+
+		::StringCchCopyA(file_path, MAX_PATH, CW2UTF8(targetDir));
+		::PathAppendA(file_path, file_name);
+
+		IPdnFile *target_file;
+		(new CFile)->QueryInterface(__uuidof(IPdnFile),
+			(LPVOID*) &target_file);
+		if(target_file->Create(_bstr_t(CUTF82W(file_path)),
+			GENERIC_WRITE, FILE_SHARE_READ,	OPEN_ALWAYS) == S_OK)
+		{
 			int nRead = 0;
-			DWORD len = 4096;
-			BYTE *buf = new BYTE[len];
-			char file_name[MAX_PATH] = "";
-			char file_path[2*MAX_PATH] = "";
-			unz_file_info_s file_info;
+			target_file->Seek(file_info.uncompressed_size, 0, FILE_BEGIN);
+			target_file->SetEOF();
+			target_file->Seek(0, 0, FILE_BEGIN);
 			do
-			{
-				if(unzOpenCurrentFile(pFile) == UNZ_OK)
-				{
-					unzGetCurrentFileInfo(pFile, &file_info, file_name, MAX_PATH, 0, 0, 0, 0);
-
-					StringCchCopyA(file_path, 2*MAX_PATH, CW2UTF8(targetDir));
-					PathAppendA(file_path, file_name);
-
-					(new CFile)->QueryInterface(__uuidof(IPdnFile), (LPVOID*) &target_file);
-    				if(target_file->Create(_bstr_t(CUTF82W(file_path)), GENERIC_WRITE, FILE_SHARE_READ, OPEN_ALWAYS) == S_OK)
-					{
-						target_file->Seek(file_info.uncompressed_size, 0, FILE_BEGIN);
-						target_file->SetEOF();
-						target_file->Seek(0, 0, FILE_BEGIN);
-						do
-						{						
-							nRead = unzReadCurrentFile(pFile, buf, len);
-							target_file->Write(buf, nRead);
-						}
-						while(nRead> 0);
-					}
-					else
-					{
-						*nSuccess = -1;
-					}
-					target_file->Close();
-					target_file->Release();
-					unzCloseCurrentFile(pFile);
-				}
-				else
-				{
-					*nSuccess = -1;
-				}
+			{	
+				BYTE buf[4096];
+				nRead =	unzReadCurrentFile(pZipFile, buf, sizeof(buf));
+				target_file->Write(buf, nRead);
 			}
-			while(unzGoToNextFile(pFile) == UNZ_OK);
-
-			delete buf;
+			while(nRead > 0);
 		}
 		else
 		{
 			*nSuccess = -1;
 		}
-		unzClose(pFile);
+		target_file->Close();
+		target_file->Release();
+		unzCloseCurrentFile(pZipFile);
 	}
-	else
-	{
-        *nSuccess = -1;
-	}
+	while(unzGoToNextFile(pZipFile) == UNZ_OK);
+
+	unzClose(pZipFile);
 	return S_OK;
 }
 STDMETHODIMP External::Base64ToString(BSTR b64String, BSTR *UTF16String)
