@@ -331,7 +331,6 @@ LRESULT CPdnWnd::OnFinalMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
 	/* free the browser reference */
 	m_pBrowser->Quit();
-	m_pBrowser->Release();
 
 	/* Destroy the menu bar */
 	m_pMenuBar->Release();
@@ -429,8 +428,15 @@ STDMETHODIMP CPdnWnd::TranslateAccelerator(LPMSG lpMsg, const GUID *pguidCmdGrou
 	GetKeyboardState(keys);
 
 	if((keys[VK_F5]> 1) ||                       // Disable F5
-		((keys['P']> 1 && keys[VK_CONTROL]> 1) && !(keys['N']> 1 && keys[VK_CONTROL]> 1 && keys[VK_MENU]> 1)) || // Disable Ctrl + P
-		((keys['N']> 1 && keys[VK_CONTROL]> 1) && !(keys['N']> 1 && keys[VK_CONTROL]> 1 && keys[VK_MENU]> 1)))  // Disable Ctrl + N
+		((keys['P'] > 1 && keys[VK_CONTROL] > 1) && 
+			!(keys['N'] > 1 && keys[VK_CONTROL] > 1 && 
+			keys[VK_MENU] > 1)) || // Disable Ctrl + P
+		((keys['F'] > 1 && keys[VK_CONTROL] > 1) && 
+			!(keys['N'] > 1 && keys[VK_CONTROL] > 1 &&
+				keys[VK_MENU] > 1)) || // Disable Ctrl + F
+		((keys['N'] > 1 && keys[VK_CONTROL] > 1) &&
+			!(keys['N'] > 1 && keys[VK_CONTROL] > 1 &&
+				keys[VK_MENU] > 1)))  // Disable Ctrl + N
 		return S_OK;
 	return S_FALSE;
 }

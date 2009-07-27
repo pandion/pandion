@@ -28,15 +28,15 @@ class AxHostWnd :
 	public IOleInPlaceFrame
 {
 private:
-	ULONG              m_COMReferenceCounter;
-	bool               m_COMCannotSelfDelete;
+	ULONG                      m_COMReferenceCounter;
+	bool                       m_COMCannotSelfDelete;
 
-	HWND               m_hWnd;
-	HWND               m_hWndParent;
+	HWND                       m_hWnd;
+	HWND                       m_hWndParent;
 
-	IUnknown*          m_ParentWindow;
-	IOleObject*        m_ActiveXControl;
-	IOleInPlaceObject* m_InPlaceObject;
+	IUnknownPtr                m_ParentWindow;
+	IOleObjectPtr              m_ActiveXControl;
+	IOleInPlaceObjectPtr       m_InPlaceObject;
 	IOleInPlaceActiveObjectPtr m_ActiveObject;
 
 public:

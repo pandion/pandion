@@ -59,9 +59,9 @@ protected:
 
 	POINT		    m_minSize;
 
-	PdnModule* m_Module;
+	PdnModule*      m_Module;
 	External        m_External;
-	IWebBrowser2*   m_pBrowser;
+	IWebBrowser2Ptr m_pBrowser;
 	IMenuBar*       m_pMenuBar;
 
 	IInternetSecurityManager* m_pSecurityMgr;
