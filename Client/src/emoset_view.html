@@ -104,10 +104,10 @@ function load ()
 	var StyleName		= external.wnd.params[1];
 	var StylePath		= external.globals( 'usersdir' ) + 'Emoticons\\' + StyleName + '\\';
 	var Subset			= external.globals( 'EmoticonCache' ).GetSubset( StyleName, [ 'default', Language ] );
-	var Singularity		= new Array( Subset.Style.Actions.Length );
 
 	if ( Subset )
 	{
+		var Singularity = new Array( Subset.Style.Actions.Length );
 		var ActionCounter = 0;
 		var SubsetStrings = ( new VBArray( Subset.StringToAction.Keys() ) ).toArray();
 		for ( var i = SubsetStrings.length - 1; i >= 0; i-- )
