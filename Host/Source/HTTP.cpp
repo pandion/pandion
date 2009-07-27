@@ -86,17 +86,17 @@ STDMETHODIMP HTTP::Unsubscribe(IDispatch* wnd)
  
 STDMETHODIMP HTTP::GetProgress(DWORD sessionID, DWORD* retval)
 {
-	*retval = m_Downloads[sessionID-1]->GetProgress();
+	*retval = m_Downloads[sessionID]->GetProgress();
 	return S_OK;
 }
 STDMETHODIMP HTTP::GetLength(DWORD sessionID, DWORD* retval)
 {
-	*retval = m_Downloads[sessionID-1]->GetLength();
+	*retval = m_Downloads[sessionID]->GetLength();
 	return S_OK;
 }
 STDMETHODIMP HTTP::Abort(DWORD sessionID)
 {
-	m_Downloads[sessionID-1]->Abort();
+	m_Downloads[sessionID]->Abort();
 	return S_OK;
 }
 
