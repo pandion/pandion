@@ -68,10 +68,21 @@ library PandionLib
 		HRESULT GetSpecialFolder(
 			[in] int nFolder, 
 			[out,retval] BSTR* Path);
-		HRESULT RegRead([in] BSTR strHKey, 
+		HRESULT RegRead(
+			[in] BSTR strHKey, 
 			[in] BSTR strKey, 
 			[in] BSTR value, 
 			[out,retval] VARIANT* vRetVal);
+		HRESULT RegWriteString(
+			[in] BSTR hKey, 
+			[in] BSTR key, 
+			[in] BSTR value, 
+			[in] BSTR data);
+		HRESULT RegWriteDWORD(
+			[in] BSTR hKey, 
+			[in] BSTR key, 
+			[in] BSTR value, 
+			[in] DWORD data);
 		HRESULT UnZip(
 			[in] BSTR path, 
 			[in] BSTR targetDir, 

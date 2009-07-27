@@ -76,12 +76,17 @@ public:
 	STDMETHOD(StringToSHA1)(BSTR str, BSTR *strSHA1);
 	STDMETHOD(GetSpecialFolder)(int nFolder, BSTR* Path);
 	
-	STDMETHOD(RegRead)(BSTR strHKey, BSTR strKey, BSTR value,
-		VARIANT* vRetVal);
+	STDMETHOD(RegRead)(BSTR hKey, BSTR key, BSTR value, VARIANT* vRetVal);
+	STDMETHOD(RegWriteString)(BSTR hKey, BSTR key, BSTR value, BSTR data);
+	STDMETHOD(RegWriteDWORD)(BSTR hKey, BSTR key, BSTR value, DWORD data);
+
 	STDMETHOD(get_Shortcut)(VARIANT *pDisp);
 	STDMETHOD(UnZip)(BSTR path, BSTR targetDir, int *nSuccess);
 	STDMETHOD(Base64ToString)(BSTR b64String, BSTR *UTF16String);
 	STDMETHOD(StringToBase64)(BSTR UTF16String, BSTR *b64String);
 	STDMETHOD(Fullscreen)(BOOL *bFullscreen);
 	STDMETHOD(PlaySound)(BSTR soundFile);
+
+private:
+	HKEY StringToRegRootKey(BSTR str);
 };
