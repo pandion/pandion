@@ -243,12 +243,16 @@ void CDirectory::Clear(BSTR path)
 	List(path, 0, &vList);
 
 	long upperBound;
-	::SafeArrayGetUBound(vList.parray, 0, &upperBound);
+	::SafeArrayGetUBound(vList.parray, 1, &upperBound);
 
 	for(long i = 0; i < upperBound; i++)
 	{
+		VARIANT vListEntry;
+		::SafeArrayGetElement(vList.parray, &i, &vListEntry);
+
 		IListEntry* listEntry;
-		::SafeArrayGetElement(vList.parray, &i, &listEntry);
+		vListEntry.pdispVal->QueryInterface(__uuidof(listEntry),
+			(LPVOID*) &listEntry);
 
 		BSTR name;
 		listEntry->get_Name(&name);
@@ -269,6 +273,8 @@ void CDirectory::Clear(BSTR path)
 		{
 			::DeleteFile(newPath);
 		}
+
+		listEntry->Release();
 	}
 	::SafeArrayDestroy(vList.parray);
 	::RemoveDirectory(path);
@@ -302,10 +308,11 @@ STDMETHODIMP CDirectory::List(BSTR path, DWORD dwFlag, VARIANT *list)
 				(dwFlag == 2 && 
 				(FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))))
 			{
-				IDispatch* ListEntryDispatch;
+				VARIANT v;
+				v.vt = VT_DISPATCH;
 				(new CListEntry(FindFileData))->QueryInterface(
-					IID_IDispatch, (LPVOID*) &ListEntryDispatch);
-				results.push_back(_variant_t(ListEntryDispatch));
+					IID_IDispatch, (LPVOID*) &v.pdispVal);
+				results.push_back(v);
 			}
 		}
 		while(FindNextFile(hFind, &FindFileData));
