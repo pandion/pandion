@@ -254,34 +254,12 @@ STDMETHODIMP External::GetSpecialFolder(int nFolder, BSTR *Path)
 	return S_OK;
 }
 
-STDMETHODIMP External::RegRead(BSTR strHKey, BSTR strKey, BSTR value,
+STDMETHODIMP External::RegRead(BSTR hKey, BSTR key, BSTR value,
 	VARIANT* vRetVal)
 {
-	HKEY RootKey;
-	if(wcsstr(strHKey, L"HKEY_CLASSES_ROOT"))
-		RootKey = HKEY_CLASSES_ROOT;
-	else if(wcsstr(strHKey, L"HKEY_CURRENT_USER"))
-		RootKey = HKEY_CURRENT_USER;
-	else if(wcsstr(strHKey, L"HKEY_LOCAL_MACHINE"))
-		RootKey = HKEY_LOCAL_MACHINE;
-	else if(wcsstr(strHKey, L"HKEY_USERS"))
-		RootKey = HKEY_USERS;
-	else if(wcsstr(strHKey, L"HKEY_PERFORMANCE_DATA"))
-		RootKey = HKEY_PERFORMANCE_DATA;
-	else if(wcsstr(strHKey, L"HKEY_PERFORMANCE_TEXT"))
-		RootKey = HKEY_PERFORMANCE_TEXT;
-	else if(wcsstr(strHKey, L"HKEY_PERFORMANCE_NLSTEXT"))
-		RootKey = HKEY_PERFORMANCE_NLSTEXT;
-	else if(wcsstr(strHKey, L"HKEY_CURRENT_CONFIG"))
-		RootKey = HKEY_CURRENT_CONFIG;
-	else if(wcsstr(strHKey, L"HKEY_DYN_DATA"))
-		RootKey = HKEY_DYN_DATA;
-	else
-		return E_FAIL;
-
-	HKEY RegKey;
+	HKEY RegKey, RootKey = StringToRegRootKey(hKey);
 	ULONG uBytes = 0, dwType = 0;
-	LSTATUS err = ::RegOpenKeyEx(RootKey, strKey, 0, KEY_READ, &RegKey);
+	LSTATUS err = ::RegOpenKeyEx(RootKey, key, 0, KEY_READ, &RegKey);
 	err = ::RegQueryValueEx(RegKey, value, NULL, &dwType, NULL, &uBytes);
 	BYTE* pData = new BYTE[uBytes];
 	err = ::RegQueryValueEx(RegKey, value, NULL, &dwType, pData, &uBytes);
@@ -297,6 +275,28 @@ STDMETHODIMP External::RegRead(BSTR strHKey, BSTR strKey, BSTR value,
 
 	delete[] pData;
 	return hr;
+}
+STDMETHODIMP External::RegWriteString(BSTR hKey, BSTR key, BSTR value,
+	BSTR data)
+{
+	HKEY RegKey, RootKey = StringToRegRootKey(hKey);
+	LSTATUS err = ERROR_SUCCESS;
+	err = ::RegOpenKeyEx(RootKey, key, 0, KEY_WRITE, &RegKey);
+	err = ::RegSetValueEx(RegKey, value, NULL, REG_SZ, (const BYTE*) data,
+		::SysStringByteLen(data) + 1);
+	::RegCloseKey(RegKey);
+	return err == ERROR_SUCCESS ? S_OK : E_FAIL;
+}
+STDMETHODIMP External::RegWriteDWORD(BSTR hKey, BSTR key, BSTR value,
+	DWORD data)
+{
+	HKEY RegKey, RootKey = StringToRegRootKey(hKey);
+	LSTATUS err = ERROR_SUCCESS;
+	err = ::RegOpenKeyEx(RootKey, key, 0, KEY_WRITE, &RegKey);
+	err = ::RegSetValueEx(RegKey, value, NULL, REG_DWORD, (const BYTE*) &data,
+		sizeof(DWORD));
+	::RegCloseKey(RegKey);
+	return err == ERROR_SUCCESS ? S_OK : E_FAIL;
 }
 STDMETHODIMP External::get_Shortcut(VARIANT *pDisp)
 {
@@ -346,6 +346,7 @@ STDMETHODIMP External::UnZip(BSTR path, BSTR targetDir, int *nSuccess)
 					{
 						*nSuccess = -1;
 					}
+					target_file->Close();
 					target_file->Release();
 					unzCloseCurrentFile(pFile);
 				}
@@ -417,4 +418,29 @@ STDMETHODIMP External::PlaySound(BSTR soundFile)
 	DWORD flags = SND_FILENAME | SND_ASYNC;
 	::PlaySound(soundFile, NULL, flags);
 	return S_OK;
+}
+HKEY External::StringToRegRootKey(BSTR strHKey)
+{
+	HKEY RootKey;
+	if(wcsstr(strHKey, L"HKEY_CLASSES_ROOT"))
+		RootKey = HKEY_CLASSES_ROOT;
+	else if(wcsstr(strHKey, L"HKEY_CURRENT_USER"))
+		RootKey = HKEY_CURRENT_USER;
+	else if(wcsstr(strHKey, L"HKEY_LOCAL_MACHINE"))
+		RootKey = HKEY_LOCAL_MACHINE;
+	else if(wcsstr(strHKey, L"HKEY_USERS"))
+		RootKey = HKEY_USERS;
+	else if(wcsstr(strHKey, L"HKEY_PERFORMANCE_DATA"))
+		RootKey = HKEY_PERFORMANCE_DATA;
+	else if(wcsstr(strHKey, L"HKEY_PERFORMANCE_TEXT"))
+		RootKey = HKEY_PERFORMANCE_TEXT;
+	else if(wcsstr(strHKey, L"HKEY_PERFORMANCE_NLSTEXT"))
+		RootKey = HKEY_PERFORMANCE_NLSTEXT;
+	else if(wcsstr(strHKey, L"HKEY_CURRENT_CONFIG"))
+		RootKey = HKEY_CURRENT_CONFIG;
+	else if(wcsstr(strHKey, L"HKEY_DYN_DATA"))
+		RootKey = HKEY_DYN_DATA;
+	else
+		RootKey = NULL;
+	return RootKey;
 }

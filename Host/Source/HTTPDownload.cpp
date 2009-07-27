@@ -108,7 +108,6 @@ DWORD HTTPDownload::DownloadFile()
 						}
 						else if(bytesRead == 0)
 						{
-							m_EventRouter->OnTransferComplete(m_SessionID);
 							break;
 						}
 						else
@@ -132,7 +131,10 @@ DWORD HTTPDownload::DownloadFile()
 	}
 	else
 	{
+		m_EventRouter->OnTransferComplete(m_SessionID);
 	}
+
+	delete this;
 
 	return 0;
 }

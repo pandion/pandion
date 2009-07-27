@@ -21,7 +21,6 @@
  */
 
 #include "stdafx.h"
-
 #include "PdnWnd.h"
 #include "HTTPEventRouter.h"
 
@@ -86,7 +85,8 @@ STDMETHODIMP HTTPEventRouter::OnListening(WORD Port)
 	}
 	return S_OK;
 }
-STDMETHODIMP HTTPEventRouter::OnAccept(DWORD sessionID, BSTR remHost, USHORT remPort, USHORT localPort)
+STDMETHODIMP HTTPEventRouter::OnAccept(DWORD sessionID, BSTR remHost,
+	USHORT remPort, USHORT localPort)
 {
 	VARIANT parameters[4];
 	parameters[0].vt      = VT_UI2;
@@ -106,7 +106,8 @@ STDMETHODIMP HTTPEventRouter::OnAccept(DWORD sessionID, BSTR remHost, USHORT rem
 	}
 	return S_OK;
 }
-STDMETHODIMP HTTPEventRouter::OnConnected(DWORD sessionID, BSTR remHost, USHORT remPort, USHORT localPort)
+STDMETHODIMP HTTPEventRouter::OnConnected(DWORD sessionID, BSTR remHost,
+	USHORT remPort, USHORT localPort)
 {
 	VARIANT parameters[4];
 	parameters[0].vt      = VT_UI2;
@@ -126,7 +127,8 @@ STDMETHODIMP HTTPEventRouter::OnConnected(DWORD sessionID, BSTR remHost, USHORT 
 	}
 	return S_OK;
 }
-STDMETHODIMP HTTPEventRouter::OnGetRequest(DWORD sessionID, DWORD fileID, BSTR URI, BSTR localPath)
+STDMETHODIMP HTTPEventRouter::OnGetRequest(DWORD sessionID, DWORD fileID,
+	BSTR URI, BSTR localPath)
 {
 	VARIANT parameters[4];
 	parameters[0].vt      = VT_BSTR;
@@ -146,7 +148,8 @@ STDMETHODIMP HTTPEventRouter::OnGetRequest(DWORD sessionID, DWORD fileID, BSTR U
 	}
 	return S_OK;
 }
-STDMETHODIMP HTTPEventRouter::OnPostRequest(DWORD sessionID, BSTR URI, BSTR* saveAs)
+STDMETHODIMP HTTPEventRouter::OnPostRequest(DWORD sessionID, BSTR URI,
+	BSTR* saveAs)
 {
 	VARIANT parameters[4];
 	parameters[0].vt       = VT_UI2;
