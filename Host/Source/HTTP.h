@@ -14,23 +14,32 @@
  * You should have received a copy of the GNU General Public License
  * along with Pandion.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Filename:    HTTPEngine.h
+ * Filename:    HTTP.h
  * Author(s):   Dries Staelens
  * Copyright:   Copyright (c) 2009 Dries Staelens
  * Description: TODOTODOTODO
  */
+
 #pragma once
+
 #include "DispInterfaceImpl.h"
+#include "HTTPEventRouter.h"
+
+class HTTPDownload;
  
 class HTTP :
 	public DispInterfaceImpl<IHTTP>
 {
-private:	
+private:
+	HINTERNET m_hInternet;
+	std::map<int, HTTPDownload*> m_Downloads;
+
+	HTTPEventRouter m_EventRouter;
 public:
 	HTTP();
 	~HTTP();
   
-// IHTTP
+	/* IHTTP */
 	STDMETHOD(ShareFile)(BSTR filename, BSTR URL, DWORD* retCookie);
 	STDMETHOD(UnShareFile)(DWORD sfCookie);
  
@@ -49,4 +58,7 @@ public:
 	STDMETHOD(GetLength)(DWORD sessionID, DWORD* retval);
  
 	STDMETHOD(Abort)(DWORD sessionID);
+
+private:
+	DWORD GetNewSessionID();
 }; 

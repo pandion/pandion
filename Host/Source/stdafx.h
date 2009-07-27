@@ -65,6 +65,7 @@
 #include <Wincrypt.h>
 #include <Schnlsp.h>
 #include <Security.h>
+#include <WinInet.h>
 
 /*
  * Compiler-specific headers
