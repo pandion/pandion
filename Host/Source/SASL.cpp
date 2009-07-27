@@ -92,24 +92,24 @@ STDMETHODIMP SASL::DigestGenerateResponse(BSTR username, BSTR realm,
 	/* calculate HA1 */
 	unsigned char binaryHA1[16];
 	Hash::MD5((unsigned char*)A1.c_str(), A1.length(), binaryHA1);
-	std::string HA1(2*16+1, '\0');
+	std::string HA1(2*16, '\0');
 	HexString(binaryHA1, &HA1[0], 16);
 
 	/* calculate HA2 */
 	unsigned char binaryHA2[16];
 	Hash::MD5((unsigned char*)A2.c_str(), A2.length(), binaryHA2);
-	std::string HA2(2*16+1, '\0');
+	std::string HA2(2*16, '\0');
 	HexString(binaryHA2, &HA2[0], 16);
 
     /* calculate KD */
-	std::string KD = HA2 + colon + std::string(CW2UTF8(nonce)) + colon +
+	std::string KD = HA1 + colon + std::string(CW2UTF8(nonce)) + colon +
 		std::string(CW2UTF8(nc)) + colon + std::string(CW2UTF8(cnonce)) + 
 		colon +	std::string(CW2UTF8(qop)) + colon + HA2;
 
 	/* calculate Z */
 	unsigned char binaryZ[16];
 	Hash::MD5((unsigned char*) KD.c_str(), KD.length(), binaryZ);
-	std::string Z(2*16+1, '\0');
+	std::string Z(2*16, '\0');
 	HexString(binaryZ, &Z[0], 16);
 
 	*strDigest = ::SysAllocString(CUTF82W(Z.c_str()));
