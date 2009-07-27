@@ -68,7 +68,7 @@ protected:
 	IInternetSecurityManager* m_pSecurityMgr;
 public:
 	CPdnWnd();
-	~CPdnWnd();
+	virtual ~CPdnWnd();
 
 	virtual void OnFinalRelease();
 
@@ -114,12 +114,13 @@ public:
 		WPARAM wParam, LPARAM lParam);
 
 	/* Webbrowser Events */
+	STDMETHOD_(void, BeforeNavigate2)(IDispatch *pDisp, VARIANT *url,
+		VARIANT *Flags, VARIANT *TargetFrameName, VARIANT *PostData,
+		VARIANT *Headers, VARIANT_BOOL *Cancel);
 	STDMETHOD_(void, NavigateComplete2)(IDispatch *pDisp, VARIANT *URL);
+	STDMETHOD_(void, OnQuit)();
 	STDMETHOD_(void, WindowClosing)(VARIANT_BOOL IsChildWindow,
 		VARIANT_BOOL* Cancel);
-	STDMETHOD_(void, BeforeNavigate2)(IDispatch *pDisp, VARIANT *url,
-	VARIANT *Flags, VARIANT *TargetFrameName, VARIANT *PostData,
-	VARIANT *Headers, VARIANT_BOOL *Cancel);
 
 	/* IDocHostUIHandler */
     STDMETHOD(ShowContextMenu)(DWORD dwID, POINT *ppt, IUnknown *pcmdtReserved, IDispatch *pdispReserved);

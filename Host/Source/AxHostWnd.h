@@ -44,6 +44,7 @@ public:
 	~AxHostWnd();
 
 	IOleObject* Create(HWND hWndParent, std::wstring controlName);
+	void Destroy();
 
 	static LRESULT CALLBACK StartWindowProc(
 		HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);

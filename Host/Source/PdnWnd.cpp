@@ -93,8 +93,9 @@ HRESULT CPdnWnd::Create(RECT& rect, std::wstring Name, std::wstring URL,
 	::OleInitialize(NULL);
 
 	/* Create Internet Security Manager Object */
-	CoCreateInstance(CLSID_InternetSecurityManager, NULL, CLSCTX_INPROC_SERVER, IID_IInternetSecurityManager, (void**)&m_pSecurityMgr);
-	m_pSecurityMgr->AddRef();
+	::CoCreateInstance(CLSID_InternetSecurityManager, NULL, 
+		CLSCTX_INPROC_SERVER, IID_IInternetSecurityManager, 
+		(void**)&m_pSecurityMgr);
 
 	/* Create the External object */
 	m_External.Init(m_Module);
@@ -143,6 +144,7 @@ HRESULT CPdnWnd::ContainerCreate()
 		m_pBrowser->put_Silent(VARIANT_FALSE);
 		m_pBrowser->Navigate(_bstr_t(m_URL.c_str()), 0, 0, 0, 0);
 	}
+	activeXControl->Release();
 	return hr;
 }
 
@@ -332,6 +334,9 @@ LRESULT CPdnWnd::OnFinalMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	/* Destroy the menu bar */
 	m_pMenuBar->Release();
 
+	/* Destroy the WebBrowser */
+	m_pBrowser.Detach()->Release();
+
 	/* Free the internet security manager */
 	m_pSecurityMgr->Release();
 
@@ -355,6 +360,12 @@ LRESULT CPdnWnd::OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 
 // DWebBrowserEvents2 Implementation
+STDMETHODIMP_(void) CPdnWnd::BeforeNavigate2(IDispatch *pDisp, VARIANT *url,
+	VARIANT *Flags, VARIANT *TargetFrameName, VARIANT *PostData,
+	VARIANT *Headers, VARIANT_BOOL *Cancel)
+{
+	*Cancel = VARIANT_FALSE;
+}
 STDMETHODIMP_(void) CPdnWnd::NavigateComplete2(IDispatch *pDisp, VARIANT *URL)
 {
 	IDispatchPtr pDocDisp;
@@ -364,17 +375,15 @@ STDMETHODIMP_(void) CPdnWnd::NavigateComplete2(IDispatch *pDisp, VARIANT *URL)
  	HRESULT hr = pCustomDoc->SetUIHandler(dynamic_cast<IDocHostUIHandler*>(this));
 	pCustomDoc->Release();
 }
+STDMETHODIMP_(void) CPdnWnd::OnQuit()
+{
+	/* Not working */
+}
 STDMETHODIMP_(void) CPdnWnd::WindowClosing(VARIANT_BOOL IsChildWindow,
 										   VARIANT_BOOL* Cancel)
 {
 	*Cancel = VARIANT_FALSE;
 	close();
-}
-STDMETHODIMP_(void) CPdnWnd::BeforeNavigate2(IDispatch *pDisp, VARIANT *url,
-	VARIANT *Flags, VARIANT *TargetFrameName, VARIANT *PostData,
-	VARIANT *Headers, VARIANT_BOOL *Cancel)
-{
-	*Cancel = VARIANT_FALSE;
 }
 
 /* IDocHostUIHandler */
@@ -573,9 +582,8 @@ STDMETHODIMP CPdnWnd::restore()
 }
 STDMETHODIMP CPdnWnd::close()
 {
-	m_pBrowser->Quit();
+	m_ActiveXHost.Destroy();
 	::PostMessage(m_hWnd, WM_CLOSE, 0, 0);
-
 	return S_OK;
 }
 
@@ -914,7 +922,7 @@ STDMETHODIMP CPdnWnd::FireEvent(BSTR handler, VARIANT* parameters, DWORD nParams
 	IHTMLDocument2* pHTDoc;
 	HRESULT hr;
 	hr = m_pBrowser->get_Document((IDispatch**) &pHTDoc);
-	if(SUCCEEDED(hr))
+	if(SUCCEEDED(hr) && pHTDoc)
 	{
 		IHTMLWindow2* pHTWnd = NULL;
 		hr = pHTDoc->get_parentWindow(&pHTWnd);	

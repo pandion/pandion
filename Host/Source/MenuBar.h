@@ -30,7 +30,7 @@ private:
 	HWND  m_hWnd;
 public:
 	CMenuBar();
-	~CMenuBar();
+	virtual ~CMenuBar();
 
 	STDMETHOD(AddItem)(BSTR label, DWORD pos, DWORD ID, IDispatch* subMenu);
 	STDMETHOD(RemItem)(DWORD ID);

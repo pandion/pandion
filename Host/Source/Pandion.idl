@@ -232,12 +232,6 @@ library PandionLib
 		[propget] HRESULT Handle([out,retval] DWORD* pHandle);
 
 		/* from DWebBrowserEvents2 */
-		[id(252)]void NavigateComplete2(
-			[in] IDispatch *pDisp,
-			[in] VARIANT *URL);
-		[id(263)]void WindowClosing(
-			[in] VARIANT_BOOL IsChildWindow,
-			[in, out] VARIANT_BOOL* Cancel);
 		[id(250)]void BeforeNavigate2(
 			[in] IDispatch *pDisp,
 			[in] VARIANT *url,
@@ -246,6 +240,13 @@ library PandionLib
 			[in] VARIANT *PostData,
 			[in] VARIANT *Headers,
 			[in, out] VARIANT_BOOL *Cancel);
+		[id(252)]void NavigateComplete2(
+			[in] IDispatch *pDisp,
+			[in] VARIANT *URL);
+		[id(253)]void OnQuit();
+		[id(263)]void WindowClosing(
+			[in] VARIANT_BOOL IsChildWindow,
+			[in, out] VARIANT_BOOL* Cancel);
 	}
 	[uuid(C1850B73-2AF0-49a3-B82F-4F4458D922AA)]
 	interface INotifyIcon : IDispatch

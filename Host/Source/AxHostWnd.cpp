@@ -38,9 +38,6 @@ AxHostWnd::AxHostWnd(IUnknown *parentWindow)
 
 AxHostWnd::~AxHostWnd()
 {
-	m_ParentWindow->Release();
-	m_InPlaceObject->Release();
-	m_ActiveXControl->Release();
 }
 
 IOleObject* AxHostWnd::Create(HWND hWndParent, std::wstring controlName)
@@ -75,7 +72,7 @@ IOleObject* AxHostWnd::Create(HWND hWndParent, std::wstring controlName)
 		(LPVOID*) &m_ActiveXControl);
 	
 	hr = m_ActiveXControl->QueryInterface(IID_IOleInPlaceObject,
-		(void**) &m_InPlaceObject);
+		(LPVOID*) &m_InPlaceObject);
 	hr = m_ActiveXControl->QueryInterface(IID_IOleInPlaceActiveObject,
 		(LPVOID*) &m_ActiveObject);
 
@@ -84,7 +81,17 @@ IOleObject* AxHostWnd::Create(HWND hWndParent, std::wstring controlName)
 	hr = m_ActiveXControl->DoVerb(OLEIVERB_SHOW, NULL, 
 		dynamic_cast<IOleClientSite*>(this), 0, m_hWndParent, NULL);
 
+	m_ActiveXControl.AddRef();
 	return m_ActiveXControl;
+}
+void AxHostWnd::Destroy()
+{
+	m_ParentWindow.Detach()->Release();
+	m_ActiveXControl.Detach()->Release();
+	m_InPlaceObject.Detach()->Release();
+	m_ActiveObject.Detach()->Release();
+
+	::SendMessage(m_hWnd, WM_CLOSE, 0, 0);
 }
 
 LRESULT CALLBACK AxHostWnd::StartWindowProc(
@@ -130,7 +137,9 @@ LRESULT AxHostWnd::WindowProc(
 LRESULT AxHostWnd::OnForwardMessage(HWND hWnd, UINT uMsg,
 	WPARAM wParam, LPARAM lParam)
 {
-	HRESULT hr = m_ActiveObject->TranslateAccelerator((LPMSG)lParam);
+	HRESULT hr = S_FALSE;
+	if(m_ActiveObject != NULL)
+		hr = m_ActiveObject->TranslateAccelerator((LPMSG)lParam);
 	return hr == S_OK;
 }
 LRESULT AxHostWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam)
