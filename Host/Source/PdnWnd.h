@@ -70,6 +70,8 @@ public:
 	CPdnWnd();
 	~CPdnWnd();
 
+	virtual void OnFinalRelease();
+
 	HRESULT Create(RECT& rect, std::wstring Name, std::wstring URL,
 		_variant_t& windowParams, PdnModule* Module);
 private:

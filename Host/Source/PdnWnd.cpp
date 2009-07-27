@@ -71,6 +71,10 @@ CPdnWnd::~CPdnWnd()
 	_CrtMemDumpAllObjectsSince(&state);
 }
 
+void CPdnWnd::OnFinalRelease()
+{
+}
+
 HRESULT CPdnWnd::Create(RECT& rect, std::wstring Name, std::wstring URL,
 	_variant_t& windowParams, PdnModule* Module)
 {
