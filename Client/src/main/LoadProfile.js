@@ -79,8 +79,8 @@ function LoadProfile ( Address )
 
 	cfg( 'lastposx' )	= Math.max( cfg( 'lastposx'	), 0 - cfg( 'lastwidth' ) / 2 );
 	cfg( 'lastposy' )	= Math.max( cfg( 'lastposy'	), 0 - 20 );
-	cfg( 'lastposx' )	= Math.min( cfg( 'lastposx'	), screen.availWidth	- cfg( 'lastwidth' ) / 2 );
-	cfg( 'lastposy' )	= Math.min( cfg( 'lastposy'	), screen.availHeight	- cfg( 'lastheight' ) / 2 );
+	cfg( 'lastposx' )	= Math.max( cfg( 'lastposx'	), 0 );
+	cfg( 'lastposy' )	= Math.max( cfg( 'lastposy'	), 0 );
 
 	external.wnd.setSize(	cfg( 'lastwidth' ),	cfg( 'lastheight' ) );
 	external.wnd.setPos(	cfg( 'lastposx' ),	cfg( 'lastposy' ) );
