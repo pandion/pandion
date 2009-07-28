@@ -46,8 +46,10 @@ Section "${PRODUCT} ${VERSION}" SecCopyRequired
   RMDir /r "$INSTDIR\plugins"
 
   File /r "${SOURCEDIR}\avatars"
+  File /r "${SOURCEDIR}\css"
   File /r "${SOURCEDIR}\emoticons"
   File /r "${SOURCEDIR}\images"
+  File /r "${SOURCEDIR}\js"
   File /r "${SOURCEDIR}\languages"
   File /r "${SOURCEDIR}\settings"
   File /r "${SOURCEDIR}\src"
