@@ -137,10 +137,10 @@ LRESULT AxHostWnd::WindowProc(
 LRESULT AxHostWnd::OnForwardMessage(HWND hWnd, UINT uMsg,
 	WPARAM wParam, LPARAM lParam)
 {
-	HRESULT hr = S_FALSE;
-	if(m_ActiveObject != NULL)
-		hr = m_ActiveObject->TranslateAccelerator((LPMSG)lParam);
-	return hr == S_OK;
+	if(m_ActiveObject == NULL)
+		return S_FALSE;
+	else
+		return m_ActiveObject->TranslateAccelerator((LPMSG)lParam) == S_OK;
 }
 LRESULT AxHostWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
