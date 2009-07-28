@@ -189,6 +189,32 @@ function init ()
 	window.onunload			= outnit;
 	external.wnd.setActivationHandler( 'OnWindowActivate' );
 
+	/* Auto-update
+	 */
+	if ( external.FileExists( external.globals( 'usersdir' ) + 'Downloads\\UpdateParameters.txt' ) && external.FileExists( external.globals( 'usersdir' ) + 'Downloads\\Update.exe' ) )
+	{
+		var file = external.File( external.globals( 'usersdir' ) + 'Downloads\\UpdateParameters.txt' );
+		var parameters = '';
+		try
+		{
+			parameters = file.ReadLine();
+		}
+		catch ( e )
+		{
+		}
+		file.Close();
+		external.File( external.globals( 'usersdir' ) + 'Downloads\\UpdateParameters.txt' ).Delete();
+
+		if ( ! external.FileExists( external.globals( 'usersdir' ) + 'Downloads\\UpdateParameters.txt' ) )
+		{
+			external.globals.Add( 'autoupdatecommand', external.globals( 'usersdir' ) + 'Downloads\\Update.exe' );
+			external.globals.Add( 'autoupdateparameters', parameters );
+			external.globals.Add( 'autoupdatedirectory', external.globals( 'usersdir' ) + 'Downloads\\' );
+			setTimeout( 'external.wnd.close()', 0 );
+			return;
+		}
+	}
+
 	/* Handlers for XMPP connection
 	 */
 	external.XMPP.ConnectedHandler			= 'XMPPOnConnected';

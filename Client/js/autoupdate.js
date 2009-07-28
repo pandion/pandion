@@ -21,8 +21,8 @@ function HTTPGetUpdateProgress ( sessionID )
 {
 	if ( sessionID != gSession )
 		return;
-	var total = external.HTTPEngine.GetContentLength( sessionID );
-	var completed = external.HTTPEngine.GetDownloadProgress( sessionID );
+	var total = external.HTTPEngine.GetLength( sessionID );
+	var completed = external.HTTPEngine.GetProgress( sessionID );
 	if ( completed > total )
 		completed = total;
 	var percentage = total > 0 ? Math.round( 100 * completed / total ) : 0;
@@ -144,7 +144,7 @@ function checkUpdateVersion ()
 						external.file( DownloadLocation + gFileName ).Delete();
 
 					external.HTTPEngine.subscribe( external.wnd );
-					gSession = external.HTTPEngine.DownloadFile( Host, Port, Path, DownloadLocation + gFileName );
+					gSession = external.HTTPEngine.Get( DownloadLocation + gFileName, Path, 0, 0xFFFFFFFF, Host, Port );
 
 					if ( gSession )
 					{
@@ -212,7 +212,7 @@ function End ()
 {
 	external.HTTPEngine.unsubscribe( external.wnd );
 	if ( gSession )
-		external.HTTPEngine.AbortFileDownload( gSession );
+		external.HTTPEngine.Abort( gSession );
 	if ( gShutdownOnClose )
 		external.wnd.params.setTimeout( 'external.wnd.close()', 0 );
 }
