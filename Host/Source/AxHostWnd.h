@@ -31,6 +31,8 @@ private:
 	ULONG                      m_COMReferenceCounter;
 	bool                       m_COMCannotSelfDelete;
 
+	bool                       m_Destroyed;
+
 	HWND                       m_hWnd;
 	HWND                       m_hWndParent;
 
@@ -45,6 +47,7 @@ public:
 
 	IOleObject* Create(HWND hWndParent, std::wstring controlName);
 	void Destroy();
+	bool IsDestroyed();
 
 	static LRESULT CALLBACK StartWindowProc(
 		HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);

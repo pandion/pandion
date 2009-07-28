@@ -26,7 +26,9 @@
 AxHostWnd::AxHostWnd(IUnknown *parentWindow)
 {
 	m_COMReferenceCounter = 0;
-	m_COMCannotSelfDelete = false;
+	m_COMCannotSelfDelete = true;
+
+	m_Destroyed = false;
 
 	m_hWnd       = NULL;
 	m_hWndParent = NULL;
@@ -34,6 +36,7 @@ AxHostWnd::AxHostWnd(IUnknown *parentWindow)
 	m_ActiveXControl = NULL;
 	m_InPlaceObject  = NULL;
 	m_ParentWindow   = parentWindow;
+	parentWindow->AddRef();
 }
 
 AxHostWnd::~AxHostWnd()
@@ -86,14 +89,22 @@ IOleObject* AxHostWnd::Create(HWND hWndParent, std::wstring controlName)
 }
 void AxHostWnd::Destroy()
 {
-	m_ParentWindow.Detach()->Release();
-	m_ActiveXControl.Detach()->Release();
-	m_InPlaceObject.Detach()->Release();
-	m_ActiveObject.Detach()->Release();
+	if(m_Destroyed == false)
+	{
+		m_Destroyed = true;
+		m_ActiveXControl->Close(OLECLOSE_NOSAVE);
+		m_ActiveXControl.Detach()->Release();
+		m_InPlaceObject.Detach()->Release();
+		m_ActiveObject.Detach()->Release();
 
-	::SendMessage(m_hWnd, WM_CLOSE, 0, 0);
+		::DestroyWindow(m_hWnd);
+		m_ParentWindow.Detach()->Release();
+	}
 }
-
+bool AxHostWnd::IsDestroyed()
+{
+	return m_Destroyed;
+}
 LRESULT CALLBACK AxHostWnd::StartWindowProc(
 	HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -138,7 +149,7 @@ LRESULT AxHostWnd::OnForwardMessage(HWND hWnd, UINT uMsg,
 	WPARAM wParam, LPARAM lParam)
 {
 	if(m_ActiveObject == NULL)
-		return S_FALSE;
+		return S_OK;
 	else
 		return m_ActiveObject->TranslateAccelerator((LPMSG)lParam) == S_OK;
 }

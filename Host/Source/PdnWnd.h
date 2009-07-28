@@ -92,6 +92,8 @@ public:
 		WPARAM wParam, LPARAM lParam);
 	virtual LRESULT OnClose(UINT uMsg,
 		WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnDestroy(UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
 	virtual LRESULT OnJSInvoke(UINT uMsg,
 		WPARAM wParam, LPARAM lParam);
 	virtual LRESULT OnGetMinMaxInfo(UINT uMsg,
