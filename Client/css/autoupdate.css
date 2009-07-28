@@ -1,0 +1,47 @@
+﻿body {
+	background-color: buttonface;
+	cursor: default;
+	margin: 0;
+	padding: 0;
+}
+td {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: windowtext;
+}
+.progress-bar {
+	margin: 30px 10% 0 10%;
+	width: 80%;
+	height: 24px;
+	padding: 3px;
+	border: 2px inset;
+	position: absolute;
+	text-align: center;
+}
+#progress-completed {
+	background-color: highlight;
+	color: highlighttext;
+}
+#progress-remaining {
+	clip: rect( auto auto auto 0% );
+	background-color: window;
+	color: windowtext;
+}
+.btn {
+	width: 90px;
+	height: 24px;
+	font-family: Tahoma;
+	font-size: 11px;
+}
+.wizard-header {
+	background-color: window;
+}
+.wizard-footer {
+	text-align: right;
+}
+a {
+	color: blue;
+}
+a:hover {
+	color: red;
+}
