@@ -256,14 +256,10 @@ LRESULT CPdnWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam)
 LRESULT CPdnWnd::OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	if(m_sCloseHandler.length())
-	{
 		FireEvent(m_sCloseHandler, 0, 0);
-		::DestroyWindow(m_hWnd);
-	}
-	else
-	{
-		::DestroyWindow(m_hWnd);
-	}
+
+	m_ActiveXHost.Destroy();
+	::DestroyWindow(m_hWnd);
 	return 0;
 }
 LRESULT CPdnWnd::OnJSInvoke(UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -582,7 +578,6 @@ STDMETHODIMP CPdnWnd::restore()
 }
 STDMETHODIMP CPdnWnd::close()
 {
-	m_ActiveXHost.Destroy();
 	::PostMessage(m_hWnd, WM_CLOSE, 0, 0);
 	return S_OK;
 }

@@ -172,7 +172,7 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/,
 	/* Check for memory leaks in the debug builds */
 #ifdef _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_LEAK_CHECK_DF | _CRTDBG_ALLOC_MEM_DF);
-	_CrtSetBreakAlloc(3035);
+//	_CrtSetBreakAlloc(3035);
 #endif
 
 	/* Check The Version of Internet Explorer */
