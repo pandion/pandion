@@ -241,9 +241,34 @@ bool XMPPXMLParser::ParseXMPPStanzaBegin(wchar_t xmlCharacter)
  */
 bool XMPPXMLParser::ParseXMPPStanza(wchar_t xmlCharacter)
 {
+	static bool parsingCDATA = false;
 	bool continueParsing = true;
-	if(m_ParsedData.size() >= 2 &&
-		*(m_ParsedData.end()-2) == L'<')
+	if(m_ParsedData.size() >= 9 && 
+		*(m_ParsedData.end() - 1) == L'[' &&
+		*(m_ParsedData.end() - 2) == L'A' &&
+		*(m_ParsedData.end() - 3) == L'T' &&
+		*(m_ParsedData.end() - 4) == L'A' &&
+		*(m_ParsedData.end() - 5) == L'D' &&
+		*(m_ParsedData.end() - 6) == L'C' &&
+		*(m_ParsedData.end() - 7) == L'[' &&
+		*(m_ParsedData.end() - 8) == L'!' &&
+		*(m_ParsedData.end() - 9) == L'<')
+	{
+		m_ElementLevel--;
+		parsingCDATA = true;
+	}
+	else if(parsingCDATA)
+	{
+		if(m_ParsedData.size() >= 3 && 
+		*(m_ParsedData.end() - 1) == L'>' &&
+		*(m_ParsedData.end() - 2) == L']' &&
+		*(m_ParsedData.end() - 3) == L']')
+		{
+			parsingCDATA = false;
+		}
+	}
+	else if(m_ParsedData.size() >= 2 &&
+		*(m_ParsedData.end() - 2) == L'<')
 	{
 		if(xmlCharacter == L'/')
 		{
@@ -260,7 +285,7 @@ bool XMPPXMLParser::ParseXMPPStanza(wchar_t xmlCharacter)
 	}
 	else if(xmlCharacter == L'>' && 
 		m_ParsedData.size() >= 2 &&
-		*(m_ParsedData.end()-2) == L'/')
+		*(m_ParsedData.end() - 2) == L'/')
 	{
 		m_ElementLevel--;
 	}
