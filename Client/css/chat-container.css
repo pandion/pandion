@@ -12,7 +12,7 @@ BODY {
 #mode-bar {
 	cursor: default;
 	display: block;
-	background-image: url( ../../images/misc/roster-top-lite.gif );
+	background-image: url(../images/misc/roster-top-lite.gif);
 	background-repeat: repeat-x;
 }
 #mode-avatar {
@@ -70,7 +70,7 @@ BODY {
 	width: 100%;
 	height: 24px;
 	background-repeat: repeat-x;
-	background-image: url( ../../images/misc/tab-bar-lite.gif );
+	background-image: url(../images/misc/tab-bar-lite.gif);
 	text-overflow: ellipsis;
 	overflow: hidden;
 	padding-left: 2px;
@@ -90,7 +90,7 @@ BODY {
 	background-repeat: no-repeat;
 	padding-left: 5px;
 	padding-top: 3px;
-	background-image: url( ../../images/misc/tab-button-big-lite.gif );
+	background-image: url(../images/misc/tab-button-big-lite.gif);
 }
 .tab-bar-text {
 	width: 102px;
@@ -136,14 +136,14 @@ BODY {
 }
 #actions-panel {
 /*	background-repeat: repeat-y;
-	background-image: url( ../../images/misc/action-panel-lite.png );
+	background-image: url(../images/misc/action-panel-lite.png);
 */	font-family: Tahoma;
 	font-size: 11px;
 	color: #4f575c;
 }
 #toolbar {
 	background-repeat: repeat-x;
-	background-image: url( ../../images/misc/toolbar-lite.gif );
+	background-image: url(../images/misc/toolbar-lite.gif);
 }
 #toolbar-wrapper {
 	height: 30px;
@@ -199,7 +199,7 @@ BUTTON SPAN {
 }
 #banner-area {
 	display: none;
-	background-image: url( ../../images/misc/banner-60-back.gif );
+	background-image: url(../images/misc/banner-60-back.gif);
 }
 
 #banner-area DIV {
@@ -210,5 +210,5 @@ BUTTON SPAN {
 	background-color: white;
 	background-repeat: no-repeat;
 	background-position: center center;
-	background-image: url( ../../images/brand/default.ico );
+	background-image: url(../images/brand/default.ico);
 }
