@@ -636,18 +636,30 @@ Thank you,
     <code id="no_new_plugins">There are no new plug-ins available.</code>
   </window>
   <window name="autoupdate">
-    <item id="btn_cancel">
-      <value>Cancel</value>
+    <item id="txt-subtitle">
+      <innerText>A new version is available.</innerText>
     </item>
-    <item id="btn_install">
-      <value>Install</value>
+    <item id="txt-whats-new">
+      <innerText>What's new?</innerText>
     </item>
-    <item id="txt_status">
-      <innerText>Connecting...</innerText>
+    <item id="txt-learn-more">
+      <innerText>Learn about the improvements this update brings. This link opens in your web browser.</innerText>
     </item>
-    <code id="download_confirm">An updated version of this software is available: ${0} ${1}&#13;&#13;Do you want to download this update?</code>
-    <code id="downloading">Downloading...</code>
-    <code id="complete">Download complete. Press Install to continue.</code>
+    <item id="txt-browser">
+      <innerText>The download will start in your web browser.</innerText>
+    </item>
+    <item id="btn-update">
+      <value>Update Now</value>
+    </item>
+    <item id="btn-download">
+      <value>Download Now</value>
+    </item>
+    <item id="btn-later">
+      <value>Later</value>
+    </item>
+    <code id="title">Software Update: ${0} ${1}</code>
+    <code id="continue">You can continue to use ${0} while the update is being downloaded.</code>
+    <code id="restart">The update will be installed when ${0} is restarted. You can continue using ${0} without restarting. Do you want to restart and update now?</code>
   </window>
   <window name="conference_create">
     <item id="btn_ok">

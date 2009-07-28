@@ -2,323 +2,48 @@
 <HEAD>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
 <META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
-
-<SCRIPT language=JScript src="main/XMPPAddress.js"></SCRIPT>
-<SCRIPT language=JScript src="main/XMPPMessage.js"></SCRIPT>
-<SCRIPT language=JScript src="main/XHTML-IM.js"></SCRIPT>
-<SCRIPT language=JScript src="main/HTTPEngine.js"></SCRIPT>
-
-<SCRIPT language=JScript>
-
-var gFileName, gSession, gInterval, gError, gParameters, gLocation = '';
-var gShutdownOnClose = false;
-
-function Begin ()
-{
-	external.globals( 'Translator' ).TranslateWindow( 'autoupdate', document );
-	document.onselectstart = document.ondragstart = function(){return false};
-	document.oncontextmenu = function(){return false};
-
-	var VersionList = document.getElementById( 'autoupdate' );
-	if ( VersionList.documentElement )
-	{
-		external.globals( 'last_autoupdate' ) = ( new Date() ).getTime();
-		external.wnd.params.SaveCommonProfile();
-
-		var Latest = VersionList.documentElement.selectSingleNode( '/versions/latest' );
-		if ( Latest )
-		{
-			var Name		= Latest.getAttribute( 'name' );
-			var Version		= Latest.getAttribute( 'ordinal' );
-			var Installer	= Latest.getAttribute( 'installer' );
-			gLocation		= Latest.getAttribute( 'download' );
-			gParameters		= Latest.getAttribute( 'parameters' );
-			var Changelog	= Latest.selectSingleNode( 'changelog/html[@xmlns="http://jabber.org/protocol/xhtml-im"]/body[@xmlns="http://www.w3.org/1999/xhtml"]' );
-
-			if ( ! Name )
-				Name = '';
-			if ( ! Version )
-				Version = '';
-			if ( ! Installer )
-				Installer = '';
-			if ( ! gLocation )
-				gLocation = '';
-			if ( ! gParameters )
-				gParameters = '';
-
-			if ( Name.length && Version.length && ( gLocation.length || ( Installer.length && Installer.indexOf( '//' ) != -1 ) ) )
-			{
-				if ( 6 == external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'autoupdate', 'download_confirm', [ Name, Version ] ), external.globals( 'softwarename' ), 4 | 48 ) )
-				{
-					if ( Installer.length )
-					{
-						document.getElementById( 'changelog_area' ).focus();
-
-						if ( Changelog )
-						{
-							var Message			= new XMPPMessage();
-							Message.XHTMLBody	= Changelog;
-
-							var View			= document.frames( 'changelog_area' ).document;
-
-							with ( View.body.style )
-							{
-								overflowY	= 'scroll';
-								margin		= '0';
-								padding		= '0';
-								fontFamily	= 'Tahoma';
-								fontSize	= '11px';
-							}
-
-							var Output = View.createElement( 'DIV' );
-							MessageToHTMLElement( Message, Output );
-							View.body.insertAdjacentElement( 'beforeEnd', Output );
-						}
-						else
-						{
-							document.getElementById( 'changelog_area' ).parentNode.parentNode.removeNode( true );
-							external.wnd.setSize( 350, 100 );
-							external.wnd.setPos( ( screen.availWidth - 350 ) / 2, ( screen.availHeight - 100 ) / 2 );
-						}
-
-						Installer = Installer.substr( Installer.indexOf( '//' ) + 2 );
-
-						var Path = Installer;
-						if ( Installer.indexOf( '/' ) != -1 )
-							Path = Installer.substr( Installer.indexOf( '/' ) );
-						else
-							Path = '/';
-
-						if ( Installer.indexOf( '?' ) != -1 )
-							Installer = Installer.substr( 0, Installer.indexOf( '?' ) );
-
-						var Host = Installer;
-						if ( Installer.indexOf( '/' ) != -1 )
-							Host = Installer.substr( 0, Installer.indexOf( '/' ) );
-
-						var Port = 80;
-						if ( Host.indexOf( ':' ) != -1 )
-						{
-							Port = parseInt( Host.substr( Host.lastIndexOf( ':' ) + 1 ) );
-							Host = Host.substr( 0, Host.indexOf( ':' ) );
-						}
-						if ( isNaN( Port ) )
-							Port = 80;
-
-						gFileName = Installer;
-						if ( Installer.lastIndexOf( '/' ) != -1 )
-							gFileName = decodeURIComponent( Installer.substr( Installer.lastIndexOf( '/' ) + 1 ).replace( /\\\:\*\?\"\<\>\|/, '' ) );
-						else
-							gFileName = 'noname';
-						if ( ! gFileName.length )
-							gFileName = 'noname';
-
-						var DownloadLocation = external.globals( 'usersdir' ) + 'Downloads\\';
-
-						if ( ! external.Directory.Exists( DownloadLocation ) )
-							external.Directory.Create( DownloadLocation );
-
-						if ( external.FileExists( DownloadLocation + gFileName ) )
-							external.file( DownloadLocation + gFileName ).Delete();
-
-						external.HTTPEngine.subscribe( external.wnd );
-						HTTPSetProxy( 'http', Host, Port );
-						gSession = external.HTTPEngine.Get( DownloadLocation + gFileName, Path, 0, 0xFFFFFFFF, Host, Port );
-
-						if ( gSession )
-						{
-							external.wnd.hide( false );
-							setTimeout( 'external.wnd.focus()', 100 );
-							return;
-						}
-						else
-						{
-							external.windows( 'MainWindow' ).Do( 'dial_webbrowser', gLocation )
-						}
-					}
-					else
-					{
-						external.windows( 'MainWindow' ).Do( 'dial_webbrowser', gLocation )
-					}
-				}
-			}
-		}
-
-		/* Check again in 24 hours
-		 */
-		external.globals( 'AutoUpdateTimeout' ) = external.wnd.params.setTimeout( 'dial_autoupdate()', /* 7 * */ 24 * 3600 * 1000 );
-	}
-	external.wnd.close();
-}
-
-function End ()
-{
-	external.HTTPEngine.unsubscribe( external.wnd );
-	if ( gSession )
-		external.HTTPEngine.Abort( gSession );
-	if ( gShutdownOnClose )
-		external.wnd.params.setTimeout( 'external.wnd.close()', 0 );
-}
-
-function Install ()
-{
-	var DownloadLocation = external.globals( 'usersdir' ) + 'Downloads\\';
-	external.globals.Add( 'autoupdatecommand', DownloadLocation + gFileName );
-	external.globals.Add( 'autoupdateparameters', gParameters );
-	external.globals.Add( 'autoupdatedirectory', DownloadLocation );
-	gShutdownOnClose = true;
-	external.wnd.close();
-}
-
-function UpdateProgress ()
-{
-	var completed = external.HTTPEngine.GetProgress( gSession );
-	var total = external.HTTPEngine.GetLength( gSession );
-	if ( completed > total )
-		completed = total;
-
-	var percentage = total > 0 ? Math.round( 100 * completed / total ) : 0;
-	document.getElementById( 'bar1' ).innerText = document.getElementById( 'bar2' ).innerText = percentage + '%';
-	document.getElementById( 'bar2' ).style.clip = 'rect( auto auto auto ' + percentage + '% )';
-}
-
-/* The following functions are part of the HTTPEngine API.
- * Their names are hardcoded as handlers for various events.
- */
-
-function HTTPOnTimeout ( session )
-{
-	if ( session != gSession )
-		return;
-	gError += '\n' + external.globals( 'Translator' ).Translate( 'file_recv', 'error_timeout' );
-}
-
-function HTTPOnSockErr ( session, error )
-{
-	if ( session != gSession )
-		return;
-	gError += '\n' + external.globals( 'Translator' ).Translate( 'file_recv', 'error_code', [ error ] );
-}
-
-function OnHTTPFileErr ( session, error )
-{
-	if ( session != gSession )
-		return;
-	if ( gSession )
-	{
-		gError += '\n' + external.globals( 'Translator' ).Translate( 'file_recv', 'error_file', [ error ] );
-		external.HTTPEngine.Abort( gSession );
-	}
-}
-
-function HTTPOnConnected ( session, remoteHost, remotePort, localPort )
-{
-	if ( session != gSession )
-		return;
-	document.getElementById( 'txt_status' ).innerText = external.globals( 'Translator' ).Translate( 'autoupdate', 'downloading' );
-	gInterval = setInterval( 'UpdateProgress()', 100 );
-}
-
-function HTTPOnTransferComplete ( session )
-{
-	if ( session != gSession )
-		return;
-	clearInterval( gInterval );
-	gSession = 0;
-	document.getElementById( 'btn_install' ).disabled	= false;
-	document.getElementById( 'bar1' ).innerText			= document.getElementById( 'bar2' ).innerText = '100%';
-	document.getElementById( 'bar2' ).style.clip		= 'rect( auto auto auto 100% )';
-	document.getElementById( 'txt_status' ).innerText	= external.globals( 'Translator' ).Translate( 'autoupdate', 'complete' );
-}
-
-function HTTPOnTransferAborted ( session )
-{
-	if ( session != gSession )
-		return;
-	clearInterval( gInterval );
-	gSession = 0;
-	external.wnd.hide( true );
-	external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'file_recv', 'error_failed', [ gError ] ), external.globals( 'softwarename' ), 0 | 48 );
-	external.windows( 'MainWindow' ).Do( 'dial_webbrowser', gLocation )
-	external.wnd.close();
-}
-
-</SCRIPT>
-<STYLE>
-BODY {
-	background-color: buttonface;
-	cursor: default;
-	margin: 8px;
-	padding: 0px;
-}
-TD {
-	font-family: Tahoma;
-	font-size: 11px;
-	color: windowtext;
-}
-.progress {
-	width: 100%;
-	height: 24px;
-	padding: 3px;
-	border: 2px inset;
-	text-align: center;
-	position: absolute;
-}
-#bar1 {
-	background-color: highlight;
-	color: highlighttext;
-}
-#bar2 {
-	clip: rect( auto auto auto 0% );
-	background-color: window;
-	color: windowtext;
-}
-.btn {
-	width: 90px;
-	height: 24px;
-	font-family: Tahoma;
-	font-size: 11px;
-}
-#changelog_area {
-	border: 2px inset;
-	width: 100%;
-	height: 100%;
-}
-</STYLE>
+<LINK rel="stylesheet" type="text/css" href="../css/autoupdate.css"></LINK>
+<SCRIPT type="text/javascript" src="main/XMPPAddress.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="main/XMPPMessage.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="main/XHTML-IM.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="../js/autoupdate.js"></SCRIPT>
 </HEAD>
-<BODY scroll=no onload="Begin()" onunload="End()" onkeydown="if(event.keyCode==27)external.wnd.close()">
+<BODY scroll=no onkeydown="if(event.keyCode==27)external.wnd.close()">
 
-<XML id="autoupdate"></XML>
+<FORM onsubmit="event.returnValue = false; external.wnd.close();">
 
-<SCRIPT language=JScript>
-
-document.getElementById( 'autoupdate' ).src = external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'autoupdate' ) );
-
-</SCRIPT>
-
-<FORM onsubmit="return false;">
-	<TABLE width="100%" height="100%" border=0 cellpadding=2 cellspacing=0>
-		<TR height=1>
-			<TD id=txt_status></TD>
-		</TR>
-		<TR height=28 valign=top>
-			<TD>
-				<DIV class=progress id=bar1>0%</DIV>
-				<DIV class=progress id=bar2>0%</DIV>
-			</TD>
-		</TR>
-		<TR height=1>
-			<TD align=right style="padding: 12px 0;">
-				<INPUT type=submit class=btn id=btn_install disabled onclick="Install()">
-				<INPUT type=submit class=btn id=btn_cancel onclick="external.wnd.close()">
-			</TD>
-		</TR>
-		<TR>
-			<TD>
-				<IFRAME id=changelog_area src="about:blank"></IFRAME>
-			</TD>
-		</TR>
-	</TABLE>
+<TABLE width="100%" height="100%" border=0 cellspacing=0 cellpadding=0 style="position: absolute; left: 0px; top: 0px; margin: 0px;">
+<TR valign=top height=60 class=wizard-header>
+	<TD colspan=2 style="padding-left: 12px; padding-right: 8px; padding-top: 7px; font-size: 11px; font-family: Tahoma; color: windowtext; border-bottom: 2px groove;">
+	<SPAN id=txt-title style="font-weight: bold;"></SPAN>
+	<DIV id=txt-subtitle style="height: 27px; margin-left: 20px; margin-right: 20px; overflow: hidden;"></DIV>
+	</TD>
+</TR>
+<TR valign=top>
+	<TD colspan=2 style="padding: 16px;">
+		<DIV><A href="#" id=txt-whats-new onclick="external.windows( 'MainWindow' ).Do( 'dial_webbrowser', this.href ); return false;"></A></DIV>
+		<DIV id=txt-learn-more></DIV>
+		<DIV id=progress-area>
+			<DIV class=progress-bar id=progress-completed>0%</DIV>
+			<DIV class=progress-bar id=progress-remaining>0%</DIV>
+		</DIV>
+	</TD>
+</TR>
+<TR valign=top height=45>
+	<TD colspan=2 id=txt-continue-using style="padding: 16px; padding-top: 0;">
+		<DIV id=txt-continue></DIV>
+		<DIV id=txt-restart></DIV>
+		<DIV id=txt-browser></DIV>
+	</TD>
+</TR>
+<TR valign=top height=45 class=wizard-footer>
+	<TD colspan=2 style="padding: 10px; border-top: 2px groove;">
+		<INPUT type=button class=btn style="width: 130px;" id=btn-update onclick="update()">
+		<INPUT type=button class=btn style="width: 130px;" id=btn-download onclick="download()">
+		<INPUT type=submit class=btn id=btn-later onclick="">
+	</TD>
+</TR>
+</TABLE>
 </FORM>
 
 </BODY>

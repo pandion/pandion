@@ -548,6 +548,12 @@ function OnLoginRoster ( iq )
 	context.Add( 'name', 'onLoginSuccess' );
 	external.globals( 'ClientPluginContainer' ).DispatchEvent( context );
 
+	/* Reconnect conference rooms
+	 */
+	var TrackerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Trackers.Keys() ) ).toArray();
+	for ( var i = 0; i < TrackerNames.length; ++i )
+		external.globals( 'ConferenceSessionPool' ).Trackers( TrackerNames[i] ).Connect();
+
 	/* Automatically open bookmarked conference rooms
 	 */
 	var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
