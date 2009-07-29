@@ -1,0 +1,2257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This is a template for translating the user interface.  Every item
+corresponds to an HTML element in the interface.  All porperties
+such as innerText, innerHTML or title can be translated and will
+override the default english text.
+Each <code> is a string that is used in the program's source code.
+Some of these strings don't accept HTML, so you must encode < and
+> > as &lt; and &gt;
+
+The following text is used by the installation program. Replace
+them with the translated text so that they can be included with
+the installer.
+
+-begin-
+
+LangString DESC_SecCopyRequired		{LANG_ENGLISH}	"Ovi fajlovi su neophodni za korišćenje ${PRODUCT}-a."
+LangString DESC_SecCreateStartMenu	{LANG_ENGLISH}	"Start meni ti daje lak pristup ${PRODUCT}-u."
+LangString DESC_SecCreateQuickstart	{LANG_ENGLISH}	"Dodaj ${PRODUCT} u svoje brze prečice."
+LangString DESC_SecCreateDesktop	{LANG_ENGLISH}	"Stavi prečicu na svoju radnu površinu."
+LangString DESC_SecCreateAutoStart	{LANG_ENGLISH}	"${PRODUCT} će se automatski priključiti kada pokreneš Windows."
+LangString ITEM_SecCreateStartMenu	{LANG_ENGLISH}	"Prečica za startni meni"
+LangString ITEM_SecCreateQuickstart	{LANG_ENGLISH}	"Brza prečica"
+LangString ITEM_SecCreateDesktop	{LANG_ENGLISH}	"Prečica za radnu površinu"
+LangString ITEM_SecCreateAutoStart	{LANG_ENGLISH}	"Pokreni ${PRODUCT} prilikom startovanja kompjutera"
+LangString TEXT_WindowsOutdated		{LANG_ENGLISH}	"Nemogućnost instaliranja ${PRODUCT}-a.$\nWindows NT 4 ili noviji potreban."
+LangString TEXT_AlreadyRunning		{LANG_ENGLISH}	"Zatvori ${PRODUCT} pre nastavka."
+LangString TEXT_InternetExplorer	{LANG_ENGLISH}	"Nemogućnost nastavka instalacije ${PRODUCT}-a.$\n$\nMicrosoft Internet Explorer verzija 5.5 ili novija potrebna. &#381;eliš li download nove verzije?"
+LangString TEXT_DownloadFailed		{LANG_ENGLISH}	"Greška: Nemogućnost download-a potrebne komponente. Proveri svoju Internet konekciju."
+LangString un.TEXT_RemoveProfiles	{LANG_ENGLISH}	"Ukloni profile i zapamćene poruke?"
+LangString un.TEXT_RemoveDirectory	{LANG_ENGLISH}	"Napomena: $INSTDIR ne može da se ukloni."
+
+-end-
+
+Please send your own translations to cbas@pandion.be
+Thank you,
+  Sebastiaan Deckers
+-->
+<translation xml:lang="sr">
+  <about>
+    <language>Srpski</language>
+    <history>
+      <revision>
+        <author>
+          <name>Vladimir M Skrbic</name>
+          <email>atomski@eunet.yu</email>
+          <xmpp>admin@gigahertz.org.yu</xmpp>
+        </author>
+        <date>2006-04-30</date>
+        <description>
+          First edit.
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_search">
+      <innerText>Pretraga kontakata</innerText>
+    </item>
+    <item id="txt_pleasewait">
+      <innerText>Momenat molim</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Isključen sa servera</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>Ponovno priključenje</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>ili</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Promeni mrežna podešavanja</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>Dodaj nekog u listu kontakata</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>ili</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>Podesi mrežne transporte</innerText>
+    </item>
+    <item id="mode-avatar">
+      <title>Izaberi drugi avatar</title>
+    </item>
+    <item id="mode-bar">
+      <title>Promeni dostupnost, statusnu poruku ili lični profil</title>
+    </item>
+    <item id="mode-secure">
+      <title>Konekcija je osigurana SSL/TLS enkripcijom</title>
+    </item>
+    <item id="rosterfield">
+      <title>Osobe i grupe u tvojoj kontakt listi</title>
+    </item>
+    <code id="tt-group-hide">Sakri kontakte u ovoj grupi
+Desni klik za više opcija</code>
+    <code id="tt-group-show">Pokaži kontakte u ovoj grupi
+Desni klik za više opcija</code>
+    <code id="emoticon_unknown">Nepoznat</code>
+    <code id="txt_welcome">Dobrodošli u ${0}!</code>
+    <code id="user_online">${0} je sada priključen(a)</code>
+    <code id="cl_tooltip">${0} Kontakt lista</code>
+    <code id="autoawaymessage">Neaktivan više od 5 minuta</code>
+    <code id="autoxawaymessage">Neaktivan više od 30 minuta</code>
+    <code id="import_files">Kontakt liste</code>
+    <code id="import_invalid">Fajl ne sadrži ispravne podatke.</code>
+    <code id="import_no_new">Svi kontakti iz fajla su već u tvojoj kontakt listi.</code>
+    <code id="import_confirm">Ovi kontakti će biti dodati u tvoju kontakt listu:
+
+${0}
+
+Da li želiš da dodaš ove adrese u svoju kontakt listu?</code>
+    <code id="import_aim_not_registered">Za uvoz AIM buddy liste, AIM transport mora biti registrovan.  Transport takođe mora biti aktiviran.
+Idi u meni ALATI i izaberi TRANSPORTI, za pregled statusa AIM transporta.</code>
+    <code id="import_msn_not_registered">Za uvoz MSN kontakt liste, MSN transport mora biti registrovan.  Transport takođe mora biti aktiviran.
+Idi u meni ALATI i izaberi TRANSPORTI, za pregled statusa MSN transporta.</code>
+    <code id="import_gadu_not_registered">Za uvoz Gadu-Gadu kontakt liste, Gadu-Gadu transport mora biti registrovan.  Transport takođe mora biti aktiviran.
+Idi u meni ALATI i izaberi TRANSPORTI, za pregled statusa Gadu-Gadu transporta.</code>
+    <code id="conference_invitation">${0} te poziva u sobu za razgovor: ${1}
+
+Da li želiš da pristupiš ovoj sobi za razgovor?</code>
+    <code id="sspi_autoreconnecting">Veza sa IM serverom je prekinuta.</code>
+    <code id="menu_file">&amp;Fajl</code>
+    <code id="menu_file_received">&amp;Otvori primljene fajlove</code>
+    <code id="menu_file_export">&amp;Izvezi kontakt listu...</code>
+    <code id="menu_file_import">&amp;Uvezi kontakt listu...</code>
+    <code id="menu_file_change">Promeni moju statusnu &amp;poruku...</code>
+    <code id="menu_file_ffc">&amp;Slobodan za chat</code>
+    <code id="menu_file_available">&amp;Dostupan</code>
+    <code id="menu_file_busy">&amp;Zauzet</code>
+    <code id="menu_file_away">O&amp;dsutan</code>
+    <code id="menu_file_xaway">&amp;Dugo odsutan</code>
+    <code id="menu_file_invisible">&amp;Nevidljiv</code>
+    <code id="menu_file_offline">&amp;Isključen</code>
+    <code id="menu_file_status">Moj &amp;status</code>
+    <code id="menu_file_out">Isključi &amp;se</code>
+    <code id="menu_file_exit">I&amp;zlaz</code>
+    <code id="menu_axn">&amp;Uradi</code>
+    <code id="menu_axn_add">&amp;Dodaj kontakt...</code>
+    <code id="menu_axn_addgroup">Dodaj &amp;grupu...</code>
+    <code id="menu_axn_invite">&amp;Pozovi nekog email-om</code>
+    <code id="menu_axn_bookmarks">&amp;Sačuvane sobe za razgovor</code>
+    <code id="menu_axn_bookmarks_add">&amp;Dodaj sobu...</code>
+    <code id="menu_axn_bookmarks_manage">&amp;Sredi sačuvano...</code>
+    <code id="menu_axn_join">&amp;Pristupi sobi za razgovor...</code>
+    <code id="menu_axn_create">&amp;Napravi sobu za razgovor...</code>
+    <code id="menu_axn_password">Promeni moju &amp;lozinku...</code>
+    <code id="menu_axn_profile">&amp;Promeni moj  profil...</code>
+    <code id="menu_axn_avatar">Promeni moj a&amp;vatar...</code>
+    <code id="menu_tool">&amp;Alati</code>
+    <code id="menu_tool_transport">&amp;Transporti</code>
+    <code id="menu_tool_head">&amp;Obaveštenja i naslovi</code>
+    <code id="menu_tool_plugin">&amp;Plugin-ovi</code>
+    <code id="menu_tool_admin">Server &amp;administracija</code>
+    <code id="menu_tool_traffic">&amp;Mrežni saobraćaj</code>
+    <code id="menu_tool_view">&amp;Vidi</code>
+    <code id="menu_tool_detailed">&amp;Detaljno</code>
+    <code id="menu_tool_compact">&amp;Smanjeno</code>
+    <code id="menu_tool_language">&amp;Jezik</code>
+    <code id="menu_tool_aot">&amp;Uvek od gore</code>
+    <code id="menu_tool_settings">&amp;Podešavanja</code>
+    <code id="menu_help">&amp;Pomoć</code>
+    <code id="menu_help_manual">&amp;Online uputstvo (en)</code>
+    <code id="menu_help_forum">&amp;Forum za podršku (en)</code>
+    <code id="menu_help_contact">&amp;Kontaktirajte nas</code>
+    <code id="menu_help_about">&amp;O programu</code>
+    <code id="menu_tray_about">&amp;O ${0}-u</code>
+    <code id="menu_tray_settings">&amp;Podešavanja</code>
+    <code id="wnd_autoupdate">Osvežavam ${0}</code>
+    <code id="wnd_vcard_edit">Informacije o korisniku</code>
+    <code id="wnd_about">O ${0}-u</code>
+    <code id="wnd_signup">Registracija - ${0}</code>
+    <code id="wnd_adduser">Pronađi ili dodaj kontakt</code>
+    <code id="wnd_avatar">Promeni svoj avatar</code>
+    <code id="wnd_room_browse">Sobe za razgovor</code>
+    <code id="wnd_room_create">Napravi sobu za razgovor</code>
+    <code id="wnd_conference_invite">Pozovi kontakte</code>
+    <code id="wnd_conference_other">Drugi servis</code>
+    <code id="wnd_console">Konzola</code>
+    <code id="wnd_emoticon_download">Download Emoticons-a</code>
+    <code id="wnd_emoticon_list">Emoticons</code>
+    <code id="wnd_emoticon_view">Emoticon detalji</code>
+    <code id="wnd_file_send">Slanje fajla - ${0}</code>
+    <code id="wnd_file_recv">Prijem fajla od ${0}</code>
+    <code id="wnd_group_message">Grupna poruka</code>
+    <code id="wnd_transport_list">Transporti</code>
+    <code id="wnd_transport_other">Drugi transport</code>
+    <code id="wnd_headlines">Pregled naslova</code>
+    <code id="wnd_history">${0} - Zapamćene poruke</code>
+    <code id="wnd_plugin_list">Plugin-ovi</code>
+    <code id="wnd_plugins">Plugin-ovi</code>
+    <code id="wnd_password">Promeni lozinku</code>
+    <code id="wnd_settings">Podešavanja</code>
+    <code id="wnd_admin_server">Server administracija</code>
+    <code id="wnd_status">Statusna poruka</code>
+    <code id="wnd_vcard_view">Informacije o korisniku</code>
+    <code id="wnd_group_create">Napravi grupu</code>
+    <code id="wnd_group_rename">Preimenuj grupu</code>
+    <code id="wnd_contact_rename">Preimenuj kontakt</code>
+    <code id="wnd_authrequest">Zahtev za autorizaciju</code>
+    <code id="wnd_login">Priključenje - ${0}</code>
+    <code id="wnd_extension_download">Instalacija - ${0}</code>
+    <code id="wnd_background_list">Pozadine</code>
+    <code id="wnd_background_download">Download pozadina</code>
+    <code id="wnd_bookmarks_add">Zapamti sobu za razgovore</code>
+    <code id="wnd_bookmarks_edit">Promeni parametre za sobu</code>
+    <code id="wnd_bookmarks_manage">Zapamćene sobe za razgovor</code>
+    <code id="wnd_connection_settings">Mrežna podešavanja</code>
+    <code id="msg_emoticon_install">Ovaj emoticon set je već instaliran.</code>
+    <code id="msg_received_files">Direktorijum za primljene fajlove je uklonjen.</code>
+    <code id="msg_plugin_install">&#381;eliš li da instaliraš ovaj plugin?
+
+Naziv: ${0}
+Opis: ${1}</code>
+    <code id="msg_plugin_exists">Ovaj plugin je već instaliran.</code>
+    <code id="msg_expired">Demonstracioni period za ovaj software je istekao.</code>
+    <code id="msg_cl_adding">${0} je uspešno dodat(a) u kontakt listu.</code>
+    <code id="msg_cl_added">${0} te je dodao(la) u svoju kontakt listu.</code>
+    <code id="msg_cl_removed">${0} te je uklonio(la) iz svoje kontakt liste.</code>
+    <code id="msg_blocked">Nalaziš se na crnoj listi ove osobe.</code>
+    <code id="msg_autherror">Nemogućnost priključenja. Mogući razlozi:
+
+- Uneta je pogrešna lozinka
+- Nalog ne postoji na serveru
+
+Pokušaj ponovo.</code>
+    <code id="menu_message">Poruka</code>
+    <code id="menu_filetransfer">Slanje fajla</code>
+    <code id="menu_room_create">Napravi novu sobu</code>
+    <code id="menu_room_invite">Pozovi u sobu za razgovor</code>
+    <code id="menu_rename">Preimenuj</code>
+    <code id="menu_block">Blokiraj</code>
+    <code id="menu_delete">Izbriši</code>
+    <code id="menu_group_create">Napravi novu grupu</code>
+    <code id="menu_group_merge">Spoji sa</code>
+    <code id="menu_group_move">Prebaci u</code>
+    <code id="menu_group_copy">Kopiraj u</code>
+    <code id="menu_request">Zahtev za autorizaciju</code>
+    <code id="menu_history">Zapamćene poruke</code>
+    <code id="menu_profile">Profil</code>
+    <code id="cl_waiting_one">Imaš 1 nepročitanu poruku</code>
+    <code id="cl_waiting_multiple">Imaš ${0} nepročitanih poruka</code>
+    <code id="cl_error_notexist">Nepostojeća adresa.</code>
+    <code id="cl_error_cannotadd">Nemogućnost dodavanja ${0} u kontakt listu.
+${1}</code>
+    <code id="cl_default_group">Kontakti</code>
+    <code id="cl_group_display_none">Nema kontakata</code>
+    <code id="cl_group_display_online">Samo priključeni kontakti</code>
+    <code id="cl_group_display_all">Svi kontakti</code>
+    <code id="cl_group_expand">Pokaži nepriključene kontakte</code>
+    <code id="cl_group_compact">Sakri nepriključene kontakte</code>
+    <code id="cl_group_rename">Preimenuj ovu grupu</code>
+    <code id="cl_group_message">Pošalji poruku svima</code>
+    <code id="cl_room_create">Napravi novu sobu</code>
+    <code id="cl_room_invite">Pozovi u sobu za razgovor</code>
+    <code id="cl_group_empty">Nema priključenih kontakata u ovoj grupi.</code>
+    <code id="cl_status_empty">Nema statusne poruke</code>
+    <code id="cl_status_offline">Nepriključen</code>
+    <code id="cl_status_awaiting">&#268;ekam autorizaciju</code>
+    <code id="cl_status_unknown">Nepoznat status</code>
+    <code id="cl_status_waiting_one">1 nepročitana poruka</code>
+    <code id="cl_status_waiting_multiple">${0} nepročitanih poruka</code>
+    <code id="cl_tooltip_offline">Adresa: ${0}</code>
+    <code id="cl_contact_remove_group">&#381;eliš li da ukloniš korisnika iz ove grupe?</code>
+    <code id="cl_contact_remove_list">&#381;eliš li da ukloniš korisnika iz svoje kontakt liste?</code>
+    <code id="cl_link_open">Otvori u web pretraživaču</code>
+    <code id="cl_link_copy">Kopiraj Internet adresu</code>
+    <code id="cl_link_favorite">Dodaj u omiljene adrese</code>
+    <code id="cl_ffc">Slobodan za chat</code>
+    <code id="cl_available">Dostupan</code>
+    <code id="cl_busy">Zauzet</code>
+    <code id="cl_away">Odsutan</code>
+    <code id="cl_xaway">Dugo odsutan</code>
+    <code id="cl_invisible">Nevidljiv</code>
+    <code id="cl_tooltip_online">Adresa: ${0}
+Koristi: ${1}</code>
+  </window>
+  <window name="about">
+    <item id="btn_credits">
+      <value>Zasluge &gt;&gt;</value>
+    </item>
+    <item id="btn_copyright">
+      <value>Vlasništvo i prava &gt;&gt;</value>
+    </item>
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="copy_darkproject">
+      <innerHTML>Većina ikona i osnovnih emoticon-a su vlasništvo &amp; Greg Fleming-a.</innerHTML>
+    </item>
+    <item id="copy_rsa">
+      <innerHTML>Korišćen MD5 algoritam za pakovanje poruka. Vlasništvo RSA Data Security, Inc.</innerHTML>
+    </item>
+    <item id="copy_dns">
+      <innerHTML>Bazirano na BIND-u. Vlasništvo Internet Software Consortium, Inc.</innerHTML>
+    </item>
+    <item id="txt_copyright">
+      <innerHTML>Vlasništvo i prava;</innerHTML>
+    </item>
+    <code id="copy_basis">Based on ${0}. Vlasništvo i prava; ${1} ${2}.</code>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>Vidi informacije o profilu</value>
+    </item>
+    <item id="btn_deny">
+      <value>Odbi</value>
+    </item>
+    <item id="btn_accept">
+      <value>Prihvati</value>
+    </item>
+    <item id="txt_from">
+      <innerText>Upućen ti je zahtev za autorizaciju od:</innerText>
+    </item>
+    <item id="txt_question">
+      <innerText>&#381;eliš li da dodaš ovu osobu u svoju kontakt listu ili da je odbiješ?</innerText>
+    </item>
+  </window>
+  <window name="admin_users">
+    <item id="btn_refresh">
+      <value>Učitaj ponovo</value>
+    </item>
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Klikni na ime da pošalješ poruku. Desni klik za više opcija.</innerText>
+    </item>
+    <code id="add_to_list">Dodaj u kontakt listu</code>
+    <code id="tooltip_with">Adresa: ${0}
+Koristi: ${1}
+Priključen: ${2}</code>
+    <code id="tooltip_without">Adresa: ${0}
+Priključen: ${1}</code>
+    <code id="loading">Učitavanje...</code>
+    <code id="invalid_data">Primljeni neispravni podaci.</code>
+    <code id="server_error">Greška na serveru:</code>
+    <code id="server_failed">Nemogućnost učitavanja liste priključenih korisnika.&lt;BR&gt;Proveri svoja administratorska prava na serveru.</code>
+    <code id="user">1 priključen korisnik</code>
+    <code id="users">${0} priključenih korisnika</code>
+  </window>
+  <window name="admin">
+    <item id="btn_view">
+      <value>Vidi sve priključene korisnike</value>
+    </item>
+    <item id="btn_close">
+      <value>Zatvori</value>
+    </item>
+    <item id="admin_btn_wall">
+      <value>Pošalji</value>
+    </item>
+    <item id="admin_btn_motd">
+      <value>Pošalji</value>
+    </item>
+    <item id="txt_wall_desc">
+      <innerText>Ovo obaveštenje je poslato svim trenutno priključenim korisnicima.</innerText>
+    </item>
+    <item id="txt_motd_desc">
+      <innerText>Ovo obaveštenje će biti poslato korisnicima kada se priključe.</innerText>
+    </item>
+    <item id="txt_wall">
+      <innerText>Poruka svima</innerText>
+    </item>
+    <item id="txt_motd">
+      <innerText>Poruka dana</innerText>
+    </item>
+    <item id="txt_view">
+      <innerText>Prati ko je priključen na server.</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Koristi ove alate za praćenje i administraciju IM servera.</innerText>
+    </item>
+    <item id="txt_users">
+      <innerText>Korisnici</innerText>
+    </item>
+    <code id="wnd_users">Priključeni korisnici</code>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>Obriši podatke</value>
+    </item>
+    <item id="btn_send">
+      <value>Pošalji</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>Prisustvo</value>
+    </item>
+    <item id="btn_message">
+      <value>Poruka</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>Mrežni saobraćaj:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>Odvoji linije</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>XML unos:</innerText>
+    </item>
+    <code id="toggle_on">Debug je uključen</code>
+    <code id="toggle_off">Debug je isključen</code>
+    <code id="valid_xml">Unos mora biti validan XML kod, a ne običan tekst ili prazan unos.</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>Zatvori</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Obaveštenja i naslovi</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Posebna obaveštenja se prikazuju prilikom prijema naslova ili drugih kratkih informacija.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Nema primljenih obaveštenja i naslova.</innerText>
+    </item>
+    <item id="alertonlinelabel">
+      <innerText>Prikaži obaveštenje kada se neko priključi</innerText>
+    </item>
+    <code id="read_more">Još...</code>
+    <code id="replay">Ponovi</code>
+  </window>
+  <window name="headline-toaster">
+    <item id="options">
+      <innerText>Izbor...</innerText>
+    </item>
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="btn_custom">
+      <value>Druga slika...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Izaberi sliku koja će najbolje prikazati tvoj profil.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Učitavanje...</innerText>
+    </item>
+    <code id="error_size">Nemogućnost učitavanja slike. Veličina fajla prelazi 8 kilobajta.</code>
+    <code id="error_empty">Nemogućnost učitavanja slike. Fajl je prazan.</code>
+    <code id="error_load">Upozorenje: Nemogućnost učitavanja avatar slika.
+
+${0}</code>
+    <code id="menu_use">Koristi ovaj avatar</code>
+    <code id="menu_saveas">Sačuvaj kao...</code>
+    <code id="menu_delete">Izbriši</code>
+    <code id="wnd_select">Izaberi sliku za avatar</code>
+    <code id="saveas_files">Slike</code>
+    <code id="image_files">Slike manje od 8kB</code>
+    <code id="all_files">Svi fajlovi</code>
+  </window>
+  <window name="mode_select">
+    <item id="txt_message">
+      <innerText>Tvoja statusna poruka oslikava trenutno raspoloženje, aktivnost ili bilo šta drugo:</innerText>
+    </item>
+    <item id="lbl_ask_status">
+      <innerText>Pitaj me da unesem statusnu poruku kada promenim status</innerText>
+    </item>
+    <code id="btn_ok">U redu</code>
+    <code id="btn_ok_empty">U redu (bez poruke)</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Novo ime:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Novo ime:</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Novo ime:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>Potvrdi novu lozinku:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Nova lozinka:</innerText>
+    </item>
+    <code id="no_match">Unete lozinke se ne podudaraju.
+
+Unesi novu lozinku u oba polja.</code>
+    <code id="no_pass">Unesi novu lozinku:</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="set_version">
+      <innerText>Učitavanje...</innerText>
+    </item>
+    <item id="header-images">
+      <innerText>Slike</innerText>
+    </item>
+    <item id="header-sounds">
+      <innerText>Zvuci</innerText>
+    </item>
+    <item id="header-markup">
+      <innerText>Tekst</innerText>
+    </item>
+    <code id="empty">Ovaj emoticon set je prazan.</code>
+    <code id="file_error">Greška u fajlu</code>
+    <code id="cannot_load">Nemogućnost učitavanja emoticon-a.</code>
+    <code id="count_one">1 emoticon</code>
+    <code id="count_multiple">${0} emoticon-a</code>
+  </window>
+  <window name="emoticon_download">
+    <item id="btn_close">
+      <value>Zatvori</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Download Emoticons-a</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Za pregled kataloga emoticon-a je potrebna Internet konekcija.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Učitavanje...</innerText>
+    </item>
+    <code id="install">Instalacija</code>
+    <code id="cannot_download">Graška: Nemogućnost download-a emoticon-a.
+${0}</code>
+    <code id="invalid_xml">Fajl sadrži neispravne podatke.</code>
+    <code id="no_new_styles">Nema novih emoticon setova.</code>
+  </window>
+  <window name="emoticon_list">
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Dostupni emoticon setovi</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Izaberi emoticon set iz liste.</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>Učitavanje...</innerText>
+    </item>
+    <item id="btn_emoticon_download">
+      <value>Još emoticon setova</value>
+    </item>
+    <code id="emoticon_details">Pokaži detalje</code>
+    <code id="emoticon_remove">Izbriši</code>
+    <code id="emoticon_confirm">&#381;eliš li da izbrišeš ovaj emotikon set?</code>
+    <code id="no_emoticons">Nema pronađenih emoticon-a.</code>
+  </window>
+  <window name="background_download">
+    <item id="btn_close">
+      <value>Zatvori</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Download pozadina</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Za pregled kataloga pozadina je potrebna Internet konekcija.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Učitavanje...</innerText>
+    </item>
+    <code id="install">Instalacija</code>
+    <code id="cannot_download">Greška: Nemogućnost učitavanja pozadina.
+${0}</code>
+    <code id="invalid_xml">Fajl sadrži neispravne podatke.</code>
+    <code id="no_new_styles">Nema novih pozadina.</code>
+  </window>
+  <window name="background_list">
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Dostupne pozadine</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Dodaj ili ukloni pozadine.</innerText>
+    </item>
+    <item id="btn_background_download">
+      <value>Još pozadina</value>
+    </item>
+    <item id="txt_background_empty">
+      <innerText>Pozadine nisu instalirane.</innerText>
+    </item>
+    <code id="background_uninstall">Izbriši</code>
+    <code id="background_confirm">&#381;eliš li da izbrišeš ovu pozadinu?</code>
+  </window>
+  <window name="plugin_list">
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Instalirani plugin-ovi</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Dodaj ili ukloni plugin-ove.</innerText>
+    </item>
+    <item id="btn_plugin_download">
+      <value>Još plugin-ova</value>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>Plugin-ovi nisu instalirani.</innerText>
+    </item>
+    <code id="plugin_uninstall">Deinstalacija</code>
+    <code id="plugin_confirm">&#381;eliš li da izbrišeš ovaj plugin?</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>Zatvori</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Download plugin-ova</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Za pregled kataloga plugin-ova je potrebna Internet konekcija.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Učitavanje...</innerText>
+    </item>
+    <code id="install">Instalacija</code>
+    <code id="cannot_download">Greška: Nemogućnost učitavanja plugin-ova.
+${0}</code>
+    <code id="invalid_xml">Fajl ne sadrži validan XML kod.</code>
+    <code id="no_new_plugins">Nema novih plugin-ova.</code>
+  </window>
+  <window name="autoupdate">
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+    <item id="btn_install">
+      <value>Instalacija</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Priključivanje...</innerText>
+    </item>
+    <code id="download_confirm">Novija verzija ovog programa je dostupna: ${0} ${1}
+
+&#381;eliš li da unaprediš program sa ovom verzijom?</code>
+    <code id="downloading">Učitavanje...</code>
+    <code id="complete">Učitavanje završeno. Pritisni dugme za instalaciju za nastavak.</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Svaka soba ima jedinstveno ime. Unesi adresu servisa i jedinstveno ime sobe za razgovore.</innerText>
+    </item>
+    <item id="txt_service">
+      <innerText>Adresa servisa:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Primer: chat.example.net</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>Ime sobe:</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>Adresa sobe za razgovor:</innerText>
+    </item>
+    <code id="incomplete">Popuni sva polja...</code>
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>Pošalji</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>Pošalji sledećim ljudima:</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>Obična poruka</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>Obaveštenje</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>Tip poruke</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>Prikači Internet adresu</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>Poruka</innerText>
+    </item>
+  </window>
+  <window name="extension_download">
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Priključivanje...</innerText>
+    </item>
+    <code id="downloading">Učitavanje...</code>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>Zatvori</value>
+    </item>
+    <item id="btn_accept">
+      <value>Prihvati</value>
+    </item>
+    <item id="btn_abort">
+      <value>Prekini</value>
+    </item>
+    <item id="btn_open">
+      <value>Otvori</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Preostalo vreme:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>Pošiljalac:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Ime fajla:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Lokacija:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Napredak:</innerText>
+    </item>
+    <code id="resume">Fajl već postoji. &#381;eliš li da nastaviš sa prenosom?
+
+Klikni DA za nastavak.
+Klikni NE da prepišeš preko postojećeg fajla.</code>
+    <code id="cannot_overwrite">Nemogućnost prepisivanja fajla:
+${0}
+
+${1}</code>
+    <code id="incorrect">Nemogućnost prenosa. Primljeni neispravni podaci.</code>
+    <code id="title_saving">${0}% od ${1} sačuvano</code>
+    <code id="lessthanminute">Manje od 1 minuta na ${0}/s</code>
+    <code id="onehour">1 sat i</code>
+    <code id="hours">${0} sati i</code>
+    <code id="oneminute">1 minut na</code>
+    <code id="minutes">${0} minuta na</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">&#381;eliš li da prekineš prenos?</code>
+    <code id="aborted">Prekinuto</code>
+    <code id="finished">Završeno</code>
+    <code id="error_timeout">Isteklo vreme.</code>
+    <code id="error_code">Greška br.: ${0}</code>
+    <code id="error_file">Greška u fajlu: ${0}</code>
+    <code id="title_completed">Prenos završen - ${0}</code>
+    <code id="title_failed">Prenos neuspešan - ${0}</code>
+    <code id="error_move">Nemogućnost premeštanja završenog fajla:
+${0}
+
+${1}</code>
+    <code id="error_failed">Prenos neuspešan.</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>Zatvori</value>
+    </item>
+    <item id="btn_abort">
+      <value>Prekini</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Preostalo vreme:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>Primalac:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Ime fajla:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Lokacija:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Napredak:</innerText>
+    </item>
+    <code id="socket">Nemogućnost slanja fajla.
+Neuspešno otvaranje mrežne konekcije.</code>
+    <code id="file">Nemogućnost učitavanja fajla:
+${0}</code>
+    <code id="filetransfer">Prenos fajla:</code>
+    <code id="title_saving">${0}% od ${1} poslato</code>
+    <code id="lessthanminute">Manje od 1 minuta na ${0}/s</code>
+    <code id="onehour">1 sat i</code>
+    <code id="hours">${0} sati i</code>
+    <code id="oneminute">1 minut na</code>
+    <code id="minutes">${0} minuta na</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">&#381;eliš li da prekineš prenos?</code>
+    <code id="finished">Završeno</code>
+    <code id="aborted">Prekinuto</code>
+    <code id="error_denied">Fajl odbijen.</code>
+    <code id="error_timeout">Isteklo vreme.</code>
+    <code id="error_code">Greška br.: ${0}</code>
+    <code id="title_completed">Prenos završen - ${0}</code>
+    <code id="title_failed">Prenos neuspešan - ${0}</code>
+    <code id="error_failed">Prenos neuspešan.</code>
+  </window>
+  <window name="conference_browse">
+    <item id="btn_close">
+      <value>Zatvori</value>
+    </item>
+    <item id="btn_other_service">
+      <value>Drugi servis...</value>
+    </item>
+    <item id="btn_create">
+      <value>Napravi sobu za razgovor</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Dostupne sobe:</innerText>
+    </item>
+    <item id="lbl_empty">
+      <innerText>Pokaži prazne sobe</innerText>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="lbl_full">
+      <innerText>Pokaži pune sobe</innerText>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="lbl_filter">
+      <innerText>Filter:</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Na ovom serveru nema dostupnih servisa za razgovor.
+
+Pritisni dugme "Drugi servis..." za dodavanje servisa sa drugog servera.</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Za pristup sobi za razgovor, moraš biti priključen na IM server.</innerText>
+    </item>
+    <code id="bookmarks">Sačuvane sobe za razgovor</code>
+    <code id="menu_join">Pristupi</code>
+    <code id="menu_add">Dodaj sobu...</code>
+    <code id="empty_filter">Nema soba koje odgovaraju filter</code>
+    <code id="empty_no_rooms">Nema dostupnih soba na ovom servisu</code>
+    <code id="status_connecting">Priključivanje...</code>
+    <code id="status_downloading">Pribavljam listu dostupnih soba za razgovor...</code>
+    <code id="error_unknown">Servis "${0}" nije dostupan. Proveri da li je unesena tačna adresa. Pokušaj kasnije ili unesi drugu adresu.</code>
+    <code id="error_no_services">Server "${0}" nema instaliran servisa za razgovor. Kontaktiraj administratoraontact the administratora za više informacija.</code>
+    <code id="error_no_new">Svi servisi za razgovor na serveru "${0}" su već prikazani.</code>
+  </window>
+  <window name="conference_other">
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Adresa:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Primer: chat.example.net</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Unesi adresu servera ili servisa za razgovor.</innerText>
+    </item>
+    <code id="error_already_exists">Servis "${0}" je već unet. Unesi server ili servis za razgovor koji nije unesen.</code>
+  </window>
+  <window name="vcard">
+    <code id="save">Upozorenje: Nemogućnost snimanja vCard fajla.
+
+${0}</code>
+    <code id="personal">Podaci o korisniku</code>
+    <code id="system">Podaci o sistemu</code>
+    <item id="txt_requesting1">
+      <innerText>Pribavljanje podataka sa servera</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Ovo može da potraje i do 1 minuta.&lt;BR&gt;Molim za strpljenje.</innerHTML>
+    </item>
+    <item id="btn_save">
+      <value>Sačuvaj kao vCard</value>
+    </item>
+    <item id="btn_refresh">
+      <value>Učitaj ponovo</value>
+    </item>
+    <item id="btn_close">
+      <value>Zatvori</value>
+    </item>
+    <item id="btn_undo">
+      <value>Poništi promene</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="txt_s1">
+      <innerText>Lični podaci</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>Dodatni podaci</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>Kućna adresa</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>Posao</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>Poslovna adresa</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>Sistem</innerText>
+    </item>
+    <item id="txt_name">
+      <innerText>Ime</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>Ime:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>Kršteno ime:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>Prezime:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>Nadimak:</innerText>
+    </item>
+    <item id="txt_contact">
+      <innerText>Kontakt</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>E-Mail:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>Tel:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>Mob:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>Fax:</innerText>
+    </item>
+    <item id="txt_additional">
+      <innerText>Dodatni podaci</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>Starost:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>Datum Rođ.:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>Pol:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>Bračni status:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>Website:</innerText>
+    </item>
+    <item id="txt_homeaddress">
+      <innerText>Kućna adresa</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>Adresa 1:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>Adresa 2:</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>Grad:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>Poš. broj:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>Region:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>Zemlja:</innerText>
+    </item>
+    <item id="txt_organization">
+      <innerText>Preduzeće</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>Ime:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>Sektor:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>Titula:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>Uloga:</innerText>
+    </item>
+    <item id="txt_workcontact">
+      <innerText>Kontakt</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>E-Mail:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>Tel:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>Mob:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>Fax:</innerText>
+    </item>
+    <item id="txt_business_address">
+      <innerText>Poslovna adresa</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>Adresa 1:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>Adresa 2:</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>Grad:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>Poš. broj:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>Region:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>Zemlja:</innerText>
+    </item>
+    <item id="txt_client">
+      <innerText>Podaci o klijentu</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>Adresa:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>Koristi:</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>Lokalno vreme:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>Program:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>Verzija:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>Operativni sistem:</innerText>
+    </item>
+  </window>
+  <window name="transport_list">
+    <item id="btn_other">
+      <value>Drugi transport...</value>
+    </item>
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Dostupni transporti</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Transporti omogućavaju vezu sa drugim IM mrežama.</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;Napomena:&lt;/B&gt; Za uspešno podešavanje transporta potrebno je priključiti se na IM server.</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;Napomena:&lt;/B&gt; Server koji koristiš, nema instaliranih transporta. Kontaktiraj administratora za više informacija.</innerHTML>
+    </item>
+    <item id="msnworkaroundlabel">
+      <innerText>MSN kontaktima je dozvoljena promena nadimaka</innerText>
+    </item>
+    <code id="status_active">Aktivan</code>
+    <code id="status_noreg">Neregistrovan</code>
+    <code id="status_disconnected">Isključen sa servera</code>
+    <code id="status_connecting">Priključivanje...</code>
+    <code id="name_unknown">Nepoznat servis</code>
+    <code id="error_unknown">Servis "${0}" nije dostupan. Proveri da li je unesena tačna adresa. Pokušaj kasnije ili unesi drugu adresu.</code>
+    <code id="error_no_transports">Server "${0}" nema instaliranih transporta. Kontaktiraj administratora za više informacija.</code>
+    <code id="error_no_new_transport">Svi transporti na serveru "${0}" su već prikazani.</code>
+  </window>
+  <window name="transport_other">
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Adresa:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Primer: sms.example.net</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Unesi adresu servera ili transporta.</innerText>
+    </item>
+    <code id="error_already_exists">Servis "${0}" je već učitan. Unesi adresu servera ili transporta koji nije unesen.</code>
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; Nazad</value>
+    </item>
+    <item id="btn_next">
+      <value>Dalje &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>Završi</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>Odustani</innerText>
+    </item>
+    <item id="txt_old_addr">
+      <innerText>Adresa:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>Nadimak:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>Adresa:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Lozinka:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>Nadimak:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>Već si registrovan(a) za ovaj transport.&lt;BR&gt;Nalog koji je registrovan je:</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>Onemogući transport</value>
+    </item>
+    <item id="txt_requesting1">
+      <innerText>Kontaktiram server</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Ovo može da potraje i do 1 minuta.&lt;BR&gt;Molim za strpljenje.</innerHTML>
+    </item>
+    <item id="clickfinish">
+      <innerHTML>Za zatvaranje ovog wizard-a, klikni &lt;B&gt;Završi&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>Za nastavak, klikni &lt;B&gt;Dalje&lt;/B&gt;.</innerHTML>
+    </item>
+    <code id="error_invalid">Primljeni neispravni podaci</code>
+    <code id="error_server">&lt;B&gt;Greška na serveru:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Nemogućnost nastavka.</code>
+    <code id="error_unknown">&lt;B&gt;Nepoznata greška:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Nemogućnost nastavka.</code>
+    <code id="error_auth">&lt;B&gt;Greška prilikom autorizacije:&lt;/B&gt;&lt;BR&gt;Netačna adresa iliI lozinka.&lt;BR&gt;&lt;BR&gt;Nemogućnost nastavka.</code>
+    <code id="wait">&lt;B&gt;Kontaktiram server&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Ovo može da potraje i do 1 minuta.&lt;BR&gt;Molim za strpljenje.&lt;BR&gt;</code>
+    <code id="default_window_title">Podešavanja transporta</code>
+    <code id="default_begin_intro">Ovaj wizard ti pomaže prilikom podešavanja transporta.&lt;BR&gt;Ovaj transport je veza između tebe i druge mreže.&lt;BR&gt;Potreban ti je nalog na drugoj mreži za korišćenje ovog transporta.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">Unesi svoje korisničko ime i lozinku.&lt;BR&gt;Takođe možeš uneti i nadimak.&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">Tvoj nalog se registruje na transport.</code>
+    <code id="default_removing_busy">Tvoj nalog se uklanja sa transporta.&lt;BR&gt;</code>
+    <code id="default_creating_done">Nalog je uspešno registrovan na transport.</code>
+    <code id="default_removing_done">Nalog je uspešno uklonjen sa transporta.</code>
+    <code id="msn_window_title">MSN Messenger - Podešavanje transporta</code>
+    <code id="msn_begin_intro">Ovaj wizard ti pomaže prilikom podešavanja MSN transporta.&lt;BR&gt;Ovaj transport je veza između tebe i tvog MSN naloga.&lt;BR&gt;Potreban ti je Microsoft Passport za korišćenje ovog transporta.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">Unesi svoju MSN adresu i lozinku.&lt;BR&gt;Takođe možeš uneti i nadimak.&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">Primeri: neko@msn.com, neko@hotmail.com</code>
+    <code id="msn_creating_busy">Tvoj nalog se registruje na MSN transport.</code>
+    <code id="msn_removing_busy">Tvoj MSN nalog se uklanja sa transporta.&lt;BR&gt;I dalje ćeš biti u mogućnosti da koristiš svoj MSN nalog na drugim servisima (napr. Hotmail, MSN Explorer, itd.).&lt;BR&gt;</code>
+    <code id="msn_creating_done">Nalog je uspešno registrovan na MSN transport.</code>
+    <code id="msn_removing_done">Nalog je uspešno uklonjen sa MSN transporta.</code>
+    <code id="icq_window_title">ICQ - Podešavanje transporta</code>
+    <code id="icq_begin_intro">Ovaj wizard ti pomaže prilikom podešavanja ICQ transporta.&lt;BR&gt;Ovaj transport je veza između tebe i tvog ICQ naloga.&lt;BR&gt;Potreban ti je postojeći UIN (ICQ &lt;BR&gt;broj) za korišćenje ovog transporta.&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Unesi svoj ICQ broj i lozinku.&lt;BR&gt;Takođe možeš uneti i nadimak.&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">Primeri: 39230793, 158525087</code>
+    <code id="icq_creating_busy">Tvoj nalog se registruje na ICQ transport.</code>
+    <code id="icq_removing_busy">Tvoj ICQ nalog se uklanja sa transporta.&lt;BR&gt;</code>
+    <code id="icq_creating_done">Nalog je uspešno registrovan na ICQ transport.</code>
+    <code id="icq_removing_done">Nalog je uspešno uklonjen sa ICQ transporta.</code>
+    <code id="yahoo_window_title">Yahoo! Messenger - Podešavanje transporta</code>
+    <code id="yahoo_begin_intro">Ovaj wizard ti pomaže prilikom podešavanja Yahoo! transport.&lt;BR&gt;Ovaj transport je veza između tebe i tvog Yahoo! naloga.&lt;BR&gt;Potreban ti je postojeći Yahoo! nalog za korišćenje ovog transporta.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Unesi svoj Yahoo! nadimak i lozinku.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">Tvoj nalog se registruje na Yahoo! transport.</code>
+    <code id="yahoo_removing_busy">Tvoj Yahoo! nalog se uklanja sa transporta.&lt;BR&gt;I dalje ćeš biti u mogućnosti da koristiš svoj MSN nalog na drugim servisima (napr. Yahoo! mail, Yahoo! Messenger, itd.).&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">Nalog je uspešno registrovan na Yahoo! transport.</code>
+    <code id="yahoo_removing_done">Nalog je uspešno uklonjen sa Yahoo! transporta.</code>
+    <code id="aim_window_title">AOL Instant Messenger - Podešavanje transporta</code>
+    <code id="aim_begin_intro">Ovaj wizard ti pomaže prilikom podešavanja AOL IM transporta.&lt;BR&gt;Ovaj transport je veza između tebe i tvog AOL IM naloga.&lt;BR&gt;Potreban ti je postojeći AOL IM nalog za korišćenje ovog transporta.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">Unesi svoj AOL IM nadimak i lozinku.&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">Tvoj nalog se registruje na AOL IM transport.</code>
+    <code id="aim_removing_busy">Tvoj AOL IM nalog se uklanja sa transporta.&lt;BR&gt;I dalje ćeš biti u mogućnosti da koristiš svoj AOL IM nalog sa drugim programima.&lt;BR&gt;</code>
+    <code id="aim_creating_done">Nalog je uspešno registrovan na AOL IM transport.</code>
+    <code id="aim_removing_done">Nalog je uspešno uklonjen sa AOL IM transporta.</code>
+    <code id="gadu_window_title">Gadu-Gadu - Podešavanje transporta</code>
+    <code id="gadu_begin_intro">Ovaj wizard ti pomaže prilikom podešavanja Gadu-Gadu transporta.&lt;BR&gt;Ovaj transport je veza između tebe i tvog Gadu-Gadu naloga.&lt;BR&gt;Potreban ti je postojeći Gadu-Gadu broj za korišćenje ovog transporta.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_instructions">Unesi svoj Gadu-Gadu broj i lozinku.&lt;BR&gt; Takođe možeš uneti i nadimak.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_examples">&amp;nbsp;</code>
+    <code id="gadu_creating_busy">Tvoj Gadu-Gadu broj se registruje na transport.</code>
+    <code id="gadu_removing_busy">Tvoj Gadu-Gadu broj se uklanja sa transporta.&lt;BR&gt;</code>
+    <code id="gadu_creating_done">Gadu-Gadu broj je uspešno registrovan na transport.</code>
+    <code id="gadu_removing_done">Gadu-Gadu broj je uspešno uklonjen sa transporta.</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>Idi</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>Sačuvaj</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>Štampaj</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>Izbriši</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>Zapamćene poruke</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>Pretraga:</innerText>
+    </item>
+    <code id="loading">Učitavanje zapamćenih poruka...</code>
+    <code id="empty">Nema zapamćenih poruka.</code>
+    <code id="error_load">Nemogućnost učitavanja zapamćenih poruka:
+${0}</code>
+    <code id="one_message">1 poruka</code>
+    <code id="many_messages">${0} poruka</code>
+    <code id="tooltip_save">Sačuvaj današnje poruke</code>
+    <code id="tooltip_print">Odštampaj današnje poruke</code>
+    <code id="error_open">Greška: Nemogućnost otvaranja zapamćenih poruka.</code>
+    <code id="error_read">Greška: Nemogućnost učitavanja zapamćenih poruka.</code>
+    <code id="delete_confirm">&#381;eliš li da izbrišeš sve zapamćene poruke zar ${0}?</code>
+    <code id="delete_cannot">Nemogućnost premeštanja fajl: ${0}
+
+Poruke nisu izbrisane.</code>
+    <code id="error_print">Nemogućnost štampanja.
+Nema zapamćenih poruka.</code>
+    <code id="error_save">Nemogućnost snimanja zapamćenih poruka.
+${0}</code>
+  </window>
+  <window name="chat-messages">
+    <code id="copy">Kopiraj</code>
+    <code id="copyall">Kopiraj sve</code>
+    <code id="clear">Izbriši</code>
+    <code id="selectall">Obeleži sve</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>Pokaži sta želiš da uradiš</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Promeni tip i boju teksta</title>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Izaberi drugu pozadinu</title>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="txt-emoticons">
+      <innerText>Emoticons</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Font</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Pozadina</innerText>
+    </item>
+    <item id="resize-grip">
+      <title>Promeni veličinu polja za unos teksta</title>
+    </item>
+    <item id="mode-bar">
+      <title>Osoba koja prima tvoje poruke</title>
+    </item>
+    <item id="send-text">
+      <title>Ukucaj svoju poruku ovde</title>
+    </item>
+    <item id="btn-send">
+      <value>Pošalji</value>
+      <title>Pošalji poruku</title>
+    </item>
+    <code id="tt-avatar">Prikaži avatar u punoj veličini</code>
+    <code id="tt-messages">Poruke koje su poslate i primljene</code>
+    <code id="tt-close">Završi ovaj razgovor</code>
+    <code id="msg_typing">${0} kuca poruku</code>
+    <code id="unknown">${0} ti možda ne odgovori jer ima nepoznat status</code>
+    <code id="lastonline">Priključen poslednji put: ${0}</code>
+    <code id="windowtitle">${0} - razgovor</code>
+    <code id="background_no">Bez pozadine</code>
+    <code id="background_list">Dostupne pozadine...</code>
+    <code id="close_many_tabs">&#381;eliš li da zatvoriš sve razgovore?</code>
+    <code id="close_recent_message">Upravo ti je stigla poruka.
+
+&#381;eliš li da zatvoriš ovaj razgovor?</code>
+    <code id="palette_compact">Smanji veličinu emoticon liste</code>
+    <code id="palette_expand">Pokaži sve emoticon-e u ovom setu</code>
+    <code id="palette_browse">Drugi emoticon setovi...</code>
+    <code id="menu_file_received">&amp;Otvori primljene fajlove</code>
+    <code id="menu_file_history">Zapamćene &amp;poruke</code>
+    <code id="menu_file_close">&amp;Završi razgovor</code>
+    <code id="menu_axn_contact">&amp;Kontakt</code>
+    <code id="menu_axn_add">Dodaj u kontakt listu</code>
+    <code id="menu_axn_block">&amp;Blokiraj</code>
+    <code id="menu_axn_rename">&amp;Preimenuj</code>
+    <code id="menu_axn_panel">Prikaži &amp;uradi panel</code>
+    <code id="menu_axn_profile">Pregled &amp;Profila</code>
+    <code id="menu_axn_file">Pošalji &amp;Fajl</code>
+    <code id="menu_tool_emo_style">Izaberi &amp;Emoticon-e...</code>
+    <code id="menu_tool_font">Promeni &amp;font...</code>
+    <code id="menu_tool_background">Promeni &amp;pozadinu...</code>
+    <code id="menu_tool_aot">&amp;Uvek od gore</code>
+    <code id="menu_tool_popup">&amp;Nov prozor iskače</code>
+    <code id="menu_tool_tabbed">&amp;Ređaj razgovore</code>
+    <code id="menu_tool_emoticons">&amp;Prikaži emoticon-e</code>
+    <code id="menu_tool_settings">&amp;Podešavanja</code>
+  </window>
+  <window name="conference-bookmarks-add">
+    <item id="txt_address">
+      <innerText>Adresa sobe za razgovor:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Primer: moja_soba@chat.example.net</innerText>
+    </item>
+    <item id="lbl_autojoin">
+      <innerText>Pristupi ovoj sobi prilikom priključenja</innerText>
+    </item>
+    <item id="lbl_password">
+      <innerText>Uđi u sobu sa ovom lozinkom:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+    <code id="error_invalid_address">Adresa sobe za razgovor je neispravna.</code>
+  </window>
+  <window name="conference-bookmarks-manage">
+    <item id="txt_head">
+      <innerText>Promeni, izbriši ili dodaj sobe za razgovor:</innerText>
+    </item>
+    <item id="btn_edit">
+      <value>Promeni</value>
+    </item>
+    <item id="btn_delete">
+      <value>Izbriši</value>
+    </item>
+    <item id="btn_add">
+      <value>Dodaj</value>
+    </item>
+    <item id="btn_close">
+      <value>Zatvori</value>
+    </item>
+    <code id="confirm_delete">&#381;eliš li da izbrišeš ovu sobu za razgovore?</code>
+  </window>
+  <window name="conference-configuration">
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="txt_form_loading">
+      <innerText>Učitavanje...</innerText>
+    </item>
+    <item id="txt_form_empty">
+      <innerText>Ova soba nema nikakvih podešavanja</innerText>
+    </item>
+    <item id="txt_form_invalid">
+      <innerText>Greška: Nemogućnost promene podešavanja za ovu sobu</innerText>
+    </item>
+    <code id="form_title">Podešavanja za ovu sobu za razgovore</code>
+    <code id="form_subtitle">Popuni ovaj obrazac da bi konfigurisao(la) sobu</code>
+    <code id="muc#roomconfig_allowinvites">Dozvoli korisnicima da pozivaju druge korisnike</code>
+    <code id="muc#roomconfig_changesubject">Dozvoli korisnicima da menjaju naslov sobe</code>
+    <code id="muc#roomconfig_enablelogging">Loguj sve poruke u ovoj sobi</code>
+    <code id="muc#roomconfig_lang">Jezik koji se koristi u ovoj sobi</code>
+    <code id="muc#roomconfig_maxusers">Najveći broj korisnika u sobi</code>
+    <code id="muc#roomconfig_membersonly">Pristup sobi dozvoljen samo članovima</code>
+    <code id="muc#roomconfig_moderatedroom">Dozvola od admin-a potrebna za slanje poruka u ovoj sobi</code>
+    <code id="muc#roomconfig_passwordprotectedroom">Za ulazak u sobu potrebna lozinka</code>
+    <code id="muc#roomconfig_persistentroom">Soba ostaje aktivna i kada je svi napuste</code>
+    <code id="muc#roomconfig_presencebroadcast">Uloge za koje se šalju statusne poruke</code>
+    <code id="muc#roomconfig_publicroom">Prikaži sobu za razgovore u listi javnih soba</code>
+    <code id="muc#roomconfig_roomadmins">Voditelji sobe za razgovore</code>
+    <code id="muc#roomconfig_roomdesc">Opis sobe za razgovore</code>
+    <code id="muc#roomconfig_roomname">Tema sobe za razgovore</code>
+    <code id="muc#roomconfig_roomowners">Vlasnici sobe za razgovore</code>
+    <code id="muc#roomconfig_roomsecret">Lozinka za ulazak u sobu za razgovore</code>
+    <code id="muc#roomconfig_whois">Ko može da vidi pune adrese korisnika sobe</code>
+  </window>
+  <window name="conference-password">
+    <item id="txt_password">
+      <innerText>Lozinka:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+  </window>
+  <window name="conference-name">
+    <item id="txt_name">
+      <innerText>Ime:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+  </window>
+  <window name="conference-subject">
+    <item id="txt_subject">
+      <innerText>Naziv:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+  </window>
+  <window name="conference-invite">
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Izaberi kontakte koje želiš da pozoveš.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Nema priključenih kontakata u listi.</innerText>
+    </item>
+  </window>
+  <window name="conference-accesslevel">
+    <item id="txt-name">
+      <innerText>Ime:</innerText>
+    </item>
+    <item id="txt-room">
+      <innerText>Soba:</innerText>
+    </item>
+	<item id="txt-role">
+      <innerText>Uloga</innerText>
+    </item>
+	<item id="txt-visitor">
+      <innerText>Gost</innerText>
+    </item>
+    <item id="txt-visitor-desc">
+      <innerText>Može da čita poruke</innerText>
+    </item>
+	<item id="txt-participant">
+      <innerText>Učesnik</innerText>
+    </item>
+    <item id="txt-participant-desc">
+      <innerText>Može i da šalje poruke</innerText>
+    </item>
+	<item id="txt-moderator">
+      <innerText>Voditelj</innerText>
+    </item>
+    <item id="txt-moderator-desc">
+      <innerText>Može i da izbaci učesnike i goste</innerText>
+    </item>
+	<item id="txt-affiliation">
+      <innerText>Pripadnost</innerText>
+    </item>
+	<item id="txt-none">
+      <innerText>Bez/&#268;lan</innerText>
+    </item>
+    <item id="txt-none-desc">
+      <innerText>Može da pristupi sobi za razgovore</innerText>
+    </item>
+	<item id="txt-admin">
+      <innerText>Administrator</innerText>
+    </item>
+    <item id="txt-admin-desc">
+      <innerText>Može da dodaje voditelje i izbacuje učesnike</innerText>
+    </item>
+	<item id="txt-owner">
+      <innerText>Vlasnik</innerText>
+    </item>
+    <item id="txt-owner-desc">
+      <innerText>Može i da dodaje administratore</innerText>
+    </item>
+    <item id="btn-default">
+      <value>Početna vrednost</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn-ok">
+      <value>U redu</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-cancel">
+      <value>Odustani</value>
+      <accessKey>c</accessKey>
+    </item>
+    <item id="btn-close">
+      <value>Zatvori</value>
+      <accessKey>c</accessKey>
+    </item>
+  </window>
+  <window name="conference-container">
+    <item id="btn-emoticons">
+      <title>Pokaži sta želiš da uradiš</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Promeni tip i boju teksta</title>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Izaberi drugu pozadinu</title>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="txt-emoticons">
+      <innerText>Emoticons</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Font</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Pozadina</innerText>
+    </item>
+    <item id="resize-grip">
+      <title>Promeni veličinu polja za unos teksta</title>
+    </item>
+    <item id="mode-bar">
+      <title>Naziv, adresa i tema ove sobe za razgovor</title>
+    </item>
+    <item id="send-text">
+      <title>Ukucaj svoju poruku ovde</title>
+    </item>
+    <item id="btn-send">
+      <value>Pošalji</value>
+      <title>Pošalji poruku</title>
+    </item>
+    <item id="occupants-panel">
+      <title>Učesnici ove sobe za razgovore</title>
+    </item>
+    <item id="txt-visitors">
+      <innerText>Gosti</innerText>
+      <title>Gosti mogu da čitaju poruke ali ne i da šalju</title>
+    </item>
+    <item id="txt-moderators">
+      <innerText>Voditelji</innerText>
+      <title>Voditelji mogu da šalju i čitaju poruke, kao i da izbace učesnike iz sobe</title>
+    </item>
+    <item id="txt-participants">
+      <innerText>Učesnici</innerText>
+      <title>Učesnici mogu da šalju i čitaju poruke</title>
+    </item>
+    <code id="wnd_conference_password">Pristupi sa lozinkom</code>
+    <code id="wnd_conference_change_name">Promeni ime</code>
+    <code id="wnd_conference_subject">Tema sobe</code>
+    <code id="wnd_conference_configuration">Podešavanja sobe za razgovore</code>
+    <code id="wnd_conference_accesslevel">${0} - Nivo pristupa</code>
+    <code id="tt-messages">Poruke koje su poslate i primljene</code>
+    <code id="tt-close">Napusti ovu sobu za razgovore</code>
+    <code id="default_subject">Ova soba nema naslov.</code>
+    <code id="windowtitle">${0} - konferencija</code>
+    <code id="destroy">Uništavanje ove sobe, ukloniće sve učesnike iz sobe i izbrisati je sa servera.
+
+&#381;eliš li da uništiš ovu sobu za razgovore?</code>
+    <code id="connecting">Priključivanje...</code>
+    <code id="connected">Priključen</code>
+    <code id="disconnected">Isključen sa servera</code>
+    <code id="confirm-kick">&#381;eliš li da izbaciš "${0}" iz ove sobe za razgovore?</code>
+    <code id="kick-error">Nemogućnost izbacivanja učesnika: ${0}</code>
+    <code id="kicked">${0} je izbačen(a) iz sobe za razgovore</code>
+    <code id="kicked-by">${1} je izbacio ${0} iz sobe za razgovore</code>
+    <code id="confirm-ban">&#381;eliš li da zabraniš pristup "${0}" ovoj sobi?</code>
+    <code id="ban-error">Nemogućnost zabrane učesnika: ${0}</code>
+    <code id="banned">${0} je zabranjen ulazak u sobu</code>
+    <code id="banned-by">${1} je zabranio ${0} ulazak u sobu</code>
+    <code id="leaving">${0} je napustio(la) sobu</code>
+    <code id="joining">${0} je pristupio(la) sobi</code>
+    <code id="renaming">${0} je od sada ${1}</code>
+    <code id="menu_file_close">&amp;Zatvori razgovor</code>
+    <code id="menu_axn_invite">&amp;Pozovi kontakte</code>
+    <code id="menu_axn_change_name">Promeni moje &amp;ime...</code>
+    <code id="menu_axn_password">Pristupi sa &amp;lozinkom...</code>
+    <code id="menu_axn_subject">&amp;Promeni naslov sobe</code>
+    <code id="menu_axn_configuration">&amp;Podešavanja ove sobe</code>
+    <code id="menu_axn_destroy">&amp;Uništi ovu sobu</code>
+    <code id="menu_bookmarks">&amp;Sačuvane sobe</code>
+    <code id="menu_bmrk_add">&amp;Dodaj sobu...</code>
+    <code id="menu_occupant_private">Privatna &amp;poruka</code>
+    <code id="menu_occupant_kick">&amp;Izbaci</code>
+    <code id="menu_occupant_ban">&amp;Zabrani</code>
+    <code id="menu_occupant_access">&amp;Nivo pristupa...</code>
+    <code id="menu_occupant_add">&amp;Dodaj u listu kontakata</code>
+    <code id="menu_occupant_profile">&amp;Profil</code>
+    <code id="unrecognized-error">Ne prepoznata greška</code>
+    <code id="error-service-unavailable">Servis nedostupan</code>
+    <code id="error-not-allowed">Nedozvoljeno</code>
+    <code id="error-conflict">Problem: Nadimak se već koristi</code>
+    <code id="error-registration-required">Potrebna registracija: Samo za članove</code>
+    <code id="error-forbidden">Zabranjeno: Zabranjen pristup</code>
+    <code id="error-not-authorized">Ne autorizovan: Potrebna lozinka</code>
+    <code id="error-item-not-found">Soba je zaključana</code>
+  </window>
+  <window name="preferences">
+    <item id="txt_autoaway">
+      <innerText>Kada ne koristiš svoj kompjuter nekoliko minuta, tvoj status će se promeniti u "Odsutan".</innerText>
+    </item>
+    <item id="txt_displayawaymsg_left">
+      <innerText>Prikaži ovu poruku posle</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_left">
+      <innerText>Prikaži ovu poruku posle</innerText>
+    </item>
+    <item id="txt_displayawaymsg_right">
+      <innerText>minuta:</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_right">
+      <innerText>minuta:</innerText>
+    </item>
+    <item id="txt_availmsg">
+      <innerText>Prikaži ovu poruku kada je status stavljen na 'Dostupan'</innerText>
+    </item>
+    <item id="txt_busymsg">
+      <innerText>Prikaži ovu poruku kada je status stavljen na 'Zauzet'</innerText>
+    </item>
+    <item id="txt_awaymsg">
+      <innerText>Prikaži ovu poruku kada je status stavljen na 'Odsutan'</innerText>
+    </item>
+    <item id="txt_invisiblemsg">
+      <innerText>Prikaži ovu poruku kada je status stavljen na 'Nevidljiv'</innerText>
+    </item>
+    <item id="txt_blocking">
+      <innerText>Crna lista sadrži kontakte od kojih ne želiš da primaš poruke.</innerText>
+    </item>
+    <item id="txt_showmsgwindow">
+      <innerText>Uvek traži da unesem poruku prilikom promene statusa</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>Prikaži poruke od ljudi koji nisu na mojoj kontakt listi</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>Crna lista</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>Ukloni blokadu</value>
+    </item>
+    <item id="block_btn_view">
+      <value>Pregled profila</value>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Mrežna podešavanja</innerText>
+    </item>
+    <item id="txt_connection_desc">
+      <innerText>Promeni način priključenja na IM server.</innerText>
+    </item>
+    <item id="btn_connection_settings">
+      <value>Mrežna podešavanja</value>
+    </item>
+    <item id="txt_portmap">
+      <innerText>Prenos podataka (NAT, firewall)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>Server:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>Snimi sve poruke u arhivu</innerText>
+    </item>
+    <item id="txt_startup">
+      <innerText>Otvori automatski pri pokretanju</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>Kada neko traži moju autorizaciju</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>Pitaj me</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>Prihvati sve zahteve</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>Prihvati za korisnike iz moje liste, za ostale pitaj</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>Odbi sve zahteve</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>Pusti zvuk kada stigne poruka</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>Pusti zvuk kada se neko priključi</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>Pusti zvuk kada se neko isključi</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>Nađi</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>Nađi</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>Nađi</value>
+    </item>
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+    <item id="lbl_autoaway">
+      <innerText>Auto-Odsutan</innerText>
+    </item>
+    <item id="lbl_defmessages">
+      <innerText>Osnovne poruke</innerText>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>Crna lista</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>Konekcija</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>Privatnost</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>Zvuk</innerText>
+    </item>
+    <code id="autoaway">Automatske poruke za "Odsutan"</code>
+	<code id="defmessages">Osnovne poruke</code>
+    <code id="blocking">Crna lista</code>
+    <code id="connection">Mrežna podešavanja</code>
+    <code id="privacy">Privatnost</code>
+    <code id="sound">Zvuci obaveštenja</code>
+    <code id="reconnect">Moraš se priključiti da bi uneo promene.
+
+&#381;eliš li da se priključiš sada?</code>
+    <code id="shortcut">Šalji i primaj poruke</code>
+    <code id="choose_sound">Izaberi zvuke obaveštenja</code>
+    <code id="file_audio">Zvuci</code>
+    <code id="file_any">Svi fajlovi</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>Pronađi ili dodaj osobu</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>Možeš tražiti nekog na osnovu njegovih javnih podataka ili pomoću njegovog korisničkog imena.</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>Kako želiš da dodaš kontakt?</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>&#381;elim da &lt;U&gt;t&lt;/U&gt;ražim nekoga.</innerHTML>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>Se&lt;U&gt;r&lt;/U&gt;vis:</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML>Već &lt;U&gt;z&lt;/U&gt;nam adresu osobe koju želim da dodam.</innerHTML>
+      <accessKey>z</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>M&lt;U&gt;r&lt;/U&gt;eža:</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>&lt;U&gt;K&lt;/U&gt;orisničko ime:</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>k</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>Da bi komunicirao(la) sa nekim na drugoj IM mreži, moraš biti registrovan(a) za taj transport.</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>Podešavanja transporta</innerText>
+    </item>
+    <item id="txt_p1_invite_email">
+      <innerText>Pozovi nekog E-mailom</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>Dalje &gt;</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_p1_close">
+      <value>Zatvori</value>
+    </item>
+    <item id="txt_p1b_title">
+      <innerText>Obrađujem korisničko ime</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>Transport upravo verifikuje tvoje korisničko ime.</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; Nazad</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>Dalje &gt;</value>
+    </item>
+    <item id="page1b_btn_close">
+      <value>Zatvori</value>
+    </item>
+    <item id="txt_p1c_title">
+      <innerText>Zahtevam pretragu od</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>Obrazac za pretrago sadrži objašnjenje za sva polja koja treba popuniti.</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; Nazad</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>Dalje &gt;</value>
+    </item>
+    <item id="page1c_btn_close">
+      <value>Zatvori</value>
+    </item>
+    <item id="page3_btn_back">
+      <value>&lt; Nazad</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>Pretraga</value>
+      <accessKey>p</accessKey>
+    </item>
+    <item id="page3_btn_close">
+      <value>Zatvori</value>
+    </item>
+    <item id="txt_p4_title">
+      <innerText>Rezultati pretrage</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>Možeš da vidiš korisnikove lične podatke i da ga dodaš u svoju kontakt listu.</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; Nazad</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>Dalje &gt;</value>
+    </item>
+    <item id="page4_btn_close">
+      <value>Zatvori</value>
+    </item>
+    <item id="txt_p5_title">
+      <innerText>Dodavanje osobe</innerText>
+    </item>
+    <item id="txt_p5_tagline">
+      <innerText>Kontakt lista je sačuvana na serveru.</innerText>
+    </item>
+    <item id="txt_p5_desc">
+      <innerText>Zahtev za autorizaciju je poslat:</innerText>
+    </item>
+    <item id="txt_p5_user">
+      <innerText>Korisničko ime:</innerText>
+    </item>
+    <item id="txt_p5_network">
+      <innerText>Mreža:</innerText>
+    </item>
+    <item id="page5_btn_back">
+      <value>&lt; Nazad</value>
+    </item>
+    <item id="page5_btn_next">
+      <value>Dalje &gt;</value>
+    </item>
+    <item id="page5_btn_close">
+      <value>Zatvori</value>
+    </item>
+    <item id="txt_p6_title">
+      <innerText>Završavam wizard pretrage i dodavanja osobe</innerText>
+    </item>
+    <item id="txt_p6_tagline">
+      <innerText>Uspešno si završio wizard pretrage i dodavanja osobe.</innerText>
+    </item>
+    <item id="txt_p6_desc">
+      <innerText>Ova osoba je uspešno dodata u tvoju kontakt listu:</innerText>
+    </item>
+    <item id="txt_p6_user">
+      <innerText>Korisničko ime:</innerText>
+    </item>
+    <item id="txt_p6_network">
+      <innerText>Mreža:</innerText>
+    </item>
+    <item id="txt_p6_again">
+      <innerHTML>Da ponovo pokreneš ovaj wizard, pritisni &lt;B&gt;Dodaj još jednu osobu&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_again">
+      <value>Dodaj još jednu osobu</value>
+    </item>
+    <item id="txt_p6_finish">
+      <innerHTML>Da zatvoriš ovaj wizard, pritisni &lt;B&gt;Završi&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_back">
+      <value>&lt; Nazad</value>
+    </item>
+    <item id="page6_btn_finish">
+      <value>Završi</value>
+    </item>
+    <item id="page6_btn_close">
+      <value>Zatvori</value>
+    </item>
+    <code id="correct">Unesi ispravno korisničko ime.
+
+Primer: neko123@${0}</code>
+    <code id="example_address">Primer: neko123@${0}</code>
+    <code id="contacting_adding">&lt;B&gt;Kontaktiram server&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Ovo može da potraje i do 1 minuta.&lt;BR&gt;Molim za strpljenje.&lt;BR&gt;</code>
+    <code id="contacting_transport">&lt;B&gt;Kontaktiram transport&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Ovo može da potraje i do 1 minuta.&lt;BR&gt;Molim za strpljenje.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Kontaktiram servis za pretragu&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Ovo može da potraje i do 1 minuta.&lt;BR&gt;Molim za strpljenje.&lt;BR&gt;</code>
+    <code id="error_adding">&lt;B&gt;Greška na serveru:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Korisnik ne može biti dodat u tvoju kontakt listu.&lt;BR&gt;Kontaktiraj administratora za više informacija.</code>
+    <code id="error_transport">&lt;B&gt;Greška na serveru:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Korisnik ne može biti dodat u tvoju kontakt listu.&lt;BR&gt;Proveri uneto korisničko ime.</code>
+    <code id="error_search">&lt;B&gt;Greška na serveru:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Obrazac za pretragu ne može biti učitan.&lt;BR&gt;Pokušaj kasnije ili izaberi drugi servis za pretragu.</code>
+    <code id="error_invalid">Primljeni neispravni podaci.</code>
+    <code id="search_title">Pretraga korisnika</code>
+    <code id="search_tagline">Popuni polje za pretragu.</code>
+    <code id="firstname">Ime</code>
+    <code id="lastname">Prezime:</code>
+    <code id="nick">Nadimak:</code>
+    <code id="email">Email adresa:</code>
+    <code id="searching">Pretraga...</code>
+    <code id="add">Dodaj u kontakt listu</code>
+    <code id="view">Pregled profila</code>
+    <code id="foundone">1 rezultat</code>
+    <code id="foundmany">${0} rezultata</code>
+  </window>
+  <window name="login">
+    <code id="invalid">Adresa je netačna. Ispravi adresu i pokušaj ponovo.
+
+Ukloiko nemas adresu, registruj se prateći instrukcije.</code>
+    <code id="invalid-ntlm">Adresa IM servera je netačna. Ispravi adresu i pokušaj ponovo.</code>
+    <item id="txt_instructions">
+      <innerText>Unesi svoju IM adresu i lozinku za priključenje na server.</innerText>
+    </item>
+    <item id="txt_instructions_ntlm">
+      <innerText>Unesi adresu IM servera.</innerText>
+    </item>
+    <item id="txt_address">
+      <innerText>Adresa:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Primer: neko123@example.net</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Lozinka:</innerText>
+    </item>
+    <item id="txt_forgot_password">
+      <innerText>Zaboravljena lozinka?</innerText>
+    </item>
+    <item id="txt_remember">
+      <innerText>Zapamti moju lozinku</innerText>
+    </item>
+    <item id="txt_autologin">
+      <innerText>Automatski se priključi</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Mrežna podešavanja</innerText>
+    </item>
+    <item id="txt_server_ntlm">
+      <innerText>IM Server:</innerText>
+    </item>
+    <item id="txt_example_ntlm">
+      <innerText>Primer: intranet.example.net</innerText>
+    </item>
+    <item id="btn_signup">
+      <value>Registracija</value>
+    </item>
+    <item id="btn_login">
+      <value>Priključenje</value>
+    </item>
+    <item id="btn_close">
+      <value>Zatvori</value>
+    </item>
+  </window>
+  <window name="connection-settings">
+    <code id="logout">Moraš se isključiti da bi uneo promene.
+
+&#381;eliš li da se isključiš sada?</code>
+    <code id="automatic">Automatski</code>
+    <item id="txt_connection">
+      <innerText>Podešavanja konekcije</innerText>
+    </item>
+    <item id="lbl_server_address">
+      <innerHTML>&lt;U&gt;A&lt;/U&gt;dresa:</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="lbl_server_port">
+      <innerHTML>&lt;U&gt;P&lt;/U&gt;ort:</innerHTML>
+      <accessKey>p</accessKey>
+    </item>
+    <item id="txt_encryption">
+      <innerText>Sigurna komunikacija</innerText>
+    </item>
+    <item id="lbl_encryption_optional">
+      <innerHTML>&lt;U&gt;K&lt;/U&gt;oristi TLS enkripciju ako je raspoloživa na serveru</innerHTML>
+      <accessKey>k</accessKey>
+    </item>
+    <item id="lbl_encryption_tls">
+      <innerHTML>Potrebna &lt;U&gt;T&lt;/U&gt;LS enkripcija</innerHTML>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="lbl_encryption_ssl">
+      <innerHTML>Potrebna &lt;U&gt;S&lt;/U&gt;SL enkripcija</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="lbl_encryption_none">
+      <innerHTML>&lt;U&gt;N&lt;/U&gt;e koristi enkripciju</innerHTML>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="txt_authentication">
+      <innerText>Autentifikacija za priključenje</innerText>
+    </item>
+    <item id="lbl_authentication_normal">
+      <innerHTML>A&lt;U&gt;d&lt;/U&gt;resa i lozinka</innerHTML>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="lbl_authentication_ntlm">
+      <innerHTML>Ugrađena &lt;U&gt;W&lt;/U&gt;indows autentifikacija</innerHTML>
+      <accessKey>w</accessKey>
+    </item>
+    <item id="txt_proxy">
+      <innerText>Proxy Server</innerText>
+    </item>
+    <item id="lbl_proxy_none">
+      <innerHTML>B&lt;U&gt;e&lt;/U&gt;z</innerHTML>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="lbl_proxy_http">
+      <innerHTML>&lt;U&gt;H&lt;/U&gt;TTP</innerHTML>
+      <accessKey>h</accessKey>
+    </item>
+    <item id="lbl_proxy_address">
+      <innerHTML>Ad&lt;U&gt;r&lt;/U&gt;esa:</innerHTML>
+      <accessKey>r</accessKey>
+    </item>
+    <item id="lbl_proxy_port">
+      <innerHTML>P&lt;U&gt;o&lt;/U&gt;rt:</innerHTML>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn_ok">
+      <value>U redu</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Odustani</value>
+    </item>
+  </window>
+  <window name="sign_up">
+    <code id="close_confirm">Nova adresa nije kompletna.
+
+&#381;eliš li da zatvoriš wizard?</code>
+    <code id="incomplete">Popuni sva polja...</code>
+    <code id="pass_match">Unete lozinke se ne podudaraju.
+
+Unesi novu lozinku u oba polja.</code>
+    <code id="contacting">Kontaktiram server...</code>
+    <code id="registered">Tvoj nalog se upravo registruje. Ovo može da potraje i do 1 minuta.&lt;BR&gt;Molim za strpljenje.&lt;BR&gt;</code>
+    <code id="requesting">Pribavljam informacije...</code>
+    <code id="sending">Šaljem registraciju...</code>
+    <code id="failure">Neuspešno povezivanje</code>
+    <code id="completed">Registracija uspešna</code>
+    <code id="address">Adresa:</code>
+    <code id="nickname">Ime:</code>
+    <code id="userdir">Korisnički direktorijum:</code>
+    <item id="txt_page_welcome_title">
+      <innerText>Dobro došao(la) u wizard za registraciju</innerText>
+    </item>
+    <item id="txt_page_welcome_intro">
+      <innerText>Ovaj wizard ti pomaže prilikom registracije novog naloga na IM serveru.</innerText>
+    </item>
+    <item id="txt_page_welcome_next">
+      <innerHTML>Za nastavak, pritisni &lt;B&gt;Dalje&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_welcome_next">
+      <value>Dalje &gt;</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_page_welcome_cancel">
+      <value>Odustani</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="txt_page_nickname_title">
+      <innerText>Lični podaci</innerText>
+    </item>
+    <item id="txt_page_nickname_tagline">
+      <innerText>Ove informacije će pomoći drugima da te lakše pronađu na mreži.</innerText>
+    </item>
+    <item id="txt_page_nickname_desc">
+      <innerText>Unesi svoje ime da bi olakšao(la) svojim kolegama i prijateljima da te kontaktiraju.</innerText>
+    </item>
+    <item id="txt_page_nickname_name">
+      <innerHTML>&lt;U&gt;I&lt;/U&gt;me:</innerHTML>
+    </item>
+    <item id="data_name">
+      <accessKey>i</accessKey>
+    </item>
+    <item id="btn_page_nickname_back">
+      <value>&lt; Nazad</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_next">
+      <value>Dalje &gt;</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_page_nickname_cancel">
+      <value>Odustani</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="txt_page_account_title">
+      <innerText>Informacije o adresi</innerText>
+    </item>
+    <item id="txt_page_account_tagline">
+      <innerText>Možeš da koristiš javni server na Internetu ili server u lokalnoj mreži.</innerText>
+    </item>
+    <item id="txt_page_account_server">
+      <innerHTML>&lt;U&gt;S&lt;/U&gt;erver:</innerHTML>
+    </item>
+    <item id="txt_page_account_username">
+      <innerHTML>&lt;U&gt;K&lt;/U&gt;orisničko ime:</innerHTML>
+    </item>
+    <item id="txt_page_account_password">
+      <innerHTML>&lt;U&gt;L&lt;/U&gt;ozinka:</innerHTML>
+    </item>
+    <item id="txt_page_account_confirm">
+      <innerHTML>&lt;U&gt;P&lt;/U&gt;otvrdi lozinku:</innerHTML>
+    </item>
+    <item id="txt_page_account_email">
+      <innerHTML>&lt;U&gt;E&lt;/U&gt;mail adresa:</innerHTML>
+    </item>
+    <item id="data_server">
+      <accessKey>s</accessKey>
+    </item>
+    <item id="data_username">
+      <accessKey>k</accessKey>
+    </item>
+    <item id="data_password">
+      <accessKey>l</accessKey>
+    </item>
+    <item id="data_password_confirm">
+      <accessKey>p</accessKey>
+    </item>
+    <item id="data_email">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_page_account_remember">
+      <innerHTML>&lt;U&gt;Z&lt;/U&gt;apamti moju lozinku</innerHTML>
+      <accessKey>z</accessKey>
+    </item>
+    <item id="txt_page_account_preview">
+      <innerText>Tvoja IM adresa:</innerText>
+    </item>
+    <item id="btn_page_account_settings">
+      <value>Mrežna podešavanja</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_account_back">
+      <value>&lt; Nazad</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_account_next">
+      <value>Dalje &gt;</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_page_account_cancel">
+      <value>Odustani</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="txt_page_creating_title">
+      <innerText>Registracija adrese</innerText>
+    </item>
+    <item id="txt_page_creating_autherr">
+      <innerHTML>Adresa ne može biti registrovana. Korisničko ime se već koristi.&lt;BR&gt;&lt;BR&gt;Pritisni &lt;B&gt;Nazad&lt;/B&gt;, ukucaj drugo korisničko ime i pokušaj ponovo.</innerHTML>
+    </item>
+    <item id="txt_page_creating_forbidden">
+      <innerHTML>Adresa ne može biti registrovana. Ovaj server ne dozvoljava otvaranje novih adresa.&lt;BR&gt;&lt;BR&gt;Pritisni &lt;B&gt;Nazad&lt;/B&gt;, izaberi drugi server i pokušaj ponovo.</innerHTML>
+    </item>
+    <item id="txt_page_creating_commerr">
+      <innerHTML>Nemogućnost povezivanja sa serverom. Proveri adresu servera.&lt;BR&gt;Proveri svoju mrežnu konekciju i pokušaj ponovo. Ako si iza firewall-a,&lt;BR&gt;podesi mrežna podešavanja.</innerHTML>
+    </item>
+    <item id="btn_page_creating_retry">
+      <value>Pokušaj ponovo</value>
+      <accessKey>p</accessKey>
+    </item>
+    <item id="btn_page_creating_settings">
+      <value>Mrežna podešavanja</value>
+      <accessKey>m</accessKey>
+    </item>
+    <item id="btn_page_creating_back">
+      <value>&lt; Nazad</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_creating_next">
+      <value>Dalje &gt;</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_page_creating_cancel">
+      <value>Odustani</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="txt_page_finished_title">
+      <innerText>Završavam wizard za dodavanje profila</innerText>
+    </item>
+    <item id="txt_page_finished_intro">
+      <innerText>Uspešno si završio(la) wizard dodavanja profila.</innerText>
+    </item>
+    <item id="txt_page_finished_details">
+      <innerText>Detalji profila:</innerText>
+    </item>
+    <item id="txt_page_finished_finish">
+      <innerHTML>Da zatvoriš ovaj wizard, pritisni &lt;B&gt;Završi&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_finished_back">
+      <value>&lt; Nazad</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_finished_finish">
+      <value>Završi</value>
+      <accessKey>z</accessKey>
+    </item>
+    <item id="btn_page_finished_cancel">
+      <value>Odustani</value>
+      <accessKey>o</accessKey>
+    </item>
+  </window>
+</translation>
