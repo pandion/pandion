@@ -1905,7 +1905,7 @@ Thank you,
       <innerHTML>Untuk menutup wizard ini, tekan &lt;B&gt;Selesai&lt;/B&gt;.</innerHTML>
     </item>
     <item id="page6_btn_back">
-      <value>&lt; Kemabli</value>
+      <value>&lt; Kembali</value>
     </item>
     <item id="page6_btn_finish">
       <value>Selesai</value>
