@@ -1296,7 +1296,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <title>Введите сообщение</title>
     </item>
     <item id="btn-send">
-      <value>Отравить</value>
+      <value>Отправить</value>
       <value>Отправить сообщение</value>
     </item>
 
