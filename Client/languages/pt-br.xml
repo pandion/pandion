@@ -22,13 +22,13 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Aviso: $INSTDIR não pode
 		<history>
 			<revision>
 				<author>
-					<name>Sylvio Rogério Soares do Nascimento</name>
-					<email>sylvio@tre-pb.gov.br</email>
+					<name>Jefferson Oliveira</name>
+					<email>jeffbrs@gmail.com</email>
 					<xmpp></xmpp>
 				</author>
-				<date>2005-09-15</date>
+				<date>2008-11-25</date>
 				<description>
-          Primeira Edição.
+          Segunda Edição, baseada na edição de Sylvio Rogério Soares do Nascimento sylvio@tre-pb.gov.br
         </description>
 			</revision>
 		</history>
@@ -192,7 +192,7 @@ Descrição: ${1}</code>
 		<code id="msg_expired">O período de demonstração deste programa expirou.</code>
 		<code id="msg_cl_adding">${0} foi adicionado a sua lista de contatos.</code>
 		<code id="msg_cl_added">${0} adicionaou você a lista de contato dele(a).</code>
-		<code id="msg_cl_removed">${0} removeu você da lista de contato dele(a).</code>
+		<code id="msg_cl_removed"> </code>
 		<code id="msg_blocked">Você está na lista de pessoas bloqueadas desse contato.</code>
 		<code id="msg_autherror">Não é possível logar. As possíveis causas disso são:
 
@@ -269,6 +269,9 @@ Recurso: ${1}</code>
 		</item>
 		<item id="copy_dns">
 			<innerHTML>Baseado no BIND. Propriedade do Internet Software Consortium, Inc.</innerHTML>
+		</item>
+		<item id="copy_jeff">
+			<innerHTML>Customizado por Jefferson Oliveira (25/11/2008)</innerHTML>
 		</item>
 		<item id="txt_copyright">
 			<innerHTML>Direito de Cópia &amp;copy;</innerHTML>
@@ -1320,6 +1323,7 @@ Você quer fechar esta conversação?</code>
 		<code id="menu_tool_emo_style">Escolher &amp;Emoticons...</code>
 		<code id="menu_tool_font">Mudar &amp;Fonte...</code>
 		<code id="menu_tool_background">Mudar &amp;Plano de Fundo...</code>
+		<code id="menu_tool_encryption">&amp;Criptografia</code>
 		<code id="menu_tool_aot">&amp;Sempre no topo</code>
 		<code id="menu_tool_popup">Novas Mensagens em &amp;Popup</code>
 		<code id="menu_tool_tabbed">Conversações em A&amp;bas</code>
@@ -1636,6 +1640,15 @@ Tem certeza que quer destruir esta sala de conferência?</code>
 		<item id="block_btn_view">
 			<value>Ver perfil</value>
 		</item>
+		<item id="txt_connection_settings">
+			<innerText>Configurações de Conexão</innerText>
+		</item>
+		<item id="txt_connection_desc">
+			<innerText>Altera a forma de conectar ao Servidor de Mensagens.</innerText>
+		</item>
+		<item id="btn_connection_settings">
+			<value>Configurações de Conexão</value>
+		</item>
 		<item id="txt_ssl">
 			<innerText>Utilizar uma conexão criptografada (SSL)</innerText>
 		</item>
@@ -1943,6 +1956,76 @@ Se você não tem um endereço, clique em Registrar e siga as instruções.</cod
 			<value>Fechar</value>
 		</item>
 	</window>
+ <window name="connection-settings">
+    <code id="logout">voce You must log out to apply the changes.&#13;&#13;Do you want to log out now?</code>
+    <code id="automatic">Automatico</code>
+    <item id="txt_connection">
+      <innerText>Servidor de Conexão</innerText>
+    </item>
+    <item id="lbl_server_address">
+      <innerHTML>Endereço(&lt;U&gt;a&lt;/U&gt;)</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="lbl_server_port">
+      <innerHTML>&lt;U&gt;P&lt;/U&gt;orta:</innerHTML>
+      <accessKey>p</accessKey>
+    </item>
+    <item id="txt_encryption">
+      <innerText>Comunicação Segura</innerText>
+    </item>
+    <item id="lbl_encryption_optional">
+      <innerHTML>&lt;U&gt;U&lt;/U&gt;se criptografia TLS se disponível no servidor</innerHTML>
+      <accessKey>u</accessKey>
+    </item>
+    <item id="lbl_encryption_tls">
+      <innerHTML>Necessário criptografia &lt;U&gt;T&lt;/U&gt;LS</innerHTML>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="lbl_encryption_ssl">
+      <innerHTML>Necessário criptografia &lt;U&gt;S&lt;/U&gt;SL</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="lbl_encryption_none">
+      <innerHTML>&lt;U&gt;N&lt;/U&gt;ão use criptografia</innerHTML>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="txt_authentication">
+      <innerText>Login e Autenticação</innerText>
+    </item>
+    <item id="lbl_authentication_normal">
+      <innerHTML>En&lt;U&gt;d&lt;/U&gt;ereço e senha</innerHTML>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="lbl_authentication_ntlm">
+      <innerHTML>Integrado com a Autenticação do &lt;U&gt;W&lt;/U&gt;indows</innerHTML>
+      <accessKey>w</accessKey>
+    </item>
+    <item id="txt_proxy">
+      <innerText>Servidor Proxy</innerText>
+    </item>
+    <item id="lbl_proxy_none">
+      <innerHTML>Nã&lt;U&gt;o&lt;/U&gt;</innerHTML>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="lbl_proxy_http">
+      <innerHTML>&lt;U&gt;H&lt;/U&gt;TTP</innerHTML>
+      <accessKey>h</accessKey>
+    </item>
+    <item id="lbl_proxy_address">
+      <innerHTML>Ende&lt;U&gt;r&lt;/U&gt;eço:</innerHTML>
+      <accessKey>r</accessKey>
+    </item>
+    <item id="lbl_proxy_port">
+      <innerHTML>P&lt;U&gt;o&lt;/U&gt;rta:</innerHTML>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Cancel</value>
+    </item>
+  </window>
 	<window name="sign_up">
 		<code id="close_confirm">O novo endereço não está completo.
 
