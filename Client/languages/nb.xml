@@ -1,0 +1,2258 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+-begin-
+
+LangString DESC_SecCopyRequired		${LANG_NORWEGIAN}	"Disse filer er påkrevet for å bruke ${PRODUCT}."
+LangString DESC_SecCreateStartMenu	${LANG_NORWEGIAN}	"Menyen Start gir deg lett adgang til ${PRODUCT}."
+LangString DESC_SecCreateQuickstart	${LANG_NORWEGIAN}	"Før ${PRODUCT} til verktøyslinjen Hurtig start."
+LangString DESC_SecCreateDesktop	${LANG_NORWEGIAN}	"Plasser en snarvei på skrivebordet."
+LangString DESC_SecCreateAutoStart	${LANG_NORWEGIAN}	"${PRODUCT} vil automatisk logge på når du starter Windows."
+LangString ITEM_SecCreateStartMenu	${LANG_NORWEGIAN}	"Snarvei i menyen Start"
+LangString ITEM_SecCreateQuickstart	${LANG_NORWEGIAN}	"Snarvei i Hurtig start"
+LangString ITEM_SecCreateDesktop	${LANG_NORWEGIAN}	"Snarvei på skrivebordet"
+LangString ITEM_SecCreateAutoStart	${LANG_NORWEGIAN}	"Kjør ${PRODUCT} ved oppstart"
+LangString TEXT_WindowsOutdated		${LANG_NORWEGIAN}	"Kan ikke installere ${PRODUCT}.$\nWindows NT 4 eller høyere er påkrevet."
+LangString TEXT_AlreadyRunning		${LANG_NORWEGIAN}	"Lukk ${PRODUCT} før du fortsetter."
+LangString TEXT_InternetExplorer	${LANG_NORWEGIAN}	"Kan ikke fortsette installasjonen af ${PRODUCT}.$\n$\nMicrosoft Internet Explorer versjon 5.5 eller høyere er påkrevet. Vil du hente denne oppdateringen nå?"
+LangString TEXT_DownloadFailed		${LANG_NORWEGIAN}	"Feil: Kan ikke hente en påkrevet komponent. Kontroller, at du er koblet til internett."
+LangString un.TEXT_RemoveProfiles	${LANG_DANISH}	"Slett profiler og oversiktsfiler?"
+LangString un.TEXT_RemoveDirectory	${LANG_DANISH}	"Bemerk! $INSTDIR kan ikke slettes."
+
+-end-
+
+-->
+<translation xml:lang="nb">
+  <about>
+    <language>Norsk bokmål</language>
+    <history>
+      <revision>
+        <author>
+          <name>Frank Paul Silye</name>
+          <email>frankps@gmail.com</email>
+          <xmpp>frankps@jabber.org</xmpp>
+        </author>
+        <date>2006-03-20</date>
+        <description>
+          First edit.
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_pleasewait">
+      <innerText>Vennligst vent et øyeblikk</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Forbindelsen til tjeneren ble avbrutt</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>Gjenopprett forbindelsen</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>eller</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Endre forbindelsesinnstillinger</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>Før en person til din liste over kontaktpersoner</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>eller</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>Konfigurer nettverkstransporter</innerText>
+    </item>
+
+    <item id="mode-avatar">
+      <title>Velg en annen avatar</title>
+    </item>
+    <item id="mode-bar">
+      <title>Skift din status, personlige melding eller personlige profil</title>
+    </item>
+    <item id="mode-secure">
+      <title>Forbindelsen er sikret med SSL/TLS-kryptering</title>
+    </item>
+    <item id="rosterfield">
+      <title>Personer og grupper i din liste over kontaktpersoner</title>
+    </item>
+
+    <code id="tt-group-hide">Skjul alle kontaktpersonene i denne gruppen&#13;Høyreklikk for å få flere innstillinger</code>
+    <code id="tt-group-show">Vis alle kontaktpersonene i denne gruppen&#13;Høyreklikk for å få flere innstillinger</code>
+    <code id="emoticon_unknown">Ukjent</code>
+    <code id="txt_welcome">Velkommen til ${0}!</code>
+    <code id="user_pålogget">${0} er nå pålogget</code>
+    <code id="cl_tooltip">${0} liste over kontaktpersoner</code>
+    <code id="autoawaymessage">Ikke aktiv i mer enn 5 minutter</code>
+    <code id="autoxawaymessage">Ikke aktiv i mer enn 30 minutter</code>
+    <code id="import_files">Lister over kontaktpersoner</code>
+    <code id="import_invalid">Filen inneholder ikke gyldige data.</code>
+    <code id="import_no_new">Alle kontaktpersoner i filen er allerede i din liste over kontaktpersoner.</code>
+    <code id="import_confirm">Følgende adresser på kontaktpersoner blir lagt til din liste over kontaktpersoner:&#13;${0}&#13;Er du sikker på, at du vil legge disse adressene til din liste over kontaktpersoner?</code>
+    <code id="import_aim_not_registered">For å importere din liste over AIM-venner, må AIM-transporten være registreret. Transporten må også være aktiv.&#13;Klikk på Transporter i menyen Funksjoner for å se AIM-transportens status.</code>
+    <code id="import_msn_not_registered">For å importere din liste over MSN-kontaktpersoner, må MSN-transporten være registreret. Transporten må også være aktiv.&#13;Klikk på Transporter i menyen Funksjoner for å se MSN-transportens status.</code>
+    <code id="import_gadu_not_registered">For å importere din liste over Gadu-Gadu-kontaktpersoner, må Gadu-Gadu-transporten være registreret. Transporten må også være aktiv.&#13;Klikk på Transporter i menyen Funksjoner for å se Gadu-Gadu-transportens status.</code>
+    <code id="conference_invitation">${0} inviterer deg til konferanserommet: ${1}&#13;Vil du delta i dette konferanserommet?</code>
+    <code id="sspi_autoreconnecting">Forbindelsen til tjeneren feilet.</code>
+
+    <code id="menu_file">&amp;Fil</code>
+    <code id="menu_file_received">&amp;Åpne mottatte filer</code>
+    <code id="menu_file_export">&amp;Eksporter listen over kontaktpersoner...</code>
+    <code id="menu_file_import">&amp;Importer listen over kontaktpersoner...</code>
+    <code id="menu_file_change">Skift min personlige &amp;melding...</code>
+    <code id="menu_file_ffc">&amp;Klar til chat</code>
+    <code id="menu_file_available">O&amp;nline</code>
+    <code id="menu_file_busy">&amp;Opptatt</code>
+    <code id="menu_file_away">Ikke til &amp;stede</code>
+    <code id="menu_file_xaway">Ikke til &amp;stede i lengere tid</code>
+    <code id="menu_file_invisible">V&amp;is som avlogget</code>
+    <code id="menu_file_avlogget">&amp;Avlogget</code>
+    <code id="menu_file_status">S&amp;tatus</code>
+    <code id="menu_file_out">Logg &amp;av</code>
+    <code id="menu_file_exit">L&amp;ukk</code>
+
+    <code id="menu_axn">Ha&amp;ndlinger</code>
+    <code id="menu_axn_add">&amp;Legg til en kontaktperson...</code>
+    <code id="menu_axn_addgroup">Legg til en &amp;gruppe...</code>
+    <code id="menu_axn_invite">&amp;Inviter noen med e-post</code>
+    <code id="menu_axn_bookmarks">&amp;Foretrukne konferanserom</code>
+    <code id="menu_axn_bookmarks_add">&amp;Føj til foretrukne...</code>
+    <code id="menu_axn_bookmarks_manage">&amp;Arranger foretrukne...</code>
+    <code id="menu_axn_join">&amp;Delta i et konferanserom...</code>
+    <code id="menu_axn_create">&amp;Opprett et konferanserom...</code>
+    <code id="menu_axn_password">Skift mitt &amp;passord...</code>
+    <code id="menu_axn_profile">&amp;Rediger min profil...</code>
+    <code id="menu_axn_avatar">Skift min a&amp;vatar...</code>
+
+    <code id="menu_tool">Fun&amp;ksjoner</code>
+    <code id="menu_tool_transport">&amp;Transporter</code>
+    <code id="menu_tool_head">&amp;Overskrifter og beskjeder</code>
+    <code id="menu_tool_plugin">&amp;Plug-ins</code>
+    <code id="menu_tool_admin">Tjener &amp;administrasjon</code>
+    <code id="menu_tool_traffic">&amp;Nettverkstrafikk</code>
+    <code id="menu_tool_view">&amp;Vis</code>
+    <code id="menu_tool_detailed">&amp;Detaljer</code>
+    <code id="menu_tool_compact">&amp;Kompakt</code>
+    <code id="menu_tool_language">&amp;Språk</code>
+    <code id="menu_tool_aot">&amp;Alltid øverst</code>
+    <code id="menu_tool_settings">&amp;Innstillinger</code>
+
+    <code id="menu_help">&amp;Hjelp</code>
+    <code id="menu_help_manual">&amp;Pålogget manual</code>
+    <code id="menu_help_forum">&amp;Support forum</code>
+    <code id="menu_help_contact">&amp;Kontakt oss</code>
+    <code id="menu_help_about">&amp;Om</code>
+
+    <code id="menu_tray_about">&amp;Om ${0}</code>
+    <code id="menu_tray_settings">&amp;Innstillinger</code>
+
+    <code id="wnd_autoupdate">Oppdaterer ${0}</code>
+    <code id="wnd_vcard_edit">Brukeropplysninger</code>
+    <code id="wnd_about">Om ${0}</code>
+    <code id="wnd_signup">Påmelding - ${0}</code>
+    <code id="wnd_adduser">Finn eller legg til en kontaktperson</code>
+    <code id="wnd_avatar">Skift din avatar</code>
+    <code id="wnd_room_browse">Konferanserom</code>
+    <code id="wnd_room_create">Opprett et konferanserom</code>
+    <code id="wnd_conference_invite">Inviter kontaktpersoner</code>
+    <code id="wnd_conference_other">Andre konferansetjenester</code>
+    <code id="wnd_console">Konsoll</code>
+    <code id="wnd_emoticon_download">Hent emoikoner</code>
+    <code id="wnd_emoticon_list">Emoikoner</code>
+    <code id="wnd_emoticon_view">Detaljer om emoikon</code>
+    <code id="wnd_file_send">Sender fil til ${0}</code>
+    <code id="wnd_file_recv">Mottar fil fra ${0}</code>
+    <code id="wnd_group_message">Gruppemelding</code>
+    <code id="wnd_transport_list">Transporter</code>
+    <code id="wnd_transport_other">Andre transporter</code>
+    <code id="wnd_headlines">Overskrifter</code>
+    <code id="wnd_history">${0} - meldingsoversikt</code>
+    <code id="wnd_plugin_list">Plug-ins</code>
+    <code id="wnd_plugins">Plug-ins</code>
+    <code id="wnd_password">Skift passord</code>
+    <code id="wnd_settings">Innstillinger</code>
+    <code id="wnd_admin_server">Tjeneradministration</code>
+    <code id="wnd_status">Personlig melding</code>
+    <code id="wnd_vcard_view">Brukeropplysninger</code>
+    <code id="wnd_group_create">Opprett gruppe</code>
+    <code id="wnd_group_rename">Omdøp gruppe</code>
+    <code id="wnd_contact_rename">Omdøp kontaktperson</code>
+    <code id="wnd_authrequest">Be om godkjennelse</code>
+    <code id="wnd_login">Logg på - ${0}</code>
+    <code id="wnd_extension_download">Installerer ${0}</code>
+    <code id="wnd_background_list">Bakgrunnsbilder</code>
+    <code id="wnd_background_download">Hent bakgrunnsbilder</code>
+    <code id="wnd_bookmarks_add">Legg konferanserom til foretrukne</code>
+    <code id="wnd_bookmarks_edit">Rediger foretrukne konferanserom</code>
+    <code id="wnd_bookmarks_manage">Foretrukne konferanserom</code>
+    <code id="wnd_connection_settings">Forbindelse innstillinger</code>
+
+    <code id="msg_emoticon_install">Denne pakken med emoikoner er allerede installert.</code>
+    <code id="msg_received_files">Mappen for mottatte filer er blitt slettet.</code>
+    <code id="msg_plugin_install">Vil du installere denne plug-inen?&#13;Navn: ${0}&#13;Beskrivelse: ${1}</code>
+    <code id="msg_plugin_exists">Denne plug-inen er allerede installert.</code>
+    <code id="msg_expired">Demonstrasjonsperioden for dette programmet har utløpt.</code>
+    <code id="msg_cl_adding">${0} er blitt lagt til din liste over kontaktpersoner.</code>
+    <code id="msg_cl_added">${0} har lagt deg til sin liste over kontaktpersoner.</code>
+    <code id="msg_cl_removed">${0} har fjernet deg fra sin liste over kontaktpersoner.</code>
+    <code id="msg_blocked">Du er på denne persons liste over blokkerte personer.</code>
+    <code id="msg_autherror">Kan ikke logge på. Dette kan skyldes følgende:&#13;- Du har tastet inn feil passord&#13;- Kontoen finnes ikke på tjeneren&#13;Vennligst prøv igjen.</code>
+
+    <code id="menu_message">Melding</code>
+    <code id="menu_filetransfer">Overfør fil</code>
+    <code id="menu_room_create">Opprett et nytt rom</code>
+    <code id="menu_room_invite">Inviter til konferanserom</code>
+    <code id="menu_rename">Omdøp</code>
+    <code id="menu_block">Blokker</code>
+    <code id="menu_delete">Slett</code>
+    <code id="menu_group_create">Opprety en ny gruppe</code>
+    <code id="menu_group_merge">Slå sammen med</code>
+    <code id="menu_group_move">Flytt til</code>
+    <code id="menu_group_copy">Kopier til</code>
+    <code id="menu_request">Be om ny godkendelse</code>
+    <code id="menu_history">Oversikt</code>
+    <code id="menu_profile">Profil</code>
+
+    <code id="cl_waiting_one">Du har 1 ulest melding</code>
+    <code id="cl_waiting_multiple">Du har ${0} uleste meldinger</code>
+    <code id="cl_error_notexist">Adressen finnes ikke.</code>
+    <code id="cl_error_cannotadd">Kan ikke legge ${0} til listen over kontaktpersoner.&#13;${1}</code>
+    <code id="cl_default_group">Kontaktpersoner</code>
+    <code id="cl_group_display_none">Ingen kontaktpersoner</code>
+    <code id="cl_group_display_pålogget">Kun kontaktpersoner som er pålogget</code>
+    <code id="cl_group_display_all">Alle kontaktpersoner</code>
+    <code id="cl_group_expand">Vis kontaktpersoner som er avlogget</code>
+    <code id="cl_group_compact">Skjul kontaktpersoner som er avlogget</code>
+    <code id="cl_group_rename">Omdøp denne gruppen</code>
+    <code id="cl_group_message">Send en melding til alle</code>
+    <code id="cl_room_create">Oprett et nytt rom</code>
+    <code id="cl_room_invite">Inviter til konferanserom</code>
+    <code id="cl_group_empty">Det er ingen personer som er pålogget i denne gruppen.</code>
+    <code id="cl_status_empty">Ingen personlig melding</code>
+    <code id="cl_status_avlogget">Avlogget</code>
+    <code id="cl_status_awaiting">Avventer godkjennelse</code>
+    <code id="cl_status_unknown">Ukjent status</code>
+    <code id="cl_status_waiting_one">1 ulest melding</code>
+    <code id="cl_status_waiting_multiple">${0} uleste meldinger</code>
+    <code id="cl_tooltip_avlogget">Adresse: ${0}</code>
+    <code id="cl_contact_remove_group">Er du sikker på at du vil fjerne brukeren fra denne gruppen?</code>
+    <code id="cl_contact_remove_list">Er du sikker på at du fil fjerne denne brukeren fra din liste over kontaktpersoner?</code>
+    <code id="cl_link_open">Åpne i en nettleser</code>
+    <code id="cl_link_copy">Kopier hyperlink adresse</code>
+    <code id="cl_link_favorite">Legg til foretrukne</code>
+    <code id="cl_ffc">Klar til chat</code>
+    <code id="cl_available">Pålogget</code>
+    <code id="cl_busy">Opptatt</code>
+    <code id="cl_away">Ikke tilstede</code>
+    <code id="cl_xaway">Ikke tilstede i lengere</code>
+    <code id="cl_invisible">Vis som avlogget</code>
+    <code id="cl_tooltip_pålogget">Adresse: ${0}&#13;Ressurs: ${1}</code>
+  </window>
+  <window name="about">
+    <item id="btn_credits">
+      <value>Takk til &gt;</value>
+    </item>
+    <item id="btn_copyright">
+      <value>Copyrights &gt;</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="copy_darkproject">
+      <innerHTML>De fleste ikoner og standard emoikoner er copyright &amp;copy; beskyttet 2001 Greg Fleming.</innerHTML>
+    </item>
+    <item id="copy_rsa">
+      <innerHTML>Benytter MD5 Message-Digest-algoritmen. Copyright RSA Data Security, Inc.</innerHTML>
+    </item>
+    <item id="copy_dns">
+      <innerHTML>Basert på BIND. Copyright Internet Software Consortium, Inc.</innerHTML>
+    </item>
+    <item id="txt_copyright">
+      <innerHTML>Copyright &amp;copy;</innerHTML>
+    </item>
+    <code id="copy_basis">Basert på ${0}. Copyright &amp;copy; ${1} ${2}.</code>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>Vis profil</value>
+    </item>
+    <item id="btn_deny">
+      <value>Avvis</value>
+    </item>
+    <item id="btn_accept">
+      <value>Aksepter</value>
+    </item>
+    <item id="txt_from">
+      <innerText>Du har mottatt en anmodning om godkjennelse fra:</innerText>
+    </item>
+    <item id="txt_reason">
+      <innerText>Begrunnelse:</innerText>
+    </item>
+    <item id="txt_add">
+      <innerText>Legg til denne brukeren til min liste over kontaktpersoner</innerText>
+    </item>
+  </window>
+  <window name="admin_users">
+    <item id="btn_refresh">
+      <value>Oppdater</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Klikk på en konto for å sende en melding. Høyreklikk for å se flere innstillinger.</innerText>
+    </item>
+    <code id="add_to_list">Legg til liste over kontaktpersoner</code>
+    <code id="tooltip_with">Adresse: ${0}&#13;Ressurs: ${1}&#13;Tid pålogget: ${2}</code>
+    <code id="tooltip_without">Adresse: ${0}&#13;Tid pålogget: ${1}</code>
+    <code id="loading">Leser inn...</code>
+    <code id="invalid_data">De mottatte data er ugyldige.</code>
+    <code id="server_error">Tjenerfeil:</code>
+    <code id="server_failed">Listen over brukere som er pålogget kunne ikke hentes.&lt;BR&gt;Kontroller at du har administrasjonsadgang til tjeneren.</code>
+    <code id="user">1 bruker pålogget</code>
+    <code id="users">${0} brukere pålogget</code>
+  </window>
+  <window name="admin">
+    <item id="btn_view">
+      <value>Vis alle brukere som er pålogget</value>
+    </item>
+    <item id="btn_close">
+      <value>Lukk</value>
+    </item>
+    <item id="admin_btn_wall">
+      <value>Send</value>
+    </item>
+    <item id="admin_btn_motd">
+      <value>Send</value>
+    </item>
+    <item id="txt_wall_desc">
+      <innerText>Denne beskjeden blir sendt til brukere som i øyeblikket er pålogget.</innerText>
+    </item>
+    <item id="txt_motd_desc">
+      <innerText>Denne beskjeden blir sendt til brukere når de logger på.</innerText>
+    </item>
+    <item id="txt_wall">
+      <innerText>Melding til alle</innerText>
+    </item>
+    <item id="txt_motd">
+      <innerText>Dagens melding</innerText>
+    </item>
+    <item id="txt_view">
+      <innerText>Overvåk hvem som er tilkoblet til tjeneren.</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Bruk disse funksjoner dor å overvåke og administrere IM tjeneren.</innerText>
+    </item>
+    <item id="txt_users">
+      <innerText>Brukere</innerText>
+    </item>
+    <code id="wnd_users">Brukere som er pålogget</code>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>Rydd output</value>
+    </item>
+    <item id="btn_send">
+      <value>Send</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>Tilstedeværelse</value>
+    </item>
+    <item id="btn_message">
+      <value>Melding</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>Nettverkstrafikk:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>Ombrytt linjer</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>XML input:</innerText>
+    </item>
+    <code id="toggle_on">Debug er slått på</code>
+    <code id="toggle_off">Debug er slått av</code>
+    <code id="valid_xml">Input må være gyldig XML. Ikke bare blanke tegn eller ren tekst.</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>Lukk</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Beskjeder og overskrifter</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Spesielle beskjeder blir vist når du mottar nyhetsoverskrifter eller annen kort informasjon.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Ingen beskjeder eller overskrifter er mottatt.</innerText>
+    </item>
+    <item id="alertonlinelabel">
+      <innerText>Vis en beskjed når en person kommer pålogget</innerText>
+    </item>
+    <code id="read_more">Mer...</code>
+    <code id="replay">Gjenta</code>
+  </window>
+  <window name="headline-toaster">
+    <item id="options">
+      <innerText>Innstillinger...</innerText>
+    </item>
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_custom">
+      <value>Egendefinert...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Velg et personlig bilde som identifiserer deg.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Leser inn...</innerText>
+    </item>
+    <code id="error_size">Kan ikke lese inn bildet. Filstørrelsen overskrider 8 kilobyte.</code>
+    <code id="error_empty">Kan ikke lese inn bildet. Filen er tom.</code>
+    <code id="error_load">Advarsel! Kan ikke lese inn avatar bilder.&#13;${0}</code>
+    <code id="menu_use">Bruk dette avtar bildet</code>
+    <code id="menu_saveas">Lagre som...</code>
+    <code id="menu_delete">Slett</code>
+    <code id="wnd_select">Velg et avatar bilde</code>
+    <code id="saveas_files">Bildefiler</code>
+    <code id="image_files">Bildefiler mindre enn 8kB</code>
+    <code id="all_files">Alle filer</code>
+  </window>
+  <window name="mode_select">
+    <item id="txt_message">
+      <innerText>Din personlige melding viser ditt humør, det du foretar deg eller alt mulig annet:</innerText>
+    </item>
+    <item id="lbl_ask_status">
+      <innerText>Be meg sette en melding når jeg skifter min status</innerText>
+    </item>
+    <code id="btn_ok">OK</code>
+    <code id="btn_ok_empty">OK (ingen melding)</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nytt navn:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nytt navn:</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nytt navn:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>Bekreft nytt passord:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Nytt passord:</innerText>
+    </item>
+    <code id="no_match">De oppgitte passordene er ikke like.&#13;Skriv inn passordet i begge tekstfeltene.</code>
+    <code id="no_pass">Oppgi det nye passordet.</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="set_version">
+      <innerText>Leser inn...</innerText>
+    </item>
+    <item id="header-images">
+      <innerText>Bilder</innerText>
+    </item>
+    <item id="header-sounds">
+      <innerText>Lyder</innerText>
+    </item>
+    <item id="header-markup">
+      <innerText>Formatering av tekst</innerText>
+    </item>
+    <code id="empty">Denne pakken med emoikoner er tom.</code>
+    <code id="file_error">Filfeil</code>
+    <code id="cannot_load">Kan ikke lese inn emoikonene.</code>
+    <code id="count_one">1 emoikon</code>
+    <code id="count_multiple">${0} emoikoner</code>
+  </window>
+  <window name="emoticon_download">
+    <item id="btn_close">
+      <value>Lukk</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Hent emoikoner</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>En internettforbindelse er påkrevd for å se gjennom katalogen med emoikoner.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Leser inn...</innerText>
+    </item>
+    <code id="install">Installer</code>
+    <code id="cannot_download">Feil: Kan ikke hente emoikoner.&#13;${0}</code>
+    <code id="invalid_xml">Datakilden inneholder ugyldige data.</code>
+    <code id="no_new_styles">Der er ingen nye pakker med emoikoner tilgjengelige.</code>
+  </window>
+  <window name="emoticon_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Tilgjengelige emoikoner</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Velg en pakke med emoikoner fra listen.</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>Leser inn...</innerText>
+    </item>
+    <item id="btn_emoticon_download">
+      <value>Flere emoikoner</value>
+    </item>
+    <code id="emoticon_details">Vis detaljer</code>
+    <code id="emoticon_remove">Slett</code>
+    <code id="emoticon_confirm">Er du sikker på at du vil slette denne pakken med emoikoner?</code>
+    <code id="no_emoticons">Ingen emoikoner funnet.</code>
+  </window>
+  <window name="background_download">
+    <item id="btn_close">
+      <value>Lukk</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Hent bakgrunnsbilder</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Bakgrunnsbilder.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Leser inn...</innerText>
+    </item>
+    <code id="install">Installer</code>
+    <code id="cannot_download">Feil: Kan ikke hente bakgrunnsbilder.&#13;${0}</code>
+    <code id="invalid_xml">Datakilden inneholder ugyldige data.</code>
+    <code id="no_new_styles">Der er ingen nye bakgrunnsbilder tilgjengelige.</code>
+  </window>
+  <window name="background_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Tilgjengelige bakgrunnsbilder</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Legg til eller fjern bakgrunnsbilder.</innerText>
+    </item>
+    <item id="btn_background_download">
+      <value>Flere bakgrunnsbilder</value>
+    </item>
+    <item id="txt_background_empty">
+      <innerText>Ingen bakgrunnsbilder er installert.</innerText>
+    </item>
+    <code id="background_uninstall">Slett</code>
+    <code id="background_confirm">Er du sikker på, at du vil slette dette bakgrunnsbildet?</code>
+  </window>
+  <window name="plugin_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Installerte plug-ins</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Legg til eller fjern plug-ins.</innerText>
+    </item>
+    <item id="btn_plugin_download">
+      <value>Flere plug-ins</value>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>Ingen plug-ins er installert.</innerText>
+    </item>
+    <code id="plugin_uninstall">Avinstaller</code>
+    <code id="plugin_confirm">Er du sikker på at du vil fjerne denne plug-inen?</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>Lukk</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Hent plug-ins</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>En internettforbindelse er nødvendig for å se gjennom katalogen med plug-ins.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Leser inn...</innerText>
+    </item>
+    <code id="install">Installer</code>
+    <code id="cannot_download">Fejl: Kan ikke hente plug-ins.&#13;${0}</code>
+    <code id="invalid_xml">Datakilden indeholder ikke gyldig XML.</code>
+    <code id="no_new_plugins">Der er ingen nye plug-ins tilgjengelige.</code>
+  </window>
+  <window name="autoupdate">
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="btn_install">
+      <value>Installer</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Kobler til...</innerText>
+    </item>
+    <code id="download_confirm">En oppdatert versjon av programmet er tilgjengelig: ${0} ${1}&#13;Vil du hente denne oppdateringen?</code>
+    <code id="downloading">Henter...</code>
+    <code id="complete">Nedlasting fullført. Klikk på Installer for å fortsette.</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Alle konferanserom har en unik adresse. Oppgi konferansetjenestens adresse og et unikt navn til rommet.</innerText>
+    </item>
+    <item id="txt_service">
+      <innerText>Tjenestens adresse:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Eksempel: konferanse.example.net</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>Rommets navn:</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>Konferenserommets adresse:</innerText>
+    </item>
+    <code id="incomplete">Fyll inn alle felter...</code>
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>Send</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>Send til disse personer:</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>Normal melding</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>Varslingsmelding</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>Meldingstype</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>Legg ved hyperlink</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>Melding</innerText>
+    </item>
+  </window>
+  <window name="extension_download">
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Kobler til...</innerText>
+    </item>
+    <code id="downloading">Henter...</code>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>Lukk</value>
+    </item>
+    <item id="btn_accept">
+      <value>Aksepter</value>
+    </item>
+    <item id="btn_abort">
+      <value>Avbryt</value>
+    </item>
+    <item id="btn_open">
+      <value>Åpne</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Resterende tid:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>Avsender:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Filnavn:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Plassering:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Status:</innerText>
+    </item>
+    <code id="resume">Filen eksisterer. Vil du gjenoppta overføringen?&#13;Klikk på Ja for å gjenoppta filen.&#13;Klikk på Nei for å overskrive filen.</code>
+    <code id="cannot_overwrite">Kan ikke overskrive fil:&#13;${0}&#13;${1}</code>
+    <code id="incorrect">Kan ikke initialisere overførsel. De mottatte data er ikke korrekte.</code>
+    <code id="title_saving">${0}% av ${1} lagret</code>
+    <code id="lessthanminute">Mindre enn 1 minutt ved ${0}/s</code>
+    <code id="onehour">1 time og</code>
+    <code id="hours">${0} timer og</code>
+    <code id="oneminute">1 minut ved</code>
+    <code id="minutes">${0} minutter ved</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Vil du avbryte overføringen?</code>
+    <code id="aborted">Avbrutt</code>
+    <code id="finished">Avsluttet</code>
+    <code id="error_timeout">Timeout.</code>
+    <code id="error_code">Feilkode: ${0}</code>
+    <code id="error_file">Filfeilkode: ${0}</code>
+    <code id="title_completed">Overføring fullført - ${0}</code>
+    <code id="title_failed">Overføringen feilet - ${0}</code>
+    <code id="error_move">Kan ikke flytte fullført fil:&#13;${0}&#13;${1}</code>
+    <code id="error_failed">Overføringen feilet.</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>Lukk</value>
+    </item>
+    <item id="btn_abort">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Resterende tid:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>Modtager:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Filnavn:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Plassering:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Status:</innerText>
+    </item>
+    <code id="socket">Filen kan ikke sendes.&#13;Kan ikke åpne nettverksforbindelsen.</code>
+    <code id="file">Kan ikke lese filen:&#13;${0}</code>
+    <code id="filetransfer">Filoverføring:</code>
+    <code id="title_saving">${0}% av ${1} Sendt</code>
+    <code id="lessthanminute">Mindre enn 1 minutt ved ${0}/s</code>
+    <code id="onehour">1 time og</code>
+    <code id="hours">${0} timer og</code>
+    <code id="oneminute">1 minutt ved</code>
+    <code id="minutes">${0} minutter ved</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Vil du avbryte overføringen?</code>
+    <code id="finished">Avsluttet</code>
+    <code id="aborted">Avbrutt</code>
+    <code id="error_denied">Fil avvist.</code>
+    <code id="error_timeout">Timeout.</code>
+    <code id="error_code">Feilkode: ${0}</code>
+    <code id="title_completed">Overføring fullført - ${0}</code>
+    <code id="title_failed">Overføringen feilet - ${0}</code>
+    <code id="error_failed">Overføringen feilet.</code>
+  </window>
+  <window name="conference_browse">
+    <item id="btn_close">
+      <value>Lukk</value>
+    </item>
+    <item id="btn_other_service">
+      <value>Annen tjeneste...</value>
+    </item>
+    <item id="btn_create">
+      <value>Oprett et konferanserom</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Tilgengelige rom:</innerText>
+    </item>
+    <item id="lbl_empty">
+      <innerText>Vis tomme rom</innerText>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="lbl_full">
+      <innerText>Vis fulle rom</innerText>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="lbl_filter">
+      <innerText>Filter:</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Det er ingen konferansetjenester tilgjengelige på denne tjeneren.&#13;Klikk på knappen "Andre tjenester..." for å legge til en konferansetjeneste fra en annen tjener.</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>For å delta i et konferanserom må du være tilkoblet til tjeneren.</innerText>
+    </item>
+    <code id="bookmarks">Foretrukne</code>
+    <code id="menu_join">Delta</code>
+    <code id="menu_add">Legg til foretrukne...</code>
+    <code id="empty_filter">Ingen rom passer til filteret</code>
+    <code id="empty_no_rooms">Ingen rom er tilgjengelige på denne tjenesten</code>
+    <code id="status_connecting">Kobler til...</code>
+    <code id="status_downloading">Henter listen over konferanserom...</code>
+    <code id="error_unknown">Tjenesten "${0}" er ikke tilgjengelig. Kontroller at du har oppgitt korrekt adresse. Prøv igen senere eller oppgi en annen adresse.</code>
+    <code id="error_no_services">Tjeneren "${0}" har ingen konferansetjenester installert. Kontakt administratoren for at få ytterligere informasjon.</code>
+    <code id="error_no_new">Alle konferansetjenester på tjeneren "${0}" er allerede vist.</code>
+  </window>
+  <window name="conference_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Adresse:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Eksempel: konferanse.eksempel.net</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Oppgi adressen på en konferansetjeneste eller tjener.</innerText>
+    </item>
+    <code id="error_already_exists">Tjenesten "${0}" er allerede vist. Oppgi adressen på en konferansetjeneste eller tjener som ikke allerede er vist.</code>
+  </window>
+  <window name="vcard">
+    <code id="save">Advarsel! Kan ikke lagre vCard-fil.&#13;${0}</code>
+    <code id="personal">Brukeropplysninger</code>
+    <code id="system">Systemopplysninger</code>
+
+    <item id="txt_requesting1">
+      <innerText>Ber om opplysninger fra tjeneren</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Dette kan ta opp til et minutt.&lt;BR&gt;Ha tålmodighet.</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>Lagre som vCard</value>
+    </item>
+    <item id="btn_refresh">
+      <value>Oppdater</value>
+    </item>
+    <item id="btn_close">
+      <value>Lukk</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>Omgjør endringer</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>Personlig</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>Mer info</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>Privatadresse</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>Firma</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>Firmaadresse</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>System</innerText>
+    </item>
+
+    <item id="txt_name">
+      <innerText>Navn</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>Fornavn:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>Mellomnavn:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>Etternavn:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>Kallenavn:</innerText>
+    </item>
+
+    <item id="txt_contact">
+      <innerText>Kontakt</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>E-post:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>Telefon:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>Mobiltelefon:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>Faks:</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>Ytterligere informasjon</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>Alder:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>Fødselsdag:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>Kjønn:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>Sivilstand:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>Webside:</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>Privatadresse</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>Adresse 1:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>Adresse 2:</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>By:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>Postnummer:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>Område:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>Land:</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>Organisasjon</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>Navn:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>Avdeling:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>Stilling:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>Rolle:</innerText>
+    </item>
+
+    <item id="txt_workcontact">
+      <innerText>Kontakt</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>E-post:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>Telefon:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>Mobiltelefon:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>Faks:</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>Firmaadresse</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>Adresse 1:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>Adresse 2:</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>By:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>Postnummer:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>Område:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>Land:</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>Klientopplysninger</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>Adresse:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>Ressurs:</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>Lokal tid:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>Programvare:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>Versjon:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>Operativsystem:</innerText>
+    </item>
+  </window>
+  <window name="transport_list">
+    <item id="btn_other">
+      <value>Andre transporter...</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Tilgængelige transporter</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Transporter oppretter forbindelse med andre instant messaging nettverk.</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;Bemerk!:&lt;/B&gt; For å konfigurere transportene må du være tilkoblet tjeneren.</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;Bemerk!:&lt;/B&gt; Den tjeneren du er koblet til har ingen transporter innstallert. Kontakt administratoren for å få ytterligere informasjon.</innerHTML>
+    </item>
+    <item id="msnworkaroundlabel">
+      <innerText>Tillatt MSN-kontaktpersoner å skifte deres kallenavn</innerText>
+    </item>
+    <code id="status_active">Aktiv</code>
+    <code id="status_noreg">Ikke registrert</code>
+    <code id="status_disconnected">Ikke tilkoblet</code>
+    <code id="status_connecting">Kobler til...</code>
+    <code id="name_unknown">Ukjent tjeneste</code>
+    <code id="error_unknown">Tjenesten "${0}" er ikke tilgjengelig. Kontroller at du har oppgitt korrekt adresse. Prøv igjen senere eller oppgi en annen adresse.</code>
+    <code id="error_no_transports">Tjeneren "${0}" har ingen transporter innstallert. Kontakt administratoren for å få ytterligere informasjon.</code>
+    <code id="error_no_new_transport">Alle transporter på tjeneren "${0}" er allerede vist.</code>
+  </window>
+  <window name="transport_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Adresse:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Eksempel: sms.eksempel.net</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Oppgi adressen på en transport eller tjener.</innerText>
+    </item>
+    <code id="error_already_exists">Tjenesten "${0}" er allerede vist. Oppgi adressen på en transport eller tjener som ikke allerede er vist.</code>
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; Tilbake</value>
+    </item>
+    <item id="btn_next">
+      <value>Neste &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>Utfør</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>Avbryt</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>Adresse:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>Kallenavn:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>Adresse:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Passord:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>Kallenavn:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>Du er allerede registreret hos denne transport.&lt;BR&gt;Den konto du har registreret er:</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>Deaktiver transport</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText>Kontakter server</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Dette kan ta opp til et minutt.&lt;BR&gt;Ha tålmodighet.</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>Klikk på &lt;B&gt;Utfør&lt;/B&gt; for å lukke denne guiden.</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>Klikk på &lt;B&gt;Neste&lt;/B&gt; for å fortsette.</innerHTML>
+    </item>
+
+    <code id="error_invalid">De mottatte data er ugyldige</code>
+    <code id="error_server">&lt;B&gt;Tjenerfeil:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(kode ${1})&lt;BR&gt;&lt;BR&gt;Kan ikke fortsette.</code>
+    <code id="error_unknown">&lt;B&gt;Ukjent feil:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(kode ${1})&lt;BR&gt;&lt;BR&gt;Kan ikke fortsette.</code>
+    <code id="error_auth">&lt;B&gt;Godkjennelsesfeil:&lt;/B&gt;&lt;BR&gt;Feil brukernavn eller passord.&lt;BR&gt;&lt;BR&gt;Kan ikke fortsette.</code>
+    <code id="wait">&lt;B&gt;Kontakter tjener&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Dette kan ta opp til et minutt.&lt;BR&gt;Ha tålmodighet.&lt;BR&gt;</code>
+
+    <code id="default_window_title">Transportkonfigurasjon</code>
+    <code id="default_begin_intro">Denne guiden hjelper deg med å konfigurere transporten.&lt;BR&gt;Denne transporten er en forbindelse mellem deg og et annet nettverk.&lt;BR&gt;Du må ha en konto på det andre nettverket for å bruke denne transporten.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">Oppgi din konto og ditt passord.&lt;BR&gt;Du kan også oppgi et passord som andre kan se.&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">Din konto blir registrert hos transporten.</code>
+    <code id="default_removing_busy">Din konto blir fjernet fra transporten.&lt;BR&gt;</code>
+    <code id="default_creating_done">Det lyktes å registrere kontoen hos transporten.</code>
+    <code id="default_removing_done">Det lyktes å fjerne kontoen fra transporten.</code>
+
+    <code id="msn_window_title">MSN Messenger - transportkonfigurasjon</code>
+    <code id="msn_begin_intro">Denne guiden hjelper deg med å konfigurere MSN-transporten.&lt;BR&gt;Denne transporten er en forbindelse mellom deg og din MSN-konto.&lt;BR&gt;Du må ha et Microsoft Passport for å bruke denne transporten.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">Oppgi din MSN adresse og ditt MSN-passord.&lt;BR&gt;Du kan også oppgi et kallenavn som andre kan se.&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">Eksempler: person@msn.com, person@hotmail.com</code>
+    <code id="msn_creating_busy">Din konto blir registrert hos MSN-transporten.</code>
+    <code id="msn_removing_busy">Din MSN-konto blir fjernet fra transporten.&lt;BR&gt;Du vil fortsatt være i stand til å bruke din MSN-konto hos andre tjenester (f.eks. Hotmail, MSN Explorer osv.).&lt;BR&gt;</code>
+    <code id="msn_creating_done">Det lyktes å registrere kontoen hos MSN-transporten.</code>
+    <code id="msn_removing_done">Det lyktes å fjerne kontoen fra MSN-transporten.</code>
+
+    <code id="icq_window_title">ICQ - transportkonfigurasjon</code>
+    <code id="icq_begin_intro">Denne guiden hjelper deg med å konfigurere ICQ-transporten.&lt;BR&gt;Denne transporten er en forbindelse mellom deg og din ICQ-konto.&lt;BR&gt;Du må ha et eksisterende User Identification Number (ICQ-nummer) for å bruke denne transporten.&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Oppgi ditt ICQ-nummer og ditt ICQ-passord.&lt;BR&gt;Du kan også oppgi et kallenavn som andre kan se.&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">Eksempler: 39230793, 158525087</code>
+    <code id="icq_creating_busy">Din konto blir registrert hos ICQ-transporten.</code>
+    <code id="icq_removing_busy">Din ICQ-konto blir fjernet fra transporten.&lt;BR&gt;</code>
+    <code id="icq_creating_done">Det lyktes å registrere kontoen hos ICQ-transporten.</code>
+    <code id="icq_removing_done">Det lyktes å fjerne kontoen fra ICQ-transporten.</code>
+
+    <code id="yahoo_window_title">Yahoo! Messenger - transportkonfigurasjon</code>
+    <code id="yahoo_begin_intro">Denne guiden hjelper deg med å konfigurere Yahoo!-transporten.&lt;BR&gt;Denne transporten er en forbindelse mellom deg og din Yahoo!-konto.&lt;BR&gt;Du må ha en eksisterende Yahoo!-konto for å bruke denne transporten.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Oppgi ditt Yahoo!-brukernavn og ditt Yahoo!-passord.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">Din konto blir registrert hos Yahoo!-transporten.</code>
+    <code id="yahoo_removing_busy">Din Yahoo!-konto blir fjernet fra transporten.&lt;BR&gt;Du vil fortsatt kunne bruke din Yahoo!-konto for andre tjenester (f.eks. Yahoo! mail, Yahoo! Messenger osv.).&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">Det lyktes å registrere kontoen hos Yahoo!-transporten.</code>
+    <code id="yahoo_removing_done">Det lyktes å fjerne kontoen fra Yahoo!-transporten.</code>
+
+    <code id="aim_window_title">AOL Instant Messenger - transportkonfigurasjon</code>
+    <code id="aim_begin_intro">Denne guiden hjelper deg med å konfigurere AOL IM-transporten.&lt;BR&gt;Denne transporten er en forbindelse mellom deg og din AOL IM-konto.&lt;BR&gt;Du må ha en AOL IM-konto for å bruke denne transporten.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">Oppgi ditt AOL IM-screenname og ditt passord.&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">Din konto blir registrert hos AOL IM-transporten.</code>
+    <code id="aim_removing_busy">Din AOL IM-konto blir fjernet fra transporten.&lt;BR&gt;Du vil fortsat være i stand til at bruge din AOL IM-konto med andet software.&lt;BR&gt;</code>
+    <code id="aim_creating_done">Det lyktes å registrere kontoen hos AOL IM-transporten.</code>
+    <code id="aim_removing_done">Det lyktes å fjerne kontoen fra AOL IM-transporten.</code>
+
+    <code id="gadu_window_title">Gadu-Gadu - transportkonfigurasjon</code>
+    <code id="gadu_begin_intro">Denne guiden hjelper deg med å konfigurere Gadu-Gadu-transporten.&lt;BR&gt;Denne transporten er en forbindelse mellom deg og din Gadu-Gadu-konto.&lt;BR&gt;Du må ha et Gadu-Gadu-nummer for å bruke denne transporten.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_instructions">Oppgi ditt Gadu-Gadu-nummer og ditt passord.&lt;BR&gt;Du kan også oppgi et kallenavn, som andre kan se.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_examples">&amp;nbsp;</code>
+    <code id="gadu_creating_busy">Ditt Gadu-Gadu nummer blir registrert hos transporten.</code>
+    <code id="gadu_removing_busy">Ditt Gadu-Gadu-nummer blir fjernet fra transporten.&lt;BR&gt;</code>
+    <code id="gadu_creating_done">Det lyktes å registrere Gadu-Gadu-nummeret hos transporten.</code>
+    <code id="gadu_removing_done">Det lyktes å fjerne Gadu-Gadu-nummeret fra transporten.</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>Søk</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>Lagre</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>Skriv ut</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>Slett</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>Meldingsoversikt</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>Søk:</innerText>
+    </item>
+    <code id="loading">Leser inn meldingsoversikten...</code>
+    <code id="empty">Meldingsoversikten er tom.</code>
+    <code id="error_load">Kan ikke lese inn meldingsoversikten:&#13;${0}</code>
+    <code id="one_message">1 melding</code>
+    <code id="many_messages">${0} meldinger</code>
+    <code id="tooltip_save">Lagre dagens meldingsoversikt</code>
+    <code id="tooltip_print">Skriv ut dagens meldingsoversikt</code>
+    <code id="error_open">Feil: Kan ikke åpne meldingsoversikten.</code>
+    <code id="error_read">Fejil: Kan ikke lese meldingsoversikten.</code>
+    <code id="delete_confirm">Er du sikker på, at du vil slette hele meldingsoversikten for ${0}?</code>
+    <code id="delete_cannot">Kan ikke fjerne oversiktsfilen: ${0}&#13;Ingen meldinger ble slettet.</code>
+    <code id="error_print">Kan ikke skrive ut noe.&#13;Meldingsoversikten er tom.</code>
+    <code id="error_save">Kan ikke lagre meldingsoversikten.&#13;${0}</code>
+  </window>
+  <window name="chat-messages">
+    <code id="copy">Kopier</code>
+    <code id="copyall">Kopier alt</code>
+    <code id="clear">Rydd</code>
+    <code id="selectall">Marker alt</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>Vis hva du tenker eller foretar deg</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Skift tekstfargen eller skrifttypen</title>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Velg et annet bakgrunnsbilde</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Emoikoner</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Skrifttype</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Bakgrunnsbilde</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>Skift størrelsen på meldingsfeltet</title>
+    </item>
+    <item id="mode-bar">
+      <title>Personen som mottar din melding</title>
+    </item>
+    <item id="send-text">
+      <title>Skriv din melding her</title>
+    </item>
+    <item id="btn-send">
+      <value>Send</value>
+      <title>Send meldingen</title>
+    </item>
+
+    <code id="tt-avatar">Vis avatar i full størrelse</code>
+    <code id="tt-messages">Melding er sendt og mottatt</code>
+    <code id="tt-close">Avslutt denne samtalen</code>
+    <code id="msg_typing">${0} skriver en melding</code>
+    <code id="unknown">${0} svarer muligens ikke, fordi vedkommendes status er ukjent</code>
+    <code id="lastpålogget">Sist pålogget: ${0}</code>
+    <code id="windowtitle">${0} - samtale</code>
+    <code id="background_no">Intet bakgrunnsbilde</code>
+    <code id="background_list">Tilgjengelige bakgrunnsbilder...</code>
+    <code id="close_many_tabs">Vil du lukke alle samtaler?</code>
+    <code id="close_recent_message">Du har nettopp mottatt en melding.&#13;Vil du lukke denne samtalen?</code>
+    <code id="palette_compact">Reduser størrelsen på listen av emoikoner</code>
+    <code id="palette_expand">Vis alle emoikoner i denne pakken</code>
+    <code id="palette_browse">Andre pakker med emoikoner...</code>
+
+    <code id="menu_file_received">&amp;Åpne mine mottatte filer</code>
+    <code id="menu_file_history">&amp;Meldingsoversikt</code>
+    <code id="menu_file_close">&amp;Lukk samtale</code>
+
+    <code id="menu_axn_contact">&amp;Kontaktperson</code>
+    <code id="menu_axn_add">Legg til listen over kontaktpersoner</code>
+    <code id="menu_axn_block">&amp;Blokker</code>
+    <code id="menu_axn_rename">&amp;Omdøb</code>
+    <code id="menu_axn_panel">&amp;Vis funksjonspanelet</code>
+    <code id="menu_axn_profile">&amp;Vis profil</code>
+    <code id="menu_axn_file">&amp;Send en fil</code>
+
+    <code id="menu_tool_emo_style">&amp;Velg emoikoner...</code>
+    <code id="menu_tool_font">&amp;Skift skrifttype...</code>
+    <code id="menu_tool_background">&amp;Velg bakgrunnsbilde...</code>
+    <code id="menu_tool_aot">&amp;Alltid øverst</code>
+    <code id="menu_tool_popup">&amp;Popup nye meldinger</code>
+    <code id="menu_tool_tabbed">&amp;Vis samtaler i faner</code>
+    <code id="menu_tool_emoticons">&amp;Vis emoikoner</code>
+    <code id="menu_tool_settings">&amp;Innstillinger</code>
+  </window>
+  <window name="conference-bookmarks-add">
+    <item id="txt_address">
+      <innerText>Konferanserommets adresse:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Eksempel: mitt_rom@konferanse.eksempel.net</innerText>
+    </item>
+    <item id="lbl_autojoin">
+      <innerText>Delta i dette konferanserommet når jeg logger på</innerText>
+    </item>
+    <item id="lbl_password">
+      <innerText>Få adgang til rommet med dette passordet:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <code id="error_invalid_address">Konferanserommets adresse er ugyldig.</code>
+  </window>
+  <window name="conference-bookmarks-manage">
+    <item id="txt_head">
+      <innerText>Rediger, slett eller legg til foretrukne konferanserom:</innerText>
+    </item>
+    <item id="btn_edit">
+      <value>Rediger</value>
+    </item>
+    <item id="btn_delete">
+      <value>Slett</value>
+    </item>
+    <item id="btn_add">
+      <value>Legg til</value>
+    </item>
+    <item id="btn_close">
+      <value>Lukk</value>
+    </item>
+    <code id="confirm_delete">Vil du slette dette foretrukne konferanserom?</code>
+  </window>
+  <window name="conference-configuration">
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_form_loading">
+      <innerText>Leser inn...</innerText>
+    </item>
+    <item id="txt_form_empty">
+      <innerText>Dette konferanserommet har ingen konfigurerbare innstillinger</innerText>
+    </item>
+    <item id="txt_form_invalid">
+      <innerText>Feil: Kan ikke hente konferanserommets konfigurasjon</innerText>
+    </item>
+    <code id="form_title">Innstillinger for dette konferanserommet</code>
+    <code id="form_subtitle">Fyllt ut dette skjemaet for å konfigurere konferanserommet</code>
+
+    <code id="muc#roomconfig_allowinvites">Tillat deltakere å invitere andre brukere</code>
+    <code id="muc#roomconfig_changesubject">Tillat deltakere å endre konferanserommets overskrift</code>
+    <code id="muc#roomconfig_enablelogging">Logg alle meldinger i konferanserommet</code>
+    <code id="muc#roomconfig_lang">Språk brukt i konferanserommet</code>
+    <code id="muc#roomconfig_maxusers">Maksimalt antall deltakere i konferanserommet</code>
+    <code id="muc#roomconfig_membersonly">Kun medlemmer har tillatelse til å få adgang til konferanserommet</code>
+    <code id="muc#roomconfig_moderatedroom">Godkjennelse fra ordstyrere er påkrevd for å sende meldinger</code>
+    <code id="muc#roomconfig_passwordprotectedroom">Et passord er påkrevd for å få adgang til konferanserommet</code>
+    <code id="muc#roomconfig_persistentroom">Konferanserommet forsvinner ikke når alle har forlatt det</code>
+    <code id="muc#roomconfig_presencebroadcast">Roller for hvem statusopplysninger er sendt til alle</code>
+    <code id="muc#roomconfig_publicroom">Vis konferanserommet i listen over offentlige konferanserom</code>
+    <code id="muc#roomconfig_roomadmins">Konferanserommets administratorer</code>
+    <code id="muc#roomconfig_roomdesc">Konferanserommets beskrivelse</code>
+    <code id="muc#roomconfig_roomname">Konferanserommets navn</code>
+    <code id="muc#roomconfig_roomowners">Konferanserommets eiere</code>
+    <code id="muc#roomconfig_roomsecret">Passord for å få adgang til konferanserommet</code>
+    <code id="muc#roomconfig_whois">Tilknytninger som kan finne frem til den riktige adresse på alle deltakere</code>
+  </window>
+  <window name="conference-password">
+    <item id="txt_password">
+      <innerText>Passord:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-name">
+    <item id="txt_name">
+      <innerText>Navn:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-subject">
+    <item id="txt_subject">
+      <innerText>Overskrift:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-invite">
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Velg de kontaktpersoner som du vil invitere.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Der er ingen kontaktpersoner som er pålogget i listen over kontaktpersoner.</innerText>
+    </item>
+  </window>
+  <window name="conference-accesslevel">
+    <item id="txt-name">
+      <innerText>Navn:</innerText>
+    </item>
+    <item id="txt-room">
+      <innerText>Rom:</innerText>
+    </item>
+
+	<item id="txt-role">
+      <innerText>Rolle</innerText>
+    </item>
+	<item id="txt-visitor">
+      <innerText>Gjest</innerText>
+    </item>
+    <item id="txt-visitor-desc">
+      <innerText>Kan lese meldinger</innerText>
+    </item>
+	<item id="txt-participant">
+      <innerText>Deltaker</innerText>
+    </item>
+    <item id="txt-participant-desc">
+      <innerText>Kan også sende meldinger</innerText>
+    </item>
+	<item id="txt-moderator">
+      <innerText>Ordstyrer</innerText>
+    </item>
+    <item id="txt-moderator-desc">
+      <innerText>Kan også sparke deltakere og besøkende ut</innerText>
+    </item>
+
+    <item id="txt-affiliation">
+      <innerText>Tilknytning</innerText>
+    </item>
+	<item id="txt-none">
+      <innerText>Ingen/Medlem</innerText>
+    </item>
+    <item id="txt-none-desc">
+      <innerText>Kan få adgang til konferanserommet</innerText>
+    </item>
+	<item id="txt-admin">
+      <innerText>Administrator</innerText>
+    </item>
+    <item id="txt-admin-desc">
+      <innerText>Kan også legge til ordstyrere og utelukke deltakere</innerText>
+    </item>
+	<item id="txt-owner">
+      <innerText>Eier</innerText>
+    </item>
+    <item id="txt-owner-desc">
+      <innerText>Kan også legge til administratorer</innerText>
+    </item>
+
+    <item id="btn-default">
+      <value>Standard</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-cancel">
+      <value>Avbryt</value>
+      <accessKey>c</accessKey>
+    </item>
+    <item id="btn-close">
+      <value>Lukk</value>
+      <accessKey>c</accessKey>
+    </item>
+  </window>
+  <window name="conference-container">
+    <item id="btn-emoticons">
+      <title>Vis hva du tenker eller foretar deg</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Skift tekstfargen eller skrifttypen</title>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Velg et annet bakgrunnsbilde</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Emoikoner</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Skrifttype</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Bakgrunnsbilde</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>Skift størrelsen på meldingsfeltet</title>
+    </item>
+    <item id="mode-bar">
+      <title>Dette konferanserommets navn, adresse og overskrift</title>
+    </item>
+    <item id="send-text">
+      <title>Skriv din melding her</title>
+    </item>
+    <item id="btn-send">
+      <value>Send</value>
+      <title>Send meldingen</title>
+    </item>
+
+    <item id="occupants-panel">
+      <title>Konferanserommets deltakere</title>
+    </item>
+    <item id="txt-visitors">
+      <innerText>Gæster</innerText>
+      <title>Gjester kan kun lese meldinger, men kan ikke sende noen</title>
+    </item>
+    <item id="txt-moderators">
+      <innerText>Ordstyrere</innerText>
+      <title>Ordstyrere kan sende og lese meldinger og kan smide andre deltakere ud af konferanserommet</title>
+    </item>
+    <item id="txt-participants">
+      <innerText>Deltakere</innerText>
+      <title>Deltakere kan sende og læse meldinger</title>
+    </item>
+
+    <code id="wnd_conference_password">Koble til med et passord</code>
+    <code id="wnd_conference_change_name">Skift mitt navn</code>
+    <code id="wnd_conference_subject">Konferanserommets overskrift</code>
+    <code id="wnd_conference_configuration">Konferanserommets konfigurasjon</code>
+    <code id="wnd_conference_accesslevel">${0} - adgangsnivå</code>
+
+    <code id="tt-messages">Meldinger som er sendt og mottatt</code>
+    <code id="tt-close">Forlat dette konferanserommet</code>
+    <code id="default_subject">Dette konferanserommet har ikke overskrift.</code>
+    <code id="windowtitle">${0} - konferanse</code>
+    <code id="destroy">En nedlegging av dette konferanserommet vil fjerne alle deltakere fra rommet og fjerne rommet fra tjeneren.&#13;Er du sikker på at du vil nedlegge dette konferanserommet?</code>
+    <code id="connecting">Kobler til...</code>
+    <code id="connected">Koblet til</code>
+    <code id="disconnected">Ikke tilkoblet</code>
+    <code id="confirm-kick">Er du sikker på, at du vil sparke "${0}" ut av dette konferanserommet?</code>
+    <code id="kick-error">Kan ikke sparke deltakeren ut: ${0}</code>
+    <code id="kicked">${0} er sparket ut av konferanserommet</code>
+    <code id="kicked-by">${0} er sparket ut av konferanserommet av ${1}</code>
+    <code id="confirm-ban">Er du sikker på, at du vil udelukke "${0}" fra dette konferanserum?</code>
+    <code id="ban-error">Kan ikke utestenge deltakeren: ${0}</code>
+    <code id="banned">${0} er utestengt fra konferanserommet</code>
+    <code id="banned-by">${0} er utestengt fra konferanserommet av ${1}</code>
+    <code id="leaving">${0} forlater konferanserommet</code>
+    <code id="joining">${0} deltar i konferanserommet</code>
+    <code id="renaming">${0} er nå kjent som ${1}</code>
+
+    <code id="menu_file_close">&amp;Lukk konferanse</code>
+
+    <code id="menu_axn_invite">&amp;Inviter kontaktpersoner</code>
+    <code id="menu_axn_change_name">&amp;Skift mitt navn...</code>
+    <code id="menu_axn_password">&amp;Forbind med en adgangskode...</code>
+    <code id="menu_axn_subject">&amp;Skift konferanserommets overskrift</code>
+    <code id="menu_axn_configuration">&amp;Konfigurer dette konferanserommet</code>
+    <code id="menu_axn_destroy">&amp;Nedlegg dette konferanserommet</code>
+
+    <code id="menu_bookmarks">&amp;Foretrukne</code>
+
+    <code id="menu_bmrk_add">&amp;Legg til foretrukne...</code>
+
+    <code id="menu_occupant_private">&amp;Privat melding</code>
+    <code id="menu_occupant_kick">&amp;Spark ut</code>
+    <code id="menu_occupant_ban">&amp;Utesteng</code>
+    <code id="menu_occupant_access">&amp;Adgangsnivå...</code>
+    <code id="menu_occupant_add">&amp;Legg til listen over kontaktpersoner</code>
+    <code id="menu_occupant_profile">&amp;Profil</code>
+
+    <code id="unrecognized-error">Ukjent feil</code>
+    <code id="error-service-unavailable">Tjeneste ikke tilgjengelig</code>
+    <code id="error-not-allowed">Ikke tillat</code>
+    <code id="error-conflict">Konflikt: Kalenavn allerede i bruk</code>
+    <code id="error-registration-required">Registrering påkrevd: Kun for medlemmer</code>
+    <code id="error-forbidden">Forbudt: Ustengt</code>
+    <code id="error-not-authorized">Ikke godkjent: Passord påkrevd</code>
+    <code id="error-item-not-found">Element ikke funnet: Rommet er låst</code>
+  </window>
+  <window name="preferences">
+    <item id="txt_autoaway">
+      <innerText>Når du ikke bruker denne datamaskinen i flere minutter, vil din status endres til "Ikke til stede".</innerText>
+    </item>
+    <item id="txt_displayawaymsg_left">
+      <innerText>Vis denne melding etter</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_left">
+      <innerText>Vis denne melding etter</innerText>
+    </item>
+    <item id="txt_displayawaymsg_right">
+      <innerText>minutter:</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_right">
+      <innerText>minutter:</innerText>
+    </item>
+    <item id="txt_blocking">
+      <innerText>Listen over blokkerte personer inneholder adresser på personer du ikke ønsker å motta meldinger fra.</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>Vis meldinger fra personer som ikke er i min liste over kontaktpersoner</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>Liste over blokkerte personer</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>Opphev blokkering</value>
+    </item>
+    <item id="block_btn_view">
+      <value>Vis profil</value>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Forbindelse innstillinger</innerText>
+    </item>
+    <item id="txt_connection_desc">
+      <innerText>Endre hvordan man kobler til instant messaging tjenere.</innerText>
+    </item>
+    <item id="btn_connection_settings">
+      <value>Forbindelse innstillinger</value>
+    </item>
+    <item id="txt_portmap">
+      <innerText>Filoverføring portmap (NAT, brannmur)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>Host:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_ssl">
+      <innerText>Bruk en krypteret forbindelse (SSL)</innerText>
+    </item>
+    <item id="txt_firewall_proxy">
+      <innerText>Brannmur og proxy tjener</innerText>
+    </item>
+    <item id="txt_proxy1">
+      <innerText>Ingen</innerText>
+    </item>
+    <item id="txt_proxy2">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_proxy3">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_proxy4">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_proxyserver">
+      <innerText>Tjener:</innerText>
+    </item>
+    <item id="txt_proxyport">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_proxyuser">
+      <innerText>Brukernavn:</innerText>
+    </item>
+    <item id="txt_proxypass">
+      <innerText>Passord:</innerText>
+    </item>
+    <item id="txt_portmap">
+      <innerText>Filoverførsel-portmap (NAT, firewall)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>Vert:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>Gjem alle meldinger i meldingsoversikten</innerText>
+    </item>
+    <item id="txt_startup">
+      <innerText>Kjør automatisk ved oppstart</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>Når noen ber om min godkjennelse</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>Spør meg</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>Aksepter alle anmodninger</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>Aksepter brukere som er i min liste over kontaktpersoner, spør for andre</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>Avvis alle anmodninger</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>Avspill en lyd når en melding mottas</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>Avspill en lyd når en person vender tilbake til pålogget status</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>Avspill en lyd når en person logger av</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>Se gjennom</value>
+    </item>
+    <item id="btn_sound_pålogget">
+      <value>Se gjennom</value>
+    </item>
+    <item id="btn_sound_avlogget">
+      <value>Se gjennom</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="lbl_autoaway">
+      <innerText>Ikke til stede</innerText>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>Blokkering</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>Forbindelse</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>Beskyttelse</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>Lyd</innerText>
+    </item>
+    <code id="autoaway">Automatiske Ikke til stede-meldinger</code>
+    <code id="blocking">Liste over blokkerte personer</code>
+    <code id="connection">Forbindelsesinnstillinger</code>
+    <code id="privacy">Beskyttelse av personlige opplysninger</code>
+    <code id="sound">Meldingslyd</code>
+    <code id="reconnect">Du skal oprette forbindelse igjen for å anvende endringene.&#13;Vil du opprette forbindelse igjen nå?</code>
+    <code id="shortcut">Send og motta pålogget meldinger</code>
+    <code id="choose_sound">Velg en meldingslyd</code>
+    <code id="file_audio">Lydfiler</code>
+    <code id="file_any">Alle filer</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>Finn eller legg til en person</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>Du kan søke etter en person med utgangspunkt i personens offentlige opplysninger eller du kan oppgi personens brukernavn.</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>Hvordan vil du legge til en kontaktperson?</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>Jeg vil søke etter en person.</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>Tjeneste:</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML>Jeg kjenner allerede personens instant messaging-adresse.</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>Nettverk:</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>Brukernavn:</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>For å chatte med en person på et annet instant messaging-nettverk må du registreres hos transporten til dette nettverket.</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>Konfigurer transporterne</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>Neste &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_p1_cancel">
+      <value>Avbryt</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>Behandler brukernavn</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>Transporten bekrefter nå brukernavnet.</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; Tilbake</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>Neste &gt;</value>
+    </item>
+    <item id="page1b_btn_cancel">
+      <value>Avbryt</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>Anmoder om søgeformular</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>Søgeformularen indeholder vejledning og alle felter der kan søges på.</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; Tilbake</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>Neste &gt;</value>
+    </item>
+    <item id="page1c_btn_cancel">
+      <value>Avbryt</value>
+    </item>
+
+    <item id="txt_p2_title">
+      <innerText>Anmodningsmelding</innerText>
+    </item>
+    <item id="txt_p2_tagline">
+      <innerText>Du kan la den andre personen vite hvorfor du ønsker vedkommendes godkjennelse ved å sende en melding.</innerText>
+    </item>
+    <item id="page2_btn_back">
+      <value>&lt; Tilbake</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page2_btn_finish">
+      <value>Utfør</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="page2_btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_p2_desc">
+      <innerText>Anmodningen om godkjennelse blir sendt til:</innerText>
+    </item>
+    <item id="txt_p2_user">
+      <innerText>Brukernavn:</innerText>
+    </item>
+    <item id="txt_p2_network">
+      <innerText>Nettverk:</innerText>
+    </item>
+    <item id="txt_p2_message">
+      <innerHTML>Oppgi en melding (valgfritt):</innerHTML>
+    </item>
+    <item id="page2_message">
+      <innerText>Jeg vil gjerne legge deg til min liste over kontaktpersoner.</innerText>
+    </item>
+    <item id="txt_p2_close">
+      <innerHTML>Klikk på &lt;B&gt;Utfør&lt;/B&gt; for å sende anmodningen og lukke denne guiden.</innerHTML>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; Tilbake</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>Søk</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="page3_btn_cancel">
+      <value>Avbryt</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText>Søkeresultater</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>Du kan få vist en brukers personlige opplysninger eller legge brugeren til din liste over kontaktpersoner.</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; Tilbake</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>Neste &gt;</value>
+    </item>
+    <item id="page4_btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <code id="correct">Oppgi et korrekt brukernavn.&#13;Eksempel: person123@${0}</code>
+    <code id="example_address">Eksempel: person123@${0}</code>
+    <code id="enter_username">Oppgi brukernavnet på den person du vil kontakte.</code>
+    <code id="contacting_transport">&lt;B&gt;Kontakter transport&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Dette kan ta opp til et minutt.&lt;BR&gt;Ha tålmodighet.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Kontakter søketjeneste&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Dette kan ta opp til et minutt.&lt;BR&gt;Ha tålmodighet.&lt;BR&gt;</code>
+    <code id="error_transport">&lt;B&gt;Tjenerfeil:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(kode ${1})&lt;BR&gt;&lt;BR&gt;Brukeren kan ikke legges til din liste over kontaktpersoner.&lt;BR&gt;Kontroller, at du har oppgitt korrekt brukernavn.</code>
+    <code id="error_search">&lt;B&gt;Tjenerfeil:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(kode ${1})&lt;BR&gt;&lt;BR&gt;Søkeformularet kan ikke hentes.&lt;BR&gt;Prøv igjen senere eller velg en annen tjeneste.</code>
+    <code id="error_invalid">De mottatte data er ugyldige.</code>
+    <code id="search_title">Brukersøking</code>
+    <code id="search_tagline">Utfyll en tekstboks for å søke etter alle brukere som matcher.</code>
+    <code id="firstname">Fornavn:</code>
+    <code id="lastname">Etternavn:</code>
+    <code id="nick">Kallenavn:</code>
+    <code id="email">E-post adresse:</code>
+    <code id="searching">Søker...</code>
+    <code id="add">Legg til listen over kontaktpersoner</code>
+    <code id="view">Vis profil</code>
+    <code id="foundone">1 resultat</code>
+    <code id="foundmany">${0} resultater</code>
+  </window>
+  <window name="login">
+    <code id="invalid">Adressen er ugyldig. Rett adressen og prøv igen.&#13;Hvis du ikke har en adresse, klikk på Meld deg på og følg veiledningen.</code>
+    <item id="txt_instructions">
+      <innerText>Oppgi din instant messaging-adresse og passord for å logge på.</innerText>
+    </item>
+    <item id="txt_address">
+      <innerText>Adresse:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Eksempel: person123@example.net</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Passord:</innerText>
+    </item>
+    <item id="txt_remember">
+      <innerText>Husk mitt passord</innerText>
+    </item>
+    <item id="txt_autologin">
+      <innerText>Automatisk pålogging</innerText>
+    </item>
+    <item id="btn_signup">
+      <value>Meld deg på</value>
+    </item>
+    <item id="btn_login">
+      <value>Logg på</value>
+    </item>
+    <item id="btn_close">
+      <value>Lukk</value>
+    </item>
+  </window>
+  <window name="sign_up">
+    <code id="close_confirm">Den nye adressen er ikke fullført.&#13;Er du sikker på at du vil lukke guiden?</code>
+    <code id="incomplete">Udfyll alle felter...</code>
+    <code id="pass_match">Passordene er ikke like.&#13;Oppgi den nye passordet i begge tekstboksene.</code>
+
+    <code id="contacting">Kontakter tjener...</code>
+    <code id="registered">Din konto blir registrert. Dette kan ta opp til et minutt.&lt;BR&gt;Ha tålmodighet.&lt;BR&gt;</code>
+    <code id="requesting">Ber om opplysninger...</code>
+    <code id="sending">Sender registrering...</code>
+    <code id="failure">Forbindelsesfeil</code>
+    <code id="completed">Registrering fullført</code>
+
+    <code id="address">Adresse:</code>
+    <code id="nickname">Navn:</code>
+    <code id="userdir">Brukerveiviser:</code>
+    <item id="txt_page_welcome_title">
+      <innerText>Velkommen til guiden Påmelding</innerText>
+    </item>
+    <item id="txt_page_welcome_intro">
+      <innerText>Denne guide hjelper deg med å melde på en adresse på instant messaging-nettverket.</innerText>
+    </item>
+    <item id="txt_page_welcome_next">
+      <innerHTML>Klikk på &lt;B&gt;Neste&lt;/B&gt; for å fortsette.</innerHTML>
+    </item>
+    <item id="btn_page_welcome_next">
+      <value>Neste &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_welcome_cancel">
+      <value>Avbryt</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_nickname_title">
+      <innerText>Personlige opplysninger</innerText>
+    </item>
+    <item id="txt_page_nickname_tagline">
+      <innerText>Disse opplysningene vil hjelpe andre personer med å finne deg på nettverket.</innerText>
+    </item>
+    <item id="txt_page_nickname_desc">
+      <innerText>Oppgi ditt navn for å gjøre det lettere for dine venner og kolleger å kontakte deg.</innerText>
+    </item>
+    <item id="txt_page_nickname_name">
+      <innerHTML>Navn:</innerHTML>
+    </item>
+    <item id="data_name">
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_back">
+      <value>&lt; Tilbake</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_nickname_next">
+      <value>Neste &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_cancel">
+      <value>Avbryt</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_account_title">
+      <innerText>Adresseopplysninger</innerText>
+    </item>
+    <item id="txt_page_account_tagline">
+      <innerText>Du kan bruke en offentlig tjener på internett eller en privat server på ditt firmanettverk.</innerText>
+    </item>
+    <item id="txt_page_account_server">
+      <innerHTML>Tjener:</innerHTML>
+    </item>
+    <item id="txt_page_account_username">
+      <innerHTML>Brukernavn:</innerHTML>
+    </item>
+    <item id="txt_page_account_password">
+      <innerHTML>Passord:</innerHTML>
+    </item>
+    <item id="txt_page_account_confirm">
+      <innerHTML>Bekreft passord:</innerHTML>
+    </item>
+    <item id="data_server">
+      <accessKey>s</accessKey>
+    </item>
+    <item id="data_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="data_password">
+      <accessKey>p</accessKey>
+    </item>
+    <item id="data_password_confirm">
+      <accessKey>c</accessKey>
+    </item>
+    <item id="txt_page_account_remember">
+      <innerHTML>Husk mitt passord</innerHTML>
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page_account_preview">
+      <innerText>Din IM-adresse:</innerText>
+    </item>
+    <item id="btn_page_account_settings">
+      <value>Forbindelsesinnstillinger</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_account_back">
+      <value>&lt; Tilbake</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_account_next">
+      <value>Neste &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_account_cancel">
+      <value>Avbryt</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_creating_title">
+      <innerText>Adresseregistrering</innerText>
+    </item>
+    <item id="txt_page_creating_autherr">
+      <innerHTML>Adressen kan ikke registreres. Brukernavnet er ikke tilgjengelig.&lt;BR&gt;&lt;BR&gt;Klikk på &lt;B&gt;Tilbake&lt;/B&gt;, oppgi et annet brukernavn og prøv igen.</innerHTML>
+    </item>
+    <item id="txt_page_creating_forbidden">
+      <innerHTML>Adressen kan ikke registreres. Denne tillater ikke opprettelse av nye adresser.&lt;BR&gt;&lt;BR&gt;Klikk på &lt;B&gt;Tilbake&lt;/B&gt;, velg en annen tjener og prøv igen.</innerHTML>
+    </item>
+    <item id="txt_page_creating_commerr">
+      <innerHTML>Kan ikke kontakte tjeneren. Kontroller at tjenerens adresse er korrekt.&lt;BR&gt;Kontroller din nettverksforbindelse og prøv igen. Hvis du er bak en brannmur,&lt;BR&gt;konfigurer forbindelsesinnstillingene.</innerHTML>
+    </item>
+    <item id="btn_page_creating_retry">
+      <value>Prøv igjen</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_creating_settings">
+      <value>Forbindelsesinnstillinger</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_creating_back">
+      <value>&lt; Tilbake</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_creating_next">
+      <value>Neste &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_creating_cancel">
+      <value>Avbryt</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_conn_title">
+      <innerText>Forbindelsesinnstillinger</innerText>
+    </item>
+    <item id="txt_ssl">
+      <innerText>Bruk en krypteret forbindelse (SSL)</innerText>
+    </item>
+    <item id="txt_conn_desc">
+      <innerText>Brannmur og proxy tjener</innerText>
+    </item>
+    <item id="txt_conn_none">
+      <innerText>Ingen</innerText>
+    </item>
+    <item id="txt_conn_http">
+      <innerText>HTTP</innerText>
+    </item>
+    <item id="txt_conn_s4">
+      <innerText>SOCKS4</innerText>
+    </item>
+    <item id="txt_conn_s5">
+      <innerText>SOCKS5</innerText>
+    </item>
+    <item id="txt_conn_host">
+      <innerText>Tjener:</innerText>
+    </item>
+    <item id="txt_conn_port">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_conn_user">
+      <innerText>Brukernavn:</innerText>
+    </item>
+    <item id="txt_conn_pass">
+      <innerText>Passord:</innerText>
+    </item>
+    <item id="btn_conn_default">
+      <value>Standard</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn_conn_ok">
+      <value>OK</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn_conn_cancel">
+      <value>Avbryt</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_finished_title">
+      <innerText>Fullføring av guiden Legg til profil</innerText>
+    </item>
+    <item id="txt_page_finished_intro">
+      <innerText>Du har gjennomført guiden Legg til profil.</innerText>
+    </item>
+    <item id="txt_page_finished_details">
+      <innerText>Profilopplysninger:</innerText>
+    </item>
+    <item id="txt_page_finished_finish">
+      <innerHTML>Klikk på &lt;B&gt;Utfør&lt;/B&gt; for å lukke guiden.</innerHTML>
+    </item>
+    <item id="btn_page_finished_back">
+      <value>&lt; Tilbake</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_finished_finish">
+      <value>Utfør</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn_page_finished_cancel">
+      <value>Avbryt</value>
+      <accessKey>c</accessKey>
+    </item>
+  </window>
+  
+    <window name="connection-settings">
+    <code id="logout">Du må logge ut for at endringene skal tre i kraft.&#13;&#13;Ønsker du å logge ut nå?</code>
+    <code id="automatic">Automatisk</code>
+    <item id="txt_connection">
+      <innerText>Tjener forbindelse</innerText>
+    </item>
+    <item id="lbl_server_address">
+      <innerHTML>&lt;U&gt;A&lt;/U&gt;dresse:</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="lbl_server_port">
+      <innerHTML>&lt;U&gt;P&lt;/U&gt;ort:</innerHTML>
+      <accessKey>p</accessKey>
+    </item>
+    <item id="txt_encryption">
+      <innerText>Sikker kommunikasjon</innerText>
+    </item>
+    <item id="lbl_encryption_optional">
+      <innerHTML>&lt;U&gt;B&lt;/U&gt;ruk TLS kryptering dersom tilgjengelig på tjener</innerHTML>
+      <accessKey>u</accessKey>
+    </item>
+    <item id="lbl_encryption_tls">
+      <innerHTML>Krever &lt;U&gt;T&lt;/U&gt;LS kryptering</innerHTML>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="lbl_encryption_ssl">
+      <innerHTML>Krever &lt;U&gt;S&lt;/U&gt;SL kryptering</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="lbl_encryption_none">
+      <innerHTML>&lt;U&gt;I&lt;/U&gt;kke bruk kryptering</innerHTML>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="txt_authentication">
+      <innerText>Påloggingsautentifikasjon</innerText>
+    </item>
+    <item id="lbl_authentication_normal">
+      <innerHTML>B&lt;U&gt;r&lt;/U&gt;ukernavn og passord</innerHTML>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="lbl_authentication_ntlm">
+      <innerHTML>Integrert &lt;U&gt;W&lt;/U&gt;indows autentifisering</innerHTML>
+      <accessKey>w</accessKey>
+    </item>
+    <item id="txt_proxy">
+      <innerText>Proxy tjener</innerText>
+    </item>
+    <item id="lbl_proxy_none">
+      <innerHTML>I&lt;U&gt;n&lt;/U&gt;gen</innerHTML>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="lbl_proxy_http">
+      <innerHTML>&lt;U&gt;H&lt;/U&gt;TTP</innerHTML>
+      <accessKey>h</accessKey>
+    </item>
+    <item id="lbl_proxy_address">
+      <innerHTML>Ad&lt;U&gt;r&lt;/U&gt;esse:</innerHTML>
+      <accessKey>r</accessKey>
+    </item>
+    <item id="lbl_proxy_port">
+      <innerHTML>P&lt;U&gt;o&lt;/U&gt;rt:</innerHTML>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+   </window>
+</translation>
