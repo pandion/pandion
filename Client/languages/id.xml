@@ -1,0 +1,2233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This is a template for translating the user interface.  Every item
+corresponds to an HTML element in the interface.  All porperties
+such as innerText, innerHTML or title can be translated and will
+override the default english text.
+Each <code> is a string that is used in the program's source code.
+Some of these strings don't accept HTML, so you must encode < and
+> as &lt; and &gt;
+
+The following text is used by the installation program. Replace
+them with the translated text so that they can be included with
+the installer.
+
+-begin-
+
+LangString DESC_SecCopyRequired		${LANG_ENGLISH}	"File-file ini dibutuhkan untuk menggunakan ${PRODUCT}."
+LangString DESC_SecCreateStartMenu	${LANG_ENGLISH}	"Menu Start memudahkan Anda mengakses ke ${PRODUCT}."
+LangString DESC_SecCreateQuickstart	${LANG_ENGLISH}	"Tambahkan ${PRODUCT} ke bar Quick Launch Anda."
+LangString DESC_SecCreateDesktop	${LANG_ENGLISH}	"Tempatkan jalan pintas (shortcut) ke Desktop."
+LangString DESC_SecCreateAutoStart	${LANG_ENGLISH}	"${PRODUCT} akan otomatis dijalankan di startup Windows."
+LangString ITEM_SecCreateStartMenu	${LANG_ENGLISH}	"Jalan pintas di Menu Start"
+LangString ITEM_SecCreateQuickstart	${LANG_ENGLISH}	"Jalan pintas di Quick Launch"
+LangString ITEM_SecCreateDesktop	${LANG_ENGLISH}	"Jalan pintas di Desktop"
+LangString ITEM_SecCreateAutoStart	${LANG_ENGLISH}	"Jalankan ${PRODUCT} di startup"
+LangString TEXT_WindowsOutdated		${LANG_ENGLISH}	"Tidak dapat menginstall ${PRODUCT}.$\nWindows NT 4 atau yang lebih tinggi dibutuhkan."
+LangString TEXT_AlreadyRunning		${LANG_ENGLISH}	"Tutup ${PRODUCT} sebelum melanjutkan."
+LangString TEXT_InternetExplorer	${LANG_ENGLISH}	"Tidak dapat melanjutkan installasi ${PRODUCT}.$\n$\nMicrosoft Internet Explorer versi 5.5 atau yang lebih tinggi dibutuhkan. Anda ingin mendownload Internet Explorer versi terakhir sekarang?"
+LangString TEXT_DownloadFailed		${LANG_ENGLISH}	"Error: Tidak dapat mendownload komponen yang dibutuhkan. Pastikan bahwa Anda tersambung ke Internet."
+LangString un.TEXT_RemoveProfiles	${LANG_ENGLISH}	"Hapus profile file-file histori?"
+LangString un.TEXT_RemoveDirectory	${LANG_ENGLISH}	"Catatan: $INSTDIR tidak dapat dihapus."
+
+-end-
+
+Please send your own translations to cbas@pandion.be
+Thank you,
+  Sebastiaan Deckers
+-->
+<translation xml:lang="id">
+  <about>
+    <language>Indonesia</language>
+    <history>
+      <revision>
+        <author>
+          <name>Masino Sinaga</name>
+          <email>masino_sinaga@posindonesia.co.id</email>
+          <xmpp>-</xmpp>
+        </author>
+        <date>2007-04-23</date>
+        <description>
+          First edit.
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_pleasewait">
+      <innerText>Mohon ditunggu</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Tidak tersambung ke server</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>Hubungi kembali server</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>atau</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Ubah setting koneksi</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>Tambahkan seseorang ke daftar kontak Anda</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>atau</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>Konfigurasi transport jaringan</innerText>
+    </item>
+
+    <item id="mode-avatar">
+      <title>Pilih avatar yang lain</title>
+    </item>
+    <item id="mode-bar">
+      <title>Ganti status online, pesan status, atau profil pribadi Anda</title>
+    </item>
+    <item id="mode-secure">
+      <title>Koneksi ini aman dengan menggunakan enkripsi SSL/TLS</title>
+    </item>
+    <item id="rosterfield">
+      <title>Orang-orang dan group di daftar kontak Anda</title>
+    </item>
+
+    <code id="tt-group-hide">Sembunyikan kontak di group ini&#13;Klik kanan untuk pilihan lebih lanjut</code>
+    <code id="tt-group-show">Tampilkan kontak di group ini&#13;Klik kanan untuk pilihan lebih lanjut</code>
+    <code id="emoticon_unknown">Tidak diketahui</code>
+    <code id="txt_welcome">Selamat datang di ${0}!</code>
+    <code id="user_online">${0} sekarang sedang online</code>
+    <code id="cl_tooltip">${0} Daftar Kontak</code>
+    <code id="autoawaymessage">Diam lebih dari 5 menit</code>
+    <code id="autoxawaymessage">Diam lebih dari 30 menit</code>
+    <code id="import_files">Daftar Kontak</code>
+    <code id="import_invalid">File mengandung data yang tidak valid.</code>
+    <code id="import_no_new">Semua kontak di file sudah berada di daftar kontak Anda.</code>
+    <code id="import_confirm">Alamat-alamat kontak ini akan ditambahkan ke dalam daftar kontak Anda:&#13;&#13;${0}&#13;&#13;Anda yakin ingin menambahkannya ke daftar kontak Anda?</code>
+    <code id="import_aim_not_registered">Untuk meng-import daftar AIM buddy Anda, AIM transport harus sudah terdaftar.  Transport juga harus dalam keadaan aktif.&#13;Pergi ke menu Tools lalu pilih Transports untuk menampilkan status AIM transport.</code>
+    <code id="import_msn_not_registered">Untuk meng-import daftar MSN kontak Anda, MSN transport harus sudah terdaftar.  Transport juga harus dalam keadaan aktif.&#13;Pergi ke menu Tools lalu pilih Transports untuk menampilkan status MSN transport.</code>
+    <code id="import_gadu_not_registered">Untuk meng-import daftar Gadu-Gadu kontak Anda, Gadu-Gadu transport harus sudah terdaftar.  Transport juga harus dalam keadaan aktif.&#13;Pergi ke menu Tools lalu pilih Transports untuk menampilkan status Gadu-Gadu transport.</code>
+    <code id="conference_invitation">${0} mengundang Anda ke ruang konferensi: ${1}&#13;&#13;Anda ingin bergabung ke dalam ruang konferensi ini?</code>
+    <code id="sspi_autoreconnecting">Koneksi ke server instant messaging gagal.</code>
+
+    <code id="menu_file">&amp;File</code>
+    <code id="menu_file_received">&amp;Buka File yang Telah Saya Terima</code>
+    <code id="menu_file_export">&amp;Export Daftar Kontak...</code>
+    <code id="menu_file_import">&amp;Import Daftar Kontak...</code>
+    <code id="menu_file_change">Ganti Status Pesan &amp;Saya...</code>
+    <code id="menu_file_ffc">&amp;Bebas untuk Chat</code>
+    <code id="menu_file_available">&amp;Tersedia</code>
+    <code id="menu_file_busy">&amp;Sibuk</code>
+    <code id="menu_file_away">Sedang &amp;Pergi</code>
+    <code id="menu_file_xaway">Pergi &amp;Jauh</code>
+    <code id="menu_file_invisible">Tidak &amp;Kelihatan</code>
+    <code id="menu_file_offline">&amp;Offline</code>
+    <code id="menu_file_status">Status Sa&amp;ya</code>
+    <code id="menu_file_out">&amp;Logout</code>
+    <code id="menu_file_exit">&amp;Selesai</code>
+
+    <code id="menu_axn">&amp;Aksi</code>
+    <code id="menu_axn_add">&amp;Tambah Kontak Baru...</code>
+    <code id="menu_axn_addgroup">Tambah &amp;Group Baru...</code>
+    <code id="menu_axn_invite">&amp;Undang Seseorang dengan Email</code>
+    <code id="menu_axn_bookmarks">&amp;Tandai Ruang Konferensi</code>
+    <code id="menu_axn_bookmarks_add">&amp;Tambah Penanda Baru...</code>
+    <code id="menu_axn_bookmarks_manage">&amp;Pengaturan Penanda...</code>
+    <code id="menu_axn_join">&amp;Gabung ke Ruang Konferensi...</code>
+    <code id="menu_axn_create">&amp;Buat Ruang Konferensi...</code>
+    <code id="menu_axn_password">Ganti &amp;Password Saya...</code>
+    <code id="menu_axn_profile">&amp;Ubah Profil Saya...</code>
+    <code id="menu_axn_avatar">Ganti A&amp;vatar Saya...</code>
+
+    <code id="menu_tool">&amp;Tools</code>
+    <code id="menu_tool_transport">&amp;Transports</code>
+    <code id="menu_tool_head">&amp;Judul dan Peringatan</code>
+    <code id="menu_tool_plugin">&amp;Plug-ins</code>
+    <code id="menu_tool_admin">Pengaturan &amp;Server</code>
+    <code id="menu_tool_traffic">Trafik &amp;Jaringan</code>
+    <code id="menu_tool_view">&amp;Tampilan</code>
+    <code id="menu_tool_detailed">&amp;Detail</code>
+    <code id="menu_tool_compact">&amp;Kompak</code>
+    <code id="menu_tool_language">&amp;Bahasa</code>
+    <code id="menu_tool_aot">&amp;Selalu Teratas</code>
+    <code id="menu_tool_settings">&amp;Setting</code>
+
+    <code id="menu_help">&amp;Bantuan</code>
+    <code id="menu_help_manual">&amp;Manual Online</code>
+    <code id="menu_help_forum">&amp;Dukungan Forum</code>
+    <code id="menu_help_contact">&amp;Hubungi Kami</code>
+    <code id="menu_help_about">&amp;Tentang</code>
+
+    <code id="menu_tray_about">&amp;Tentang ${0}</code>
+    <code id="menu_tray_settings">&amp;Setting</code>
+
+    <code id="wnd_autoupdate">Sedang mengupdate ${0}</code>
+    <code id="wnd_vcard_edit">Informasi Pengguna</code>
+    <code id="wnd_about">Mengenai ${0}</code>
+    <code id="wnd_signup">Pendaftaran - ${0}</code>
+    <code id="wnd_adduser">Cari atau Tambahkan Kontak</code>
+    <code id="wnd_avatar">Ganti Avatar Anda</code>
+    <code id="wnd_room_browse">Ruang Konferensi</code>
+    <code id="wnd_room_create">Buat Ruang Konferensi</code>
+    <code id="wnd_conference_invite">Undang Kontak</code>
+    <code id="wnd_conference_other">Layanan Konferensi Lainnya</code>
+    <code id="wnd_console">Layar</code>
+    <code id="wnd_emoticon_download">Download Emoticons</code>
+    <code id="wnd_emoticon_list">Emoticon</code>
+    <code id="wnd_emoticon_view">Emoticon Details</code>
+    <code id="wnd_file_send">Sedang mengirim file ke ${0}</code>
+    <code id="wnd_file_recv">Sedang menerima file dari ${0}</code>
+    <code id="wnd_group_message">Pesan Group</code>
+    <code id="wnd_transport_list">Transports</code>
+    <code id="wnd_transport_other">Transport Lain</code>
+    <code id="wnd_headlines">Tampilan Judul Atas</code>
+    <code id="wnd_history">${0} - Histori Pesan</code>
+    <code id="wnd_plugin_list">Plug-ins</code>
+    <code id="wnd_plugins">Plug-ins</code>
+    <code id="wnd_password">Ganti Password</code>
+    <code id="wnd_settings">Settings</code>
+    <code id="wnd_admin_server">Administrasi Server</code>
+    <code id="wnd_status">Pesan Status</code>
+    <code id="wnd_vcard_view">Informasi Pengguna</code>
+    <code id="wnd_group_create">Buat Group</code>
+    <code id="wnd_group_rename">Ubah Nama Group</code>
+    <code id="wnd_contact_rename">Ubah Nama Kontak</code>
+    <code id="wnd_authrequest">Permintaan Otorisasi</code>
+    <code id="wnd_login">Login - ${0}</code>
+    <code id="wnd_extension_download">Sedang menginstall ${0}</code>
+    <code id="wnd_background_list">Latar Belakang</code>
+    <code id="wnd_background_download">Download Latar Belakang</code>
+    <code id="wnd_bookmarks_add">Tambahkan Penanda Ruang Konferensi</code>
+    <code id="wnd_bookmarks_edit">Ubah Penanda Ruang Konferensi</code>
+    <code id="wnd_bookmarks_manage">Penanda Ruang Konferensi</code>
+    <code id="wnd_connection_settings">Setting Koneksi</code>
+
+    <code id="msg_emoticon_install">Gaya emoticon ini telah diinstall.</code>
+    <code id="msg_received_files">Directori untuk file-file yang telah diterima sudah dihapus.</code>
+    <code id="msg_plugin_install">Anda ingin menghapus menginstall plug-in ini?&#13;&#13;Nama: ${0}&#13;Deskripsi: ${1}</code>
+    <code id="msg_plugin_exists">Plug-in ini telah diinstall.</code>
+    <code id="msg_expired">Periode demo aplikasi ini telah habis masa lakunya.</code>
+    <code id="msg_cl_adding">${0} telah ditambahkan ke dalam daftar kontak Anda.</code>
+    <code id="msg_cl_added">${0} telah menambahkan Anda ke daftar kontaknya.</code>
+    <code id="msg_cl_removed">${0} telah menghapus Anda dari daftar kontaknya.</code>
+    <code id="msg_blocked">Anda berada dalam daftar blok orang ini.</code>
+    <code id="msg_autherror">Tidak dapat login. Kemungkinan penyebabnya adalah:&#13;&#13;- Password yang Anda masukkan tidak valid&#13;- Account tidak terdapa di server&#13;&#13;Cobalah lagi.</code>
+
+    <code id="menu_message">Pesan</code>
+    <code id="menu_filetransfer">Transfer File</code>
+    <code id="menu_room_create">Buat Ruang Baru</code>
+    <code id="menu_room_invite">Undang ke Ruang Konferensi</code>
+    <code id="menu_rename">Ubah nama</code>
+    <code id="menu_block">Blok</code>
+    <code id="menu_delete">Hapus</code>
+    <code id="menu_group_create">Buat group baru</code>
+    <code id="menu_group_merge">Gabung dengan</code>
+    <code id="menu_group_move">Pindah ke</code>
+    <code id="menu_group_copy">Salin ke</code>
+    <code id="menu_request">Otorisasi permintaan ulang</code>
+    <code id="menu_history">Sejarah</code>
+    <code id="menu_profile">Profil</code>
+
+    <code id="cl_waiting_one">Anda mempunyai 1 pesan yang belum dibaca</code>
+    <code id="cl_waiting_multiple">Anda memiliki ${0} pesan yang belum dibaca</code>
+    <code id="cl_error_notexist">Alamat tidak ada.</code>
+    <code id="cl_error_cannotadd">Tidak dapat menambahkan ${0} ke daftar kontak.&#13;${1}</code>
+    <code id="cl_default_group">Kontak</code>
+	<code id="cl_group_display_none">Tidak ada kontak</code>
+    <code id="cl_group_display_online">Hanya kontak yang sedang online</code>
+    <code id="cl_group_display_all">Semua kontak</code>
+	<code id="cl_group_expand">Tampilkan kontak yang offline</code>
+    <code id="cl_group_compact">Sembunyikan kontak yang offline</code>
+    <code id="cl_group_rename">Ubah nama group ini</code>
+    <code id="cl_group_message">Kirim pesan broadcast</code>
+    <code id="cl_room_create">Buat ruang baru</code>
+    <code id="cl_room_invite">Undang ke ruang konferensi</code>
+    <code id="cl_group_empty">Tidak ada orang yang online di group ini.</code>
+    <code id="cl_status_empty">Tanpa pesan status</code>
+    <code id="cl_status_offline">Offline</code>
+    <code id="cl_status_awaiting">Sedang menunggu otorisasi</code>
+    <code id="cl_status_unknown">Status tidak diketahui</code>
+    <code id="cl_status_waiting_one">1 pesan belum dibaca</code>
+    <code id="cl_status_waiting_multiple">${0} pesan belum dibaca</code>
+    <code id="cl_tooltip_offline">Alamat: ${0}</code>
+    <code id="cl_contact_remove_group">Anda yakin ingin menghapus user ini dari group ini?</code>
+    <code id="cl_contact_remove_list">Anda yakin ingin menghapus user ini dari daftar kontak Anda?</code>
+    <code id="cl_link_open">Buka di webbrowser</code>
+    <code id="cl_link_copy">Salin alamat hyperlink</code>
+    <code id="cl_link_favorite">Tambah ke favorites</code>
+    <code id="cl_ffc">Bebas untuk chat</code>
+    <code id="cl_available">Tersedia</code>
+    <code id="cl_busy">Sibuk</code>
+    <code id="cl_away">Sedang pergi</code>
+    <code id="cl_xaway">Pergi jauh</code>
+    <code id="cl_invisible">Tidak kelihatan</code>
+    <code id="cl_tooltip_online">Alamat: ${0}&#13;Aplikasi: ${1}</code>
+  </window>
+  <window name="about">
+    <item id="btn_credits">
+      <value>Pembuat &gt;&gt;</value>
+    </item>
+    <item id="btn_copyright">
+      <value>Hak Cipta &gt;&gt;</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="copy_darkproject">
+      <innerHTML>Kebanyakan icons dan emoticons yang default merupakan Hak Cipta (Copyright) &amp;copy; 2001 Greg Fleming.</innerHTML>
+    </item>
+    <item id="copy_rsa">
+      <innerHTML>Menggunakan algoritma MD5 Message-Digest. Hak Cipta (Copyright) RSA Data Security, Inc.</innerHTML>
+    </item>
+    <item id="copy_dns">
+      <innerHTML>Berdasarkan BIND. Hak Cipta (Copyright) Internet Software Consortium, Inc.</innerHTML>
+    </item>
+    <item id="txt_copyright">
+      <innerHTML>Hak Cipta (Copyright) &amp;copy;</innerHTML>
+    </item>
+    <code id="copy_basis">Berdasarkan ${0}. Copyright &amp;copy; ${1} ${2}.</code>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>Tampilkan Info Profil</value>
+    </item>
+    <item id="btn_deny">
+      <value>Tolak</value>
+    </item>
+    <item id="btn_accept">
+      <value>Terima</value>
+    </item>
+    <item id="txt_from">
+      <innerText>Anda telah menerima sebuah permintaan otorisasi dari:</innerText>
+    </item>
+    <item id="txt_question">
+      <innerText>Anda ingin menerima atau menolak orang ini ke dalam kontak Anda?</innerText>
+    </item>
+  </window>
+  <window name="admin_users">
+    <item id="btn_refresh">
+      <value>Refresh</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Klik account untuk mengirim pesan. Klik kanan untuk melihat pilihan lainnya.</innerText>
+    </item>
+    <code id="add_to_list">Tambahkan ke daftar kontak</code>
+    <code id="tooltip_with">Alamat: ${0}&#13;Aplikasi: ${1}&#13;Waktu Online: ${2}</code>
+    <code id="tooltip_without">Alamat: ${0}&#13;Waktu Online: ${1}</code>
+    <code id="loading">Sedang menampilkan...</code>
+    <code id="invalid_data">Data yang telah diterima tidak valid.</code>
+    <code id="server_error">Error server:</code>
+    <code id="server_failed">Gagal menerima daftar user yang online.&lt;BR&gt;Pastikan Anda memiliki hak akses Administrator untuk mengakses server ini.</code>
+    <code id="user">1 user sedang online</code>
+    <code id="users">${0} users sedang online</code>
+  </window>
+  <window name="admin">
+    <item id="btn_view">
+      <value>Tampilkan semua user yang  online</value>
+    </item>
+    <item id="btn_close">
+      <value>Tutup</value>
+    </item>
+    <item id="admin_btn_wall">
+      <value>Kirim</value>
+    </item>
+    <item id="admin_btn_motd">
+      <value>Kirim</value>
+    </item>
+    <item id="txt_wall_desc">
+      <innerText>Peringatan ini telah dikirim ke user yang sedang online.</innerText>
+    </item>
+    <item id="txt_motd_desc">
+      <innerText>Peringatan ini telah dikirim ke user ketika mereka login.</innerText>
+    </item>
+    <item id="txt_wall">
+      <innerText>Pesan ke semua (broadcast)</innerText>
+    </item>
+    <item id="txt_motd">
+      <innerText>Pesan harian</innerText>
+    </item>
+    <item id="txt_view">
+      <innerText>Awasi siapa yang telah tersambung ke server.</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Gunakan tools ini untuk mengawasi dan mengadministrasi IM server.</innerText>
+    </item>
+    <item id="txt_users">
+      <innerText>Users</innerText>
+    </item>
+    <code id="wnd_users">User yang Online</code>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>Hapus output</value>
+    </item>
+    <item id="btn_send">
+      <value>Kirim</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>Kehadiran</value>
+    </item>
+    <item id="btn_message">
+      <value>Pesan</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>Trafik jaringan:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>Pindah baris</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>Masukan XML:</innerText>
+    </item>
+    <code id="toggle_on">Debug aktif</code>
+    <code id="toggle_off">Debug tidak aktif</code>
+    <code id="valid_xml">Masukan harus merupakan XML yang valid. Tidak hanya spasi atau teks sederhana.</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>Tutup</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Peringatan dan Judul</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Peringatan khusus ditampilkan jika Anda menerima judul berita atau informasi pendek lainnya.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Tidak ada peringatan atau judul berita yang diterima.</innerText>
+    </item>
+    <item id="alertonlinelabel">
+      <innerText>Tampilkan peringatan ketika seseorang online</innerText>
+    </item>
+    <code id="read_more">Lagi...</code>
+    <code id="replay">Mainkan ulang</code>
+  </window>
+  <window name="headline-toaster">
+    <item id="options">
+      <innerText>Pilihan...</innerText>
+    </item>
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_custom">
+      <value>Pilih gambar...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Pilih gambar yang akan ditampilkan pada profil Anda.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Sedang menampilkan...</innerText>
+    </item>
+    <code id="error_size">Tidak dapat menampilkan gambar. Ukuran file lebih dari 8 kilobytes.</code>
+    <code id="error_empty">Tidak dapat menampilkan gambar. File is empty.</code>
+    <code id="error_load">Peringatan: Tidak dapat menampilkan gambar avatar.&#13;&#13;${0}</code>
+    <code id="menu_use">Gunakan avatar</code>
+    <code id="menu_saveas">Simpan sebagai...</code>
+    <code id="menu_delete">Hapus</code>
+    <code id="wnd_select">Pilih gambar avatar</code>
+    <code id="saveas_files">File gambar</code>
+    <code id="image_files">File gambar kurang dari 8kB</code>
+    <code id="all_files">Semua file</code>
+  </window>
+  <window name="mode_select">
+    <item id="txt_message">
+      <innerText>Pesan status Anda menunjukkan perasaan, aktivitas, atau yang lainnya:</innerText>
+    </item>
+    <item id="lbl_ask_status">
+      <innerText>Tanya saya untuk memasukkan pesan ketika saya mengganti status saya</innerText>
+    </item>
+    <code id="btn_ok">OK</code>
+    <code id="btn_ok_empty">OK (tanpa pesan)</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nama baru:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nama baru:</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nama baru:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>Konfirmasi password baru:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Password baru:</innerText>
+    </item>
+    <code id="no_match">Password yang Anda masukkan tidak cocok.&#13;&#13;Masukkan password baru di kedua pesan.</code>
+    <code id="no_pass">Masukkan password baru.</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="set_version">
+      <innerText>Sedang menampilkan...</innerText>
+    </item>
+    <item id="header-images">
+      <innerText>Gambar</innerText>
+    </item>
+    <item id="header-sounds">
+      <innerText>Suara</innerText>
+    </item>
+    <item id="header-markup">
+      <innerText>Tulisan yang ditandai</innerText>
+    </item>
+    <code id="empty">Gaya emoticon kosong.</code>
+    <code id="file_error">File Error</code>
+    <code id="cannot_load">Tidak dapat memuat emoticons.</code>
+    <code id="count_one">1 emoticon</code>
+    <code id="count_multiple">${0} emoticons</code>
+  </window>
+  <window name="emoticon_download">
+    <item id="btn_close">
+      <value>Tutup</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Download Emoticons</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Koneksi Internet dibutuhkan untuk mencari katalog emoticon.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Sedang memuat...</innerText>
+    </item>
+    <code id="install">Install</code>
+    <code id="cannot_download">Error: Tidak dapat mendownload emoticons.&#13;${0}</code>
+    <code id="invalid_xml">Sumber data mengandung data yang tidak valid.</code>
+    <code id="no_new_styles">Tidak ada emoticon yang tersedia.</code>
+  </window>
+  <window name="emoticon_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Emoticons yang tersedia</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Pilih emoticon dari daftar.</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>Sedang memuat...</innerText>
+    </item>
+    <item id="btn_emoticon_download">
+      <value>Emoticons lain</value>
+    </item>
+    <code id="emoticon_details">Tampilkan detail</code>
+    <code id="emoticon_remove">Hapus</code>
+    <code id="emoticon_confirm">Anda yakin ingin menghapus emoticon ini?</code>
+    <code id="no_emoticons">Tidak ada emoticons ditemukan.</code>
+  </window>
+  <window name="background_download">
+    <item id="btn_close">
+      <value>Tutup</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Download Backgrounds</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Koneksi Internet dibutuhkan untuk mencari katalog background.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Sedang memuat...</innerText>
+    </item>
+    <code id="install">Install</code>
+    <code id="cannot_download">Error: Tidak dapat mendownload backgrounds.&#13;${0}</code>
+    <code id="invalid_xml">Sumber data mengandung data yang tidak valid.</code>
+    <code id="no_new_styles">Tidak ada backgrounds yang tersedia.</code>
+  </window>
+  <window name="background_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Backgrounds tersedia</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Tambah atau hapus backgrounds.</innerText>
+    </item>
+    <item id="btn_background_download">
+      <value>Backgrounds lain</value>
+    </item>
+    <item id="txt_background_empty">
+      <innerText>Tidak ada backgrounds yang terinstall.</innerText>
+    </item>
+    <code id="background_uninstall">Hapus</code>
+    <code id="background_confirm">Anda yakin ingin menghapus background ini?</code>
+  </window>
+  <window name="plugin_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Plug-ins yang terinstall</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Tambah atau hapus plug-ins.</innerText>
+    </item>
+    <item id="btn_plugin_download">
+      <value>Plug-ins lainnya</value>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>Tidak ada plug-ins yang terinstall.</innerText>
+    </item>
+    <code id="plugin_uninstall">Uninstall</code>
+    <code id="plugin_confirm">Anda yakin ingin menghapus plug-in ini?</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>Tutup</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Download Plug-ins</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Koneksi Internet dibutuhkan untuk mencari katalog plug-in.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Sedang memuat...</innerText>
+    </item>
+    <code id="install">Install</code>
+    <code id="cannot_download">Error: Tidak dapat mendownload plug-ins.&#13;${0}</code>
+    <code id="invalid_xml">Sumber data mengandung XML yang tidak valid.</code>
+    <code id="no_new_plugins">Tidak ada plug-ins baru yang tersedia.</code>
+  </window>
+  <window name="autoupdate">
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+    <item id="btn_install">
+      <value>Install</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Sedang menghubungi...</innerText>
+    </item>
+    <code id="download_confirm">Versi update dari aplikasi ini tersedia: ${0} ${1}&#13;&#13;Anda ingin mendownload update ini?</code>
+    <code id="downloading">Sedang mendownload...</code>
+    <code id="complete">Download selesai. Tekan Install untuk melanjutkan.</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Setiap ruang konferensi memiliki alamat yang unik. Masukkan alamat layanan konferensi dan nama yang unik untuk ruangan.</innerText>
+    </item>
+    <item id="txt_service">
+      <innerText>Alamat Layanan:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Contoh: konferensi.posindonesia.co.id</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>Nama ruang:</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>Alamat ruang konferensi:</innerText>
+    </item>
+    <code id="incomplete">Lengkapi semua field...</code>
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>Kirim</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>Kirim ke orang-orang ini:</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>Pesan normal</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>Pemberitahuan peringatan</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>Tipe pesan</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>Hyperlink lampiran</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>Pesan</innerText>
+    </item>
+  </window>
+  <window name="extension_download">
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Sedang menghubungi...</innerText>
+    </item>
+    <code id="downloading">Sedang mendownload...</code>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>Tutup</value>
+    </item>
+    <item id="btn_accept">
+      <value>Terima</value>
+    </item>
+    <item id="btn_abort">
+      <value>Batal</value>
+    </item>
+    <item id="btn_open">
+      <value>Buka</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Waktu tersisa:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>Pengirim:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Nama file:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Lokasi:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Kemajuan:</innerText>
+    </item>
+    <code id="resume">File ada. Anda ingin melanjutkan proses transfer?&#13;&#13;Pilih Yes untuk melanjutkan transfer.&#13;Pilih No untuk menimpa file.</code>
+    <code id="cannot_overwrite">Tidak dapat menimpa file:&#13;${0}&#13;&#13;${1}</code>
+    <code id="incorrect">Tidak dapat menginisialisasi transfer. Data yang diterima tidak valid.</code>
+    <code id="title_saving">${0}% dari ${1} disimpan</code>
+    <code id="lessthanminute">Kurang dari 1 menit ${0}/s</code>
+    <code id="onehour">1 jam dan</code>
+    <code id="hours">${0} jam dan</code>
+    <code id="oneminute">1 menit </code>
+    <code id="minutes">${0} menit </code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Anda ingin membatalkan transfer?</code>
+    <code id="aborted">Dibatalkan</code>
+    <code id="finished">Telah selesai</code>
+    <code id="error_timeout">Waktu habis.</code>
+    <code id="error_code">Kode Error: ${0}</code>
+    <code id="error_file">Kode Error File: ${0}</code>
+    <code id="title_completed">Transfer Selesai - ${0}</code>
+    <code id="title_failed">Transfer Gagal - ${0}</code>
+    <code id="error_move">Tidak dapat memindahkan file:&#13;${0}&#13;&#13;${1}</code>
+    <code id="error_failed">Transfer gagal.</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>Tutup</value>
+    </item>
+    <item id="btn_abort">
+      <value>Gagal</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Waktu tersisa:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>Penerima:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Nama file:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Lokasi:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Kemajuan:</innerText>
+    </item>
+    <code id="socket">Tidak dapat mengirim file.&#13;Tidak dapat membuka sambungan ke jaringan.</code>
+    <code id="file">Tidak dapat membaca file:&#13;${0}</code>
+    <code id="filetransfer">Transfer File:</code>
+    <code id="title_saving">${0}% dari ${1} Dikirim</code>
+    <code id="lessthanminute">Kurang dari 1 menit ${0}/s</code>
+    <code id="onehour">1 jam dan</code>
+    <code id="hours">${0} jam dan</code>
+    <code id="oneminute">1 menit</code>
+    <code id="minutes">${0} menit</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Anda ingin membatalkan transfer?</code>
+    <code id="finished">Telah selesai</code>
+    <code id="aborted">Dibatalkan</code>
+    <code id="error_denied">File ditolak.</code>
+    <code id="error_timeout">Waktu habis.</code>
+    <code id="error_code">Kode Error: ${0}</code>
+    <code id="title_completed">Transfer Selesai - ${0}</code>
+    <code id="title_failed">Transfer Gagal - ${0}</code>
+    <code id="error_failed">Transfer gagal.</code>
+  </window>
+  <window name="conference_browse">
+    <item id="btn_close">
+      <value>Tutup</value>
+    </item>
+    <item id="btn_other_service">
+      <value>Layanan Lain...</value>
+    </item>
+    <item id="btn_create">
+      <value>Buat Ruang Konferensi</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Ruangan yang tersedia:</innerText>
+    </item>
+    <item id="lbl_empty">
+      <innerText>Tampilkan ruang yang kosong</innerText>
+      <accessKey>k</accessKey>
+    </item>
+    <item id="lbl_full">
+      <innerText>Tampilkan ruang yang terisi</innerText>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="lbl_filter">
+      <innerText>Filter:</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Tidak ada layanan konferensi tersedia di server ini.&#13;&#13;Tekan tombol "Layanan Lain..." untuk menambahkan layanan konferensi dari server yang lain.</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Untuk bergabung ke sebuah ruang konferensi Anda harus tersambung ke server.</innerText>
+    </item>
+    <code id="bookmarks">Tandai</code>
+    <code id="menu_join">Gabung</code>
+    <code id="menu_add">Tambahkan ke Penanda...</code>
+    <code id="empty_filter">Tidak ruang yang cocok dengan penyaringan</code>
+    <code id="empty_no_rooms">Tidak ada ruang yang tersedia di layanan ini</code>
+    <code id="status_connecting">Sedang menghubungi...</code>
+    <code id="status_downloading">Sedang mengambil daftar ruang konferensi...</code>
+    <code id="error_unknown">Layanan "${0}" tidak tersedia. Pastika bahwa Anda telah memasukkan alamat yang benar. Cobalah lagi nanti atau masukkan alamat yang lain.</code>
+    <code id="error_no_services">Server "${0}" tidak memiliki layanan konferensi. Hubungi Administrator untuk informasi lebih lanjut.</code>
+    <code id="error_no_new">Semua layanan konferensi di server "${0}" sudah ada di daftar.</code>
+  </window>
+  <window name="conference_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Alamat:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Contoh: konferensi.posindonesia.co.id</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Masukkan alamat layanan konferensi atau server.</innerText>
+    </item>
+    <code id="error_already_exists">Layanan "${0}" sudah ada di daftar. Masukkan alamat layanan konferensi atau server yang belum terdapat di daftar.</code>
+  </window>
+  <window name="vcard">
+    <code id="save">Peringatan: Tidak dapat menyimpan ke file vCard.&#13;&#13;${0}</code>
+    <code id="personal">Detail User</code>
+    <code id="system">Detail System</code>
+
+    <item id="txt_requesting1">
+      <innerText>Sedang meminta informasi dari server</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Proses ini bisa sampai satu menit.&lt;BR&gt;Mohon bersabar.</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>Simpan sebagai vCard</value>
+    </item>
+    <item id="btn_refresh">
+      <value>Segarkan</value>
+    </item>
+    <item id="btn_close">
+      <value>Tutup</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>Batalkan Perubahan</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>Informasi Pribadi</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>Detail Tambahan</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>Alamat Rumah</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>Pekerjaan</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>Alamat Pekerjaan</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>Sistem</innerText>
+    </item>
+
+    <item id="txt_name">
+      <innerText>Nama</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>Nama Pertama:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>Nama Tengah:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>Nama Terakhir:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>Nama Panggilan:</innerText>
+    </item>
+
+    <item id="txt_contact">
+      <innerText>Kontak</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>E-Mail:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>Telepon:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>Handphone:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>Faximile:</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>Detail Tambahan</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>Umur:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>Ulang Tahun:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>Jenis Kelamin:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>Status Perkawinan:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>Website:</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>Alamat Rumah</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>Alamat 1:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>Alamat 2:</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>Kota:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>Kodepos:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>Propinsi:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>Negara:</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>Organisasi/Perusahaan</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>Nama:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>Bagian:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>Jabatan:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>Tugas:</innerText>
+    </item>
+
+    <item id="txt_workcontact">
+      <innerText>Kontak</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>E-Mail:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>Telepon:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>Handphone:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>Faximile:</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>Alamat Kantor</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>Alamat 1:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>Alamat 2:</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>Kota:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>Kodepos:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>Propinsi:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>Negara:</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>Informasi Client</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>Alamat:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>Aplikasi:</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>Waktu Lokal:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>Aplikasi:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>Versi:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>Sistem Operasi:</innerText>
+    </item>
+  </window>
+  <window name="transport_list">
+    <item id="btn_other">
+      <value>Transport lain...</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Transport yang Tersedia</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Transport menyediakan link dengan jaringan pesan lainnya.</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;Catatan:&lt;/B&gt; Untuk mengkonfigurasi transport, Anda harus terhubung ke server jaringan pesan lainnya.</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;Catatan:&lt;/B&gt; Server yang Anda hubungi tidak mendukung transport. Hubungi Administrator untuk informasi lebih lanjut.</innerHTML>
+    </item>
+    <item id="msnworkaroundlabel">
+      <innerText>Ijinkan kontak MSN mengganti nama panggilan (nickname) mereka</innerText>
+    </item>
+    <code id="status_active">Aktif</code>
+    <code id="status_noreg">Belum terdaftar</code>
+    <code id="status_disconnected">Tidak tersambung</code>
+    <code id="status_connecting">Sedang menghubungi...</code>
+    <code id="name_unknown">Layanan Tidak Diketahui</code>
+    <code id="error_unknown">Layanan "${0}" tidak tersedia. Pastikan bahwa Anda telah memasukkan alamat yang benar. Cobalah lagi nanti atau masukkan alamat yang lain.</code>
+    <code id="error_no_transports">Server "${0}" tidak memiliki transport. Hubungi Administrator untuk informasi lebih lanjut.</code>
+    <code id="error_no_new_transport">Semua Transport di server "${0}" sudah ada di daftar.</code>
+  </window>
+  <window name="transport_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Alamat:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Contoh: sms.posindonesia.co.id</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Masukkan alamat server transport.</innerText>
+    </item>
+    <code id="error_already_exists">Layanan "${0}" sudah ada di daftar. Masukkan alamat server transport atau server belum yang belum terdapat di daftar.</code>
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; Kembali</value>
+    </item>
+    <item id="btn_next">
+      <value>Lanjut &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>Selesai</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>Batal</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>Alamat:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>Panggilan:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>Alamat:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Password:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>Panggilan:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>Anda telah terdaftar dengan transport ini.&lt;BR&gt;Account yang telah Anda daftarkan adalah:</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>Nonaktifkan transport</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText>Sedang menghubungi server</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Proses ini bisa sampai satu menit.&lt;BR&gt;Mohon bersabar.</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>Untuk menutup wizard ini, klik &lt;B&gt;Selesai&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>Untuk melanjutkan, klik &lt;B&gt;Lanjut&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <code id="error_invalid">Data yang diterima tidak valid</code>
+    <code id="error_server">&lt;B&gt;Server error:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Tidak dapat melanjutkan.</code>
+    <code id="error_unknown">&lt;B&gt;Unknown error:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Tidak dapat melanjutkan.</code>
+    <code id="error_auth">&lt;B&gt;Authorisation error:&lt;/B&gt;&lt;BR&gt;Incorrect address or password.&lt;BR&gt;&lt;BR&gt;Tidak dapat melanjutkan.</code>
+    <code id="wait">&lt;B&gt;Contacting server&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Proses ini bisa sampai satu menit.&lt;BR&gt;Please be patient.&lt;BR&gt;</code>
+
+    <code id="default_window_title">Konfigurasi Transport</code>
+    <code id="default_begin_intro">Wizard ini membantu Anda untuk mengatur transport.&lt;BR&gt;Transport ini merupakan sebuah link antara Anda dan jaringan lain.&lt;BR&gt;Anda butuh sebuah account di jaringan lain untuk menggunakan transport ini.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">Masukkan account dan password Anda.&lt;BR&gt;Anda juga dapat memasukkan nickname yang akan dilihat oleh user lain.&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">Account Anda sedang diregistrasi ke transport tersebut.</code>
+    <code id="default_removing_busy">Account Anda sedang dihapus dari transport tersebut.&lt;BR&gt;</code>
+    <code id="default_creating_done">Account telah berhasil diregistrasi dengan transport tersebut.</code>
+    <code id="default_removing_done">Account telah berhasil dihapus dari transport.</code>
+
+    <code id="msn_window_title">MSN Messenger - Konfigurasi Transport</code>
+    <code id="msn_begin_intro">Wizard ini membantu Anda mengatur transport MSN.&lt;BR&gt;Transport ini merupaka sebuah link antara Anda dengan account MSN Anda.&lt;BR&gt;Anda membutuhkan sebuah Microsoft Passport untuk menggunakan transport ini.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">Masukkan alamat MSN dan password MSN Anda.&lt;BR&gt;Anda juga dapat memasukkan nickname yang dapat dilihat oleh user lain.&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">Contoh: masino_sinaga@msn.com, masino_sinaga@hotmail.com</code>
+    <code id="msn_creating_busy">Account Anda sedang diregistrasi ke transport MSN.</code>
+    <code id="msn_removing_busy">Account MSN Anda sedang dihapus dari transport.&lt;BR&gt;Anda akan tetap dapat menggunakan account MSN Anda dengan layanan lainnya (misalkan: Hotmail, MSN Explorer, dsb.).&lt;BR&gt;</code>
+    <code id="msn_creating_done">Account telah berhasil diregistrasi dengan transport MSN.</code>
+    <code id="msn_removing_done">Account telah berhasil dihapus dari transport MSN.</code>
+
+    <code id="icq_window_title">ICQ - Konfigurasi Transport</code>
+    <code id="icq_begin_intro">Wizard ini membantu Anda untuk mengatur konfigurasi transport ICQ.&lt;BR&gt;Transport ini merupakan sebuah link antara Anda dengan account ICQ Anda.&lt;BR&gt;Anda harus memiliki Nomor Identifikasi Pengguna (User Identification Number) (ICQ &lt;BR&gt;number) untuk dapat menggunakan transport ini.&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Masukkan nomor ICQ dan password ICQ Anda.&lt;BR&gt;Anda juga dapat memasukkan nickname yang akan dilihat oleh user lain.&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">Contoh: 39230793, 158525087</code>
+    <code id="icq_creating_busy">Account Anda sedang diregistrasi dengan transport ICQ.</code>
+    <code id="icq_removing_busy">Account ICQ Anda sedang dihapus dari transport.&lt;BR&gt;</code>
+    <code id="icq_creating_done">Account telah berhasil diregistrasi dengan transport ICQ.</code>
+    <code id="icq_removing_done">Account telah berhasil dihapus dari transport ICQ.</code>
+
+    <code id="yahoo_window_title">Yahoo! Messenger - Transport Configuration</code>
+    <code id="yahoo_begin_intro">Wizard ini membantu Anda untuk mengatur konfigurasi transport Yahoo!.&lt;BR&gt;Transport ini merupakan sebuah link antara Anda dengan account Yahoo! Anda.&lt;BR&gt;Anda harus memiliki account Yahoo! untuk dapat menggunakan transport ini.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Masukkan username Yahoo! dan password Yahoo! Anda.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">Account Anda sedang diregistrasi dengan transport Yahoo!.</code>
+    <code id="yahoo_removing_busy">Account Yahoo! Anda sedang dihapus dari transport.&lt;BR&gt;Anda akan tetap dapat menggunakan account Yahoo! Anda dengan layanan lain (contoh: Yahoo! mail, Yahoo! Messenger, dsb.).&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">Account telah berhasil diregistrasi dengan transport Yahoo!.</code>
+    <code id="yahoo_removing_done">Account telah berhasil dihapus dari transport Yahoo!.</code>
+
+    <code id="aim_window_title">AOL Instant Messenger - Konfigurasi Transport</code>
+    <code id="aim_begin_intro">Wizard ini membantu Anda untuk mengatur konfigurasi transport AOL IM .&lt;BR&gt;Transport ini merupakan sebuah link antara Anda dengan account AOL IM Andat.&lt;BR&gt;Anda harus memiliki account AOL IM untuk dapat menggunakan transport ini.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">Masukkan screenname AOL IM dan password Anda.&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">Account Anda sedang diregistrasi dengan transport AOL IM.</code>
+    <code id="aim_removing_busy">Account AOL IM sedang dihapus dari transport.&lt;BR&gt;Anda akan tetap dapat menggunakan account AOL IM Anda dengan aplikasi lain.&lt;BR&gt;</code>
+    <code id="aim_creating_done">Account telah berhasil diregistrasi dengan transport AOL IM.</code>
+    <code id="aim_removing_done">Account telah berhasil dihapus dari transport AOL IM.</code>
+
+    <code id="gadu_window_title">Gadu-Gadu - Konfigurasi Transport</code>
+    <code id="gadu_begin_intro">Wizard ini membantu Anda untuk mengatur konfigurasi transport Gadu-Gadu.&lt;BR&gt;Transport ini merupakan sebuah link antara Anda dengan account Gadu-Gadu Anda.&lt;BR&gt;Anda harus memiliki nomor Gadu-Gadu untuk dapat menggunakan transport ini.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_instructions">Masukkan nomor Gadu-Gadu dan password Anda.&lt;BR&gt;Anda juga dapat memasukkan nickname yang akan dilihat oleh user lain.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_examples">&amp;nbsp;</code>
+    <code id="gadu_creating_busy">Nomor Gadu-Gadu Anda sedang diregistrasi ke transport.</code>
+    <code id="gadu_removing_busy">Nomor Gadu-Gadu Anda sedang dihapus dari transport.&lt;BR&gt;</code>
+    <code id="gadu_creating_done">Nomor Gadu-Gadu Anda sudah berhasil diregistrasi dengan transport.</code>
+    <code id="gadu_removing_done">Nomor Gadu-Gadu Anda telah berhasil dihapus dari transport.</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>Lanjut</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>Simpan</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>Cetak</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>Hapus</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>Histori Pesan</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>Cari:</innerText>
+    </item>
+    <code id="loading">Sedang memuat histori pesan...</code>
+    <code id="empty">Histori pesan kosong.</code>
+    <code id="error_load">Tidak dapat memuat histori pesan:&#13;${0}</code>
+    <code id="one_message">1 pesan</code>
+    <code id="many_messages">${0} pesan</code>
+    <code id="tooltip_save">Simpan histori pesan hari ini</code>
+    <code id="tooltip_print">Cetak histori pesan hari ini</code>
+    <code id="error_open">Error: Tidak dapat membuka histori pesan.</code>
+    <code id="error_read">Error: Tidak dapat membaca histori pesan.</code>
+    <code id="delete_confirm">Anda yakin ingin menghapus pesan histori yang ada untuk ${0}?</code>
+    <code id="delete_cannot">Tidak dapat menghapus file histori: ${0}&#13;&#13;Tidak ada pesan yang dihapus.</code>
+    <code id="error_print">Tidak dapat mencetak apapun.&#13;Histori pesan kosong.</code>
+    <code id="error_save">Tidak dapat menyimpan histori pesan.&#13;${0}</code>
+  </window>
+  <window name="chat-messages">
+    <code id="copy">Salin</code>
+    <code id="copyall">Salin Semua</code>
+    <code id="clear">Hapus</code>
+    <code id="selectall">Pilih Semua</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>Menampilkan apa yang sedang Anda pikirkan atau lakukan</title>
+      <accessKey>p</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Ganti warna atau tipe tulisan</title>
+      <accessKey>w</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Pilih background yang berbeda</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Emoticons</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Huruf</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Background</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>Ganti ukuran field masukan pesan</title>
+    </item>
+    <item id="mode-bar">
+      <title>Orang yang menerima pesan Anda</title>
+    </item>
+    <item id="send-text">
+      <title>Ketik pesan Anda di sini</title>
+    </item>
+    <item id="btn-send">
+      <value>Kirim</value>
+      <title>Kirim pesan</title>
+    </item>
+
+    <code id="tt-avatar">Tampilkan avatar dengan ukuran penuh</code>
+    <code id="tt-messages">Pesan yang telah dikirim dan diterima</code>
+    <code id="tt-close">Akhiri percakapan ini</code>
+    <code id="msg_typing">${0} sedang mengetik pesan</code>
+    <code id="unknown">${0} mungkin tidak menjawab karena statusnya tidak diketahui</code>
+    <code id="lastonline">Waktu online terakhir: ${0}</code>
+    <code id="windowtitle">${0} - Percakapan</code>
+    <code id="background_no">Tanpa background</code>
+    <code id="background_list">Background tersedia...</code>
+    <code id="close_many_tabs">Anda ingin menutup semua percakapan?</code>
+    <code id="close_recent_message">Anda baru saja menerima sebuah pesan.&#13;&#13;Anda ingin menutup percakapan ini?</code>
+	<code id="palette_compact">Kurangi ukuran daftar emoticon</code>
+	<code id="palette_expand">Tampilkan semua emoticons di style ini</code>
+	<code id="palette_browse">Style Emoticon Lain...</code>
+
+    <code id="menu_file_received">&amp;Buka File yang Saya Terima</code>
+    <code id="menu_file_history">Histori &amp;Pesan</code>
+    <code id="menu_file_close">&amp;Tutup Percakapan</code>
+
+    <code id="menu_axn_contact">&amp;Kontak</code>
+    <code id="menu_axn_add">Tambahkan ke Daftar Kontak</code>
+    <code id="menu_axn_block">&amp;Blok</code>
+    <code id="menu_axn_rename">&amp;Ubah nama</code>
+    <code id="menu_axn_panel">Tampilkan &amp;Panel Aksi</code>
+    <code id="menu_axn_profile">Lihat &amp;Profil</code>
+    <code id="menu_axn_file">Kirim &amp;File</code>
+
+    <code id="menu_tool_emo_style">Pilih &amp;Emoticons...</code>
+    <code id="menu_tool_font">Ganti &amp;Huruf...</code>
+    <code id="menu_tool_background">Ganti &amp;Background...</code>
+    <code id="menu_tool_aot">&amp;Selalu Paling Atas</code>
+    <code id="menu_tool_popup">&amp;Pesan Baru per Jendela</code>
+    <code id="menu_tool_tabbed">&amp;Percakapan Setiap Tab</code>
+    <code id="menu_tool_emoticons">&amp;Tampilkan Emoticons</code>
+    <code id="menu_tool_settings">&amp;Setting</code>
+  </window>
+  <window name="conference-bookmarks-add">
+    <item id="txt_address">
+      <innerText>Alamat Ruang Konferensi:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Contoh: ruangku@konferensi.posindonesia.co.id</innerText>
+    </item>
+    <item id="lbl_autojoin">
+      <innerText>Gabung ke ruang konferensi ini ketika login</innerText>
+    </item>
+    <item id="lbl_password">
+      <innerText>Masuk ke ruang dengan password ini:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+    <code id="error_invalid_address">Alamat ruang konferensi tidak valid.</code>
+  </window>
+  <window name="conference-bookmarks-manage">
+    <item id="txt_head">
+      <innerText>Ubah, Hapus, atau Tambahkan Penanda (Bookmark) Ruang Konferensi:</innerText>
+    </item>
+    <item id="btn_edit">
+      <value>Ubah</value>
+    </item>
+    <item id="btn_delete">
+      <value>Hapus</value>
+    </item>
+    <item id="btn_add">
+      <value>Tambah</value>
+    </item>
+    <item id="btn_close">
+      <value>Tutup</value>
+    </item>
+    <code id="confirm_delete">Anda ingin menghapus penanda untuk ruang konferensi ini?</code>
+  </window>
+  <window name="conference-configuration">
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_form_loading">
+      <innerText>Sedang memuat...</innerText>
+    </item>
+    <item id="txt_form_empty">
+      <innerText>Ruang konferensi ini tidak memiliki setting yang dapat disesuaikan</innerText>
+    </item>
+    <item id="txt_form_invalid">
+      <innerText>Error: Tidak dapat mengambil konfigurasi ruang konferensi</innerText>
+    </item>
+    <code id="form_title">Setting untuk ruang konferensi ini</code>
+    <code id="form_subtitle">Isi form ini untuk mengkonfigurasi ruang konferensi</code>
+
+    <code id="muc#roomconfig_allowinvites">Ijinkan pengunjung untuk mengundang user lain</code>
+    <code id="muc#roomconfig_changesubject">Ijinkan pengunjung untuk mengganti subject ruangan</code>
+    <code id="muc#roomconfig_enablelogging">Rekam semua pesan di ruang konferensi</code>
+    <code id="muc#roomconfig_lang">Bahasa yang digunakan di ruang konferensi</code>
+    <code id="muc#roomconfig_maxusers">Jumlah maksimum pengunjung di ruang konferensi</code>
+    <code id="muc#roomconfig_membersonly">Hanya anggota yang diijinkan masuk ke dalam ruang konferensi</code>
+    <code id="muc#roomconfig_moderatedroom">Persetujuan dari Moderator dibutuhkan untuk mengirim pesan</code>
+    <code id="muc#roomconfig_passwordprotectedroom">Password dibutuhkan untuk masuk ke dalam ruang konferensi</code>
+    <code id="muc#roomconfig_persistentroom">Ruang konferensi tetap berjalan ketika semua orang telah keluar ruangan</code>
+    <code id="muc#roomconfig_presencebroadcast">Aturan untuk informasi status mana yang disebar</code>
+    <code id="muc#roomconfig_publicroom">Tampilkan ruang konferensi di daftar ruang konferensi yang bisa diakses publik</code>
+    <code id="muc#roomconfig_roomadmins">Administrator ruang konferensi</code>
+    <code id="muc#roomconfig_roomdesc">Deskripsi ruang konferensi</code>
+    <code id="muc#roomconfig_roomname">Nama ruang konferensi</code>
+    <code id="muc#roomconfig_roomowners">Pemilik ruang konferensi</code>
+    <code id="muc#roomconfig_roomsecret">Password untuk masuk ke ruang konferensi</code>
+    <code id="muc#roomconfig_whois">Keanggotaan yang dapat menemukan alamat nyata dari semua pengunjung</code>
+  </window>
+  <window name="conference-password">
+    <item id="txt_password">
+      <innerText>Password:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-name">
+    <item id="txt_name">
+      <innerText>Nama:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-subject">
+    <item id="txt_subject">
+      <innerText>Judul:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-invite">
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Pilih kontak yang ingin Anda undang.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Tidak ada kontak yang online di daftar Anda.</innerText>
+    </item>
+  </window>
+  <window name="conference-accesslevel">
+    <item id="txt-name">
+      <innerText>Nama:</innerText>
+    </item>
+    <item id="txt-room">
+      <innerText>Ruang:</innerText>
+    </item>
+
+	<item id="txt-role">
+      <innerText>Role</innerText>
+    </item>
+	<item id="txt-visitor">
+      <innerText>Pengunjung</innerText>
+    </item>
+    <item id="txt-visitor-desc">
+      <innerText>Dapat membaca pesan</innerText>
+    </item>
+	<item id="txt-participant">
+      <innerText>Partisipan</innerText>
+    </item>
+    <item id="txt-participant-desc">
+      <innerText>Dapat mengirim pesan juga</innerText>
+    </item>
+	<item id="txt-moderator">
+      <innerText>Moderator</innerText>
+    </item>
+    <item id="txt-moderator-desc">
+      <innerText>Dapat juga menendang partisipan dan pengunjung</innerText>
+    </item>
+
+	<item id="txt-affiliation">
+      <innerText>Keanggotaan</innerText>
+    </item>
+	<item id="txt-none">
+      <innerText>Tidak ada/Anggota</innerText>
+    </item>
+    <item id="txt-none-desc">
+      <innerText>Dapat masuk ke ruang konferensi</innerText>
+    </item>
+	<item id="txt-admin">
+      <innerText>Administrator</innerText>
+    </item>
+    <item id="txt-admin-desc">
+      <innerText>Dapat juga menambah Moderator dan mem-ban pengunjung</innerText>
+    </item>
+	<item id="txt-owner">
+      <innerText>Pemilik</innerText>
+    </item>
+    <item id="txt-owner-desc">
+      <innerText>Dapat juga menambah Administrator</innerText>
+    </item>
+
+    <item id="btn-default">
+      <value>Default</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-cancel">
+      <value>Batal</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn-close">
+      <value>Tutup</value>
+      <accessKey>t</accessKey>
+    </item>
+  </window>
+  <window name="conference-container">
+    <item id="btn-emoticons">
+      <title>Menampilkan apa yang sedang Anda pikirkan dan lakukan</title>
+      <accessKey>p</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Ganti warna dan tipe tulisan</title>
+      <accessKey>w</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Ganti background lain</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Emoticons</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Huruf</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Background</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>Ganti ukuran field masukan untuk pesan</title>
+    </item>
+    <item id="mode-bar">
+      <title>Nama, alamat, dan judul dari ruang konferensi</title>
+    </item>
+    <item id="send-text">
+      <title>Ketik pesan Anda di sini</title>
+    </item>
+    <item id="btn-send">
+      <value>Kirim</value>
+      <title>Kirim pesan</title>
+    </item>
+
+    <item id="occupants-panel">
+      <title>Penghuni ruang konferensi</title>
+    </item>
+    <item id="txt-visitors">
+      <innerText>Pengunjung</innerText>
+      <title>Pengunjung dapat membaca tapi tidak dapat mengirim pesan</title>
+    </item>
+    <item id="txt-moderators">
+      <innerText>Moderator</innerText>
+      <title>Moderator dapat mengirim dan membaca pesan dan dapat menendang pengunjung lain dari ruang konferensi</title>
+    </item>
+    <item id="txt-participants">
+      <innerText>Partisipan</innerText>
+      <title>Partisipan dapat mengirim dan membaca pesan</title>
+    </item>
+
+    <code id="wnd_conference_password">Hubungi dengna password</code>
+    <code id="wnd_conference_change_name">Ganti nama saya</code>
+    <code id="wnd_conference_subject">Judul Ruang Konferensi</code>
+    <code id="wnd_conference_configuration">Konfigurasi Ruang Konferensi</code>
+    <code id="wnd_conference_accesslevel">${0} - Tingkatan Akses</code>
+
+    <code id="tt-messages">Pesan telah dikirim dan diterima</code>
+    <code id="tt-close">Keluar dari ruang konferensi</code>
+    <code id="default_subject">Ruang konferensi ini belum memiliki judul/Subject.</code>
+    <code id="windowtitle">${0} - Konferensi</code>
+    <code id="destroy">Menghapus ruang konferensi ini akan menghapus semua partisipan dari ruangan dan menghapus ruangan dari server.&#13;&#13;Anda yakin ingin menghapus ruang konferensi ini?</code>
+    <code id="connecting">Sedang menghubungi...</code>
+    <code id="connected">Tersambung</code>
+    <code id="disconnected">Terputus</code>
+    <code id="confirm-kick">Anda yakin ingin menendang "${0}" dari ruang konferensi ini?</code>
+    <code id="kick-error">Tidak dapat menendang penghuni: ${0}</code>
+    <code id="kicked">${0} telah ditendang dari ruang konferensi</code>
+    <code id="kicked-by">${0} telah ditendang dari ruang konferensi oleh ${1}</code>
+    <code id="confirm-ban">Anda yakin ingin mem-ban "${0}" dari ruang konferensi ini?</code>
+    <code id="ban-error">Tidak dapat mem-ban penghuni: ${0}</code>
+    <code id="banned">${0} diban dari ruang konferensi</code>
+    <code id="banned-by">${0} diban dari ruang konferensi oleh ${1}</code>
+    <code id="leaving">${0} keluar</code>
+    <code id="joining">${0} masuk</code>
+    <code id="renaming">${0} diketahui sebagai ${1}</code>
+
+    <code id="menu_file_close">&amp;Tutup Konferensi</code>
+
+    <code id="menu_axn_invite">&amp;Undang Kontak</code>
+    <code id="menu_axn_change_name">Ganti &amp;Nama Saya...</code>
+    <code id="menu_axn_password">Hubungi dengan &amp;Password...</code>
+    <code id="menu_axn_subject">&amp;Ganti Judul Ruang Konferensi</code>
+    <code id="menu_axn_configuration">&amp;Konfigurasi Ruang Konferensi ini</code>
+    <code id="menu_axn_destroy">&amp;Hapus Ruang Konferensi</code>
+
+    <code id="menu_bookmarks">&amp;Penanda (Bookmark)</code>
+
+    <code id="menu_bmrk_add">&amp;Tambahkan ke Penanda...</code>
+
+    <code id="menu_occupant_private">Pesan &amp;Pribadi</code>
+    <code id="menu_occupant_kick">&amp;Tendang</code>
+    <code id="menu_occupant_ban">&amp;Ban</code>
+    <code id="menu_occupant_access">&amp;Tingkatan Akses...</code>
+    <code id="menu_occupant_add">&amp;Tambahkan ke Daftar Kontak</code>
+    <code id="menu_occupant_profile">&amp;Profil</code>
+
+    <code id="unrecognized-error">Error yang tidak dikenal</code>
+    <code id="error-service-unavailable">Layanan Tidak Tersedia</code>
+    <code id="error-not-allowed">Tidak Diijinkan</code>
+    <code id="error-conflict">Konflik: Nickname sudah ada yang menggunakan</code>
+    <code id="error-registration-required">Dibutuhkan registrasi: Hanya untuk Anggota</code>
+    <code id="error-forbidden">Ditolak: Diban</code>
+    <code id="error-not-authorized">Belum Diotorisasi: Password dibutuhkan</code>
+    <code id="error-item-not-found">Item Tidak Ditemukan: Ruangan dikunci</code>
+  </window>
+  <window name="preferences">
+    <item id="txt_autoaway">
+      <innerText>Ketika Anda tidak menggunakan komputer ini selama beberapa menit, status Anda akan berubah menjadi "Pergi".</innerText>
+    </item>
+    <item id="txt_displayawaymsg_left">
+      <innerText>Tampilkan pesan ini setelah</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_left">
+      <innerText>Tampilkan pesan ini setelah</innerText>
+    </item>
+    <item id="txt_displayawaymsg_right">
+      <innerText>menit:</innerText>
+    </item>
+    <item id="txt_displayxawaymsg_right">
+      <innerText>menit:</innerText>
+    </item>
+    <item id="txt_blocking">
+      <innerText>Daftar Blok terdiri dari alamat orang-orang yang pesannya tidak ingin Anda terima dari mereka.</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>Tampilkan pesan dari orang yang tidak berada di daftar kontak saya</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>Daftar Blok</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>Blok ringan</value>
+    </item>
+    <item id="block_btn_view">
+      <value>Tampilkan Profil</value>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Setting Koneksi</innerText>
+    </item>
+    <item id="txt_connection_desc">
+      <innerText>Ganti bagaimana menghubungi server.</innerText>
+    </item>
+    <item id="btn_connection_settings">
+      <value>Setting Koneksi</value>
+    </item>
+    <item id="txt_portmap">
+      <innerText>Filetransfer portmap (NAT, firewall)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>Host:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>Tempatkan semua pesan di arsip histori</innerText>
+    </item>
+    <item id="txt_startup">
+      <innerText>Jalankan otomatis saat startup sistem operasi</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>Ketika seseorang meminta otorisasi saya</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>Tanyakan saya</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>Setujui semua permintaan</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>Setujui user yang berada di daftar kontak saya, tanyakan yang lain</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>Tolak semua permintaan</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>Hidupkan suara ketika pesan tiba</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>Hidupkan suara ketika seseorang kembali ke status online</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>Hidupkan suara ketika seseorang offline</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>Browse</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>Browse</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>Browse</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+    <item id="lbl_autoaway">
+      <innerText>Pergi otomatis</innerText>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>Pengeblokan</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>Koneksi</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>Pribadi</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>Suara</innerText>
+    </item>
+    <code id="autoaway">Otomatis pesan pergi</code>
+    <code id="blocking">Daftar pengeblokan</code>
+    <code id="connection">Setting koneksi</code>
+    <code id="privacy">Pribadi</code>
+    <code id="sound">Suara pemberitahuan</code>
+    <code id="reconnect">Anda harus melakukan koneksi ulang untuk menerapkan perubahan.&#13;&#13;Anda ingin melakukan koneksi ulang sekarang?</code>
+    <code id="shortcut">Kirim dan terima pesan instan</code>
+    <code id="choose_sound">Pilih suara pemberitahuan</code>
+    <code id="file_audio">File suara</code>
+    <code id="file_any">File apapun</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>Cari atau Tambahkan Orang</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>Anda dapat mencari seseorang berdasarkan informasi yang bersifat publik atau Anda juga dapat memasukkan username orang tersebut.</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>Bagaimana caranya Anda ingin menambahkan sebuah kontak?</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>Saya ingin men&lt;U&gt;c&lt;/U&gt;ari seseorang.</innerHTML>
+      <accessKey>c</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>&lt;U&gt;L&lt;/U&gt;ayanan:</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>l</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML>&lt;U&gt;S&lt;/U&gt;aya telah tahu alamat orang tersebut.</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>&lt;U&gt;J&lt;/U&gt;aringan:</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>j</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>&lt;U&gt;U&lt;/U&gt;sername:</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>Untuk berkomunikasi dengan seseorang melalui jaringan yang berbeda, Anda harus mendaftarkan transport jaringan tersebut.</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>Pengaturan transports</innerText>
+    </item>
+    <item id="txt_p1_invite_email">
+      <innerText>Undang seseorang dengan e-mail</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>Lanjut &gt;</value>
+      <accessKey>l</accessKey>
+    </item>
+    <item id="btn_p1_close">
+      <value>Tutup</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>Sedang memproses Username</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>Transport sedang memverifikasi username.</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; Kembali</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>Lanjut &gt;</value>
+    </item>
+    <item id="page1b_btn_close">
+      <value>Tutup</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>Meminta Form Pencarian</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>Form pencarian mengandung instruksi dan semua field yang dapat dicari.</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; Kembali</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>Lanjut &gt;</value>
+    </item>
+    <item id="page1c_btn_close">
+      <value>Tutup</value>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; Kembali</value>
+      <accessKey>k</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>Cari</value>
+      <accessKey>c</accessKey>
+    </item>
+    <item id="page3_btn_close">
+      <value>Tutup</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText>Hasil Pencarian</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>Anda dapat melihat detail pribadi user atau menambahkan user ke daftar kontak Anda.</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; Kembali</value>
+      <accessKey>k</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>Lanjut &gt;</value>
+    </item>
+    <item id="page4_btn_close">
+      <value>Tutup</value>
+    </item>
+
+    <item id="txt_p5_title">
+      <innerText>Sedang menambah orang</innerText>
+    </item>
+    <item id="txt_p5_tagline">
+      <innerText>Daftar kontak disimpan di server.</innerText>
+    </item>
+    <item id="txt_p5_desc">
+      <innerText>Permintaan otorisasi telah dikirim ke:</innerText>
+    </item>
+    <item id="txt_p5_user">
+      <innerText>Username:</innerText>
+    </item>
+    <item id="txt_p5_network">
+      <innerText>Jaringan:</innerText>
+    </item>
+    <item id="page5_btn_back">
+      <value>&lt; Kembali</value>
+    </item>
+    <item id="page5_btn_next">
+      <value>Lanjut &gt;</value>
+    </item>
+    <item id="page5_btn_close">
+      <value>Tutup</value>
+    </item>
+
+    <item id="txt_p6_title">
+      <innerText>Melengkapi Wizard Pencarian atau Penambahan Orang</innerText>
+    </item>
+    <item id="txt_p6_tagline">
+      <innerText>Anda telah berhasil melengkapi Wizard Pencarian atau Penambahan Orang.</innerText>
+    </item>
+    <item id="txt_p6_desc">
+      <innerText>Orang ini telah berhasil ditambahkan ke daftar kontak Anda:</innerText>
+    </item>
+    <item id="txt_p6_user">
+      <innerText>Username:</innerText>
+    </item>
+    <item id="txt_p6_network">
+      <innerText>Jaringan:</innerText>
+    </item>
+    <item id="txt_p6_again">
+      <innerHTML>Untuk mengulangi wizard ini, tekan &lt;B&gt;Tambah Orang Lain&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_again">
+      <value>Tambah Orang Lain</value>
+    </item>
+    <item id="txt_p6_finish">
+      <innerHTML>Untuk menutup wizard ini, tekan &lt;B&gt;Selesai&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_back">
+      <value>&lt; Kemabli</value>
+    </item>
+    <item id="page6_btn_finish">
+      <value>Selesai</value>
+    </item>
+    <item id="page6_btn_close">
+      <value>Tutup</value>
+    </item>
+
+    <code id="correct">Masukkan username yang benar.&#13;&#13;Contoh: 130tsi-masino@${0}</code>
+    <code id="example_address">Contoh: 130tsi-masino@${0}</code>
+    <code id="contacting_adding">&lt;B&gt;Sedang menghubungi Server&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Proses ini bisa sampai satu menit.&lt;BR&gt;Mohon bersabar.&lt;BR&gt;</code> 
+    <code id="contacting_transport">&lt;B&gt;Sedang menghubungi Transport&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Proses ini bisa sampai satu menit.&lt;BR&gt;Mohon bersabar.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Sedang menghubungi Layanan Pencarian&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Proses ini bisa sampai satu menit.&lt;BR&gt;Mohon bersabar.&lt;BR&gt;</code>
+    <code id="error_adding">&lt;B&gt;Server Error:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;User tidak dapat ditambahkan ke daftar kontak Anda.&lt;BR&gt;Hubungi Administrator untuk informasi lebih lanjut.</code>
+    <code id="error_transport">&lt;B&gt;Server Error:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;User tidak dapat ditambahkan ke daftar kontak Anda.&lt;BR&gt;Pastikan bahwa Anda telah memasukkan username yang benar.</code>
+    <code id="error_search">&lt;B&gt;Server Error:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Form pencarian tidak dapat didownload.&lt;BR&gt;Cobalah lagi nanti atau pilih layanan yang lain.</code>
+    <code id="error_invalid">Data yang telah diterima tidak valid.</code>
+    <code id="search_title">Pencarian User</code>
+    <code id="search_tagline">Isi pada field yang ada untuk mencari user yang cocok dengan apapun.</code>
+    <code id="firstname">Nama pertama:</code>
+    <code id="lastname">Nama terakhir:</code>
+    <code id="nick">Nama panggilan:</code>
+    <code id="email">Alamat E-mail:</code>
+    <code id="searching">Sedang mencari...</code>
+    <code id="add">Tambahkan ke daftar kontak</code>
+    <code id="view">Lihat Profil</code>
+    <code id="foundone">1 hasil</code>
+    <code id="foundmany">${0} hasil</code>
+  </window>
+  <window name="login">
+    <code id="invalid">Alamat tidak valid. Perbaiki alamat, lalu coba lagi.&#13;&#13;Jika Anda tidak punya alamat, tekan Pendaftaran dan ikuti instruksi selanjutnya.</code>
+    <code id="invalid-ntlm">Alamat dari server tersebut tidak valid. Perbaiki alamat, lalu coba lagi.</code>
+    <item id="txt_instructions">
+      <innerText>Masukkan alamat pesan dan password untuk login.</innerText>
+    </item>
+    <item id="txt_instructions_ntlm">
+      <innerText>Masukkan alamat server pesan untuk login.</innerText>
+    </item>
+    <item id="txt_address">
+      <innerText>Alamat:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Contoh: 130tsi-masino@msg.posindonesia.co.id</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Password:</innerText>
+    </item>
+    <item id="txt_forgot_password">
+      <innerText>Lupa dengan password Anda?</innerText>
+    </item>
+    <item id="txt_remember">
+      <innerText>Ingat password saya</innerText>
+    </item>
+    <item id="txt_autologin">
+      <innerText>Otomatis login</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Setting Koneksi</innerText>
+    </item>
+    <item id="txt_server_ntlm">
+      <innerText>IM Server:</innerText>
+    </item>
+    <item id="txt_example_ntlm">
+      <innerText>Contoh: msg.posindonesia.co.id</innerText>
+    </item>
+    <item id="btn_signup">
+      <value>Pendaftaran</value>
+    </item>
+    <item id="btn_login">
+      <value>Login</value>
+    </item>
+    <item id="btn_close">
+      <value>Tutup</value>
+    </item>
+  </window>
+  <window name="connection-settings">
+    <code id="logout">Anda harus logout terlebih dulu untuk menerapkan perubahan.&#13;&#13;Anda ingin logout sekarang?</code>
+    <code id="automatic">Otomatis</code>
+    <item id="txt_connection">
+      <innerText>Koneksi Server</innerText>
+    </item>
+    <item id="lbl_server_address">
+      <innerHTML>&lt;U&gt;A&lt;/U&gt;lamat:</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="lbl_server_port">
+      <innerHTML>&lt;U&gt;P&lt;/U&gt;ort:</innerHTML>
+      <accessKey>p</accessKey>
+    </item>
+    <item id="txt_encryption">
+      <innerText>Komunikasi yang Aman</innerText>
+    </item>
+    <item id="lbl_encryption_optional">
+      <innerHTML>G&lt;U&gt;u&lt;/U&gt;nakan enkripsi TLS jika tersedia di server</innerHTML>
+      <accessKey>u</accessKey>
+    </item>
+    <item id="lbl_encryption_tls">
+      <innerHTML>Membutuhkan enkripsi &lt;U&gt;T&lt;/U&gt;LS</innerHTML>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="lbl_encryption_ssl">
+      <innerHTML>Membutuhkan enkripsi &lt;U&gt;S&lt;/U&gt;SL</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="lbl_encryption_none">
+      <innerHTML>Ja&lt;U&gt;n&lt;/U&gt;gan gunakan enkripsi</innerHTML>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="txt_authentication">
+      <innerText>Otentikasi Login</innerText>
+    </item>
+    <item id="lbl_authentication_normal">
+      <innerHTML>A&lt;U&gt;l&lt;/U&gt;amat dan password</innerHTML>
+      <accessKey>l</accessKey>
+    </item>
+    <item id="lbl_authentication_ntlm">
+      <innerHTML>Menggunakan otentikasi &lt;U&gt;W&lt;/U&gt;indows</innerHTML>
+      <accessKey>w</accessKey>
+    </item>
+    <item id="txt_proxy">
+      <innerText>Proxy Server</innerText>
+    </item>
+    <item id="lbl_proxy_none">
+      <innerHTML>Ti&lt;U&gt;d&lt;/U&gt;ak ada</innerHTML>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="lbl_proxy_http">
+      <innerHTML>&lt;U&gt;H&lt;/U&gt;TTP</innerHTML>
+      <accessKey>h</accessKey>
+    </item>
+    <item id="lbl_proxy_address">
+      <innerHTML>Ala&lt;U&gt;m&lt;/U&gt;at:</innerHTML>
+      <accessKey>m</accessKey>
+    </item>
+    <item id="lbl_proxy_port">
+      <innerHTML>P&lt;U&gt;o&lt;/U&gt;rt:</innerHTML>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Batal</value>
+    </item>
+  </window>
+  <window name="sign_up">
+    <code id="close_confirm">Alamat baru belum lengkap.&#13;&#13;Anda yakin ingin menutup wizard?</code>
+    <code id="incomplete">Lengkapi semua field...</code>
+    <code id="pass_match">Password yang Anda masukkan tidak cocok.&#13;&#13;Masukkan password yang baru di kedua field.</code>
+
+    <code id="contacting">Sedang menghubungi server...</code>
+    <code id="registered">Account Anda sedang diregistrasi. Proses ini bisa sampai satu menit.&lt;BR&gt;Mohon bersabar.&lt;BR&gt;</code>
+    <code id="requesting">Sedang meminta informasi...</code>
+    <code id="sending">Sedang mengirim registrasi...</code>
+    <code id="failure">Koneksi gagal</code>
+    <code id="completed">Registrasi telah selesai</code>
+
+    <code id="address">Alamat:</code>
+    <code id="nickname">Nama:</code>
+    <code id="userdir">Direktori user:</code>
+    <item id="txt_page_welcome_title">
+      <innerText>Selamat Datang di Wizard Pendaftaran</innerText>
+    </item>
+    <item id="txt_page_welcome_intro">
+      <innerText>Wizard ini membantu Anda untuk melakukan pendaftaran di jaringan.</innerText>
+    </item>
+    <item id="txt_page_welcome_next">
+      <innerHTML>Untuk melanjutkan, tekan &lt;B&gt;Lanjut&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_welcome_next">
+      <value>Lanjut &gt;</value>
+      <accessKey>l</accessKey>
+    </item>
+    <item id="btn_page_welcome_cancel">
+      <value>Batal</value>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt_page_nickname_title">
+      <innerText>Informasi Pribadi</innerText>
+    </item>
+    <item id="txt_page_nickname_tagline">
+      <innerText>Informasi ini akan membantu orang lain jika mencari Anda di jaringan.</innerText>
+    </item>
+    <item id="txt_page_nickname_desc">
+      <innerText>Masukkan nama Anda untuk memudahkan teman Anda jika ingin menghubungi Anda.</innerText>
+    </item>
+    <item id="txt_page_nickname_name">
+      <innerHTML>&lt;U&gt;N&lt;/U&gt;ama:</innerHTML>
+    </item>
+    <item id="data_name">
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_back">
+      <value>&lt; Kembali</value>
+      <accessKey>K</accessKey>
+    </item>
+    <item id="btn_page_nickname_next">
+      <value>Lanjut &gt;</value>
+      <accessKey>l</accessKey>
+    </item>
+    <item id="btn_page_nickname_cancel">
+      <value>Batal</value>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt_page_account_title">
+      <innerText>Informasi Alamat</innerText>
+    </item>
+    <item id="txt_page_account_tagline">
+      <innerText>Anda dapat menggunakan server publik di Internet atau menggunakan server pribadi di jaringan perusahaan Anda.</innerText>
+    </item>
+    <item id="txt_page_account_server">
+      <innerHTML>&lt;U&gt;S&lt;/U&gt;erver:</innerHTML>
+    </item>
+    <item id="txt_page_account_username">
+      <innerHTML>&lt;U&gt;U&lt;/U&gt;sername:</innerHTML>
+    </item>
+    <item id="txt_page_account_password">
+      <innerHTML>&lt;U&gt;P&lt;/U&gt;assword:</innerHTML>
+    </item>
+    <item id="txt_page_account_confirm">
+      <innerHTML>&lt;U&gt;K&lt;/U&gt;onfirmasi password:</innerHTML>
+    </item>
+    <item id="txt_page_account_email">
+      <innerHTML>Alamat &lt;U&gt;E&lt;/U&gt;-mail:</innerHTML>
+    </item>
+    <item id="data_server">
+      <accessKey>s</accessKey>
+    </item>
+    <item id="data_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="data_password">
+      <accessKey>p</accessKey>
+    </item>
+    <item id="data_password_confirm">
+      <accessKey>k</accessKey>
+    </item>
+    <item id="data_email">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_page_account_remember">
+      <innerHTML>&lt;U&gt;I&lt;/U&gt;ngat password saya</innerHTML>
+      <accessKey>i</accessKey>
+    </item>
+    <item id="txt_page_account_preview">
+      <innerText>Alamat IM Anda:</innerText>
+    </item>
+    <item id="btn_page_account_settings">
+      <value>Setting Koneksi</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_account_back">
+      <value>&lt; Kembali</value>
+      <accessKey>k</accessKey>
+    </item>
+    <item id="btn_page_account_next">
+      <value>Lanjut &gt;</value>
+      <accessKey>l</accessKey>
+    </item>
+    <item id="btn_page_account_cancel">
+      <value>Batal</value>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt_page_creating_title">
+      <innerText>Registrasi Alamat</innerText>
+    </item>
+    <item id="txt_page_creating_autherr">
+      <innerHTML>Alamat tidak dapat didaftarkan. Username tidak tersedia.&lt;BR&gt;&lt;BR&gt;Tekan &lt;B&gt;Kembali&lt;/B&gt;, ketikkan username yang lain, lalu coba lagi.</innerHTML>
+    </item>
+    <item id="txt_page_creating_forbidden">
+      <innerHTML>Alamat tidak dapat didaftarkan. Server ini tidak mengijinkan pembuatan alamat baru.&lt;BR&gt;&lt;BR&gt;Tekan &lt;B&gt;Kembali&lt;/B&gt;, pilih server yang lain, lalu coba lagi.</innerHTML>
+    </item>
+    <item id="txt_page_creating_commerr">
+      <innerHTML>Tidak dapat menghubungi server. Pastikan bahwa alamat server sudah benar.&lt;BR&gt;Periksa koneksi jaringan Anda, lalu coba lagi. Jika Anda berada menggunakan firewall,&lt;BR&gt;atur ulang setting koneksi.</innerHTML>
+    </item>
+    <item id="btn_page_creating_retry">
+      <value>Coba lagi</value>
+      <accessKey>c</accessKey>
+    </item>
+    <item id="btn_page_creating_settings">
+      <value>Setting Koneksi</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_creating_back">
+      <value>&lt; Kembali</value>
+      <accessKey>k</accessKey>
+    </item>
+    <item id="btn_page_creating_next">
+      <value>Lanjut &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_creating_cancel">
+      <value>Batal</value>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt_page_finished_title">
+      <innerText>Melengkapi Wizard Tambah Profil</innerText>
+    </item>
+    <item id="txt_page_finished_intro">
+      <innerText>Anda telah berhasil melengkapi wizard Penambahan Profil.</innerText>
+    </item>
+    <item id="txt_page_finished_details">
+      <innerText>Detail Profil:</innerText>
+    </item>
+    <item id="txt_page_finished_finish">
+      <innerHTML>Untuk menutup wizard ini, tekan &lt;B&gt;Selesai&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_finished_back">
+      <value>&lt; Kembali</value>
+      <accessKey>k</accessKey>
+    </item>
+    <item id="btn_page_finished_finish">
+      <value>Selesai</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_finished_cancel">
+      <value>Batal</value>
+      <accessKey>b</accessKey>
+    </item>
+  </window>
+</translation>
