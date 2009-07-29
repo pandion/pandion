@@ -689,7 +689,7 @@
       <innerText>Fordere Informationen vom Server an</innerText>
     </item>
     <item id="txt_requesting2">
-      <innerHTML>Dies kann bis zu einer Minute dauern.&lt;BR&gt;Bitte hab Gedult.</innerHTML>
+      <innerHTML>Dies kann bis zu einer Minute dauern.&lt;BR&gt;Bitte hab Geduld.</innerHTML>
     </item>
 
     <item id="btn_save">
@@ -919,7 +919,7 @@
       <innerText>Verbinde zum Server</innerText>
     </item>
     <item id="txt_requesting2">
-      <innerHTML>Dies kann bis zu einer Minute dauern.&lt;BR&gt;Bitte hab Gedult.</innerHTML>
+      <innerHTML>Dies kann bis zu einer Minute dauern.&lt;BR&gt;Bitte hab Geduld.</innerHTML>
     </item>
 
     <item id="clickfinish">
@@ -933,7 +933,7 @@
     <code id="error_server">&lt;B&gt;Server Fehler:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Kann nicht fortfahren.</code>
     <code id="error_unknown">&lt;B&gt;Unbekannter Fehler:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Kann nicht fortfahren.</code>
     <code id="error_auth">&lt;B&gt;Berechtigungs Fehler:&lt;/B&gt;&lt;BR&gt;Falsche Adresse oder Passwort.&lt;BR&gt;&lt;BR&gt;Kann nicht fortfahren.</code>
-    <code id="wait">&lt;B&gt;Verbinde zum Server&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Dies kann bis zu einer Minute dauern.&lt;BR&gt;Bitte habe Gedult.&lt;BR&gt;</code>
+    <code id="wait">&lt;B&gt;Verbinde zum Server&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Dies kann bis zu einer Minute dauern.&lt;BR&gt;Bitte habe Geduld.&lt;BR&gt;</code>
 
     <code id="default_window_title">Transport Konfiguration</code>
     <code id="default_begin_intro">Dieser Assistent hilft dir, den Transport zu konfigurieren.&lt;BR&gt;Dieser Transport ist eine Verbindung zwischen dir und einem anderen Netzwerk.&lt;BR&gt;Du brauchst einen Account in dem anderen Netzwerk um diesen Transport zu benutzen.&lt;BR&gt;</code>
@@ -1309,8 +1309,8 @@
     <code id="correct">Gib einen gültigen Benutzernamen ein.&#13;&#13;Beispiel: jemand123@${0}</code>
     <code id="example_address">Beispiel: jemand123@${0}</code>
     <code id="enter_username">Gib den Benutzernamen von der Person mit der du chatten willst ein.</code>
-    <code id="contacting_transport">&lt;B&gt;Kontaktiere Transport&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Dies kann bis zu einer Minute dauern.&lt;BR&gt;Bitte habe Gedult.&lt;BR&gt;</code>
-    <code id="contacting_search">&lt;B&gt;Kontaktiere Such-Service&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Dies kann bis zu einer Minute dauern.&lt;BR&gt;Bitte habe Gedult.&lt;BR&gt;</code>
+    <code id="contacting_transport">&lt;B&gt;Kontaktiere Transport&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Dies kann bis zu einer Minute dauern.&lt;BR&gt;Bitte habe Geduld.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Kontaktiere Such-Service&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Dies kann bis zu einer Minute dauern.&lt;BR&gt;Bitte habe Geduld.&lt;BR&gt;</code>
     <code id="error_transport">&lt;B&gt;Server Fehler:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Der Benutzer kann nicht zu deiner Kontaktliste hinzugefügt werden.&lt;BR&gt;Vergewissere dich, dass du den richtigen Benutzernamen eingegeben hast.</code>
     <code id="error_search">&lt;B&gt;Server Fehler:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Die Suchmaske kann nicht heruntergeladen werden.&lt;BR&gt;Versuche es später noch einmal oder versuche einen anderen Dienst.</code>
     <code id="search_title">Benutzer-Suche</code>
