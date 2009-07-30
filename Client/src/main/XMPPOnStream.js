@@ -45,7 +45,7 @@ function XMPPOnStream ( ReceivedXML )
 		 */
 		if ( external.globals( 'sspiserver' ).length || external.globals( 'authentication' ) == 'ntlm' )
 		{
-			if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "SPNEGO" ]' ) )
+			if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "GSS-SPNEGO" ]' ) )
 			{
 				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 				dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SPNEGO"/>' );
