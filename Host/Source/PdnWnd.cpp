@@ -357,10 +357,6 @@ LRESULT CPdnWnd::OnFinalMessage(HWND hWnd,
 	/* Free the internet security manager */
 	m_pSecurityMgr->Release();
 
-	/* Remove the window from the global window dictionary */
-	ScrRun::IDictionaryPtr pWindows = m_Module->GetWindows();
-	pWindows->Remove(&_variant_t(m_Name.c_str()));
-
 	return 0;
 }
 LRESULT CPdnWnd::OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam)

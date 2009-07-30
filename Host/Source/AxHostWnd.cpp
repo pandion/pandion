@@ -159,11 +159,14 @@ LRESULT AxHostWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 LRESULT AxHostWnd::OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	HRESULT hr;
-	RECT rPos;
-	::GetClientRect(m_hWndParent, &rPos);
-	RECT rClip = rPos;
-	hr = m_InPlaceObject->SetObjectRects(&rPos, &rClip);
+	if(m_InPlaceObject)
+	{
+		HRESULT hr;
+		RECT rPos;
+		::GetClientRect(m_hWndParent, &rPos);
+		RECT rClip = rPos;
+		hr = m_InPlaceObject->SetObjectRects(&rPos, &rClip);
+	}
 
 	return 0;
 }
