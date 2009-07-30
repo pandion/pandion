@@ -24,6 +24,7 @@
 #include "SASL.h"
 #include "UTF8.h"
 #include "Hash.h"
+#include "Base64.h"
 
 SASL::SASL()
 {
@@ -40,14 +41,12 @@ STDMETHODIMP SASL::PlainGenerateResponse(BSTR jid, BSTR username,
 {
 	std::stringstream stringBuffer;
 	stringBuffer << CW2UTF8(jid) << '\0' << CW2UTF8(username) << '\0' <<
-		CW2UTF8(password) << '\0';
+		CW2UTF8(password);
 
-	DWORD b64Size;
-	::CryptBinaryToString((LPBYTE)&stringBuffer.str()[0], stringBuffer.str().length(),
-		CRYPT_STRING_BASE64, NULL, &b64Size);
-	std::wstring b64Buffer(b64Size, L'\0');
-	::CryptBinaryToString((LPBYTE)&stringBuffer.str()[0], stringBuffer.str().length(),
-		CRYPT_STRING_BASE64, &b64Buffer[0], &b64Size);
+	const char *pStr = stringBuffer.str().c_str();
+	const unsigned int len = stringBuffer.str().length();
+	std::wstring b64Buffer = Base64::Base64Encode(stringBuffer.str().c_str(),
+			stringBuffer.str().length(), false);
 
 	*strBase64 = ::SysAllocString(b64Buffer.c_str());
 	return S_OK;

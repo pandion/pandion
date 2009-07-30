@@ -25,8 +25,9 @@
 class Base64
 {
 public:
+	template<class T>
 	static inline std::wstring Base64Encode(
-		const wchar_t* data, unsigned int dataLength, bool addCRLF = true)
+		const T* data, unsigned int dataLength, bool addCRLF = true)
 	{
 		static const wchar_t alphabet[] =
 			L"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef"
