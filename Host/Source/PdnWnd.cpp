@@ -219,7 +219,6 @@ LRESULT CPdnWnd::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	else if(uMsg == WM_SIZE)
 	{
 		OnSize(uMsg, wParam, lParam);
-		m_ActiveXHost.OnSize(uMsg, wParam, lParam);
 		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
 	}
 	else if(uMsg == WM_COMMAND)
