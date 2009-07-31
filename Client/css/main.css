@@ -307,13 +307,13 @@ A:hover {
 	margin: 24px 0 15px 0;
 	width: 225px;
 }
-DT {
+#signin-area DT {
 	display: inline;
 	float: left;
 	height: 2.5em;
 	margin-right: 8px;
 }
-DD {
+#signin-area DD {
 	display: inline;
 	float: left;
 }
@@ -324,12 +324,10 @@ DD {
 	color: #eee;
 	font-size: 16px;
 	font-weight: bold;
-	background: transparent url(../images/button/shiny.png) left top repeat-x;
-	background-position: -13px;
-	height: 36px;
+	background: transparent url(../images/button/shiny.png) left -13px repeat-x;
+	padding: 3px 10px;
 	margin-left: 50px;
-	width: 120px;
 }
 #signin-area li {
-	margin: 4px 0;
+	margin: 8px 0;
 }
