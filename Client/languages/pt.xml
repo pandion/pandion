@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Copyright © 2004-2009 Dário Ornelas
+This file is published under the Creative Commons Attribution-Share Alike 3.0 License
+http://creativecommons.org/licenses/by-sa/3.0
+-->
+
+
 <!--
 LangString DESC_SecCopyRequired		${LANG_PORTUGUESE}	"Este ficheiros são necessários para usar o ${PRODUCT}."
 LangString DESC_SecCreateStartMenu	${LANG_PORTUGUESE}	"O menu iniciar dá-nos acesso fácil ao ${PRODUCT}."
@@ -22,21 +30,18 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
     <history>
       <revision>
         <author>
-          <name>Dario Ornelas [korpro.org]</name>
-          <email>numb@korpro.org</email>
-          <xmpp>numb_@jabber.org</xmpp>
+          <name>Dario Ornelas</name>
+          <email>dariornelas@ovi.com</email>
+          <xmpp>krat@jabber.org</xmpp>
         </author>
-        <date>2004-08-18</date>
+        <date>2009-07-21</date>
         <description>
-          Second edit.
+          pandion.
         </description>
       </revision>
     </history>
   </about>
   <window name="main">
-    <item id="txt_pleasewait">
-      <innerText>Um momento por favor</innerText>
-    </item>
     <item id="txt_disconnected">
       <innerText>Desconectado do servidor</innerText>
     </item>
@@ -47,35 +52,60 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
       <innerText>ou</innerText>
     </item>
     <item id="txt_connection_settings">
-      <innerText>Mudar a configuração da conexão</innerText>
+      <innerText>Alterar as configuração da ligação</innerText>
     </item>
     <item id="txt_addtolist">
-      <innerText>Adicionar um contacto à lista de contactos</innerText>
+      <innerText>Adicionar Contacto</innerText>
     </item>
     <item id="txt_welcor">
       <innerText>ou</innerText>
     </item>
     <item id="txt_config_transport">
-      <innerText>Configurar os transportes da rede</innerText>
+      <innerText>Configurar Transportes</innerText>
     </item>
 
 	<item id="mode-avatar">
       <title>Escolher um avatar diferente</title>
     </item>
     <item id="mode-bar">
-      <title>Mudar a disponibilidade, mensagem de estado ou perfil pessoal</title>
+      <title>Alterar a disponibilidade, mensagem de estado ou perfil pessoal</title>
     </item>
     <item id="mode-secure">
-      <title>A conexão é segura usando uma encriptação SSL/TLS</title>
+      <title>A ligação é segura usando uma encriptação SSL/TLS</title>
     </item>
     <item id="rosterfield">
       <title>Contactos e grupos na lista de contactos</title>
     </item>
 
+	 <item id="signin-instructions">
+      <innerText>Ligue-se com o seu endereço de mensagens instantâneas</innerText>
+    </item>
+    <item id="txt-signin-address">
+      <innerText>Endereço:</innerText>
+    </item>
+    <item id="txt-signin-examples">
+      <innerText>Exemplos:</innerText>
+    </item>
+    <item id="txt-signin-password">
+      <innerText>Password:</innerText>
+    </item>
+    <item id="txt-signin-remember">
+      <innerText>Lembrar password</innerText>
+    </item>
+    <item id="txt-signin-autoconnect">
+      <innerText>Iniciar sessão automaticamente</innerText>
+    </item>
+    <item id="signin-register">
+      <innerText>Registar um novo endereço.</innerText>
+    </item>
+    <item id="signin-settings">
+      <innerText>Definições da Ligação</innerText>
+    </item>
+
     <code id="tt-group-hide">Esconder os contactos deste grupo&#13;Clique(direito) para mais opções</code>
     <code id="tt-group-show">Mostrar os contactos deste grupo&#13;Clique(direito) para mais opções</code>
 	<code id="emoticon_unknown">Desconhecido</code>
-    <code id="txt_welcome">Benvindo ao ${0}!</code>
+    <code id="txt_welcome">bem-vindo ao ${0}!</code>
 	<code id="user_online">${0} está online</code>
     <code id="cl_tooltip">${0} Lista de Contactos</code>
     <code id="autoawaymessage">Inactivo por mais de 5 minutos</code>
@@ -85,26 +115,27 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
     <code id="import_no_new">Todos os contactos no ficheiro já existem na sua lista de contactos.</code>
     <code id="import_confirm">Estes contactos irão ser adicionados à sua lista de contactos:&#13;&#13;${0}&#13;&#13;Tem a certeza que deseja adicionar estes contactos à sua lista de contactos.</code>
     <code id="import_aim_not_registered">Para importar a sua lista de contactos AIM tem que estar registado no transporte AIM. Também é necessário que o transporte esteja activo.&#13;Vá ao menu "Ferramentas" e escolha "Transportes" para verificar o estado do transporte AIM.</code>
-	<code id="import_msn_not_registered">Para importar a sua lista de contactos MSN tem que estar registado no transporte MSN. Também é necessário que o transporte esteja activo.&#13;Vá ao menu "Ferramentas" e escolha "Transportes" para verificar o estado do transporte MSN.</code>
-    <code id="import_gadu_not_registered">To import your Gadu-Gadu contact list, the Gadu-Gadu transport must be registered.  The transport must also be active.&#13;Vá ao menu "Ferramentas" e escolha "Transportes" para verificar o estado do transporte Gadu-Gadu.</code>
+	<code id="import_msn_not_registered">Para importar a sua lista de contactos WLM tem que estar registado no transporte WLM. Também é necessário que o transporte esteja activo.&#13;Vá ao menu "Ferramentas" e escolha "Transportes" para verificar o estado do transporte WLM.</code>
+    <code id="import_gadu_not_registered">Para importar a sua lista de contactos Gadu-Gadu tem que estar registado no transporte Gadu-Gadu. Também é necessário que o transporte esteja activo.&#13;Vá ao menu "Ferramentas" e escolha "Transportes" para verificar o estado do transporte Gadu-Gadu.</code>
     <code id="conference_invitation">${0} convidou-o para a Sala de Conferências: ${1}&#13;&#13;Quer se ligar a esta Sala de Conferências?</code>
-	<code id="sspi_autoreconnecting">A conexão com o servidor de mensagens instantâneas falhou</code>
+	<code id="sspi_autoreconnecting">A ligação com o servidor de mensagens instantâneas falhou</code>
+	<code id="search_info">Procurar um contacto...</code>
 
-    <code id="menu_file">&amp;Ficheiro</code>
-    <code id="menu_file_received">Abrir os Ficheiros &amp;Recebidos</code>
-	<code id="menu_file_export">&amp;Exportar Lista de Contactos...</code>
-    <code id="menu_file_import">&amp;Importar Lista de COntactos...</code>
-    <code id="menu_file_change"> &amp;Mudar a Mensagem de Estado...</code>
-    <code id="menu_file_ffc">Disponível para &amp;falar</code>
-    <code id="menu_file_available">&amp;Disponível</code>
-    <code id="menu_file_busy">&amp;Ocupado</code>
-    <code id="menu_file_away">&amp;Ausente</code>
-    <code id="menu_file_xaway">Ausente E&amp;xtenso</code>
-    <code id="menu_file_invisible">&amp;Invisivel</code>
-    <code id="menu_file_offline">O&amp;ffline</code>
-    <code id="menu_file_status">&amp;Estado</code>
-    <code id="menu_file_out"> Desco&amp;nectar</code>
-    <code id="menu_file_exit">&amp;Sair</code>
+    <code id="menu_status">E&amp;stado</code>
+    <code id="menu_status_received">Abrir os Ficheiros &amp;Recebidos</code>
+    <code id="menu_status_export">&amp;Exportar Lista de Contactos...</code>
+    <code id="menu_status_import">&amp;Importar Lista de Contactos...</code>
+    <code id="menu_status_change">Editar a &amp;Mensagem de Estado...</code>
+    <code id="menu_status_ffc">Disponível para &amp;falar</code>
+    <code id="menu_status_available">&amp;Disponível</code>
+    <code id="menu_status_busy">&amp;Ocupado</code>
+    <code id="menu_status_away">&amp;Ausente</code>
+    <code id="menu_status_xaway">Ausente &amp;Prolongando</code>
+    <code id="menu_status_invisible">&amp;Invisível</code>
+    <code id="menu_status_offline">O&amp;ffline</code>
+    <code id="menu_status_status">O meu &amp;Estado</code>
+    <code id="menu_status_out">&amp;Desconectar</code>
+    <code id="menu_status_exit">&amp;Sair</code>
 
     <code id="menu_axn">&amp;Acções</code>
     <code id="menu_axn_add">&amp;Adicionar um contacto...</code>
@@ -115,9 +146,9 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
     <code id="menu_axn_bookmarks_manage">&amp;Organizar os Marcadores...</code>
     <code id="menu_axn_join">&amp;Entrar numa sala de conferência...</code>
     <code id="menu_axn_create">&amp;Criar uma sala de conferência...</code>
-    <code id="menu_axn_password">Mudar a &amp;palavra passe...</code>
+    <code id="menu_axn_password">Alterar a &amp;password...</code>
     <code id="menu_axn_profile">Editar &amp;perfil...</code>
-    <code id="menu_axn_avatar">Mudar o &amp;avatar...</code>
+    <code id="menu_axn_avatar">Alterar o &amp;avatar...</code>
 
     <code id="menu_tool">Fe&amp;rramentas</code>
     <code id="menu_tool_transport">&amp;Transportes</code>
@@ -164,7 +195,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
     <code id="wnd_history">${0} - Histórico</code>
     <code id="wnd_plugin_list">Plug-ins</code>
     <code id="wnd_plugins">Plug-ins</code>
-    <code id="wnd_password">Mudar a palavra passe</code>
+    <code id="wnd_password">Mudar a password</code>
     <code id="wnd_settings">Opções</code>
     <code id="wnd_admin_server">Administração do Servidor</code>
     <code id="wnd_status">Mensagem de Estado</code>
@@ -173,7 +204,6 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
     <code id="wnd_group_rename">Renomear do Grupo</code>
     <code id="wnd_contact_rename">Renomear Contacto</code>
     <code id="wnd_authrequest">Pedido Da Autorização</code>
-    <code id="wnd_login">Início de Sessão - ${0}</code>
     <code id="wnd_extension_download">A Instalar ${0}</code>
     <code id="wnd_background_list">Fundos</code>
     <code id="wnd_background_download">Descarregar Fundos</code>
@@ -191,7 +221,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
     <code id="msg_cl_added">${0} adicionou-o à lista de contactos dele(a).</code>
     <code id="msg_cl_removed">${0} removeu-o da lista de contactos dele(a).</code>
     <code id="msg_blocked">Está na lista de contactos bloqueados deste utilizador.</code>
-    <code id="msg_autherror">Não foi possível ligar. Isto pode ter sido causado por uma das seguintes causas:&#13;&#13;- Foi inserida um palavra passe inválida&#13;- A conta não existe neste servidor&#13;&#13;Por favor tente outra vez.</code>
+    <code id="msg_autherror">Não foi possível ligar. Isto pode ter sido causado por uma das seguintes causas:&#13;&#13;- Foi inserida um password inválida&#13;- A conta não existe neste servidor&#13;&#13;Por favor tente novamente.</code>
 
     <code id="menu_message">Mensagem</code>
     <code id="menu_filetransfer">Transferência de Ficheiros</code>
@@ -209,7 +239,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
     <code id="menu_profile">Perfil</code>
 
     <code id="cl_waiting_one">Tem 1 mensagem não lida</code>
-    <code id="cl_waiting_multiple">tem ${0} mensagens não lidas</code>
+    <code id="cl_waiting_multiple">Tem ${0} mensagens não lidas</code>
     <code id="cl_error_notexist">Este endereço não existe.</code>
     <code id="cl_error_cannotadd">Não foi possível adicionar ${0} à sua lista de contactos.&#13;${1}</code>
     <code id="cl_default_group">Contactos</code>
@@ -422,13 +452,13 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
   </window>
   <window name="mode_select">
     <item id="txt_message">
-      <innerText>A tua mensagem de estado descreve o teu estado, actividade ou qualquer outra coisa:</innerText>
+      <innerText>A mensagem de estado descreve o seu estado, actividade, etc:</innerText>
     </item>
     <item id="lbl_ask_status">
-      <innerText>Perguntar para introduzir uma mensagem quando eu mudar o meu estado</innerText>
+      <innerText>Perguntar para introduzir uma mensagem quando for alterado o estado</innerText>
     </item>
 	<code id="btn_ok">OK</code>
-    <code id="btn_ok_empty">OK (no message)</code>
+    <code id="btn_ok_empty">OK (sem mensagem)</code>
   </window>
   <window name="rename_group">
     <item id="btn_ok">
@@ -471,13 +501,13 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
       <value>Cancelar</value>
     </item>
     <item id="txt_confirm">
-      <innerText>Confirme a nova palavra passe:</innerText>
+      <innerText>Confirme a nova password:</innerText>
     </item>
     <item id="txt_password">
-      <innerText>Nova palavra passe:</innerText>
+      <innerText>Nova password:</innerText>
     </item>
-    <code id="no_match">As palavras passes inseridas não coincidem.&#13;&#13;Insira a nova palavra passe em ambós os campos.</code>
-    <code id="no_pass">Inserir a nova palavra passe.</code>
+    <code id="no_match">As passwords inseridas não coincidem.&#13;&#13;Insira a nova password em ambós os campos.</code>
+    <code id="no_pass">Inserir a nova password.</code>
   </window>
   <window name="emoset_view">
     <item id="btn_ok">
@@ -615,18 +645,31 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
     <code id="no_new_plugins">Não existem plug-ins disponivéis.</code>
   </window>
   <window name="autoupdate">
-    <code id="download_confirm">Uma actualização deste software está disponível: ${0} ${1}&#13;&#13;Deseja descarregar esta actualização agora?</code>
-	<item id="btn_cancel">
-      <value>Cancelar</value>
+    <item id="txt-subtitle">
+      <innerText>Está disponível uma nova versão.</innerText>
     </item>
-    <item id="btn_install">
-      <value>Instalar</value>
+    <item id="txt-whats-new">
+      <innerText>O que há de novo?</innerText>
     </item>
-    <item id="txt_status">
-      <innerText>A Conactar...</innerText>
+    <item id="txt-learn-more">
+      <innerText>Saiba o que traz de novo esta actualização. Este link abre no seu browser.</innerText>
     </item>
-    <code id="downloading">A Descarregar...</code>
-    <code id="complete">Descarregamento completo. Pressione "Instalar" para continuar.</code>
+    <item id="txt-browser">
+      <innerText>O download será iniciado no seu browser.</innerText>
+    </item>
+    <item id="btn-update">
+      <value>Actualizar Agora</value>
+    </item>
+    <item id="btn-download">
+      <value>Download Agora</value>
+    </item>
+    <item id="btn-later">
+      <value>Mais Tarde</value>
+    </item>
+    <code id="title">Actualização de Software: ${0} ${1}</code>
+    <code id="continue">Pode continuar a utilizar ${0} enquanto é efectuado o download da actualização.</code>
+    <code id="restart">Esta actualização será instalada quando ${0} for reiniciado. Pode continuar a utilizar sem reiniciar. Deseja reiniciar agora e actualizar?
+	</code>
   </window>
   <window name="conference_create">
     <item id="btn_ok">
@@ -685,7 +728,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
     <item id="txt_status">
       <innerText>A ligar...</innerText>
     </item>
-    <code id="downloading">A Descarregar...</code>
+    <code id="downloading">A efectuar o download...</code>
   </window>
   <window name="file_recv">
     <item id="btn_close">
@@ -758,7 +801,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
     <item id="txt_progress">
       <innerText>Progresso:</innerText>
     </item>
-    <code id="socket">Não foi possível enviar o fichiro.&#13;Cannot open the network socket.</code>
+    <code id="socket">Não foi possível enviar o fichiro.&#13;Não foi possível abrir o socket de rede.</code>
     <code id="file">Não é possível ler o ficheiro:&#13;${0}</code>
     <code id="filetransfer">Transferência de ficheiro:</code>
     <code id="title_saving">${0}% of ${1} Sent</code>
@@ -803,10 +846,10 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
       <innerText>Filtro:</innerText>
     </item>
     <item id="txt_empty">
-      <innerText>There are no conference services available on this server.&#13;&#13;Press the button "Other Service..." to add a conference service from another server.</innerText>
+      <innerText>Não existem conferências disponíveis neste servidor.&#13;&#13;Clique em "Outro serviço..." para adicionar um serviço de conferências de outro servidor.</innerText>
     </item>
     <item id="txt_disconnected">
-      <innerText>To join a conference room you must be connected to the instant messaging server.</innerText>
+      <innerText>Para entrar numa conferência tem de estar ligado ao servidor de mensagens instantâneas.</innerText>
     </item>
 	<code id="bookmarks">Marcadores</code>
 	<code id="menu_join">Entrar</code>
@@ -892,13 +935,13 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
       <innerText>Nome</innerText>
     </item>
     <item id="txt_given">
-      <innerText>Primeiro Nome:</innerText>
+      <innerText>Nome:</innerText>
     </item>
     <item id="txt_middle">
       <innerText>Nome do Meio:</innerText>
     </item>
     <item id="txt_family">
-      <innerText>Ultimo Nome:</innerText>
+      <innerText>Apelido:</innerText>
     </item>
     <item id="txt_nick">
       <innerText>Nickname:</innerText>
@@ -1057,7 +1100,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
       <innerHTML>&lt;B&gt;Nota:&lt;/B&gt; O servidor a que está conectado não tem transportes disponíveis. Contacte o administrador para mais informações.</innerHTML>
     </item>
     <item id="msnworkaroundlabel">
-      <innerText>Permite os contactos MSN mudarem os nicknames deles</innerText>
+      <innerText>Permite os contactos WLM mudarem os nicknames deles</innerText>
     </item>
     <code id="status_active">Activo</code>
     <code id="status_noreg">Não registado</code>
@@ -1110,7 +1153,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
       <innerText>Endereço:</innerText>
     </item>
     <item id="txt_password">
-      <innerText>Palavra Passe:</innerText>
+      <innerText>Password:</innerText>
     </item>
     <item id="txt_new_nick">
       <innerText>Nickname:</innerText>
@@ -1139,30 +1182,30 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
     <code id="error_invalid">Dados recebidos inválidos</code>
     <code id="error_server">&lt;B&gt;Erro de servidor:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Não é possível continuar.</code>
     <code id="error_unknown">&lt;B&gt;Erro desconhecido:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Não é possível continuar.</code>
-    <code id="error_auth">&lt;B&gt;Erro de autorização:&lt;/B&gt;&lt;BR&gt;Endereço ou palavra passe incorrectos.&lt;BR&gt;&lt;BR&gt;Não é possível continuar..</code>
-    <code id="wait">&lt;B&gt;A contactar o servidor&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Este processo pode demorrar mais que um minuto.&lt;BR&gt;Por favor seja paciente.&lt;BR&gt;</code>
+    <code id="error_auth">&lt;B&gt;Erro de autorização:&lt;/B&gt;&lt;BR&gt;Endereço ou password incorrectos.&lt;BR&gt;&lt;BR&gt;Não é possível continuar..</code>
+    <code id="wait">&lt;B&gt;A contactar o servidor&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Este processo pode demorrar mais que um minuto.&lt;BR&gt;Por favor aguarde.&lt;BR&gt;</code>
 
     <code id="default_window_title">Configuração do Transporte</code>
     <code id="default_begin_intro">Este assistente ajuda-o a configurar o transporte.&lt;BR&gt;Este transporte é uma ligação entre você e outra rede.&lt;BR&gt;É necessário uma conta na outra rede para usar este transporte.&lt;BR&gt;</code>
-    <code id="default_newaccount_instructions">Introduza a sua conta e palavra passe.&lt;BR&gt;Pode também inserir um nickname que os outros irão ver.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">Introduza a sua conta e password.&lt;BR&gt;Pode também inserir o nome que os contactos irão ver.&lt;BR&gt;</code>
     <code id="default_newaccount_examples">&amp;nbsp;</code>
     <code id="default_creating_busy">A sua conta está a ser registada com o transporte.</code>
     <code id="default_removing_busy">A sua conta está a ser removida do transporte.&lt;BR&gt;</code>
-    <code id="default_creating_done">O registo da sua conta com o transporte foi bem sucedido.</code>
-    <code id="default_removing_done">A remoção da sua conta com o transporte foi bem sucedida.</code>
+    <code id="default_creating_done">O registo da sua conta no transporte foi bem sucedido.</code>
+    <code id="default_removing_done">A remoção da sua conta do transporte foi bem sucedida.</code>
 
-    <code id="msn_window_title">MSN Messenger - Configuração do Transporte</code>
-    <code id="msn_begin_intro">Este assistente ajuda-o a configurar o transporte MSN.&lt;BR&gt;Este transporte é uma ligação entre você e a sua conta MSN.&lt;BR&gt;É necessário um Microsoft Passport para usar este transporte.&lt;BR&gt;</code>
-    <code id="msn_newaccount_instructions">Introduza o seu endereço e palavra passe MSN.&lt;BR&gt;Pode também inserir um nickname que os outros irão ver&lt;BR&gt;</code>
+    <code id="msn_window_title">Windows Live Messenger - Configuração do Transporte</code>
+    <code id="msn_begin_intro">Este assistente ajuda-o a configurar o transporte WLM.&lt;BR&gt;Este transporte é uma ligação entre você e a sua conta WLM.&lt;BR&gt;É necessário um Microsoft Passport para usar este transporte.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">Introduza o seu endereço e password WLM.&lt;BR&gt;Pode também inserir um nickname que os outros irão ver&lt;BR&gt;</code>
     <code id="msn_newaccount_examples">exemplos: alguem@msn.com, alguem@hotmail.com</code>
-    <code id="msn_creating_busy">A sua conta MSN está a ser registada com o transporte.</code>
-    <code id="msn_removing_busy">A sua conta MSN está a ser removida do transporte.&lt;BR&gt;Vai poder continuar a utilizar a sua conta MSN com outros serviços (ex. Hotmail, MSN Explorer, etc.).&lt;BR&gt;</code>
-    <code id="msn_creating_done">O registo da sua conta MSN no transporte foi bem sucedido.</code>
-    <code id="msn_removing_done">A remoção da sua conta MSN do transporte foi bem sucedida.</code>
+    <code id="msn_creating_busy">A sua conta WLM está a ser registada com o transporte.</code>
+    <code id="msn_removing_busy">A sua conta WLM está a ser removida do transporte.&lt;BR&gt;Vai poder continuar a utilizar a sua conta WLM com outros serviços (ex. Hotmail, WLM Explorer, etc.).&lt;BR&gt;</code>
+    <code id="msn_creating_done">O registo da sua conta WLM no transporte foi bem sucedido.</code>
+    <code id="msn_removing_done">A remoção da sua conta WLM do transporte foi bem sucedida.</code>
 
     <code id="icq_window_title">ICQ - Configuração do Transporte</code>
     <code id="icq_begin_intro">Este assistente ajuda-o a configurar o transporte ICQ.&lt;BR&gt;Este transporte é uma ligação entre você e a sua conta ICQ.&lt;BR&gt;É necessário um Número de Identifucação de Utilizador (ICQ &lt;BR&gt;number) para usar este transporte.&lt;BR&gt;</code>
-    <code id="icq_newaccount_instructions">Introduza o seu número e palavra passe ICQ.&lt;BR&gt;Pode também inserir um nickname que os outros irão ver&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Introduza o seu número e password ICQ.&lt;BR&gt;Pode também inserir um nickname que os outros irão ver&lt;BR&gt;</code>
     <code id="icq_newaccount_examples">exemplos: 39230793, 158525087</code>
     <code id="icq_creating_busy">A sua conta ICQ está a ser registada no transporte.</code>
     <code id="icq_removing_busy">A sua conta ICQ está a ser removida do transporte.&lt;BR&gt;</code>
@@ -1171,7 +1214,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
 
     <code id="yahoo_window_title">Yahoo! Messenger - Configuração do Transporte</code>
     <code id="yahoo_begin_intro">Este assistente ajuda-o a configurar o transporte Yahoo!.&lt;BR&gt;Este transporte é uma ligação entre você e a sua conta Yahoo!.&lt;BR&gt;É necessário uma conta Yahoo! para usar este transporte.&lt;BR&gt;</code>
-    <code id="yahoo_newaccount_instructions">Introduza o nome de utilizador e a palavra passe Yahoo!.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Introduza o nome de utilizador e a password Yahoo!.&lt;BR&gt;</code>
     <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
     <code id="yahoo_creating_busy">A sua conta Yahoo! está a ser registada com o transporte.</code>
     <code id="yahoo_removing_busy">A sua conta Yahoo! está a ser removida do transporte.&lt;BR&gt;Vai poder continuar a utilizar a sua conta Yahoo! com outros serviços (ex. Yahoo! mail, Yahoo! Messenger, etc.).&lt;BR&gt;</code>
@@ -1180,7 +1223,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
 
     <code id="aim_window_title">AOL Instant Messenger - Configuração do Transporte</code>
     <code id="aim_begin_intro">Este assistente ajuda-o a configurar o transporte AOL IM.&lt;BR&gt;Este transporte é uma ligação entre você e a sua conta AOL IM.&lt;BR&gt;É necessário uma conta AOL IM para usar este transporte.&lt;BR&gt;</code>
-    <code id="aim_newaccount_instructions">Introduza o nome de utilizador e a palavra passe AOL IM.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">Introduza o nome de utilizador e a password AOL IM.&lt;BR&gt;</code>
     <code id="aim_newaccount_examples">&amp;nbsp;</code>
     <code id="aim_creating_busy">A sua conta AOL IM está a ser registada com o transporte.</code>
     <code id="aim_removing_busy">A sua conta AOL IM está a ser removida do transporte.&lt;BR&gt;Vai poder continuar a utilizar a sua conta AOL IM com outros serviços.&lt;BR&gt;</code>
@@ -1283,12 +1326,13 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
 	<code id="background_no">Sem fundo</code>
     <code id="background_list">Fundos disponíveis...</code>
 	<code id="close_many_tabs">Deseja fechar todas as conversas?</code>
-    <code id="close_recent_message">You have just received a message.&#13;&#13;Do you want to close this conversation?</code>
+    <code id="close_recent_message">Ainda tem mensagens não lidas.&#13;&#13;Deseja fechar esta janela de conversa?</code>
 	<code id="palette_compact">Reduzir o tamanho da lista de Emoticons</code>
 	<code id="palette_expand">Mostrar todos os Emoticons deste estilo</code>
 	<code id="palette_browse">Outros estilos de Emoticons...</code>
 
-    <code id="menu_file_received">&amp;Ficheiros &amp;Recebidos</code>
+    <code id="menu_file">&amp;Ficheiro</code>
+    <code id="menu_file_received">Ficheiros &amp;Recebidos</code>
     <code id="menu_file_history">&amp;Histórico</code>
     <code id="menu_file_close">&amp;Fechar Conversa</code>
 
@@ -1320,7 +1364,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
       <innerText>Entrar nesta Sala de Conferências ao conectar</innerText>
     </item>
     <item id="lbl_password">
-      <innerText>Entrar nesta sala com a palavra passe</innerText>
+      <innerText>Entrar nesta sala com a password</innerText>
     </item>
     <item id="btn_ok">
       <value>OK</value>
@@ -1388,7 +1432,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
 
 	<window name="conference-password">
     <item id="txt_password">
-      <innerText>Palavra Passe:</innerText>
+      <innerText>Password:</innerText>
     </item>
     <item id="btn_ok">
       <value>OK</value>
@@ -1547,7 +1591,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
       <title>Participantes podem enviar e ler mensagens</title>
     </item>
 
-    <code id="wnd_conference_password">Ligar com uma palavra passe</code>
+    <code id="wnd_conference_password">Ligar com uma password</code>
     <code id="wnd_conference_change_name">Mudar o meu Nome</code>
     <code id="wnd_conference_subject">Assunto da Sala de Conferências</code>
     <code id="wnd_conference_configuration">Configuração da Sala de Coonferências</code>
@@ -1573,11 +1617,12 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
     <code id="joining">${0} entrou na sala de conferências</code>
     <code id="renaming">${0} é agora conhecido como ${1}</code>
 
+    <code id="menu_file">&amp;Ficheiro</code>
     <code id="menu_file_close">&amp;Fechar Conferência</code>
 
 	<code id="menu_axn_invite">&amp;Convidar Contactos</code>
     <code id="menu_axn_change_name">Mudar o meu &amp;Nome...</code>
-    <code id="menu_axn_password">Ligar com uma &amp;palavra passe...</code>
+    <code id="menu_axn_password">Ligar com uma &amp;password...</code>
     <code id="menu_axn_subject">&amp;Mudar o Assunto da Sala de Conferências</code>
     <code id="menu_axn_configuration">Confi&amp;gurar esta Sala de Conferências</code>
     <code id="menu_axn_destroy">&amp;Destruir esta Sala de Conferências</code>
@@ -1637,7 +1682,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
       <innerText>Definições da Conexão</innerText>
     </item>
     <item id="txt_connection_desc">
-      <innerText>Alterar o modo de conexão ao servidor de mensagens instantâneas.</innerText>
+      <innerText>Alterar o modo de ligação ao servidor de mensagens instantâneas.</innerText>
     </item>
     <item id="btn_connection_settings">
       <value>Configurar Conexão</value>
@@ -1862,13 +1907,13 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
     </item>
 
     <item id="txt_p6_title">
-      <innerText>A finalizar o Assistente de Procurar ou Adicionar Contactos</innerText>
+      <innerText>Assistente para Procurar ou Adicionar Contactos</innerText>
     </item>
     <item id="txt_p6_tagline">
-      <innerText>Finalizou com sucesso o Assistente de Procurar ou Adicionar Contactos.</innerText>
+      <innerText>Finalizou com sucesso o Assistente para Procurar ou Adicionar Contactos.</innerText>
     </item>
     <item id="txt_p6_desc">
-      <innerText>Este contacto foi adicionado à sua lista de contactos com sucesso::</innerText>
+      <innerText>Este contacto foi adicionado à sua lista de contactos com sucesso:</innerText>
     </item>
     <item id="txt_p6_user">
       <innerText>Utilizador:</innerText>
@@ -1877,7 +1922,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
       <innerText>Rede:</innerText>
     </item>
     <item id="txt_p6_again">
-      <innerHTML>Para recomçar este assistente, pressione &lt;B&gt;Adicionar Outro Contacto&lt;/B&gt;.</innerHTML>
+      <innerHTML>Para recomeçar este assistente, pressione &lt;B&gt;Adicionar Outro Contacto&lt;/B&gt;.</innerHTML>
     </item>
     <item id="page6_btn_again">
       <value>Adicionar Outro Contacto</value>
@@ -1917,12 +1962,13 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
     <code id="foundmany">${0} resultados</code>
   </window>
 	<window name="login">
-    <code id="invalid">O endereço é inválido. Corrigir o endereço e tentar outra vez.&#13;&#13;Se não tem um endereço pressione Registar e siga as instruções.</code>
+    <code id="invalid">O endereço é inválido. Corrija o endereço e tente novamente.&#13;&#13;Se não tem um endereço pressione Registar e siga as instruções.</code>
+	<code id="invalid-ntlm">O endereço do servidor de mensagens instantâneas é inválido. Corrija o endereço e tente novamente.</code>
 		<item id="txt_instructions">
-      <innerText>Inserir o seu endereço e a palavra passe para se ligar.</innerText>
+      <innerText>Insera o seu endereço e a password para se ligar.</innerText>
     </item>
 	<item id="txt_instructions_ntlm">
-      <innerText>Inserir o endereço do seu servidor de mensagens instantâneas para se ligar.</innerText>
+      <innerText>Insera o endereço do seu servidor de mensagens instantâneas para se ligar.</innerText>
     </item>
 		<item id="txt_address">
       <innerText>Endereço:</innerText>
@@ -1931,19 +1977,19 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
       <innerText>Exemplo: alguem123@exemplo.com</innerText>
     </item>
 		<item id="txt_password">
-      <innerText>Palavra Passe:</innerText>
+      <innerText>Password:</innerText>
     </item>
 	<item id="txt_forgot_password">
-      <innerText>Esqueceu-se da sua palavra passe?</innerText>
+      <innerText>Esqueceu a sua password?</innerText>
     </item>
 		<item id="txt_remember">
-      <innerText>Lembrar a palavra passe</innerText>
+      <innerText>Lembrar a password</innerText>
     </item>
 		<item id="txt_autologin">
       <innerText>Ligar Automaticamente</innerText>
     </item>
 	<item id="txt_connection_settings">
-      <innerText>Defnições da Conexão</innerText>
+      <innerText>Definições de Ligação</innerText>
     </item>
 	<item id="txt_server_ntlm">
       <innerText>Servidor IM:</innerText>
@@ -1962,10 +2008,10 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
     </item>
   </window>
 <window name="connection-settings">
-    <code id="logout">É ncessário se desconectar para aplicar as alterações.&#13;&#13;Deseja se desconectar agora?</code>
-    <code id="automatic">Automatico</code>
+    <code id="logout">É necessário desligar-se para aplicar as alterações.&#13;&#13;Deseja desligar-se agora?</code>
+    <code id="automatic">Automático</code>
     <item id="txt_connection">
-      <innerText>Servidor de Conexão</innerText>
+      <innerText>Servidor de Ligação</innerText>
     </item>
     <item id="lbl_server_address">
       <innerHTML>&lt;U&gt;E&lt;/U&gt;ndereço:</innerHTML>
@@ -1998,7 +2044,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
       <innerText>Log In Authentication</innerText>
     </item>
     <item id="lbl_authentication_normal">
-      <innerHTML>En&lt;U&gt;d&lt;/U&gt;ereço e palavra passe</innerHTML>
+      <innerHTML>En&lt;U&gt;d&lt;/U&gt;ereço e password</innerHTML>
       <accessKey>d</accessKey>
     </item>
     <item id="lbl_authentication_ntlm">
@@ -2034,20 +2080,20 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
 	<window name="sign_up">
     <code id="close_confirm">A sua nova conta não foi concluída.&#13;&#13;Tem a certeza que deseja fechar o assistente?</code>
     <code id="incomplete">Preencher todos os campos...</code>
-    <code id="pass_match">As palavras passes inseridas não coincidem.&#13;&#13;Inserir a nova palavra passe em ambos os campos.</code>
+    <code id="pass_match">As passwords inseridas não coincidem.&#13;&#13;Inserir a nova password em ambos os campos.</code>
 
     <code id="contacting">A contactar o servidor...</code>
-    <code id="registered">A sua conta está a ser registada. Este processo pode demorar mais que um minuto&lt;BR&gt;Por favor seja paciente.&lt;BR&gt;</code>
+    <code id="registered">A sua conta está a ser registada. Este processo pode demorar mais que um minuto&lt;BR&gt;Por favor aguarde.&lt;BR&gt;</code>
     <code id="requesting">A pedir informação...</code>
     <code id="sending">A enviar registo...</code>
-    <code id="failure">Falha na conexão</code>
+    <code id="failure">Falha na ligação</code>
     <code id="completed">Registo Concluído</code>
 
     <code id="address">Endereço:</code>
     <code id="nickname">Nome:</code>
     <code id="userdir">Directório do Utilizador:</code>
 	<item id="txt_page_welcome_title">
-      <innerText>Benvindo ao Assistente de Registo</innerText>
+      <innerText>Bem-vindo ao Assistente de Registo</innerText>
     </item>
     <item id="txt_page_welcome_intro">
       <innerText>Este assistente irá ajudá-lo a registar um endereço numa rede de mensagens instantâneas</innerText>
@@ -2105,14 +2151,14 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
       <innerHTML>Nome de &lt;U&gt;U&lt;/U&gt;tilizador:</innerHTML>
     </item>
 	<item id="btn_page_account_settings">
-      <value>Defenições da Conexão</value>
+      <value>Definições de Ligação</value>
       <accessKey>c</accessKey>
     </item>
     <item id="txt_page_account_password">
       <innerHTML>&lt;U&gt;S&lt;/U&gt;enha:</innerHTML>
     </item>
     <item id="txt_page_account_confirm">
-      <innerHTML>&lt;U&gt;C&lt;/U&gt;onfirmar a palavra passe:</innerHTML>
+      <innerHTML>&lt;U&gt;C&lt;/U&gt;onfirmar a password:</innerHTML>
     </item>
 	<item id="txt_page_account_email">
       <innerHTML>&lt;U&gt;E&lt;/U&gt;ndereço de Email:</innerHTML>
@@ -2133,7 +2179,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
       <accessKey>e</accessKey>
     </item>
     <item id="txt_page_account_remember">
-      <innerHTML>&lt;U&gt;L&lt;/U&gt;embrar a palavra passe</innerHTML>
+      <innerHTML>&lt;U&gt;L&lt;/U&gt;embrar a password</innerHTML>
       <accessKey>l</accessKey>
     </item>
     <item id="txt_page_account_preview">
@@ -2159,17 +2205,17 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
       <innerHTML>Este endereço não pode ser registado. O nome de utilizador não está disponível.&lt;BR&gt;&lt;BR&gt;Pressione &lt;B&gt;Anterior&lt;/B&gt;, escreva um nova nome de utilizador e tente outra vez.</innerHTML>
     </item>
     <item id="txt_page_creating_forbidden">
-      <innerHTML>O endereço não pode ser registado. Este servidor não aceita a criação de novos endereços.&lt;BR&gt;&lt;BR&gt;Pressione &lt;B&gt;Anterior&lt;/B&gt;, escolha outro servidor e tente outra vez.</innerHTML>
+      <innerHTML>O endereço não pode ser registado. Este servidor não aceita a criação de novos endereços.&lt;BR&gt;&lt;BR&gt;Pressione &lt;B&gt;Anterior&lt;/B&gt;, escolha outro servidor e tente novamente.</innerHTML>
     </item>
     <item id="txt_page_creating_commerr">
-      <innerHTML>Não foi possível contactar o servidor. Verifique que o endereço está correcto.&lt;BR&gt;Verifique a sua ligação e tente outra vez. Se está por detrás de uma firewall,&lt;BR&gt;configure as definições da conexão.</innerHTML>
+      <innerHTML>Não foi possível contactar o servidor. Verifique se endereço está correcto.&lt;BR&gt;Verifique a sua ligação e tente novamente. Se está por detrás de uma firewall,&lt;BR&gt;configure as definições da ligação.</innerHTML>
     </item>
     <item id="btn_page_creating_retry">
-      <value>Tentar Outra Vez</value>
+      <value>Tentar Novamente</value>
       <accessKey>t</accessKey>
     </item>
     <item id="btn_page_creating_settings">
-      <value>Definições da Conexão</value>
+      <value>Definições de Ligação</value>
       <accessKey>d</accessKey>
     </item>
     <item id="btn_page_creating_back">
@@ -2186,16 +2232,16 @@ LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível 
     </item>
 
     <item id="txt_page_finished_title">
-      <innerText>A completar o Assistente de Adicionar um Perfil</innerText>
+      <innerText>Assistente para Adicionar um Perfil</innerText>
     </item>
     <item id="txt_page_finished_intro">
-      <innerText>You have successfully completed the Add Profile Wizard.</innerText>
+      <innerText>Finalizou com sucesso o Assistente para Adicionar um Perfil.</innerText>
     </item>
     <item id="txt_page_finished_details">
       <innerText>Detalhes do perfil:</innerText>
     </item>
     <item id="txt_page_finished_finish">
-      <innerHTML>To close this wizard, press &lt;B&gt;Finish&lt;/B&gt;.</innerHTML>
+      <innerHTML>Para fechar este assistente, clique &lt;B&gt;Finalizar&lt;/B&gt;.</innerHTML>
     </item>
     <item id="btn_page_finished_back">
       <value>&lt; Anterior</value>
