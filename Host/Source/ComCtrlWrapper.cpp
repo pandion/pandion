@@ -70,19 +70,19 @@ CGetFileName::~CGetFileName()
 {
 	if(m_ofn.lpstrFilter)
 	{
-        delete m_ofn.lpstrFilter;
+        delete[] m_ofn.lpstrFilter;
 	}
 	if(m_ofn.lpstrInitialDir)
 	{
-		delete m_ofn.lpstrInitialDir;
+		delete[] m_ofn.lpstrInitialDir;
 	}
 	if(m_ofn.lpstrTitle)
 	{
-		delete m_ofn.lpstrTitle;
+		delete[] m_ofn.lpstrTitle;
 	}
 	if(m_ofn.lpstrDefExt)
 	{
-		delete m_ofn.lpstrDefExt;
+		delete[] m_ofn.lpstrDefExt;
 	}
 }
 STDMETHODIMP CGetFileName::put_Filter(BSTR strFilter)
@@ -102,8 +102,8 @@ STDMETHODIMP CGetFileName::put_Filter(BSTR strFilter)
 			buffer[i] = 0;
 		}
 	}
-	buffer[i+1] = 0;
-	buffer[i+2] = 0;
+	buffer[i++] = 0;
+	buffer[i++] = 0;
 	m_ofn.lpstrFilter = buffer;
 
 	return S_OK;
