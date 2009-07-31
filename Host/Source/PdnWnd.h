@@ -114,6 +114,8 @@ public:
 		WPARAM wParam, LPARAM lParam);
 	virtual LRESULT OnTaskbarRestart(UINT uMsg,
 		WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnSysCommand(UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
 
 	/* Webbrowser Events */
 	STDMETHOD_(void, BeforeNavigate2)(IDispatch *pDisp, VARIANT *url,

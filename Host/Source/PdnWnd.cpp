@@ -140,7 +140,7 @@ HRESULT CPdnWnd::ContainerCreate()
 		hr = pCP->Advise(dynamic_cast<IDispatch*>(this), &dwCookie);
 
 		m_pBrowser->put_RegisterAsBrowser(VARIANT_FALSE);
-		m_pBrowser->put_RegisterAsDropTarget(VARIANT_TRUE);
+		m_pBrowser->put_RegisterAsDropTarget(VARIANT_FALSE);
 		m_pBrowser->put_Silent(VARIANT_FALSE);
 		m_pBrowser->Navigate(_bstr_t(m_URL.c_str()), 0, 0, 0, 0);
 	}
@@ -214,6 +214,10 @@ LRESULT CPdnWnd::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		return OnGetMinMaxInfo(uMsg, wParam, lParam);
 	}
+	else if(uMsg == WM_ACTIVATE)
+	{
+		return OnActivate(uMsg, wParam, lParam);
+	}
 	else if(uMsg == WM_SIZE)
 	{
 		OnSize(uMsg, wParam, lParam);
@@ -249,6 +253,10 @@ LRESULT CPdnWnd::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		return ::DestroyWindow(m_hWnd);
 	}
+	else if(uMsg == WM_SYSCOMMAND)
+	{
+		return OnSysCommand(uMsg, wParam, lParam);
+	}
 	else
 	{
 		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
@@ -265,9 +273,6 @@ LRESULT CPdnWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 LRESULT CPdnWnd::OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-//	if(m_sCloseHandler.length())
-//		FireEvent(m_sCloseHandler, 0, 0);
-
 	if(!m_ActiveXHost.IsDestroyed())
 	{
 		m_pBrowser.Detach()->Release();
@@ -308,26 +313,30 @@ LRESULT CPdnWnd::OnGetMinMaxInfo(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	((MINMAXINFO*)lParam)->ptMinTrackSize.y = m_minSize.y + deltaHeight;
 	return 0;
 }
+LRESULT CPdnWnd::OnActivate(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	if (LOWORD(wParam) == WA_INACTIVE)
+	{
+		if (::GetFocus() && m_hWndLastFocusedWindow == NULL)
+			m_hWndLastFocusedWindow = ::GetFocus();
+	}
+	else
+	{
+		::SetActiveWindow(::GetWindow(m_hWnd, GW_CHILD));
+		if (m_hWndLastFocusedWindow)
+			::SetFocus(m_hWndLastFocusedWindow);
+		if(m_sActivationHandler.length())
+            FireEvent(m_sActivationHandler, 0, 0);
+	}
+	return 0;
+}
 LRESULT CPdnWnd::OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	RECT rect;
 	::GetClientRect(m_hWnd, &rect);
 	m_ActiveXHost.SetWindowPos(HWND_TOP, rect.left, rect.top, 
 		rect.right - rect.left, rect.bottom - rect.top, 0);
-	if(wParam == SIZE_MINIMIZED && m_sMinHandler.length())
-	{
-        FireEvent(m_sMinHandler, 0, 0);
-		return 0;
-	}
-	else if(wParam == SIZE_RESTORED && m_sRestoreHandler.length())
-	{
-		FireEvent(m_sRestoreHandler, 0, 0);
-		return 0;
-	}
-	else
-	{
-		return 1;
-	}
+	return 0;
 }
 LRESULT CPdnWnd::OnCommand(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -370,6 +379,38 @@ LRESULT CPdnWnd::OnCopyData(UINT uMsg, WPARAM wParam, LPARAM lParam)
 LRESULT CPdnWnd::OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	return 1;
+}
+LRESULT CPdnWnd::OnSysCommand(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	if(wParam == SC_CLOSE || wParam == SC_DEFAULT)
+	{
+		if(m_sCloseHandler.length())
+		{
+			FireEvent(m_sCloseHandler, 0, 0);
+			return 0;
+		}
+		else
+		{
+			return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
+		}
+	}
+	else if(wParam == SC_MINIMIZE)
+	{
+		if(m_sMinHandler.length())
+			FireEvent(m_sMinHandler, 0, 0);
+		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
+	}
+	else if(wParam == SC_MAXIMIZE)
+	{
+		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
+	}
+	else if(wParam == SC_RESTORE)
+	{
+		if(m_sRestoreHandler.length())
+			FireEvent(m_sRestoreHandler, 0, 0);
+		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
+	}
+	return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
 }
 
 /* DWebBrowserEvents2 */
@@ -460,14 +501,22 @@ STDMETHODIMP CPdnWnd::TranslateAccelerator(LPMSG lpMsg,
 
 	if(keys[VK_F5] > 1)
 		return S_OK; // Disable F5
-	else if(keys['R'] > 1 && keys[VK_CONTROL] > 1 && keys[VK_MENU] <= 1)
-		return S_OK; // Disable Ctrl + R
-	else if(keys['P'] > 1 && keys[VK_CONTROL] > 1 && keys[VK_MENU] <= 1)
-		return S_OK; // Disable Ctrl + P
+	if(keys[VK_F6] > 1)
+		return S_OK; // Disable F5
 	else if(keys['F'] > 1 && keys[VK_CONTROL] > 1 && keys[VK_MENU] <= 1)
 		return S_OK; // Disable Ctrl + F
+	else if(keys['L'] > 1 && keys[VK_CONTROL] > 1 && keys[VK_MENU] <= 1)
+		return S_OK; // Disable Ctrl + L
 	else if(keys['N'] > 1 && keys[VK_CONTROL] > 1 && keys[VK_MENU] <= 1)
 		return S_OK; // Disable Ctrl + N
+	else if(keys['O'] > 1 && keys[VK_CONTROL] > 1 && keys[VK_MENU] <= 1)
+		return S_OK; // Disable Ctrl + O
+	else if(keys['P'] > 1 && keys[VK_CONTROL] > 1 && keys[VK_MENU] <= 1)
+		return S_OK; // Disable Ctrl + P
+	else if(keys['R'] > 1 && keys[VK_CONTROL] > 1 && keys[VK_MENU] <= 1)
+		return S_OK; // Disable Ctrl + R
+	else if(keys['S'] > 1 && keys[VK_CONTROL] > 1 && keys[VK_MENU] <= 1)
+		return S_OK; // Disable Ctrl + L
 	else
 		return S_FALSE;
 }
@@ -874,24 +923,6 @@ STDMETHODIMP CPdnWnd::isActive(BOOL *b)
 	else 
 		*b = FALSE;
 	return S_OK;
-}
-
-LRESULT CPdnWnd::OnActivate (UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-	if (LOWORD(wParam) == WA_INACTIVE)
-	{
-		if (::GetFocus() && m_hWndLastFocusedWindow == NULL)
-			m_hWndLastFocusedWindow = ::GetFocus();
-	}
-	else
-	{
-		::SetActiveWindow(::GetWindow(m_hWnd, GW_CHILD));
-		if (m_hWndLastFocusedWindow)
-			::SetFocus(m_hWndLastFocusedWindow);
-		if(m_sActivationHandler.length())
-            FireEvent(m_sActivationHandler, 0, 0);
-	}
-	return 0;
 }
 STDMETHODIMP CPdnWnd::pushFocus()
 {
