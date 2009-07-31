@@ -103,7 +103,6 @@ STDMETHODIMP MainWnd::close()
 	VARIANT* pvElements;
 	ScrRun::IDictionaryPtr pWindows = m_Module->GetWindows();
 	_variant_t vWndItems = pWindows->Items();
-	pWindows->RemoveAll();
 
 	::SafeArrayLock(vWndItems.parray);
 	::SafeArrayAccessData(vWndItems.parray, (void**) &pvElements);

@@ -39,6 +39,7 @@ XMPPXMLParser::XMPPXMLParser(XMPPHandlers& handlers, XMPPLogger& logger) :
  */
 XMPPXMLParser::~XMPPXMLParser()
 {
+	m_ElementAttributes.clear();
 }
 
 /*

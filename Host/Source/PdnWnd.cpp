@@ -64,11 +64,9 @@ CPdnWnd::CPdnWnd() :
 	m_External.DisableSelfDelete();
 	m_minSize.x  = 160;
 	m_minSize.y  = 200;
-	_CrtMemCheckpoint(&state);
 }
 CPdnWnd::~CPdnWnd()
 {
-	_CrtMemDumpAllObjectsSince(&state);
 }
 
 void CPdnWnd::OnFinalRelease()
@@ -292,9 +290,13 @@ LRESULT CPdnWnd::OnJSInvoke(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	HRESULT hr = FireEvent(((CJSInvoke *)wParam)->Handler,
 		(VARIANT*)lParam, ((CJSInvoke *)wParam)->nParams);
 
+	for (DWORD i = 0; i < ((CJSInvoke *)wParam)->nParams; i++)
+	{
+		::VariantClear(&((VARIANT*)lParam)[i]);
+	}
 	::SysFreeString((BSTR) ((CJSInvoke *)wParam)->Handler);
-	::VariantClear((VARIANT *) lParam);
-	delete (CJSInvoke *)wParam;
+	delete[] (VARIANT*) lParam;
+	delete (CJSInvoke*) wParam;
 
     return 0;
 }
@@ -365,6 +367,9 @@ LRESULT CPdnWnd::OnFinalMessage(HWND hWnd,
 
 	/* Free the internet security manager */
 	m_pSecurityMgr->Release();
+
+	/* Free this */
+	while(Release() != 1) continue;
 
 	return 0;
 }

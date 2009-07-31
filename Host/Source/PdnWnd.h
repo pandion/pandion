@@ -34,8 +34,6 @@ class CPdnWnd :
 	public IServiceProvider
 {
 protected:
-	_CrtMemState state;
-
 	WNDCLASSEX      m_WindowClass;
 	HWND            m_hWnd;
 	HWND	        m_hWndFocus;
