@@ -470,30 +470,38 @@ function ClientPluginContainer ()
 
 	/* Replace any tokens in the URL with the real values.
 	 */
-	function ParseURL ( url )
+	function ParseURL ( url, pairs )
 	{
+		if ( ! pairs )
+			pairs = {};
 		if ( url.indexOf( '$' ) == -1 )
 			return url;
 		var random = Math.random();
+		var substitutes = {
+			'softwarename': function () { return encodeURIComponent( external.globals( 'softwarename' ) ) },
+			'softwareversion': function () { return encodeURIComponent( external.globals( 'softwareversion' ) ) },
+			'username': function () { return encodeURIComponent( external.globals( 'cfg' )( 'username' ) ) },
+			'server': function () { return encodeURIComponent( external.globals( 'cfg' )( 'server' ) ) },
+			'resource': function () { return encodeURIComponent( external.globals( 'cfg' )( 'resource' ) ) },
+			'password': function () { return encodeURIComponent( external.globals( 'cfg' )( 'password' ) ) },
+			'random': function () { return encodeURIComponent( random ) },
+			'username-sha1': function () { return external.StringToSHA1( random + external.globals( 'cfg' )( 'username' ) ) },
+			'server-sha1': function () { return external.StringToSHA1( random + external.globals( 'cfg' )( 'server' ) ) },
+			'resource-sha1': function () { return external.StringToSHA1( random + external.globals( 'cfg' )( 'resource' ) ) },
+			'password-sha1': function () { return external.StringToSHA1( random + external.globals( 'cfg' )( 'password' ) ) }
+		};
 		return url.replace(
-			/(\${[^}]+})/g,
+			/\${([^}]+)}/g,
 			function ( $0, $1 )
 			{
-				switch ( $1.toLowerCase() )
-				{
-					case '${softwarename}':		return encodeURIComponent( external.globals( 'softwarename' ) );
-					case '${softwareversion}':	return encodeURIComponent( external.globals( 'softwareversion' ) );
-					case '${username}':			return encodeURIComponent( external.globals( 'cfg' )( 'username' ) );
-					case '${server}':			return encodeURIComponent( external.globals( 'cfg' )( 'server' ) );
-					case '${resource}':			return encodeURIComponent( external.globals( 'cfg' )( 'resource' ) );
-					case '${password}':			return encodeURIComponent( external.globals( 'cfg' )( 'password' ) );
-					case '${random}':			return encodeURIComponent( random );
-					case '${username-sha1}':	return external.StringToSHA1( random + external.globals( 'cfg' )( 'username' ) );
-					case '${server-sha1}':		return external.StringToSHA1( random + external.globals( 'cfg' )( 'server' ) );
-					case '${resource-sha1}':	return external.StringToSHA1( random + external.globals( 'cfg' )( 'resource' ) );
-					case '${password-sha1}':	return external.StringToSHA1( random + external.globals( 'cfg' )( 'password' ) );
-					default: return $0;
-				}
+				if ( typeof pairs[ $1 ] == 'function' )
+					return pairs[ $1 ]();
+				else if ( typeof pairs[ $1 ] == 'string' )
+					return pairs[ $1 ];
+				else if ( typeof substitutes[ $1 ] == 'function' )
+					return substitutes[ $1 ]();
+				else
+					return $0;
 			}
 		);
 	}

@@ -27,29 +27,10 @@ function TrayCommotion ( id )
 
 function TrayCommotionNormal ( id )
 {
-	if ( id == 513 )
-	// left down
-	{
-		if ( external.globals( 'ChatSessionPool' ).Events.Count )
-		{
-			setTimeout( 'external.globals( \'ClientRoster\' ).ShowUnread( external.cursorX, external.cursorY )', 100 );
-		}
-		else if ( ! external.windows.Exists( 'login' ) && ! external.windows.Exists( 'signup' ) )
-		{
-			external.wnd.hide( false );
-			external.wnd.restore();
-			external.wnd.focus();
-		}
-	}
-	else if ( id == 514 )
+	if ( id == 514 )
 	// left up
 	{
-		if ( external.windows.Exists( 'login' ) )
-		{
-			external.windows( 'login' ).restore();
-			external.windows( 'login' ).focus();
-		}
-		else if ( external.windows.Exists( 'signup' ) )
+		if ( external.windows.Exists( 'signup' ) )
 		{
 			external.windows( 'signup' ).restore();
 			external.windows( 'signup' ).focus();
@@ -59,13 +40,27 @@ function TrayCommotionNormal ( id )
 			external.wnd.focus();
 		}
 	}
+	else if ( id == 515 )
+	// left double click
+	{
+		if ( external.globals( 'ChatSessionPool' ).Events.Count )
+		{
+			setTimeout( 'external.globals( \'ClientRoster\' ).ShowUnread( external.cursorX, external.cursorY )', 100 );
+		}
+		else if ( ! external.windows.Exists( 'signup' ) )
+		{
+			external.wnd.hide( false );
+			external.wnd.restore();
+			external.wnd.focus();
+		}
+	}
 	else if ( id == 516 )
 	// right down
 	{
 		var cfg			= external.globals( 'cfg' );
 		var connected	= external.globals( 'XMPPConnected' );
 		var mode		= connected ? external.globals( 'cfg' )( 'lastmode' ) : -1;
-		var roster		= ! ( external.windows.Exists( 'login' ) || external.windows.Exists( 'signup' ) );
+		var roster		= ! ( document.getElementById( 'signin-dialog' ).style.display == 'block' || external.windows.Exists( 'signup' ) );
 		var signup		= external.windows.Exists( 'signup' );
 		var logout		= roster && ! external.globals( 'sspiserver' ).length;
 		var ask			= roster && external.globals( 'cfg' )( 'askstatus' ).toString() == 'true';
@@ -75,17 +70,17 @@ function TrayCommotionNormal ( id )
 		menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tray_about', [ external.globals( 'softwarename' ) ] ), 2 );
 		menu.AddSeparator();
 
-//		menu.AddItem( roster,	false, mode == 1,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_ffc' ),		11 );
-		menu.AddItem( roster,	false, mode == 0 || mode == 1,	false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_available' ),	10 );
-		menu.AddItem( roster,	false, mode == 4,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_busy' ),		14 );
-		menu.AddItem( roster,	false, mode == 2 || mode == 3,	false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_away' ),		12 );
-//		menu.AddItem( roster,	false, mode == 3,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_xaway' ),		13 );
-		menu.AddItem( roster,	false, mode == 5,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_invisible' ),	15 );
-//		menu.AddItem( roster,	false, mode == -1,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_offline' ),	19 );
+//		menu.AddItem( roster,	false, mode == 1,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_ffc' ), 11 );
+		menu.AddItem( roster,	false, mode == 0 || mode == 1,	false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_available' ), 10 );
+		menu.AddItem( roster,	false, mode == 4,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_busy' ), 14 );
+		menu.AddItem( roster,	false, mode == 2 || mode == 3,	false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_away' ), 12 );
+//		menu.AddItem( roster,	false, mode == 3,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_xaway' ), 13 );
+		menu.AddItem( roster,	false, mode == 5,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_invisible' ), 15 );
+//		menu.AddItem( roster,	false, mode == -1,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_offline' ), 19 );
 		menu.AddSeparator();
-		menu.AddItem( roster,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tray_settings'	), 3 );
-		menu.AddItem( logout,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_out'			), 4 );
-		menu.AddItem( ! signup,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_exit'		), 1 );
+		menu.AddItem( roster,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tray_settings' ), 3 );
+		menu.AddItem( logout,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_out' ), 4 );
+		menu.AddItem( ! signup,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_exit' ), 1 );
 		menu.Show( external.cursorX, external.cursorY, true );
 
 		switch ( menu.Choice )

@@ -1,3 +1,5 @@
+/* Contact List
+ */
 .roster-group-header {
 	margin-top: 4px;
 	margin-bottom: 4px;
@@ -21,12 +23,12 @@
 }
 .roster-item-offline-name-blocked {
 	font-style: italic;
-	font-family: Tahoma;
+	font-family: "Segoe UI", Tahoma;
 	font-size: 11px;
 	color: #b3b5b6;
 }
 .roster-item-offline-name {
-	font-family: Tahoma;
+	font-family: "Segoe UI", Tahoma;
 	font-size: 11px;
 	color: #333536;
 }
@@ -50,13 +52,13 @@
 }
 .roster-resource-name-blocked {
 	font-style: italic;
-	font-family: Tahoma;
+	font-family: "Segoe UI", Tahoma;
 	font-size: 11px;
 	font-weight: bold;
 	color: #b3b5b6;
 }
 .roster-resource-name {
-	font-family: Tahoma;
+	font-family: "Segoe UI", Tahoma;
 	font-size: 11px;
 	font-weight: bold;
 	color: #333536;
@@ -71,12 +73,12 @@
 	color: #6699cc;
 }
 .roster-resource-busy {
-	font-family: Tahoma;
+	font-family: "Segoe UI", Tahoma;
 	font-size: 10px;
 	color: #f84a21;
 }
 .roster-resource-away {
-	font-family: Tahoma;
+	font-family: "Segoe UI", Tahoma;
 	font-size: 10px;
 	color: #427fd1;
 }

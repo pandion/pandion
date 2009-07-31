@@ -51,8 +51,6 @@ function init ()
 	external.globals.Add( 'uniqueid',				0 );											// counter for id attributes in message and iq packets
 	external.globals.Add( 'XMPPConnected',			false );										// connection state
 	external.globals.Add( 'XMPPEncryption',			'' );											// which method of encryption is being used
-	external.globals.Add( 'XMPPSASLMechanism',		'' );											// authentication mechanism used for login
-	external.globals.Add( 'XMPPSASLSSPIContinue',	true );											// internal flag used by SSPI authentication
 	external.globals.Add( 'XMPPSessionID',			'' );											// stream session ID used for login
 	external.globals.Add( 'XMPPKeepAliveInterval',	0 );											// keep alive packet interval
 	external.globals.Add( 'XMPPPrivacy',			-1 );											// iq:privacy unsupported: -1, default: 0, invisible: 1
@@ -184,9 +182,9 @@ function init ()
 
 	/* DOM and input events
 	 */
-	document.onselectstart	= document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
-	document.onkeydown		= handle_keyboard;
-	window.onunload			= outnit;
+	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
+	document.onkeydown = handle_keyboard;
+	window.onunload = outnit;
 	external.wnd.setActivationHandler( 'OnWindowActivate' );
 
 	/* Auto-update
@@ -217,18 +215,18 @@ function init ()
 
 	/* Handlers for XMPP connection
 	 */
-	external.XMPP.ConnectedHandler			= 'XMPPOnConnected';
-	external.XMPP.DisconnectedHandler		= 'XMPPOnDisconnected';
-	external.XMPP.StartTLSSucceededHandler	= 'XMPPOnStartTLSSucceeded';
-	external.XMPP.StartTLSFailedHandler		= 'XMPPOnStartTLSFailed';
+	external.XMPP.ConnectedHandler = 'XMPPOnConnected';
+	external.XMPP.DisconnectedHandler = 'XMPPOnDisconnected';
+	external.XMPP.StartTLSSucceededHandler = 'XMPPOnStartTLSSucceeded';
+	external.XMPP.StartTLSFailedHandler = 'XMPPOnStartTLSFailed';
 	external.XMPP.StartSCSucceededHandler = 'XMPPOnStartSCSucceeded';
 	external.XMPP.StartSCFailedHandler = 'XMPPOnStartSCSucceeded';
-	external.XMPP.DocumentStartHandler		= 'XMPPOnDocumentStart';
-	external.XMPP.DocumentEndHandler		= 'XMPPOnDocumentEnd';
-	external.XMPP.IQHandler					= 'XMPPOnIQ';
-	external.XMPP.MessageHandler			= 'XMPPOnMessage';
-	external.XMPP.PresenceHandler			= 'XMPPOnPresence';
-	external.XMPP.StreamHandler				= 'XMPPOnStream';
+	external.XMPP.DocumentStartHandler = 'XMPPOnDocumentStart';
+	external.XMPP.DocumentEndHandler = 'XMPPOnDocumentEnd';
+	external.XMPP.IQHandler = 'XMPPOnIQ';
+	external.XMPP.MessageHandler = 'XMPPOnMessage';
+	external.XMPP.PresenceHandler = 'XMPPOnPresence';
+	external.XMPP.StreamHandler = 'XMPPOnStream';
 
 	/* Create the roster tab button
 	 */

@@ -28,7 +28,7 @@ function ClientRosterSearch ()
 
 	function Focus ()
 	{
-		//if (document.getElementById("content-dialog").style.display == "block")
+		if (document.getElementById("content-dialog").style.display == "block")
 			domSearchField.focus();
 	}
 

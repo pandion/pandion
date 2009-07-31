@@ -54,9 +54,6 @@ Thank you,
     </history>
   </about>
   <window name="main">
-    <item id="txt_pleasewait">
-      <innerText>One moment please</innerText>
-    </item>
     <item id="txt_disconnected">
       <innerText>Disconnected from the server</innerText>
     </item>
@@ -92,6 +89,31 @@ Thank you,
       <title>Persons and groups in your contact list</title>
     </item>
 
+    <item id="signin-instructions">
+      <innerText>Sign in with your instant messaging address</innerText>
+    </item>
+    <item id="txt-signin-address">
+      <innerText>Address:</innerText>
+    </item>
+    <item id="txt-signin-examples">
+      <innerText>Examples:</innerText>
+    </item>
+    <item id="txt-signin-password">
+      <innerText>Password:</innerText>
+    </item>
+    <item id="txt-signin-remember">
+      <innerText>Remember my password</innerText>
+    </item>
+    <item id="txt-signin-autoconnect">
+      <innerText>Sign in automatically</innerText>
+    </item>
+    <item id="signin-register">
+      <innerText>Register a new instant messaging address</innerText>
+    </item>
+    <item id="signin-settings">
+      <innerText>Connection settings</innerText>
+    </item>
+
     <code id="tt-group-hide">Hide the contacts in this group&#13;Rightclick for more options</code>
     <code id="tt-group-show">Show the contacts in this group&#13;Rightclick for more options</code>
     <code id="emoticon_unknown">Unknown</code>
@@ -111,21 +133,21 @@ Thank you,
     <code id="sspi_autoreconnecting">The connection to the instant messaging server has failed.</code>
     <code id="search_info">Find a contact...</code>
 
-    <code id="menu_file">&amp;File</code>
-    <code id="menu_file_received">&amp;Open my Received Files</code>
-    <code id="menu_file_export">&amp;Export Contact List...</code>
-    <code id="menu_file_import">&amp;Import Contact List...</code>
-    <code id="menu_file_change">Change my Status &amp;Message...</code>
-    <code id="menu_file_ffc">&amp;Free For Chat</code>
-    <code id="menu_file_available">&amp;Available</code>
-    <code id="menu_file_busy">&amp;Busy</code>
-    <code id="menu_file_away">A&amp;way</code>
-    <code id="menu_file_xaway">&amp;Extended Away</code>
-    <code id="menu_file_invisible">&amp;Invisible</code>
-    <code id="menu_file_offline">&amp;Offline</code>
-    <code id="menu_file_status">My &amp;Status</code>
-    <code id="menu_file_out">Sign &amp;out</code>
-    <code id="menu_file_exit">E&amp;xit</code>
+    <code id="menu_status">&amp;Status</code>
+    <code id="menu_status_received">&amp;Open my Received Files</code>
+    <code id="menu_status_export">&amp;Export Contact List...</code>
+    <code id="menu_status_import">&amp;Import Contact List...</code>
+    <code id="menu_status_change">Change my Status &amp;Message...</code>
+    <code id="menu_status_ffc">&amp;Free For Chat</code>
+    <code id="menu_status_available">&amp;Available</code>
+    <code id="menu_status_busy">&amp;Busy</code>
+    <code id="menu_status_away">A&amp;way</code>
+    <code id="menu_status_xaway">&amp;Extended Away</code>
+    <code id="menu_status_invisible">&amp;Invisible</code>
+    <code id="menu_status_offline">&amp;Offline</code>
+    <code id="menu_status_status">My &amp;Status</code>
+    <code id="menu_status_out">Sign &amp;out</code>
+    <code id="menu_status_exit">E&amp;xit</code>
 
     <code id="menu_axn">&amp;Actions</code>
     <code id="menu_axn_add">&amp;Add a Contact...</code>
@@ -194,7 +216,6 @@ Thank you,
     <code id="wnd_group_rename">Rename Group</code>
     <code id="wnd_contact_rename">Rename Contact</code>
     <code id="wnd_authrequest">Authorization Request</code>
-    <code id="wnd_login">Log In - ${0}</code>
     <code id="wnd_extension_download">Installing ${0}</code>
     <code id="wnd_background_list">Backgrounds</code>
     <code id="wnd_background_download">Download Backgrounds</code>
@@ -1321,6 +1342,7 @@ Thank you,
 	<code id="palette_expand">Show all emoticons in this style</code>
 	<code id="palette_browse">Other Emoticon Styles...</code>
 
+    <code id="menu_file">&amp;File</code>
     <code id="menu_file_received">&amp;Open my Received Files</code>
     <code id="menu_file_history">Message &amp;History</code>
     <code id="menu_file_close">&amp;Close Conversation</code>
@@ -1605,6 +1627,7 @@ Thank you,
     <code id="joining">${0} joins the conference room</code>
     <code id="renaming">${0} is now known as ${1}</code>
 
+    <code id="menu_file">&amp;File</code>
     <code id="menu_file_close">&amp;Close Conference</code>
 
     <code id="menu_axn_invite">&amp;Invite Contacts</code>

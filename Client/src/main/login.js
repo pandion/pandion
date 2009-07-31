@@ -7,6 +7,11 @@ function login ( Address, Password )
 	if ( typeof Password != 'string' )
 		Password = new String( Password );
 
+	/* Hide the sign in dialog
+	*/
+	document.getElementById( 'content-dialog' ).style.display = 'block';
+	document.getElementById( 'signin-dialog' ).style.display = 'none';
+
 	/* Reset the client
 	 */
 	external.globals( 'XMPPReconnect' ) = false;

@@ -1372,7 +1372,7 @@ function MenuBarUpdate ( section )
 		var file = external.newPopupMenu;
 		file.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'conference-container', 'menu_file_close' ), 10 );
 
-		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'main', 'menu_file' ), 0, 1, file );
+		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'conference-container', 'menu_file' ), 0, 1, file );
 	}
 
 	if ( ! section || section == 'actions' )

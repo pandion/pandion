@@ -4,17 +4,17 @@ function dial_mode ()
 	var Menu = external.newPopupMenu;
 	var mode = external.globals( 'XMPPConnected' ) ? external.globals( 'cfg' )( 'lastmode' ) : -1;
 	var sspi = external.globals( 'sspiserver' ).length;
-//	Menu.AddItem( true, false, mode == 1,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_ffc' ),		2 );
-	Menu.AddItem( true, false, mode == 0 || mode == 1,	false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_available' ),	3 );
-	Menu.AddItem( true, false, mode == 4,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_busy' ),		4 );
-	Menu.AddItem( true, false, mode == 2 || mode == 3,	false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_away' ),		5 );
-//	Menu.AddItem( true, false, mode == 3,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_xaway' ),		6 );
-	Menu.AddItem( true, false, mode == 5,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_invisible' ),	7 );
+//	Menu.AddItem( true, false, mode == 1,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_ffc' ), 2 );
+	Menu.AddItem( true, false, mode == 0 || mode == 1,	false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_available' ), 3 );
+	Menu.AddItem( true, false, mode == 4,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_busy' ), 4 );
+	Menu.AddItem( true, false, mode == 2 || mode == 3,	false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_away' ), 5 );
+//	Menu.AddItem( true, false, mode == 3,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_xaway' ), 6 );
+	Menu.AddItem( true, false, mode == 5,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_invisible' ), 7 );
 	Menu.AddSeparator();
-	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_change' ),						1 );
-	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_avatar' ),						9 );
-	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_profile' ),						10 );
-	Menu.Show( window.screenLeft + 42, window.screenTop + 37 );
+	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_change' ), 1 );
+	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_avatar' ), 9 );
+	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_profile' ), 10 );
+	Menu.Show( window.screenLeft + 50, window.screenTop + 47 );
 
 	var ask = external.globals( 'cfg' )( 'askstatus' ).toString() == 'true';
 	var msg = external.globals( 'cfg' )( 'lastmsg' );

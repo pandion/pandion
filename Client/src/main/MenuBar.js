@@ -11,40 +11,37 @@ function MenuBarErase ()
  */
 function MenuBarUpdate ( section )
 {
-	var cfg			= external.globals( 'cfg' );
-	var connected	= external.globals( 'XMPPConnected' );
-	var mode		= connected ? cfg( 'lastmode' ) : -1;
-	var admin		= external.globals( 'ClientServices' ).Admin || external.globals( 'ClientServices' ).AdminJ2.length;
-	var sspi		= external.globals( 'sspiserver' ).length;
+	var cfg = external.globals( 'cfg' );
+	var connected = external.globals( 'XMPPConnected' );
+	var mode = connected ? cfg( 'lastmode' ) : -1;
+	var admin = external.globals( 'ClientServices' ).Admin || external.globals( 'ClientServices' ).AdminJ2.length;
+	var sspi = external.globals( 'sspiserver' ).length;
+	var signin = document.getElementById( 'signin-dialog' ).style.display == 'block';
+	var roster = ! signin;
 
 	if ( ! section || section == 'file' )
 	{
 		external.wnd.menuBar.RemItem( 1 );
 
-		var contacts = external.globals( 'ClientRoster' ).Items.Count;
-
 		var status = external.newPopupMenu;
-		status.AddItem( true, false, false,						false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_change' ),		107 );
+		//status.AddItem( roster, false, mode == 1, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_ffc' ), 100 );
+		status.AddItem( roster, false, mode == 0 || mode == 1, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_available' ), 101 );
+		status.AddItem( roster, false, mode == 4, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_busy' ), 102 );
+		status.AddItem( roster, false, mode == 2 || mode == 3, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_away' ), 103 );
+		//status.AddItem( roster, false, mode == 3, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_xaway' ), 104 );
+		status.AddItem( roster, false, mode == 5, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_invisible' ), 105 );
+		//status.AddItem( roster, false, mode == -1, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_offline' ), 106 );
 		status.AddSeparator();
-//		status.AddItem( true, false, mode == 1,					false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_ffc' ),		100 );
-		status.AddItem( true, false, mode == 0 || mode == 1,	false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_available' ),	101 );
-		status.AddItem( true, false, mode == 4,					false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_busy' ),		102 );
-		status.AddItem( true, false, mode == 2 || mode == 3,	false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_away' ),		103 );
-//		status.AddItem( true, false, mode == 3,					false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_xaway' ),		104 );
-		status.AddItem( true, false, mode == 5,					false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_invisible' ),	105 );
-//		status.AddItem( true, false, mode == -1,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_file_offline' ),	106 );
+		status.AddItem( roster, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_change' ), 107 );
+		status.AddSeparator();
+		status.AddItem( roster, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_received' ), 13 );
+		status.AddItem( roster, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_export' ), 14 );
+		status.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_import' ), 15 );
+		status.AddSeparator();
+		status.AddItem( roster && ! sspi, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_out' ), 11 );
+		status.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_exit' ), 12 );
 
-		var file = external.newPopupMenu;
-		file.AddItem( true,			false, false, false, status.Handle,	external.globals( 'Translator' ).Translate( 'main', 'menu_file_status' ),	10 );
-		file.AddItem( ! sspi,		false, false, false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_file_out' ),		11 );
-		file.AddSeparator();
-		file.AddItem( true,			false, false, false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_file_received' ),	13 );
-		file.AddItem( contacts,		false, false, false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_file_export' ),	14 );
-		file.AddItem( connected,	false, false, false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_file_import' ),	15 );
-		file.AddSeparator();
-		file.AddItem( true,			false, false, false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_file_exit' ),		12 );
-
-		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'main', 'menu_file' ), 0, 1, file );
+		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'main', 'menu_status' ), 0, 1, status );
 	}
 
 	if ( ! section || section == 'actions' )
@@ -56,9 +53,9 @@ function MenuBarUpdate ( section )
 		var Bookmarks = external.newPopupMenu;
 		Bookmarks.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks_add' ),	220 );
 		Bookmarks.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks_manage' ),	221 );
-		var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
-		dom.async				= false;
-		dom.resolveExternals	= false;
+		var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+		dom.async = false;
+		dom.resolveExternals = false;
 		dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\bookmarks.xml' );
 		if ( dom.documentElement )
 		{
@@ -75,7 +72,7 @@ function MenuBarUpdate ( section )
 		if ( InviteLink.length )
 			actions.AddItem( true,				false, false, false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_axn_invite' ),	28 );
 		actions.AddSeparator();
-		actions.AddItem( true,					false, false, false, Bookmarks.handle,	external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks' ),	22 );
+		actions.AddItem( roster,				false, false, false, Bookmarks.handle,	external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks' ),	22 );
 		actions.AddItem( connected,				false, false, false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_axn_join' ),		23 );
 		actions.AddItem( connected,				false, false, false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_axn_create' ),	24 );
 		actions.AddSeparator();
@@ -90,19 +87,19 @@ function MenuBarUpdate ( section )
 	{
 		external.wnd.menuBar.RemItem( 3 );
 
-		var aot			= cfg( 'aot' ).toString() == 'true';
-		var list		= cfg( 'contactlistdisplay' ) == 'detailed';
-		var language	= external.globals( 'MenuLanguages' );
-		var username	= cfg( 'username' ).length;
+		var aot = cfg.Exists( 'aot' ) && cfg( 'aot' ).toString() == 'true';
+		var list = cfg( 'contactlistdisplay' ) == 'detailed';
+		var language = external.globals( 'MenuLanguages' );
+		var username = cfg( 'username' ).length;
 
 		var display = external.newPopupMenu;
 		display.AddItem( true,	false,	list,	false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_tool_detailed' ),		330 );
 		display.AddItem( true,	false,	! list,	false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_tool_compact' ),		331 );
 
-		var language			= external.newPopupMenu;
-		var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
-		dom.async				= false;
-		dom.resolveExternals	= false;
+		var language = external.newPopupMenu;
+		var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+		dom.async = false;
+		dom.resolveExternals = false;
 		dom.load( external.globals( 'cwd' ) + '..\\languages\\languages.xml' );
 		if ( dom.documentElement )
 		{
@@ -117,8 +114,8 @@ function MenuBarUpdate ( section )
 
 		var tools = external.newPopupMenu;
 		tools.AddItem( connected,	false,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_transport' ),	36 );
-		tools.AddItem( true,		false,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_head' ),			30 );
-		tools.AddItem( true,		false,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_plugin' ),		37 );
+		tools.AddItem( roster,		false,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_head' ),			30 );
+		tools.AddItem( roster,		false,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_plugin' ),		37 );
 		if ( admin )
 		{
 			tools.AddSeparator();
@@ -126,11 +123,11 @@ function MenuBarUpdate ( section )
 			tools.AddItem( true,	false,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_traffic' ),		32 );
 		}
 		tools.AddSeparator();
-		tools.AddItem( true,		false,	false,	false, display.Handle,	external.globals( 'Translator' ).Translate( 'main', 'menu_tool_view' ),			33 );
+		tools.AddItem( roster,		false,	false,	false, display.Handle,	external.globals( 'Translator' ).Translate( 'main', 'menu_tool_view' ),			33 );
 		tools.AddItem( true,		false,	false,	false, language.Handle,	external.globals( 'Translator' ).Translate( 'main', 'menu_tool_language' ),		38 );
-		tools.AddItem( true,		aot,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_aot' ),			34 );
+		tools.AddItem( roster,		aot,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_aot' ),			34 );
 		tools.AddSeparator();
-		tools.AddItem( true,		false,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_settings' ),		35 );
+		tools.AddItem( roster,		false,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_settings' ),		35 );
 
 		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'main', 'menu_tool' ), 2, 3, tools );
 	}
@@ -161,8 +158,8 @@ function MenuBarUpdate ( section )
 function MenuBarSelect ( id )
 {
 	var cfg = external.globals( 'cfg' );
-	var ask = external.globals( 'cfg' )( 'askstatus' ).toString() == 'true';
-	var msg = external.globals( 'cfg' )( 'lastmsg' );
+	var ask = cfg.Exists( 'askstatus' ) ? ( cfg( 'askstatus' ).toString() == 'true' ) : false;
+	var msg = cfg.Exists( 'lastmsg' ) ? cfg( 'lastmsg' ) : "";
 	switch ( id )
 	{
 		case 11: //	sign out
@@ -316,7 +313,8 @@ function MenuBarSelect ( id )
 							var NewDefaultStatus = external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' );
 							document.getElementById( 'txt_welcome' ).innerText = external.globals( 'Translator' ).Translate( 'main', 'txt_welcome', [ external.globals( 'softwarename' ) ] );
 							MenuBarUpdate();
-							mode_new( cfg( 'lastmode' ), cfg( 'lastmsg' ) );
+							if ( document.getElementById( 'content-dialog' ).style.display == 'block' )
+								mode_new( cfg( 'lastmode' ), cfg( 'lastmsg' ) );
 							var GroupNames = ( new VBArray( external.globals( 'ClientRoster' ).Groups.Keys() ) ).toArray();
 							for ( var i = 0; i < GroupNames.length; ++i )
 							{

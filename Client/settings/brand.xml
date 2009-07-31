@@ -7,7 +7,7 @@
 
 <!-- Shown in the About dialog
   -->
-<softwarecopyrightdate>2006</softwarecopyrightdate>
+<softwarecopyrightdate>2009</softwarecopyrightdate>
 
 <!-- Stop working after this date (DD-MM-YYYY)
   -->
@@ -23,7 +23,7 @@
 
 <!-- Shown in the About dialog
   -->
-<softwareversion>2.5 RC1</softwareversion>
+<softwareversion>2.6 dev</softwareversion>
 
 <!-- Only connect to this server and only create accounts on this server
   -->
@@ -56,11 +56,11 @@
 
 <!-- Shown in the Help menu
   -->
-<helpcontact>http://www.pandion.be/contact/</helpcontact>
+<helpcontact>http://www.pandion.be/about</helpcontact>
 
 <!-- Shown in the Help menu
   -->
-<helpforum>http://forums.pandion.be/</helpforum>
+<helpforum>http://www.pandion.be/support</helpforum>
 
 <!-- Shown in the Help menu
   -->

@@ -3,6 +3,7 @@
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
 <META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
 <LINK rel="stylesheet" type="text/css" href="../css/main.css"></LINK>
+<LINK rel="stylesheet" type="text/css" href="../css/roster.css"></LINK>
 
 <SCRIPT src="main/warn.js"></SCRIPT>
 <SCRIPT src="main/file2hash.js"></SCRIPT>
@@ -111,136 +112,224 @@
 
 <BODY id=body onload="init()" scroll=no>
 
-<TABLE id=content-dialog cellspacing=0 cellpadding=0 border=0 height="100%" width="100%" style="table-layout: fixed;">
+<TABLE id=content-dialog cellspacing=0 cellpadding=0 style="table-layout: fixed; width: 100%; height: 100%; border-width: 0;">
+	<TR>
 
-	<!-- Mode Indicator -->
-	<TR valign=top height=42>
-		<TD id=mode-bar onclick="dial_mode()" onmouseover="document.getElementById( 'mode-name' ).style.color = '#0570ad'; document.getElementById( 'mode-message' ).style.color = '#040E14';" onmouseout="document.getElementById( 'mode-name' ).style.color = ''; document.getElementById( 'mode-message' ).style.color = '';">
-			<IMG id=mode-avatar align=left onmouseover="this.style.borderWidth = '2px'; this.style.margin = '3px'; event.cancelBubble = true;" onmouseout="this.style.borderWidth = ''; this.style.margin = '';" onclick="dial_avatar_pick(); event.cancelBubble = true;">
-			<NOBR id=mode-top>
-				<SPAN id=mode-name></SPAN>
-				<IMG id=mode-secure width=16 height=16 src="../images/misc/lock-closed.png" align=top>
-			</NOBR>
-			<NOBR id=mode-message></NOBR>
-		</TD>
-	</TR>
-	<!-- / Mode Indicator -->
-
-	<!-- Unread Messages -->
-	<TR valign=top height=25 id=unread-messages-area>
+		<!-- Roster -->
 		<TD>
-			<NOBR class=unread-messages-line><A href="#" onclick="external.globals( 'ClientRoster' ).ShowUnread( event.screenX, event.screenY ); if ( document.getElementById( 'rosterback' ).style.display == 'block' ) document.getElementById( 'rosterback' ).focus(); return false;" id=unread-messages-counter></A></NOBR>
-		</TD>
-	</TR>
-	<!-- / Unread Messages -->
+			<DIV class=content-edge-top>
+			<DIV class=content-edge-left>
+			<DIV class=content-edge-right>
+			<DIV class=content-edge-bottom>
+			<TABLE cellspacing=0 cellpadding=0 border=0 height="100%" width="100%" style="table-layout: fixed;">
 
-	<!-- Find As You Type -->
-	<TR valign=top height=34 id=find-area>
-		<TD>
-			<DIV id=find-frame>
-				<DIV id=find-wrapper>
-					<TABLE width="100%" cellspacing=0 cellpadding=0 border=0>
-						<TR>
-							<TD>
-								<INPUT id=find-query type=text tabindex=0>
-							</TD>
-							<TD width=20>
-								<A id=find-close href="#"></A>
-							</TD>
-						</TR>
-					</TABLE>
-				</DIV>
+				<!-- Mode Indicator -->
+				<TR valign=top height=42>
+					<TD id=mode-bar
+						onclick="dial_mode()"
+						onmouseover="document.getElementById( 'mode-name' ).style.color = '#312505'; document.getElementById( 'mode-message' ).style.color = '#040E14';"
+						onmouseout="document.getElementById( 'mode-name' ).style.color = ''; document.getElementById( 'mode-message' ).style.color = '';"
+					>
+						<DIV class=mode-frame-left>
+						<DIV class=mode-frame-right>
+							<IMG
+								id=mode-avatar
+								align=left
+								onmouseover="this.style.borderWidth = '2px'; this.style.margin = '5px 3px 0 1px'; event.cancelBubble = true;"
+								onmouseout="this.style.borderWidth = ''; this.style.margin = '';"
+								onclick="dial_avatar_pick(); event.cancelBubble = true;"
+							/>
+							<NOBR id=mode-top>
+								<SPAN id=mode-name></SPAN>
+								<IMG id=mode-secure width=16 height=16 src="../images/misc/lock-closed.png" align=top>
+							</NOBR>
+							<NOBR id=mode-message></NOBR>
+						</DIV>
+						</DIV>
+					</TD>
+				</TR>
+				<!-- / Mode Indicator -->
+
+				<!-- Unread Messages -->
+				<TR valign=top height=25 id=unread-messages-area>
+					<TD>
+						<NOBR class=unread-messages-line><A id=unread-messages-counter href="#" onclick="external.globals( 'ClientRoster' ).ShowUnread( event.screenX, event.screenY ); if ( document.getElementById( 'content-area' ).style.display == 'block' ) document.getElementById( 'content-area' ).focus(); return false;"></A></NOBR>
+					</TD>
+				</TR>
+				<!-- / Unread Messages -->
+
+				<!-- Find As You Type -->
+				<TR valign=top height=34 id=find-area>
+					<TD>
+						<DIV id=find-frame>
+							<DIV id=find-wrapper>
+								<TABLE width="100%" cellspacing=0 cellpadding=0 border=0>
+									<TR>
+										<TD>
+											<INPUT id=find-query type=text tabindex=0>
+										</TD>
+										<TD width=20>
+											<A id=find-close href="#"></A>
+										</TD>
+									</TR>
+								</TABLE>
+							</DIV>
+						</DIV>
+					</TD>
+				</TR>
+				<!-- / Find As You Type -->
+
+				<!-- Contact List -->
+				<TR valign=top height="100%">
+					<TD id=tab-area>
+						<DIV class=inside-edge-left>
+						<DIV class=inside-edge-right>
+						<DIV id=content-area>
+
+							<!-- Connecting -->
+							<DIV id=connecting style="display: none; height: 100%;">
+								<TABLE width="100%" height="100%" cellspacing=0 cellpadding=0 border=0>
+									<TR>
+										<TD align=center style="font-family: Tahoma; font-size: 11px; color: windowtext;">
+											<IMG src="../images/misc/waiting.gif" height=32 width=32>
+										</TD>
+									</TR>
+								</TABLE>
+							</DIV>
+							<!-- / Connecting -->
+
+							<!-- Disconnected -->
+							<DIV id=commerror style="display: none; height: 100%;">
+								<TABLE width="100%" height="100%" cellspacing=0 cellpadding=0 border=0>
+									<TR>
+										<TD align=center style="font-family: Tahoma; font-size: 11px; color: windowtext;">
+											<B id=txt_disconnected></B>
+											<HR width=170>
+											<BR>
+											<A href="" onclick="Reconnect(); return false;" id=txt_reconnect></A>
+											<BR>
+											<BR>
+											<SPAN id=txt_discor></SPAN>
+											<BR>
+											<BR>
+											<A href="" onclick="dial_connection_settings(); return false;" id=txt_connection_settings></A>
+										</TD>
+									</TR>
+								</TABLE>
+							</DIV>
+							<!-- / Disconnected -->
+
+							<!-- Welcome -->
+							<DIV id=welcomemsg style="display: none; height: 100%;">
+								<TABLE width="100%" height="100%" cellspacing=0 cellpadding=0 border=0>
+									<TR>
+										<TD align=center style="font-family: Tahoma; font-size: 11px; color: windowtext;">
+											<B id=txt_welcome></B>
+											<HR width=128>
+											<BR>
+											<A href="" onclick="dial_addcontact(); return false;" id=txt_addtolist></A>
+											<BR>
+											<BR>
+											<SPAN id=txt_welcor></SPAN>
+											<BR>
+											<BR>
+											<A href="" onclick="dial_transport_list(); return false;" id=txt_config_transport></A>
+										</TD>
+									</TR>
+								</TABLE>
+							</DIV>
+							<!-- / Welcome -->
+
+							<!-- Contacts -->
+							<DIV id=rosterfield style="display: none;" oncontextmenu="ClientRosterContextMenu()">
+								<TABLE width="100%" height="100%" cellspacing=0 cellpadding=0 border=0 style="table-layout: fixed">
+									<TR valign=top>
+										<TD id=rostercell></TD>
+									</TR>
+								</TABLE>
+							</DIV>
+							<!-- / Contacts -->
+
+						</DIV>
+						</DIV>
+						</DIV>
+					</TD>
+				</TR>
+				<!-- / Contact List -->
+
+				<!-- Tab Buttons -->
+				<TR height=24 valign=top id=tab-bar-row>
+					<TD id=tab-bar></TD>
+				</TR>
+				<!-- / Tab Buttons -->
+
+				<!-- Banner -->
+				<TR id=banner-area>
+					<TD align=center style="overflow: hidden;"></TD>
+				</TR>
+				<!-- / Banner -->
+
+			</TABLE>
+			</DIV>
+			</DIV>
+			</DIV>
 			</DIV>
 		</TD>
+		<!-- / Roster -->
+
 	</TR>
-	<!-- / Find As You Type -->
-
-	<!-- Roster -->
-	<TR valign=top height="100%">
-		<TD id=tab-area>
-			<DIV id=rosterback>
-
-				<!-- Connecting -->
-				<DIV id=connecting  style="display: none; height: 100%;">
-					<TABLE width="100%" height="100%" cellspacing=0 cellpadding=0 border=0>
-						<TR>
-							<TD align=center style="font-family: Tahoma; font-size: 11px; color: windowtext;">
-								<SPAN id=txt_pleasewait></SPAN>&nbsp;<IMG src="../images/misc/ooo.gif">
-							</TD>
-						</TR>
-					</TABLE>
-				</DIV>
-				<!-- / Connecting -->
-
-				<!-- Disconnected -->
-				<DIV id=commerror   style="display: none; height: 100%;">
-					<TABLE width="100%" height="100%" cellspacing=0 cellpadding=0 border=0>
-						<TR>
-							<TD align=center style="font-family: Tahoma; font-size: 11px; color: windowtext;">
-								<B id=txt_disconnected></B>
-								<HR width=170>
-								<BR>
-								<A href="" onclick="Reconnect(); return false;" id=txt_reconnect></A>
-								<BR>
-								<BR>
-								<SPAN id=txt_discor></SPAN>
-								<BR>
-								<BR>
-								<A href="" onclick="dial_connection_settings(); return false;" id=txt_connection_settings></A>
-							</TD>
-						</TR>
-					</TABLE>
-				</DIV>
-				<!-- / Disconnected -->
-
-				<!-- Welcome -->
-				<DIV id=welcomemsg  style="display: none; height: 100%;">
-					<TABLE width="100%" height="100%" cellspacing=0 cellpadding=0 border=0>
-						<TR>
-							<TD align=center style="font-family: Tahoma; font-size: 11px; color: windowtext;">
-								<B id=txt_welcome></B>
-								<HR width=128>
-								<BR>
-								<A href="" onclick="dial_adduser(); return false;" id=txt_addtolist></A>
-								<BR>
-								<BR>
-								<SPAN id=txt_welcor></SPAN>
-								<BR>
-								<BR>
-								<A href="" onclick="dial_transport_list(); return false;" id=txt_config_transport></A>
-							</TD>
-						</TR>
-					</TABLE>
-				</DIV>
-				<!-- / Welcome -->
-
-				<!-- Contacts -->
-				<DIV id=rosterfield style="display: none;" oncontextmenu="ClientRosterContextMenu()">
-					<TABLE width="100%" height="100%" cellspacing=0 cellpadding=0 border=0 style="table-layout: fixed">
-						<TR valign=top>
-							<TD id=rostercell></TD>
-						</TR>
-					</TABLE>
-				</DIV>
-				<!-- / Contacts -->
-			</DIV>
-		</TD>
-	</TR>
-	<!-- / Roster -->
-
-	<!-- Tab Buttons -->
-	<TR height=24 valign=top id=tab-bar-row>
-		<TD id=tab-bar></TD>
-	</TR>
-	<!-- / Tab Buttons -->
-
-	<!-- Banner -->
-	<TR height=68 id=banner-area>
-		<TD align=center style="overflow: hidden;"></TD>
-	</TR>
-	<!-- / Banner -->
-
 </TABLE>
+
+<!-- Sign In -->
+<TABLE id=signin-dialog cellspacing=0 cellpadding=0 style="display: none; table-layout: fixed; width: 100%; height: 100%; border-width: 0;">
+	<TR>
+		<TD id=signin-area valign=top>
+			<DIV class=content-edge-top>
+			<DIV class=content-edge-left>
+			<DIV class=content-edge-right>
+			<DIV class=content-edge-bottom>
+			<DIV class=signin-frame-top>
+			<DIV class=signin-frame-left>
+			<DIV class=signin-frame-right>
+			<H1 id=signin-welcome></H1>
+			<H2 id=signin-instructions></H2>
+			<FORM onsubmit="dial_login_connect(); return false;">
+				<LABEL for=signin-address id=txt-signin-address></LABEL><BR />
+				<INPUT id=signin-address type=text />
+				<SELECT id=signin-recently-used tabindex="-1" onchange='document.getElementById("signin-address").focus(); document.getElementById("signin-address").value = document.getElementById("signin-recently-used").value;'></SELECT>
+				<DIV id=signin-examples>
+					<DT id=txt-signin-examples></DT><DD>bob@mycompany.com</DD><DD>bender@gmail.com</DD>
+				</DIV>
+				<LABEL for=signin-password id=txt-signin-password></LABEL><BR />
+				<INPUT id=signin-password type=password /><BR />
+				<BR />
+				<INPUT id=signin-remember type=checkbox />
+				<LABEL for=signin-remember id=txt-signin-remember></LABEL><BR />
+				<INPUT id=signin-autoconnect type=checkbox />
+				<LABEL for=signin-autoconnect id=txt-signin-autoconnect></LABEL><BR />
+				<BR />
+				<BUTTON type=submit id=signin-connect>
+					Sign In
+				</BUTTON>
+			</FORM>
+			<UL>
+				<LI><A href="" id=signin-register onclick="( external.globals( 'websignup' ).length && external.globals( 'websignupmethod' ) == 'external' ) ? dial_webbrowser( this.href ) : dial_signup(); return false;"></A></LI>
+				<LI><A href="" id=signin-settings onclick="dial_connection_settings(); return false;"></A></LI>
+			</UL>
+			</DIV>
+			</DIV>
+			</DIV>
+			</DIV>
+			</DIV>
+			</DIV>
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<!-- / Sign in -->
+
+</BODY>
+</HTML>
 
 </BODY>
 </HTML>
