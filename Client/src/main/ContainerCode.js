@@ -636,12 +636,13 @@ function Keyboard ( EventData )
 
 	/* Give focus to input area
 	 */
-	else if ( ! Function && ! k == 9 && ! k == 32 )
+	else if ( ( ! Function || Function == 0x04 ) && k != 9 && k != 32 )
 	{
 		if ( EventData.srcElement.id != 'send-text' && ! document.getElementById( 'send-text' ).disabled )
 		{
 			document.getElementById( 'send-text' ).focus();
 			document.getElementById( 'send-text' ).value = document.getElementById( 'send-text' ).value;
+			setTimeout(disableButton, 1);
 		}
 	}
 }
@@ -676,10 +677,10 @@ function ResizeStartTracking ()
 		gResizeInterval = setInterval( 'ResizePosition()', 10 );
 		document.frames( 'iframe-' + gContainer.ActiveTrackerAddress ).document.attachEvent( 'onmouseup', ResizeStopTracking );
 		document.body.style.cursor = 'n-resize';
-		document.getElementById( 'toolbar' ).firstChild.firstChild.childNodes(0).style.backgroundColor = 'black';
-		document.getElementById( 'toolbar' ).firstChild.firstChild.childNodes(1).style.cursor = 'n-resize';
-		document.getElementById( 'toolbar' ).firstChild.firstChild.childNodes(2).style.cursor = 'n-resize';
-		document.getElementById( 'toolbar' ).firstChild.firstChild.childNodes(3).style.cursor = 'n-resize';
+		document.getElementById( 'toolbar-wrapper' ).childNodes(0).style.backgroundColor = 'black';
+		document.getElementById( 'toolbar-wrapper' ).childNodes(1).style.cursor = 'n-resize';
+		document.getElementById( 'toolbar-wrapper' ).childNodes(2).style.cursor = 'n-resize';
+		document.getElementById( 'toolbar-wrapper' ).childNodes(3).style.cursor = 'n-resize';
 		document.getElementById( 'mode-bar' ).style.cursor = 'n-resize';
 		document.getElementById( 'send-text' ).style.cursor = 'n-resize';
 		document.frames( 'iframe-' + gContainer.ActiveTrackerAddress ).document.body.style.cursor = 'n-resize';
@@ -697,10 +698,10 @@ function ResizeStopTracking ()
 		document.detachEvent( 'onmouseup', ResizeStopTracking );
 		document.frames( 'iframe-' + gContainer.ActiveTrackerAddress ).document.detachEvent( 'onmouseup', ResizeStopTracking );
 		document.body.style.cursor = '';
-		document.getElementById( 'toolbar' ).firstChild.firstChild.childNodes(0).style.backgroundColor = '';
-		document.getElementById( 'toolbar' ).firstChild.firstChild.childNodes(1).style.cursor = '';
-		document.getElementById( 'toolbar' ).firstChild.firstChild.childNodes(2).style.cursor = '';
-		document.getElementById( 'toolbar' ).firstChild.firstChild.childNodes(3).style.cursor = '';
+		document.getElementById( 'toolbar-wrapper' ).childNodes(0).style.backgroundColor = '';
+		document.getElementById( 'toolbar-wrapper' ).childNodes(1).style.cursor = '';
+		document.getElementById( 'toolbar-wrapper' ).childNodes(2).style.cursor = '';
+		document.getElementById( 'toolbar-wrapper' ).childNodes(3).style.cursor = '';
 		document.getElementById( 'mode-bar' ).style.cursor = gContainer.Trackers( gContainer.ActiveTrackerAddress ).Occupants ? 'default' : 'hand';
 		document.getElementById( 'send-text' ).style.cursor = '';
 		document.frames( 'iframe-' + gContainer.ActiveTrackerAddress ).document.body.style.cursor = '';
@@ -723,7 +724,7 @@ function ResizePosition ()
 		var InputRow = document.getElementById( 'send-text' ).parentNode.parentNode;
 		var TabbarRow = document.getElementById( 'tab-bar-row' );
 		var BannerRow = document.getElementById( 'banner-area' );
-		var InputBottomY = external.wnd.top + external.wnd.height - TabbarRow.height - ( BannerRow.style.display == 'block' ? BannerRow.height : 0 ) + 50;
+		var InputBottomY = external.wnd.top + external.wnd.height - TabbarRow.height - ( BannerRow.style.display == 'block' ? BannerRow.height : 0 ) + 8;
 		var MaxHeight = InputBottomY - ( external.wnd.top + 200 );
 		external.globals( 'cfg' )( 'textinputheight' ) = Math.max( 60, Math.min( MaxHeight, InputBottomY - external.cursorY ) );
 		InputRow.height = external.globals( 'cfg' )( 'textinputheight' );

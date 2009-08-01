@@ -4,7 +4,6 @@
   and are overwritten by individual profiles at log in.
 -->
 <settings>
-<actionspanel>false</actionspanel>
 <alertonline>true</alertonline>
 <aotchat>false</aotchat>
 <askstatus>true</askstatus>
@@ -65,5 +64,6 @@
 <user_dialog_top>100</user_dialog_top>
 <user_dialog_underline>false</user_dialog_underline>
 <user_dialog_width>500</user_dialog_width>
+<user_dialog_maximized>false</user_dialog_maximized>
 <username/>
 </settings>
