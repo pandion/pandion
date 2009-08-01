@@ -87,7 +87,7 @@ function MenuBarUpdate ( section )
 	{
 		external.wnd.menuBar.RemItem( 3 );
 
-		var aot = cfg.Exists( 'aot' ) && cfg( 'aot' ).toString() == 'true';
+		var aot = external.globals( 'aot' ).toString() == 'true';
 		var list = cfg( 'contactlistdisplay' ) == 'detailed';
 		var language = external.globals( 'MenuLanguages' );
 		var username = cfg( 'username' ).length;
@@ -270,7 +270,7 @@ function MenuBarSelect ( id )
 			}
 			MenuBarUpdate( 'tools' );	break;
 		case 34: // always on top
-			external.wnd.setAOT( cfg( 'aot' ) = ! ( cfg( 'aot' ).toString() == 'true' ) );
+			external.wnd.setAOT( external.globals( 'aot' ) = ! ( external.globals( 'aot' ).toString() == 'true' ) );
 			MenuBarUpdate( 'tools' );	break;
 		case 35: // settings
 			dial_preferences( '' );		break;
