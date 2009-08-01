@@ -134,19 +134,7 @@ textarea, input, button {
  */
 #user-typing-area {
 	height: 29px;
-}
-
-/* Messages
- */
-#chat-area {
-    height: 100%;
-}
-
-/* Message composition
- */
-#input-bar {
 	background-color: #ffffff;
-	height: 60px;
 }
 #user-typing-bar {
 	display: block;
@@ -166,6 +154,19 @@ textarea, input, button {
 	padding-top: 3px;
 	text-overflow: ellipsis;
 	overflow: hidden;
+}
+
+/* Messages
+ */
+#chat-area {
+    height: 100%;
+}
+
+/* Message composition
+ */
+#input-bar {
+	background-color: #ffffff;
+	height: 60px;
 }
 #btn-send {
 	height: 52px;
