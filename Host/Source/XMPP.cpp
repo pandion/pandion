@@ -27,7 +27,9 @@
  * Constructor
  */
 XMPP::XMPP() :
-	m_Handlers(), m_Logger(), m_ConnectionManager(m_Handlers, m_Logger)
+	m_Handlers(),
+	m_Logger(),
+	m_ConnectionManager(m_Handlers, m_Logger)
 {
 }
 
@@ -39,49 +41,11 @@ XMPP::~XMPP()
 }
 
 /*
- * Sets information about the proxy server to use.
- */
-STDMETHODIMP XMPP::SetProxyServer(BSTR server, USHORT port, 
-								   BSTR username, BSTR password)
-{
-	m_ConnectionManager.SetProxyServer(server, port, username, password);
-	return S_OK;
-}
-
-/*
- * Sets information for a polling proxy.
- */
-STDMETHODIMP XMPP::SetProxyPollURL(BSTR pollURL)
-{
-	if(pollURL != NULL)
-	{
-		m_ConnectionManager.SetProxyPollURL(std::wstring(pollURL));
-		return S_OK;
-	}
-	else
-	{
-		return E_POINTER;
-	}
-}
-
-/*
  * Attempts to connect to the given XMPP server.
  */
-STDMETHODIMP XMPP::Connect(BSTR server,
-	USHORT port, BOOL useSSL, DWORD proxyMethod)
+STDMETHODIMP XMPP::Connect(BSTR server, USHORT port, BOOL useSSL)
 {
-	if(proxyMethod == 0)
-	{
-		m_ConnectionManager.Connect(server, port, useSSL, ProxyMethodDontUse);
-	}
-	else if(proxyMethod == 1)
-	{
-		m_ConnectionManager.Connect(server, port, useSSL, ProxyMethodConnect);
-	}
-	else if(proxyMethod == 3)
-	{
-		m_ConnectionManager.Connect(server, port, useSSL, ProxyMethodPoll);
-	}
+	m_ConnectionManager.Connect(server, port, useSSL);
 	return S_OK;
 }
 

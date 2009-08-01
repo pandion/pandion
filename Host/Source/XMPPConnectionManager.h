@@ -26,13 +26,6 @@
 #include "XMPPXMLParser.h"
 #include "SRVLookup.h"
 
-typedef enum
-{
-	ProxyMethodDontUse,
-	ProxyMethodConnect,
-	ProxyMethodPoll
-} ProxyMethod;
-
 class XMPPConnectionManager
 {
 private:
@@ -46,13 +39,6 @@ private:
 	unsigned short	m_Port;
 	bool			m_UseSSL;
 
-	ProxyMethod		m_ProxyMethod;
-	std::wstring	m_ProxyPollURL;
-	std::wstring	m_ProxyServer;
-	unsigned short	m_ProxyPort;
-	std::wstring	m_ProxyUsername;
-	std::wstring	m_ProxyPassword;
-
 	bool			m_DoStartTLS;
 	bool			m_DoStartSC;
 	bool			m_DoDisconnect;
@@ -62,23 +48,19 @@ public:
 	~XMPPConnectionManager();
 
 	void Connect(const std::wstring& server,
-		unsigned short port, bool useSSL, ProxyMethod proxyMethod);
+		unsigned short port, bool useSSL);
 	void Disconnect();
 	void StartTLS();
 	void StartSC();
 	void SendText(const std::wstring& utf16Text);
 
 	std::wstring GetConnectionIP();
-	void SetProxyPollURL(std::wstring& pollURL);
-	void SetProxyServer(const std::wstring& server, unsigned short port,
-		const std::wstring& username, const std::wstring& password);
 private:
 	static DWORD __stdcall ConnectionMainProc(void *pThis);
 	DWORD ConnectionMain();
 	bool DoConnect();
 	bool DoConnectWithSRV(SRVLookup& srvLookup);
 	bool DoConnectWithoutSRV();
-	bool ProxyConnect();
 	bool DoRecvData();
 	void DoStartTLS();
 	void DoStartSC();
