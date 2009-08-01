@@ -1,6 +1,6 @@
 var gContainer = null;
 
-function disableButton()
+function DisableButton ()
 {
 	document.getElementById( 'btn-send' ).disabled = ( /^\s*$/ ).test( document.getElementById( 'send-text' ).value );
 }
@@ -12,10 +12,10 @@ function Begin ()
 
 	/* Event handlers for text selecting, input area resizing, and text input focus
 	 */
-    document.attachEvent( 'onselectionchange', disableButton);
-	document.attachEvent( 'onselectstart',	SelectionFilter );
-	document.attachEvent( 'ondragstart',	SelectionFilter );
-	window.attachEvent( 'onresize',			ResizeCheck );
+    document.attachEvent( 'onselectionchange', DisableButton);
+	document.attachEvent( 'onselectstart', SelectionFilter );
+	document.attachEvent( 'ondragstart', SelectionFilter );
+	window.attachEvent( 'onresize', ResizeCheck );
 	external.wnd.setActivationHandler( 'OnWindowActivate' );
 
 	/* Display banner
@@ -1400,7 +1400,7 @@ function MouseMenu ()
 	Menu.AddItem( true,			false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_history' ), 6 );
 	Menu.AddItem( Connected,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_profile' ), 7 );
 
-	Menu.Show( window.screenLeft + 42, window.screenTop + 37 );
+	Menu.Show( window.screenLeft + 42, window.screenTop + 48 );
 
 	switch ( Menu.Choice )
 	{

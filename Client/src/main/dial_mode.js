@@ -14,7 +14,7 @@ function dial_mode ()
 	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_change' ), 1 );
 	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_avatar' ), 9 );
 	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_profile' ), 10 );
-	Menu.Show( window.screenLeft + 50, window.screenTop + 47 );
+	Menu.Show( window.screenLeft + 50, window.screenTop + 48 );
 
 	var ask = external.globals( 'cfg' )( 'askstatus' ).toString() == 'true';
 	var msg = external.globals( 'cfg' )( 'lastmsg' );
