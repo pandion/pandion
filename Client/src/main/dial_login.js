@@ -10,7 +10,19 @@ function dial_login ( visible )
 
 	/* Reset user profile
 	 */
-	external.globals( 'cfg' )( 'username' ) = external.globals( 'cfg' )( 'server' ) = '';
+	if ( external.globals( 'cfg' ) )
+		external.globals( 'cfg' )( 'username' ) = external.globals( 'cfg' )( 'server' ) = '';
+
+	/* Toggle form fields
+	 */
+	document.getElementById( 'txt-signin-password' ).style.display =
+		document.getElementById( 'signin-password' ).style.display =
+		document.getElementById( 'signin-remember' ).style.display =
+		document.getElementById( 'txt-signin-remember' ).style.display =
+		document.getElementById( 'signin-example-user' ).style.display =
+		external.globals( 'authentication' ) == 'normal' ? '' : 'none';
+	document.getElementById( 'signin-example-sso' ).style.display =
+		external.globals( 'authentication' ) == 'normal' ? 'none' : '';
 
 	/* Show sign in dialog
 	 */
@@ -33,21 +45,14 @@ function dial_login ( visible )
 	 */
 	document.getElementById( 'signin-address' ).focus();
 	document.getElementById( 'signin-address' ).focus();
-	document.getElementById( 'signin-address' ).value = '';
-	document.getElementById( 'signin-password' ).value = '';
-	document.getElementById( 'signin-remember' ).checked = false;
-	document.getElementById( 'signin-autoconnect' ).checked = false;
-	if ( external.globals( 'last_address' ).length && external.globals( 'last_address' ).match( /@/ ) )
+	document.getElementById( 'signin-address' ).value = external.globals( 'last_address' );
+	document.getElementById( 'signin-password' ).value = pass_code( false, external.globals( 'last_password' ) );
+	document.getElementById( 'signin-remember' ).checked = external.globals( 'last_password_remember' ).toString() == 'true';
+	document.getElementById( 'signin-autoconnect' ).checked = external.globals( 'autologin' ).toString() == 'true';
+	if ( external.globals( 'last_address' ).length && external.globals( 'authentication' ) == 'normal' )
 	{
-		document.getElementById( 'signin-address' ).value = external.globals( 'last_address' );
 		document.getElementById( 'signin-password' ).focus();
 		document.getElementById( 'signin-password' ).focus();
-		if ( external.globals( 'last_password_remember' ).toString() == 'true' )
-		{
-			document.getElementById( 'signin-remember' ).checked = true;
-			document.getElementById( 'signin-autoconnect' ).checked = external.globals( 'autologin' ).toString() == 'true';
-			document.getElementById( 'signin-password' ).value = pass_code( false, external.globals( 'last_password' ) );
-		}
 	}
 
 	/* Append the addresses to the pulldown
@@ -56,8 +61,7 @@ function dial_login ( visible )
 	for ( var i = 0; i < Math.min( 6, Addresses.length ); ++i )
 	{
 		var opt = document.createElement( 'OPTION' );
-		var Address = external.globals( 'fixedserver' ).length ? Addresses[i].Name.substr( 0, Addresses[i].Name.indexOf( '@' ) + 1 ) + external.globals( 'fixedserver' ) : Addresses[i].Name;
-		opt.text = opt.value = Address;
+		opt.text = opt.value = Addresses[i].Name;
 		document.getElementById( 'signin-recently-used' ).add( opt );
 	}
 }
@@ -118,7 +122,6 @@ function dial_login_changeRemember ()
 function dial_login_connect ()
 {
 	var Address = new XMPPAddress( document.getElementById( 'signin-address' ).value );
-	var Password = document.getElementById( 'signin-password' ).value;
 
 	if ( external.globals( 'fixedserver' ).length )
 	{
@@ -126,25 +129,31 @@ function dial_login_connect ()
 			Address.User = Address.Host;
 		Address.Host = external.globals( 'fixedserver' );
 	}
-	else if ( ! Address.User.length )
-	{
-		Address.User = Address.Host;
 
-		var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
-		dom.async = false;
-		dom.resolveExternals = false;
-		dom.load( external.globals( 'cwd' ) + '..\\settings\\servers.xml' );
-		var DefaultServer = dom.selectSingleNode( '/servers/xmpp[@default="yes"]' );
-		if ( DefaultServer )
-			Address.Host = DefaultServer.text;
-	}
-
-	if ( Address.User.length && Address.Host.length )
+	/* Standard authentication
+	 */
+	if ( external.globals( 'authentication' ) == 'normal' )
 	{
-		external.globals( 'last_password_remember' ) = document.getElementById( 'signin-remember' ).checked;
-		external.globals( 'autologin' ) = document.getElementById( 'signin-autoconnect' ).checked;
-		login( Address, Password );
+		if ( Address.User.length && Address.Host.length )
+		{
+			external.globals( 'last_password_remember' ) = document.getElementById( 'signin-remember' ).checked;
+			external.globals( 'autologin' ) = document.getElementById( 'signin-autoconnect' ).checked;
+			login( Address, document.getElementById( 'signin-password' ).value );
+		}
+		else
+			external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'main', 'invalid-user-address' ), external.globals( 'softwarename' ), 0 | 48 );
 	}
+	/* Windows Integrated Authentication
+	 */
 	else
-		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'login', 'invalid' ), external.globals( 'softwarename' ), 0 | 48 );
+	{
+		if ( Address.Host.length )
+		{
+			Address.Parse( Address.Host );
+			external.globals( 'autologin' ) = document.getElementById( 'signin-autoconnect' ).checked;
+			login( Address, '' );
+		}
+		else
+			external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'main', 'invalid-sso-server' ), external.globals( 'softwarename' ), 0 | 48 );
+	}
 }

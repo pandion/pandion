@@ -77,27 +77,13 @@ function mode_new ( mode, msg )
 			context.Add( 'name', 'onConnect' );
 			external.globals( 'ClientPluginContainer' ).DispatchEvent( context );
 
-			/* Proxy settings
-			 */
-			external.globals( 'proxyport' ) = isNaN( parseInt( external.globals( 'proxyport' ), 10 ) ) ? 0 : parseInt( external.globals( 'proxyport' ), 10 );
-			if ( external.globals( 'proxymethod' ) == 'http' )
-				external.XMPP.SetProxyServer(
-					external.globals( 'proxyaddress' ),
-					external.globals( 'proxyport' ),
-					'',
-					''
-				);
-			else
-				external.XMPP.SetProxyServer( '', 0, '', '' );
-
 			/* Attempt the connection
 			 */
 			warn( 'EVNT: Connecting to ' + cfg( 'server' ) );
 			external.XMPP.Connect(
 				external.globals( 'serveraddress' ).length ? external.globals( 'serveraddress' ) : cfg( 'server' ),
 				external.globals( 'serverport' ).length ? external.globals( 'serverport' ) : ( external.globals( 'encryption' ) == 'ssl' ? 5223 : 5222 ),
-				external.globals( 'encryption' ) == 'ssl' ? 1 : 0,
-				external.globals( 'proxymethod' ) == 'http' ? 1 : 0
+				external.globals( 'encryption' ) == 'ssl' ? 1 : 0
 			);
 		}
 		else if ( cfg( 'username' ).length && cfg( 'server' ).length && cfg( 'resource' ).length )

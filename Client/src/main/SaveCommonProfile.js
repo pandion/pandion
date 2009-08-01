@@ -12,9 +12,6 @@ function SaveCommonProfile ()
 	Data.Add( 'last_password_remember', external.globals( 'last_password_remember' ) );
 	Data.Add( 'serveraddress', external.globals( 'serveraddress' ) );
 	Data.Add( 'serverport', external.globals( 'serverport' ) );
-	Data.Add( 'proxymethod', external.globals( 'proxymethod' ) );
-	Data.Add( 'proxyaddress', external.globals( 'proxyaddress' ) );
-	Data.Add( 'proxyport', external.globals( 'proxyport' ) );
 
 	if ( external.wnd.left > 0 - external.wnd.width / 2 )
 		Data.Add( 'lastposx', external.wnd.left );

@@ -242,10 +242,15 @@ A:hover {
 /* Sign In
  */
 #signin-dialog {
+	border-width: 0;
+	color: #333;
+	display: none;
+	height: 100%;
 	font-family: "Segoe UI", Tahoma;
 	font-size: 12px;
-	color: #333;
+	table-layout: fixed;
 	text-align: center;
+	width: 100%;
 }
 #signin-area {
 	background: url(../images/sign-in/content-behind.png) repeat-x left top;
@@ -275,6 +280,9 @@ A:hover {
 /*	background-image: url(../images/sign-in/logo-shiny-hover.png);
 */	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/sign-in/logo-shiny-hover.png", sizingMethod="crop");
 }
+#txt-signin-address, #txt-signin-password {
+	display: block;
+}
 #signin-instructions {
 	border: 0;
 	margin: 0;
@@ -299,7 +307,7 @@ A:hover {
 	clip: rect(0, 300px, 50px, 206px);
 }
 #signin-area select, option {
-	height: 50px;
+	height: 10px;
 }
 #signin-examples {
 	color: #555;
@@ -326,7 +334,7 @@ A:hover {
 	font-weight: bold;
 	background: transparent url(../images/button/shiny.png) left -13px repeat-x;
 	padding: 3px 10px;
-	margin-left: 50px;
+	margin: 20px 0 0 50px;
 }
 #signin-area li {
 	margin: 8px 0;

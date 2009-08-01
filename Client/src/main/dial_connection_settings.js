@@ -8,7 +8,7 @@ function dial_connection_settings ()
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_connection_settings' ) );
 			setIcon( external.globals( 'cwd' ) + '..\\images\\brand\\default.ico' );
 			resizeable( false );
-			setSize( 370, 440 );
-			setPos( ( screen.availWidth - 270 ) / 2, ( screen.availHeight - 440 ) / 2 );
+			setSize( 375, 330 );
+			setPos( ( screen.availWidth - 375 ) / 2, ( screen.availHeight - 330 ) / 2 );
 		}
 }

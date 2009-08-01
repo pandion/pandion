@@ -107,6 +107,9 @@ Thank you,
     <item id="txt-signin-autoconnect">
       <innerText>Sign in automatically</innerText>
     </item>
+    <item id="signin-connect">
+      <innerText>Sign In</innerText>
+    </item>
     <item id="signin-register">
       <innerText>Register a new instant messaging address</innerText>
     </item>
@@ -132,6 +135,8 @@ Thank you,
     <code id="conference_invitation">${0} invites you to the conference room: ${1}&#13;&#13;Do you want to join this conference room?</code>
     <code id="sspi_autoreconnecting">The connection to the instant messaging server has failed.</code>
     <code id="search_info">Find a contact...</code>
+    <code id="invalid-user-address">Enter your instant messaging address.&#13;&#13;If you do not have an address, click "Register a new instant messaging address" below.</code>
+    <code id="invalid-sso-server">Enter the address of your instant messaging server.</code>
 
     <code id="menu_status">&amp;Status</code>
     <code id="menu_status_received">&amp;Open my Received Files</code>
@@ -233,7 +238,7 @@ Thank you,
     <code id="msg_cl_added">${0} has added you to his or her contact list.</code>
     <code id="msg_cl_removed">${0} has removed you from his or her contact list.</code>
     <code id="msg_blocked">You are on this person's blocking list.</code>
-    <code id="msg_autherror">Cannot log in. This may have one of the following causes:&#13;&#13;- You entered an incorrect password&#13;- The account does not exist on the server&#13;&#13;Please try again.</code>
+    <code id="msg_autherror">Cannot sign in. This may have one of the following causes:&#13;&#13;- You entered an incorrect password&#13;- The account does not exist on the server&#13;&#13;Please try again.</code>
 
     <code id="menu_message">Message</code>
     <code id="menu_filetransfer">File transfer</code>
@@ -1971,52 +1976,6 @@ Thank you,
     <code id="foundone">1 result</code>
     <code id="foundmany">${0} results</code>
   </window>
-  <window name="login">
-    <code id="invalid">The address is invalid. Correct the address and try again.&#13;&#13;If you do not have an address, press Sign Up and follow the instructions.</code>
-    <code id="invalid-ntlm">The address of the instant messaging server is invalid. Correct the address and try again.</code>
-    <item id="txt_instructions">
-      <innerText>Enter your instant messaging address and password to log in.</innerText>
-    </item>
-    <item id="txt_instructions_ntlm">
-      <innerText>Enter the address of your instant messaging server to log in.</innerText>
-    </item>
-    <item id="txt_address">
-      <innerText>Address:</innerText>
-    </item>
-    <item id="txt_example">
-      <innerText>Example: someone123@example.net</innerText>
-    </item>
-    <item id="txt_password">
-      <innerText>Password:</innerText>
-    </item>
-    <item id="txt_forgot_password">
-      <innerText>Forgot your password?</innerText>
-    </item>
-    <item id="txt_remember">
-      <innerText>Remember my password</innerText>
-    </item>
-    <item id="txt_autologin">
-      <innerText>Automatically log in</innerText>
-    </item>
-    <item id="txt_connection_settings">
-      <innerText>Connection Settings</innerText>
-    </item>
-    <item id="txt_server_ntlm">
-      <innerText>IM Server:</innerText>
-    </item>
-    <item id="txt_example_ntlm">
-      <innerText>Example: intranet.example.net</innerText>
-    </item>
-    <item id="btn_signup">
-      <value>Sign Up</value>
-    </item>
-    <item id="btn_login">
-      <value>Log In</value>
-    </item>
-    <item id="btn_close">
-      <value>Close</value>
-    </item>
-  </window>
   <window name="connection-settings">
     <code id="logout">You must log out to apply the changes.&#13;&#13;Do you want to log out now?</code>
     <code id="automatic">Automatic</code>
@@ -2051,7 +2010,7 @@ Thank you,
       <accessKey>n</accessKey>
     </item>
     <item id="txt_authentication">
-      <innerText>Log In Authentication</innerText>
+      <innerText>Sign In Authentication</innerText>
     </item>
     <item id="lbl_authentication_normal">
       <innerHTML>A&lt;U&gt;d&lt;/U&gt;dress and password</innerHTML>
@@ -2060,25 +2019,6 @@ Thank you,
     <item id="lbl_authentication_ntlm">
       <innerHTML>Integrated &lt;U&gt;W&lt;/U&gt;indows Authentication</innerHTML>
       <accessKey>w</accessKey>
-    </item>
-    <item id="txt_proxy">
-      <innerText>Proxy Server</innerText>
-    </item>
-    <item id="lbl_proxy_none">
-      <innerHTML>N&lt;U&gt;o&lt;/U&gt;ne</innerHTML>
-      <accessKey>o</accessKey>
-    </item>
-    <item id="lbl_proxy_http">
-      <innerHTML>&lt;U&gt;H&lt;/U&gt;TTP</innerHTML>
-      <accessKey>h</accessKey>
-    </item>
-    <item id="lbl_proxy_address">
-      <innerHTML>Add&lt;U&gt;r&lt;/U&gt;ess:</innerHTML>
-      <accessKey>r</accessKey>
-    </item>
-    <item id="lbl_proxy_port">
-      <innerHTML>P&lt;U&gt;o&lt;/U&gt;rt:</innerHTML>
-      <accessKey>o</accessKey>
     </item>
     <item id="btn_ok">
       <value>OK</value>

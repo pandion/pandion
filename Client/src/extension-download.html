@@ -3,7 +3,7 @@
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
 <META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
 <SCRIPT src="main/HTTPEngine.js"></SCRIPT>
-<SCRIPT language=JScript>
+<SCRIPT>
 
 var gFileName, gSession, gInterval, gError = '';
 
@@ -58,7 +58,6 @@ function Begin ()
 		external.file( DownloadLocation + gFileName ).Delete();
 
 	external.HTTPEngine.subscribe( external.wnd );
-	HTTPSetProxy( 'http', host, port );
 	gSession = external.HTTPEngine.Get( DownloadLocation + gFileName, path, 0, 0xFFFFFFFF, host, port );
 	if ( ! gSession )
 	{
