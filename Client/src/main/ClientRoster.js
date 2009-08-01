@@ -1763,11 +1763,6 @@ function ClientRosterItem ( roster, jid )
 			if ( ! presence.Status.length || ( userresource.Show == 'away' && userresource.Status.toLowerCase() == 'away' ) || ( userresource.Show == 'dnd' && userresource.Status.toLowerCase() == 'busy' ) )
 				userresource.Status = external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' );
 
-			if ( this.JID.indexOf( '@' ) != -1 && external.globals( 'ClientServices' ).Services.Exists( this.JID.substr( 1 + this.JID.indexOf( '@' ) ) ) && ( external.globals( 'ClientServices' ).Services( this.JID.substr( 1 + this.JID.indexOf( '@' ) ) ).Options & 0x0002 ) & presence.XMLDOM.selectSingleNode( '/presence/x[@xmlns = "vcard-temp:x:update"]/nickname' ) )
-			{
-				userresource.Status = presence.XMLDOM.selectSingleNode( '/presence/x[@xmlns = "vcard-temp:x:update"]/nickname' ).text + ' (' + userresource.Status + ')';
-			}
-
 			if ( this.Resources.Exists( resource ) )
 			{
 				for ( var i = 0; i < this.Groups.length; ++i )
