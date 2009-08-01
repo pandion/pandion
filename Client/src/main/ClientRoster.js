@@ -15,7 +15,7 @@ function ClientRosterAvatarVCard ( iq )
 				var Node = null;
 				if ( Node = iq.XMLDOM.selectSingleNode( '/iq[@type = "result"]/*[@xmlns = "vcard-temp"]/PHOTO/BINVAL' ) )
 				{
-					if ( RosterResource.LoadingAvatarHash.length == 40 && ! external.FileExists( external.globals( 'usersdir' ) + 'Avatars\\' + RosterResource.LoadingAvatarHash ) && Node.text.length )
+					if ( RosterResource.LoadingAvatarHash.length == 40 && ! external.FileExists( external.globals( 'usersdir' ) + 'Avatars\\' + RosterResource.LoadingAvatarHash ) && Node.text.length && Node.text != 'AAAAAA==' )
 					{
 						external.File( external.globals( 'usersdir' ) + 'Avatars\\' + RosterResource.LoadingAvatarHash ).WriteBase64( Node.text );
 						RosterResource.Avatar = RosterResource.LoadingAvatarHash;
@@ -1762,39 +1762,6 @@ function ClientRosterItem ( roster, jid )
 
 			if ( ! presence.Status.length || ( userresource.Show == 'away' && userresource.Status.toLowerCase() == 'away' ) || ( userresource.Show == 'dnd' && userresource.Status.toLowerCase() == 'busy' ) )
 				userresource.Status = external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' );
-
-			/* MSN tweak
-			 */
-			if ( this.JID.indexOf( '@' ) != -1 && external.globals( 'ClientServices' ).Services.Exists( this.JID.substr( 1 + this.JID.indexOf( '@' ) ) ) && ( external.globals( 'ClientServices' ).Services( this.JID.substr( 1 + this.JID.indexOf( '@' ) ) ).Options & 0x0002 ) )
-			{
-				if ( external.globals( 'cfg' )( 'msnworkaround' ).toString() == 'true' )
-				{
-					if ( presence.XMLDOM.selectSingleNode( '/presence/x[@xmlns = "vcard-temp:x:update"]/nickname' ) )
-					{
-						this.Name = presence.XMLDOM.selectSingleNode( '/presence/x[@xmlns = "vcard-temp:x:update"]/nickname' ).text;
-					}
-					else if ( userresource.Status.length )
-					{
-						if ( ( /^([^\(]+) \((.+)\)$/ ).test( userresource.Status ) )
-						{
-							this.Name			= RegExp.$1;
-							userresource.Status	= RegExp.$2;
-						}
-						else
-						{
-							this.Name			= userresource.Status;
-							userresource.Status	= external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' );
-						}
-					}
-				}
-				else
-				{
-					if ( presence.XMLDOM.selectSingleNode( '/presence/x[@xmlns = "vcard-temp:x:update"]/nickname' ) )
-					{
-						userresource.Status = presence.XMLDOM.selectSingleNode( '/presence/x[@xmlns = "vcard-temp:x:update"]/nickname' ).text + ' (' + userresource.Status + ')';
-					}
-				}
-			}
 
 			if ( this.Resources.Exists( resource ) )
 			{

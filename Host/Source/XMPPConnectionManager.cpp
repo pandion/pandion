@@ -29,11 +29,12 @@
  */
 XMPPConnectionManager::XMPPConnectionManager(XMPPHandlers& handlers, 
 											 XMPPLogger& logger) :
-	m_Handlers(handlers), m_Logger(logger), m_XMLParser(handlers, logger),
-	m_Socket()
+	m_Socket(), 
+	m_SendQueue(),
+	m_XMLParser(handlers, logger),
+	m_Handlers(handlers),
+	m_Logger(logger)	
 {
-	m_ProxyMethod = ProxyMethodDontUse;
-
 	m_DoStartTLS = false;
 	m_DoStartSC = false;
 	m_DoDisconnect = false;
@@ -50,13 +51,11 @@ XMPPConnectionManager::~XMPPConnectionManager()
  * Creates a new thread that attempts to connect to the XMPP server.
  */
 void XMPPConnectionManager::Connect(const std::wstring& server,
-			   unsigned short port, bool useSSL, ProxyMethod proxyMethod)
+			   unsigned short port, bool useSSL)
 {
 	m_Server = server;
 	m_Port   = port;
 	m_UseSSL = useSSL;
-
-	m_ProxyMethod = proxyMethod;
 
 	DWORD threadID;
 	::CreateThread(NULL, 0, ConnectionMainProc, (LPVOID) this, 0, &threadID);
@@ -103,30 +102,6 @@ void XMPPConnectionManager::SendText(const std::wstring& utf16Text)
 std::wstring XMPPConnectionManager::GetConnectionIP()
 {
 	return std::wstring(m_Socket.GetLocalAddress());
-}
-
-/*
- *
- */
-void XMPPConnectionManager::SetProxyPollURL(std::wstring &pollURL)
-{
-	m_ProxyMethod = ProxyMethodPoll;
-	m_ProxyPollURL = pollURL;
-}
-
-/*
- *
- */
-void XMPPConnectionManager::SetProxyServer(const std::wstring& server,
-	unsigned short port, 
-	const std::wstring& username, 
-	const std::wstring& password)
-{
-	m_ProxyMethod = ProxyMethodConnect;
-	m_ProxyServer = server;
-	m_ProxyPort = port;
-	m_ProxyUsername = username;
-	m_ProxyPassword = password;
 }
 
 /*
@@ -189,6 +164,9 @@ bool XMPPConnectionManager::DoConnect()
 	}
 }
 
+/*
+ *
+ */
 bool XMPPConnectionManager::DoConnectWithSRV(SRVLookup& srvLookup)
 {
 	bool success = false;
@@ -209,27 +187,12 @@ bool XMPPConnectionManager::DoConnectWithSRV(SRVLookup& srvLookup)
 	return success;
 }
 
+/*
+ *
+ */
 bool XMPPConnectionManager::DoConnectWithoutSRV()
 {
-	bool success;
-	if(m_ProxyMethod == ProxyMethodDontUse)
-	{
-		success = 
-			m_Socket.Connect((BSTR) m_Server.c_str(), m_Port) == 0;
-	}
-	else if(m_ProxyMethod == ProxyMethodConnect)
-	{
-		success = 
-			m_Socket.Connect((BSTR) m_ProxyServer.c_str(), m_ProxyPort) == 0;
-		if(success)
-		{
-			success = ProxyConnect();
-		}
-	}
-	else
-	{
-		success = false;
-	}
+	bool success = m_Socket.Connect((BSTR) m_Server.c_str(), m_Port) == 0;
 
 	if(success)
 	{
@@ -246,50 +209,9 @@ bool XMPPConnectionManager::DoConnectWithoutSRV()
 	return success;
 }
 
-/* 
- * TODO: clean up this mess
+/*
+ *
  */
-bool XMPPConnectionManager::ProxyConnect()
-{
-	bool success = false;
-	WCHAR SendBuffer[4096];
-	StringCbPrintfW(SendBuffer, 4096, L"CONNECT %s:%d HTTP/1.1", m_Server, m_Port);
-	m_Socket.SendLine(SendBuffer);
-	if(m_ProxyUsername.length())
-	{
-		DWORD len = 1029;
-		BYTE strdec[258], strenc[1029];
-		StringCbPrintfA((LPSTR) strdec, 258, "%s:%s", CW2UTF8(m_ProxyUsername.c_str()), CW2UTF8(m_ProxyPassword.c_str()));
-		/*Base64Encode(strdec, strlen((LPSTR) strdec), (LPSTR) strenc, &len, ATL_BASE64_FLAG_NOCRLF);*/
-		::CryptStringToBinaryA((LPCSTR)strdec, strlen((LPSTR) strdec),
-			CRYPT_STRING_BASE64, &strenc[0], &len, NULL, NULL);
-		strenc[len] = 0;
-
-		StringCbPrintfW(SendBuffer, 4096, L"Proxy-Authorization: Basic %s", strenc);
-		m_Socket.SendLine(SendBuffer);
-	}
-	m_Socket.SendLine(L""); /* send a \r\n */
-
-
-	unsigned char RecvBuffer[4096];
-	int err = -1;
-	for(int i = 0; i < 4096; i++)
-	{
-		if(m_Socket.Recv(RecvBuffer+i, 1) <= 0)
-			break;
-		if(i > 4 && RecvBuffer[i] == '\n' && RecvBuffer[i-1] == '\r' && RecvBuffer[i-2] == '\n' && RecvBuffer[i-3] == '\r')
-		{
-			RecvBuffer[strlen("HTTP/1.0 200 Connection established\r\n")] = 0;
-			if(!strcmp((char *)RecvBuffer, "HTTP/1.0 200 Connection established\r\n"))
-			{
-				success = true;
-			}
-			break;
-		}
-	}
-	return success;
-}
-
 bool XMPPConnectionManager::DoRecvData()
 {
 	static std::vector<BYTE> recvBuffer(0x10000);

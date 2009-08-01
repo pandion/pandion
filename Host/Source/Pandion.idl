@@ -382,18 +382,10 @@ library PandionLib
 	[uuid(E9B8AA03-69C6-4ce6-96E9-1A3E38DF880C)]
 	interface IXMPP : IDispatch
 	{
-		HRESULT SetProxyServer(
-			[in] BSTR server, 
-			[in] USHORT port, 
-			[in] BSTR username, 
-			[in] BSTR password);
-		HRESULT SetProxyPollURL(
-			[in] BSTR pollURL);
 		HRESULT Connect(
 			[in] BSTR server,
 			[in] USHORT port,
-			[in,defaultvalue(FALSE)] BOOL useSSL,
-			[in,defaultvalue(0)] DWORD ProxyMethod);
+			[in,defaultvalue(FALSE)] BOOL useSSL);
 		HRESULT Disconnect();
 		HRESULT StartTLS();
 		HRESULT StartSC();

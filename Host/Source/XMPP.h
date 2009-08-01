@@ -50,12 +50,7 @@ public:
 	~XMPP();
 
 	/* IXMPP implementation */
-	STDMETHOD(SetProxyServer)(BSTR server, 
-		USHORT port, BSTR username, BSTR password);
-	STDMETHOD(SetProxyPollURL)(BSTR pollURL);
-
-	STDMETHOD(Connect)(BSTR server, 
-		USHORT port, BOOL useSSL = FALSE, DWORD proxyMethod = 0);
+	STDMETHOD(Connect)(BSTR server, USHORT port, BOOL useSSL = FALSE);
 	STDMETHOD(Disconnect)();
 	STDMETHOD(StartTLS)();
 	STDMETHOD(StartSC)();
