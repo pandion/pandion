@@ -281,7 +281,7 @@
 </TABLE>
 
 <!-- Sign In -->
-<TABLE id=signin-dialog cellspacing=0 cellpadding=0 style="display: none; table-layout: fixed; width: 100%; height: 100%; border-width: 0;">
+<TABLE id=signin-dialog cellspacing=0 cellpadding=0>
 	<TR>
 		<TD id=signin-area valign=top>
 			<DIV class=content-edge-top>
@@ -294,23 +294,25 @@
 			<H1 id=signin-welcome></H1>
 			<H2 id=signin-instructions></H2>
 			<FORM onsubmit="dial_login_connect(); return false;">
-				<LABEL for=signin-address id=txt-signin-address></LABEL><BR />
+				<LABEL for=signin-address id=txt-signin-address></LABEL>
 				<INPUT id=signin-address type=text />
 				<SELECT id=signin-recently-used tabindex="-1" onchange='document.getElementById("signin-address").focus(); document.getElementById("signin-address").value = document.getElementById("signin-recently-used").value;'></SELECT>
 				<DIV id=signin-examples>
-					<DT id=txt-signin-examples></DT><DD>bob@mycompany.com</DD><DD>bender@gmail.com</DD>
+					<DT id=txt-signin-examples></DT>
+					<DD id=signin-example-user>bob@mycompany.com<BR />bender@gmail.com</DD>
+					<DD id=signin-example-sso>example.net<BR />mycompany.com</DD>
 				</DIV>
-				<LABEL for=signin-password id=txt-signin-password></LABEL><BR />
-				<INPUT id=signin-password type=password /><BR />
-				<BR />
+
+				<LABEL for=signin-password id=txt-signin-password></LABEL>
+				<INPUT id=signin-password type=password />
+
 				<INPUT id=signin-remember type=checkbox />
-				<LABEL for=signin-remember id=txt-signin-remember></LABEL><BR />
-				<INPUT id=signin-autoconnect type=checkbox />
-				<LABEL for=signin-autoconnect id=txt-signin-autoconnect></LABEL><BR />
+				<LABEL for=signin-remember id=txt-signin-remember></LABEL>
 				<BR />
-				<BUTTON type=submit id=signin-connect>
-					Sign In
-				</BUTTON>
+				<INPUT id=signin-autoconnect type=checkbox />
+				<LABEL for=signin-autoconnect id=txt-signin-autoconnect></LABEL>
+
+				<BUTTON type=submit id=signin-connect></BUTTON>
 			</FORM>
 			<UL>
 				<LI><A href="" id=signin-register onclick="( external.globals( 'websignup' ).length && external.globals( 'websignupmethod' ) == 'external' ) ? dial_webbrowser( this.href ) : dial_signup(); return false;"></A></LI>

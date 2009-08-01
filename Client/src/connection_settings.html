@@ -62,7 +62,7 @@ UL {
 }
 </STYLE>
 
-<SCRIPT language=JScript>
+<SCRIPT>
 
 function Begin ()
 {
@@ -76,48 +76,40 @@ function Begin ()
 
 function Reload ()
 {
-	document.getElementById( 'server_address' ).value	= external.globals( 'serveraddress' );
-	document.getElementById( 'server_port' ).value		= external.globals( 'serverport' );
-	document.getElementById( 'proxy_address' ).value	= external.globals( 'proxyaddress' );
-	document.getElementById( 'proxy_port' ).value		= external.globals( 'proxyport' );
+	document.getElementById( 'server_address' ).value = external.globals( 'serveraddress' );
+	document.getElementById( 'server_port' ).value = external.globals( 'serverport' );
 
-	document.getElementById( 'encryption_optional' ).checked	= external.globals( 'encryption' ) == 'optional';
-	document.getElementById( 'encryption_tls' ).checked			= external.globals( 'encryption' ) == 'tls';
-	document.getElementById( 'encryption_ssl' ).checked			= external.globals( 'encryption' ) == 'ssl';
-	document.getElementById( 'encryption_none' ).checked		= external.globals( 'encryption' ) == 'none';
+	document.getElementById( 'encryption_optional' ).checked = external.globals( 'encryption' ) == 'optional';
+	document.getElementById( 'encryption_tls' ).checked = external.globals( 'encryption' ) == 'tls';
+	document.getElementById( 'encryption_ssl' ).checked = external.globals( 'encryption' ) == 'ssl';
+	document.getElementById( 'encryption_none' ).checked = external.globals( 'encryption' ) == 'none';
 
-	document.getElementById( 'authentication_normal' ).checked	= external.globals( 'authentication' ) == 'normal';
-	document.getElementById( 'authentication_ntlm' ).checked	= external.globals( 'authentication' ) == 'ntlm';
-
-	document.getElementById( 'proxy_none' ).checked	= external.globals( 'proxymethod' ) == 'none';
-	document.getElementById( 'proxy_http' ).checked	= external.globals( 'proxymethod' ) == 'http';
+	document.getElementById( 'authentication_normal' ).checked = external.globals( 'authentication' ) == 'normal';
+	document.getElementById( 'authentication_ntlm' ).checked = external.globals( 'authentication' ) == 'ntlm';
 
 	CheckBlur( document.getElementById( 'server_address' ) );
 	CheckBlur( document.getElementById( 'server_port' ) );
-	CheckProxy();
+
 	if ( external.windows.Exists( 'signup' ) )
 		document.getElementById( 'txt_authentication' ).parentNode.disabled = true;
 }
 
 function OK ()
 {
-	var OldServeraddress	= external.globals( 'serveraddress' );
-	var OldServerport		= external.globals( 'serverport' );
-	var OldProxyaddress		= external.globals( 'proxyaddress' );
-	var OldProxyport		= external.globals( 'proxyport' );
-	var OldEncryption		= external.globals( 'encryption' );
-	var OldAuthentication	= external.globals( 'authentication' );
-	var OldProxymethod		= external.globals( 'proxymethod' );
+	var OldServeraddress = external.globals( 'serveraddress' );
+	var OldServerport = external.globals( 'serverport' );
+	var OldEncryption = external.globals( 'encryption' );
+	var OldAuthentication = external.globals( 'authentication' );
 
 	Save();
 
-	if ( OldAuthentication	!= external.globals( 'authentication' ) )
+	if ( OldAuthentication != external.globals( 'authentication' ) )
 	{
 		/* Redraw the log in window
 		 */
-		if ( external.windows.Exists( 'login' ) )
+		if ( external.wnd.params.document.getElementById( 'signin-dialog' ).style.display == 'block' )
 		{
-			external.windows( 'login' ).Do( 'Reload', null );
+			external.wnd.params.dial_login();
 		}
 		/* Log out to change authentication method
 		 */
@@ -132,12 +124,9 @@ function OK ()
 		}
 	}
 	else if (
-		OldServeraddress	!= external.globals( 'serveraddress' ) ||
-		OldServerport		!= external.globals( 'serverport' ) ||
-		OldProxyaddress		!= external.globals( 'proxyaddress' ) ||
-		OldProxyport		!= external.globals( 'proxyport' ) ||
-		OldEncryption		!= external.globals( 'encryption' ) ||
-		OldProxymethod		!= external.globals( 'proxymethod' ) ||
+		OldServeraddress != external.globals( 'serveraddress' ) ||
+		OldServerport != external.globals( 'serverport' ) ||
+		OldEncryption != external.globals( 'encryption' ) ||
 		! external.globals( 'XMPPConnected' )
 	)
 	{
@@ -160,10 +149,8 @@ function OK ()
 function Save ()
 {
 	var Automatic = external.globals( 'Translator' ).Translate( 'connection-settings', 'automatic' );
-	external.globals( 'serveraddress' )	= document.getElementById( 'server_address' ).value == Automatic ? '' : document.getElementById( 'server_address' ).value;
-	external.globals( 'serverport' )	= document.getElementById( 'server_port' ).value == Automatic ? '' : document.getElementById( 'server_port' ).value;
-	external.globals( 'proxyaddress' )	= document.getElementById( 'proxy_address' ).value;
-	external.globals( 'proxyport' )		= document.getElementById( 'proxy_port' ).value;
+	external.globals( 'serveraddress' ) = document.getElementById( 'server_address' ).value == Automatic ? '' : document.getElementById( 'server_address' ).value;
+	external.globals( 'serverport' ) = document.getElementById( 'server_port' ).value == Automatic ? '' : document.getElementById( 'server_port' ).value;
 
 	if ( document.getElementById( 'encryption_optional' ).checked )
 		external.globals( 'encryption' ) = 'optional';
@@ -178,11 +165,6 @@ function Save ()
 		external.globals( 'authentication' ) = 'normal';
 	if ( document.getElementById( 'authentication_ntlm' ).checked )
 		external.globals( 'authentication' ) = 'ntlm';
-
-	if ( document.getElementById( 'proxy_none' ).checked )
-		external.globals( 'proxymethod' ) = 'none';
-	if ( document.getElementById( 'proxy_http' ).checked )
-		external.globals( 'proxymethod' ) = 'http';
 
 	external.wnd.params.SaveCommonProfile();
 }
@@ -221,22 +203,6 @@ function ListClasses ( Element )
 		if ( Classes[i] != 'automatic' )
 			BareClass += ' ' + Classes[i];
 	return BareClass.substr( 1 );
-}
-
-function CheckProxy ()
-{
-	if ( document.getElementById( 'proxy_none' ).checked )
-		ToggleProxy( false );
-	if ( document.getElementById( 'proxy_http' ).checked )
-		ToggleProxy( true );
-}
-
-function ToggleProxy ( Enabled )
-{
-	document.getElementById( 'lbl_proxy_address' ).disabled	= ! Enabled;
-	document.getElementById( 'proxy_address' ).disabled		= ! Enabled;
-	document.getElementById( 'lbl_proxy_port' ).disabled	= ! Enabled;
-	document.getElementById( 'proxy_port' ).disabled		= ! Enabled;
 }
 
 </SCRIPT>
@@ -292,25 +258,6 @@ function ToggleProxy ( Enabled )
 						<LABEL for=authentication_ntlm id=lbl_authentication_ntlm></LABEL>
 					</LI>
 				</UL>
-			</DIV>
-		</FIELDSET>
-		<FIELDSET>
-			<LEGEND id=txt_proxy></LEGEND>
-			<DIV class=section onkeyup="CheckProxy()" onclick="CheckProxy()">
-				<UL>
-					<LI>
-						<INPUT type=radio name=proxy id=proxy_none value=none>
-						<LABEL for=proxy_none id=lbl_proxy_none></LABEL>
-					</LI>
-					<LI>
-						<INPUT type=radio name=proxy id=proxy_http value=http>
-						<LABEL for=proxy_http id=lbl_proxy_http></LABEL>
-					</LI>
-				</UL>
-				<LABEL id=lbl_proxy_address for=proxy_address></LABEL>
-				<INPUT id=proxy_address class="text address">
-				<LABEL id=lbl_proxy_port for=proxy_port></LABEL>
-				<INPUT id=proxy_port class="text port" maxlength=5>
 			</DIV>
 		</FIELDSET>
 	</TD>

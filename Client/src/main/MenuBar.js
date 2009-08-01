@@ -53,17 +53,20 @@ function MenuBarUpdate ( section )
 		var Bookmarks = external.newPopupMenu;
 		Bookmarks.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks_add' ),	220 );
 		Bookmarks.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks_manage' ),	221 );
-		var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
-		dom.async = false;
-		dom.resolveExternals = false;
-		dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\bookmarks.xml' );
-		if ( dom.documentElement )
+		if ( cfg )
 		{
-			var BookmarkNodes = dom.documentElement.selectNodes( '/bookmarks/room[@address]' );
-			if ( BookmarkNodes.length )
-				Bookmarks.AddSeparator();
-			for ( var i = 0; i < Math.min( BookmarkNodes.length, 999 ); ++i )
-				Bookmarks.AddItem( connected, false, false, false, 0, BookmarkNodes.item(i).getAttribute( 'address' ), 22000 + i );
+			var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+			dom.async = false;
+			dom.resolveExternals = false;
+			dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + cfg( 'username' ) + '@' + cfg( 'server' ) + '\\bookmarks.xml' );
+			if ( dom.documentElement )
+			{
+				var BookmarkNodes = dom.documentElement.selectNodes( '/bookmarks/room[@address]' );
+				if ( BookmarkNodes.length )
+					Bookmarks.AddSeparator();
+				for ( var i = 0; i < Math.min( BookmarkNodes.length, 999 ); ++i )
+					Bookmarks.AddItem( connected, false, false, false, 0, BookmarkNodes.item(i).getAttribute( 'address' ), 22000 + i );
+			}
 		}
 
 		var actions = external.newPopupMenu;
@@ -88,9 +91,9 @@ function MenuBarUpdate ( section )
 		external.wnd.menuBar.RemItem( 3 );
 
 		var aot = external.globals( 'aot' ).toString() == 'true';
-		var list = cfg( 'contactlistdisplay' ) == 'detailed';
+		var list = cfg && cfg( 'contactlistdisplay' ) == 'detailed';
 		var language = external.globals( 'MenuLanguages' );
-		var username = cfg( 'username' ).length;
+		var username = cfg && cfg( 'username' ).length;
 
 		var display = external.newPopupMenu;
 		display.AddItem( true,	false,	list,	false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_tool_detailed' ),		330 );
@@ -158,8 +161,8 @@ function MenuBarUpdate ( section )
 function MenuBarSelect ( id )
 {
 	var cfg = external.globals( 'cfg' );
-	var ask = cfg.Exists( 'askstatus' ) ? ( cfg( 'askstatus' ).toString() == 'true' ) : false;
-	var msg = cfg.Exists( 'lastmsg' ) ? cfg( 'lastmsg' ) : "";
+	var ask = cfg && cfg.Exists( 'askstatus' ) ? ( cfg( 'askstatus' ).toString() == 'true' ) : false;
+	var msg = cfg && cfg.Exists( 'lastmsg' ) ? cfg( 'lastmsg' ) : "";
 	switch ( id )
 	{
 		case 11: //	sign out

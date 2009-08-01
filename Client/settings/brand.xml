@@ -130,16 +130,4 @@
   -->
 <authentication>normal</authentication>
 
-<!-- Connection settings: Proxy Method (none/http)
-  -->
-<proxymethod>none</proxymethod>
-
-<!-- Connection settings: Proxy Address
-  -->
-<proxyaddress></proxyaddress>
-
-<!-- Connection settings: Proxy Port
-  -->
-<proxyport></proxyport>
-
 </brand>
