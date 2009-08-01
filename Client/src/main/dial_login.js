@@ -17,17 +17,12 @@ function dial_login ( visible )
 	document.getElementById( 'content-dialog' ).style.display = 'none';
 	document.getElementById( 'signin-dialog' ).style.display = 'block';
 	MenuBarUpdate();
-	external.wnd.setAOT( false );
-	external.wnd.MinWidth = 0;
-	external.wnd.MinHeight = 0;
 	if ( visible )
 	{
 		external.wnd.hide( false );
 		external.wnd.restore();
 		external.wnd.focus();
 	}
-	external.wnd.setSize( 350, 600 );
-	external.wnd.setPos( ( screen.availWidth - 350 ) / 2, ( screen.availHeight - 600 ) / 2 );
 
 	/* Flush the list
 	 */

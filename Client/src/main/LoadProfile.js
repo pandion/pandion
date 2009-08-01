@@ -7,10 +7,10 @@ function LoadProfile ( Address )
 
 	/* Load the default profile data, and overwrite it with the custom profile data it if exists
 	 */
-	external.globals( 'settingsfile' )	= external.globals( 'usersdir' ) + 'Profiles\\' + Address.ShortAddress() + '\\settings.xml';
-	external.globals( 'cfg' )			= file2hash( external.globals( 'cwd' ) + '..\\settings\\default.xml' );
-	var cfg_custom						= file2hash( external.globals( 'settingsfile' ) );
-	var cfg								= external.globals( 'cfg' );
+	external.globals( 'settingsfile' ) = external.globals( 'usersdir' ) + 'Profiles\\' + Address.ShortAddress() + '\\settings.xml';
+	external.globals( 'cfg' ) = file2hash( external.globals( 'cwd' ) + '..\\settings\\default.xml' );
+	var cfg_custom = file2hash( external.globals( 'settingsfile' ) );
+	var cfg = external.globals( 'cfg' );
 
 	if ( cfg_custom )
 	{
@@ -61,29 +61,6 @@ function LoadProfile ( Address )
 	MenuBarUpdate();
 	if ( external.wnd.isMinimized )
 		external.wnd.restore();
-
-	external.wnd.setAOT( cfg( 'aot' ).toString() == 'true' );
-
-	external.wnd.MinWidth	= 0;
-	external.wnd.MinHeight	= 200;
-
-	cfg( 'lastwidth' )	= parseInt( cfg( 'lastwidth' ),		10 );
-	cfg( 'lastheight' )	= parseInt( cfg( 'lastheight' ),	10 );
-	cfg( 'lastposx' )	= parseInt( cfg( 'lastposx' ),		10 );
-	cfg( 'lastposy' )	= parseInt( cfg( 'lastposy' ),		10 );
-
-	cfg( 'lastwidth' )	= Math.max( cfg( 'lastwidth' ),		0 );
-	cfg( 'lastheight' )	= Math.max( cfg( 'lastheight' ),	250 );
-	cfg( 'lastwidth' )	= Math.min( cfg( 'lastwidth' ),		screen.availWidth );
-	cfg( 'lastheight' )	= Math.min( cfg( 'lastheight' ),	screen.availHeight );
-
-	cfg( 'lastposx' )	= Math.max( cfg( 'lastposx'	), 0 - cfg( 'lastwidth' ) / 2 );
-	cfg( 'lastposy' )	= Math.max( cfg( 'lastposy'	), 0 - 20 );
-	cfg( 'lastposx' )	= Math.max( cfg( 'lastposx'	), 0 );
-	cfg( 'lastposy' )	= Math.max( cfg( 'lastposy'	), 0 );
-
-	external.wnd.setSize(	cfg( 'lastwidth' ),	cfg( 'lastheight' ) );
-	external.wnd.setPos(	cfg( 'lastposx' ),	cfg( 'lastposy' ) );
 
 	/* Display the window
 	 */

@@ -6,7 +6,6 @@
 <settings>
 <actionspanel>false</actionspanel>
 <alertonline>true</alertonline>
-<aot>false</aot>
 <aotchat>false</aotchat>
 <askstatus>true</askstatus>
 <authorization>2</authorization>
@@ -36,13 +35,9 @@
 <hiddengroups/>
 <hiddengroupsoffline/>
 <history_store>true</history_store>
-<lastheight>430</lastheight>
 <lastmode>0</lastmode>
 <lastmsg/>
 <lastopened/>
-<lastposx>50</lastposx>
-<lastposy>100</lastposy>
-<lastwidth>275</lastwidth>
 <msgnotinlist>true</msgnotinlist>
 <msnworkaround>true</msnworkaround>
 <nick/>

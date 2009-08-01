@@ -10,7 +10,6 @@ var HTTPOnTimeout = HTTPOnSockErr = OnHTTPFileErr = HTTPOnTransferAborted =
 	{
 		if ( sessionID == gSession )
 		{
-//			alert("HTTPError Called");
 			clearInterval( gInterval );
 			gSession = 0;
 			showPageDownload();
@@ -31,7 +30,6 @@ function HTTPGetUpdateProgress ( sessionID )
 
 function HTTPOnConnected ( sessionID, remoteHost, remotePort, localPort )
 {
-//	alert("HTTPOnConnected Called");
 	if ( sessionID != gSession )
 		return;
 	gInterval = setInterval( 'HTTPGetUpdateProgress(' + sessionID + ')', 100 );
@@ -39,7 +37,6 @@ function HTTPOnConnected ( sessionID, remoteHost, remotePort, localPort )
 
 function HTTPOnTransferComplete ( sessionID )
 {
-//	alert("HTTPOnTransferComplete Called");
 	if ( sessionID != gSession )
 		return;
 	clearInterval( gInterval );
@@ -77,7 +74,6 @@ function checkXMLReadystate ()
 
 function checkUpdateVersion ()
 {
-//	alert("checkUpdateVersion Called");
 	if ( gXML.documentElement )
 	{
 		external.globals( 'last_autoupdate' ) = ( new Date() ).getTime();
@@ -86,12 +82,12 @@ function checkUpdateVersion ()
 		var Latest = gXML.documentElement.selectSingleNode( '/versions/latest' );
 		if ( Latest )
 		{
-			var Name		= getAttribute( Latest, 'name' );
-			var Version		= getAttribute( Latest, 'ordinal' );
-			var Installer	= getAttribute( Latest, 'installer' );
-			var Changelog	= getAttribute( Latest, 'changelog' );
-			gLocation		= getAttribute( Latest, 'download' );
-			gParameters		= getAttribute( Latest, 'parameters' );
+			var Name = getAttribute( Latest, 'name' );
+			var Version = getAttribute( Latest, 'ordinal' );
+			var Installer = getAttribute( Latest, 'installer' );
+			var Changelog = getAttribute( Latest, 'changelog' );
+			gLocation = getAttribute( Latest, 'download' );
+			gParameters = getAttribute( Latest, 'parameters' );
 
 			document.getElementById( 'txt-title' ).innerText = external.globals( 'Translator' ).Translate( 'autoupdate', 'title', [ Name, Version ] );
 			document.getElementById( 'txt-continue' ).innerText = external.globals( 'Translator' ).Translate( 'autoupdate', 'continue', [ Name ] );

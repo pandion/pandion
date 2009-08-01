@@ -15,7 +15,7 @@ function login ( Address, Password )
 	/* Reset the client
 	 */
 	external.globals( 'XMPPReconnect' ) = false;
-	external.globals( 'headlines' )		= new Array();
+	external.globals( 'headlines' ) = new Array();
 	external.globals( 'block' ).RemoveAll();
 	external.globals( 'ChatSessionPool' ).Clear();
 	external.globals( 'ClientRoster' ).Clear();
@@ -25,8 +25,12 @@ function login ( Address, Password )
 	if ( ! external.FileExists( external.globals( 'usersdir' ) + 'Profiles\\' + ( Address.User.length ? Address.User + '@' + Address.Host : Address.Host ) + '\\bookmarks.xml' )
 		&& external.FileExists( external.globals( 'cwd' ) + '..\\settings\\bookmarks.xml' )
 	)
-		external.File(	external.globals( 'cwd' ) + '..\\settings\\bookmarks.xml' ).Copy(
-						external.globals( 'usersdir' ) + 'Profiles\\' + ( Address.User.length ? Address.User + '@' + Address.Host : Address.Host ) + '\\bookmarks.xml' );
+		external.File( external.globals( 'cwd' ) + '..\\settings\\bookmarks.xml' ).Copy(
+			external.globals( 'usersdir' ) +
+			'Profiles\\' +
+			( Address.User.length ? Address.User + '@' + Address.Host : Address.Host ) +
+			'\\bookmarks.xml'
+		);
 
 	/* Load the profile settings from the disk
 	 */
@@ -35,9 +39,9 @@ function login ( Address, Password )
 
 	/* Authentication credentials
 	 */
-	cfg( 'password' )	= Password;
-	cfg( 'username' )	= Address.User;
-	cfg( 'server' )		= Address.Host;
+	cfg( 'password' ) = Password;
+	cfg( 'username' ) = Address.User;
+	cfg( 'server' ) = Address.Host;
 
 	/* Default resource
 	 */
@@ -58,8 +62,8 @@ function login ( Address, Password )
 	 */
 	if ( ! external.globals( 'sspiserver' ).length )
 	{
-		external.globals( 'last_password' )	= pass_code( true, Password );
-		external.globals( 'last_address' )	= Address.ShortAddress();
+		external.globals( 'last_password' ) = pass_code( true, Password );
+		external.globals( 'last_address' ) = Address.ShortAddress();
 		SaveCommonProfile();
 	}
 

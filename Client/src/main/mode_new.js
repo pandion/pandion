@@ -5,11 +5,11 @@ function mode_new ( mode, msg )
 	// offline
 	{
 		external.globals( 'XMPPReconnect' ) = false;
-		document.getElementById( 'connecting'	).style.display = 'none';
-		document.getElementById( 'rosterfield'	).style.display = 'block';
-		document.getElementById( 'mode-avatar'	).src = external.globals( 'usersdir' ) + 'My Avatars\\' + cfg( 'avatar' );
-		document.getElementById( 'mode-name'	).innerText = cfg( 'nick' );
-		document.getElementById( 'mode-message'	).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' );
+		document.getElementById( 'connecting' ).style.display = 'none';
+		document.getElementById( 'rosterfield' ).style.display = 'block';
+		document.getElementById( 'mode-avatar' ).src = external.globals( 'usersdir' ) + 'My Avatars\\' + cfg( 'avatar' );
+		document.getElementById( 'mode-name' ).innerText = cfg( 'nick' );
+		document.getElementById( 'mode-message' ).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' );
 
 		if ( external.globals( 'XMPPConnected' ) )
 		{
@@ -17,8 +17,8 @@ function mode_new ( mode, msg )
 			dom.loadXML( '<presence type="unavailable"/>' );
 			if ( msg.length )
 			{
-				var Status	= dom.createElement( 'status' );
-				Status.text	= msg;
+				var Status = dom.createElement( 'status' );
+				Status.text = msg;
 				dom.documentElement.appendChild( Status );
 			}
 			warn( 'SENT: ' + dom.xml );
@@ -36,8 +36,8 @@ function mode_new ( mode, msg )
 	{
 		if ( ! external.globals( 'autoawaymode' ) )
 		{
-			cfg( 'lastmode' )	= mode;
-			cfg( 'lastmsg' )	= msg;
+			cfg( 'lastmode' ) = mode;
+			cfg( 'lastmsg' ) = msg;
 		}
 		MenuBarUpdate( 'file' );
 		if ( ! cfg( 'nick' ).length )
@@ -47,12 +47,12 @@ function mode_new ( mode, msg )
 		document.getElementById( 'mode-name' ).innerText = cfg( 'nick' );
 		document.getElementById( 'mode-avatar' ).src = external.globals( 'usersdir' ) + 'My Avatars\\' + cfg( 'avatar' );
 		var mode_text = [
-			external.globals( 'Translator' ).Translate( 'main', 'cl_available'	),
-			external.globals( 'Translator' ).Translate( 'main', 'cl_ffc'		),
-			external.globals( 'Translator' ).Translate( 'main', 'cl_away'		),
-			external.globals( 'Translator' ).Translate( 'main', 'cl_xaway'		),
-			external.globals( 'Translator' ).Translate( 'main', 'cl_busy'		),
-			external.globals( 'Translator' ).Translate( 'main', 'cl_invisible'	)
+			external.globals( 'Translator' ).Translate( 'main', 'cl_available' ),
+			external.globals( 'Translator' ).Translate( 'main', 'cl_ffc' ),
+			external.globals( 'Translator' ).Translate( 'main', 'cl_away' ),
+			external.globals( 'Translator' ).Translate( 'main', 'cl_xaway' ),
+			external.globals( 'Translator' ).Translate( 'main', 'cl_busy' ),
+			external.globals( 'Translator' ).Translate( 'main', 'cl_invisible' )
 		];
 		document.getElementById( 'mode-message' ).innerText = mode_text[mode] + ( msg.length ? ' - ' + msg.replace( /[\n\r]+/mg, ' - ' ) : '' );
 
@@ -61,10 +61,10 @@ function mode_new ( mode, msg )
 
 		if ( ! external.globals( 'XMPPConnected' ) )
 		{
-			document.getElementById( 'connecting'	).style.display = 'block';
-			document.getElementById( 'commerror'	).style.display = 'none';
-			document.getElementById( 'welcomemsg'	).style.display = 'none';
-			document.getElementById( 'rosterfield'	).style.display = 'none';
+			document.getElementById( 'connecting' ).style.display = 'block';
+			document.getElementById( 'commerror' ).style.display = 'none';
+			document.getElementById( 'welcomemsg' ).style.display = 'none';
+			document.getElementById( 'rosterfield' ).style.display = 'none';
 
 			if ( ! cfg( 'resource' ).length )
 				cfg( 'resource' ) = external.globals( 'softwarename' );
@@ -106,11 +106,11 @@ function mode_new ( mode, msg )
 			switch ( mode )
 			{
 				case 0:
-				case 5: priority =  8; break;
+				case 5: priority = 8; break;
 				case 1: priority = 10; show = 'chat'; break;
-				case 2: priority =  4; show = 'away'; break;
-				case 3: priority =  2; show = 'xa'; break;
-				case 4: priority =  6; show = 'dnd'; break;
+				case 2: priority = 4; show = 'away'; break;
+				case 3: priority = 2; show = 'xa'; break;
+				case 4: priority = 6; show = 'dnd'; break;
 			}
 
 			if ( mode == 5 )
@@ -147,20 +147,20 @@ function mode_new ( mode, msg )
 
 			if ( msg.length )
 			{
-				var tag		= dom.createElement( 'status' );
-				tag.text	= msg;
+				var tag = dom.createElement( 'status' );
+				tag.text = msg;
 				dom.documentElement.appendChild( tag );
 			}
 			if ( priority )
 			{
-				var tag		= dom.createElement( 'priority' );
-				tag.text	= priority;
+				var tag = dom.createElement( 'priority' );
+				tag.text = priority;
 				dom.documentElement.appendChild( tag );
 			}
 			if ( show.length )
 			{
-				var tag		= dom.createElement( 'show' );
-				tag.text	= show;
+				var tag = dom.createElement( 'show' );
+				tag.text = show;
 				dom.documentElement.appendChild( tag );
 			}
 			if ( type.length )
