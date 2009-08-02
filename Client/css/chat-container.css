@@ -194,14 +194,15 @@ textarea, input, button {
 	background-image: url(../images/chat-container/tabs-behind.png);
 }
 #tab-bar {
-	width: 100%;
-	padding-left: 2px;
+	padding-left: 6px;
 	font-family: "Segoe UI", Tahoma;
 	font-size: 11px;
 }
 .tab-bar-button {
 	width: 127px;
 	height: 28px;
+	background-image: url(../images/chat-container/tab-button-faded.png);
+	background-repeat: no-repeat;
 }
 .tab-bar-button-active {
 	width: 127px;
@@ -227,16 +228,28 @@ textarea, input, button {
 	margin: 6px 0 0 4px;
 }
 .tab-avatar {
-	margin: 6px 0 0 4px;
+	margin: 4px 0 0 4px;
 	height: 16px;
 	width: 16px;
 	float: left;
 }
 .tab-close {
-	margin: 6px 4px 0 0;
+	margin: 4px 4px 0 0;
 	height: 17px;
 	width: 18px;
 	float: right;
+}
+.tab-add-button {
+	width: 28px;
+	height: 28px;
+	background-image: url(../images/chat-container/tab-add-button-faded.png);
+	background-repeat: no-repeat;
+}
+.tab-add-button-active {
+	width: 28px;
+	height: 28px;
+	background-image: url(../images/chat-container/tab-add-button.png);
+	background-repeat: no-repeat;
 }
 
 /* Toolbar buttons

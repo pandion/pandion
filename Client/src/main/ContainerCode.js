@@ -642,7 +642,7 @@ function Keyboard ( EventData )
 		{
 			document.getElementById( 'send-text' ).focus();
 			document.getElementById( 'send-text' ).value = document.getElementById( 'send-text' ).value;
-			setTimeout(disableButton, 1);
+			setTimeout(DisableButton, 1);
 		}
 	}
 }
