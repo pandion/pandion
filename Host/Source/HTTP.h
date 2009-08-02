@@ -25,6 +25,7 @@
 #include "DispInterfaceImpl.h"
 #include "HTTPEventRouter.h"
 
+class HTTPSession;
 class HTTPDownload;
  
 class HTTP :
@@ -32,7 +33,7 @@ class HTTP :
 {
 private:
 	HINTERNET m_hInternet;
-	std::map<int, HTTPDownload*> m_Downloads;
+	std::map<int, HTTPSession*> m_Downloads;
 
 	HTTPEventRouter m_EventRouter;
 public:
@@ -46,10 +47,10 @@ public:
 	STDMETHOD(Listen)(USHORT port);
 	STDMETHOD(StopListening)(USHORT port);
  
-	STDMETHOD(Get)(BSTR filename, BSTR URI, DWORD offset, DWORD len, BSTR address, USHORT port, DWORD* sessionID);
-	STDMETHOD(Post)(BSTR filename, BSTR URI, DWORD offset, DWORD len, BSTR address, USHORT port, DWORD* sessionID);
- 
-	STDMETHOD(SetProxyInfo)(BSTR proxyAddress, USHORT proxyPort, BSTR proxyUName, BSTR proxyPass);
+	STDMETHOD(Get)(BSTR filename, BSTR URI, DWORD offset, DWORD len,
+		BSTR address, USHORT port, DWORD* sessionID);
+	STDMETHOD(Post)(BSTR filename, BSTR URI, DWORD offset, DWORD len,
+		BSTR address, USHORT port, DWORD* sessionID);
  
 	STDMETHOD(Subscribe)(IDispatch* wnd);
 	STDMETHOD(Unsubscribe)(IDispatch* wnd);

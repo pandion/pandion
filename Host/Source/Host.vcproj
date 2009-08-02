@@ -322,11 +322,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\HTTPDownload.cpp"
+					RelativePath=".\HTTPClient.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\HTTPDownload.h"
+					RelativePath=".\HTTPClient.h"
 					>
 				</File>
 				<File
@@ -335,6 +335,10 @@
 				</File>
 				<File
 					RelativePath=".\HTTPEventRouter.h"
+					>
+				</File>
+				<File
+					RelativePath=".\HTTPSession.h"
 					>
 				</File>
 			</Filter>

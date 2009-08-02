@@ -22,7 +22,7 @@
 
 #include "stdafx.h"
 #include "HTTP.h"
-#include "HTTPDownload.h"
+#include "HTTPClient.h"
  
 HTTP::HTTP()
 {
@@ -61,18 +61,30 @@ STDMETHODIMP HTTP::Get(
 	DWORD* sessionID)
 {
 	*sessionID = GetNewSessionID();
-	m_Downloads[*sessionID] = 
-		new HTTPDownload(m_hInternet, &m_EventRouter, *sessionID);
-	m_Downloads[*sessionID]->Get(filename, URI, offset, len, address, port);
+	HTTPClient * downloadSession = 
+		new HTTPClient(m_hInternet, &m_EventRouter, *sessionID);
+	downloadSession->Get(filename, URI, offset, len, address, port);
+
+	m_Downloads[*sessionID] = downloadSession;
 
 	return S_OK;
 }
-STDMETHODIMP HTTP::Post(BSTR filename, BSTR URI, DWORD offset, DWORD len, BSTR address, USHORT port, DWORD* sessionID)
+STDMETHODIMP HTTP::Post(
+	BSTR filename,
+	BSTR URI,
+	DWORD offset,
+	DWORD len,
+	BSTR address,
+	USHORT port,
+	DWORD* sessionID)
 {
-	return S_OK;
-}
-STDMETHODIMP HTTP::SetProxyInfo(BSTR proxyAddress, USHORT proxyPort, BSTR proxyUName, BSTR proxyPass)
-{
+	*sessionID = GetNewSessionID();
+	HTTPClient * downloadSession = 
+		new HTTPClient(m_hInternet, &m_EventRouter, *sessionID);
+	downloadSession->Post(filename, URI, offset, len, address, port);
+
+	m_Downloads[*sessionID] = downloadSession;
+
 	return S_OK;
 }
 STDMETHODIMP HTTP::Subscribe(IDispatch* wnd)

@@ -361,12 +361,6 @@ library PandionLib
 			[in] USHORT port,
 			[out, retval] DWORD* sessionID);
 
-		HRESULT SetProxyInfo(
-			[in] BSTR proxyAddress,
-			[in] USHORT proxyPort,
-			[in] BSTR proxyUName,
-			[in] BSTR proxyPass);
-
 		HRESULT GetProgress(
 			[in] DWORD sessionID,
 			[out,retval] DWORD* progress);

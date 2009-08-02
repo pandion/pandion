@@ -661,6 +661,7 @@ STDMETHODIMP CPdnWnd::restore()
 }
 STDMETHODIMP CPdnWnd::close()
 {
+	hide(true);
 	::PostMessage(m_hWnd, WM_CLOSE, 0, 0);
 	return S_OK;
 }
