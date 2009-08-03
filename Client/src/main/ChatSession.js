@@ -14,28 +14,29 @@ function ChatSessionEvent ()
  */
 function ChatSessionPool ()
 {
-	this.Events				= new ActiveXObject( 'Scripting.Dictionary' );
-	this.Trackers			= new ActiveXObject( 'Scripting.Dictionary' );
-	this.Containers			= new ActiveXObject( 'Scripting.Dictionary' );
-	this.TrackersLoading	= new ActiveXObject( 'Scripting.Dictionary' );
-	this.ContainersLoading	= new ActiveXObject( 'Scripting.Dictionary' );
+	this.Containers = new ActiveXObject( 'Scripting.Dictionary' );
+	this.ContainersLoading = new ActiveXObject( 'Scripting.Dictionary' );
+	this.Events = new ActiveXObject( 'Scripting.Dictionary' );
+	this.RecentTrackers = [];
+	this.Trackers = new ActiveXObject( 'Scripting.Dictionary' );
+	this.TrackersLoading = new ActiveXObject( 'Scripting.Dictionary' );
 
-	this.Clear				= Clear;
-	this.AddEvent			= AddEvent;
-	this.AddTracker			= AddTracker;
-	this.GetTracker			= GetTracker;
-	this.DeleteTracker		= DeleteTracker;
-	this.AddContainer		= AddContainer;
-	this.CreateContainer	= CreateContainer;
-	this.DeleteContainer	= DeleteContainer;
+	this.AddContainer = AddContainer;
+	this.AddEvent = AddEvent;
+	this.AddTracker = AddTracker;
+	this.Clear = Clear;
+	this.CreateContainer = CreateContainer;
+	this.DeleteContainer = DeleteContainer;
+	this.DeleteTracker = DeleteTracker;
+	this.GetTracker = GetTracker;
 
 	function Clear ()
 	{
+		this.Containers.RemoveAll();
+		this.ContainersLoading.RemoveAll();
 		this.Events.RemoveAll();
 		this.Trackers.RemoveAll();
-		this.Containers.RemoveAll();
 		this.TrackersLoading.RemoveAll();
-		this.ContainersLoading.RemoveAll();
 	}
 
 	function AddEvent ( Event )
@@ -95,11 +96,11 @@ function ChatSessionPool ()
 		 */
 		if ( external.globals( 'cfg' )( 'history_store' ).toString() == 'true' )
 		{
-			var Path		= external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\';
-			var Filename	= ( new MD5() ).digest( ShortAddress );
-			var Limit		= 10;
-			var Buffer		= new Array();
-			var Messages	= new Array();
+			var Buffer = new Array();
+			var Filename = ( new MD5() ).digest( ShortAddress );
+			var Limit = 10;
+			var Messages = new Array();
+			var Path = external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\';
 
 			if ( this.Events.Exists( ShortAddress ) )
 				Limit += this.Events( ShortAddress ).length;
@@ -234,6 +235,15 @@ function ChatSessionPool ()
 			 */
 			external.globals( 'cfg' )( 'soundmessage' ) = PlaySounds;
 		}
+
+		/* Remove the tracker address from the undo-close tab list
+		 */
+		for ( var i = 0; i < this.RecentTrackers.length; i++ )
+			if ( this.RecentTrackers[i] == ShortAddress )
+			{
+				this.RecentTrackers.splice( i, 1 );
+				break;
+			}
 	}
 
 	function GetTracker ( Address )
@@ -245,7 +255,13 @@ function ChatSessionPool ()
 	function DeleteTracker ( Tracker )
 	{
 		var ShortAddress = Tracker.Address.ShortAddress();
-		this.Trackers.Remove( ShortAddress )
+		this.Trackers.Remove( ShortAddress );
+
+		/* Store the tracker address in the undo-close tab list
+		 */
+		this.RecentTrackers.push( ShortAddress );
+		if ( this.RecentTrackers.length > 10 )
+			this.RecentTrackers.shift();
 	}
 
 	function AddContainer ( Container )
@@ -270,7 +286,7 @@ function ChatSessionPool ()
 		with ( external.createWindow( ContainerName + '/container', external.globals( 'cwd' ) + 'chat-container.html', [ window, ContainerName ] ) )
 		{
 			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\letter.ico' );
-			MinWidth = 250;
+			MinWidth = 180;
 			MinHeight = 210;
 			setAOT( external.globals( 'cfg' )( 'aotchat' ).toString() == 'true' );
 		}

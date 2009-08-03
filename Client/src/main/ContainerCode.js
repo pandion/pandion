@@ -541,7 +541,7 @@ function Keyboard ( EventData )
 	if ( EventData.shiftKey )	Function |= 0x04;
 
 	/* Activate next or previous tab
-	 * ctrl + (shift + ) tab
+	 * Ctrl (+ Shift) + Tab
 	 */
 	if ( k == 9 && Function & 0x02 )
 	{
@@ -550,6 +550,8 @@ function Keyboard ( EventData )
 		for ( var i = 0; i < Buttons.length; ++i )
 			if ( Buttons(i).SessionTracker.IsActive )
 				break;
+		if ( i == Buttons.length )
+			i = ( Function & 0x04 ) ? 0 : Buttons.length - 1;
 		if ( Function & 0x04 )
 			Buttons( i == 0 ? Buttons.length - 1 : i-1 ).SessionTracker.Activate( true );
 		else
@@ -557,7 +559,7 @@ function Keyboard ( EventData )
 	}
 
 	/* Activate next tab
-	 * ctrl + PgUp
+	 * Ctrl + PgUp
 	 */
 	else if ( k == 33 && Function == 0x02 )
 	{
@@ -566,11 +568,13 @@ function Keyboard ( EventData )
 		for ( var i = 0; i < Buttons.length; ++i )
 			if ( Buttons(i).SessionTracker.IsActive )
 				break;
+		if ( i == Buttons.length )
+			i = 0;
 		Buttons( i == 0 ? Buttons.length - 1 : i-1 ).SessionTracker.Activate( true );
 	}
 
 	/* Activate previous tab
-	 * ctrl + PgDn
+	 * Ctrl + PgDn
 	 */
 	else if ( k == 34 && Function == 0x02 )
 	{
@@ -579,11 +583,13 @@ function Keyboard ( EventData )
 		for ( var i = 0; i < Buttons.length; ++i )
 			if ( Buttons(i).SessionTracker.IsActive )
 				break;
+		if ( i == Buttons.length )
+			i = Buttons.length - 1;
 		Buttons( i == Buttons.length - 1 ? 0 : i+1 ).SessionTracker.Activate( true );
 	}
 
 	/* Activate previous tab
-	 * ctrl + 1...9
+	 * Ctrl + 1...9
 	 */
 	else if ( k >= 97 && k <= 105 && Function == 0x02 )
 	{
@@ -595,7 +601,7 @@ function Keyboard ( EventData )
 	}
 
 	/* Activate previous tab
-	 * ctrl + 1...9
+	 * Ctrl + 1...9
 	 */
 	else if ( k >= 49 && k <= 57 && Function == 0x02 )
 	{
@@ -607,14 +613,34 @@ function Keyboard ( EventData )
 	}
 
 	/* Close currently active tab
-	 * esc
-	 * ctrl + F4
-	 * ctrl + w
+	 * Esc
+	 * Ctrl + F4
+	 * Ctrl + W
 	 */
 	else if ( k == 27 || ( k == 115 && Function == 0x02 ) || ( k == 87 && Function == 0x02 ) )
 	{
 		EventData.returnValue = false;
-		gContainer.Trackers( gContainer.ActiveTrackerAddress ).Close();
+		if ( gContainer.Trackers( gContainer.ActiveTrackerAddress ).IsActive )
+			gContainer.Trackers( gContainer.ActiveTrackerAddress ).Close();
+		else
+			gContainer.Trackers( gContainer.ActiveTrackerAddress ).Activate();
+	}
+
+	/* Undo closing of last tab
+	 * Ctrl + Shift + T
+	 */
+	else if ( k == 84 && Function & 0x02 && Function & 0x04 )
+	{
+		if ( gContainer.SessionPool.RecentTrackers.length )
+			external.wnd.params[0].dial_chat( gContainer.SessionPool.RecentTrackers.pop() );
+	}
+
+	/* Open a new tab
+	 * Ctrl + T
+	 */
+	else if ( k == 84 && Function == 0x02 )
+	{
+		TabAddActivate();
 	}
 
 	/* Manual
@@ -642,7 +668,7 @@ function Keyboard ( EventData )
 		{
 			document.getElementById( 'send-text' ).focus();
 			document.getElementById( 'send-text' ).value = document.getElementById( 'send-text' ).value;
-			setTimeout(DisableButton, 1);
+			setTimeout( DisableButton, 1 );
 		}
 	}
 }

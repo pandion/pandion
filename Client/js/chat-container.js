@@ -118,48 +118,48 @@ function Close ()
 
 function SessionContainer ( SessionPool )
 {
-	this.DOM					= window;
-	this.Name					= '';
-	this.Trackers				= new ActiveXObject( 'Scripting.Dictionary' );
-	this.HTMLTabBar				= document.getElementById( 'tab-bar' );
-	this.HTMLTabArea			= document.getElementById( 'tab-area' );
-	this.SessionPool			= SessionPool;
-	this.ActiveTrackerAddress	= '';
+	this.ActiveTrackerAddress = '';
+	this.DOM = window;
+	this.HTMLTabArea = document.getElementById( 'tab-area' );
+	this.HTMLTabBar = document.getElementById( 'tab-bar' );
+	this.Name = '';
+	this.SessionPool = SessionPool;
+	this.Trackers = new ActiveXObject( 'Scripting.Dictionary' );
 
-	this.Clear					= Clear;
-	this.InputUpdate			= InputUpdate;
-	this.PurgeHistory			= PurgeHistory;
-	this.CreateTracker			= CreateTracker;
-	this.MenuBarUpdate			= MenuBarUpdate;
-	this.LanguageUpdate			= LanguageUpdate;
-	this.TrackerCreated			= TrackerCreated;
+	this.Clear = Clear;
+	this.CreateTracker = CreateTracker;
+	this.InputUpdate = InputUpdate;
+	this.LanguageUpdate = LanguageUpdate;
+	this.MenuBarUpdate = MenuBarUpdate;
+	this.PurgeHistory = PurgeHistory;
+	this.TrackerCreated = TrackerCreated;
 
 	/* Create a tracker object, draw a tab
 	 * TrackerCreated will be fired when the tracker is ready to receive events
 	 */
 	function CreateTracker ( Address )
 	{
-		var ShortAddress	= Address.ShortAddress();
-		var Tracker			= new SessionTracker( Address );
-		Tracker.Container	= this;
-		Tracker.HTMLArea	= document.createElement( 'IFRAME' );
+		var ShortAddress = Address.ShortAddress();
+		var Tracker = new SessionTracker( Address );
+		Tracker.Container = this;
+		Tracker.HTMLArea = document.createElement( 'IFRAME' );
 
-		var BackgroundPath	= external.globals( 'usersdir' ) + 'Backgrounds\\' + Tracker.Background + '\\index.html';
+		var BackgroundPath = external.globals( 'usersdir' ) + 'Backgrounds\\' + Tracker.Background + '\\index.html';
 		if ( ! external.FileExists( BackgroundPath ) )
 		{
 			external.globals( 'cfg' )( 'background' ) = '';
-			Tracker.Background	= '';
-			BackgroundPath		= 'chat-messages.html';
+			Tracker.Background = '';
+			BackgroundPath = 'chat-messages.html';
 		}
 
 		with ( Tracker.HTMLArea )
 		{
-			id					= 'iframe-' + ShortAddress;
-			style.display		= 'none';
-			height				= '100%';
-			width				= '100%';
-			allowTransparency	= true;
-			src					= BackgroundPath;
+			id = 'iframe-' + ShortAddress;
+			style.display = 'none';
+			height = '100%';
+			width = '100%';
+			allowTransparency = true;
+			src = BackgroundPath;
 		}
 		Tracker.HTMLArea.SessionTracker = Tracker;
 		this.HTMLTabArea.insertAdjacentElement( 'beforeEnd', Tracker.HTMLArea );
@@ -218,24 +218,24 @@ function SessionContainer ( SessionPool )
 		var cfg = external.globals( 'cfg' );
 		with ( document.getElementById( 'send-text' ).style )
 		{
-			color						= cfg( 'user_dialog_color' );
-			fontFamily					= cfg( 'user_dialog_face' );
-			fontSize					= cfg( 'user_dialog_size' );
-			fontWeight					= cfg( 'user_dialog_bold' );
-			fontStyle					= cfg( 'user_dialog_italic' );
-			textDecorationLineThrough	= cfg( 'user_dialog_strike' ).toString() == 'true';
-			textDecorationUnderline		= cfg( 'user_dialog_underline' ).toString() == 'true';
+			color = cfg( 'user_dialog_color' );
+			fontFamily = cfg( 'user_dialog_face' );
+			fontSize = cfg( 'user_dialog_size' );
+			fontStyle = cfg( 'user_dialog_italic' );
+			fontWeight = cfg( 'user_dialog_bold' );
+			textDecorationLineThrough = cfg( 'user_dialog_strike' ).toString() == 'true';
+			textDecorationUnderline = cfg( 'user_dialog_underline' ).toString() == 'true';
 		}
 
 		if ( external.globals( 'XMPPConnected' ) )
 		{
-			document.getElementById( 'send-text' ).disabled	= false;
-			document.getElementById( 'btn-send' ).disabled	= ( /^\s*$/ ).test( document.getElementById( 'send-text' ).value );
+			document.getElementById( 'send-text' ).disabled = false;
+			document.getElementById( 'btn-send' ).disabled = ( /^\s*$/ ).test( document.getElementById( 'send-text' ).value );
 		}
 		else
 		{
-			document.getElementById( 'send-text' ).disabled	= true;
-			document.getElementById( 'btn-send' ).disabled	= true;
+			document.getElementById( 'send-text' ).disabled = true;
+			document.getElementById( 'btn-send' ).disabled = true;
 		}
 	}
 
@@ -254,41 +254,41 @@ function SessionContainer ( SessionPool )
  */
 function SessionTracker ( Address )
 {
-	this.Name				= Address.Name;
-	this.Show				= '';
-	this.Text				= '';
-	this.Avatar				= '';
-	this.HookIQ				= null;
-	this.Status				= '';
-	this.Address			= Address;
-	this.HTMLArea			= false;
-	this.IsActive			= false;
-	this.ChatState			= '';
-	this.Container			= null;
-	this.MessageId			= '';
-	this.Reloading			= false;
-	this.Background			= external.globals( 'cfg' )( 'background' );
-	this.AvatarPath			= '';
-	this.HTMLButton			= false;
-	this.IsComposing		= false;
-	this.IsFlashing			= false;
-	this.LastOnline			= '';
-	this.LastMessage		= 0;
-	this.TypingTimeout		= null;
-	this.WantsComposing		= false;
-	this.BackgroundLoading	= false;
+	this.Address = Address;
+	this.Avatar = '';
+	this.AvatarPath = '';
+	this.Background = external.globals( 'cfg' )( 'background' );
+	this.BackgroundLoading = false;
+	this.ChatState = '';
+	this.Container = null;
+	this.HookIQ = null;
+	this.IsActive = false;
+	this.IsComposing = false;
+	this.IsFlashing = false;
+	this.HTMLArea = false;
+	this.HTMLButton = false;
+	this.LastMessage = 0;
+	this.LastOnline = '';
+	this.MessageId = '';
+	this.Name = Address.Name;
+	this.Reloading = false;
+	this.Show = '';
+	this.Status = '';
+	this.Text = '';
+	this.TypingTimeout = null;
+	this.WantsComposing = false;
 
-	this.Clear				= Clear;
-	this.Close				= Close;
-	this.Flash				= Flash;
-	this.Activate			= Activate;
-	this.Deactivate			= Deactivate;
-	this.DrawButton			= DrawButton;
-	this.DrawTyping			= DrawTyping;
-	this.SendMessage		= SendMessage;
-	this.DispatchEvent		= DispatchEvent;
-	this.BackgroundUpdate	= BackgroundUpdate;
-	this.DrawContainerInfo	= DrawContainerInfo;
+	this.Activate = Activate;
+	this.BackgroundUpdate = BackgroundUpdate;
+	this.Clear = Clear;
+	this.Close = Close;
+	this.Deactivate = Deactivate;
+	this.DispatchEvent = DispatchEvent;
+	this.DrawButton = DrawButton;
+	this.DrawContainerInfo = DrawContainerInfo;
+	this.DrawTyping = DrawTyping;
+	this.Flash = Flash;
+	this.SendMessage = SendMessage;
 
 	/* Handle events from the SessionPool
 	 */
@@ -658,12 +658,12 @@ function SessionTracker ( Address )
 			{
 				case 'awaiting':
 				case 'unknown':	ModeMessage = external.globals( 'Translator' ).Translate( 'chat-container', 'unknown', [ this.Name ] ); break;
-				case 'offline':	ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' );				break;
-				case 'chat':	ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_ffc' );							break;
-				case 'dnd':		ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_busy' );							break;
-				case 'xa':		ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_xaway' );							break;
-				case 'away':	ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_away' );							break;
-				default:		ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_available' );						break;
+				case 'offline':	ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' ); break;
+				case 'chat':	ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_ffc' ); break;
+				case 'dnd':		ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_busy' ); break;
+				case 'xa':		ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_xaway' ); break;
+				case 'away':	ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_away' ); break;
+				default:		ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_available' ); break;
 			}
 			if ( this.Status.length )
 				ModeMessage += ' - ' + this.Status.replace( /[\n\r]+/mg, ' - ' );
@@ -901,7 +901,11 @@ function SessionTracker ( Address )
 
 		if ( ! this.IsActive )
 		{
-			/* Deactivate old tab
+			/* Hide the Add Tab display
+			 */
+			TabAddDeactivate();
+
+			 /* Deactivate old tab
 			 */
 			if ( this.Container.Trackers.Exists( this.Container.ActiveTrackerAddress ) )
 				this.Container.Trackers( this.Container.ActiveTrackerAddress ).Deactivate();
@@ -949,28 +953,28 @@ function SendMessage ()
 
 	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 	if ( Tracker.WantsComposing )
-		dom.loadXML( '<message type="chat"><body/><html><body><span/></body></html><x xmlns="jisp:x:jep-0038"><name/></x><x xmlns="jabber:x:event"><composing/></x></message>' );
+		dom.loadXML( '<message type="chat"><body/><html><body/></html><x xmlns="jisp:x:jep-0038"><name/></x><x xmlns="jabber:x:event"><composing/></x></message>' );
 	else
-		dom.loadXML( '<message type="chat"><body/><html><body><span/></body></html><x xmlns="jisp:x:jep-0038"><name/></x><active xmlns="http://jabber.org/protocol/chatstates"/></message>' );
+		dom.loadXML( '<message type="chat"><body/><html><body/></html><x xmlns="jisp:x:jep-0038"><name/></x><active xmlns="http://jabber.org/protocol/chatstates"/></message>' );
 
 	dom.selectSingleNode( '/message/x[@xmlns="jisp:x:jep-0038"]/name' ).text = external.globals( 'cfg' )( 'emoticonset' );
 	dom.documentElement.firstChild.text = document.getElementById( 'send-text' ).value;
-	dom.documentElement.setAttribute( 'xml:lang',	external.globals( 'language' ) );
-	dom.documentElement.setAttribute( 'id',			'sd' + ( ++external.globals( 'uniqueid' ) ) );
-	dom.documentElement.setAttribute( 'to',			Tracker.Address.LongAddress() );
-	dom.documentElement.setAttribute( 'from',		external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '/' + external.globals( 'cfg' )( 'resource' ) );
+	dom.documentElement.setAttribute( 'xml:lang', external.globals( 'language' ) );
+	dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
+	dom.documentElement.setAttribute( 'to', Tracker.Address.LongAddress() );
+	dom.documentElement.setAttribute( 'from', external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '/' + external.globals( 'cfg' )( 'resource' ) );
 
-	var HTMLSpan	= dom.documentElement.selectSingleNode( 'html/body/span' );
-	var TextLines	= document.getElementById( 'send-text' ).value.split( '\n' );
-	HTMLSpan.setAttribute( 'style', document.getElementById( 'send-text' ).style.cssText.toLowerCase() );
-	HTMLSpan.appendChild( dom.createTextNode( TextLines[0] ) );
+	var HTMLBody = dom.documentElement.selectSingleNode( '/message/html/body' );
+	var TextLines = document.getElementById( 'send-text' ).value.split( '\n' );
+	HTMLBody.setAttribute( 'style', document.getElementById( 'send-text' ).style.cssText.toLowerCase() );
+	HTMLBody.appendChild( dom.createTextNode( TextLines[0] ) );
 	for ( var i = 1; i < TextLines.length; ++i )
 	{
-		HTMLSpan.appendChild( dom.createElement( 'br' ) );
-		HTMLSpan.appendChild( dom.createTextNode( TextLines[i] ) );
+		HTMLBody.appendChild( dom.createElement( 'br' ) );
+		HTMLBody.appendChild( dom.createTextNode( TextLines[i] ) );
 	}
-	dom.documentElement.selectSingleNode( 'html' ).setAttribute( 'xmlns', 'http://jabber.org/protocol/xhtml-im' );
-	dom.documentElement.selectSingleNode( 'html' ).firstChild.setAttribute( 'xmlns', 'http://www.w3.org/1999/xhtml' );
+	dom.documentElement.selectSingleNode( '/message/html' ).setAttribute( 'xmlns', 'http://jabber.org/protocol/xhtml-im' );
+	dom.documentElement.selectSingleNode( '/message/html/body' ).setAttribute( 'xmlns', 'http://www.w3.org/1999/xhtml' );
 
 	if ( Tracker.MessageThread )
 	{
@@ -1458,4 +1462,49 @@ function OnWindowActivate ()
 {
 	if ( ! document.getElementById( 'send-text' ).disabled )
 		setTimeout( "if ( ! document.getElementById( 'send-text' ).disabled ) document.getElementById( 'send-text' ).focus();", 0 );
+}
+
+/* Show the new tab panel
+ */
+function TabAddActivate ()
+{
+	/* Hide chat
+	 */
+	if ( gContainer.Trackers.Exists( gContainer.ActiveTrackerAddress ) )
+		gContainer.Trackers( gContainer.ActiveTrackerAddress ).Deactivate();
+	document.getElementById( 'mode-indicator' ).style.display = 'none';
+	document.getElementById( 'user-typing-area' ).style.display = 'none';
+	document.getElementById( 'conversation' ).style.display = 'none';
+	document.getElementById( 'toolbar' ).style.display = 'none';
+	document.getElementById( 'input-bar' ).style.display = 'none';
+
+	/* Show the new tab panel
+	 */
+	document.getElementById( 'new-tab' ).style.display = 'block';
+	document.getElementById( 'tab-add-button' ).className = 'tab-add-button-active';
+}
+
+/* Hide the new tab panel
+ */
+function TabAddDeactivate ()
+{
+	/* Hide chat
+	 */
+	document.getElementById( 'mode-indicator' ).style.display = 'block';
+	document.getElementById( 'user-typing-area' ).style.display = 'block';
+	document.getElementById( 'conversation' ).style.display = 'block';
+	document.getElementById( 'toolbar' ).style.display = 'block';
+	document.getElementById( 'input-bar' ).style.display = 'block';
+
+	/* Show the new tab panel
+	 */
+	document.getElementById( 'new-tab' ).style.display = 'none';
+	document.getElementById( 'tab-add-button' ).className = 'tab-add-button';
+}
+
+/* Start a new chat
+ */
+function TabAddStart ()
+{
+	external.wnd.params[0].dial_chat( document.getElementById( 'new-tab-address' ).value );
 }

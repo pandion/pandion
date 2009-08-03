@@ -20,7 +20,6 @@
 
 		<!-- Chat -->
 		<TD id=chat-area>
-			<DIV id=content-edge-behind>
 			<DIV id=content-edge-top>
 			<DIV id=content-edge-left>
 			<DIV id=content-edge-right>
@@ -33,7 +32,7 @@
 				</COLGROUP>
 
 				<!-- Mode Indicator -->
-				<TR valign=top>
+				<TR id=mode-indicator valign=top>
 					<TD id=mode-bar colspan=2
 						onclick="MouseMenu()"
 						onmouseover="document.getElementById( 'mode-name' ).style.color = '#312505'; document.getElementById( 'mode-message' ).style.color = '#312505'; document.getElementById( 'mode-address' ).style.color = '#312505';"
@@ -76,7 +75,7 @@
 				<!-- / User is Typing -->
 
 				<!-- Conversation -->
-				<TR valign=top height="100%">
+				<TR id=conversation valign=top height="100%">
 					<TD colspan=2>
 						<DIV class=inside-edge-left>
 						<DIV class=inside-edge-right>
@@ -132,7 +131,7 @@
 				<!-- / Toolbar -->
 
 				<!-- Input -->
-				<TR valign=top id=input-bar>
+				<TR id=input-bar valign=top>
 					<TD colspan=1>
 						<DIV class=inside-edge-left>
 						<TEXTAREA
@@ -150,11 +149,33 @@
 							onclick="SendMessage()"
 							accesskey="s"
 							disabled
-						>
+						/>
 						</DIV>
 					</TD>
 				</TR>
 				<!-- / Input -->
+
+				<!-- New Tab -->
+				<TR id=new-tab style="display: none;">
+					<TD colspan=2>
+						<DIV class=inside-edge-left style="padding-left: 0;">
+						<DIV class=inside-edge-right style="padding-right: 0;">
+						<DIV class=new-tab-top>
+						<DIV class=new-tab-left>
+						<DIV class=new-tab-right>
+							<H1>Start a new conversation</H1>
+							<FORM onsubmit="TabAddStart(); return false;">
+								<INPUT type=text id=new-tab-address value="bob@example.com" />
+								<INPUT type=submit value="Start" />
+							</FORM>
+						</DIV>
+						</DIV>
+						</DIV>
+						</DIV>
+						</DIV>
+					</TD>
+				</TR>
+				<!-- / New Tab -->
 
 				<!-- Banner -->
 				<TR id=banner-area>
@@ -167,7 +188,6 @@
 			</DIV>
 			</DIV>
 			</DIV>
-			</DIV>
 		</TD>
 		<!-- / Chat -->
 
@@ -176,7 +196,8 @@
 	<!-- Tab Buttons -->
 	<TR id=tab-bar-row>
 		<TD>
-			<DIV id=tab-bar></DIV>
+			<SPAN id=tab-bar></SPAN>
+			<SPAN id=tab-add-button class=tab-add-button onclick="TabAddActivate()"></SPAN>
 		</TD>
 	</TR>
 	<!-- / Tab Buttons -->

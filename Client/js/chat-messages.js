@@ -5,9 +5,9 @@ if ( ! window.SessionTracker )
 
 /* Global variables used by this background
  */
-var gLastDate		= ( new Date() ).toLocaleDateString();
-var gLastTime		= '';
-var gLastAddress	= '';
+var gLastDate = ( new Date() ).toLocaleDateString();
+var gLastTime = '';
+var gLastAddress = '';
 
 /* Activate the tracker and hook up the onresize event
  */
@@ -40,19 +40,19 @@ function onHistory ( Messages )
 {
 	for ( var i = 0; i < Messages.length; ++i )
 	{
-		var Message		= Messages[i];
-		var Direction	= Message.From == external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) ? 'send' : 'recv';
-		var SenderName	= Direction == 'send' ? external.globals( 'cfg' )( 'nick' ) : SessionTracker.Name;
-		var MessageTime	= Message.Time.getHours() + ':' + ( Message.Time.getMinutes() < 10 ? '0' : '' ) + Message.Time.getMinutes();
+		var Message = Messages[i];
+		var Direction = Message.From == external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) ? 'send' : 'recv';
+		var SenderName = Direction == 'send' ? external.globals( 'cfg' )( 'nick' ) : SessionTracker.Name;
+		var MessageTime = Message.Time.getHours() + ':' + ( Message.Time.getMinutes() < 10 ? '0' : '' ) + Message.Time.getMinutes();
 
 		/* Insert date
 		 */
 		if ( gLastDate != Message.Time.toLocaleDateString() )
 		{
 			DrawDate( 'history-date', Message.Time.toLocaleDateString() );
-			gLastDate		= Message.Time.toLocaleDateString();
-			gLastTime		= '';
-			gLastAddress	= '';
+			gLastDate = Message.Time.toLocaleDateString();
+			gLastTime = '';
+			gLastAddress = '';
 		}
 
 		/* Show /me syntax
@@ -63,8 +63,8 @@ function onHistory ( Messages )
 				DrawMe( 'history-me', Message, SenderName, Message.Body.substr( 3 ) );
 			else
 				DrawMe( 'history-me', Message, SenderName, Message.Body.substr( 3 ), 'history-me-time', MessageTime );
-			gLastTime		= MessageTime;
-			gLastAddress	= '';
+			gLastTime = MessageTime;
+			gLastAddress = '';
 		}
 
 		/* Normal chat message
@@ -86,9 +86,9 @@ function onHistory ( Messages )
 			gLastTime = MessageTime;
 		}
 	}
-//	gLastDate		= ( new Date() ).toLocaleDateString();
-	gLastTime		= '';
-	gLastAddress	= '';
+//	gLastDate = ( new Date() ).toLocaleDateString();
+	gLastTime = '';
+	gLastAddress = '';
 	Resize();
 }
 
@@ -96,18 +96,18 @@ function onHistory ( Messages )
  */
 function onMessage ( Message )
 {
-	var Direction		= Message.FromAddress.ShortAddress() == external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) ? 'send' : 'recv';
-	var SenderName		= SessionTracker.Occupants ? Message.FromAddress.Resource : ( Direction == 'send' ? external.globals( 'cfg' )( 'nick' ) : SessionTracker.Name );
-	var MessageTime	= Message.Time.getHours() + ':' + ( Message.Time.getMinutes() < 10 ? '0' : '' ) + Message.Time.getMinutes();
+	var Direction = Message.FromAddress.ShortAddress() == external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) ? 'send' : 'recv';
+	var SenderName = SessionTracker.Occupants ? Message.FromAddress.Resource : ( Direction == 'send' ? external.globals( 'cfg' )( 'nick' ) : SessionTracker.Name );
+	var MessageTime = Message.Time.getHours() + ':' + ( Message.Time.getMinutes() < 10 ? '0' : '' ) + Message.Time.getMinutes();
 
 	/* Insert date
 	 */
 	if ( gLastDate != Message.Time.toLocaleDateString() )
 	{
 		DrawDate( 'date', Message.Time.toLocaleDateString() );
-		gLastDate		= Message.Time.toLocaleDateString();
-		gLastTime		= '';
-		gLastAddress	= '';
+		gLastDate = Message.Time.toLocaleDateString();
+		gLastTime = '';
+		gLastAddress = '';
 	}
 
 	/* Server message in a conference room
@@ -134,8 +134,8 @@ function onMessage ( Message )
 			DrawMe( 'me', Message, SenderName, Message.Body.substr( 3 ) );
 		else
 			DrawMe( 'me', Message, SenderName, Message.Body.substr( 3 ), 'me-time', MessageTime );
-		gLastTime		= MessageTime;
-		gLastAddress	= '';
+		gLastTime = MessageTime;
+		gLastAddress = '';
 	}
 
 	/* Normal chat message
@@ -183,70 +183,70 @@ else
 
 function DrawError ( StyleClass, PlainText )
 {
-	var Row			= document.getElementById( 'messages' ).insertRow(-1);
-	var Col			= Row.insertCell(-1);
-	Col.colSpan		= 2;
+	var Row = document.getElementById( 'messages' ).insertRow(-1);
+	var Col = Row.insertCell(-1);
+	Col.colSpan = 2;
 
-	var Body		= document.createElement( 'LI' );
-	Body.className	= StyleClass;
-	Body.innerText	= PlainText;
+	var Body = document.createElement( 'LI' );
+	Body.className = StyleClass;
+	Body.innerText = PlainText;
 	Col.insertAdjacentElement( 'beforeEnd', Body );
 }
 
 function DrawDate ( StyleClass, PlainText )
 {
-	var Row			= document.getElementById( 'messages' ).insertRow(-1);
-	var Col			= Row.insertCell(-1);
-	Col.colSpan		= 2;
+	var Row = document.getElementById( 'messages' ).insertRow(-1);
+	var Col = Row.insertCell(-1);
+	Col.colSpan = 2;
 
-	var Body		= document.createElement( 'NOBR' );
-	Body.className	= StyleClass
-	Body.innerText	= PlainText;
+	var Body = document.createElement( 'NOBR' );
+	Body.className = StyleClass
+	Body.innerText = PlainText;
 	Col.insertAdjacentElement( 'beforeEnd', Body );
 }
 
 function DrawMUCServer ( StyleClass, Message, PlainText )
 {
-	var Row			= document.getElementById( 'messages' ).insertRow(-1);
-	var Col			= Row.insertCell(-1);
-	Col.colSpan		= 2;
+	var Row = document.getElementById( 'messages' ).insertRow(-1);
+	var Col = Row.insertCell(-1);
+	Col.colSpan = 2;
 
-	var Body		= document.createElement( 'LI' );
-	Body.className	= StyleClass;
+	var Body = document.createElement( 'LI' );
+	Body.className = StyleClass;
 	SessionTracker.Container.DOM.FilterHyperlinks( Message, Body, PlainText );
 	Col.insertAdjacentElement( 'beforeEnd', Body );
 }
 
 function DrawMUCPersonal ( StyleClass, Message, PlainText )
 {
-	var Row			= document.getElementById( 'messages' ).insertRow(-1);
-	var Col			= Row.insertCell(-1);
-	Col.colSpan		= 2;
+	var Row = document.getElementById( 'messages' ).insertRow(-1);
+	var Col = Row.insertCell(-1);
+	Col.colSpan = 2;
 
-	var Body		= document.createElement( 'LI' );
-	Body.className	= StyleClass;
-	Body.innerText	= PlainText;
+	var Body = document.createElement( 'LI' );
+	Body.className = StyleClass;
+	Body.innerText = PlainText;
 	SessionTracker.Container.DOM.FilterHyperlinks( Message, Body, Message.Body );
 	Col.insertAdjacentElement( 'beforeEnd', Body );
 }
 
 function DrawMe ( StyleClass, Message, SenderName, PlainText, TimeStyleClass, Time )
 {
-	var Row			= document.getElementById( 'messages' ).insertRow(-1);
-	Row.vAlign		= 'top';
-	var Col			= Row.insertCell(-1);
+	var Row = document.getElementById( 'messages' ).insertRow(-1);
+	Row.vAlign = 'top';
+	var Col = Row.insertCell(-1);
 
-	var Body		= document.createElement( 'LI' );
-	Body.className	= StyleClass;
-	Body.innerText	= SenderName;
+	var Body = document.createElement( 'LI' );
+	Body.className = StyleClass;
+	Body.innerText = SenderName;
 	SessionTracker.Container.DOM.FilterHyperlinks( Message, Body, PlainText );
 	Col.insertAdjacentElement( 'beforeEnd', Body );
 
 	if ( Time )
 	{
-		Col				= Row.insertCell(-1);
-		Col.className	= TimeStyleClass;
-		Col.innerText	= Time;
+		Col = Row.insertCell(-1);
+		Col.className = TimeStyleClass;
+		Col.innerText = Time;
 	}
 	else
 		Col.colSpan = 2;
@@ -254,31 +254,31 @@ function DrawMe ( StyleClass, Message, SenderName, PlainText, TimeStyleClass, Ti
 
 function DrawName ( NameStyleClass, SenderName )
 {
-	var Row			= document.getElementById( 'messages' ).insertRow(-1);
-	Row.vAlign		= 'bottom';
-	var Col			= Row.insertCell(-1);
-	Col.colSpan		= 2;
+	var Row = document.getElementById( 'messages' ).insertRow(-1);
+	Row.vAlign = 'bottom';
+	var Col = Row.insertCell(-1);
+	Col.colSpan = 2;
 
-	var Name		= document.createElement( 'NOBR' );
-	Name.className	= NameStyleClass;
-	Name.innerText	= SenderName + ' ';
+	var Name = document.createElement( 'NOBR' );
+	Name.className = NameStyleClass;
+	Name.innerText = SenderName + ' ';
 	Col.insertAdjacentElement( 'beforeEnd', Name );
 }
 
 function DrawMessage ( StyleClass, Message, TimeStyleClass, Time )
 {
-	var Row			= document.getElementById( 'messages' ).insertRow(-1);
-	Row.vAlign		= 'top';
-	var Col			= Row.insertCell(-1);
-	Col.className	= StyleClass;
+	var Row = document.getElementById( 'messages' ).insertRow(-1);
+	Row.vAlign = 'top';
+	var Col = Row.insertCell(-1);
+	Col.className = StyleClass;
 
 	SessionTracker.Container.DOM.MessageToHTMLElement( Message, Col );
 
 	if ( Time )
 	{
-		Col				= Row.insertCell(-1);
-		Col.className	= TimeStyleClass;
-		Col.innerText	= Time;
+		Col = Row.insertCell(-1);
+		Col.className = TimeStyleClass;
+		Col.innerText = Time;
 	}
 	else
 		Col.colSpan = 2;
@@ -288,9 +288,9 @@ function DrawMessage ( StyleClass, Message, TimeStyleClass, Time )
  */
 function ShowMenu ()
 {
-	var Menu			= external.newPopupMenu;
-	var HasMessages		= document.getElementById( 'messages' ).rows.length;
-	var HasSelection	= document.selection.type == 'Text' && document.selection.createRangeCollection().item(0).text.length;
+	var Menu = external.newPopupMenu;
+	var HasMessages = document.getElementById( 'messages' ).rows.length;
+	var HasSelection = document.selection.type == 'Text' && document.selection.createRangeCollection().item(0).text.length;
 	Menu.AddItem( HasSelection,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-messages', 'copy' ),		1 );
 	Menu.AddItem( HasMessages,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-messages', 'copyall' ),	2 );
 	Menu.AddSeparator();
@@ -347,14 +347,14 @@ function SelectAll ()
  */
 function Clear ()
 {
-	gLastDate		= ( new Date() ).toLocaleDateString();
-	gLastTime		= '';
-	gLastAddress	= '';
+	gLastDate = ( new Date() ).toLocaleDateString();
+	gLastTime = '';
+	gLastAddress = '';
 
 	if ( ! SessionTracker.Occupants )
 		SessionTracker.Container.PurgeHistory( SessionTracker.Address );
 
-	var Messages	= document.getElementById( 'messages' );
+	var Messages = document.getElementById( 'messages' );
 	while ( Messages.rows.length )
 		Messages.deleteRow(0);
 }
