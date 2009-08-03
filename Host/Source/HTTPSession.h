@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Pandion.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Filename:    HTTPDownload.h
+ * Filename:    HTTPEventRouter.h
  * Author(s):   Dries Staelens
  * Copyright:   Copyright (c) 2009 Dries Staelens
  * Description: TODOTODOTODO
@@ -22,32 +22,10 @@
 
 #pragma once
 
-class HTTPEventRouter;
-
-class HTTPDownload
+class HTTPSession
 {
-private:
-	HTTPEventRouter* m_EventRouter;
-	DWORD            m_SessionID;
-
-	HINTERNET    m_hInternet;
-	DWORD        m_Progress;
-	DWORD        m_Length;
-	std::wstring m_URI;
-	std::wstring m_FileName;
-	std::wstring m_Address;
-	USHORT       m_Port;
-	bool         m_Abort;
 public:
-	HTTPDownload(HINTERNET hInternet, HTTPEventRouter* eventRouter, DWORD sessionID);
-	~HTTPDownload();
-
-	void Get(std::wstring filename, std::wstring URI, DWORD offset, DWORD len,
-		 std::wstring address, USHORT port);
-	void Abort();
-	DWORD GetProgress();
-	DWORD GetLength();
-private:
-	static DWORD __stdcall DownloadFileProc(void *pThis);
-	DWORD DownloadFile();
+	virtual DWORD GetProgress() = 0;
+	virtual DWORD GetLength() = 0;
+	virtual void Abort() = 0;
 };
