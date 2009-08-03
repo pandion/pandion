@@ -166,24 +166,7 @@ function MessageToHTMLElement ( Message, HTMLElement )
 	}
 
 	if ( Message.XHTMLBody )
-	{
-		var ChildNodes = Message.XHTMLBody.childNodes;
-		for ( var i = 0; i < ChildNodes.length; ++i )
-			switch ( ChildNodes.item( i ).nodeType )
-			{
-				/* Element
-				 */
-				case 1:
-					FilterNode( Message, HTMLElement, ChildNodes.item( i ) );
-				break;
-
-				/* Text
-				 */
-				case 3:
-					FilterHyperlinks( Message, HTMLElement, ChildNodes.item( i ).data );
-				break;
-			}
-	}
+		FilterNode( Message, HTMLElement, Message.XHTMLBody );
 	else
 	{
 		var TextLines = Message.Body.split( '\n' );
@@ -202,6 +185,8 @@ function FilterNode ( Message, HTMLElement, XMLTag )
 {
 	var NodeHTMLElement = HTMLElement;
 	var TagName = XMLTag.tagName.toLowerCase();
+	if ( TagName == 'body' )
+		TagName = 'span';
 	if ( AllowedTags.Exists( TagName ) )
 	{
 		NodeHTMLElement = document.createElement( TagName );

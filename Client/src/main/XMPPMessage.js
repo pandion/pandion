@@ -23,7 +23,7 @@ function XMPPMessage ()
 	this.To						= '';
 	this.ToAddress				= new XMPPAddress();
 	this.Type					= 'normal';
-	this.OOB					= new Array();
+	this.OOB					= [];
 	this.EventId				= '';
 	this.WantsComposing			= false;
 	this.WantsDelivered			= false;
