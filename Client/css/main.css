@@ -295,16 +295,22 @@ A:hover {
 	padding: 0;
 	margin-top: 16px;
 	text-align: left;
-	width: 225px;
+	width: 250px;
 }
 #signin-address {
+	color: #333;
+	font-family: "Segoe UI", Tahoma;
+	font-size: 1.3em;
 	position: absolute;
-	width: 100%;
+	width: 234px;
 }
 #signin-recently-used {
+	color: #333;
+	font-family: "Segoe UI", Tahoma;
+	font-size: 1.3em;
 	position: absolute;
 	width: 100%;
-	clip: rect(0, 300px, 50px, 206px);
+	clip: rect(0 100% 100% 231px);
 }
 #signin-area select, option {
 	height: 10px;
@@ -312,8 +318,8 @@ A:hover {
 #signin-examples {
 	color: #555;
 	font-style: italic;
-	margin: 24px 0 15px 0;
-	width: 225px;
+	margin: 30px 0 15px 0;
+	width: 100%;
 }
 #signin-area DT {
 	display: inline;
@@ -326,6 +332,10 @@ A:hover {
 	float: left;
 }
 #signin-password {
+	color: #333;
+	font-family: "Segoe UI", Tahoma;
+	font-size: 1.3em;
+	margin-bottom: 15px;
 	width: 100%;
 }
 #signin-connect {
@@ -334,8 +344,8 @@ A:hover {
 	font-weight: bold;
 	background: transparent url(../images/sign-in/shiny.png) left -13px repeat-x;
 	padding: 3px 10px;
-	margin: 20px 0 0 50px;
+	margin: 15px 0 0 65px;
 }
 #signin-area li {
-	margin: 8px 0;
+	margin: 0 0 8px 0;
 }

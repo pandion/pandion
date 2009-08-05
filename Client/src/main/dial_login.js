@@ -46,7 +46,6 @@ function dial_login ( visible )
 	document.getElementById( 'signin-address' ).focus();
 	document.getElementById( 'signin-address' ).focus();
 	document.getElementById( 'signin-address' ).value = external.globals( 'last_address' );
-	document.getElementById( 'signin-password' ).value = pass_code( false, external.globals( 'last_password' ) );
 	document.getElementById( 'signin-remember' ).checked = external.globals( 'last_password_remember' ).toString() == 'true';
 	document.getElementById( 'signin-autoconnect' ).checked = external.globals( 'autologin' ).toString() == 'true';
 	if ( external.globals( 'last_address' ).length && external.globals( 'authentication' ) == 'normal' )
@@ -54,6 +53,7 @@ function dial_login ( visible )
 		document.getElementById( 'signin-password' ).focus();
 		document.getElementById( 'signin-password' ).focus();
 	}
+	document.getElementById( 'signin-password' ).value = pass_code( false, external.globals( 'last_password' ) );
 
 	/* Append the addresses to the pulldown
 	 */
