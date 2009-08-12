@@ -338,6 +338,22 @@
 					>
 				</File>
 				<File
+					RelativePath=".\HTTPListener.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\HTTPListener.h"
+					>
+				</File>
+				<File
+					RelativePath=".\HTTPServer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\HTTPServer.h"
+					>
+				</File>
+				<File
 					RelativePath=".\HTTPSession.h"
 					>
 				</File>

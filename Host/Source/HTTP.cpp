@@ -23,8 +23,9 @@
 #include "stdafx.h"
 #include "HTTP.h"
 #include "HTTPClient.h"
- 
-HTTP::HTTP()
+
+HTTP::HTTP() :
+	m_EventRouter(), m_Listener(&m_EventRouter)
 {
 	m_hInternet = ::InternetOpen(L"Pandion", INTERNET_OPEN_TYPE_PRECONFIG, 
 		L"", INTERNET_INVALID_PORT_NUMBER, 0);
@@ -33,21 +34,26 @@ HTTP::~HTTP()
 {
 	::InternetCloseHandle(m_hInternet);
 }
-STDMETHODIMP HTTP::ShareFile(BSTR filename, BSTR URL, DWORD* retCookie)
+STDMETHODIMP HTTP::ShareFile(BSTR filename, BSTR URL, DWORD* sessionID)
 {
+	*sessionID = GetNewSessionID();
+	m_Listener.ShareFile(filename, URL, *sessionID);
 	return S_OK;
 }
-STDMETHODIMP HTTP::UnShareFile(DWORD sfCookie)
+STDMETHODIMP HTTP::UnShareFile(DWORD sessionID)
 {
+	m_Listener.UnShareFile(sessionID);
 	return S_OK;
 }
  
 STDMETHODIMP HTTP::Listen(unsigned short port)
 {
+	m_Listener.Listen(port);
 	return S_OK;
 }
 STDMETHODIMP HTTP::StopListening(unsigned short port)
 {
+	m_Listener.StopListening(port);
 	return S_OK;
 }
  
@@ -65,7 +71,7 @@ STDMETHODIMP HTTP::Get(
 		new HTTPClient(m_hInternet, &m_EventRouter, *sessionID);
 	downloadSession->Get(filename, URI, offset, len, address, port);
 
-	m_Downloads[*sessionID] = downloadSession;
+	m_Sessions[*sessionID] = downloadSession;
 
 	return S_OK;
 }
@@ -83,7 +89,7 @@ STDMETHODIMP HTTP::Post(
 		new HTTPClient(m_hInternet, &m_EventRouter, *sessionID);
 	downloadSession->Post(filename, URI, offset, len, address, port);
 
-	m_Downloads[*sessionID] = downloadSession;
+	m_Sessions[*sessionID] = downloadSession;
 
 	return S_OK;
 }
@@ -98,17 +104,17 @@ STDMETHODIMP HTTP::Unsubscribe(IDispatch* wnd)
  
 STDMETHODIMP HTTP::GetProgress(DWORD sessionID, DWORD* retval)
 {
-	*retval = m_Downloads[sessionID]->GetProgress();
+	*retval = m_Sessions[sessionID]->GetProgress();
 	return S_OK;
 }
 STDMETHODIMP HTTP::GetLength(DWORD sessionID, DWORD* retval)
 {
-	*retval = m_Downloads[sessionID]->GetLength();
+	*retval = m_Sessions[sessionID]->GetLength();
 	return S_OK;
 }
 STDMETHODIMP HTTP::Abort(DWORD sessionID)
 {
-	m_Downloads[sessionID]->Abort();
+	m_Sessions[sessionID]->Abort();
 	return S_OK;
 }
 

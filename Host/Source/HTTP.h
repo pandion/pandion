@@ -24,6 +24,7 @@
 
 #include "DispInterfaceImpl.h"
 #include "HTTPEventRouter.h"
+#include "HTTPListener.h"
 
 class HTTPSession;
 class HTTPDownload;
@@ -33,16 +34,17 @@ class HTTP :
 {
 private:
 	HINTERNET m_hInternet;
-	std::map<int, HTTPSession*> m_Downloads;
+	std::map<int, HTTPSession*> m_Sessions;
 
 	HTTPEventRouter m_EventRouter;
+	HTTPListener    m_Listener;
 public:
 	HTTP();
 	~HTTP();
   
 	/* IHTTP */
-	STDMETHOD(ShareFile)(BSTR filename, BSTR URL, DWORD* retCookie);
-	STDMETHOD(UnShareFile)(DWORD sfCookie);
+	STDMETHOD(ShareFile)(BSTR filename, BSTR URL, DWORD* sessionID);
+	STDMETHOD(UnShareFile)(DWORD sessionID);
  
 	STDMETHOD(Listen)(USHORT port);
 	STDMETHOD(StopListening)(USHORT port);

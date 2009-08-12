@@ -212,7 +212,8 @@ STDMETHODIMP SASL::SSPIGenerateResponse(BSTR Challenge, BOOL *Continue, BSTR *Re
 	DWORD DecodedChallengeLength;
 	::CryptStringToBinary(Challenge, ::SysStringLen(Challenge),
 		CRYPT_STRING_BASE64, NULL, &DecodedChallengeLength, NULL, NULL);
-	std::vector<BYTE> DecodedChallenge(DecodedChallengeLength);
+	std::vector<BYTE> DecodedChallenge(DecodedChallengeLength > 0 ? 
+		DecodedChallengeLength : 1);
 	::CryptStringToBinary(Challenge, ::SysStringLen(Challenge),
 		CRYPT_STRING_BASE64, &DecodedChallenge[0], &DecodedChallengeLength,
 		NULL, NULL);
