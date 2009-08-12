@@ -36,8 +36,10 @@ public:
 	~CPopupMenu();
 
 	/* IPopupMenu */
-	STDMETHOD(AddItem)(BOOL bEnabled, BOOL bChecked, BOOL bRadio, BOOL bDefault, DWORD hSubMenu, BSTR label, DWORD ID);
-	STDMETHOD(Show)(DWORD x, DWORD y, BOOL fromTray = FALSE);
+	STDMETHOD(AddItem)(BOOL bEnabled, BOOL bChecked, BOOL bRadio,
+		BOOL bDefault, DWORD hSubMenu, BSTR label, DWORD ID);
+	STDMETHOD(Show)(DWORD x, DWORD y, BOOL rightToLeft,
+		BOOL fromTray = FALSE);
 	STDMETHOD(get_Handle)(VARIANT* pVal);
 	STDMETHOD(get_Choice)(VARIANT* pVal);
 	STDMETHOD(Clear)();

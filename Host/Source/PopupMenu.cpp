@@ -54,13 +54,14 @@ STDMETHODIMP CPopupMenu::AddItem(BOOL bEnabled, BOOL bChecked, BOOL bRadio, BOOL
 		S_OK : GetLastError();
 }
 
-STDMETHODIMP CPopupMenu::Show(DWORD x, DWORD y, BOOL fromTray)
+STDMETHODIMP CPopupMenu::Show(DWORD x, DWORD y, BOOL rightToLeft, BOOL fromTray)
 {
 	if(fromTray)
 		SetForegroundWindow(MainWnd::GetMainWindow());
 	m_Choice = TrackPopupMenu(m_Handle,
 		TPM_LEFTALIGN | TPM_TOPALIGN | TPM_RETURNCMD |
-		TPM_RIGHTBUTTON | TPM_NONOTIFY,
+		TPM_RIGHTBUTTON | TPM_NONOTIFY |
+		rightToLeft ? 0x8000L : 0x0L,
 		x, y, NULL, MainWnd::GetMainWindow(), NULL);
 	if(fromTray)
 		PostMessage(MainWnd::GetMainWindow(), WM_NULL, 0, 0);

@@ -272,6 +272,7 @@ library PandionLib
 		HRESULT Show(
 			[in] DWORD x,
 			[in] DWORD y,
+			[in] BOOL rightToLeft,
 			[in, defaultvalue(FALSE)] BOOL fromTray);
 		HRESULT Clear();
 		HRESULT AddSeparator();
