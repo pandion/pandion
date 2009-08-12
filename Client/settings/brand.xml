@@ -23,7 +23,7 @@
 
 <!-- Shown in the About dialog
   -->
-<softwareversion>2.6 dev</softwareversion>
+<softwareversion>2.6-dev</softwareversion>
 
 <!-- Only connect to this server and only create accounts on this server
   -->

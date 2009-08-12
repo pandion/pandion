@@ -5,7 +5,7 @@
 ;Alphanumeric value to label each release
 ;Can contain whitespace
 ;Cannot contain \ / : * ? " < > |
-!define VERSION "2.6"
+!define VERSION "2.6-dev"
 
 ;Human readable name of the software shown in installer and uninstaller
 !define PRODUCT "Pandion"
