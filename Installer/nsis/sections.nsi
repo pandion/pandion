@@ -38,7 +38,6 @@ Section "${PRODUCT} ${VERSION}" SecCopyRequired
   SetOutPath "$INSTDIR"
   File "${SOURCEDIR}\License.rtf"
   File "${SOURCEDIR}\${PRODUCTSAFE}.exe"
-  ExecWait "$\"$INSTDIR\${PRODUCTSAFE}.exe$\" /RegServer"
 
   RMDir /r "$INSTDIR\backgrounds"
   RMDir /r "$INSTDIR\emoticons"
