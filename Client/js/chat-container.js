@@ -1404,7 +1404,7 @@ function MouseMenu ()
 	Menu.AddItem( true,			false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_history' ), 6 );
 	Menu.AddItem( Connected,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_profile' ), 7 );
 
-	Menu.Show( window.screenLeft + 42, window.screenTop + 48 );
+	Menu.Show( window.screenLeft + 42, window.screenTop + 48, external.globals( 'Translator' ).Direction );
 
 	switch ( Menu.Choice )
 	{

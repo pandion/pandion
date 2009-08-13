@@ -297,7 +297,7 @@ function ShowMenu ()
 	Menu.AddItem( HasMessages,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-messages', 'clear' ),		3 );
 	Menu.AddSeparator();
 	Menu.AddItem( HasMessages,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-messages', 'selectall' ),	4 );
-	Menu.Show( event.screenX, event.screenY );
+	Menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
 
 	switch ( Menu.Choice )
 	{

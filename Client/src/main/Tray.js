@@ -81,7 +81,7 @@ function TrayCommotionNormal ( id )
 		menu.AddItem( roster,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tray_settings' ), 3 );
 		menu.AddItem( logout,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_out' ), 4 );
 		menu.AddItem( ! signup,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_exit' ), 1 );
-		menu.Show( external.cursorX, external.cursorY, true );
+		menu.Show( external.cursorX, external.cursorY, external.globals( 'Translator' ).Direction, true );
 
 		switch ( menu.Choice )
 		{
@@ -182,7 +182,7 @@ function TrayCommotionTrayOnly ( id )
 	{
 		var menu = external.newPopupMenu;
 		menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tray_about', [ external.globals( 'softwarename' ) ] ), 1 );
-		menu.Show( external.cursorX, external.cursorY, true );
+		menu.Show( external.cursorX, external.cursorY, external.globals( 'Translator' ).Direction, true );
 
 		switch ( menu.Choice )
 		{

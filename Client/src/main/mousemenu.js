@@ -66,7 +66,7 @@ function mousemenu ( jid, res, group )
 	menu.AddItem( true,			false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_history' ), 4 );
 	menu.AddItem( connected,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_profile' ), 5 );
 
-	menu.Show( event.screenX, event.screenY );
+	menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
 
 	if ( ! external.globals( 'ClientRoster' ).Items.Exists( jid ) )
 		return;

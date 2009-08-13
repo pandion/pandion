@@ -459,7 +459,7 @@ function HyperlinkMenu ( event )
 	var Menu = external.newPopupMenu;
 	Menu.AddItem( true, false, false, true,  0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_open' ), 1 );
 	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_copy' ), 2 );
-	Menu.Show( event.screenX, event.screenY );
+	Menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
 
 	if ( document.getElementById( 'send-text' ) && ! document.getElementById( 'send-text' ).disabled )
 		document.getElementById( 'send-text' ).focus();

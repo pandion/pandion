@@ -218,7 +218,7 @@ function ClientRosterContextMenu ()
 	Menu.AddItem( true, false, false, false, Display.Handle,	external.globals( 'Translator' ).Translate( 'main', 'menu_tool_view' ),		3 );
 	Menu.AddSeparator();
 	Menu.AddItem( true, false, false, false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_tool_settings' ),	4 );
-	Menu.Show( event.screenX, event.screenY );
+	Menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
 
 	switch ( Menu.Choice )
 	{
@@ -383,7 +383,7 @@ function ClientRoster ()
 				var Name = this.Items.Exists( Addresses[i] ) ? this.Items( Addresses[i] ).Name.substr( 0, 30 ) : Addresses[i];
 				Menu.AddItem( true, false, false, false, 0, Name, i + 1 );
 			}
-			Menu.Show( x, y );
+			Menu.Show( x, y, external.globals( 'Translator' ).Direction );
 			if ( ! Menu.Choice )
 				return;
 			dial_chat( Addresses[ Menu.Choice - 1 ] );
@@ -1192,7 +1192,7 @@ function ClientRosterGroup ( roster, name )
 				menu.AddSeparator();
 				menu.AddItem( true, false, false, false, submenu_display.Handle, external.globals( 'Translator' ).Translate( 'main', 'menu_tool_view' ), 1 );
 
-				menu.Show( event.screenX, event.screenY );
+				menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
 
 				if ( ! external.globals( 'ClientRoster' ).Groups.Exists( event.srcElement.GroupName ) )
 					return;
@@ -2161,7 +2161,7 @@ function ClientRosterResource ( item, name )
 								var Menu = external.newPopupMenu;
 								Menu.AddItem( true, false, false, true, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_open' ), 1 );
 								Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_copy' ), 2 );
-								Menu.Show( event.screenX, event.screenY );
+								Menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
 								switch ( Menu.Choice )
 								{
 									case 1:
@@ -2351,7 +2351,7 @@ function ClientRosterResource ( item, name )
 							var Menu = external.newPopupMenu;
 							Menu.AddItem( true, false, false, true, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_open' ), 1 );
 							Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_copy' ), 2 );
-							Menu.Show( event.screenX, event.screenY );
+							Menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
 							switch ( Menu.Choice )
 							{
 								case 1:
