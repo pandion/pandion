@@ -181,8 +181,6 @@ function XMPPOnPresence ( ReceivedXML )
 				external.wnd.restore();
 				external.wnd.focus();
 			}
-
-			external.wnd.messageBox( false, external.globals( 'Translator' ).Translate( 'main', 'msg_cl_removed', [ Presence.FromAddress.CleanAddress() ] ), external.globals( 'softwarename' ), 0 | 64 );
 		}
 	}
 

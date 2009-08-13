@@ -236,7 +236,6 @@ Thank you,
     <code id="msg_expired">The demonstration period of this software has expired.</code>
     <code id="msg_cl_adding">${0} has been added to your contact list.</code>
     <code id="msg_cl_added">${0} has added you to his or her contact list.</code>
-    <code id="msg_cl_removed">${0} has removed you from his or her contact list.</code>
     <code id="msg_blocked">You are on this person's blocking list.</code>
     <code id="msg_autherror">Cannot sign in. This may have one of the following causes:&#13;&#13;- You entered an incorrect password&#13;- The account does not exist on the server&#13;&#13;Please try again.</code>
 
