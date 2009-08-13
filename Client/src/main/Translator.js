@@ -109,6 +109,7 @@ function Translator ()
 		if ( ! externalWindow )
 			externalWindow = DOMDocument.parentWindow.external.wnd;
 		externalWindow.rightToLeft( this.Direction );
+		DOMDocument.dir = DOMDocument.documentElement.dir = DOMDocument.documentElement.class = this.Direction ? 'rtl' : 'ltr';
 		if ( ! this.HTMLCache.Exists( translationWindowName ) )
 			return;
 		var windowCache = this.HTMLCache( translationWindowName );
