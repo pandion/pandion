@@ -45,7 +45,7 @@ function Translator ()
 		if ( dom.documentElement == null )
 			return;
 
-		if ( dom.documentElement.getAttribute( 'dir' ).length !== null )
+		if ( dom.documentElement.getAttribute( 'dir' ) !== null )
 			this.Direction = dom.documentElement.getAttribute( 'dir' ).toString().toLowerCase() == 'rtl';
 
 		var windowNodes = dom.documentElement.selectNodes( '/translation/window[@name]' );
