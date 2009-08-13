@@ -104,15 +104,18 @@ function Translator ()
 		);
 	}
 
-	function TranslateWindow ( windowName, doc )
+	function TranslateWindow ( translationWindowName, DOMDocument, externalWindow )
 	{
-		if ( ! this.HTMLCache.Exists( windowName ) )
+		if ( ! externalWindow )
+			externalWindow = DOMDocument.parentWindow.external.wnd;
+		externalWindow.rightToLeft( this.Direction );
+		if ( ! this.HTMLCache.Exists( translationWindowName ) )
 			return;
-		var windowCache = this.HTMLCache( windowName );
+		var windowCache = this.HTMLCache( translationWindowName );
 		var names = ( new VBArray( windowCache.Keys() ) ).toArray();
 		for ( var i = names.length - 1; i >= 0; --i )
 		{
-			var htmlElem = doc.getElementById( names[i] );
+			var htmlElem = DOMDocument.getElementById( names[i] );
 			if ( htmlElem )
 				for ( var textItem in windowCache( names[i] ) )
 					htmlElem[ textItem ] = windowCache( names[i] )[ textItem ];
