@@ -710,6 +710,21 @@ STDMETHODIMP CPdnWnd::hide(BOOL b)
 	ShowWindow(m_hWnd, b ? SW_HIDE : SW_SHOWNA);
 	return S_OK;
 }
+STDMETHODIMP CPdnWnd::rightToLeft(BOOL b)
+{
+	if(b)
+	{
+		::SetWindowLong(m_hWnd, GWL_EXSTYLE,
+			::GetWindowLong(m_hWnd, GWL_EXSTYLE) | WS_EX_LAYOUTRTL);
+	}
+	else
+	{
+		::SetWindowLong(m_hWnd, GWL_EXSTYLE,
+			::GetWindowLong(m_hWnd, GWL_EXSTYLE) & !WS_EX_LAYOUTRTL);
+	}
+
+	return S_OK;
+}
 STDMETHODIMP CPdnWnd::flash(DWORD u)
 {
 	HWND FGWindow = ::GetForegroundWindow();

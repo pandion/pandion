@@ -173,6 +173,7 @@ public:
 	STDMETHOD(setPos)(int, int);
 	STDMETHOD(setIcon)(BSTR);
 	STDMETHOD(hide)(BOOL);
+	STDMETHOD(rightToLeft)(BOOL);
 	STDMETHOD(flash)(DWORD);
 	STDMETHOD(resizeable)(BOOL);
 	STDMETHOD(showMinBox)(BOOL);

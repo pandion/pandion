@@ -186,6 +186,7 @@ library PandionLib
 		HRESULT setPos([in] int left, [in] int top);
 		HRESULT setIcon([in] BSTR IconPath);
 		HRESULT hide([in] BOOL b);
+		HRESULT rightToLeft([in] BOOL b);
 		HRESULT flash([in] DWORD u);
 		HRESULT resizeable([in] BOOL b);
 		HRESULT showMinBox([in] BOOL b);
