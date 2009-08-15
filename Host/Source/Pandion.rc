@@ -1,56 +1,39 @@
-// Microsoft Visual C++ generated resource script.
-//
-#include "resource.h"
-
-#define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
+// This file is part of Pandion.
 //
-// Generated from the TEXTINCLUDE 2 resource.
+// Pandion is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 //
+// Pandion is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Pandion.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Filename:    Pandion.rc
+// Author(s):   Dries Staelens
+// Copyright:   Copyright (c) 2009 Dries Staelens
+// Description: The resource file for Pandion.
+
 #include <winresrc.h>
-
-/////////////////////////////////////////////////////////////////////////////
-#undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
 // English (U.S.) resources
 
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
-
-#ifdef APSTUDIO_INVOKED
-/////////////////////////////////////////////////////////////////////////////
-//
-// TEXTINCLUDE
-//
-
-1 TEXTINCLUDE 
-BEGIN
-    "resource.h\0"
-END
-
-2 TEXTINCLUDE 
-BEGIN
-    "#include ""winresrc.h""\r\n"
-    "\0"
-END
-
-3 TEXTINCLUDE 
-BEGIN
-    "1 TYPELIB ""Pandion.tlb""\r\n"
-    "\0"
-END
-
-#endif    // APSTUDIO_INVOKED
-
 
 /////////////////////////////////////////////////////////////////////////////
-//
+// Typelib
+
+1 TYPELIB "Pandion.tlb"
+
+/////////////////////////////////////////////////////////////////////////////
 // Version
-//
 
 VS_VERSION_INFO VERSIONINFO
  FILEVERSION 2,6,0,0
@@ -84,34 +67,7 @@ BEGIN
 END
 
 /////////////////////////////////////////////////////////////////////////////
-//
 // Icon
-//
 
-// Icon with lowest ID value placed first to ensure application icon
-// remains consistent on all systems.
+#define IDI_ICON1 205
 IDI_ICON1               ICON                    "default.ico"
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// String Table
-//
-
-STRINGTABLE 
-BEGIN
-    IDS_SERVICENAME         "Pandion"
-END
-
-#endif    // English (U.S.) resources
-/////////////////////////////////////////////////////////////////////////////
-
-#ifndef APSTUDIO_INVOKED
-/////////////////////////////////////////////////////////////////////////////
-//
-// Generated from the TEXTINCLUDE 3 resource.
-//
-1 TYPELIB "Pandion.tlb"
-
-/////////////////////////////////////////////////////////////////////////////
-#endif    // not APSTUDIO_INVOKED
-

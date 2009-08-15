@@ -543,10 +543,6 @@
 				RelativePath="Pandion.rc"
 				>
 			</File>
-			<File
-				RelativePath="Resource.h"
-				>
-			</File>
 		</Filter>
 	</Files>
 	<Globals>
