@@ -164,8 +164,6 @@ Section "Uninstall"
   Delete "$DESKTOP\${PRODUCTSAFE}.lnk"
   Delete "$SMSTARTUP\${PRODUCTSAFE}.lnk"
 
-  ExecWait "$\"$INSTDIR\${PRODUCTSAFE}.exe$\" /UnRegServer"
-
   RMDir /r "$INSTDIR"
 
   ; ; ;  Try to find and remove the profiles  ; ; ;
