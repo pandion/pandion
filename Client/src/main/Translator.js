@@ -108,8 +108,13 @@ function Translator ()
 	{
 		if ( ! externalWindow )
 			externalWindow = DOMDocument.parentWindow.external.wnd;
+
 		externalWindow.rightToLeft( this.Direction );
-		DOMDocument.dir = DOMDocument.documentElement.dir = DOMDocument.documentElement.className = this.Direction ? 'rtl' : 'ltr';
+		if ( DOMDocument.documentElement.dir == 'rtl' && ! this.Direction )
+			DOMDocument.dir = DOMDocument.documentElement.dir = DOMDocument.documentElement.className = 'ltr';
+		else if ( DOMDocument.documentElement.dir != 'rtl' && this.Direction )
+			DOMDocument.dir = DOMDocument.documentElement.dir = DOMDocument.documentElement.className = 'rtl';
+
 		if ( ! this.HTMLCache.Exists( translationWindowName ) )
 			return;
 		var windowCache = this.HTMLCache( translationWindowName );
