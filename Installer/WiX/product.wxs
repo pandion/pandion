@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+    <Product Id="{FE5826DF-B10A-4500-8B43-CF25F3FE3E60}" Language="1033" Manufacturer="Pandion Team" Name="Pandion" UpgradeCode="{9F661F94-F17F-4F5C-B1C8-2955C85C8FE9}" Version="2.6">
+        <Package Compressed="yes" InstallerVersion="200" />
+        <Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id='ProgramFilesFolder' Name='PFiles'>
+				<Directory Id="DESTINATION" Name="Pandion" />
+			</Directory>
+		</Directory>
+        <Feature Id="ProductFeature" Level="1" Title="Core Application">
+            <ComponentGroupRef Id="CoreFiles" />
+        </Feature>
+        <Media Id="1" Cabinet="product.cab" EmbedCab="yes" />
+    </Product>
+</Wix>
