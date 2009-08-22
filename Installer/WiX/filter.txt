@@ -1,2 +1,4 @@
-pandion.pdb
 .gitignore
+pandion.pdb
+pandiond.exe
+pandiond.pdb

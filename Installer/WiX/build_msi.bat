@@ -10,8 +10,8 @@ SETLOCAL
 ECHO Creating temporary copy...
 :: The XCOPY command is deprecated since Vista and replaced by ROBOCOPY
 :: MKDIR "Temp"
-:: XCOPY "../Client" "./Temp" /E /EXCLUDE:filter.txt
-ROBOCOPY "../../Client" "./Temp" /MIR /XF "pandion.pdb" ".gitignore" /NFL /NDL /NJH
+:: XCOPY "../../Client" "./Temp" /E /EXCLUDE:filter.txt
+ROBOCOPY "../../Client" "./Temp" /MIR /XF ".gitignore" "pandion.pdb" "pandiond.exe" "pandiond.pdb" /NFL /NDL /NJH
 
 :: Generate a list of files as a component group.
 ECHO Harvesting components...
@@ -28,3 +28,5 @@ light.exe -nologo -b "./Temp" -out "./Pandion.msi" "./product.wixobj" "./compone
 ECHO Cleaning up...
 RMDIR /S /Q "./Temp"
 DEL "./components.wixobj" "./components.wxs" "./Pandion.wixpdb" "./product.wixobj" /Q
+
+ECHO Done: Pandion.msi
