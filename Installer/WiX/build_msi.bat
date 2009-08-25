@@ -19,14 +19,14 @@ heat.exe dir "./Temp" -nologo -cg "CoreFiles" -dr "DESTINATION" -srd -template:f
 
 :: Transform the XML
 ECHO Compiling installer...
-candle.exe -nologo "./product.wxs" "./components.wxs"
+candle.exe -nologo -sw1077 "./product.wxs" "./components.wxs" "./WixUI_OneClick.wxs" "./AdvancedWelcomeEulaDlg_OneClick.wxs"
 
 :: Create the MSI distributable
 ECHO Linking installer...
-light.exe -nologo -b "./Temp" -out "./Pandion.msi" "./product.wixobj" "./components.wixobj"
+light.exe -nologo -b "./Temp" -ext "WixUIExtension" -ext "WixUtilExtension" -cultures:en-us -sice:ICE38 -sice:ICE64 -sice:ICE91 -out "./Pandion.msi" "./product.wixobj" "./components.wixobj" "./WixUI_OneClick.wixobj" "./AdvancedWelcomeEulaDlg_OneClick.wixobj"
 
 ECHO Cleaning up...
-RMDIR /S /Q "./Temp"
-DEL "./components.wixobj" "./components.wxs" "./Pandion.wixpdb" "./product.wixobj" /Q
+::RMDIR /S /Q "./Temp"
+DEL "./components.wxs" "./*.wixobj" "./*.wixpdb" /Q
 
 ECHO Done: Pandion.msi

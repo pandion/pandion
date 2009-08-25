@@ -1,15 +1,105 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) Sebastiaan Deckers.  All rights reserved.
+    
+    The use and distribution terms for this software are covered by the
+    Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
+    which can be found in the file CPL.TXT at the root of this distribution.
+    By using this software in any fashion, you are agreeing to be bound by
+    the terms of this license.
+    
+    You must not remove this notice, or any other, from this software.
+-->
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
-    <Product Id="{FE5826DF-B10A-4500-8B43-CF25F3FE3E60}" Language="1033" Manufacturer="Pandion Team" Name="Pandion" UpgradeCode="{9F661F94-F17F-4F5C-B1C8-2955C85C8FE9}" Version="2.6">
-        <Package Compressed="yes" InstallerVersion="200" />
-        <Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id='ProgramFilesFolder' Name='PFiles'>
-				<Directory Id="DESTINATION" Name="Pandion" />
+	<Product
+		Id="{FE5826DF-B10A-4500-8B43-CF25F3FE3E60}"
+		Language="1033"
+		Manufacturer="Pandion Project"
+		Name="Pandion"
+		UpgradeCode="{9F661F94-F17F-4F5C-B1C8-2955C85C8FE9}"
+		Version="2.6"
+	>
+
+		<Package
+			Compressed="yes"
+			InstallPrivileges="limited"
+			InstallerVersion="200"
+		/>
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+
+			<Directory Id="LocalAppDataFolder" Name="PFiles">
+				<Directory Id="PandionLocalFiles" Name="Pandion">
+					<Directory Id="DESTINATION" Name="Application"/>
+				</Directory>
 			</Directory>
+
+			<Directory Id="DesktopFolder">
+				<Component Id="DesktopShortcut" Guid="{6d4436d8-88d8-42a5-9b4d-5d86d2f8dba1}">
+					<Shortcut
+						Id="DesktopShortcut" 
+						Name="Pandion"
+						Description="Instant messenger for XMPP networks"
+						Target="[DESTINATION]pandion.exe"
+						WorkingDirectory="DESTINATION"/>
+					<RegistryValue Root="HKCU" Key="Software\Pandion" Name="DesktopShortcut" Type="integer" Value="1" KeyPath="yes"/>
+				</Component>
+			</Directory>
+
+			<Directory Id="ProgramMenuFolder">
+				<Component Id="StartMenuShortcut" Guid="{eee7fe7f-2a5d-4981-8d90-a67f2f74901d}">
+					<Shortcut
+						Id="StartMenuShortcut" 
+						Name="Pandion"
+						Description="Instant messenger for XMPP networks"
+						Target="[DESTINATION]pandion.exe"
+						WorkingDirectory="DESTINATION"/>
+					<RegistryValue Root="HKCU" Key="Software\Pandion" Name="StartMenuShortcut" Type="integer" Value="1" KeyPath="yes"/>
+				</Component>
+			</Directory>
+
+			<Directory Id="StartupFolder">
+				<Component Id="StartupShortcut" Guid="{5785b179-f2a2-4a9d-a9c1-0ae8e93651dc}">
+					<Shortcut
+						Id="StartupShortcut" 
+						Name="Pandion"
+						Description="Instant messenger for XMPP networks"
+						Target="[DESTINATION]pandion.exe"
+						WorkingDirectory="DESTINATION"/>
+					<RegistryValue Root="HKCU" Key="Software\Pandion" Name="StartupShortcut" Type="integer" Value="1" KeyPath="yes"/>
+				</Component>
+			</Directory>
+
 		</Directory>
-        <Feature Id="ProductFeature" Level="1" Title="Core Application">
-            <ComponentGroupRef Id="CoreFiles" />
-        </Feature>
-        <Media Id="1" Cabinet="product.cab" EmbedCab="yes" />
-    </Product>
+
+		<Feature Id="ProductFeature" Level="1" Title="Core Application">
+			<ComponentGroupRef Id="CoreFiles"/>
+			<ComponentRef Id="DesktopShortcut"/>
+			<ComponentRef Id="StartMenuShortcut"/>
+			<ComponentRef Id="StartupShortcut"/>
+		</Feature>
+
+		<Media Cabinet="product.cab" EmbedCab="yes" Id="1"/>
+
+		<UIRef Id="WixUI_OneClick"/>
+		<WixVariable Id="WixUIBannerBmp" Value="./banner.jpg"/>
+		<WixVariable Id="WixUIDialogBmp" Value="./dialog.jpg"/>
+		<WixVariable Id="WixUILicenseRtf" Value="../../Client/License.rtf"/>
+
+		<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch Pandion"/>
+		<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1"/>
+		<Property Id="WixShellExecTarget" Value="[DESTINATION]pandion.exe"/>
+		<CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes"/>
+		<UI>
+			<Publish Dialog="ExitDialog" Control="Finish" Event="DoAction" Value="LaunchApplication">
+				WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed
+			</Publish>
+		</UI>
+
+		<Property Id="ARPHELPLINK" Value="http://www.pandion.be/support"/>
+		<Property Id="ARPURLINFOABOUT" Value="http://www.pandion.be/about"/>
+
+		<Property Id="ALLUSERS" Secure="yes"/>
+
+	</Product>
 </Wix>
