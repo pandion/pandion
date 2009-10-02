@@ -2,26 +2,9 @@ function XMPPOnStream ( ReceivedXML )
 {
 	warn( 'RECV: ' + ReceivedXML.xml );
 
-	/* Server supports stream encryption
-	 */
-	if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/starttls[@xmlns="urn:ietf:params:xml:ns:xmpp-tls"]' ) 
-		&& external.globals( 'encryption' ) != 'none' )
-	{
-		var Str = '<starttls xmlns="urn:ietf:params:xml:ns:xmpp-tls"/>';
-		warn( 'SENT: ' + Str );
-		external.XMPP.SendText( Str );
-	}
-
-	/* Server is ready to start stream encryption handshake
-	 */
-	else if ( ReceivedXML.documentElement.selectSingleNode( '/proceed[@xmlns="urn:ietf:params:xml:ns:xmpp-tls"]' ) )
-	{
-		external.XMPP.StartTLS();
-	}
-
 	/* Server supports stream compression
 	 */
-	else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/compression[@xmlns="http://jabber.org/features/compress"]/method[ . = "zlib" ]' ) )
+	if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/compression[@xmlns="http://jabber.org/features/compress"]/method[ . = "zlib" ]' ) )
 	{
 		var Str = '<compress xmlns="http://jabber.org/protocol/compress"><method>zlib</method></compress>';
 		warn( 'SENT: ' + Str );
@@ -36,10 +19,47 @@ function XMPPOnStream ( ReceivedXML )
 		//XMPPOnConnected();
 	}
 
-	/* Server supports SASL authentication
+	/* Error during compression
 	 */
-	else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]' )
-		&& ( external.globals( 'encryption' ) != 'tls' || external.globals( 'XMPPEncryption' ) == 'tls' ) )
+	else if ( ReceivedXML.documentElement.selectSingleNode( '/failure[@xmlns="http://jabber.org/protocol/compress"]' ) )
+	{
+		OnLoginAbort();
+	}
+
+	/* Server supports stream encryption
+	 */
+	else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/starttls[@xmlns="urn:ietf:params:xml:ns:xmpp-tls"]' ) 
+		&& external.globals( 'encryption' ) != 'none' )
+	{
+		var Str = '<starttls xmlns="urn:ietf:params:xml:ns:xmpp-tls"/>';
+		warn( 'SENT: ' + Str );
+		external.XMPP.SendText( Str );
+	}
+
+	/* Server is ready to start stream encryption handshake
+	 */
+	else if ( ReceivedXML.documentElement.selectSingleNode( '/proceed[@xmlns="urn:ietf:params:xml:ns:xmpp-tls"]' ) )
+	{
+		external.XMPP.StartTLS();
+	}
+
+	/* Error during encryption
+	 */
+	else if ( ReceivedXML.documentElement.selectSingleNode( '/failure[@xmlns="urn:ietf:params:xml:ns:xmpp-tls"]' ) )
+	{
+		OnLoginAbort();
+	}
+
+	/* Authentication
+	 */
+	else if ( ( external.globals( 'encryption' ) != 'tls' || external.globals( 'XMPPEncryption' ) == 'tls' )
+		&& ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]' )
+			|| ReceivedXML.documentElement.selectSingleNode( '/stream:features/auth[@xmlns="http://jabber.org/features/iq-auth"]' )
+			|| ( ReceivedXML.documentElement.selectSingleNode( '/stream:features' )
+				&& ! ReceivedXML.documentElement.childNodes.length
+			)
+		)
+	)
 	{
 		/* Request challenge if the server supports GSSAPI, GSS-SPNEGO, or NTLM mechanism
 		 */
@@ -77,6 +97,7 @@ function XMPPOnStream ( ReceivedXML )
 				OnLoginAbort();
 			}
 		}
+
 		/* Request MD5 challenge
 		 */
 		else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "DIGEST-MD5" ]' ) )
@@ -85,6 +106,7 @@ function XMPPOnStream ( ReceivedXML )
 			warn( 'SENT: ' + Str );
 			external.XMPP.SendText( Str );
 		}
+
 		/* Send plaintext credentials
 		 */
 		else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "PLAIN" ]' ) )
@@ -104,14 +126,43 @@ function XMPPOnStream ( ReceivedXML )
 			warn( 'SENT: ' + dom.xml );
 			external.XMPP.SendXML( dom );
 		}
+
+		/* Use old protocol to log in
+		 */
+		else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/auth[@xmlns="http://jabber.org/features/iq-auth"]' )
+			|| ( ReceivedXML.documentElement.selectSingleNode( '/stream:features' )
+				&& ! ReceivedXML.documentElement.childNodes.length
+			)
+		)
+		{
+			var hook		= new XMPPHookIQ();
+			hook.Window		= external.wnd;
+			hook.Callback	= 'OnLoginAuthSend';
+
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:auth"><username/></query></iq>' );
+			dom.documentElement.firstChild.firstChild.text = external.globals( 'cfg' )( 'username' );
+			dom.documentElement.setAttribute( 'to', external.globals( 'cfg' )( 'server' ) );
+			dom.documentElement.setAttribute( 'id', hook.Id );
+			warn( 'SENT: ' + dom.xml );
+			external.XMPP.SendXML( dom );
+		}
+
 		/* Unsupported authentication mechanisms
 		 */
-		else
+		else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]' ) )
 		{
 			var Str = '<abort xmlns="urn:ietf:params:xml:ns:xmpp-sasl"/>';
 			warn( 'SENT: ' + Str );
 			external.XMPP.SendText( Str );
 			OnLoginAuthError();
+		}
+
+		/* Unsupported stream features
+		 */
+		else
+		{
+			OnLoginAbort();
 		}
 	}
 
@@ -244,6 +295,13 @@ function XMPPOnStream ( ReceivedXML )
 		XMPPOnConnected();
 	}
 
+	/* Error during authentication
+	 */
+	else if ( ReceivedXML.documentElement.selectSingleNode( '/failure[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]' ) )
+	{
+		OnLoginAuthError();
+	}
+
 	/* Bind a resource to the stream
 	 */
 	else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/bind[@xmlns="urn:ietf:params:xml:ns:xmpp-bind"]' ) )
@@ -258,31 +316,6 @@ function XMPPOnStream ( ReceivedXML )
 		dom.documentElement.firstChild.firstChild.text = external.globals( 'cfg' )( 'resource' );
 		warn( 'SENT: ' + dom.xml );
 		external.XMPP.SendXML( dom );
-	}
-
-	/* Use old protocol to log in
-	 */
-	else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features' ) )
-	{
-		if ( ( ! ReceivedXML.documentElement.childNodes.length || ReceivedXML.documentElement.selectSingleNode( '/stream:features/auth[@xmlns="http://jabber.org/features/iq-auth"]' ) )
-			&& ( external.globals( 'encryption' ) != 'tls' || external.globals( 'XMPPEncryption' ) == 'tls' ) )
-		{
-			var hook		= new XMPPHookIQ();
-			hook.Window		= external.wnd;
-			hook.Callback	= 'OnLoginAuthSend';
-
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
-			dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:auth"><username/></query></iq>' );
-			dom.documentElement.firstChild.firstChild.text = external.globals( 'cfg' )( 'username' );
-			dom.documentElement.setAttribute( 'to', external.globals( 'cfg' )( 'server' ) );
-			dom.documentElement.setAttribute( 'id', hook.Id );
-			warn( 'SENT: ' + dom.xml );
-			external.XMPP.SendXML( dom );
-		}
-		else
-		{
-			OnLoginAbort();
-		}
 	}
 
 	/* Generate a different resource and auto-reconnect
@@ -310,26 +343,5 @@ function XMPPOnStream ( ReceivedXML )
 			external.XMPP.SendText( Str );
 			external.XMPP.Disconnect();
 		}
-	}
-
-	/* Error during encryption
-	 */
-	else if ( ReceivedXML.documentElement.selectSingleNode( '/failure[@xmlns="urn:ietf:params:xml:ns:xmpp-tls"]' ) )
-	{
-		OnLoginAbort();
-	}
-
-	/* Error during compression
-	 */
-	else if ( ReceivedXML.documentElement.selectSingleNode( '/failure[@xmlns="http://jabber.org/protocol/compress"]' ) )
-	{
-		OnLoginAbort();
-	}
-
-	/* Error during authentication
-	 */
-	else if ( ReceivedXML.documentElement.selectSingleNode( '/failure[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]' ) )
-	{
-		OnLoginAuthError();
 	}
 }
