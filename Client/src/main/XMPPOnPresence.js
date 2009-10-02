@@ -173,15 +173,6 @@ function XMPPOnPresence ( ReceivedXML )
 	 */
 	else if ( Presence.Type == 'unsubscribe' )
 	{
-		if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) )
-		{
-			if ( ! external.wnd.isActive() )
-			{
-				external.wnd.hide( false );
-				external.wnd.restore();
-				external.wnd.focus();
-			}
-		}
 	}
 
 	/* Conference participant
