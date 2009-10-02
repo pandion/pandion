@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+	<?define AppHelpLink="http://www.pandion.be/support" ?>
+	<?define AppUrlInfoAbout="http://www.pandion.be/about" ?>
+	<?define Manufacturer="Pandion Project" ?>
+	<?define Name="Pandion" ?>
+	<?define SafeName="Pandion" ?>
+	<?define Version="2.6.0" ?>
+</Include>

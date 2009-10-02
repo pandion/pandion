@@ -122,15 +122,13 @@ function checkUpdateVersion ()
 					if ( isNaN( Port ) )
 						Port = 80;
 
-					gFileName = 'Update.exe';
-/*					gFileName = Installer;
 					if ( Installer.lastIndexOf( '/' ) != -1 )
 						gFileName = decodeURIComponent( Installer.substr( Installer.lastIndexOf( '/' ) + 1 ).replace( /\\\:\*\?\"\<\>\|/, '' ) );
 					else
 						gFileName = 'noname';
 					if ( ! gFileName.length )
 						gFileName = 'noname';
-*/
+
 					var DownloadLocation = external.globals( 'usersdir' ) + 'Downloads\\';
 
 					if ( ! external.Directory.Exists( DownloadLocation ) )
@@ -217,10 +215,10 @@ function update ()
 {
 	var DownloadLocation = external.globals( 'usersdir' ) + 'Downloads\\';
 
-	if ( external.FileExists( DownloadLocation + 'UpdateParameters.txt' ) )
-		external.File( DownloadLocation + 'UpdateParameters.txt' ).Delete();
+	if ( external.FileExists( DownloadLocation + 'Update.txt' ) )
+		external.File( DownloadLocation + 'Update.txt' ).Delete();
 
-	if ( ! external.FileExists( DownloadLocation + 'UpdateParameters.txt' ) )
+	if ( ! external.FileExists( DownloadLocation + 'Update.txt' ) )
 	{
 		external.globals.Add( 'autoupdatecommand', DownloadLocation + gFileName );
 		external.globals.Add( 'autoupdateparameters', gParameters );
@@ -259,10 +257,11 @@ function setProgressBar ( percentage )
 
 function saveUpdateParameters ()
 {
-	var path = external.globals( 'usersdir' ) + 'Downloads\\UpdateParameters.txt';
+	var path = external.globals( 'usersdir' ) + 'Downloads\\Update.txt';
 	if ( external.FileExists( path ) )
 		external.File( path ).Delete();
 	var file = external.File( path );
+	file.WriteLine( gFileName );
 	file.WriteLine( gParameters );
 	file.Close();
 }

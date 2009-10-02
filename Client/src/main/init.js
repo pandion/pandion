@@ -194,23 +194,24 @@ function init ()
 
 	/* Auto-update
 	 */
-	if ( external.FileExists( external.globals( 'usersdir' ) + 'Downloads\\UpdateParameters.txt' ) && external.FileExists( external.globals( 'usersdir' ) + 'Downloads\\Update.exe' ) )
+	if ( external.FileExists( external.globals( 'usersdir' ) + 'Downloads\\Update.txt' ) )
 	{
-		var file = external.File( external.globals( 'usersdir' ) + 'Downloads\\UpdateParameters.txt' );
-		var parameters = '';
+		var file = external.File( external.globals( 'usersdir' ) + 'Downloads\\Update.txt' );
+		var command = '', parameters = '';
 		try
 		{
+			command = file.ReadLine();
 			parameters = file.ReadLine();
 		}
 		catch ( e )
 		{
 		}
 		file.Close();
-		external.File( external.globals( 'usersdir' ) + 'Downloads\\UpdateParameters.txt' ).Delete();
+		external.File( external.globals( 'usersdir' ) + 'Downloads\\Update.txt' ).Delete();
 
-		if ( ! external.FileExists( external.globals( 'usersdir' ) + 'Downloads\\UpdateParameters.txt' ) )
+		if ( ! external.FileExists( external.globals( 'usersdir' ) + 'Downloads\\Update.txt' ) )
 		{
-			external.globals.Add( 'autoupdatecommand', external.globals( 'usersdir' ) + 'Downloads\\Update.exe' );
+			external.globals.Add( 'autoupdatecommand', external.globals( 'usersdir' ) + 'Downloads\\' + command );
 			external.globals.Add( 'autoupdateparameters', parameters );
 			external.globals.Add( 'autoupdatedirectory', external.globals( 'usersdir' ) + 'Downloads\\' );
 			setTimeout( 'external.wnd.close()', 0 );
