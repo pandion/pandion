@@ -4,13 +4,7 @@ function CommandLine ( command )
 {
 	external.globals( 'CommandLineQueue' ).push( command );
 	setTimeout( CommandLineShift, 0 );
-	if ( external.windows.Exists( 'login' ) )
-	{
-		external.wnd.hide( true );
-		external.windows( 'login' ).restore();
-		external.windows( 'login' ).focus();
-	}
-	else if ( external.windows.Exists( 'signup' ) )
+	if ( external.windows.Exists( 'signup' ) )
 	{
 		external.wnd.hide( true );
 		external.windows( 'signup' ).restore();

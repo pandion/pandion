@@ -162,12 +162,7 @@ function TrayCommotionTrayOnly ( id )
 	if ( id == 513 || id == 514 || id == 515 )
 	// left down, left up, double left
 	{
-		if ( external.windows.Exists( 'login' ) )
-		{
-			external.windows( 'login' ).restore();
-			external.windows( 'login' ).focus();
-		}
-		else if ( external.windows.Exists( 'signup' ) )
+		if ( external.windows.Exists( 'signup' ) )
 		{
 			external.windows( 'signup' ).restore();
 			external.windows( 'signup' ).focus();

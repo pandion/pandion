@@ -134,7 +134,7 @@ function OK ()
 		 */
 		if ( ! external.globals( 'XMPPConnected' ) || 6 == external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'preferences', 'reconnect' ), external.globals( 'softwarename' ), 4 | 32 ) )
 		{
-			if ( ! external.windows.Exists( 'signup' ) && ! external.windows.Exists( 'login' ) )
+			if ( ! external.windows.Exists( 'signup' ) && external.wnd.params.document.getElementById( 'signin-dialog' ).style.display != 'block' )
 			{
 				external.wnd.params.mode_new( -1, external.globals( 'cfg' )( 'lastmsg' ) );
 				external.globals( 'XMPPConnected' ) = false;
