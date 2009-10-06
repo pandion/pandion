@@ -1181,8 +1181,8 @@ function ReceiveAvatar ( iq )
  */
 function SendMessage ()
 {
-	var Tracker	= gContainer.Trackers( gContainer.ActiveTrackerAddress );
-	var Input	= document.getElementById( 'send-text' ).value;
+	var Tracker = gContainer.Trackers( gContainer.ActiveTrackerAddress );
+	var Input = document.getElementById( 'send-text' ).value;
 
 	/* Change nickname
 	 */
@@ -1202,33 +1202,33 @@ function SendMessage ()
 	else
 	{
 		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
-		dom.loadXML( '<message><body/><html><body><span/></body></html><x xmlns="jisp:x:jep-0038"><name/></x></message>' );
-		dom.documentElement.setAttribute( 'xml:lang',	external.globals( 'language' ) );
-		dom.documentElement.setAttribute( 'from',		external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '/' + external.globals( 'cfg' )( 'resource' ) );
+		dom.loadXML( '<message><body/><html><body/></html><x xmlns="jisp:x:jep-0038"><name/></x></message>' );
+		dom.documentElement.setAttribute( 'xml:lang', external.globals( 'language' ) );
+		dom.documentElement.setAttribute( 'from', external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '/' + external.globals( 'cfg' )( 'resource' ) );
 		dom.selectSingleNode( '/message/x[@xmlns="jisp:x:jep-0038"]/name' ).text = external.globals( 'cfg' )( 'emoticonset' );
 
 		if ( Input.match( /^\/([^\:]+)\: \S/ ) && Tracker.Occupants.Exists( RegExp.$1 ) )
 		{
 			Input = Input.substr( RegExp.$1.length + 3 );
-			dom.documentElement.setAttribute( 'type',	'chat' );
-			dom.documentElement.setAttribute( 'to',		Tracker.Address.ShortAddress() + '/' + RegExp.$1 );
+			dom.documentElement.setAttribute( 'type', 'chat' );
+			dom.documentElement.setAttribute( 'to', Tracker.Address.ShortAddress() + '/' + RegExp.$1 );
 		}
 		else
 		{
-			dom.documentElement.setAttribute( 'type',	'groupchat' );
-			dom.documentElement.setAttribute( 'to',		Tracker.Address.ShortAddress() );
+			dom.documentElement.setAttribute( 'type', 'groupchat' );
+			dom.documentElement.setAttribute( 'to', Tracker.Address.ShortAddress() );
 		}
 
 		dom.documentElement.firstChild.text = Input;
 
-		var HTMLSpan	= dom.documentElement.selectSingleNode( 'html/body/span' );
-		var TextLines	= Input.split( '\n' );
-		HTMLSpan.setAttribute( 'style', document.getElementById( 'send-text' ).style.cssText.toLowerCase() );
-		HTMLSpan.appendChild( dom.createTextNode( TextLines[0] ) );
+		var HTMLBody = dom.documentElement.selectSingleNode( '/message/html/body' );
+		var TextLines = Input.split( '\n' );
+		HTMLBody.setAttribute( 'style', document.getElementById( 'send-text' ).style.cssText.toLowerCase() );
+		HTMLBody.appendChild( dom.createTextNode( TextLines[0] ) );
 		for ( var i = 1; i < TextLines.length; ++i )
 		{
-			HTMLSpan.appendChild( dom.createElement( 'br' ) );
-			HTMLSpan.appendChild( dom.createTextNode( TextLines[i] ) );
+			HTMLBody.appendChild( dom.createElement( 'br' ) );
+			HTMLBody.appendChild( dom.createTextNode( TextLines[i] ) );
 		}
 		dom.documentElement.selectSingleNode( 'html' ).setAttribute( 'xmlns', 'http://jabber.org/protocol/xhtml-im' );
 		dom.documentElement.selectSingleNode( 'html' ).firstChild.setAttribute( 'xmlns', 'http://www.w3.org/1999/xhtml' );
