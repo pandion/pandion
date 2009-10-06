@@ -2,33 +2,9 @@ function XMPPOnStream ( ReceivedXML )
 {
 	warn( 'RECV: ' + ReceivedXML.xml );
 
-	/* Server supports stream compression
-	 */
-	if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/compression[@xmlns="http://jabber.org/features/compress"]/method[ . = "zlib" ]' ) )
-	{
-		var Str = '<compress xmlns="http://jabber.org/protocol/compress"><method>zlib</method></compress>';
-		warn( 'SENT: ' + Str );
-		external.XMPP.SendText( Str );
-	}
-
-	/* Server is ready to start stream compression
-	 */
-	else if ( ReceivedXML.documentElement.selectSingleNode( '/compressed[@xmlns="http://jabber.org/protocol/compress"]' ) )
-	{
-		external.XMPP.StartSC();
-		//XMPPOnConnected();
-	}
-
-	/* Error during compression
-	 */
-	else if ( ReceivedXML.documentElement.selectSingleNode( '/failure[@xmlns="http://jabber.org/protocol/compress"]' ) )
-	{
-		OnLoginAbort();
-	}
-
 	/* Server supports stream encryption
 	 */
-	else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/starttls[@xmlns="urn:ietf:params:xml:ns:xmpp-tls"]' ) 
+	if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/starttls[@xmlns="urn:ietf:params:xml:ns:xmpp-tls"]' ) 
 		&& external.globals( 'encryption' ) != 'none' )
 	{
 		var Str = '<starttls xmlns="urn:ietf:params:xml:ns:xmpp-tls"/>';
@@ -300,6 +276,30 @@ function XMPPOnStream ( ReceivedXML )
 	else if ( ReceivedXML.documentElement.selectSingleNode( '/failure[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]' ) )
 	{
 		OnLoginAuthError();
+	}
+
+	/* Server supports stream compression
+	 */
+	else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/compression[@xmlns="http://jabber.org/features/compress"]/method[ . = "zlib" ]' ) )
+	{
+		var Str = '<compress xmlns="http://jabber.org/protocol/compress"><method>zlib</method></compress>';
+		warn( 'SENT: ' + Str );
+		external.XMPP.SendText( Str );
+	}
+
+	/* Server is ready to start stream compression
+	 */
+	else if ( ReceivedXML.documentElement.selectSingleNode( '/compressed[@xmlns="http://jabber.org/protocol/compress"]' ) )
+	{
+		external.XMPP.StartSC();
+		//XMPPOnConnected();
+	}
+
+	/* Error during compression
+	 */
+	else if ( ReceivedXML.documentElement.selectSingleNode( '/failure[@xmlns="http://jabber.org/protocol/compress"]' ) )
+	{
+		OnLoginAbort();
 	}
 
 	/* Bind a resource to the stream
