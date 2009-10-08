@@ -85,6 +85,17 @@ function init ()
 			else
 				external.globals.Add( keys[i], brandxml( keys[i] ) );
 	}
+	var file = external.File( external.globals( 'cwd' ) + '..\\settings\\build.txt' );
+	var build = 0;
+	try
+	{
+		build = parseInt( file.ReadLine(), 10 );
+	}
+	catch ( e )
+	{
+	}
+	file.Close();
+	external.globals( 'softwareversion' ) += '.' + ( isNaN( build ) ? 0 : build );
 
 	/* Load branding data from registry
 	 */
