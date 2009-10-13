@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<!--
+	Appcaster
+	Copyright (c) 2009 Sebastiaan Deckers
+	License: GNU General Public License version 3 or later
+-->
+<job>
+<?job error="true" debug="true"?>
+	<runtime>
+		<description>Generate or append an Atom feed with software update announcements.</description>
+
+		<named name="path" helpstring="Location of the appcast (default: appcaster.xml)" type="string" required="false"/>
+		<named name="overwrite" helpstring="Erase the existing appcast (default: false)" type="string" required="false"/>
+
+		<named name="application" helpstring="Name of the software" type="string" required="true"/>
+		<named name="author" helpstring="Name of the publisher" type="string" required="false"/>
+		<named name="description" helpstring="Information about the appcast" type="string" required="false"/>
+		<named name="history" helpstring="URL of the revision history" type="string" required="false"/>
+		<named name="location" helpstring="URL of the appcast" type="string" required="false"/>
+
+		<named name="arguments" helpstring="Command line arguments for the update" type="string" required="false"/>
+		<named name="changes" helpstring="Summary of the update" type="string" required="false"/>
+		<named name="info" helpstring="URL of the release notes" type="string" required="false"/>
+		<named name="mime" helpstring="MIME file type of the update file (default: application/octet-stream)" type="string" required="false"/>
+		<named name="size" helpstring="Update file size in bytes or detected by file path" type="string" required="false"/>
+		<named name="timestamp" helpstring="Time stamp of the update release (RFC 3339)" type="string" required="false"/>
+		<named name="track" helpstring="Update deployment track (default: stable)" type="string" required="false"/>
+		<named name="version" helpstring="Version of the update" type="string" required="true"/>
+		<named name="url" helpstring="Download link to the update file" type="string" required="false"/>
+
+		<example>
+Note:
+The "size" argument may be a number specifying the file size in bytes, or a string specifying a local file path. If the local file exists, its file size will be used.
+
+Basic Example:
+appcaster.wsf /application:FooApp /version:1.0.1
+
+Full Example:
+appcaster.wsf /path:myfeed.xml /overwrite:true /application:FooApp /author:"Bar Inc." /description:"Latest updates feed" /location:http://example.com/fooapp.html /history:http://example.com/versions.html /arguments:--x64 /changes:"Better foos\nFixed bars" /info:http://example.com/v100.html /mime:application/x-msi /timestamp:2003-12-13T18:30:02.25+01:00 /size:1369088 /track:beta /version:1.0.1 /url:http://example.com/foo.msi
+		</example>
+	</runtime>
+	<script language="JScript">
+<![CDATA[
+var Appcast = function(){
+
+var generator = {
+	name: "Appcaster",
+	uri: "http://github.com/cbas/appcast",
+	version: "1.0.0",
+
+	output: {
+		overwrite: "false",
+		path: "appcaster.xml"
+	},
+
+	feed: {
+		application: "",
+		author: "",
+		description: "",
+		history: "",
+		location: ""
+	},
+
+	release: {
+		arguments: "",
+		changes: "",
+		info: "",
+		mime: "application/octet-stream",
+		size: "",
+		timestamp: "",
+		track: "stable",
+		version: "",
+		url: ""
+	},
+
+	tools: {
+		timestamp: function (date) {
+			var pad = function (amount, width) {
+				var padding = "";
+				while (padding.length < width - 1 && amount < Math.pow(10, width - padding.length - 1))
+					padding += "0";
+				return padding + amount.toString();
+			}
+			date = date ? date : new Date();
+			var offset = date.getTimezoneOffset();
+			return pad(date.getFullYear(), 4)
+				 + "-" + pad(date.getMonth() + 1, 2)
+				 + "-" + pad(date.getDate(), 2)
+				 + "T" + pad(date.getHours(), 2)
+				 + ":" + pad(date.getMinutes(), 2)
+				 + ":" + pad(date.getSeconds(), 2)
+				 + "." + pad(date.getMilliseconds(), 3)
+				 + (offset > 0 ? "-" : "+")
+				 + pad(Math.floor(Math.abs(offset) / 60), 2)
+				 + ":" + pad(Math.abs(offset) % 60, 2);
+		},
+
+		UUID: function () {
+			return (new ActiveXObject("Scriptlet.TypeLib")).Guid.slice(1, -3).toLowerCase();
+		},
+
+		loadConfig: function () {
+			var checkAndApply = function (rootObject, argumentNames) {
+				for (var i = 0; i < argumentNames.length; i++)
+					if (WScript.Arguments.Named.Exists(argumentNames[i]))
+						rootObject[argumentNames[i]] = WScript.Arguments.Named(argumentNames[i]);
+			}
+			checkAndApply(generator.output, ["path", "overwrite"]);
+			checkAndApply(generator.feed, ["application", "author", "description", "history", "location"]);
+			checkAndApply(generator.release, ["arguments", "changes", "info", "mime", "publication", "size", "track", "version", "url"]);
+			if (generator.release.timestamp.length === 0)
+				generator.release.timestamp = generator.tools.timestamp();
+			if (generator.release.size.match(/[^\d]/)) {
+				var fso = new ActiveXObject("Scripting.FileSystemObject");
+				if (fso.FileExists(generator.release.size))
+					generator.release.size = fso.GetFile(generator.release.size).Size;
+			}
+		},
+
+		getFeed: function (path, overwrite) {
+			if (overwrite)
+				generator.tools.eraseFeed(path);
+			var feed = generator.tools.loadFeedFromFile(path);
+			return feed ? feed : generator.tools.prepareDefaultFeed(path);
+		},
+
+		eraseFeed: function (path) {
+			var fso = new ActiveXObject("Scripting.FileSystemObject");
+			if (fso.FileExists(path)) {
+				WScript.Echo("Deleting " + path);
+				fso.DeleteFile(path, true);
+			}
+		},
+
+		loadFeedFromFile: function (path) {
+			var dom = new ActiveXObject("Msxml2.DOMDocument");
+			dom.async = false;
+			dom.resolveExternals = false;
+			dom.load(path);
+			if (dom.parseError.errorCode === 0) {
+				WScript.Echo("Loading existing feed from " + generator.output.path);
+				var updated = dom.documentElement.selectSingleNode("/feed/updated");
+				if (updated)
+					updated.text = generator.tools.timestamp();
+				else
+					dom.documentElement.appendChild(dom.documentElement.createElement("updated")).text = generator.tools.timestamp();
+				return dom;
+			}
+			else
+				return null;
+		},
+
+		prepareDefaultFeed: function () {
+			WScript.Echo("Building feed from template");
+			var dom = new ActiveXObject("Msxml2.DOMDocument");
+			dom.async = false;
+			dom.resolveExternals = false;
+			var xml = [];
+			xml.push("<?xml version='1.0'?>\n");
+			xml.push("<feed xmlns='http://www.w3.org/2005/Atom'>\n");
+			xml.push("\t<generator version='" + generator.version + "' uri='" + generator.uri + "'>" + generator.name + "</generator>\n");
+			xml.push("\t<id>urn:uuid:" + generator.tools.UUID() + "</id>\n");
+			if (generator.feed.author.length) {
+				xml.push("\t<author>\n");
+				xml.push("\t\t<name>" + generator.feed.author + "</name>\n");
+				xml.push("\t</author>\n");
+			}
+			else
+				WScript.Echo("Warning: Author is not specified for the feed. Possible RFC 4287 (Atom 1.0) violation.");
+			if (generator.feed.history.length) {
+				xml.push("\t<link href='" + generator.feed.history + "'\n");
+				xml.push("\t\trel='alternate'\n");
+				xml.push("\t\ttitle='" + generator.feed.application + " Release History'\n");
+				xml.push("\t\ttype='text/html'/>\n");
+			}
+			if (generator.feed.location.length) {
+				xml.push("\t<link href='" + generator.feed.location + "'\n");
+				xml.push("\t\trel='self'\n");
+				xml.push("\t\ttitle='" + generator.feed.application + " Updates Appcast'/>\n");
+			}
+			if (generator.feed.description.length) {
+				xml.push("\t<subtitle>" + generator.feed.description + "</subtitle>\n");
+			}
+			xml.push("\t<title>" + generator.feed.application + " Updates Appcast</title>\n");
+			xml.push("\t<updated>" + generator.tools.timestamp() + "</updated>\n");
+			xml.push("</feed>");
+			dom.loadXML(xml.join(""));
+			return dom;
+		},
+
+		createEntry: function () {
+			WScript.Echo("Creating new appcast entry");
+			var dom = new ActiveXObject("Msxml2.DOMDocument");
+			dom.async = false;
+			dom.resolveExternals = false;
+			var xml = [];
+			xml.push("\t<entry xmlns='http://www.w3.org/2005/Atom'");
+			xml.push("\t\txmlns:appcast='http://pandion.im/protocol/appcast/1.0'\n");
+			xml.push("\t\tappcast:name='" + generator.feed.application + "'\n");
+			xml.push("\t\tappcast:track='" + generator.release.track + "'\n");
+			xml.push("\t\tappcast:version='" + generator.release.version + "'>\n");
+			xml.push("\t\t<id>urn:uuid:" + generator.tools.UUID() + "</id>\n");
+			if (generator.release.url.length) {
+				xml.push("\t\t<link appcast:arguments='" + generator.release.arguments + "'\n");
+				xml.push("\t\t\thref='" + generator.release.url + "'\n");
+				xml.push("\t\t\tlength='" + generator.release.size + "'\n");
+				xml.push("\t\t\trel='enclosure'\n");
+				xml.push("\t\t\ttitle='" + generator.feed.application + " " + generator.release.version + "'\n");
+				xml.push("\t\t\ttype='" + generator.release.mime + "'/>\n");
+			}
+			else
+				WScript.Echo("Warning: No download link specified for the release.");
+			if (generator.release.info.length) {
+				xml.push("\t\t<link href='" + generator.release.info + "'\n");
+				xml.push("\t\t\trel='alternate'\n");
+				xml.push("\t\t\ttitle='Release Notes'\n");
+				xml.push("\t\t\ttype='text/html'/>\n");
+			}
+			else
+				WScript.Echo("Warning: No changes link specified for the release. Possible RFC 4287 (Atom 1.0) violation.");
+			xml.push("\t\t<published>" + generator.release.timestamp + "</published>\n");
+			if (generator.release.changes.length)
+				xml.push("\t\t<summary>" + generator.release.changes + "</summary>\n");
+			else
+				WScript.Echo("Warning: No changes description specified for the release. Possible RFC 4287 (Atom 1.0) violation.");
+			xml.push("\t\t<title>Update: " + generator.feed.application + " " + generator.release.version + "</title>\n");
+			xml.push("\t\t<updated>" + generator.release.timestamp + "</updated>\n");
+			xml.push("\t</entry>\n");
+			dom.loadXML(xml.join(""));
+			return dom;
+		}
+	}
+};
+
+if (WScript.Arguments.length === 0) {
+	WScript.Arguments.ShowUsage();
+	WScript.Quit(0);
+}
+generator.tools.loadConfig();
+if (generator.feed.application.length === 0) {
+	WScript.Echo("Error: Application name is not specified.");
+	WScript.Quit(1);
+}
+if (generator.release.version.length === 0) {
+	WScript.Echo("Error: Release version is not specified.");
+	WScript.Quit(1);
+}
+var feedDom = generator.tools.getFeed(generator.output.path, generator.output.overwrite === "true");
+var entryDom = generator.tools.createEntry();
+feedDom.documentElement.appendChild(entryDom.documentElement);
+WScript.Echo("Saving feed to " + generator.output.path);
+feedDom.save(generator.output.path);
+
+}();
+]]>
+	</script>
+</job>
