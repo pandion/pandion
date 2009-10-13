@@ -7,6 +7,14 @@ SETLOCAL
 :: Default location:
 :: C:\Program Files (x86)\Windows Installer XML v3.5\bin
 
+:: TODO: This information should be centralized and automated. Perhaps using Ant or Maven2?
+SET VERSION_MAJOR=2
+SET VERSION_MINOR=6
+
+:: Hudson sets its environment variables but defaults are provided for manual builds.
+IF NOT DEFINED BUILD_NUMBER SET BUILD_NUMBER=0
+SET PACKAGE=Pandion_%VERSION_MAJOR%.%VERSION_MINOR%.%BUILD_NUMBER%.msi
+
 ECHO Creating temporary copy...
 :: The XCOPY command is deprecated since Vista and replaced by ROBOCOPY.
 :: MKDIR "Temp"
@@ -27,10 +35,10 @@ candle.exe -nologo -sw1077 "./product.wxs" "./components.wxs" "./WixUI_OneClick.
 
 :: Create the MSI distributable.
 ECHO Linking installer...
-light.exe -nologo -b "./Temp" -ext "WixUIExtension" -ext "WixUtilExtension" -cultures:en-us -sice:ICE38 -sice:ICE64 -sice:ICE91 -out "./Pandion.msi" "./product.wixobj" "./components.wixobj" "./WixUI_OneClick.wixobj" "./AdvancedWelcomeEulaDlg_OneClick.wixobj"
+light.exe -nologo -b "./Temp" -ext "WixUIExtension" -ext "WixUtilExtension" -cultures:en-us -sice:ICE38 -sice:ICE64 -sice:ICE91 -out "./%PACKAGE%" "./product.wixobj" "./components.wixobj" "./WixUI_OneClick.wixobj" "./AdvancedWelcomeEulaDlg_OneClick.wixobj"
 
 ECHO Cleaning up...
 :: RMDIR /S /Q "./Temp"
 DEL "./components.wxs" "./*.wixobj" "./*.wixpdb" /Q
 
-ECHO Done: Pandion.msi
+ECHO Done: %PACKAGE%
