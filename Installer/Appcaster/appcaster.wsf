@@ -9,8 +9,11 @@
 	<runtime>
 		<description>Generate or append an Atom feed with software update announcements.</description>
 
-		<named name="path" helpstring="Location of the appcast (default: appcaster.xml)" type="string" required="false"/>
+		<named name="source" helpstring="Location of the input XML feed" type="string" required="false"/>
+		<named name="path" helpstring="Location of the output XML feed (default: appcaster.xml)" type="string" required="false"/>
 		<named name="overwrite" helpstring="Erase the existing appcast (default: false)" type="string" required="false"/>
+		<named name="maxage" helpstring="Prune feed entries older than this many days (default: infinite)" type="string" required="false"/>
+		<named name="maxcount" helpstring="Maximum number of entries to keep in the feed (default: infinite)" type="string" required="false"/>
 
 		<named name="application" helpstring="Name of the software" type="string" required="true"/>
 		<named name="author" helpstring="Name of the publisher" type="string" required="false"/>
@@ -29,14 +32,19 @@
 		<named name="url" helpstring="Download link to the update file" type="string" required="false"/>
 
 		<example>
-Note:
-The "size" argument may be a number specifying the file size in bytes, or a string specifying a local file path. If the local file exists, its file size will be used.
+Notes:
+
+- "size" may be a number specifying the file size in bytes, or a string specifying a local file path. If the local file exists, its file size is used.
+
+- "source" may be a local file path or an HTTP/HTTPS URL.
+
+- "maxage" and "maxcount" affect only appcast entries in the current release track. Appcast entries in other tracks and non-appcast entries in the XML feed are not removed.
 
 Basic Example:
 appcaster.wsf /application:FooApp /version:1.0.1
 
 Full Example:
-appcaster.wsf /path:myfeed.xml /overwrite:true /application:FooApp /author:"Bar Inc." /description:"Latest updates feed" /location:http://example.com/fooapp.html /history:http://example.com/versions.html /arguments:--x64 /changes:"Better foos\nFixed bars" /info:http://example.com/v100.html /mime:application/x-msi /timestamp:2003-12-13T18:30:02.25+01:00 /size:1369088 /track:beta /version:1.0.1 /url:http://example.com/foo.msi
+appcaster.wsf /source:http://example.com/myfeed.xml /path:myfeed.xml /overwrite:true /maxage:30 /maxcount:100 /application:FooApp /author:"Bar Inc." /description:"Latest updates feed" /location:http://example.com/fooapp.html /history:http://example.com/versions.html /arguments:--x64 /changes:"Better foos\nFixed bars" /info:http://example.com/v100.html /mime:application/x-msi /timestamp:2003-12-13T18:30:02.25+01:00 /size:1369088 /track:beta /version:1.0.1 /url:http://example.com/foo.msi
 		</example>
 	</runtime>
 	<script language="JScript">
@@ -46,11 +54,14 @@ var Appcast = function(){
 var generator = {
 	name: "Appcaster",
 	uri: "http://github.com/cbas/appcast",
-	version: "1.0.0",
+	version: "1.1.0",
 
 	output: {
+		maxage: Number.POSITIVE_INFINITY,
+		maxcount: Number.POSITIVE_INFINITY,
 		overwrite: "false",
-		path: "appcaster.xml"
+		path: "appcaster.xml",
+		source: ""
 	},
 
 	feed: {
@@ -99,29 +110,64 @@ var generator = {
 			return (new ActiveXObject("Scriptlet.TypeLib")).Guid.slice(1, -3).toLowerCase();
 		},
 
+		timestampToNumber: function ( timestamp ) {
+			                           // 1 BCAD 2 Y          3 M         4 D            5 h         6 m         7 s         8 ms                              9 o   10 oh       11 om
+			var match = timestamp.match(/^([-+]?)(\d{4,})(?:-?(\d{2})(?:-?(\d{2})(?:[Tt ](\d{2})(?::?(\d{2})(?::?(\d{2})(?:\.(\d{1,3})(?:\d+)?)?)?)?(?:[Zz]|(?:([-+])(\d{2})(?::?(\d{2}))?)?)?)?)?)?$/ );
+			if (match) {
+				for (var ints = [2, 3, 4, 5, 6, 7, 8, 10, 11], i = ints.length - 1; i >= 0; --i)
+					match[ints[i]] = ints[i] in match ? parseInt(match[ints[i]], 10) : 0;
+				if (1 in match && match[1] === '-') // BC/AD
+					match[2] *= -1;
+				var ms = Date.UTC(
+					match[2], // Y
+					match[3] - 1, // M
+					match[4], // D
+					match[5], // h
+					match[6], // m
+					match[7], // s
+					match[8] // ms
+				);
+				if (9 in match) // offset
+					ms += (match[9] == '+' ? -1 : 1) * (match[10] * 3600 * 1000 + match[11] * 1000); // oh om
+				if (match[2] >= 0 && match[2] <= 99) // 1-99 AD
+					ms -= 59958144000000;
+				return ms;
+			}
+			else
+				return Number.NEGATIVE_INFINITY;
+		},
+
 		loadConfig: function () {
 			var checkAndApply = function (rootObject, argumentNames) {
 				for (var i = 0; i < argumentNames.length; i++)
 					if (WScript.Arguments.Named.Exists(argumentNames[i]))
 						rootObject[argumentNames[i]] = WScript.Arguments.Named(argumentNames[i]);
 			}
-			checkAndApply(generator.output, ["path", "overwrite"]);
+			checkAndApply(generator.output, ["path", "overwrite", "source", "maxage", "maxcount"]);
 			checkAndApply(generator.feed, ["application", "author", "description", "history", "location"]);
 			checkAndApply(generator.release, ["arguments", "changes", "info", "mime", "publication", "size", "track", "version", "url"]);
+
+			generator.output.maxage = parseInt(generator.output.maxage, 10);
+			if (isNaN(generator.output.maxage))
+				generator.output.maxage = Number.POSITIVE_INFINITY;
+
+			generator.output.maxcount = parseInt(generator.output.maxcount, 10);
+			if (isNaN(generator.output.maxcount))
+				generator.output.maxcount = Number.POSITIVE_INFINITY;
+
 			if (generator.release.timestamp.length === 0)
 				generator.release.timestamp = generator.tools.timestamp();
+
 			if (generator.release.size.match(/[^\d]/)) {
 				var fso = new ActiveXObject("Scripting.FileSystemObject");
-				if (fso.FileExists(generator.release.size))
-					generator.release.size = fso.GetFile(generator.release.size).Size;
+
+			if (fso.FileExists(generator.release.size))
+				generator.release.size = fso.GetFile(generator.release.size).Size;
 			}
 		},
 
-		getFeed: function (path, overwrite) {
-			if (overwrite)
-				generator.tools.eraseFeed(path);
-			var feed = generator.tools.loadFeedFromFile(path);
-			return feed ? feed : generator.tools.prepareDefaultFeed(path);
+		getFeed: function (source) {
+			return source.length > 0 ? generator.tools.loadFeedFromPath(source) : generator.tools.prepareDefaultFeed();
 		},
 
 		eraseFeed: function (path) {
@@ -132,18 +178,18 @@ var generator = {
 			}
 		},
 
-		loadFeedFromFile: function (path) {
+		loadFeedFromPath: function (source) {
 			var dom = new ActiveXObject("Msxml2.DOMDocument");
 			dom.async = false;
 			dom.resolveExternals = false;
-			dom.load(path);
+			dom.load(source);
 			if (dom.parseError.errorCode === 0) {
-				WScript.Echo("Loading existing feed from " + generator.output.path);
+				WScript.Echo("Loading existing feed from " + source);
 				var updated = dom.documentElement.selectSingleNode("/feed/updated");
 				if (updated)
 					updated.text = generator.tools.timestamp();
 				else
-					dom.documentElement.appendChild(dom.documentElement.createElement("updated")).text = generator.tools.timestamp();
+					dom.documentElement.insertBefore(dom.documentElement.createElement("updated"), dom.documentElement.childNodes.item(0)).text = generator.tools.timestamp();
 				return dom;
 			}
 			else
@@ -185,7 +231,7 @@ var generator = {
 			xml.push("\t<updated>" + generator.tools.timestamp() + "</updated>\n");
 			xml.push("</feed>");
 			dom.loadXML(xml.join(""));
-			return dom;
+			return dom.parseError.errorCode === 0 ? dom : null;
 		},
 
 		createEntry: function () {
@@ -228,10 +274,25 @@ var generator = {
 			xml.push("\t</entry>\n");
 			dom.loadXML(xml.join(""));
 			return dom;
+		},
+
+		pruneOldEntries: function (feed, maxage, track) {
+			var expiration = (new Date()).getTime() - maxage * 24 * 60 * 60 * 1000;
+			var entries = feed.selectNodes("/feed/entry[@xmlns:appcast='http://pandion.im/protocol/appcast/1.0'][updated][@appcast:track='" + track + "']");
+			for (var i = 0; i < entries.length; ++i)
+				if (generator.tools.timestampToNumber(entries[i].selectSingleNode("updated").text) < expiration)
+					feed.removeChild(entries[i]);
+		},
+
+		capMaxCount: function (feed, maxcount, track) {
+			var entries = feed.selectNodes("/feed/entry[@xmlns:appcast='http://pandion.im/protocol/appcast/1.0'][@appcast:track='" + track + "']");
+			for (var i = entries.length - 1; i + 1 > maxcount && i >= 0; --i)
+				feed.removeChild(entries[i]);
 		}
 	}
 };
 
+// Load and check input arguments
 if (WScript.Arguments.length === 0) {
 	WScript.Arguments.ShowUsage();
 	WScript.Quit(0);
@@ -245,11 +306,28 @@ if (generator.release.version.length === 0) {
 	WScript.Echo("Error: Release version is not specified.");
 	WScript.Quit(1);
 }
-var feedDom = generator.tools.getFeed(generator.output.path, generator.output.overwrite === "true");
-var entryDom = generator.tools.createEntry();
-feedDom.documentElement.appendChild(entryDom.documentElement);
+
+// Set up the XML document
+if (generator.output.overwrite === "true")
+	generator.tools.eraseFeed(generator.output.path);
+var feed = generator.tools.getFeed(generator.output.source);
+if (! feed) {
+	WScript.Echo("Error: Cannot load XML feed.");
+	WScript.Quit(1);
+}
+
+// Inject the new entry
+var entry = generator.tools.createEntry();
+feed.documentElement.insertBefore(entry.documentElement, feed.documentElement.selectSingleNode("/feed/entry"));
+feed.documentElement.insertBefore(feed.createTextNode("\n\t"), feed.documentElement.selectSingleNode("/feed/entry"));
+
+// Trim the feed
+generator.tools.pruneOldEntries(feed.documentElement, generator.output.maxage, generator.release.track);
+generator.tools.capMaxCount(feed.documentElement, generator.output.maxcount, generator.release.track);
+
+// Write the feed to disk
 WScript.Echo("Saving feed to " + generator.output.path);
-feedDom.save(generator.output.path);
+feed.save(generator.output.path);
 
 }();
 ]]>
