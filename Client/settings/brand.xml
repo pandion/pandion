@@ -25,6 +25,10 @@
   -->
 <softwareversion>2.6</softwareversion>
 
+<!-- Type of updates to auto-install: stable/beta/development
+  -->
+<softwaretrack>stable</softwaretrack>
+
 <!-- Only connect to this server and only create accounts on this server
   -->
 <fixedserver></fixedserver>
@@ -88,7 +92,7 @@
 
 <!-- URI of software version checker
   -->
-<autoupdate>http://update.pandion.be/?n=${softwarename}&amp;v=${softwareversion}&amp;r=${random}</autoupdate>
+<autoupdate>http://feeds.feedburner.com/pandionupdates?r=${random}</autoupdate>
 
 <!-- URI of background listing
   -->

@@ -12,6 +12,7 @@ function SaveCommonProfile ()
 	Data.Add( 'last_password_remember', external.globals( 'last_password_remember' ) );
 	Data.Add( 'serveraddress', external.globals( 'serveraddress' ) );
 	Data.Add( 'serverport', external.globals( 'serverport' ) );
+	Data.Add( 'softwaretrack', external.globals( 'softwaretrack' ) );
 
 	if ( external.wnd.left > 0 - external.wnd.width / 2 )
 		Data.Add( 'lastposx', external.wnd.left );
