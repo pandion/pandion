@@ -44,7 +44,6 @@ function HTTPOnTransferComplete ( sessionID )
 
 function Begin ()
 {
-	external.wnd.hide( false );
 	external.globals( 'Translator' ).TranslateWindow( 'autoupdate', document );
 	document.onselectstart = document.ondragstart = function(){return false};
 	document.oncontextmenu = function(){return false};
@@ -66,11 +65,10 @@ function downloadXML()
 				external.wnd.close();
 		}
 	}
-
 	xml.load( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'autoupdate' ) ) );
 }
 
-function handleAtomFeed ( dom )
+function handleAtomFeed ( doc )
 {
 	external.globals( 'last_autoupdate' ) = ( new Date() ).getTime();
 	external.wnd.params.SaveCommonProfile();
@@ -78,7 +76,7 @@ function handleAtomFeed ( dom )
 	/* Get the latest release from the feed
 	 */
 	var appcastNamespaceUri = 'http://pandion.im/protocol/appcast/1.0';
-	var appcasts = dom.selectNodes( '/feed/entry[@xmlns:*="' + appcastNamespaceUri + '"][updated][link[@rel="enclosure"][@href]]' );
+	var appcasts = doc.selectNodes( '/feed/entry[updated][link[@rel="enclosure"][@href]]' );
 	var topAppcastEntry = null;
 	var topTimestamp = Number.NEGATIVE_INFINITY;
 	for ( var i = 0; i < appcasts.length; i++ )
@@ -118,6 +116,8 @@ function handleAtomFeed ( dom )
 				&& parseInt( updateVersion[0], 10 ) == parseInt( currentVersion[0], 10 ) )
 		)
 			showUpdate( topAppcastEntry );
+		else
+			external.wnd.close();
 	}
 	else
 		external.wnd.close();
@@ -154,7 +154,7 @@ function timestampToNumber ( timestamp )
 
 function showUpdate ( appcastEntry )
 {
-	gLocation = appcastEntry.enclosure;
+	gLocation = appcastEntry.alternate;
 	gParameters = appcastEntry.arguments;
 
 	document.getElementById( 'txt-title' ).innerText = external.globals( 'Translator' ).Translate( 'autoupdate', 'title', [ appcastEntry.name, appcastEntry.version ] );
@@ -162,75 +162,60 @@ function showUpdate ( appcastEntry )
 	document.getElementById( 'txt-restart' ).innerText = external.globals( 'Translator' ).Translate( 'autoupdate', 'restart', [ appcastEntry.name ] );
 	document.getElementById( 'txt-whats-new' ).href = appcastEntry.alternate ? appcastEntry.alternate : external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'softwareurl' ) );
 
-	if ( appcastEntry.enclosure.length || ( appcastEntry.enclosure.length && appcastEntry.enclosure.indexOf( '//' ) != -1 ) )
+	if ( appcastEntry.enclosure.length )
 	{
-		if ( appcastEntry.enclosure.length )
+		appcastEntry.enclosure = appcastEntry.enclosure.substr( appcastEntry.enclosure.indexOf( '//' ) + 2 );
+
+		var Path = appcastEntry.enclosure;
+		if ( appcastEntry.enclosure.indexOf( '/' ) != -1 )
+			Path = appcastEntry.enclosure.substr( appcastEntry.enclosure.indexOf( '/' ) );
+		else
+			Path = '/';
+
+		if ( appcastEntry.enclosure.indexOf( '?' ) != -1 )
+			appcastEntry.enclosure = appcastEntry.enclosure.substr( 0, appcastEntry.enclosure.indexOf( '?' ) );
+
+		var Host = appcastEntry.enclosure;
+		if ( appcastEntry.enclosure.indexOf( '/' ) != -1 )
+			Host = appcastEntry.enclosure.substr( 0, appcastEntry.enclosure.indexOf( '/' ) );
+
+		var Port = 80;
+		if ( Host.indexOf( ':' ) != -1 )
 		{
-			appcastEntry.enclosure = appcastEntry.enclosure.substr( appcastEntry.enclosure.indexOf( '//' ) + 2 );
-
-			var Path = appcastEntry.enclosure;
-			if ( appcastEntry.enclosure.indexOf( '/' ) != -1 )
-				Path = appcastEntry.enclosure.substr( appcastEntry.enclosure.indexOf( '/' ) );
-			else
-				Path = '/';
-
-			if ( appcastEntry.enclosure.indexOf( '?' ) != -1 )
-				appcastEntry.enclosure = appcastEntry.enclosure.substr( 0, appcastEntry.enclosure.indexOf( '?' ) );
-
-			var Host = appcastEntry.enclosure;
-			if ( appcastEntry.enclosure.indexOf( '/' ) != -1 )
-				Host = appcastEntry.enclosure.substr( 0, appcastEntry.enclosure.indexOf( '/' ) );
-
-			var Port = 80;
-			if ( Host.indexOf( ':' ) != -1 )
-			{
-				Port = parseInt( Host.substr( Host.lastIndexOf( ':' ) + 1 ) );
-				Host = Host.substr( 0, Host.indexOf( ':' ) );
-			}
-			if ( isNaN( Port ) )
-				Port = 80;
-
-			if ( appcastEntry.enclosure.lastIndexOf( '/' ) != -1 )
-				gFileName = decodeURIComponent( appcastEntry.enclosure.substr( appcastEntry.enclosure.lastIndexOf( '/' ) + 1 ).replace( /\\\:\*\?\"\<\>\|/, '' ) );
-			else
-				gFileName = 'noname';
-			if ( ! gFileName.length )
-				gFileName = 'noname';
-
-			var DownloadLocation = external.globals( 'usersdir' ) + 'Downloads\\';
-
-			if ( ! external.Directory.Exists( DownloadLocation ) )
-				external.Directory.Create( DownloadLocation );
-
-			if ( external.FileExists( DownloadLocation + gFileName ) )
-				external.file( DownloadLocation + gFileName ).Delete();
-
-			external.HTTPEngine.subscribe( external.wnd );
-			gSession = external.HTTPEngine.Get( DownloadLocation + gFileName, Path, 0, 0xFFFFFFFF, Host, Port );
-
-			if ( gSession )
-			{
-				showPageProgress();
-				external.wnd.hide( false );
-				document.getElementById( 'btn-later' ).select();
-				return;
-			}
+			Port = parseInt( Host.substr( Host.lastIndexOf( ':' ) + 1 ) );
+			Host = Host.substr( 0, Host.indexOf( ':' ) );
 		}
+		if ( isNaN( Port ) )
+			Port = 80;
 
+		if ( appcastEntry.enclosure.lastIndexOf( '/' ) != -1 )
+			gFileName = decodeURIComponent( appcastEntry.enclosure.substr( appcastEntry.enclosure.lastIndexOf( '/' ) + 1 ).replace( /\\\:\*\?\"\<\>\|/, '' ) );
+		else
+			gFileName = 'noname';
+		if ( ! gFileName.length )
+			gFileName = 'noname';
+
+		var DownloadLocation = external.globals( 'usersdir' ) + 'Downloads\\';
+
+		if ( ! external.Directory.Exists( DownloadLocation ) )
+			external.Directory.Create( DownloadLocation );
+
+		if ( external.FileExists( DownloadLocation + gFileName ) )
+			external.file( DownloadLocation + gFileName ).Delete();
+
+		external.HTTPEngine.subscribe( external.wnd );
+		gSession = external.HTTPEngine.Get( DownloadLocation + gFileName, Path, 0, 0xFFFFFFFF, Host, Port );
+
+		showPageProgress();
+		external.wnd.hide( false );
+		document.getElementById( 'btn-later' ).select();
+	}
+	else
+	{
 		showPageDownload();
 		external.wnd.hide( false );
 		document.getElementById( 'btn-later' ).select();
 	}
-
-	/* Check again in 24 hours
-	 */
-	external.globals( 'AutoUpdateTimeout' ) = external.wnd.params.setTimeout( 'dial_autoupdate()', /* 7 * */ 24 * 3600 * 1000 );
-}
-
-function getAttribute ( node, attribute )
-{
-	var value = node.getAttribute( attribute );
-	return value ? value : '';
 }
 
 function setDisplay ( id, mode )
@@ -275,6 +260,9 @@ function End ()
 		external.HTTPEngine.Abort( gSession );
 	if ( gShutdownOnClose )
 		external.wnd.params.setTimeout( 'external.wnd.close()', 0 );
+	/* Check again in 24 hours
+	 */
+	external.globals( 'AutoUpdateTimeout' ) = external.wnd.params.setTimeout( 'dial_autoupdate()', /* 7 * */ 24 * 3600 * 1000 );
 }
 
 function update ()
