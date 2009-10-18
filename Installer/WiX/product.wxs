@@ -141,7 +141,7 @@
 			/>
 		</Upgrade>
 		<InstallExecuteSequence>
-			<RemoveExistingProducts After="InstallFinalize"/>
+			<RemoveExistingProducts After="InstallValidate"/>
 		</InstallExecuteSequence>
 
 		<!--
