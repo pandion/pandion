@@ -176,26 +176,25 @@ STDMETHODIMP CDirectory::Create(BSTR path)
 	::PathCanonicalize(cleanPath, path);
 	::PathRemoveBackslash(cleanPath);
 
-	BOOL bAlreadyExists;
-	Exists(cleanPath, &bAlreadyExists);
-
-	if(!bAlreadyExists)
+	if(!::PathIsDirectory(cleanPath) && !::PathIsRoot(cleanPath))
 	{
-		WCHAR parentPath[MAX_PATH];
-		::StringCchCopy(parentPath, MAX_PATH, cleanPath);
-		parentPath[FindLastSlash(cleanPath)] = 0;
+		TCHAR parentPath[MAX_PATH];
+		::StrCpy(parentPath, cleanPath);
+		::PathRemoveBackslash(parentPath);
+		::PathRemoveFileSpec(parentPath);
 
-		Exists(parentPath, &bAlreadyExists);
-		if(!bAlreadyExists)
+		if(!::PathIsDirectory(parentPath) && !::PathIsRoot(parentPath))
 		{
-			return Create(parentPath);
+			Create(parentPath);
+		}
+
+		if(::CreateDirectory(cleanPath, NULL))
+		{
+			return S_OK;
 		}
 		else
 		{
-			if(::CreateDirectory(cleanPath, NULL))
-				return S_OK;
-			else
-				return ::GetLastError();
+			return ::GetLastError();
 		}
 	}
 	else
