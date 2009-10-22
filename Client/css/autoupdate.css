@@ -111,6 +111,10 @@ a:hover {
 .update-button p {
 	font-size: 12px;
 }
+#tracks-version {
+	margin-top: 4px;
+	float: left;
+}
 /* Panel: Progress
  */
 .progress-bar {
@@ -134,4 +138,8 @@ a:hover {
 #txt-continue-using {
 	padding: 16px;
 	padding-top: 0;
+}
+#progress-version {
+	margin-top: 4px;
+	float: left;
 }

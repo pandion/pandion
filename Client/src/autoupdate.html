@@ -13,13 +13,13 @@
 <FORM onsubmit="event.returnValue = false; external.wnd.close();">
 <TABLE class=panel id=panel-tracks cellspacing=0 cellpadding=0>
 <TR valign=top height=60 class=wizard-header>
-	<TD colspan=2>
-	<SPAN id=txt-available-updates class=panel-title></SPAN>
-	<DIV id=txt-tracks-info class=panel-subtitle></DIV>
+	<TD>
+		<SPAN id=txt-available-updates class=panel-title></SPAN>
+		<DIV id=txt-tracks-info class=panel-subtitle></DIV>
 	</TD>
 </TR>
 <TR valign=top>
-	<TD colspan=2 class=panel-content>
+	<TD class=panel-content>
 		<DIV id=preloader></DIV>
 		<DIV id=txt-unavailable></DIV>
 		<DIV id=txt-no-feed></DIV>
@@ -30,7 +30,8 @@
 	</TD>
 </TR>
 <TR valign=top height=45 class=wizard-footer>
-	<TD colspan=2>
+	<TD>
+		<DIV id=tracks-version disabled></DIV>
 		<INPUT type=submit class=btn id=btn-close>
 	</TD>
 </TR>
@@ -40,13 +41,13 @@
 <FORM onsubmit="event.returnValue = false; external.wnd.close();">
 <TABLE class=panel id=panel-progress cellspacing=0 cellpadding=0>
 <TR valign=top height=60 class=wizard-header>
-	<TD colspan=2>
-	<SPAN id=txt-version class=panel-title></SPAN>
-	<DIV id=txt-new-version class=panel-subtitle></DIV>
+	<TD>
+		<SPAN id=txt-version class=panel-title></SPAN>
+		<DIV id=txt-new-version class=panel-subtitle></DIV>
 	</TD>
 </TR>
 <TR valign=top>
-	<TD colspan=2 class=panel-content>
+	<TD class=panel-content>
 		<DIV><A href="#" id=txt-whats-new onclick="external.windows( 'MainWindow' ).Do( 'dial_webbrowser', this.href ); return false;"></A></DIV>
 		<DIV id=txt-learn-more></DIV>
 		<DIV id=progress-area>
@@ -56,14 +57,15 @@
 	</TD>
 </TR>
 <TR valign=top height=45>
-	<TD colspan=2 id=txt-continue-using>
+	<TD id=txt-continue-using>
 		<DIV id=txt-continue></DIV>
 		<DIV id=txt-restart></DIV>
 		<DIV id=txt-browser></DIV>
 	</TD>
 </TR>
 <TR valign=top height=45 class=wizard-footer>
-	<TD colspan=2>
+	<TD>
+		<DIV id=progress-version disabled></DIV>
 		<INPUT type=button class="btn wide" id=btn-update onclick="update()">
 		<INPUT type=button class="btn wide" id=btn-download onclick="download()">
 		<INPUT type=submit class=btn id=btn-later>

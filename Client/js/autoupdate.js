@@ -49,6 +49,7 @@ function Begin ()
 	document.oncontextmenu = function(){return false};
 	if ( external.wnd.params.selectVersion )
 	{
+		document.getElementById( 'tracks-version' ).innerText = external.globals( 'softwareversion' ) + ' ' + external.globals( 'softwaretrack' );
 		setDisplay( 'panel-tracks', 'block' );
 		document.getElementById( 'btn-close' ).focus();
 		external.wnd.hide( false );
@@ -77,9 +78,12 @@ function autoDownloadLatestUpdate ( doc )
 {
 	if ( doc )
 	{
+		var currentAppcast = getAppcastByVersion( external.globals( 'softwareversion' ) );
+		if ( currentAppcast && currentAppcast.track.length > 0 )
+			external.globals( 'softwaretrack' ) = currentAppcast.track;
 		external.globals( 'last_autoupdate' ) = ( new Date() ).getTime();
 		external.wnd.params.window.SaveCommonProfile();
-		topAppcastEntry = getLatestAppcastByTrack( doc, external.globals( 'softwaretrack' ) );
+		var topAppcastEntry = getLatestAppcastByTrack( doc, external.globals( 'softwaretrack' ) );
 		if ( topAppcastEntry && versionIsHigherThanCurrent( topAppcastEntry.version ) )
 			downloadUpdate( topAppcastEntry );
 		else
@@ -148,32 +152,52 @@ function showAvailableUpdates ( doc )
 function getLatestAppcastByTrack ( doc, track )
 {
 	var appcastNamespaceUri = 'http://pandion.im/protocol/appcast/1.0';
-	var appcasts = doc.selectNodes( '/feed/entry[updated][link[@rel="enclosure"][@href]]' );
+	var appcasts = getAppcastsFromFeed( doc );
 	var topAppcastEntry = null;
 	var topTimestamp = Number.NEGATIVE_INFINITY;
 	for ( var i = 0; i < appcasts.length; i++ )
-	{
-		if ( appcasts[i].attributes.getQualifiedItem( 'track', appcastNamespaceUri ).value == track )
+		if ( appcasts[i].attributes.getQualifiedItem( 'track', appcastNamespaceUri ).value === track )
 		{
 			var timestamp = appcasts[i].selectSingleNode( 'updated' ).text;
 			var timeFromEpoch = timestampToNumber( timestamp );
 			if ( timeFromEpoch > topTimestamp )
 			{
 				topTimestamp = timeFromEpoch;
-				topAppcastEntry = {
-					arguments: appcasts[i].selectSingleNode( 'link[@rel="enclosure"][@href]' ).attributes.getQualifiedItem( 'arguments', appcastNamespaceUri ),
-					name: appcasts[i].attributes.getQualifiedItem( 'name', appcastNamespaceUri ).value,
-					enclosure: appcasts[i].selectSingleNode( 'link[@rel="enclosure"]/@href' ).value,
-					track: appcasts[i].attributes.getQualifiedItem( 'track', appcastNamespaceUri ).value,
-					version: appcasts[i].attributes.getQualifiedItem( 'version', appcastNamespaceUri ).value
-				};
-				topAppcastEntry[ 'arguments' ] = topAppcastEntry[ 'arguments' ] ? topAppcastEntry[ 'arguments' ].value : '';
-				topAppcastEntry[ 'alternate' ] = appcasts[i].selectSingleNode( 'link[@rel="alternate"][@type="text/html" or @type="text/plain"]/@href' );
-				topAppcastEntry[ 'alternate' ] = topAppcastEntry[ 'alternate' ] ? topAppcastEntry[ 'alternate' ].value : '';
+				topAppcastEntry = parseAppcastFromEntry( appcasts[i] );
 			}
 		}
-	}
 	return topAppcastEntry;
+}
+
+function getAppcastByVersion ( doc, version )
+{
+	var appcastNamespaceUri = 'http://pandion.im/protocol/appcast/1.0';
+	var appcasts = getAppcastsFromFeed( doc );
+	for ( var i = 0; i < appcasts.length; i++ )
+		if ( appcasts[i].attributes.getQualifiedItem( 'version', appcastNamespaceUri ).value === external.globals( 'softwareversion' ) )
+			return parseAppcastFromEntry( appcasts[i] );
+	return null;
+}
+
+function getAppcastsFromFeed ( doc )
+{
+	return doc.selectNodes( '/feed/entry[updated][link[@rel="enclosure"][@href]]' );
+}
+
+function parseAppcastFromEntry ( entry )
+{
+	var appcastNamespaceUri = 'http://pandion.im/protocol/appcast/1.0';
+	var appcast = {
+		arguments: entry.selectSingleNode( 'link[@rel="enclosure"][@href]' ).attributes.getQualifiedItem( 'arguments', appcastNamespaceUri ),
+		name: entry.attributes.getQualifiedItem( 'name', appcastNamespaceUri ).value,
+		enclosure: entry.selectSingleNode( 'link[@rel="enclosure"]/@href' ).value,
+		track: entry.attributes.getQualifiedItem( 'track', appcastNamespaceUri ).value,
+		version: entry.attributes.getQualifiedItem( 'version', appcastNamespaceUri ).value
+	};
+	appcast[ 'arguments' ] = appcast[ 'arguments' ] ? appcast[ 'arguments' ].value : '';
+	appcast[ 'alternate' ] = entry.selectSingleNode( 'link[@rel="alternate"][@type="text/html" or @type="text/plain"]/@href' );
+	appcast[ 'alternate' ] = appcast[ 'alternate' ] ? appcast[ 'alternate' ].value : '';
+	return appcast;
 }
 
 function timestampToNumber ( timestamp )
@@ -227,6 +251,7 @@ function downloadUpdate ( appcastEntry )
 	document.getElementById( 'txt-continue' ).innerText = external.globals( 'Translator' ).Translate( 'autoupdate', 'continue', [ appcastEntry.name ] );
 	document.getElementById( 'txt-restart' ).innerText = external.globals( 'Translator' ).Translate( 'autoupdate', 'restart', [ appcastEntry.name ] );
 	document.getElementById( 'txt-whats-new' ).href = appcastEntry.alternate ? appcastEntry.alternate : external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'softwareurl' ) );
+	document.getElementById( 'progress-version' ).innerText = external.globals( 'softwareversion' ) + ' ' + external.globals( 'softwaretrack' );
 
 	if ( appcastEntry.enclosure.length )
 	{

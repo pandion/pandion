@@ -675,7 +675,7 @@ Thank you,
       <innerText>Different versions provide more stability or the latest improvements.</innerText>
     </item>
     <item id="txt-latest">
-      <innerText>Latest version:</innerText>
+      <innerText>Latest version in the current track:</innerText>
     </item>
     <item id="txt-alternatives">
       <innerText>Alternative versions:</innerText>
