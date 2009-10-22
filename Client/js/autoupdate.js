@@ -78,7 +78,7 @@ function autoDownloadLatestUpdate ( doc )
 {
 	if ( doc )
 	{
-		var currentAppcast = getAppcastByVersion( external.globals( 'softwareversion' ) );
+		var currentAppcast = getAppcastByVersion( doc, external.globals( 'softwareversion' ) );
 		if ( currentAppcast && currentAppcast.track.length > 0 )
 			external.globals( 'softwaretrack' ) = currentAppcast.track;
 		external.globals( 'last_autoupdate' ) = ( new Date() ).getTime();
