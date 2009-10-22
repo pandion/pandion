@@ -1,7 +1,7 @@
-function dial_autoupdate ()
+function dial_autoupdate ( selectVersion )
 {
 	if ( ! external.windows.Exists( 'autoupdate' ) )
-		with ( external.createWindow( 'autoupdate', external.globals( 'cwd' ) + 'autoupdate.html', window ) )
+		with ( external.createWindow( 'autoupdate', external.globals( 'cwd' ) + 'autoupdate.html', { window: window, selectVersion: !! selectVersion } ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_autoupdate', [ external.globals( 'softwarename' ) ] ) );
 			setIcon( external.globals( 'cwd' ) + '..\\images\\brand\\default.ico' );

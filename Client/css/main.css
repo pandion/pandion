@@ -13,6 +13,10 @@ A {
 A:hover {
 	color: red;
 }
+TD {
+	font-family: "Segoe UI", Tahoma;
+	font-size: 12px;
+}
 
 /* Content Edge
  */
