@@ -707,8 +707,8 @@ Thank you,
     </item>
     <code id="up-to-date">Up to date</code>
     <code id="recommended">Recommended</code>
-    <code id="description-stable">Contains bug fixes and features that are being tested.</code>
-    <code id="description-beta">Stable versions have been tested for the longest time.</code>
+    <code id="description-stable">Stable versions have been tested for the longest time.</code>
+    <code id="description-beta">Contains bug fixes and features that are being tested.</code>
     <code id="description-development">Some features may be broken while work is in progress.</code>
     <code id="title">Software Update: ${0} ${1}</code>
     <code id="continue">You can continue to use ${0} while the update is being downloaded.</code>
