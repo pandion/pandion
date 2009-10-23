@@ -13,7 +13,7 @@ function MenuBarUpdate ( section )
 {
 	var cfg = external.globals( 'cfg' );
 	var connected = external.globals( 'XMPPConnected' );
-	var mode = connected ? cfg( 'lastmode' ) : -1;
+	var mode = cfg && connected ? cfg( 'lastmode' ) : -1;
 	var admin = external.globals( 'ClientServices' ).Admin || external.globals( 'ClientServices' ).AdminJ2.length;
 	var sspi = external.globals( 'sspiserver' ).length;
 	var signin = document.getElementById( 'signin-dialog' ).style.display == 'block';
