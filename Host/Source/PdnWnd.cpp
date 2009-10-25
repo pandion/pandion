@@ -780,7 +780,14 @@ STDMETHODIMP CPdnWnd::showMinBox(BOOL b)
 }
 STDMETHODIMP CPdnWnd::showMaxBox(BOOL b)
 {
-	return E_NOTIMPL;
+		if(!b)
+        ::SetWindowLong(m_hWnd, GWL_STYLE, 
+			::GetWindowLong(m_hWnd, GWL_STYLE) & !WS_MAXIMIZEBOX);
+	else
+		::SetWindowLong(m_hWnd, GWL_STYLE, 
+			::GetWindowLong(m_hWnd, GWL_STYLE) | WS_MAXIMIZEBOX);
+
+	return S_OK;
 }
 STDMETHODIMP CPdnWnd::showTitlebar(BOOL b)
 {
