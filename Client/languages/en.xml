@@ -184,6 +184,7 @@ Thank you,
     <code id="menu_help_manual">&amp;Online Manual</code>
     <code id="menu_help_forum">&amp;Support Forum</code>
     <code id="menu_help_contact">&amp;Contact Us</code>
+    <code id="menu_help_update">Check for &amp;Updates</code>
     <code id="menu_help_about">&amp;About</code>
 
     <code id="menu_tray_about">&amp;About ${0}</code>
@@ -661,7 +662,29 @@ Thank you,
     <code id="no_new_plugins">There are no new plug-ins available.</code>
   </window>
   <window name="autoupdate">
-    <item id="txt-subtitle">
+    <item id="txt-unavailable">
+      <innerText>No updates are available.</innerText>
+    </item>
+    <item id="txt-no-feed">
+      <innerText>Cannot access the update feed. Try again later.</innerText>
+    </item>
+    <item id="txt-available-updates">
+      <innerText>Available Updates</innerText>
+    </item>
+    <item id="txt-tracks-info">
+      <innerText>Different versions provide more stability or the latest improvements.</innerText>
+    </item>
+    <item id="txt-latest">
+      <innerText>Latest version in the current track:</innerText>
+    </item>
+    <item id="txt-alternatives">
+      <innerText>Alternative versions:</innerText>
+    </item>
+    <item id="btn-close">
+      <value>Close</value>
+    </item>
+
+    <item id="txt-new-version">
       <innerText>A new version is available.</innerText>
     </item>
     <item id="txt-whats-new">
@@ -682,6 +705,11 @@ Thank you,
     <item id="btn-later">
       <value>Later</value>
     </item>
+    <code id="up-to-date">Up to date</code>
+    <code id="recommended">Recommended</code>
+    <code id="description-stable">Stable versions have been tested for the longest time.</code>
+    <code id="description-beta">Contains bug fixes and features that are being tested.</code>
+    <code id="description-development">Some features may be broken while work is in progress.</code>
     <code id="title">Software Update: ${0} ${1}</code>
     <code id="continue">You can continue to use ${0} while the update is being downloaded.</code>
     <code id="restart">The update will be installed when ${0} is restarted. You can continue using ${0} without restarting. Do you want to restart and update now?</code>

@@ -4,11 +4,119 @@
 	margin: 0;
 	padding: 0;
 }
-td {
-	font-family: Tahoma;
-	font-size: 11px;
+td, button {
+	font-family: "Segoe UI", Tahoma;
+	font-size: 12px;
 	color: windowtext;
 }
+/* All Panels
+ */
+.btn {
+	width: 90px;
+	height: 24px;
+	font-family: "Segoe UI", Tahoma;
+	font-size: 12px;
+}
+.wide {
+	width: 130px;
+}
+.wizard-header {
+	background-color: window;
+}
+.wizard-header td {
+	padding-left: 12px;
+	padding-right: 8px;
+	padding-top: 7px;
+	border-bottom: 2px groove;
+}
+.wizard-footer {
+	text-align: right;
+}
+.wizard-footer td {
+	padding: 10px;
+	border-top: 2px groove;
+}
+a {
+	color: blue;
+}
+a:hover {
+	color: red;
+}
+.panel {
+	display: none;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+	border-width: 0;
+}
+.panel-title {
+	font-weight: bold;
+}
+.panel-subtitle {
+	height: 27px;
+	margin-left: 20px;
+	margin-right: 20px;
+	overflow: hidden;
+}
+.panel-content {
+	padding: 12px 0 0 16px;
+}
+/* Panel: Tracks
+ */
+#preloader {
+	background-image: url(../images/misc/waiting.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 95%;
+	height: 95%;
+}
+#txt-unavailable, #txt-no-feed {
+	display: none;
+	margin-top: 100px;
+	text-align: center;
+}
+#txt-latest, #txt-alternatives {
+	display: none;
+}
+.tracks-header {
+	margin-bottom: 4px;
+	padding: 0;
+	font-size: 12px;
+	font-weight: normal;
+}
+.update-button {
+	cursor: default;
+	margin-bottom: 6px;
+	padding: 4px;
+	text-align: left;
+	width: 415px;
+	display: block;
+}
+.update-button h4 {
+	float: left;
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+}
+.update-button div {
+	color: highlight;
+	font-style: italic;
+	display: inline;
+	float: right;
+	font-weight: bold;
+}
+.update-button p {
+	font-size: 12px;
+}
+#tracks-version {
+	margin-top: 4px;
+	float: left;
+}
+/* Panel: Progress
+ */
 .progress-bar {
 	margin: 30px 10% 0 10%;
 	width: 80%;
@@ -27,21 +135,11 @@ td {
 	background-color: window;
 	color: windowtext;
 }
-.btn {
-	width: 90px;
-	height: 24px;
-	font-family: Tahoma;
-	font-size: 11px;
+#txt-continue-using {
+	padding: 16px;
+	padding-top: 0;
 }
-.wizard-header {
-	background-color: window;
-}
-.wizard-footer {
-	text-align: right;
-}
-a {
-	color: blue;
-}
-a:hover {
-	color: red;
+#progress-version {
+	margin-top: 4px;
+	float: left;
 }

@@ -507,13 +507,13 @@ function OnLoginRoster ( iq )
 		external.globals( 'last_autoupdate' ) = parseInt( external.globals( 'last_autoupdate' ), 10 );
 
 	if ( external.globals( 'last_autoupdate' ) < ( new Date() ).getTime() - ( /* 7 * */ 24 * 3600 * 1000 ) )
-		dial_autoupdate();
+		dial_autoupdate( false );
 	else
 	{
 		var Now = ( new Date() ).getTime();
 		var Future = external.globals( 'last_autoupdate' ) + /* 7 * */ 24 * 3600 * 1000;
 		var Remaining = Future - Now;
-		external.globals( 'AutoUpdateTimeout' ) = setTimeout( 'dial_autoupdate()', Remaining );
+		external.globals( 'AutoUpdateTimeout' ) = setTimeout( 'dial_autoupdate( false )', Remaining );
 	}
 
 	/* Activate the fileserver on a random or mapped port

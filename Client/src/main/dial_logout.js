@@ -23,13 +23,11 @@ function dial_logout ()
 		if ( keys[i] != 'stderr' && keys[i] != 'MainWindow' )
 			external.windows( keys[i] ).close();
 
-	/* Disconnect
-	 */
 	external.globals( 'XMPPSSPIReconnect' ) = false;
 
-	/* Save settings
-	 */
 	SettingsSave();
+	external.globals( 'cfg' ).RemoveAll();
+	external.globals( 'cfg' ) = false;
 
 	dial_login();
 }

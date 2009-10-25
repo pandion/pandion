@@ -13,7 +13,7 @@ function MenuBarUpdate ( section )
 {
 	var cfg = external.globals( 'cfg' );
 	var connected = external.globals( 'XMPPConnected' );
-	var mode = connected ? cfg( 'lastmode' ) : -1;
+	var mode = cfg && connected ? cfg( 'lastmode' ) : -1;
 	var admin = external.globals( 'ClientServices' ).Admin || external.globals( 'ClientServices' ).AdminJ2.length;
 	var sspi = external.globals( 'sspiserver' ).length;
 	var signin = document.getElementById( 'signin-dialog' ).style.display == 'block';
@@ -148,7 +148,9 @@ function MenuBarUpdate ( section )
 			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_contact' ),	42 );
 		if ( external.globals( 'helpmanual' ).length || external.globals( 'helpforum' ).length || external.globals( 'helpcontact' ).length )
 			help.AddSeparator();
-		help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_about' ),		43 );
+		help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_update' ),		43 );
+		help.AddSeparator();
+		help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_about' ),		44 );
 
 		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'main', 'menu_help' ), 3, 4, help );
 	}
@@ -172,86 +174,84 @@ function MenuBarSelect ( id )
 			{
 				mode_new( -1, '' );
 				dial_logout();
-			}
-										break;
+			} break;
 		case 12: // exit
-			external.wnd.close();		break;
+			external.wnd.close(); break;
 		case 13: // received files
 			if ( external.Directory.Exists( external.globals( 'cfg' )( 'downloaddir' ) + '\\' ) )
 				external.shellExec( 'open', external.globals( 'cfg' )( 'downloaddir' ) + '\\', '', '', 1 );
 			else
-				external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'main', 'msg_received_files' ), external.globals( 'softwarename' ), 0 | 48 );
-										break;
+				external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'main', 'msg_received_files' ), external.globals( 'softwarename' ), 0 | 48 ); break;
 		case 14: // export
-			dial_contacts_export();		break;
+			dial_contacts_export(); break;
 		case 15: // import
-			dial_contacts_import();		break;
+			dial_contacts_import(); break;
 
 		case 107: // status message
-			dial_status_message();		break;
+			dial_status_message(); break;
 		case 100: // ffc
 			if ( ask )
 				dial_status_message( 1 );
 			else
-				mode_new( 1, msg );		break;
+				mode_new( 1, msg ); break;
 		case 101: // available
 			if ( ask )
 				dial_status_message( 0 );
 			else
-				mode_new( 0, msg );		break;
+				mode_new( 0, msg ); break;
 		case 102: // dnd
 			if ( ask )
 				dial_status_message( 4 );
 			else
-				mode_new( 4, msg );		break;
+				mode_new( 4, msg ); break;
 		case 103: // away
 			if ( ask )
 				dial_status_message( 2 );
 			else
-				mode_new( 2, msg );		break;
+				mode_new( 2, msg ); break;
 		case 104: // xaway
 			if ( ask )
 				dial_status_message( 3 );
 			else
-				mode_new( 3, msg );		break;
+				mode_new( 3, msg ); break;
 		case 105: // invisible
 			if ( ask )
 				dial_status_message( 5 );
 			else
-				mode_new( 5, msg );		break;
+				mode_new( 5, msg ); break;
 		case 106: // offline
 			if ( ask )
 				dial_status_message( -1 );
 			else
-				mode_new( -1, msg );	break;
+				mode_new( -1, msg ); break;
 
 		case 20: // add contact
-			dial_adduser();				break;
+			dial_adduser(); break;
 		case 21: // add group
-			dial_group_create();		break;
+			dial_group_create(); break;
 		case 28: // invite by email
 			dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'invitepage' ) ) ); break;
 		case 220: // add bookmark
-			dial_bookmarks_add();		break;
+			dial_bookmarks_add(); break;
 		case 221: // manage bookmarks
-			dial_bookmarks_manage();	break;
+			dial_bookmarks_manage(); break;
 		case 23: // find conference room
-			dial_conference_browse();	break;
+			dial_conference_browse(); break;
 		case 24: // create conference room
-			dial_conference_create();	break;
+			dial_conference_create(); break;
 		case 25: // change my password
-			dial_password_change();		break;
+			dial_password_change(); break;
 		case 26: // edit my profile
-			dial_vcard_edit();			break;
+			dial_vcard_edit(); break;
 		case 27: // change my avatar
-			dial_avatar_pick();			break;
+			dial_avatar_pick(); break;
 
 		case 30: // headlines
-			dial_headlines();			break;
+			dial_headlines(); break;
 		case 31: // server administration
-			dial_server_admin();		break;
+			dial_server_admin(); break;
 		case 32: // view network traffic
-			dial_console();				break;
+			dial_console(); break;
 		case 330: // detailed
 			if ( cfg( 'contactlistdisplay' ) == 'compact' )
 			{
@@ -261,7 +261,7 @@ function MenuBarSelect ( id )
 					external.globals( 'ConferenceSessionPool' ).Trackers( TrackerNames[i] ).RefreshOccupants();
 				external.globals( 'ClientRoster' ).RefreshAll();
 			}
-			MenuBarUpdate( 'tools' );	break;
+			MenuBarUpdate( 'tools' ); break;
 		case 331: // compact
 			if ( cfg( 'contactlistdisplay' ) == 'detailed' )
 			{
@@ -271,34 +271,36 @@ function MenuBarSelect ( id )
 					external.globals( 'ConferenceSessionPool' ).Trackers( TrackerNames[i] ).RefreshOccupants();
 				external.globals( 'ClientRoster' ).RefreshAll();
 			}
-			MenuBarUpdate( 'tools' );	break;
+			MenuBarUpdate( 'tools' ); break;
 		case 34: // always on top
 			external.wnd.setAOT( external.globals( 'aot' ) = ! ( external.globals( 'aot' ).toString() == 'true' ) );
-			MenuBarUpdate( 'tools' );	break;
+			MenuBarUpdate( 'tools' ); break;
 		case 35: // settings
-			dial_preferences( '' );		break;
+			dial_preferences( '' ); break;
 		case 36: // transports
-			dial_transport_list();		break;
+			dial_transport_list(); break;
 		case 37: // plug-ins
-			dial_plugin_list();			break;
+			dial_plugin_list(); break;
 
 		case 40: // online manual
-			dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'helpmanual' ) ) );	break;
+			dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'helpmanual' ) ) ); break;
 		case 41: // support forum
-			dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'helpforum' ) ) );		break;
+			dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'helpforum' ) ) ); break;
 		case 42: // contact us
-			dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'helpcontact' ) ) );	break;
-		case 43: // about
-			dial_about();				break;
+			dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'helpcontact' ) ) ); break;
+		case 43: // check for update
+			dial_autoupdate( true ); break;
+		case 44: // about
+			dial_about(); break;
 
 		default:
 			/* Switch the user interface language
 			 */
 			if ( id >= 3800 && id < 3900 )
 			{
-				var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
-				dom.async				= false;
-				dom.resolveExternals	= false;
+				var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+				dom.async = false;
+				dom.resolveExternals = false;
 				dom.load( external.globals( 'cwd' ) + '..\\languages\\languages.xml' );
 				if ( dom.documentElement )
 				{
@@ -322,9 +324,9 @@ function MenuBarSelect ( id )
 							for ( var i = 0; i < GroupNames.length; ++i )
 							{
 								var Group = external.globals( 'ClientRoster' ).Groups( GroupNames[i] );
-								Group.HTMLOnline.firstChild.innerHTML	= external.globals( 'Translator' ).Translate( 'main', 'cl_group_empty' );
-								Group.HTMLShowAll.title					= external.globals( 'Translator' ).Translate( 'main', 'cl_group_expand' );
-								Group.HTMLHeader.title					= external.globals( 'Translator' ).Translate( 'main', 'tt-group-' + ( Group.ShowAll ? 'hide' : 'show' ) );
+								Group.HTMLOnline.firstChild.innerHTML = external.globals( 'Translator' ).Translate( 'main', 'cl_group_empty' );
+								Group.HTMLShowAll.title = external.globals( 'Translator' ).Translate( 'main', 'cl_group_expand' );
+								Group.HTMLHeader.title = external.globals( 'Translator' ).Translate( 'main', 'tt-group-' + ( Group.ShowAll ? 'hide' : 'show' ) );
 								var RosterItems = ( new VBArray( Group.Items.Keys() ) ).toArray();
 								for ( var j = 0; j < RosterItems.length; ++j )
 								{
@@ -350,17 +352,17 @@ function MenuBarSelect ( id )
 			 */
 			else if ( id >= 22000 && id < 23000 )
 			{
-				var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
-				dom.async				= false;
-				dom.resolveExternals	= false;
+				var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+				dom.async = false;
+				dom.resolveExternals = false;
 				dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\bookmarks.xml' );
 				if ( dom.documentElement )
 				{
 					var BookmarkNodes = dom.documentElement.selectNodes( '/bookmarks/room[@address]' );
 					if ( BookmarkNodes.length > id - 22000 )
 					{
-						var Address		= BookmarkNodes.item( id - 22000 ).getAttribute( 'address' );
-						var Password	= BookmarkNodes.item( id - 22000 ).getAttribute( 'password' );
+						var Address = BookmarkNodes.item( id - 22000 ).getAttribute( 'address' );
+						var Password = BookmarkNodes.item( id - 22000 ).getAttribute( 'password' );
 						dial_conference( Address, Password );
 					}
 				}
