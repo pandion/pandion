@@ -281,7 +281,8 @@ STDMETHODIMP External::RegWriteString(BSTR hKey, BSTR key, BSTR value,
 {
 	HKEY RegKey, RootKey = StringToRegRootKey(hKey);
 	LSTATUS err = ERROR_SUCCESS;
-	err = ::RegOpenKeyEx(RootKey, key, 0, KEY_WRITE, &RegKey);
+	err = ::RegCreateKeyEx(RootKey, key, 0, NULL, REG_OPTION_NON_VOLATILE,
+		KEY_WRITE, NULL, &RegKey, NULL);
 	err = ::RegSetValueEx(RegKey, value, NULL, REG_SZ, (const BYTE*) data,
 		::SysStringByteLen(data) + 1);
 	::RegCloseKey(RegKey);
@@ -292,7 +293,8 @@ STDMETHODIMP External::RegWriteDWORD(BSTR hKey, BSTR key, BSTR value,
 {
 	HKEY RegKey, RootKey = StringToRegRootKey(hKey);
 	LSTATUS err = ERROR_SUCCESS;
-	err = ::RegOpenKeyEx(RootKey, key, 0, KEY_WRITE, &RegKey);
+	err = ::RegCreateKeyEx(RootKey, key, 0, NULL, REG_OPTION_NON_VOLATILE, 
+		KEY_WRITE, NULL, &RegKey, NULL);
 	err = ::RegSetValueEx(RegKey, value, NULL, REG_DWORD, (const BYTE*) &data,
 		sizeof(DWORD));
 	::RegCloseKey(RegKey);
