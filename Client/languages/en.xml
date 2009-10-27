@@ -1,40 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-This is a template for translating the user interface.  Every item
-corresponds to an HTML element in the interface.  All porperties
-such as innerText, innerHTML or title can be translated and will
-override the default english text.
-Each <code> is a string that is used in the program's source code.
-Some of these strings don't accept HTML, so you must encode < and
-> as &lt; and &gt;
-
-The following text is used by the installation program. Replace
-them with the translated text so that they can be included with
-the installer.
-
--begin-
-
-LangString DESC_SecCopyRequired		${LANG_ENGLISH}	"These files are required to use ${PRODUCT}."
-LangString DESC_SecCreateStartMenu	${LANG_ENGLISH}	"The Start Menu gives you easy access to ${PRODUCT}."
-LangString DESC_SecCreateQuickstart	${LANG_ENGLISH}	"Add ${PRODUCT} to your Quick Launch bar."
-LangString DESC_SecCreateDesktop	${LANG_ENGLISH}	"Place a shortcut on your desktop."
-LangString DESC_SecCreateAutoStart	${LANG_ENGLISH}	"${PRODUCT} will automatically log on when you start Windows."
-LangString ITEM_SecCreateStartMenu	${LANG_ENGLISH}	"Start Menu shortcut"
-LangString ITEM_SecCreateQuickstart	${LANG_ENGLISH}	"Quick Launch shortcut"
-LangString ITEM_SecCreateDesktop	${LANG_ENGLISH}	"Desktop shortcut"
-LangString ITEM_SecCreateAutoStart	${LANG_ENGLISH}	"Launch ${PRODUCT} on startup"
-LangString TEXT_WindowsOutdated		${LANG_ENGLISH}	"Cannot install ${PRODUCT}.$\nWindows NT 4 or higher is required."
-LangString TEXT_AlreadyRunning		${LANG_ENGLISH}	"Close ${PRODUCT} before continuing."
-LangString TEXT_InternetExplorer	${LANG_ENGLISH}	"Cannot continue with the installation of ${PRODUCT}.$\n$\nMicrosoft Internet Explorer version 5.5 or higher is required.  Do you want to download this update now?"
-LangString TEXT_DownloadFailed		${LANG_ENGLISH}	"Error: Cannot download a required component. Make sure you are connected to the Internet."
-LangString un.TEXT_RemoveProfiles	${LANG_ENGLISH}	"Remove profiles and history files?"
-LangString un.TEXT_RemoveDirectory	${LANG_ENGLISH}	"Note: $INSTDIR cannot be removed."
-
--end-
-
-Please send your own translations to cbas@pandion.be
-Thank you,
-  Sebastiaan Deckers
+	This file is part of Pandion instant messenger
+	Copyright (c) 2009 Sebastiaan Deckers
+	License: GNU General Public License version 3 or later
+-->
+<!--
+	Instructions:
+	http://pandion.pbworks.com/Translating
 -->
 <translation xml:lang="en" dir="ltr">
   <about>
@@ -771,13 +743,13 @@ Thank you,
       <innerText>Please confirm these settings:</innerText>
     </item>
     <item id="txt-default-xmpp">
-      <innerText>Use Pandion as my default XMPP client</innerText>
+      <innerText>Use ${softwarename} as my default XMPP client</innerText>
     </item>
     <item id="txt-homepage">
-      <innerText>Set my homepage to Pandion Search</innerText>
+      <innerText>Set my homepage to ${browsersearchboxname}</innerText>
     </item>
     <item id="txt-search-engine">
-      <innerText>Add Pandion Search to my search engines</innerText>
+      <innerText>Add ${browsersearchboxname} to my search engines</innerText>
     </item>
     <item id="txt-feed-title">
       <innerText>Support and Feedback</innerText>

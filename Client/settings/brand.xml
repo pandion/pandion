@@ -130,9 +130,13 @@
   -->
 <getsatisfactioncompany>pandion</getsatisfactioncompany>
 
-<!-- Ask the user to change their IE homepage to this URL
+<!-- Ask the user to change their web browser homepage
   -->
 <browserhomepage>http://search.pandion.be/</browserhomepage>
+
+<!-- Ask the user to change their web browser search engine
+  -->
+<browsersearchboxname>Pandion Search</browsersearchboxname>
 
 <!-- URI of email invitation webpage
   -->
