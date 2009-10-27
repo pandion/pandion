@@ -64,14 +64,13 @@ function Translator ()
 				var data = {};
 				var childTags = itemTag.childNodes;
 				for ( var k = childTags.length - 1; k >= 0; --k )
-					switch ( childTags.item(k).tagName )
-					{
-						case 'title': data.title = childTags.item(k).text; break;
-						case 'value': data.value = childTags.item(k).text; break;
-						case 'accessKey': data.accessKey = childTags.item(k).text; break;
-						case 'innerHTML': data.innerHTML = childTags.item(k).text; break;
-						case 'innerText': data.innerText = childTags.item(k).text; break;
-					}
+					data[ childTags.item(k).tagName ] = childTags.item(k).text.replace(
+						/\$\{(\w+)\}/mg,
+						function ( $0, $1 )
+						{
+							return external.globals.Exists( $1 ) ? external.globals( $1 ) : $0;
+						}
+					);
 				if ( ! this.HTMLCache( windowName ).Exists( itemTag.getAttribute( 'id' ) ) )
 					this.HTMLCache( windowName ).Add( itemTag.getAttribute( 'id' ), data );
 				else

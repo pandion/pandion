@@ -13,6 +13,8 @@ function SaveCommonProfile ()
 	Data.Add( 'serveraddress', external.globals( 'serveraddress' ) );
 	Data.Add( 'serverport', external.globals( 'serverport' ) );
 	Data.Add( 'softwaretrack', external.globals( 'softwaretrack' ) );
+	Data.Add( 'welcomescreen', external.globals( 'welcomescreen' ) );
+	Data.Add( 'welcomesettings', external.globals( 'welcomesettings' ) );
 
 	if ( external.wnd.left > 0 - external.wnd.width / 2 )
 		Data.Add( 'lastposx', external.wnd.left );

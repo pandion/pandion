@@ -1,0 +1,239 @@
+﻿/*
+	This file is part of Pandion instant messenger
+	Copyright (c) 2009 Sebastiaan Deckers
+	License: GNU General Public License version 3 or later
+*/
+/* Reset */
+html, body, #content {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+body, td, button, input {
+	cursor: default;
+	font-family: "Segoe UI", Tahoma;
+	font-size: 12px;
+}
+a {
+	color: highlight;
+}
+a:hover {
+	color: red;
+}
+
+/* Common switches to toggle elements from JavaScript */
+.visible {
+	display: block;
+}
+.hidden {
+	display: none;
+}
+
+/* Background */
+#content {
+	background: black url(../images/welcome/background.jpg) no-repeat top left;
+}
+
+/* Intro and message to users */
+#introduction {
+	color: #333;
+	background: transparent url(../images/welcome/translucent.png) repeat top left;
+	_background-image: none; /* ie6 only */
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/welcome/translucent.png", sizingMethod="scale"); /* ie6 only */
+	margin: 20px 0 0 10px;
+	padding: 33px 8px 25px 18px;
+	width: 320px;
+	border: 2px solid #ddd;
+	border-bottom-width: 0;
+}
+#introduction h1 {
+	font-weight: normal;
+	font-size: 1.6em;
+	margin-bottom: 1em;
+}
+#introduction p {
+	line-height: 120%;
+	font-size: 1em;
+	margin-bottom: 0.8em;
+}
+#txt-team {
+	margin-right: 2em;
+	text-align: right;
+	font-style: italic;
+}
+#txt-team:before {
+	content: "~ ";
+}
+
+/* Recommended tasks */
+#shortcuts {
+	color: #333;
+	background: transparent url(../images/welcome/translucent.png) repeat top left;
+	_background-image: none;
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/welcome/translucent.png", sizingMethod="scale");
+	margin-left: 10px;
+	padding: 0 0 8px 0;
+	width: 346px;
+	border: 2px solid #ddd;
+	border-top-width: 0;
+	text-align: center;
+}
+#shortcuts li {
+	display: inline;
+}
+#shortcuts a {
+	display: inline-block;
+	vertical-align: top;
+	width: 70px;
+	padding: 72px 5px 5px 5px;
+	text-align: center;
+	text-decoration: none;
+	cursor: hand;
+	line-height: 1.2em;
+}
+#btn-transports {
+	background: transparent url(../images/welcome/transport.png) no-repeat center top;
+}
+#btn-add-contact {
+	background: transparent url(../images/welcome/contact-add.png) no-repeat center top;
+}
+#btn-edit-profile {
+	background: transparent url(../images/welcome/profile.png) no-repeat center top;
+}
+#btn-settings {
+	background: transparent url(../images/welcome/settings.png) no-repeat center top;
+}
+
+/* Integration options */
+#settings {
+	color: #333;
+	background: transparent url(../images/welcome/translucent.png) repeat top left;
+	_background-image: none;
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/welcome/translucent.png", sizingMethod="scale");
+	margin-left: 10px;
+	padding: 0 8px 8px 8px;
+	width: 330px;
+	border: 2px solid #ddd;
+	border-top-width: 0;
+}
+#settings-close {
+	background: transparent url(../images/misc/tab-bar-close-lite.gif) no-repeat top left;
+	height: 17px;
+	width: 18px;
+	float: right;
+	margin: 8px 8px 0 0;
+}
+#settings-close:hover {
+	background: transparent url(../images/misc/tab-bar-close-over-lite.gif) no-repeat top left;
+}
+#settings p {
+	background-color: #ffd;
+	border: 1px solid #e3e3a6;
+	border-bottom-width: 0;
+	padding: 9px 9px 0 9px;
+}
+#settings ul {
+	background-color: #ffd;
+	border: 1px solid #e3e3a6;
+	border-top-width: 0;
+	padding: 5px 9px 9px 9px;
+}
+#settings li {
+	margin-top: 4px;
+}
+#settings label {
+	margin-left: 2px;
+}
+
+/* Feed widget */
+#community {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: transparent url(../images/welcome/translucent.png) repeat top left;
+	_background-image: none;
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/welcome/translucent.png", sizingMethod="scale");
+	width: 310px;
+	margin: 20px 10px 0 0;
+	padding: 0 18px 0 18px;
+	border: 2px solid #ddd;
+}
+#community h1 {
+	background: transparent url(../images/welcome/feed.png) no-repeat top right;
+	color: #333;
+	font-weight: normal;
+	font-size: 1.2em;
+	padding: 23px 0 1em 0;
+	font-style: italic;
+}
+#search-box {
+	height: 20px;
+	width: 282px;
+	cursor: text;
+	color: #888;
+	font-style: italic;
+	padding: 4px 0 0 24px;
+	background: white url(../images/welcome/search.png) no-repeat 3px center;
+}
+#search-box.active {
+	color: #333;
+	font-style: normal;
+}
+#feed-loading {
+	height: 250px;
+	background: transparent url(../images/misc/waiting.gif) no-repeat center center;
+}
+#feed-unavailable {
+	height: 250px;
+	text-align: center;
+	padding-top: 40%;
+}
+#feed {
+	margin-top: 10px;
+	width: 100%;
+	height: 250px;
+	overflow-y: scroll;
+}
+#feed li {
+	margin-bottom: 10px;
+}
+#feed li a {
+	line-height: 1.2em;
+}
+#feed .timestamp {
+	color: #888;
+	font-size: 0.85em;
+	display: inline;
+	margin-left: 4px;
+	white-space: nowrap;
+}
+#getsatisfaction a {
+	color: #888;
+	text-decoration: none;
+	background: transparent url(../images/welcome/getsatisfaction.gif) no-repeat center left;
+	margin: 10px 0;
+	padding-left: 24px;
+	height: 2em;
+	padding-top: 10px;
+	float: right;
+}
+
+/* Close the dialog */
+#footer {
+	border-top: 5px solid white;
+	position: absolute;
+	bottom: 0;
+	height: 40px;
+	background-color: buttonface;
+	width: 100%;
+	padding-top: 15px;
+}
+#show-welcome {
+	margin-left: 15px;
+}
+#btn-ok {
+	float: right;
+	width: 90px;
+	height: 24px;
+	margin-right: 15px;
+}

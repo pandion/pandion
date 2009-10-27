@@ -527,20 +527,8 @@ function OnLoginRoster ( iq )
 
 	/* Open welcome screen
 	 */
-	if ( external.windows.Exists( 'welcome' ) )
-		external.windows( 'welcome' ).focus();
-	else if ( external.globals( 'bannerwelcome' ).length )
-		with ( external.createWindow( 'welcome', external.globals( 'bannerwelcome' ), window ) )
-		{
-			setTitle( external.globals( 'softwarename' ) );
-			resizeable( false );
-			showMinBox( true );
-			setSize( 500, 365 );
-			setPos( ( screen.availWidth - 500 ) / 2, ( screen.availHeight - 365 ) / 2 );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\brand\\default.ico' );
-			hide( false );
-			focus();
-		}
+	if ( external.globals( 'welcomescreen' ) == 'yes' )
+		dial_welcome();
 
 	/* Plugin event
 	 */

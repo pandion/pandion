@@ -181,6 +181,7 @@ Thank you,
     <code id="menu_tool_settings">&amp;Settings</code>
 
     <code id="menu_help">&amp;Help</code>
+    <code id="menu_help_welcome">&amp;Welcome Screen</code>
     <code id="menu_help_manual">&amp;Online Manual</code>
     <code id="menu_help_forum">&amp;Support Forum</code>
     <code id="menu_help_contact">&amp;Contact Us</code>
@@ -229,6 +230,7 @@ Thank you,
     <code id="wnd_bookmarks_edit">Edit Conference Room Bookmark</code>
     <code id="wnd_bookmarks_manage">Conference Room Bookmarks</code>
     <code id="wnd_connection_settings">Connection Settings</code>
+    <code id="wnd_welcome">Welcome to ${0}</code>
 
     <code id="msg_emoticon_install">This emoticon style has already been installed.</code>
     <code id="msg_received_files">The directory for received files has been removed.</code>
@@ -289,6 +291,22 @@ Thank you,
     <code id="cl_xaway">Extended Away</code>
     <code id="cl_invisible">Invisible</code>
     <code id="cl_tooltip_online">Address: ${0}&#13;Resource: ${1}</code>
+
+    <code id="time-now">just now</code>
+    <code id="time-second">1 second ago</code>
+    <code id="time-seconds">${0} seconds ago</code>
+    <code id="time-minute">1 minute ago</code>
+    <code id="time-minutes">${0} minutes ago</code>
+    <code id="time-hour">1 hour ago</code>
+    <code id="time-hours">${0} hours ago</code>
+    <code id="time-day">1 day ago</code>
+    <code id="time-days">${0} days ago</code>
+    <code id="time-week">1 week ago</code>
+    <code id="time-weeks">${0} weeks ago</code>
+    <code id="time-month">1 month ago</code>
+    <code id="time-months">${0} months ago</code>
+    <code id="time-year">1 year ago</code>
+    <code id="time-years">${0} years ago</code>
   </window>
   <window name="about">
     <item id="btn_credits">
@@ -693,6 +711,12 @@ Thank you,
     <item id="txt-learn-more">
       <innerText>Learn about the improvements this update brings. This link opens in your web browser.</innerText>
     </item>
+    <item id="txt-continue">
+      <innerText>You can continue to use ${softwarename} while the update is being downloaded.</innerText>
+    </item>
+    <item id="txt-restart">
+      <innerText>The update will be installed when ${softwarename} is restarted. You can continue using ${softwarename} without restarting. Do you want to restart and update now?</innerText>
+    </item>
     <item id="txt-browser">
       <innerText>The download will start in your web browser.</innerText>
     </item>
@@ -711,8 +735,66 @@ Thank you,
     <code id="description-beta">Contains bug fixes and features that are being tested.</code>
     <code id="description-development">Some features may be broken while work is in progress.</code>
     <code id="title">Software Update: ${0} ${1}</code>
-    <code id="continue">You can continue to use ${0} while the update is being downloaded.</code>
-    <code id="restart">The update will be installed when ${0} is restarted. You can continue using ${0} without restarting. Do you want to restart and update now?</code>
+  </window>
+  <window name="welcome">
+    <item id="txt-hello">
+      <innerText>Hello and welcome to ${softwarename}</innerText>
+    </item>
+    <item id="txt-free-software">
+      <innerText>This application is free and open source software. All development, translation and support is done by our wonderful community members.</innerText>
+    </item>
+    <item id="txt-more-information">
+      <innerHTML>For more information follow @&lt;a href="http://twitter.com/${twittername}"&gt;${twittername}&lt;/a&gt; on Twitter or become a fan at &lt;a href="http://www.facebook.com/${facebookpage}"&gt;Facebook.com/${facebookpage}&lt;/a&gt;.</innerHTML>
+    </item>
+    <item id="txt-enjoy">
+      <innerText>We hope you enjoy using our application.</innerText>
+    </item>
+    <item id="txt-team">
+      <innerText>The ${softwarename} Team</innerText>
+    </item>
+    <item id="settings-close">
+      <title>Confirm and close</title>
+    </item>
+    <item id="btn-add-contact">
+      <innerText>Add a Contact</innerText>
+    </item>
+    <item id="btn-edit-profile">
+      <innerText>Edit my Profile</innerText>
+    </item>
+    <item id="btn-transports">
+      <innerText>Transports</innerText>
+    </item>
+    <item id="btn-settings">
+      <innerText>Settings</innerText>
+    </item>
+    <item id="txt-confirm">
+      <innerText>Please confirm these settings:</innerText>
+    </item>
+    <item id="txt-default-xmpp">
+      <innerText>Use Pandion as my default XMPP client</innerText>
+    </item>
+    <item id="txt-homepage">
+      <innerText>Set my homepage to Pandion Search</innerText>
+    </item>
+    <item id="txt-search-engine">
+      <innerText>Add Pandion Search to my search engines</innerText>
+    </item>
+    <item id="txt-feed-title">
+      <innerText>Support and Feedback</innerText>
+    </item>
+    <item id="txt-ask-question">
+      <innerText>Ask a question</innerText>
+    </item>
+    <item id="txt-powered-by">
+      <innerText>powered by GetSatisfaction</innerText>
+    </item>
+    <item id="txt-show-welcome">
+      <innerText>Show this welcome screen at startup</innerText>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+    </item>
+    <code id="search-topics">Search all topics...</code>
   </window>
   <window name="conference_create">
     <item id="btn_ok">

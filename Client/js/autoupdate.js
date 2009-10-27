@@ -207,8 +207,8 @@ function timestampToNumber ( timestamp )
 	if ( match )
 	{
 		for ( var ints = [ 2, 3, 4, 5, 6, 7, 8, 10, 11 ], i = ints.length - 1; i >= 0; --i )
-			match[ ints[i] ] = ints[i] in match ? parseInt( match[ ints[i] ], 10 ) : 0;
-		if ( 1 in match && match[1] === '-' ) // BC/AD
+			match[ ints[i] ] = match[ints[i]].length > 0 ? parseInt( match[ ints[i] ], 10 ) : 0;
+		if ( match[1] == '-' ) // BC/AD
 			match[2] *= -1;
 		var ms = Date.UTC(
 			match[2], // Y
@@ -219,7 +219,7 @@ function timestampToNumber ( timestamp )
 			match[7], // s
 			match[8] // ms
 		);
-		if ( 9 in match ) // offset
+		if ( match[9].length > 0 ) // offset
 			ms += ( match[9] == '+' ? -1 : 1 ) * ( match[10] * 3600 * 1000 + match[11] * 1000 ); // oh om
 		if ( match[2] >= 0 && match[2] <= 99 ) // 1-99 AD
 			ms -= 59958144000000;
@@ -248,8 +248,6 @@ function downloadUpdate ( appcastEntry )
 	gParameters = appcastEntry.arguments;
 
 	document.getElementById( 'txt-version' ).innerText = external.globals( 'Translator' ).Translate( 'autoupdate', 'title', [ appcastEntry.name, appcastEntry.version ] );
-	document.getElementById( 'txt-continue' ).innerText = external.globals( 'Translator' ).Translate( 'autoupdate', 'continue', [ appcastEntry.name ] );
-	document.getElementById( 'txt-restart' ).innerText = external.globals( 'Translator' ).Translate( 'autoupdate', 'restart', [ appcastEntry.name ] );
 	document.getElementById( 'txt-whats-new' ).href = appcastEntry.alternate ? appcastEntry.alternate : external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'softwareurl' ) );
 	document.getElementById( 'progress-version' ).innerText = external.globals( 'softwareversion' ) + ' ' + external.globals( 'softwaretrack' );
 

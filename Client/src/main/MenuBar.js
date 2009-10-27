@@ -51,8 +51,8 @@ function MenuBarUpdate ( section )
 		var InviteLink = external.globals( 'invitepage' );
 
 		var Bookmarks = external.newPopupMenu;
-		Bookmarks.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks_add' ),	220 );
-		Bookmarks.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks_manage' ),	221 );
+		Bookmarks.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks_add' ), 220 );
+		Bookmarks.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks_manage' ), 221 );
 		if ( cfg )
 		{
 			var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
@@ -70,18 +70,18 @@ function MenuBarUpdate ( section )
 		}
 
 		var actions = external.newPopupMenu;
-		actions.AddItem( connected,				false, false, false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_axn_add' ),		20 );
-		actions.AddItem( connected,				false, false, false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_axn_addgroup' ),	21 );
+		actions.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_add' ), 20 );
+		actions.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_addgroup' ), 21 );
 		if ( InviteLink.length )
-			actions.AddItem( true,				false, false, false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_axn_invite' ),	28 );
+			actions.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_invite' ), 28 );
 		actions.AddSeparator();
-		actions.AddItem( roster,				false, false, false, Bookmarks.handle,	external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks' ),	22 );
-		actions.AddItem( connected,				false, false, false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_axn_join' ),		23 );
-		actions.AddItem( connected,				false, false, false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_axn_create' ),	24 );
+		actions.AddItem( roster, false, false, false, Bookmarks.handle,external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks' ), 22 );
+		actions.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_join' ), 23 );
+		actions.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_create' ), 24 );
 		actions.AddSeparator();
-		actions.AddItem( connected && ! sspi,	false, false, false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_axn_password' ),	25 );
-		actions.AddItem( connected,				false, false, false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_axn_profile' ),	26 );
-		actions.AddItem( connected,				false, false, false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_axn_avatar' ),	27 );
+		actions.AddItem( connected && ! sspi, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_password' ), 25 );
+		actions.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_profile' ), 26 );
+		actions.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_avatar' ), 27 );
 
 		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'main', 'menu_axn' ), 1, 2, actions );
 	}
@@ -96,8 +96,8 @@ function MenuBarUpdate ( section )
 		var username = cfg && cfg( 'username' ).length;
 
 		var display = external.newPopupMenu;
-		display.AddItem( true,	false,	list,	false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_tool_detailed' ),		330 );
-		display.AddItem( true,	false,	! list,	false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_tool_compact' ),		331 );
+		display.AddItem( true, false, list, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tool_detailed' ), 330 );
+		display.AddItem( true, false, ! list, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tool_compact' ), 331 );
 
 		var language = external.newPopupMenu;
 		var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
@@ -116,21 +116,21 @@ function MenuBarUpdate ( section )
 		}
 
 		var tools = external.newPopupMenu;
-		tools.AddItem( connected,	false,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_transport' ),	36 );
-		tools.AddItem( roster,		false,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_head' ),			30 );
-		tools.AddItem( roster,		false,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_plugin' ),		37 );
+		tools.AddItem( connected,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_transport' ), 36 );
+		tools.AddItem( roster,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_head' ), 30 );
+		tools.AddItem( roster,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_plugin' ), 37 );
 		if ( admin )
 		{
 			tools.AddSeparator();
-			tools.AddItem( admin,	false,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_admin' ),		31 );
-			tools.AddItem( true,	false,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_traffic' ),		32 );
+			tools.AddItem( admin,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_admin' ), 31 );
+			tools.AddItem( true,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_traffic' ), 32 );
 		}
 		tools.AddSeparator();
-		tools.AddItem( roster,		false,	false,	false, display.Handle,	external.globals( 'Translator' ).Translate( 'main', 'menu_tool_view' ),			33 );
-		tools.AddItem( true,		false,	false,	false, language.Handle,	external.globals( 'Translator' ).Translate( 'main', 'menu_tool_language' ),		38 );
-		tools.AddItem( roster,		aot,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_aot' ),			34 );
+		tools.AddItem( roster,false,false,false, display.Handle,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_view' ), 33 );
+		tools.AddItem( true,false,false,false, language.Handle,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_language' ), 38 );
+		tools.AddItem( roster,aot,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_aot' ), 34 );
 		tools.AddSeparator();
-		tools.AddItem( roster,		false,	false,	false, 0,				external.globals( 'Translator' ).Translate( 'main', 'menu_tool_settings' ),		35 );
+		tools.AddItem( roster,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_settings' ), 35 );
 
 		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'main', 'menu_tool' ), 2, 3, tools );
 	}
@@ -140,17 +140,19 @@ function MenuBarUpdate ( section )
 		external.wnd.menuBar.RemItem( 4 );
 
 		var help = external.newPopupMenu;
+		help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_welcome' ), 45 );
+		help.AddSeparator();
 		if ( external.globals( 'helpmanual' ).length )
-			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_manual' ),	40 );
+			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_manual' ), 40 );
 		if ( external.globals( 'helpforum' ).length )
-			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_forum' ),	41 );
+			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_forum' ), 41 );
 		if ( external.globals( 'helpcontact' ).length )
-			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_contact' ),	42 );
+			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_contact' ), 42 );
 		if ( external.globals( 'helpmanual' ).length || external.globals( 'helpforum' ).length || external.globals( 'helpcontact' ).length )
 			help.AddSeparator();
-		help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_update' ),		43 );
+		help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_update' ), 43 );
 		help.AddSeparator();
-		help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_about' ),		44 );
+		help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_about' ), 44 );
 
 		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'main', 'menu_help' ), 3, 4, help );
 	}
@@ -282,6 +284,8 @@ function MenuBarSelect ( id )
 		case 37: // plug-ins
 			dial_plugin_list(); break;
 
+		case 45: // welcome screen
+			dial_welcome(); break;
 		case 40: // online manual
 			dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'helpmanual' ) ) ); break;
 		case 41: // support forum

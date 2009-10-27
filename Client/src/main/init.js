@@ -54,6 +54,7 @@ function init ()
 	external.globals.Add( 'stderr', new Array() ); // console buffer
 	external.globals.Add( 'Translator', new Translator() ); // string table
 	external.globals.Add( 'uniqueid', 0 ); // counter for id attributes in message and iq packets
+	external.globals.Add( 'welcomesettings', true ); // show the welcome screen settings
 	external.globals.Add( 'XMPPConnected', false ); // connection state
 	external.globals.Add( 'XMPPEncryption', '' ); // which method of encryption is being used
 	external.globals.Add( 'XMPPSessionID', '' ); // stream session ID used for login
@@ -113,7 +114,7 @@ function init ()
 
 	/* Where profiles are stored: AppData or MyDocuments
 	 */
-	if ( external.GetSpecialFolder( 0x001a ).length)
+	if ( external.GetSpecialFolder( 0x001a ).length )
 		external.globals.Add( 'usersdir', external.GetSpecialFolder( 0x001a ) );
 	else
 		external.globals.Add( 'usersdir', external.GetSpecialFolder( 0x0005 ) );

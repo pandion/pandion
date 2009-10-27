@@ -90,13 +90,21 @@
   -->
 <showsignup>yes</showsignup>
 
-<!-- URI of software version checker
+<!-- URI of software version checker (Atom 1.0 + Appcaster)
   -->
 <autoupdate>http://feeds.feedburner.com/pandionupdates?r=${random}</autoupdate>
 
 <!-- URI of background listing
   -->
 <backgroundlist>http://backgrounds.pandion.be/?n=${softwarename}&amp;v=${softwareversion}</backgroundlist>
+
+<!-- URI of welcome screen support and feedback feed (Atom 1.0)
+  -->
+<welcomefeedurl>http://feeds.feedburner.com/pandiongetsatisfaction?r=${random}</welcomefeedurl>
+
+<!-- URI of welcome screen search box target
+  -->
+<welcomesearchurl>http://getsatisfaction.com/pandion/searches?query=${query}&amp;commit=Search</welcomesearchurl>
 
 <!-- URI of full size banner (468x60)
   -->
@@ -106,9 +114,25 @@
   -->
 <bannerhalf></bannerhalf>
 
-<!-- URI of welcome screen (500x365)
+<!-- Whether to show the welcome screen (yes/no)
   -->
-<bannerwelcome></bannerwelcome>
+<welcomescreen>yes</welcomescreen>
+
+<!-- The welcome screen invites users to follow this Twitter user
+  -->
+<twittername>pandion</twittername>
+
+<!-- The welcome screen invites users to follow this Twitter user
+  -->
+<facebookpage>pandion.im</facebookpage>
+
+<!-- The welcome screen invites users to follow this Twitter user
+  -->
+<getsatisfactioncompany>pandion</getsatisfactioncompany>
+
+<!-- Ask the user to change their IE homepage to this URL
+  -->
+<browserhomepage>http://search.pandion.be/</browserhomepage>
 
 <!-- URI of email invitation webpage
   -->

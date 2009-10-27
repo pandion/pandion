@@ -6,15 +6,11 @@ function dial_webbrowser ( Address )
 		{
 			var HTTPHandler = external.RegRead( 'HKEY_CLASSES_ROOT', 'HTTP\\shell\\open\\command', '' );
 			if ( HTTPHandler.indexOf( 'iexplore.exe' ) != -1 )
-				window.open( Address, '_blank' );
-			else
-				external.shellExec( 'open', Address, '', '', 0 );
+				return window.open( Address, '_blank' );
 		}
 		catch ( e )
 		{
-			external.shellExec( 'open', Address, '', '', 0 );
 		}
 	}
-	else
-		external.shellExec( 'open', Address, '', '', 0 );
+	external.shellExec( 'open', Address, '', '', 0 );
 }
