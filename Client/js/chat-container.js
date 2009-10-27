@@ -682,6 +682,20 @@ function SessionTracker ( Address )
 			this.HTMLButton = document.createElement( 'SPAN' );
 			this.HTMLButton.className = this.IsActive ? 'tab-bar-button-active' : 'tab-bar-button';
 			this.HTMLButton.SessionTracker = this;
+			this.HTMLButton.attachEvent(
+				'onmouseup',
+				function ()
+				{
+					if ( event.button == 4 )
+					{
+						event.cancelBubble = true;
+						if ( event.srcElement.tagName == 'SPAN' )
+							event.srcElement.SessionTracker.Close();
+						else
+							event.srcElement.parentNode.SessionTracker.Close();
+					}
+				}
+			);
 
 			var Picture = document.createElement( 'IMG' );
 			Picture.className = 'tab-avatar';
