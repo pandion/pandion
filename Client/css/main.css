@@ -201,29 +201,33 @@ TD {
 #tab-area {
 	background-color: white;
 }
-#tab-bar {
-	height: 100%;
-	height: 24px;
-	background-repeat: repeat-x;
-	background-image: url( ../images/misc/tab-bar-lite.gif );
-	text-overflow: ellipsis;
-	overflow: hidden;
-	padding-left: 2px;
+#tab-bar-row {
+	background-image: url(../images/chat-container/tabs-behind.png);
+	background-repeat: repeat;
+}
+#tab-bar-row td {
+	font-size: 1px;
+	padding-left: 6px;
 }
 .tab-bar-button {
-	width: 28px;
-	height: 23px;
-	text-align: center;
+	background-image: url(../images/chat-container/tab-add-button-faded.png);
 	background-repeat: no-repeat;
-	padding-top: 4px;
+	float: left;
+	height: 28px;
+	width: 36px;
 }
 .tab-bar-button-active {
-	width: 28px;
-	height: 23px;
-	text-align: center;
+	background-image: url(../images/chat-container/tab-add-button.png);
 	background-repeat: no-repeat;
-	padding-top: 2px;
-	background-image: url( ../images/misc/tab-button-lite.gif );
+	float: left;
+	height: 28px;
+	width: 36px;
+}
+.tab-bar-button img, .tab-bar-button-active img {
+	float: left;
+	height: 16px;
+	margin: 4px 0 0 10px;
+	width: 16px;
 }
 
 /* Banner

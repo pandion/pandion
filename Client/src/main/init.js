@@ -254,7 +254,7 @@ function init ()
 		Icon = external.globals( 'cwd' ) + '..\\images\\brand\\default.ico';
 		Tooltip = external.globals( 'Translator' ).Translate( 'main', 'cl_tooltip', [ external.globals('softwarename' ) ] );
 		IsActive = true;
-		HTMLArea = document.getElementById( 'rosterback' );
+		HTMLArea = document.getElementById( 'rosterfield' );
 		DrawButton();
 	}
 
