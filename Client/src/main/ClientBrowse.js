@@ -4,8 +4,6 @@ function ClientBrowseServer ()
 {
 	this.JID			= '';
 	this.Name			= '';
-	this.Admin			= false;
-	this.AdminJ2		= '';
 	this.Services		= new ActiveXObject( 'Scripting.Dictionary' );
 	this.PendingDisco	= new ActiveXObject( 'Scripting.Dictionary' );
 
@@ -131,8 +129,6 @@ function ClientBrowseServer ()
 		var server = iq.XMLDOM.selectSingleNode( '/iq/*[@xmlns="jabber:iq:browse"]' );
 		if ( ! server )
 			return;
-		if ( server.selectSingleNode( 'ns[. = "jabber:iq:admin"]' ) )
-			this.Admin = true;
 		this.Name = server.getAttribute( 'name' );
 		var nodes = server.selectNodes( '*[@jid and @type]' );
 		for ( var i = 0; i < nodes.length; ++i )
@@ -227,8 +223,6 @@ function ClientBrowseServer ()
 	{
 		this.JID		= '';
 		this.Name		= '';
-		this.Admin		= false;
-		this.AdminJ2	= '';
 		this.Services.RemoveAll();
 	}
 

@@ -44,7 +44,7 @@ function ok ()
 		dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:register"><username/><password/></query></iq>' );
 		dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 		dom.documentElement.setAttribute( 'to', cfg( 'server' ) );
-		dom.selectSingleNode( '/iq/query/username' ).text = cfg( 'username' ) + ( external.globals( 'ClientServices' ).Admin ? '@' + cfg( 'server' ) : '' );
+		dom.selectSingleNode( '/iq/query/username' ).text = cfg( 'username' );
 		dom.selectSingleNode( '/iq/query/password' ).text = new1;
 		external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
 		external.XMPP.SendXML( dom );

@@ -14,7 +14,6 @@ function MenuBarUpdate ( section )
 	var cfg = external.globals( 'cfg' );
 	var connected = external.globals( 'XMPPConnected' );
 	var mode = cfg && connected ? cfg( 'lastmode' ) : -1;
-	var admin = external.globals( 'ClientServices' ).Admin || external.globals( 'ClientServices' ).AdminJ2.length;
 	var sspi = external.globals( 'sspiserver' ).length;
 	var signin = document.getElementById( 'signin-dialog' ).style.display == 'block';
 	var roster = ! signin;
@@ -119,12 +118,6 @@ function MenuBarUpdate ( section )
 		tools.AddItem( connected,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_transport' ), 36 );
 		tools.AddItem( roster,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_head' ), 30 );
 		tools.AddItem( roster,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_plugin' ), 37 );
-		if ( admin )
-		{
-			tools.AddSeparator();
-			tools.AddItem( admin,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_admin' ), 31 );
-			tools.AddItem( true,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_traffic' ), 32 );
-		}
 		tools.AddSeparator();
 		tools.AddItem( roster,false,false,false, display.Handle,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_view' ), 33 );
 		tools.AddItem( true,false,false,false, language.Handle,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_language' ), 38 );
@@ -250,8 +243,6 @@ function MenuBarSelect ( id )
 
 		case 30: // headlines
 			dial_headlines(); break;
-		case 31: // server administration
-			dial_server_admin(); break;
 		case 32: // view network traffic
 			dial_console(); break;
 		case 330: // detailed

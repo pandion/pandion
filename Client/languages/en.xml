@@ -143,7 +143,6 @@
     <code id="menu_tool_transport">&amp;Transports</code>
     <code id="menu_tool_head">&amp;Headlines and Alerts</code>
     <code id="menu_tool_plugin">&amp;Plug-ins</code>
-    <code id="menu_tool_admin">Server &amp;Administration</code>
     <code id="menu_tool_traffic">&amp;Network Traffic</code>
     <code id="menu_tool_view">&amp;View</code>
     <code id="menu_tool_detailed">&amp;Detailed</code>
@@ -188,7 +187,6 @@
     <code id="wnd_plugins">Plug-ins</code>
     <code id="wnd_password">Change Password</code>
     <code id="wnd_settings">Settings</code>
-    <code id="wnd_admin_server">Server Administration</code>
     <code id="wnd_status">Status Message</code>
     <code id="wnd_vcard_view">User Information</code>
     <code id="wnd_group_create">Create Group</code>
@@ -320,62 +318,6 @@
     <item id="txt_question">
       <innerText>Do you want to accept or deny this person into your contact list?</innerText>
     </item>
-  </window>
-  <window name="admin_users">
-    <item id="btn_refresh">
-      <value>Refresh</value>
-    </item>
-    <item id="btn_ok">
-      <value>OK</value>
-    </item>
-    <item id="txt_desc">
-      <innerText>Click on an account to send a message. Right click to see more options.</innerText>
-    </item>
-    <code id="add_to_list">Add to contact list</code>
-    <code id="tooltip_with">Address: ${0}&#13;Resource: ${1}&#13;Online time: ${2}</code>
-    <code id="tooltip_without">Address: ${0}&#13;Online time: ${1}</code>
-    <code id="loading">Loading...</code>
-    <code id="invalid_data">Invalid data received.</code>
-    <code id="server_error">Server error:</code>
-    <code id="server_failed">Failed to retrieve online users list.&lt;BR&gt;Make sure you have administration access to the server.</code>
-    <code id="user">1 user online</code>
-    <code id="users">${0} users online</code>
-  </window>
-  <window name="admin">
-    <item id="btn_view">
-      <value>View all online users</value>
-    </item>
-    <item id="btn_close">
-      <value>Close</value>
-    </item>
-    <item id="admin_btn_wall">
-      <value>Send</value>
-    </item>
-    <item id="admin_btn_motd">
-      <value>Send</value>
-    </item>
-    <item id="txt_wall_desc">
-      <innerText>This alert is sent to the currently online users.</innerText>
-    </item>
-    <item id="txt_motd_desc">
-      <innerText>This alert is sent to users when they log on.</innerText>
-    </item>
-    <item id="txt_wall">
-      <innerText>Broadcast message</innerText>
-    </item>
-    <item id="txt_motd">
-      <innerText>Message of the day</innerText>
-    </item>
-    <item id="txt_view">
-      <innerText>Monitor who is connected to the server.</innerText>
-    </item>
-    <item id="txt_desc">
-      <innerText>Use these tools to monitor and administer the IM server.</innerText>
-    </item>
-    <item id="txt_users">
-      <innerText>Users</innerText>
-    </item>
-    <code id="wnd_users">Online Users</code>
   </window>
   <window name="console">
     <item id="btn_clear">

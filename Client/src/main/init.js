@@ -8,7 +8,7 @@ function init ()
 	}
 	catch ( e )
 	{
-		alert( 'Error: Can not activate the programming interfaces.\n\nThere are several possible reasons for this problem:\n\nCause: You do not have write access to the Windows Registry.\nSolution: Log in to Windows with more access rights (Administrator) and reinstall the software.\n\nCause: The Windows Registry is full.\nSolution: Increase the maximum size of the registry.' );
+		alert( 'Error: Can not access the programming interfaces.' );
 		window.opener = '';
 		return window.close();
 	}

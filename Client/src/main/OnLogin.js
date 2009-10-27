@@ -243,11 +243,6 @@ function OnLoginDiscoItems ( iq )
 	if ( iq.Type == 'result' )
 	{
 		var DiscoItems = iq.XMLDOM.selectNodes( '/iq/*[@xmlns="http://jabber.org/protocol/disco#items"]/item[@jid and not( @node )]' );
-
-		var Node = iq.XMLDOM.selectSingleNode( '/iq/*[@xmlns="http://jabber.org/protocol/disco#items"]/item[@node = "sessions" and @jid]' );
-		if ( Node )
-			external.globals( 'ClientServices' ).AdminJ2 = Node.getAttribute( 'jid' );
-
 		if ( DiscoItems.length )
 		{
 			for ( var i = 0; i < DiscoItems.length; ++i )
@@ -270,21 +265,6 @@ function OnLoginDiscoItems ( iq )
 					warn( 'SENT: ' + dom.xml );
 					external.XMPP.SendXML( dom );
 				}
-			}
-
-			if ( ! external.globals( 'ClientServices' ).AdminJ2 )
-			{
-				var hook		= new XMPPHookIQ();
-				hook.Window		= external.wnd;
-				hook.Callback	= 'OnLoginBrowseOverride';
-				hook.From		= external.globals( 'cfg' )( 'server' );
-
-				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
-				dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:browse"/></iq>' );
-				dom.documentElement.setAttribute( 'id', hook.Id );
-				dom.documentElement.setAttribute( 'to', external.globals( 'cfg' )( 'server' ) );
-				warn( 'SENT: ' + dom.xml );
-				external.XMPP.SendXML( dom );
 			}
 		}
 		/* Fall back to browse mechanism
@@ -312,16 +292,6 @@ function OnLoginDiscoInfo ( iq )
 
 		if ( ! external.globals( 'ClientServices' ).PendingDisco.Count )
 			OnReceivedServices();
-	}
-}
-
-function OnLoginBrowseOverride ( iq )
-{
-	if ( iq.Type == 'result' )
-	{
-		external.globals( 'ClientServices' ).FromIQBrowse( iq );
-		OnReceivedServices();
-		MenuBarUpdate( 'tools' );
 	}
 }
 
