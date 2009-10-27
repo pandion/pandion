@@ -21,6 +21,7 @@
 <conferenceservice/>
 <conference_height>500</conference_height>
 <conference_left>50</conference_left>
+<conference_maximized>false</conference_maximized>
 <conference_top>50</conference_top>
 <conference_width>700</conference_width>
 <contactlistdisplay>detailed</contactlistdisplay>

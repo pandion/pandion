@@ -72,7 +72,7 @@ function ClientPluginTab ( plugin )
 
 			var image = document.createElement( 'IMG' );
 			image.src = this.Icon;
-			image.width = image.height = 16;
+			image.className = 'tab-bar-icon';
 			this.HTMLButton.insertAdjacentElement( 'beforeEnd', image );
 
 			this.HTMLButton.attachEvent(

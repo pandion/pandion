@@ -1,10 +1,5 @@
 var gContainer = null;
 
-function DisableButton ()
-{
-	document.getElementById( 'btn-send' ).disabled = ( /^\s*$/ ).test( document.getElementById( 'send-text' ).value );
-}
-
 function Begin ()
 {
 	external.globals( 'Translator' ).TranslateWindow( 'chat-container', document );
@@ -12,7 +7,7 @@ function Begin ()
 
 	/* Event handlers for text selecting, input area resizing, and text input focus
 	 */
-    document.attachEvent( 'onselectionchange', DisableButton);
+    document.attachEvent( 'onselectionchange', DisableButton );
 	document.attachEvent( 'onselectstart', SelectionFilter );
 	document.attachEvent( 'ondragstart', SelectionFilter );
 	window.attachEvent( 'onresize', ResizeCheck );
@@ -87,22 +82,13 @@ function End ()
 	/* Remember window size and position
 	 */
 	var cfg = external.globals( 'cfg' );
-	if ( external.wnd.left > 0 )
-		cfg( 'user_dialog_left' ) = external.wnd.left;
-	else
-		cfg( 'user_dialog_left' ) = 0;
-	if ( external.wnd.top > 0 )
-		cfg( 'user_dialog_top' ) = external.wnd.top;
-	else
-		cfg( 'user_dialog_top' ) = 0;
+	cfg( 'user_dialog_maximized' ) = external.wnd.isMaximized ? 'true' : 'false';
+	cfg( 'user_dialog_left' ) = Math.max( 0, external.wnd.left );
+	cfg( 'user_dialog_top' ) = Math.max( 0, external.wnd.top );
 	if ( external.wnd.width > 100 )
 		cfg( 'user_dialog_width' ) = external.wnd.width;
 	if ( external.wnd.height > 100 )
 		cfg( 'user_dialog_height' ) = external.wnd.height;
-	if ( external.wnd.isMaximized )
-		cfg( 'user_dialog_maximized' ) = 'true';
-	else
-		cfg( 'user_dialog_maximized' ) = 'false';
 	external.wnd.params[0].SettingsSave();
 }
 
@@ -626,8 +612,8 @@ function SessionTracker ( Address )
 
 		if ( ! external.FileExists( this.AvatarPath + this.Avatar ) )
 		{
-			this.AvatarPath	= external.globals( 'cwd' ) + '..\\images\\clients\\';
-			this.Avatar		= 'unknown-soldier.gif';
+			this.AvatarPath = external.globals( 'cwd' ) + '..\\images\\clients\\';
+			this.Avatar = 'unknown-soldier.gif';
 		}
 
 		this.HTMLButton.children.item(1).innerText = this.Name;
@@ -657,13 +643,13 @@ function SessionTracker ( Address )
 			switch ( this.Show )
 			{
 				case 'awaiting':
-				case 'unknown':	ModeMessage = external.globals( 'Translator' ).Translate( 'chat-container', 'unknown', [ this.Name ] ); break;
-				case 'offline':	ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' ); break;
-				case 'chat':	ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_ffc' ); break;
-				case 'dnd':		ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_busy' ); break;
-				case 'xa':		ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_xaway' ); break;
-				case 'away':	ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_away' ); break;
-				default:		ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_available' ); break;
+				case 'unknown': ModeMessage = external.globals( 'Translator' ).Translate( 'chat-container', 'unknown', [ this.Name ] ); break;
+				case 'offline': ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' ); break;
+				case 'chat': ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_ffc' ); break;
+				case 'dnd': ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_busy' ); break;
+				case 'xa': ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_xaway' ); break;
+				case 'away': ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_away' ); break;
+				default: ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_available' ); break;
 			}
 			if ( this.Status.length )
 				ModeMessage += ' - ' + this.Status.replace( /[\n\r]+/mg, ' - ' );
@@ -978,8 +964,8 @@ function SendMessage ()
 
 	if ( Tracker.MessageThread )
 	{
-		var Thread	= dom.createElement( 'thread' );
-		Thread.text	= Tracker.MessageThread;
+		var Thread = dom.createElement( 'thread' );
+		Thread.text = Tracker.MessageThread;
 		dom.documentElement.appendChild( Thread );
 	}
 
@@ -1105,10 +1091,10 @@ function MenuBarUpdate ( section )
 		external.wnd.menuBar.RemItem( 1 );
 
 		var file = external.newPopupMenu;
-		file.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_file_received' ),	10 );
-		file.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_file_history' ),	11 );
+		file.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_file_received' ), 10 );
+		file.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_file_history' ), 11 );
 		file.AddSeparator();
-		file.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_file_close' ),		12 );
+		file.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_file_close' ), 12 );
 
 		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'chat-container', 'menu_file' ), 0, 1, file );
 	}
@@ -1117,23 +1103,23 @@ function MenuBarUpdate ( section )
 	{
 		external.wnd.menuBar.RemItem( 2 );
 
-		var Connected	= external.globals( 'XMPPConnected' );
-		var InRoster	= external.globals( 'ClientRoster' ).Items.Exists( gContainer.ActiveTrackerAddress );
-		var IsBlocked	= external.globals( 'block' ).Exists( gContainer.ActiveTrackerAddress );
-		var IsOnline	= gContainer.ActiveTrackerAddress.length														&&
-							external.globals( 'ClientRoster' ).Items.Exists( gContainer.ActiveTrackerAddress )			&&
-							external.globals( 'ClientRoster' ).Items( gContainer.ActiveTrackerAddress ).Resources.Count;
+		var Connected = external.globals( 'XMPPConnected' );
+		var InRoster = external.globals( 'ClientRoster' ).Items.Exists( gContainer.ActiveTrackerAddress );
+		var IsBlocked = external.globals( 'block' ).Exists( gContainer.ActiveTrackerAddress );
+		var IsOnline = gContainer.ActiveTrackerAddress.length
+			&& external.globals( 'ClientRoster' ).Items.Exists( gContainer.ActiveTrackerAddress )
+			&& external.globals( 'ClientRoster' ).Items( gContainer.ActiveTrackerAddress ).Resources.Count;
 
 		var contact = external.newPopupMenu;
-		contact.AddItem( Connected && ! InRoster,	false,			false, false, 0,				external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_add' ),		200 );
-		contact.AddItem( Connected && InRoster,		false,			false, false, 0,				external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_rename' ),	201 );
-		contact.AddItem( true,						IsBlocked,		false, false, 0,				external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_block' ),	202 );
+		contact.AddItem( Connected && ! InRoster, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_add' ), 200 );
+		contact.AddItem( Connected && InRoster, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_rename' ), 201 );
+		contact.AddItem( true, IsBlocked, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_block' ), 202 );
 
 		var actions = external.newPopupMenu;
-		actions.AddItem( true,						false,			false, false, contact.Handle,	external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_contact' ),	20 );
+		actions.AddItem( true, false, false, false, contact.Handle, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_contact' ), 20 );
 		actions.AddSeparator();
-		actions.AddItem( Connected,					false,			false, false, 0,				external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_profile' ),	22 );
-		actions.AddItem( Connected && IsOnline,		false,			false, false, 0,				external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_file' ),	23 );
+		actions.AddItem( Connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_profile' ), 22 );
+		actions.AddItem( Connected && IsOnline, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_file' ), 23 );
 
 		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'main', 'menu_axn' ), 1, 2, actions );
 	}
@@ -1149,16 +1135,16 @@ function MenuBarUpdate ( section )
 		var emo = cfg( 'emoticon' ).toString() == 'true';
 
 		var tools = external.newPopupMenu;
-		tools.AddItem( true, false,	false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_emo_style' ),	36 );
-		tools.AddItem( true, false,	false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_font' ),		30 );
-		tools.AddItem( true, false,	false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_background' ),37 );
+		tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_emo_style' ), 36 );
+		tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_font' ), 30 );
+		tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_background' ),37 );
 		tools.AddSeparator();
-		tools.AddItem( true, aot,	false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_aot' ),		31 );
-		tools.AddItem( true, popup,	false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_popup' ),		32 );
-		tools.AddItem( true, tabs,	false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_tabbed' ),	33 );
-		tools.AddItem( true, emo,	false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_emoticons' ),	34 );
+		tools.AddItem( true, aot, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_aot' ), 31 );
+		tools.AddItem( true, popup, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_popup' ), 32 );
+		tools.AddItem( true, tabs, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_tabbed' ), 33 );
+		tools.AddItem( true, emo, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_emoticons' ), 34 );
 		tools.AddSeparator();
-		tools.AddItem( true, false,	false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_settings' ),	35 );
+		tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_settings' ), 35 );
 
 		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'main', 'menu_tool' ), 2, 3, tools );
 	}
@@ -1169,14 +1155,14 @@ function MenuBarUpdate ( section )
 
 		var help = external.newPopupMenu;
 		if ( external.globals( 'helpmanual' ).length )
-			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_manual' ),	40 );
+			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_manual' ), 40 );
 		if ( external.globals( 'helpforum' ).length )
-			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_forum' ),	41 );
+			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_forum' ), 41 );
 		if ( external.globals( 'helpcontact' ).length )
-			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_contact' ),	42 );
+			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_contact' ), 42 );
 		if ( external.globals( 'helpmanual' ).length || external.globals( 'helpforum' ).length || external.globals( 'helpcontact' ).length )
 			help.AddSeparator();
-		help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_about' ),		43 );
+		help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_about' ), 43 );
 
 		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'main', 'menu_help' ), 3, 4, help );
 	}
@@ -1196,11 +1182,13 @@ function MenuBarSelect ( id )
 				external.shellExec( 'open', external.globals( 'cfg' )( 'downloaddir' ) + '\\', '', '', 1 );
 			else
 				external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'main', 'msg_received_files' ), external.globals( 'softwarename' ), 0 | 48 );
-																																					break;
+			break;
 		case 11: // message history
-			external.wnd.params[0].dial_history( gContainer.ActiveTrackerAddress );																	break;
+			external.wnd.params[0].dial_history( gContainer.ActiveTrackerAddress );
+			break;
 		case 12: //	close
-			gContainer.Trackers( gContainer.ActiveTrackerAddress ).Close();																			break;
+			gContainer.Trackers( gContainer.ActiveTrackerAddress ).Close();
+			break;
 
 		case 200: // add to list
 			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
@@ -1209,18 +1197,23 @@ function MenuBarSelect ( id )
 			external.wnd.params[0].warn( 'SENT: ' + dom.xml );
 			external.XMPP.SendXML( dom );
 			external.wnd.messageBox( false, external.globals( 'Translator' ).Translate( 'main', 'msg_cl_adding', [ gContainer.ActiveTrackerAddress ] ), external.globals( 'softwarename' ), 0 | 64 );
-																																					break;
+			break;
 		case 201: // rename
-			external.globals( 'ClientRoster' ).Items( gContainer.ActiveTrackerAddress ).ChangeName();												break;
+			external.globals( 'ClientRoster' ).Items( gContainer.ActiveTrackerAddress ).ChangeName();
+			break;
 		case 202: // block
-			external.wnd.params[0].dial_block( gContainer.ActiveTrackerAddress );																	break;
+			external.wnd.params[0].dial_block( gContainer.ActiveTrackerAddress );
+			break;
 		case 22: // view profile
-			external.wnd.params[0].dial_userinfo( gContainer.Trackers( gContainer.ActiveTrackerAddress ).Address );									break;
+			external.wnd.params[0].dial_userinfo( gContainer.Trackers( gContainer.ActiveTrackerAddress ).Address );
+			break;
 		case 23: // send file
-			external.wnd.params[0].dial_file( gContainer.Trackers( gContainer.ActiveTrackerAddress ).Address );										break;
+			external.wnd.params[0].dial_file( gContainer.Trackers( gContainer.ActiveTrackerAddress ).Address );
+			break;
 
 		case 30: // font
-			external.wnd.params[0].dial_font();																										break;
+			external.wnd.params[0].dial_font();
+			break;
 		case 31: // always on top
 			cfg( 'aotchat' ) = ! ( cfg( 'aotchat' ).toString() == 'true' );
 			var windownames = ( new VBArray( external.windows.Keys() ) ).toArray();
@@ -1229,7 +1222,8 @@ function MenuBarSelect ( id )
 					external.windows( windownames[i] ).setAOT( cfg( 'aotchat' ) );
 			var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
 			for ( var i = 0; i < ContainerNames.length; ++i )
-				external.globals( 'ChatSessionPool' ).Containers( ContainerNames[i] ).MenuBarUpdate( 'tools' );										break;
+				external.globals( 'ChatSessionPool' ).Containers( ContainerNames[i] ).MenuBarUpdate( 'tools' );
+			break;
 		case 32: // popup new messages
 			cfg( 'autopopupmsg' ) = ! ( cfg( 'autopopupmsg' ).toString() == 'true' );
 			var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
@@ -1237,7 +1231,8 @@ function MenuBarSelect ( id )
 				external.globals( 'ChatSessionPool' ).Containers( ContainerNames[i] ).MenuBarUpdate( 'tools' );
 			ContainerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Containers.Keys() ) ).toArray();
 			for ( var i = 0; i < ContainerNames.length; ++i )
-				external.globals( 'ConferenceSessionPool' ).Containers( ContainerNames[i] ).MenuBarUpdate( 'tools' );								break;
+				external.globals( 'ConferenceSessionPool' ).Containers( ContainerNames[i] ).MenuBarUpdate( 'tools' );
+			break;
 		case 33: // multiple tabs
 			cfg( 'tabbedchat' ) = ! ( cfg( 'tabbedchat' ).toString() == 'true' );
 			var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
@@ -1253,7 +1248,8 @@ function MenuBarSelect ( id )
 				{
 					MenuBarUpdate( 'tools' );
 					HTMLTabBar.style.display = HTMLTabBar.childNodes.length || cfg( 'tabbedchat' ) ? 'inline' : 'none';
-				}																																	break;
+				}
+			break;
 		case 34: // display emoticons
 			cfg( 'emoticon' ) = ! ( cfg( 'emoticon' ).toString() == 'true' );
 			var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
@@ -1261,22 +1257,30 @@ function MenuBarSelect ( id )
 				external.globals( 'ChatSessionPool' ).Containers( ContainerNames[i] ).MenuBarUpdate( 'tools' );
 			ContainerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Containers.Keys() ) ).toArray();
 			for ( var i = 0; i < ContainerNames.length; ++i )
-				external.globals( 'ConferenceSessionPool' ).Containers( ContainerNames[i] ).MenuBarUpdate( 'tools' );								break;
+				external.globals( 'ConferenceSessionPool' ).Containers( ContainerNames[i] ).MenuBarUpdate( 'tools' );
+			break;
 		case 35: // settings
-			external.wnd.params[0].dial_preferences( '' );																							break;
+			external.wnd.params[0].dial_preferences( '' );
+			break;
 		case 36: // emoticon style
-			external.wnd.params[0].dial_emoticon_list();																							break;
+			external.wnd.params[0].dial_emoticon_list();
+			break;
 		case 37: // background
-			external.wnd.params[0].dial_background_list();																							break;
+			external.wnd.params[0].dial_background_list();
+			break;
 
 		case 40: // online manual
-			external.wnd.params[0].dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'helpmanual' ) ) );		break;
+			external.wnd.params[0].dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'helpmanual' ) ) );
+			break;
 		case 41: // support forum
-			external.wnd.params[0].dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'helpforum' ) ) );		break;
+			external.wnd.params[0].dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'helpforum' ) ) );
+			break;
 		case 42: // contact us
-			external.wnd.params[0].dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'helpcontact' ) ) );	break;
+			external.wnd.params[0].dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'helpcontact' ) ) );
+			break;
 		case 43: // about
-			external.wnd.params[0].dial_about();																									break;
+			external.wnd.params[0].dial_about();
+			break;
 
 		default:
 			external.wnd.params[0].warn( 'EVNT: selected menubar option ' + id );
@@ -1329,17 +1333,15 @@ function LastOnline ( IQ )
 	if ( gContainer.Trackers.Exists( IQ.FromAddress.ShortAddress() ) )
 	{
 		var Tracker = gContainer.Trackers( IQ.FromAddress.ShortAddress() );
-
 		if ( Tracker.HookIQ )
 		{
 			Tracker.HookIQ.Destroy();
 			Tracker.HookIQ = null;
 		}
 
-		var Query = IQ.XMLDOM.selectSingleNode( '/iq[@type = "result"]/query[@xmlns = "jabber:iq:last" and @seconds]' );
-
 		/* Display last online time
 		 */
+		var Query = IQ.XMLDOM.selectSingleNode( '/iq[@type = "result"]/query[@xmlns = "jabber:iq:last" and @seconds]' );
 		if ( Query )
 		{
 			var Seconds = parseInt( Query.getAttribute( 'seconds' ) );
@@ -1360,14 +1362,14 @@ function LastOnline ( IQ )
  */
 function MouseMenu ()
 {
-	var Tracker			= gContainer.Trackers( gContainer.ActiveTrackerAddress );
-	var ShortAddress	= gContainer.ActiveTrackerAddress;
-	var Resource		= Tracker.Address.Resource;
-	var Connected		= external.globals( 'XMPPConnected' );
-	var Online			= external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) && external.globals( 'ClientRoster' ).Items( ShortAddress ).Resources.Count;
-	var InRoster		= external.globals( 'ClientRoster' ).Items.Exists( gContainer.ActiveTrackerAddress );
-	var IsMe			= gContainer.ActiveTrackerAddress == external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' );
-	var Blocked			= external.globals( 'block' ).Exists( ShortAddress ) && ! IsMe;
+	var Tracker = gContainer.Trackers( gContainer.ActiveTrackerAddress );
+	var ShortAddress = gContainer.ActiveTrackerAddress;
+	var Resource = Tracker.Address.Resource;
+	var Connected = external.globals( 'XMPPConnected' );
+	var Online = external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) && external.globals( 'ClientRoster' ).Items( ShortAddress ).Resources.Count;
+	var InRoster = external.globals( 'ClientRoster' ).Items.Exists( gContainer.ActiveTrackerAddress );
+	var IsMe = gContainer.ActiveTrackerAddress == external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' );
+	var Blocked = external.globals( 'block' ).Exists( ShortAddress ) && ! IsMe;
 
 	var Menu = external.newPopupMenu;
 	Menu.AddItem( Online, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_filetransfer' ), 1 );
@@ -1397,12 +1399,12 @@ function MouseMenu ()
 		}
 
 	Menu.AddSeparator();
-	Menu.AddItem( Connected && ! InRoster && ! IsMe,	false,		false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_add' ),	3 );
-	Menu.AddItem( Connected && InRoster,				false,		false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_rename' ),				4 );
-	Menu.AddItem( ! IsMe,								Blocked,	false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_block' ),				5 );
+	Menu.AddItem( Connected && ! InRoster && ! IsMe, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_add' ), 3 );
+	Menu.AddItem( Connected && InRoster, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_rename' ), 4 );
+	Menu.AddItem( ! IsMe, Blocked, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_block' ), 5 );
 	Menu.AddSeparator();
-	Menu.AddItem( true,			false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_history' ), 6 );
-	Menu.AddItem( Connected,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_profile' ), 7 );
+	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_history' ), 6 );
+	Menu.AddItem( Connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_profile' ), 7 );
 
 	Menu.Show( window.screenLeft + 42, window.screenTop + 48, external.globals( 'Translator' ).Direction );
 
@@ -1444,13 +1446,13 @@ function MouseMenu ()
 			else if ( Menu.Choice >= 1000 && Menu.Choice - 1001 < plugindata.length )
 			{
 				var context = new ActiveXObject( 'Scripting.Dictionary' );
-				context.Add( 'address',		ShortAddress );
-				context.Add( 'resource',	Resource );
-				context.Add( 'group',		'' );
-				context.Add( 'name',		'onMenu' );
-				context.Add( 'menuname',	'roster' );
-				context.Add( 'plugin',		pluginname[ Menu.Choice - 1000 ].Id );
-				context.Add( 'menuvalue',	plugindata[ Menu.Choice - 1000 ].Value );
+				context.Add( 'address', ShortAddress );
+				context.Add( 'resource', Resource );
+				context.Add( 'group', '' );
+				context.Add( 'name', 'onMenu' );
+				context.Add( 'menuname', 'roster' );
+				context.Add( 'plugin', pluginname[ Menu.Choice - 1000 ].Id );
+				context.Add( 'menuvalue', plugindata[ Menu.Choice - 1000 ].Value );
 				external.globals( 'ClientPluginContainer' ).DispatchEvent( context );
 			}
 	}

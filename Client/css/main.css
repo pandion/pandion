@@ -223,7 +223,7 @@ TD {
 	height: 28px;
 	width: 36px;
 }
-.tab-bar-button img, .tab-bar-button-active img {
+.tab-bar-icon {
 	float: left;
 	height: 16px;
 	margin: 4px 0 0 10px;

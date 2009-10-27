@@ -797,3 +797,10 @@ function ToolbarButtonMouseOut ( Button )
 	if ( ! gResizeInterval )
 		Button.className = 'toolbar-button';
 }
+
+/* Toggle button state
+ */
+function DisableButton ()
+{
+	document.getElementById( 'btn-send' ).disabled = ( /^\s*$/ ).test( document.getElementById( 'send-text' ).value );
+}
