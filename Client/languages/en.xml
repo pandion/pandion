@@ -1740,6 +1740,9 @@
     <item id="txt_startup">
       <innerText>Launch automatically at startup</innerText>
     </item>
+    <item id="txt_updates">
+      <innerText>Automatically check for software updates</innerText>
+    </item>
     <item id="txt_auth_request">
       <innerText>When someone requests my authorization</innerText>
     </item>

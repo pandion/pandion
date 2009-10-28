@@ -25,9 +25,13 @@
   -->
 <softwareversion>2.6</softwareversion>
 
-<!-- Type of updates to auto-install: stable/beta/development
+<!-- Type of updates to auto-install (stable/beta/development)
   -->
 <softwaretrack>stable</softwaretrack>
+
+<!-- Automatically download and install any updates (yes/no)
+  -->
+<installupdates>yes</installupdates>
 
 <!-- Only connect to this server and only create accounts on this server
   -->
