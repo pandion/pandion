@@ -210,15 +210,15 @@ TD {
 	padding-left: 6px;
 }
 .tab-bar-button {
-	background-image: url(../images/chat-container/tab-add-button-faded.png);
-	background-repeat: no-repeat;
+	background: transparent url(../images/main/tab-add-button-faded.png) no-repeat top left;
+	_background-image: none; /* ie6 only */
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/main/tab-add-button-faded.png", sizingMethod="crop"); /* ie6 only */
 	float: left;
 	height: 28px;
 	width: 36px;
 }
 .tab-bar-button-active {
-	background-image: url(../images/chat-container/tab-add-button.png);
-	background-repeat: no-repeat;
+	background: transparent url(../images/main/tab-add-button.png) no-repeat top left;
 	float: left;
 	height: 28px;
 	width: 36px;
