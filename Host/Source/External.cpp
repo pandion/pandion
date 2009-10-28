@@ -419,6 +419,50 @@ STDMETHODIMP External::PlaySound(BSTR soundFile)
 	::PlaySound(soundFile, NULL, flags);
 	return S_OK;
 }
+
+typedef HRESULT (__stdcall *CREATEURIPROC)(LPCWSTR, DWORD, DWORD, IUri**); 
+
+STDMETHODIMP External::SetDefaultMSIESearchProvider(BSTR url)
+{
+	HRESULT hr = E_FAIL;
+	HMODULE urlmon_dll = ::LoadLibrary(TEXT("urlmon.dll"));
+
+	if(urlmon_dll != NULL)
+	{
+		CREATEURIPROC CreateUriProc = 
+			(CREATEURIPROC) ::GetProcAddress(urlmon_dll, "CreateUri");
+
+		if(CreateUriProc != NULL)
+		{
+			IOpenServiceManager* osm;
+			HRESULT hr = ::CoCreateInstance(CLSID_OpenServiceManager, NULL,
+				CLSCTX_INPROC_SERVER, IID_IOpenServiceManager, (void**) &osm);
+
+			if(SUCCEEDED(hr))
+			{
+				IUri* uri;
+
+				hr = CreateUriProc(url, 0, 0, &uri);
+				if(SUCCEEDED(hr))
+				{
+					IOpenService* os;
+					hr = osm->InstallService(url, &os);
+					if(SUCCEEDED(hr))
+					{
+						os->SetDefault(TRUE, NULL);
+						os->Release();
+					}
+					uri->Release();
+				}				
+				osm->Release();
+			}
+		}
+
+		::FreeLibrary(urlmon_dll);
+	}
+
+	return hr;
+}
 HKEY External::StringToRegRootKey(BSTR strHKey)
 {
 	HKEY RootKey;

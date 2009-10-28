@@ -23,7 +23,7 @@
  */
 #pragma once
 
-/* Target Windows 200 or later:
+/* Target Windows 2000 or later:
  * http://msdn.microsoft.com/en-us/library/aa383745(VS.85).aspx
  */
 #define WINVER 0x0500
@@ -31,10 +31,10 @@
 #define _WIN32_WINNT 0x0500
 
 /*
- * Target Microsoft Internet Explorer 5.5 or later:
+ * Target Microsoft Internet Explorer 7.0 or later:
  * http://msdn.microsoft.com/en-us/library/aa383745(VS.85).aspx
  */
-#define _WIN32_IE 0x0550
+#define _WIN32_IE 0x0700
 
 /*
  * Demand explicit type casting:
@@ -83,9 +83,13 @@
 
 /*
  * Microsoft Internet Explorer-related headers and interfaces
+ * NOTE: The most recent version of these headers are included in the 
+ *       "Headers and Libraries for Windows Internet Explorer 8" SDK package
+ *       available at:
+ *       http://www.microsoft.com/downloads/details.aspx?FamilyID=bd98f760-1279-46f2-a456-de6df365584b
  */
+#include <openservice.h>
 #include <mshtml.h>
-#include <urlmon.h>
 #include <mshtmhst.h>
 #include <exdispid.h>
 #pragma warning(disable : 4192)
