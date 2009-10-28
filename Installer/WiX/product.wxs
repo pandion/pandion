@@ -31,7 +31,6 @@
 			InstallerVersion="200"
 			InstallScope="perUser"
 		/>
-		<Property Id="ALLUSERS" Secure="yes"/>
 		<Media Cabinet="product.cab" EmbedCab="yes" Id="1"/>
 
 		<!--
@@ -129,6 +128,14 @@
 		</Directory>
 
 		<!--
+			Allow administrative install to a common location for all users.
+			Example: msiexec.exe /i $(var.SafeName).msi ALLUSERS=1
+		-->
+		<SetDirectory Id="LocalAppDataFolder" Sequence="both" Value="[ProgramFilesFolder]">
+			ALLUSERS = 1
+		</SetDirectory>
+
+		<!--
 			Remove older versions but do not overwrite newer versions.
 		-->
 		<Upgrade Id="{9F661F94-F17F-4F5C-B1C8-2955C85C8FE9}">
@@ -175,7 +182,7 @@
 		<Property Id="ARPURLINFOABOUT" Value="$(var.AppUrlInfoAbout)"/>
 
 		<!--
-			Launch Pandion from the Finish dialog or in auto-update mode.
+			Launch the application from the Finish dialog or in auto-update mode.
 			To run auto-update mode use the following command line:
 			msiexec.exe /i $(var.SafeName).msi LAUNCHAPP=yes
 		-->
