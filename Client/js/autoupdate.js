@@ -207,7 +207,8 @@ function timestampToNumber ( timestamp )
 	if ( match )
 	{
 		for ( var ints = [ 2, 3, 4, 5, 6, 7, 8, 10, 11 ], i = ints.length - 1; i >= 0; --i )
-			match[ ints[i] ] = match[ints[i]].length > 0 ? parseInt( match[ ints[i] ], 10 ) : 0;
+			match[ ints[i] ] = ( typeof match[ ints[i] ] != 'undefined'
+				&& match[ints[i]].length > 0 ) ? parseInt( match[ ints[i] ], 10 ) : 0;
 		if ( match[1] == '-' ) // BC/AD
 			match[2] *= -1;
 		var ms = Date.UTC(
@@ -219,7 +220,7 @@ function timestampToNumber ( timestamp )
 			match[7], // s
 			match[8] // ms
 		);
-		if ( match[9].length > 0 ) // offset
+		if ( typeof match[9] != 'undefined' &&  match[9].length > 0 ) // offset
 			ms += ( match[9] == '+' ? -1 : 1 ) * ( match[10] * 3600 * 1000 + match[11] * 1000 ); // oh om
 		if ( match[2] >= 0 && match[2] <= 99 ) // 1-99 AD
 			ms -= 59958144000000;
