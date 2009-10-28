@@ -142,6 +142,10 @@
   -->
 <browsersearchboxname>Pandion Search</browsersearchboxname>
 
+<!-- Ask the user to change their web browser search box (IE6/IE7 only)
+  -->
+<browsersearchboxurl>http://search.pandion.be/?q=%s</browsersearchboxurl>
+
 <!-- URI of email invitation webpage
   -->
 <invitepage></invitepage>
