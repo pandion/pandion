@@ -21,31 +21,23 @@ window.attachEvent("onload", function () {
 
 	var saveSettings = function () {
 		// TODO external.globals("welcomesettings") = false;
+
+		/* Default XMPP client */
 		if (document.getElementById("default-xmpp-client").checked) {
 			// TODO make default xmpp client
 		}
-		if (document.getElementById("change-homepage").checked) {
-			external.RegWriteString("HKEY_CURRENT_USER", "Software\\Microsoft\\Internet Explorer\\Main", "Start Page", external.globals("browserhomepage"));
-		}
-		if (document.getElementById("change-search-engine").checked) {
-			try {
-				/* IE8 */
-				var osdFileUrl = "file:///" + external.globals("cwd") + "../settings/osd.xml";
-				external.SetDefaultMSIESearchProvider(osdFileUrl);
-			} catch (error) {
-				var ie = "Software\\Microsoft\\Internet Explorer\\";
-				var name = external.globals("browsersearchboxname");
-				var url = external.globals("browsersearchboxurl");
-				/* IE7 */
-				external.RegWriteString("HKEY_CURRENT_USER", ie + "SearchScopes\\" + name, "DisplayName", name);
-				external.RegWriteString("HKEY_CURRENT_USER", ie + "SearchScopes\\" + name, "URL", url);
-				external.RegWriteDWORD("HKEY_CURRENT_USER", ie + "SearchScopes\\" + name, "SortIndex", 0);
-				/* IE6 */
-				external.RegWriteString("HKEY_CURRENT_USER", ie + "SearchUrl", "", url);
-				external.RegWriteString("HKEY_CURRENT_USER", ie + "Main", "Search Bar", url);
-				external.RegWriteString("HKEY_CURRENT_USER", ie + "Main", "Search Page", url);
-			}
-		}
+		if (document.getElementById("change-homepage").checked)
+			Client.OS.Browser.SetHomepage({
+				platforms: ["ie", "ff", "cr", "op"],
+				url: external.globals("browserhomepage")
+			});
+		if (document.getElementById("change-search-engine").checked)
+			Client.OS.Browser.SetSearchbox({
+				name: external.globals("browsersearchboxname"),
+				osd: external.globals("cwd") + "../settings/osd.xml",
+				platforms: ["ie", "ff", "cr", "op"],
+				url: external.globals("browsersearchboxurl")
+			});
 	};
 
 	document.getElementById("btn-add-contact").attachEvent("onclick", function () {
@@ -249,4 +241,119 @@ Client.Utils.AnchorToBrowser = function (anchor) {
 		dial_webbrowser(event.srcElement.href);
 		event.returnValue = false;
 	});
+};
+
+Client.OS = {};
+Client.OS.Browser = {};
+Client.OS.Browser.SetHomepage = function (arg) {
+
+	var delegates = {
+
+		/* Microsoft Internet Explorer */
+		ie: function (arg) {
+			external.RegWriteString("HKEY_CURRENT_USER", "Software\\Microsoft\\Internet Explorer\\Main", "Start Page", arg.url);
+		},
+
+		/* Google Chrome */
+		cr: function (arg) {
+			var path = external.RegRead("HKEY_CURRENT_USER", "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Google Chrome", "InstallLocation") + "\\..\\User Data\\Default\\Preferences";
+			if (external.FileExists(path)) {
+				try {
+					var file = external.file(path);
+					var blob = file.Read(file.Size - 1);
+					file.Close();
+					var json = JSON.parse(blob);
+					json.homepage = arg.url;
+					json.homepage_is_newtabpage = false;
+					blob = JSON.stringify(json, null, 3);
+					if (external.FileExists(path + ".bak"))
+						external.file(path + ".bak").Delete();
+					file.Move(path + ".bak");
+					file.Create(path);
+					file.Write(blob, blob.length);
+					file.Close();
+				} catch (error) {
+					debugger;
+				}
+			}
+		},
+
+		/* Opera */
+		op: function (arg) {
+			var path = external.GetSpecialFolder(0x001a) + "Opera\\Opera\\operaprefs.ini";
+			if (external.FileExists(path)) {
+				try {
+					var file = external.file(path);
+					var lines = [];
+					while (!file.AtEnd) {
+						var line = file.ReadLine();
+						if (line.substr(0, 9) == "Home URL=")
+							lines.push("Home URL=" + arg.url);
+						else if (line.substr(0, 13) == "Startup Type=")
+							lines.push("Startup Type=2");
+						else
+							lines.push(line);
+					}
+					if (external.FileExists(path + ".bak"))
+						external.file(path + ".bak").Delete();
+					file.Move(path + ".bak");
+					file.Create(path);
+					for (var i = 0; i < lines.length; i++)
+						file.WriteLine(lines[i]);
+					file.Close();
+				} catch (error) {
+					debugger;
+				}
+			}
+		}
+
+	}
+
+	for (var i = 0; i < arg.platforms.length; i++) {
+		if (delegates[arg.platforms[i]] instanceof Function)
+			delegates[arg.platforms[i]]({
+				url: arg.url
+			});
+	}
+};
+
+Client.OS.Browser.SetSearchbox = function (arg) {
+
+	var delegates = {
+
+		/* Microsoft Internet Explorer */
+		ie: function (arg) {
+			try {
+				/* IE8 */
+				var osdFileUrl = "file:///" + arg.osd.replace(/\\/g, "/");
+				var guid = external.InstallMSIESearchProvider(osdFileUrl);
+				external.SetDefaultMSIESearchProvider(guid);
+			} catch (error) {
+				var ie = "Software\\Microsoft\\Internet Explorer\\";
+				/* IE7 */
+				external.RegWriteString("HKEY_CURRENT_USER", ie + "SearchScopes", "DefaultScope", arg.name);
+				external.RegWriteDWORD("HKEY_CURRENT_USER", ie + "SearchScopes", "Version", 1);
+				external.RegWriteString("HKEY_CURRENT_USER", ie + "SearchScopes\\" + arg.name, "DisplayName", arg.name);
+				external.RegWriteString("HKEY_CURRENT_USER", ie + "SearchScopes\\" + arg.name, "URL", arg.url);
+				external.RegWriteDWORD("HKEY_CURRENT_USER", ie + "SearchScopes\\" + arg.name, "SortIndex", 0);
+				external.RegWriteString("HKEY_CURRENT_USER", ie + "SearchUrl", "", arg.url);
+				external.RegWriteString("HKEY_CURRENT_USER", ie + "SearchUrl", "DefaultScope", arg.name);
+				external.RegWriteDWORD("HKEY_CURRENT_USER", ie + "SearchUrl", "Version", 1);
+				/* IE6 */
+				external.RegWriteString("HKEY_CURRENT_USER", ie + "Main", "Search Bar", arg.url);
+				external.RegWriteString("HKEY_CURRENT_USER", ie + "Main", "Search Page", arg.url);
+				external.RegWriteString("HKEY_CURRENT_USER", ie + "Search", "SearchAssistant", arg.url);
+			}
+		}
+
+	}
+	
+	for (var i = 0; i < arg.platforms.length; i++) {
+		if (delegates[arg.platforms[i]] instanceof Function)
+			delegates[arg.platforms[i]]({
+				name: arg.name,
+				osd: arg.osd,
+				url: arg.url
+			});
+	}
 };
