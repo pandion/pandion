@@ -84,7 +84,7 @@ function autoDownloadLatestUpdate ( doc )
 		external.globals( 'last_autoupdate' ) = ( new Date() ).getTime();
 		external.wnd.params.window.SaveCommonProfile();
 		var topAppcastEntry = getLatestAppcastByTrack( doc, external.globals( 'softwaretrack' ) );
-		if ( topAppcastEntry && versionIsHigherThanCurrent( topAppcastEntry.version ) )
+		if ( topAppcastEntry && versionIsHigherThanCurrent( topAppcastEntry.version ) && external.globals( 'installupdates' ) == 'yes' )
 			downloadUpdate( topAppcastEntry );
 		else
 			external.wnd.close();

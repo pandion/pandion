@@ -148,26 +148,28 @@ function init ()
 
 	block_refresh();
 
-	doc.msgnotinlist.checked	= cfg( 'msgnotinlist' ).toString()	== 'true';
-	doc.startup.checked			= external.FileExists( external.GetSpecialFolder( 0x0007 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk' )
-								|| external.FileExists( external.GetSpecialFolder( 0x0018 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk' );
+	doc.msgnotinlist.checked = cfg( 'msgnotinlist' ).toString() == 'true';
+	doc.startup.checked = external.FileExists( external.GetSpecialFolder( 0x0007 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk' )
+		|| external.FileExists( external.GetSpecialFolder( 0x0018 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk' );
 
-	doc.autoawaytime.value	= isNaN( parseInt( cfg( 'autoawaytime' ), 10 ) ) ?  5 : Math.round( cfg( 'autoawaytime' ) / 60000 );
-	doc.autoxawaytime.value	= isNaN( parseInt( cfg( 'autoawaytime' ), 10 ) ) ? 30 : Math.round( cfg( 'autoxawaytime' ) / 60000 );
-	doc.autoawaytext.value	= cfg( 'autoawaytext' ).length	? cfg( 'autoawaytext' )		: external.globals( 'Translator' ).Translate( 'main', 'autoawaymessage' );
-	doc.autoxawaytext.value	= cfg( 'autoxawaytext' ).length	? cfg( 'autoxawaytext' )	: external.globals( 'Translator' ).Translate( 'main', 'autoxawaymessage' );
+	doc.autoupdate.checked = external.globals( 'installupdates' ) == 'yes';
 
-	doc.filetransferhost.value	= cfg( 'filetransferhost' );
-	doc.filetransferport.value	= isNaN( parseInt( cfg( 'filetransferport' ), 10 ) ) ? 0 : parseInt( cfg( 'filetransferport' ), 10 );
+	doc.autoawaytime.value = isNaN( parseInt( cfg( 'autoawaytime' ), 10 ) ) ? 5 : Math.round( cfg( 'autoawaytime' ) / 60000 );
+	doc.autoxawaytime.value = isNaN( parseInt( cfg( 'autoawaytime' ), 10 ) ) ? 30 : Math.round( cfg( 'autoxawaytime' ) / 60000 );
+	doc.autoawaytext.value = cfg( 'autoawaytext' ).length? cfg( 'autoawaytext' ) : external.globals( 'Translator' ).Translate( 'main', 'autoawaymessage' );
+	doc.autoxawaytext.value = cfg( 'autoxawaytext' ).length? cfg( 'autoxawaytext' ) : external.globals( 'Translator' ).Translate( 'main', 'autoxawaymessage' );
 
-	doc.history_store.checked	= cfg( 'history_store' ).toString() == 'true';
+	doc.filetransferhost.value = cfg( 'filetransferhost' );
+	doc.filetransferport.value = isNaN( parseInt( cfg( 'filetransferport' ), 10 ) ) ? 0 : parseInt( cfg( 'filetransferport' ), 10 );
 
-	doc.soundmessage.checked	= cfg( 'soundmessage' ).toString()	== 'true';
-	doc.soundonline.checked		= cfg( 'soundonline' ).toString()	== 'true';
-	doc.soundoffline.checked	= cfg( 'soundoffline' ).toString()	== 'true';
-	doc.soundmessagefile.value	= cfg( 'soundmessagefile' );
-	doc.soundonlinefile.value	= cfg( 'soundonlinefile' );
-	doc.soundofflinefile.value	= cfg( 'soundofflinefile' );
+	doc.history_store.checked = cfg( 'history_store' ).toString() == 'true';
+
+	doc.soundmessage.checked = cfg( 'soundmessage' ).toString() == 'true';
+	doc.soundonline.checked = cfg( 'soundonline' ).toString() == 'true';
+	doc.soundoffline.checked = cfg( 'soundoffline' ).toString() == 'true';
+	doc.soundmessagefile.value = cfg( 'soundmessagefile' );
+	doc.soundonlinefile.value = cfg( 'soundonlinefile' );
+	doc.soundofflinefile.value = cfg( 'soundofflinefile' );
 
 	doc.authorization[ parseInt( cfg( 'authorization' ) ) ].checked = true;
 
@@ -194,9 +196,9 @@ function ok ()
 
 function save ()
 {
-	var retval	= false;
-	var cfg		= external.globals( 'cfg' );
-	var doc		= document.all;
+	var retval = false;
+	var cfg = external.globals( 'cfg' );
+	var doc = document.all;
 
 	if ( external.globals( 'HTTPEnginePort' ) != 0 && cfg( 'filetransferport' ) != doc.filetransferport.value && doc.filetransferport.value != 0 )
 	{
@@ -215,31 +217,31 @@ function save ()
 		time2 = 30;
 	if ( time1 <= time2 )
 	{
-		cfg( 'autoawaytime' )	= time1 * 60000;
-		cfg( 'autoxawaytime' )	= time2 * 60000;
-		cfg( 'autoawaytext' )	= doc.autoawaytext.value;
-		cfg( 'autoxawaytext' )	= doc.autoxawaytext.value;
+		cfg( 'autoawaytime' ) = time1 * 60000;
+		cfg( 'autoxawaytime' ) = time2 * 60000;
+		cfg( 'autoawaytext' ) = doc.autoawaytext.value;
+		cfg( 'autoxawaytext' ) = doc.autoxawaytext.value;
 	}
 	else
 	{
-		cfg( 'autoawaytime' )	= time2 * 60000;
-		cfg( 'autoxawaytime' )	= time1 * 60000;
-		cfg( 'autoawaytext' )	= doc.autoxawaytext.value;
-		cfg( 'autoxawaytext' )	= doc.autoawaytext.value;
+		cfg( 'autoawaytime' ) = time2 * 60000;
+		cfg( 'autoxawaytime' ) = time1 * 60000;
+		cfg( 'autoawaytext' ) = doc.autoxawaytext.value;
+		cfg( 'autoxawaytext' ) = doc.autoawaytext.value;
 	}
 
-	var LocalStartupLink	= external.GetSpecialFolder( 0x0007 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk';
-	var CommonStartupLink	= external.GetSpecialFolder( 0x0018 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk';
+	var LocalStartupLink = external.GetSpecialFolder( 0x0007 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk';
+	var CommonStartupLink = external.GetSpecialFolder( 0x0018 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk';
 	if ( doc.startup.checked )
 	{
 		if ( external.FileExists( CommonStartupLink ) && external.FileExists( LocalStartupLink ) )
 			external.File( LocalStartupLink ).Delete();
 		if ( ! external.FileExists( CommonStartupLink ) && ! external.FileExists( LocalStartupLink ) )
 		{
-			var Shortcut			= external.Shortcut;
-			Shortcut.path			= external.globals( 'cwd' ) + '..\\' + external.globals( 'softwarenamesafe' ) + '.exe';
-			Shortcut.Arguments		= '/minimized';
-			Shortcut.IconLocation	= external.globals( 'cwd' ) + '..\\images\\brand\\default.ico,0';
+			var Shortcut = external.Shortcut;
+			Shortcut.path = external.globals( 'cwd' ) + '..\\' + external.globals( 'softwarenamesafe' ) + '.exe';
+			Shortcut.Arguments = '/minimized';
+			Shortcut.IconLocation = external.globals( 'cwd' ) + '..\\images\\brand\\default.ico,0';
 			Shortcut.Save( external.GetSpecialFolder( 0x0007 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk' );
 		}
 	}
@@ -251,15 +253,17 @@ function save ()
 			external.File( CommonStartupLink ).Delete();
 	}
 
-	cfg( 'msgnotinlist' )	= doc.msgnotinlist.checked;
-	cfg( 'history_store' )	= doc.history_store.checked;
+	external.globals( 'installupdates' ) = doc.autoupdate.checked ? 'yes' : 'no';
 
-	cfg( 'soundmessage' )		= doc.soundmessage.checked;
-	cfg( 'soundonline' )		= doc.soundonline.checked;
-	cfg( 'soundoffline' )		= doc.soundoffline.checked;
-	cfg( 'soundmessagefile' )	= doc.soundmessagefile.value;
-	cfg( 'soundonlinefile' )	= doc.soundonlinefile.value;
-	cfg( 'soundofflinefile' )	= doc.soundofflinefile.value;
+	cfg( 'msgnotinlist' ) = doc.msgnotinlist.checked;
+	cfg( 'history_store' ) = doc.history_store.checked;
+
+	cfg( 'soundmessage' ) = doc.soundmessage.checked;
+	cfg( 'soundonline' ) = doc.soundonline.checked;
+	cfg( 'soundoffline' ) = doc.soundoffline.checked;
+	cfg( 'soundmessagefile' ) = doc.soundmessagefile.value;
+	cfg( 'soundonlinefile' ) = doc.soundonlinefile.value;
+	cfg( 'soundofflinefile' ) = doc.soundofflinefile.value;
 
 	for ( var i = 0; i < doc.authorization.length; i++ )
 		if ( doc.authorization[i].checked )
@@ -270,22 +274,22 @@ function save ()
 
 function block_row_click ()
 {
-	document.getElementById( 'block_btn_remove' ).disabled	= false;
-	document.getElementById( 'block_btn_view' ).disabled	= false;
+	document.getElementById( 'block_btn_remove' ).disabled = false;
+	document.getElementById( 'block_btn_view' ).disabled = false;
 	var row = event.srcElement;
 	while ( ! row.jid )
 		row = row.parentElement;
 	if ( row.isCurrentSelection )
 		return;
-	row.style.backgroundColor	= 'highlight';
-	row.cells(0).style.color	= 'highlighttext';
+	row.style.backgroundColor = 'highlight';
+	row.cells(0).style.color = 'highlighttext';
 	var rows = row.parentElement.rows;
 	for ( var i = 0; i < rows.length; i++ )
 		if ( rows(i).isCurrentSelection )
 		{
-			rows(i).style.backgroundColor	= '';
-			rows(i).cells(0).style.color	= '';
-			rows(i).isCurrentSelection		= false;
+			rows(i).style.backgroundColor = '';
+			rows(i).cells(0).style.color = '';
+			rows(i).isCurrentSelection = false;
 			break;
 		}
 	row.isCurrentSelection = true;
@@ -312,8 +316,8 @@ function block_view_details ()
 
 function block_refresh ()
 {
-	document.getElementById( 'block_btn_remove' ).disabled	= true;
-	document.getElementById( 'block_btn_view' ).disabled	= true;
+	document.getElementById( 'block_btn_remove' ).disabled = true;
+	document.getElementById( 'block_btn_view' ).disabled = true;
 	var rows = document.getElementById( 'block_list' ).rows;
 	for ( var i = 0; i < rows.length; i++ )
 		rows.item(i).removeNode( true );
@@ -431,6 +435,7 @@ function pick_soundfile ( field )
 <DIV id=privacy class=panel>
 <INPUT id=history_store type=checkbox>&nbsp;<LABEL for=history_store id=txt_history_store></LABEL><BR>
 <INPUT id=startup type=checkbox>&nbsp;<LABEL for=startup id=txt_startup></LABEL><BR>
+<INPUT id=autoupdate type=checkbox>&nbsp;<LABEL for=autoupdate id=txt_updates></LABEL><BR>
 <BR>
 <FIELDSET style="padding: 4px; margin-top: 4px;">
 <LEGEND id=txt_auth_request></LEGEND>

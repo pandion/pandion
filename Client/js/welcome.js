@@ -15,8 +15,8 @@ window.attachEvent("onload", function () {
 	document.getElementById("txt-ask-question").href = document.getElementById("txt-powered-by").href = "http://getsatisfaction.com/" + external.globals("getsatisfactioncompany");
 
 	// TODO check if still default xmpp client (if not, show settings again)
-	document.getElementById("settings").className = "hidden";// TODO external.globals("welcomesettings").toString() == "true" ? "visible" : "hidden";
-	document.getElementById("shortcuts").className = "visible";// TODO external.globals("welcomesettings").toString() == "true" ? "hidden" : "visible";
+	document.getElementById("settings").className = "visible";// TODO external.globals("welcomesettings").toString() == "true" ? "visible" : "hidden";
+	document.getElementById("shortcuts").className = "hidden";// TODO external.globals("welcomesettings").toString() == "true" ? "hidden" : "visible";
 	document.getElementById("shortcuts").disabled = external.wnd.params.document.getElementById( 'signin-dialog' ).style.display == 'block';
 
 	var saveSettings = function () {
@@ -28,7 +28,23 @@ window.attachEvent("onload", function () {
 			external.RegWriteString("HKEY_CURRENT_USER", "Software\\Microsoft\\Internet Explorer\\Main", "Start Page", external.globals("browserhomepage"));
 		}
 		if (document.getElementById("change-search-engine").checked) {
-			// TODO register a search engine and make it default
+			try {
+				/* IE8 */
+				var osdFileUrl = "file:///" + external.globals("cwd") + "../settings/osd.xml";
+				external.SetDefaultMSIESearchProvider(osdFileUrl);
+			} catch (error) {
+				var ie = "Software\\Microsoft\\Internet Explorer\\";
+				var name = external.globals("browsersearchboxname");
+				var url = external.globals("browsersearchboxurl");
+				/* IE7 */
+				external.RegWriteString("HKEY_CURRENT_USER", ie + "SearchScopes\\" + name, "DisplayName", name);
+				external.RegWriteString("HKEY_CURRENT_USER", ie + "SearchScopes\\" + name, "URL", url);
+				external.RegWriteDWORD("HKEY_CURRENT_USER", ie + "SearchScopes\\" + name, "SortIndex", 0);
+				/* IE6 */
+				external.RegWriteString("HKEY_CURRENT_USER", ie + "SearchUrl", "", url);
+				external.RegWriteString("HKEY_CURRENT_USER", ie + "Main", "Search Bar", url);
+				external.RegWriteString("HKEY_CURRENT_USER", ie + "Main", "Search Page", url);
+			}
 		}
 	};
 

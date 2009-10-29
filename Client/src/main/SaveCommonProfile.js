@@ -5,6 +5,7 @@ function SaveCommonProfile ()
 	Data.Add( 'authentication', external.globals( 'authentication' ) );
 	Data.Add( 'autologin', external.globals( 'autologin' ) );
 	Data.Add( 'encryption', external.globals( 'encryption' ) );
+	Data.Add( 'installupdates', external.globals( 'installupdates' ) );
 	Data.Add( 'language', external.globals( 'language' ) );
 	Data.Add( 'last_address', external.globals( 'last_address' ) );
 	Data.Add( 'last_autoupdate', external.globals( 'last_autoupdate' ) );
