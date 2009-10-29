@@ -285,7 +285,6 @@ Client.OS.Browser.SetHomepage = function (arg) {
 
 		/* Opera */
 		op: function (arg) {
-			debugger;
 			try {
 				var path = external.GetSpecialFolder(0x001a) + "\\Opera\\Opera\\operaprefs.ini";
 				if (external.FileExists(path)) {
@@ -310,7 +309,6 @@ Client.OS.Browser.SetHomepage = function (arg) {
 					file.Close();
 				}
 			} catch (error) {
-				debugger;
 			}
 		}
 
