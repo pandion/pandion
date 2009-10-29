@@ -97,8 +97,11 @@ library PandionLib
 			[out,retval] BOOL* bFullscreen);
 		HRESULT PlaySound(
 			[in] BSTR soundFile);
+		HRESULT InstallMSIESearchProvider(
+			[in] BSTR url,
+			[out,retval] BSTR* guid);
 		HRESULT SetDefaultMSIESearchProvider(
-			[in] BSTR url);
+			[in] BSTR guid);
 	}
 	[uuid(A2691BAF-EEFE-4e1a-BD58-30D3DE8F85FF)]
 	interface IPdnFile : IDispatch

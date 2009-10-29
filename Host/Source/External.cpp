@@ -422,7 +422,7 @@ STDMETHODIMP External::PlaySound(BSTR soundFile)
 
 typedef HRESULT (__stdcall *CREATEURIPROC)(LPCWSTR, DWORD, DWORD, IUri**); 
 
-STDMETHODIMP External::SetDefaultMSIESearchProvider(BSTR url)
+STDMETHODIMP External::InstallMSIESearchProvider(BSTR url, BSTR* guid)
 {
 	HRESULT hr = E_FAIL;
 	HMODULE urlmon_dll = ::LoadLibrary(TEXT("urlmon.dll"));
@@ -449,7 +449,7 @@ STDMETHODIMP External::SetDefaultMSIESearchProvider(BSTR url)
 					hr = osm->InstallService(url, &os);
 					if(SUCCEEDED(hr))
 					{
-						os->SetDefault(TRUE, NULL);
+						hr = os->GetID(guid);
 						os->Release();
 					}
 					uri->Release();
@@ -457,8 +457,38 @@ STDMETHODIMP External::SetDefaultMSIESearchProvider(BSTR url)
 				osm->Release();
 			}
 		}
-
 		::FreeLibrary(urlmon_dll);
+	}
+
+	return hr;
+
+}
+
+STDMETHODIMP External::SetDefaultMSIESearchProvider(BSTR guid)
+{
+	IOpenServiceManager* osm;
+	HRESULT hr = ::CoCreateInstance(CLSID_OpenServiceManager, NULL,
+		CLSCTX_INPROC_SERVER, IID_IOpenServiceManager, (void**) &osm);
+
+	if(SUCCEEDED(hr))
+	{
+		IOpenService* os;
+		WCHAR szEscaped[INTERNET_MAX_URL_LENGTH] = L"";
+		DWORD cchEscaped = ARRAYSIZE(szEscaped);
+		hr = UrlEscape(guid, szEscaped, &cchEscaped, URL_ESCAPE_SEGMENT_ONLY);
+
+		if(SUCCEEDED(hr))
+		{
+			std::wstring wsOsid(L"x-osid:1:search:");
+			wsOsid += szEscaped;
+			hr = osm->GetServiceByID(wsOsid.c_str(), &os);
+			if(SUCCEEDED(hr))
+			{
+				hr = os->SetDefault(TRUE, NULL);
+				os->Release();
+			}
+		}
+		osm->Release();
 	}
 
 	return hr;

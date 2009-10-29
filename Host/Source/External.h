@@ -86,7 +86,8 @@ public:
 	STDMETHOD(StringToBase64)(BSTR UTF16String, BSTR *b64String);
 	STDMETHOD(Fullscreen)(BOOL *bFullscreen);
 	STDMETHOD(PlaySound)(BSTR soundFile);
-	STDMETHOD(SetDefaultMSIESearchProvider)(BSTR url);
+	STDMETHOD(InstallMSIESearchProvider)(BSTR url, BSTR* guid);
+	STDMETHOD(SetDefaultMSIESearchProvider)(BSTR guid);
 
 private:
 	HKEY StringToRegRootKey(BSTR str);
