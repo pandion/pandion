@@ -54,7 +54,7 @@ BEGIN
         BEGIN
             VALUE "Comments", "http://www.pandion.be"
             VALUE "CompanyName", "Pandion"
-            VALUE "FileDescription", "Instant Messenger for XMPP"
+            VALUE "FileDescription", "Pandion Instant Messenger"
             VALUE "FileVersion", "2.6"
             VALUE "LegalCopyright", "Created by Sebastiaan Deckers and Dries Staelens."
             VALUE "ProductVersion", "2.6"

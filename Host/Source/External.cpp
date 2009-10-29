@@ -435,7 +435,7 @@ STDMETHODIMP External::SetDefaultMSIESearchProvider(BSTR url)
 		if(CreateUriProc != NULL)
 		{
 			IOpenServiceManager* osm;
-			HRESULT hr = ::CoCreateInstance(CLSID_OpenServiceManager, NULL,
+			hr = ::CoCreateInstance(CLSID_OpenServiceManager, NULL,
 				CLSCTX_INPROC_SERVER, IID_IOpenServiceManager, (void**) &osm);
 
 			if(SUCCEEDED(hr))
