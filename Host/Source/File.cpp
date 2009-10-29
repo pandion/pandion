@@ -187,7 +187,7 @@ STDMETHODIMP CFile::SetEOF()
  * Reads data from the file, starting at the current position of the File
  * Pointer. This method moves the File Pointer.
  */
-STDMETHODIMP CFile::Read(BYTE* pBuffer, unsigned nRead)
+STDMETHODIMP CFile::Read(unsigned nRead, BYTE* pBuffer)
 {
 	DWORD dwRead;
 
@@ -238,10 +238,10 @@ STDMETHODIMP CFile::ReadLine(BSTR* strLine)
 {
 	if(m_DataBuffer == NULL)
 	{
-		unsigned uFileSize;
+		DWORD uFileSize;
 		get_Size(&uFileSize);
 		m_DataBuffer = new BYTE[uFileSize];
-		Read((BYTE *) m_DataBuffer,uFileSize);
+		Read(uFileSize, (BYTE *) m_DataBuffer);
 		m_CurrentPosition = m_DataBuffer;
 	}
 
@@ -306,7 +306,7 @@ STDMETHODIMP CFile::ReadBase64(BSTR* strBase64)
 			CRYPT_STRING_BASE64, NULL, &b64Size);
 		std::wstring b64Buffer(b64Size, L'\0');
 
-		if(SUCCEEDED(Read(&fileBuffer[0], fileSize)) &&
+		if(SUCCEEDED(Read(fileSize, &fileBuffer[0])) &&
 			::CryptBinaryToString(&fileBuffer[0], fileSize,
 				CRYPT_STRING_BASE64, &b64Buffer[0], &b64Size))
 		{
@@ -353,7 +353,7 @@ STDMETHODIMP CFile::WriteBase64(BSTR strBase64)
  */
 STDMETHODIMP CFile::get_AtEnd(BOOL* bAtEnd)
 {
-	unsigned fileSize;
+	DWORD fileSize;
 	if(m_FileHandle != INVALID_HANDLE_VALUE && SUCCEEDED(get_Size(&fileSize)))
 	{
 		if(m_AtEnd)
@@ -379,11 +379,12 @@ STDMETHODIMP CFile::get_AtEnd(BOOL* bAtEnd)
 /*
  * Sets the paramter to the size of the file in bytes.
  */
-STDMETHODIMP CFile::get_Size(unsigned* nSize)
+STDMETHODIMP CFile::get_Size(DWORD* nSize)
 {
 	if(m_FileHandle != INVALID_HANDLE_VALUE)
 	{
-		*nSize = ::GetFileSize(m_FileHandle, 0);
+		DWORD sizeHigh, size = ::GetFileSize(m_FileHandle, &sizeHigh);
+		*nSize = (size == INVALID_FILE_SIZE) ? 0 : size;
 		return S_OK;
 	}
 	else
@@ -407,11 +408,11 @@ STDMETHODIMP CFile::get_FileName(BSTR* strFileName)
  */
 STDMETHODIMP CFile::get_SHA1(BSTR* strSHA1)
 {
-	unsigned fileSize;
+	DWORD fileSize;
 	if(m_FileHandle != INVALID_HANDLE_VALUE && SUCCEEDED(get_Size(&fileSize)))
 	{
 		std::vector<BYTE> fileBuffer(fileSize);
-		if(SUCCEEDED(Read(&fileBuffer[0], fileSize)))
+		if(SUCCEEDED(Read(fileSize, &fileBuffer[0])))
 		{
 			unsigned char digest[20];
 			Hash::SHA1(&fileBuffer[0], fileSize, digest);

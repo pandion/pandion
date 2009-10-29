@@ -53,7 +53,7 @@ public:
 	STDMETHOD(Seek)(int fpLow, int fpHigh, unsigned dwMethod);
 	STDMETHOD(SetEOF)();
 
-	STDMETHOD(Read)(BYTE* pBuffer, unsigned nRead);
+	STDMETHOD(Read)(unsigned nRead, BYTE* pBuffer);
 	STDMETHOD(Write)(BYTE* pBuffer, unsigned nWrite);
 
 	STDMETHOD(ReadLine)(BSTR* strLine);
@@ -63,7 +63,7 @@ public:
 	STDMETHOD(WriteBase64)(BSTR strBase64);
 
 	STDMETHOD(get_AtEnd)(BOOL* bAtEnd);
-	STDMETHOD(get_Size)(unsigned* nSize);
+	STDMETHOD(get_Size)(DWORD* nSize);
 	STDMETHOD(get_FileName)(BSTR* strFileName);
 	STDMETHOD(get_SHA1)(BSTR* strSHA1);
 

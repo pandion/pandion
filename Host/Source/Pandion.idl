@@ -118,7 +118,7 @@ library PandionLib
 			[in] unsigned dwMethod);
 		HRESULT SetEOF();
 
-		HRESULT Read([out] BYTE* pBuffer, [in] unsigned nRead);
+		HRESULT Read([in] unsigned nRead, [out,retval] BYTE* pBuffer);
 		HRESULT Write([in] BYTE* pBuffer, [in] unsigned nWrite);
 
 		HRESULT ReadLine([out,retval] BSTR* strLine);
@@ -136,7 +136,7 @@ library PandionLib
 		HRESULT Close();
 
 		[propget] HRESULT AtEnd([out,retval] bool* bAtEnd);
-		[propget] HRESULT Size([out,retval] unsigned* nSize);
+		[propget] HRESULT Size([out,retval] DWORD* nSize);
 		[propget] HRESULT FileName([out,retval] BSTR* strFileName);
 		[propget] HRESULT SHA1([out,retval] BSTR* strSHA1);
 		[propget] HRESULT LastWriteTime([out,retval] VARIANT* vLastWriteTime);

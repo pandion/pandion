@@ -712,6 +712,9 @@ STDMETHODIMP CPdnWnd::hide(BOOL b)
 }
 STDMETHODIMP CPdnWnd::rightToLeft(BOOL b)
 {
+	RECT rc;
+	::GetClientRect(m_hWnd, &rc);
+
 	if(b)
 	{
 		::SetWindowLong(m_hWnd, GWL_EXSTYLE,
@@ -720,9 +723,11 @@ STDMETHODIMP CPdnWnd::rightToLeft(BOOL b)
 	else
 	{
 		::SetWindowLong(m_hWnd, GWL_EXSTYLE,
-			::GetWindowLong(m_hWnd, GWL_EXSTYLE) & !WS_EX_LAYOUTRTL);
+			::GetWindowLong(m_hWnd, GWL_EXSTYLE) & ~WS_EX_LAYOUTRTL);
 	}
 
+	::SetWindowPos(m_hWnd, 0, 0, 0, rc.right - rc.left, rc.bottom - rc.top,
+		SWP_NOMOVE | SWP_NOACTIVATE | SWP_NOZORDER | SWP_FRAMECHANGED);
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::flash(DWORD u)
@@ -748,7 +753,7 @@ STDMETHODIMP CPdnWnd::resizeable(BOOL b)
 	if(!b)
 	{
 		::SetWindowLong(m_hWnd, GWL_STYLE, ::GetWindowLong(m_hWnd, GWL_STYLE) &
-			!(WS_THICKFRAME | WS_MAXIMIZEBOX | WS_MINIMIZEBOX) |
+			~(WS_THICKFRAME | WS_MAXIMIZEBOX | WS_MINIMIZEBOX) |
 				WS_CAPTION | WS_SYSMENU );
 		::SetWindowLong(m_hWnd, GWL_EXSTYLE,
 			::GetWindowLong(m_hWnd, GWL_EXSTYLE) | WS_EX_WINDOWEDGE);
@@ -771,7 +776,7 @@ STDMETHODIMP CPdnWnd::showMinBox(BOOL b)
 {
 	if(!b)
         ::SetWindowLong(m_hWnd, GWL_STYLE, 
-			::GetWindowLong(m_hWnd, GWL_STYLE) & !WS_MINIMIZEBOX);
+			::GetWindowLong(m_hWnd, GWL_STYLE) & ~WS_MINIMIZEBOX);
 	else
 		::SetWindowLong(m_hWnd, GWL_STYLE, 
 			::GetWindowLong(m_hWnd, GWL_STYLE) | WS_MINIMIZEBOX);
@@ -782,7 +787,7 @@ STDMETHODIMP CPdnWnd::showMaxBox(BOOL b)
 {
 		if(!b)
         ::SetWindowLong(m_hWnd, GWL_STYLE, 
-			::GetWindowLong(m_hWnd, GWL_STYLE) & !WS_MAXIMIZEBOX);
+			::GetWindowLong(m_hWnd, GWL_STYLE) & ~WS_MAXIMIZEBOX);
 	else
 		::SetWindowLong(m_hWnd, GWL_STYLE, 
 			::GetWindowLong(m_hWnd, GWL_STYLE) | WS_MAXIMIZEBOX);
@@ -796,10 +801,10 @@ STDMETHODIMP CPdnWnd::showTitlebar(BOOL b)
 	if(!b)
 	{
 		::SetWindowLong(m_hWnd, GWL_STYLE,
-			::GetWindowLong(m_hWnd, GWL_STYLE) & !(WS_OVERLAPPEDWINDOW));
+			::GetWindowLong(m_hWnd, GWL_STYLE) & ~(WS_OVERLAPPEDWINDOW));
 		::SetWindowLong(m_hWnd, GWL_EXSTYLE,
-			(::GetWindowLong(m_hWnd, GWL_EXSTYLE) &
-			!(WS_EX_APPWINDOW)) | WS_EX_TOOLWINDOW);
+			((::GetWindowLong(m_hWnd, GWL_EXSTYLE) &
+			~(WS_EX_APPWINDOW))) | WS_EX_TOOLWINDOW);
 	}
 	else
 	{
@@ -807,7 +812,7 @@ STDMETHODIMP CPdnWnd::showTitlebar(BOOL b)
 			::GetWindowLong(m_hWnd, GWL_STYLE) | (WS_OVERLAPPEDWINDOW));
 		::SetWindowLong(m_hWnd, GWL_EXSTYLE,
 			(::GetWindowLong(m_hWnd, GWL_EXSTYLE) &
-			!(WS_EX_TOOLWINDOW)) | WS_EX_APPWINDOW);
+			~(WS_EX_TOOLWINDOW)) | WS_EX_APPWINDOW);
 	}
 	
 	::SetWindowPos(m_hWnd, 0, 0, 0, rc.right - rc.left, rc.bottom - rc.top,
@@ -839,7 +844,7 @@ STDMETHODIMP CPdnWnd::translucent(DWORD percent)
 			{
            		SetLayeredWindowAttributes(m_hWnd, 0, 255, LWA_ALPHA);
 				::SetWindowLong(m_hWnd, GWL_EXSTYLE, 
-					::GetWindowLong(m_hWnd, GWL_EXSTYLE) & !WS_EX_LAYERED);
+					::GetWindowLong(m_hWnd, GWL_EXSTYLE) & ~WS_EX_LAYERED);
 			}
 			else
 			{
