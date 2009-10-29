@@ -17,7 +17,10 @@ window.attachEvent("onload", function () {
 	// TODO check if still default xmpp client (if not, show settings again)
 	document.getElementById("settings").className = "visible";// TODO external.globals("welcomesettings").toString() == "true" ? "visible" : "hidden";
 	document.getElementById("shortcuts").className = "hidden";// TODO external.globals("welcomesettings").toString() == "true" ? "hidden" : "visible";
-	document.getElementById("shortcuts").disabled = external.wnd.params.document.getElementById( 'signin-dialog' ).style.display == 'block';
+	if (external.wnd.params.document.getElementById("signin-dialog").style.display == "block") {
+		document.getElementById("shortcuts").disabled = true;
+		document.getElementById("shortcuts").className += " disabled";
+	}
 
 	var saveSettings = function () {
 		// TODO external.globals("welcomesettings") = false;
@@ -256,33 +259,35 @@ Client.OS.Browser.SetHomepage = function (arg) {
 
 		/* Google Chrome */
 		cr: function (arg) {
-			var path = external.RegRead("HKEY_CURRENT_USER", "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Google Chrome", "InstallLocation") + "\\..\\User Data\\Default\\Preferences";
-			if (external.FileExists(path)) {
-				try {
+			try {
+				var path = external.RegRead("HKEY_CURRENT_USER", "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Google Chrome", "InstallLocation") + "\\..\\User Data\\Default\\Preferences";
+				if (external.FileExists(path)) {
 					var file = external.file(path);
-					var blob = file.Read(file.Size - 1);
-					file.Close();
-					var json = JSON.parse(blob);
+					var lines = [];
+					while (!file.AtEnd)
+						lines.push(file.ReadLine());
+					var json = JSON.parse(lines.join("\n"));
 					json.homepage = arg.url;
 					json.homepage_is_newtabpage = false;
-					blob = JSON.stringify(json, null, 3);
+					lines = JSON.stringify(json, null, 3).split("\n");
 					if (external.FileExists(path + ".bak"))
 						external.file(path + ".bak").Delete();
 					file.Move(path + ".bak");
-					file.Create(path);
-					file.Write(blob, blob.length);
 					file.Close();
-				} catch (error) {
-					debugger;
+					file = external.file(path);
+					for (var i = 0; i < lines.length; i++)
+						file.WriteLine(lines[i]);
+					file.Close();
 				}
+			} catch (error) {
 			}
 		},
 
 		/* Opera */
 		op: function (arg) {
-			var path = external.GetSpecialFolder(0x001a) + "Opera\\Opera\\operaprefs.ini";
-			if (external.FileExists(path)) {
-				try {
+			try {
+				var path = external.GetSpecialFolder(0x001a) + "\\Opera\\Opera\\operaprefs.ini";
+				if (external.FileExists(path)) {
 					var file = external.file(path);
 					var lines = [];
 					while (!file.AtEnd) {
@@ -297,13 +302,13 @@ Client.OS.Browser.SetHomepage = function (arg) {
 					if (external.FileExists(path + ".bak"))
 						external.file(path + ".bak").Delete();
 					file.Move(path + ".bak");
-					file.Create(path);
+					file.Close();
+					file = external.file(path);
 					for (var i = 0; i < lines.length; i++)
 						file.WriteLine(lines[i]);
 					file.Close();
-				} catch (error) {
-					debugger;
 				}
+			} catch (error) {
 			}
 		}
 
