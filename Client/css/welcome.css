@@ -78,6 +78,9 @@ a:hover {
 	border-top-width: 0;
 	text-align: center;
 }
+#shortcuts.disabled a {
+	cursor: default;
+}
 #shortcuts li {
 	display: inline;
 }
