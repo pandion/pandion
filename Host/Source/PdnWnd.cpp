@@ -707,7 +707,7 @@ STDMETHODIMP CPdnWnd::setIcon(BSTR IconPath)
 }
 STDMETHODIMP CPdnWnd::hide(BOOL b)
 {
-	ShowWindow(m_hWnd, b ? SW_HIDE : SW_SHOWNA);
+	ShowWindow(m_hWnd, b ? SW_HIDE : SW_SHOWNOACTIVATE);
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::rightToLeft(BOOL b)
@@ -820,65 +820,30 @@ STDMETHODIMP CPdnWnd::showTitlebar(BOOL b)
 	return S_OK;
 }
 
-typedef BOOL (__stdcall *SLWAPROC)(HWND, COLORREF, BYTE, DWORD); 
-
-#define LWA_COLORKEY            0x00000001
-#define LWA_ALPHA               0x00000002
-#define ULW_COLORKEY            0x00000001
-#define ULW_ALPHA               0x00000002
-#define ULW_OPAQUE              0x00000004
-#define WS_EX_LAYERED           0x00080000
-
 STDMETHODIMP CPdnWnd::translucent(DWORD percent)
 {
-	HMODULE user32_dll = LoadLibrary(TEXT("User32.dll"));
-    
-	if(user32_dll) 
-    { 
-        SLWAPROC SetLayeredWindowAttributes = 
-			(SLWAPROC)GetProcAddress(user32_dll, "SetLayeredWindowAttributes"); 
- 
-        if(SetLayeredWindowAttributes)
-		{
-			if(percent == 100)
-			{
-           		SetLayeredWindowAttributes(m_hWnd, 0, 255, LWA_ALPHA);
-				::SetWindowLong(m_hWnd, GWL_EXSTYLE, 
-					::GetWindowLong(m_hWnd, GWL_EXSTYLE) & ~WS_EX_LAYERED);
-			}
-			else
-			{
-				::SetWindowLong(m_hWnd, GWL_EXSTYLE, 
-					::GetWindowLong(m_hWnd, GWL_EXSTYLE) | WS_EX_LAYERED);
-           		SetLayeredWindowAttributes(m_hWnd, 0,
-					(255 * LOBYTE(LOWORD(percent))) / 100, LWA_ALPHA);
-			}
-		}
+	if(percent == 100)
+	{
+   		SetLayeredWindowAttributes(m_hWnd, 0, 255, LWA_ALPHA);
+		::SetWindowLong(m_hWnd, GWL_EXSTYLE, 
+			::GetWindowLong(m_hWnd, GWL_EXSTYLE) & ~WS_EX_LAYERED);
+	}
+	else
+	{
+		::SetWindowLong(m_hWnd, GWL_EXSTYLE, 
+			::GetWindowLong(m_hWnd, GWL_EXSTYLE) | WS_EX_LAYERED);
+   		SetLayeredWindowAttributes(m_hWnd, 0,
+			(255 * LOBYTE(LOWORD(percent))) / 100, LWA_ALPHA);
+	}
 
-		FreeLibrary(user32_dll); 
-    } 
 	return S_OK;
 }
-typedef BOOL (__stdcall *AWPROC)(HWND, DWORD, DWORD); 
 STDMETHODIMP CPdnWnd::animate(DWORD flags, DWORD duration)
 {
-	HMODULE user32_dll = LoadLibrary(TEXT("User32.dll"));
-    
-	if(user32_dll) 
-    { 
-        AWPROC AnimateWindow = 
-			(AWPROC)GetProcAddress(user32_dll, "AnimateWindow"); 
- 
-        if(AnimateWindow)
-		{
-			if(!AnimateWindow(m_hWnd, duration, flags))
-			{
-				hide(false);
-			}
-		}
-
-		FreeLibrary(user32_dll); 
-    } 
+	if(!AnimateWindow(m_hWnd, duration, flags))
+	{
+		hide(false);
+	}
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::Do(BSTR funcName, VARIANT *params, DWORD nParams)

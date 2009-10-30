@@ -493,6 +493,37 @@ STDMETHODIMP External::SetDefaultMSIESearchProvider(BSTR guid)
 
 	return hr;
 }
+HRESULT External::IsProcessRunning(BSTR processName, BOOL* isRunning)
+{
+	*isRunning = FALSE;
+	DWORD pidList[8192], pidListUsed;
+
+    if(::EnumProcesses(pidList, sizeof(pidList), &pidListUsed))
+	{
+		for(DWORD i = 0; i < pidListUsed / sizeof(DWORD); i++)
+		{
+			if(pidList[i] != 0)
+			{
+				HANDLE processHandle = ::OpenProcess(PROCESS_VM_READ |
+					PROCESS_QUERY_LIMITED_INFORMATION, FALSE, pidList[i]);
+				if(processHandle != NULL)
+				{
+					TCHAR moduleBaseName[MAX_PATH];
+					DWORD moduleBaseNameLength = ::GetModuleBaseName(
+						processHandle, NULL, moduleBaseName, MAX_PATH);
+					if(moduleBaseNameLength != 0 &&
+						wcscmp(moduleBaseName, processName) == 0)
+					{
+						*isRunning = TRUE;
+						break;
+					}
+					::CloseHandle(processHandle);
+				}
+			}
+		}
+	}
+	return S_OK;
+}
 HKEY External::StringToRegRootKey(BSTR strHKey)
 {
 	HKEY RootKey;

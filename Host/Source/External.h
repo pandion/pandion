@@ -88,6 +88,7 @@ public:
 	STDMETHOD(PlaySound)(BSTR soundFile);
 	STDMETHOD(InstallMSIESearchProvider)(BSTR url, BSTR* guid);
 	STDMETHOD(SetDefaultMSIESearchProvider)(BSTR guid);
+	STDMETHOD(IsProcessRunning)(BSTR processName, BOOL* isRunning);
 
 private:
 	HKEY StringToRegRootKey(BSTR str);

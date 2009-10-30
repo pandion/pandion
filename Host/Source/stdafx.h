@@ -57,6 +57,7 @@
  * Microsoft Windows API headers
  */
 #include <windows.h>
+#include <psapi.h>
 #include <shellapi.h>
 #include <commdlg.h>
 #include <shlwapi.h>

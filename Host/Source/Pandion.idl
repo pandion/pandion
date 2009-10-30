@@ -102,6 +102,9 @@ library PandionLib
 			[out,retval] BSTR* guid);
 		HRESULT SetDefaultMSIESearchProvider(
 			[in] BSTR guid);
+		HRESULT IsProcessRunning(
+			[in] BSTR processName,
+			[out,retval] BOOL* isRunning);
 	}
 	[uuid(A2691BAF-EEFE-4e1a-BD58-30D3DE8F85FF)]
 	interface IPdnFile : IDispatch
