@@ -706,16 +706,16 @@ function recv_search_results ( iq )
 					while ( elem.tagName != 'SPAN' )
 						elem = elem.parentNode;
 					if ( event.button == 1 )
-						setTimeout( 'page4_add( \'' + elem.JID + '\' )', 0 );
+						setTimeout( function (){page4_add( elem.JID )}, 0 );
 					else if ( event.button == 2 )
 					{
 						var menu = external.newPopupMenu;
 						menu.AddItem( true, false, false, true, 0, external.globals( 'Translator' ).Translate( 'adduser', 'add' ), 1 );
 						menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'adduser', 'view' ), 2 );
-						menu.Show( event.screenX, event.screenY );
+						menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
 						switch ( menu.Choice )
 						{
-							case 1: setTimeout( 'page4_add( \'' + elem.JID + '\' )', 0 ); break;
+							case 1: setTimeout( function (){page4_add( elem.JID )}, 0 ); break;
 							case 2: external.wnd.params.dial_userinfo( elem.JID, '' ); break;
 						}
 					}
@@ -798,16 +798,16 @@ function recv_search_results ( iq )
 					while ( elem.tagName != 'SPAN' )
 						elem = elem.parentNode;
 					if ( event.button == 1 )
-						setTimeout( 'page4_add( \'' + elem.JID + '\' )', 0 );
+						setTimeout( function (){page4_add( elem.JID )}, 0 );
 					else if ( event.button == 2 )
 					{
 						var menu = external.newPopupMenu;
 						menu.AddItem( true, false, false, true, 0, external.globals( 'Translator' ).Translate( 'adduser', 'add' ), 1 );
 						menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'adduser', 'view' ), 2 );
-						menu.Show( event.screenX, event.screenY );
+						menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
 						switch ( menu.Choice )
 						{
-							case 1: setTimeout( 'page4_add( \'' + elem.JID + '\' )', 0 ); break;
+							case 1: setTimeout( function (){page4_add( elem.JID )}, 0 ); break;
 							case 2: external.wnd.params.dial_userinfo( elem.JID, '' ); break;
 						}
 					}
