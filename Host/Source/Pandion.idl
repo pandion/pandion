@@ -99,9 +99,9 @@ library PandionLib
 			[in] BSTR soundFile);
 		HRESULT InstallMSIESearchProvider(
 			[in] BSTR url,
-			[out,retval] BSTR* guid);
+			[out,retval] BSTR* serviceID);
 		HRESULT SetDefaultMSIESearchProvider(
-			[in] BSTR guid);
+			[in] BSTR serviceID);
 		HRESULT IsProcessRunning(
 			[in] BSTR processName,
 			[out,retval] BOOL* isRunning);

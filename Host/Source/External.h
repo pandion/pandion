@@ -86,8 +86,8 @@ public:
 	STDMETHOD(StringToBase64)(BSTR UTF16String, BSTR *b64String);
 	STDMETHOD(Fullscreen)(BOOL *bFullscreen);
 	STDMETHOD(PlaySound)(BSTR soundFile);
-	STDMETHOD(InstallMSIESearchProvider)(BSTR url, BSTR* guid);
-	STDMETHOD(SetDefaultMSIESearchProvider)(BSTR guid);
+	STDMETHOD(InstallMSIESearchProvider)(BSTR url, BSTR* serviceID);
+	STDMETHOD(SetDefaultMSIESearchProvider)(BSTR serviceID);
 	STDMETHOD(IsProcessRunning)(BSTR processName, BOOL* isRunning);
 
 private:
