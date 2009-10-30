@@ -713,7 +713,7 @@ STDMETHODIMP CPdnWnd::hide(BOOL b)
 STDMETHODIMP CPdnWnd::rightToLeft(BOOL b)
 {
 	RECT rc;
-	::GetClientRect(m_hWnd, &rc);
+	::GetWindowRect(m_hWnd, &rc);
 
 	if(b)
 	{
@@ -797,7 +797,7 @@ STDMETHODIMP CPdnWnd::showMaxBox(BOOL b)
 STDMETHODIMP CPdnWnd::showTitlebar(BOOL b)
 {
 	RECT rc;
-	::GetClientRect(m_hWnd, &rc);
+	::GetWindowRect(m_hWnd, &rc);
 	if(!b)
 	{
 		::SetWindowLong(m_hWnd, GWL_STYLE,
