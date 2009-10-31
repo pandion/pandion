@@ -300,6 +300,20 @@ STDMETHODIMP External::RegWriteDWORD(BSTR hKey, BSTR key, BSTR value,
 	::RegCloseKey(RegKey);
 	return err == ERROR_SUCCESS ? S_OK : E_FAIL;
 }
+STDMETHODIMP External::RegDeleteKey(BSTR hKey, BSTR key)
+{
+	HKEY RootKey = StringToRegRootKey(hKey);
+	return ::RegDeleteKey(RootKey, key) == ERROR_SUCCESS ? S_OK : E_FAIL;
+}
+STDMETHODIMP External::RegDeleteValue(BSTR hKey, BSTR key, BSTR value)
+{
+	HKEY RegKey, RootKey = StringToRegRootKey(hKey);
+	LSTATUS err = ERROR_SUCCESS;
+	err = ::RegOpenKeyEx(RootKey, key, 0, KEY_SET_VALUE, &RegKey);
+	err = ::RegDeleteValue(RegKey, value);
+	::RegCloseKey(RegKey);
+	return err == ERROR_SUCCESS ? S_OK : E_FAIL;
+}
 STDMETHODIMP External::get_Shortcut(VARIANT *pDisp)
 {
 	pDisp->vt = VT_DISPATCH;

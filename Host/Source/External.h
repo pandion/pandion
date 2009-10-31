@@ -79,6 +79,8 @@ public:
 	STDMETHOD(RegRead)(BSTR hKey, BSTR key, BSTR value, VARIANT* vRetVal);
 	STDMETHOD(RegWriteString)(BSTR hKey, BSTR key, BSTR value, BSTR data);
 	STDMETHOD(RegWriteDWORD)(BSTR hKey, BSTR key, BSTR value, DWORD data);
+	STDMETHOD(RegDeleteKey)(BSTR hKey, BSTR key);
+	STDMETHOD(RegDeleteValue)(BSTR hKey, BSTR key, BSTR value);
 
 	STDMETHOD(get_Shortcut)(VARIANT *pDisp);
 	STDMETHOD(UnZip)(BSTR path, BSTR targetDir, int *nSuccess);

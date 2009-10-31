@@ -83,6 +83,13 @@ library PandionLib
 			[in] BSTR key, 
 			[in] BSTR value, 
 			[in] DWORD data);
+		HRESULT RegDeleteKey(
+			[in] BSTR hKey,
+			[in] BSTR key);
+		HRESULT RegDeleteValue(
+			[in] BSTR hKey,
+			[in] BSTR key,
+			[in] BSTR value);
 		HRESULT UnZip(
 			[in] BSTR path, 
 			[in] BSTR targetDir, 
