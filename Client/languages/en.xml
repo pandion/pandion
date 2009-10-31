@@ -109,6 +109,11 @@
     <code id="search_info">Find a contact...</code>
     <code id="invalid-user-address">Enter your instant messaging address.&#13;&#13;If you do not have an address, click "Register a new instant messaging address" below.</code>
     <code id="invalid-sso-server">Enter the address of your instant messaging server.</code>
+    <code id="program-description">${softwarename} is an instant messaging client for XMPP networks.</code>
+    <code id="extension-jisp">Jabber Icon Style Package</code>
+    <code id="extension-pdn">${softwarename} Plug-In</code>
+    <code id="extension-xmpp">Extensible Messaging and Presence Protocol (XMPP) Meta Data</code>
+    <code id="uri-xmpp">Extensible Messaging and Presence Protocol (XMPP) Address</code>
 
     <code id="menu_status">&amp;Status</code>
     <code id="menu_status_received">&amp;Open my Received Files</code>

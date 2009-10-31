@@ -15,25 +15,74 @@ window.attachEvent("onload", function () {
 	document.getElementById("txt-ask-question").href = document.getElementById("txt-powered-by").href = "http://getsatisfaction.com/" + external.globals("getsatisfactioncompany");
 
 	// TODO check if still default xmpp client (if not, show settings again)
-	document.getElementById("settings").className = "visible";// TODO external.globals("welcomesettings").toString() == "true" ? "visible" : "hidden";
-	document.getElementById("shortcuts").className = "hidden";// TODO external.globals("welcomesettings").toString() == "true" ? "hidden" : "visible";
-	if (external.wnd.params.document.getElementById("signin-dialog").style.display == "block") {
-		document.getElementById("shortcuts").disabled = true;
-		document.getElementById("shortcuts").className += " disabled";
+	/* TODO
+	if (external.globals("welcomesettings").toString() == "true") {
+		Client.CSS.Hide(document.getElementById("settings"));
+		Client.CSS.Show(document.getElementById("shortcuts"));
+	} else {
+		Client.CSS.Show(document.getElementById("settings"));
+		Client.CSS.Hide(document.getElementById("shortcuts"));
 	}
+	*/
+	Client.CSS.Show(document.getElementById("settings")); // TODO
+	Client.CSS.Hide(document.getElementById("shortcuts")); // TODO
+	if (external.wnd.params.document.getElementById("signin-dialog").style.display == "block")
+		Client.CSS.Disable(document.getElementById("shortcuts"));
 
 	var saveSettings = function () {
 		// TODO external.globals("welcomesettings") = false;
 
-		/* Default XMPP client */
 		if (document.getElementById("default-xmpp-client").checked) {
-			// TODO make default xmpp client
+			var logo = external.globals("cwd") + "..\\images\\brand\\default.ico";
+			var open = "\"" + external.globals("cwd") + "..\\" + external.globals("softwarenamesafe") + ".exe\"";
+			Client.OS.Registry.RegisterDefaultPrograms({
+				description: external.globals("Translator").Translate("main", "program-description"),
+				icon: logo,
+				name: external.globals("softwarenamesafe"),
+				client: {
+					category: "IM",
+					show: open + " /registerdefaultprogram show",
+					hide: open + " /registerdefaultprogram hide",
+					reinstall: open + " /registerdefaultprogram reinstall",
+				},
+				associations: {
+					"JISP": {
+						command: open + " \"%1\"",
+						icon: logo,
+						name: external.globals("Translator").Translate("main", "extension-jisp"),
+						extension: [".jisp"],
+						mime: ["application/vnd.jisp"]
+					},
+					"PDN": {
+						command: open + " \"%1\"",
+						icon: logo,
+						name: external.globals("Translator").Translate("main", "extension-pdn"),
+						extension: [".pdn"],
+						mime: ["application/x-pdn+xml"]
+					},
+					"XMPP": {
+						command: open + " \"%1\"",
+						icon: logo,
+						name: external.globals("Translator").Translate("main", "extension-xmpp"),
+						extension: [".xmpp"],
+						mime: ["application/jabber+xml"]
+					},
+					"xmpp": {
+						command: open + " \"%1\"",
+						icon: logo,
+						name: external.globals("Translator").Translate("main", "uri-xmpp"),
+						protocol: ["xmpp"]
+					}
+				}
+			});
 		}
+
 		if (document.getElementById("change-homepage").checked)
 			Client.OS.Browser.SetHomepage({
 				platforms: ["ie", "ff", "cr", "op"],
 				url: external.globals("browserhomepage")
 			});
+
 		if (document.getElementById("change-search-engine").checked)
 			Client.OS.Browser.SetSearchbox({
 				name: external.globals("browsersearchboxname"),
@@ -61,7 +110,7 @@ window.attachEvent("onload", function () {
 	});
 
 	document.getElementById("content").attachEvent("onsubmit", function () {
-		if (document.getElementById("settings").className == "visible")
+		if (Client.CSS.HasClass(document.getElementById("settings"), "visible"))
 			saveSettings();
 		external.globals("welcomescreen") = document.getElementById("show-welcome").checked ? "yes" : "no";
 		event.returnValue = false;
@@ -70,8 +119,8 @@ window.attachEvent("onload", function () {
 
 	document.getElementById("settings-close").attachEvent("onclick", function () {
 		saveSettings();
-		document.getElementById("settings").className = "hidden";
-		document.getElementById("shortcuts").className = "visible";
+		Client.CSS.Hide(document.getElementById("settings"));
+		Client.CSS.Show(document.getElementById("shortcuts"));
 		event.returnValue = false;
 	});
 
@@ -92,9 +141,9 @@ window.attachEvent("onload", function () {
 		}
 	});
 
-	document.getElementById("feed-loading").className = "visible";
-	document.getElementById("feed-unavailable").className = "hidden";
-	document.getElementById("feed").className = "hidden";
+	Client.CSS.Show(document.getElementById("feed-loading"));
+	Client.CSS.Hide(document.getElementById("feed-unavailable"));
+	Client.CSS.Hide(document.getElementById("feed"));
 	Client.Utils.Ajax({
 		url: external.globals("welcomefeedurl"),
 		callback: function (doc) {
@@ -113,10 +162,10 @@ window.attachEvent("onload", function () {
 				else
 					return "";
 			};
-			document.getElementById("feed-loading").className = "hidden";
+			Client.CSS.Hide(document.getElementById("feed-loading"));
 			if (doc) {
 				var feed = document.getElementById("feed");
-				feed.className = "visible";
+				Client.CSS.Show(feed);
 				var entries = doc.selectNodes("/feed/entry[updated][title][link[@rel='alternate' and @type='text/html' and @href]]");
 				for (var i = 0; i < entries.length; ++i) {
 					var listItem = document.createElement("li");
@@ -126,14 +175,14 @@ window.attachEvent("onload", function () {
 					Client.Utils.AnchorToBrowser(anchor);
 					listItem.appendChild(anchor);
 					var timestamp = document.createElement("div");
-					timestamp.className = "timestamp";
+					Client.CSS.AddClass(timestamp, "timestamp");
 					timestamp.innerText = Client.Utils.Prettytime(Client.Utils.ISO8601(entries[i].selectSingleNode("updated").text));
 					listItem.appendChild(timestamp);
 					feed.appendChild(listItem);
 				}
 			}
 			else
-				document.getElementById("feed-unavailable").className = "visible";
+				Client.CSS.Show(document.getElementById("feed-unavailable"));
 		}
 	});
 
@@ -142,6 +191,7 @@ window.attachEvent("onload", function () {
 });
 
 var Client = {};
+
 Client.Utils = {};
 
 Client.Utils.Searchbox = function (arg) {
@@ -153,14 +203,14 @@ Client.Utils.Searchbox = function (arg) {
 		}
 	});
 	arg.element.attachEvent("onfocus", function () {
-		arg.element.className = "active";
+		Client.CSS.AddClass(arg.element, "active");
 		if (arg.element.value === arg.placeholder)
 			arg.element.value = "";
 	});
 	arg.element.attachEvent("onblur", function () {
 		if (arg.element.value.length == 0)
 		{
-			arg.element.className = "";
+			Client.CSS.RemoveClass(arg.element, "active");
 			arg.element.value = arg.placeholder;
 		}
 	});
@@ -247,20 +297,162 @@ Client.Utils.AnchorToBrowser = function (anchor) {
 };
 
 Client.OS = {};
+
+Client.OS.Registry = {};
+
+Client.OS.Registry.Read = function (hive, key, value) {
+	try {
+		return external.RegRead(hive, key, value);
+	} catch (error) {
+		return null;
+	}
+};
+
+Client.OS.Registry.Write = function (hive, key, value, data) {
+	try {
+		if ((data instanceof String) || (typeof data == 'string'))
+			external.RegWriteString(hive, key, value, data);
+		else if ((data instanceof Number) || (typeof data == 'number'))
+			external.RegWriteDWORD(hive, key, value, data);
+		else
+			return false;
+		return true;
+	} catch (error) {
+		return false;
+	}
+};
+
+Client.OS.Registry.Delete = function (hive, key, value) {
+	try {
+		if (value == undefined)
+			external.RegDeleteKey(hive, key);
+		else
+			external.RegDeleteValue(hive, key, value);
+		return true;
+	} catch (error) {
+		return false;
+	}
+};
+
+Client.OS.Registry.RegisterDefaultPrograms = function (arg) {
+	var registryWriteHklmOrHkcu = function (key, value, data) {
+		if (Client.OS.Registry.Write(hklm, key, value, data))
+			Client.OS.Registry.Delete(hkcu, key, value);
+		else
+			Client.OS.Registry.Write(hkcu, key, value, data);
+	};
+	var hkcu = "HKEY_CURRENT_USER";
+	var hklm = "HKEY_LOCAL_MACHINE";
+	var keyClientCategory = "Software\\Clients\\" + arg.client.category;
+	var keyClient = keyClientCategory + "\\" + arg.name;
+	var keyCapabilities = keyClient + "\\Capabilities";
+
+	/* Registration as default program for specific service (IM, email, web browser, ...) */
+	Client.OS.Registry.Write(hklm, keyClientCategory, "", arg.name);
+	Client.OS.Registry.Write(hklm, keyClient, "", arg.name);
+	Client.OS.Registry.Write(hklm, keyClient + "\\InstallInfo", "IconsVisible", 1);
+	Client.OS.Registry.Write(hklm, keyClient + "\\InstallInfo", "ShowIconsCommand", arg.client.show);
+	Client.OS.Registry.Write(hklm, keyClient + "\\InstallInfo", "HideIconsCommand", arg.client.hide);
+	Client.OS.Registry.Write(hklm, keyClient + "\\InstallInfo", "ReinstallCommand", arg.client.reinstall);
+
+	/* Registration as default handler of file extension, MIME type, URI protocol */
+	Client.OS.Registry.Write(hklm, "Software\\RegisteredApplications", arg.name, keyCapabilities);
+	Client.OS.Registry.Write(hklm, keyCapabilities, "ApplicationIcon", arg.icon);
+	Client.OS.Registry.Write(hklm, keyCapabilities, "ApplicationName", arg.name);
+	Client.OS.Registry.Write(hklm, keyCapabilities, "ApplicationDescription", arg.description);
+
+	/* Documentation: http://msdn.microsoft.com/en-us/library/cc144154%28VS.85%29.aspx */
+	for (var type in arg.associations) {
+		var progid = arg.name + ("protocol" in arg.associations[type] ? ".Url." : ".File.") + type;
+		var keyProgid = "Software\\Classes\\" + progid;
+		var keyApplication = "Software\\Classes\\Applications\\" + arg.name + ".exe";
+
+		/* ProgID */
+		if ("extension" in arg.associations[type] || "protocol" in arg.associations[type]) {
+			registryWriteHklmOrHkcu(keyProgid, "", arg.associations[type].name);
+			registryWriteHklmOrHkcu(keyProgid + "\\DefaultIcon", "", arg.associations[type].icon);
+			registryWriteHklmOrHkcu(keyProgid + "\\shell\\open\\command", "", arg.associations[type].command);
+		}
+
+		if ("extension" in arg.associations[type]) {
+			/* Open automatically in web browser */
+			registryWriteHklmOrHkcu(keyProgid, "BrowserFlags", 0x00000008);
+			registryWriteHklmOrHkcu(keyProgid, "EditFlags", 0x00010000);
+
+			/* Appearance in Open With... */
+			registryWriteHklmOrHkcu(keyApplication, "NoOpenWith", "");
+			registryWriteHklmOrHkcu(keyApplication + "\\DefaultIcon", "", arg.associations[type].icon);
+			registryWriteHklmOrHkcu(keyApplication + "\\shell\\open\\command", "", arg.associations[type].command);
+
+			for (var i in arg.associations[type].extension) {
+				var keyUserChoice = "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + arg.associations[type].extension[i] + "\\UserChoice";
+				var keyExtension = "Software\\Classes\\" + arg.associations[type].extension[i];
+				/* Register the file extension and link to the ProgID */
+				registryWriteHklmOrHkcu(keyExtension, "", progid);
+				/* Always show up for this extension in Open With... */
+				registryWriteHklmOrHkcu(keyExtension + "\\OpenWithList\\" + arg.name + ".exe", "", "");
+				registryWriteHklmOrHkcu(keyExtension + "\\OpenWithProgIds", progid, "");
+				registryWriteHklmOrHkcu(keyApplication + "\\SupportedTypes", arg.associations[type].extension[i], "");
+				/* Add extension support to Default Programs */
+				Client.OS.Registry.Write(hklm, keyCapabilities + "\\FileAssociations", arg.associations[type].extension[i], progid);
+				Client.OS.Registry.Write(hkcu, keyUserChoice, "Progid", progid);
+			}
+		}
+
+		if ("protocol" in arg.associations[type]) {
+			/* Flag to designate the progid as a protocol handler */
+			registryWriteHklmOrHkcu(keyProgid, "URL Protocol", "");
+			for (var i in arg.associations[type].protocol) {
+				var keyUserChoice = "Software\\Microsoft\\Windows\\Shell\\Associations\\UrlAssociations\\" + arg.associations[type].protocol[i] + "\\UserChoice";
+				/* Register the URI protocol and copy the progid information */
+				var keyProtocol = "Software\\Classes\\" + arg.associations[type].protocol[i];
+				registryWriteHklmOrHkcu(keyProtocol, "", arg.associations[type].name);
+				registryWriteHklmOrHkcu(keyProtocol, "URL Protocol", "");
+				registryWriteHklmOrHkcu(keyProtocol + "\\DefaultIcon", "", arg.associations[type].icon);
+				registryWriteHklmOrHkcu(keyProtocol + "\\shell\\open\\command", "", arg.associations[type].command);
+				/* Add URI protocol support to Default Programs */
+				Client.OS.Registry.Write(hklm, keyCapabilities + "\\UrlAssociations", arg.associations[type].protocol[i], progid);
+				Client.OS.Registry.Write(hkcu, keyUserChoice, "Progid", progid);
+			}
+		}
+
+		if ("mime" in arg.associations[type]) {
+			for (var i in arg.associations[type].mime) {
+				var keyUserChoice = "Software\\Microsoft\\Windows\\Shell\\Associations\\MIMEAssociations\\" + arg.associations[type].mime[i] + "\\UserChoice";
+				/* Link the MIME type to the ProgID */
+				registryWriteHklmOrHkcu(keyProgid, "Content Type", arg.associations[type].mime[i]);
+				/* Add MIME type support to Default Programs */
+				Client.OS.Registry.Write(hklm, keyCapabilities + "\\MimeAssociations", arg.associations[type].mime[i], progid);
+				Client.OS.Registry.Write(hkcu, keyUserChoice, "Progid", progid);
+			}
+		}
+	}
+	/*
+		TODO: After updating the registry keys, the program should broadcast the WM_SETTINGCHANGE message
+		with wParam = 0 and lParam pointing to the null-terminated string "Software\Clients\[ClientTypeName]"
+		to notify the operating system that the default client has changed.
+
+		TODO: Any time you create or change a file association, it is important to notify the system that
+		you have made a change by calling SHChangeNotify, and specifying the SHCNE_ASSOCCHANGED event.
+		If you do not call SHChangeNotify, the change might not be recognized until the system is rebooted. 
+	*/
+}
+
 Client.OS.Browser = {};
+
 Client.OS.Browser.SetHomepage = function (arg) {
 
 	var delegates = {
 
 		/* Microsoft Internet Explorer */
 		ie: function (arg) {
-			external.RegWriteString("HKEY_CURRENT_USER", "Software\\Microsoft\\Internet Explorer\\Main", "Start Page", arg.url);
+			Client.OS.Registry.Write("HKEY_CURRENT_USER", "Software\\Microsoft\\Internet Explorer\\Main", "Start Page", arg.url);
 		},
 
 		/* Google Chrome */
 		cr: function (arg) {
 			try {
-				var path = external.RegRead("HKEY_CURRENT_USER", "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Google Chrome", "InstallLocation") + "\\..\\User Data\\Default\\Preferences";
+				var path = Client.OS.Registry.Read("HKEY_CURRENT_USER", "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Google Chrome", "InstallLocation") + "\\..\\User Data\\Default\\Preferences";
 				if (external.FileExists(path)) {
 					var file = external.file(path);
 					var lines = [];
@@ -336,18 +528,18 @@ Client.OS.Browser.SetSearchbox = function (arg) {
 			} catch (error) {
 				var ie = "Software\\Microsoft\\Internet Explorer\\";
 				/* IE7 */
-				external.RegWriteString("HKEY_CURRENT_USER", ie + "SearchScopes", "DefaultScope", arg.name);
-				external.RegWriteDWORD("HKEY_CURRENT_USER", ie + "SearchScopes", "Version", 1);
-				external.RegWriteString("HKEY_CURRENT_USER", ie + "SearchScopes\\" + arg.name, "DisplayName", arg.name);
-				external.RegWriteString("HKEY_CURRENT_USER", ie + "SearchScopes\\" + arg.name, "URL", arg.url);
-				external.RegWriteDWORD("HKEY_CURRENT_USER", ie + "SearchScopes\\" + arg.name, "SortIndex", 0);
-				external.RegWriteString("HKEY_CURRENT_USER", ie + "SearchUrl", "", arg.url);
-				external.RegWriteString("HKEY_CURRENT_USER", ie + "SearchUrl", "DefaultScope", arg.name);
-				external.RegWriteDWORD("HKEY_CURRENT_USER", ie + "SearchUrl", "Version", 1);
+				Client.OS.Registry.Write("HKEY_CURRENT_USER", ie + "SearchScopes", "DefaultScope", arg.name);
+				Client.OS.Registry.Write("HKEY_CURRENT_USER", ie + "SearchScopes", "Version", 1);
+				Client.OS.Registry.Write("HKEY_CURRENT_USER", ie + "SearchScopes\\" + arg.name, "DisplayName", arg.name);
+				Client.OS.Registry.Write("HKEY_CURRENT_USER", ie + "SearchScopes\\" + arg.name, "URL", arg.url);
+				Client.OS.Registry.Write("HKEY_CURRENT_USER", ie + "SearchScopes\\" + arg.name, "SortIndex", 0);
+				Client.OS.Registry.Write("HKEY_CURRENT_USER", ie + "SearchUrl", "", arg.url);
+				Client.OS.Registry.Write("HKEY_CURRENT_USER", ie + "SearchUrl", "DefaultScope", arg.name);
+				Client.OS.Registry.Write("HKEY_CURRENT_USER", ie + "SearchUrl", "Version", 1);
 				/* IE6 */
-				external.RegWriteString("HKEY_CURRENT_USER", ie + "Main", "Search Bar", arg.url);
-				external.RegWriteString("HKEY_CURRENT_USER", ie + "Main", "Search Page", arg.url);
-				external.RegWriteString("HKEY_CURRENT_USER", ie + "Search", "SearchAssistant", arg.url);
+				Client.OS.Registry.Write("HKEY_CURRENT_USER", ie + "Main", "Search Bar", arg.url);
+				Client.OS.Registry.Write("HKEY_CURRENT_USER", ie + "Main", "Search Page", arg.url);
+				Client.OS.Registry.Write("HKEY_CURRENT_USER", ie + "Search", "SearchAssistant", arg.url);
 			}
 		}
 
@@ -361,4 +553,47 @@ Client.OS.Browser.SetSearchbox = function (arg) {
 				url: arg.url
 			});
 	}
+};
+
+Client.CSS = {};
+
+Client.CSS.HasClass = function (elem, name) {
+	return (new RegExp("^|\b" + name + "\b|$")).test(elem.className);
+};
+
+Client.CSS.Show = function (elem) {
+	Client.CSS.RemoveClass(elem, "hidden");
+	Client.CSS.AddClass(elem, "visible");
+};
+
+Client.CSS.Hide = function (elem) {
+	Client.CSS.RemoveClass(elem, "visible");
+	Client.CSS.AddClass(elem, "hidden");
+};
+
+Client.CSS.Enable = function (elem) {
+	elem.disabled = false;
+	Client.CSS.RemoveClass(elem, "disabled");
+	Client.CSS.AddClass(elem, "enabled");
+};
+
+Client.CSS.Disable = function (elem) {
+	elem.disabled = true;
+	Client.CSS.RemoveClass(elem, "enabled");
+	Client.CSS.AddClass(elem, "disabled");
+};
+
+Client.CSS.AddClass = function (elem, name) {
+	elem.className += " " + name;
+};
+
+Client.CSS.RemoveClass = function (elem, name) {
+	var classes = elem.className.split(/\s/);
+	var offset = 0;
+	for (var i in classes)
+		if (classes[i - offset] == name) {
+			classes.splice(i - offset, 1);
+			offset++;
+		}
+	elem.className = classes.join(" ");
 };
