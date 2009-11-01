@@ -146,7 +146,7 @@ textarea, input, button {
 	display: block;
 	width: 100%;
 	height: 100%;
-	padding-top: 3px;
+	padding: 1px 0 0 4px;
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
@@ -308,6 +308,7 @@ textarea, input, button {
 #toolbar button span {
 	height: 16px;
 	margin-left: 6px;
+	padding-top: 4px;
 }
 #resize-grip {
 	position: absolute;

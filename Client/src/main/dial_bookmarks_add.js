@@ -13,7 +13,7 @@ function dial_bookmarks_add ( Address, Password, AutoJoin, Edit )
 		with ( external.createWindow( 'bookmarks_add/' + Address, external.globals( 'cwd' ) + 'bookmarks_add.html', new Array( window, Address, Password, AutoJoin, Edit ) ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', Edit ? 'wnd_bookmarks_edit' : 'wnd_bookmarks_add' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\group.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\conference\\contacts.ico' );
 			resizeable( false );
 			MinHeight = MinWidth = 0;
 			setSize( 340, 200 );

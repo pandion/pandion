@@ -6,7 +6,7 @@ function dial_groupmessage ( name )
 		with ( external.createWindow( name + '/groupmessage', external.globals( 'cwd' ) + 'groupmessage.html', new Array( window, name ) ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_group_message' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\letter.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\chat-container\\bubble.ico' );
 			resizeable( false );
 			MinHeight = MinWidth = 0;
 			setSize( 550, 400 );

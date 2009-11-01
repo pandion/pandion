@@ -6,7 +6,7 @@ function dial_plugins ()
 		with ( external.createWindow( 'plugins', external.globals( 'cwd' ) + 'plugins.html', window ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_plugins' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\plug.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\plug-ins\\tiles.ico' );
 			setSize( 385, 382 );
 			MinHeight = 382;
 			MinWidth = 385;

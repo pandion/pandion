@@ -6,7 +6,7 @@ function dial_password_change ()
 		with ( external.createWindow( 'pass_change', external.globals( 'cwd' ) + 'pass_change.html', 0 ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_password' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\lock.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\password\\lock.ico' );
 			resizeable( false );
 			MinHeight = MinWidth = 0;
 			setSize( 400, 110 );

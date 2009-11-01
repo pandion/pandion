@@ -6,7 +6,7 @@ function dial_bookmarks_manage ()
 		with ( external.createWindow( 'bookmarks_manage', external.globals( 'cwd' ) + 'bookmarks_manage.html', new Array( window ) ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_bookmarks_manage' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\group.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\conference\\contacts.ico' );
 			resizeable( false );
 			MinHeight = MinWidth = 0;
 			setSize( 450, 300 );

@@ -587,7 +587,7 @@ function SessionTracker ( Address )
 
 			var Picture = document.createElement( 'IMG' );
 			Picture.className = 'tab-avatar';
-			Picture.src = '..\\images\\dials\\group.ico';
+			Picture.src = '..\\images\\conference\\contacts.png';
 			this.HTMLButton.insertAdjacentElement( 'beforeEnd', Picture );
 
 			var Name = document.createElement( 'NOBR' );
@@ -1261,7 +1261,7 @@ function dial_conference_subject ( Tracker )
 		with ( external.createWindow( 'conference_subject/' + ShortAddress, external.globals( 'cwd' ) + 'conference-subject.html', [ external.wnd.params[0], Tracker ] ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'conference-container', 'wnd_conference_subject' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\tty.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\conference\\note.ico' );
 			resizeable( false );
 			MinHeight = MinWidth = 0;
 			setSize( 400, 80 );
@@ -1295,7 +1295,7 @@ function dial_conference_configuration ( Tracker )
 		with ( external.createWindow( 'conference_configuration/' + ShortAddress, external.globals( 'cwd' ) + 'conference-configuration.html', [ external.wnd.params[0], Tracker ] ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'conference-container', 'wnd_conference_configuration' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\tools.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\conference\\tools.ico' );
 			setSize( 385, 382 );
 			MinHeight = 382;
 			MinWidth = 385;
@@ -1314,7 +1314,7 @@ function dial_conference_connect_password ( Tracker )
 		with ( external.createWindow( 'conference_password/' + ShortAddress, external.globals( 'cwd' ) + 'conference-password.html', [ Tracker ] ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'conference-container', 'wnd_conference_password' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\lock.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\conference\\lock.ico' );
 			resizeable( false );
 			MinHeight = MinWidth = 0;
 			setSize( 300, 80 );
@@ -1333,7 +1333,7 @@ function dial_conference_connect_name ( Tracker )
 		with ( external.createWindow( 'conference_name/' + ShortAddress, external.globals( 'cwd' ) + 'conference-name.html', [ Tracker ] ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'conference-container', 'wnd_conference_change_name' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\lock.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\conference\\contacts.ico' );
 			resizeable( false );
 			MinHeight = MinWidth = 0;
 			setSize( 300, 80 );
@@ -1352,7 +1352,7 @@ function dial_conference_accesslevel ( Occupant )
 		with ( external.createWindow( 'conference_accesslevel/' + ShortAddress + '/' + Occupant.Name, external.globals( 'cwd' ) + 'conference-accesslevel.html', [ external.wnd.params[0], Occupant ] ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'conference-container', 'wnd_conference_accesslevel', [ Occupant.Name ] ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\group.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\conference\\contacts.ico' );
 			resizeable( false );
 			MinHeight = MinWidth = 0;
 			setSize( 385, 382 );

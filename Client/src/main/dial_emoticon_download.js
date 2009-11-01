@@ -6,7 +6,7 @@ function dial_emoticon_download ()
 		with ( external.createWindow( 'emoticon_download', external.globals( 'cwd' ) + 'emoticon_download.html', window ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_emoticon_download' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\smiley.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\emoticons\\emoticon.ico' );
 			setSize( 385, 382 );
 			MinHeight = 382;
 			MinWidth = 385;

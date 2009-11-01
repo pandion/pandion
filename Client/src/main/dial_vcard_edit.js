@@ -10,7 +10,7 @@ function dial_vcard_edit ( jid )
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_vcard_edit' ) );
 			resizeable( false );
 			showMinBox( true );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\info.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\vcard\\card.ico' );
 			setSize( 490, 350 );
 			setPos( ( screen.availWidth - 480 ) / 2, ( screen.availHeight - 350 ) / 2 );
 		}

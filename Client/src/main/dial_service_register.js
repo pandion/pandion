@@ -23,7 +23,7 @@ function dial_service_register ( address )
 		{
 			resizeable( false );
 			showMinBox( true );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\bulb.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\transports\\connector.ico' );
 			setSize( 450, 302 );
 			setPos( ( screen.availWidth - 450 ) / 2, ( screen.availHeight - 302 ) / 2 );
 			focus();

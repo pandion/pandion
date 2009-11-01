@@ -60,7 +60,7 @@ function filter ( query )
 		{
 			if ( ! document.getElementById( stamp ) )
 			{
-				log.insertAdjacentHTML( 'beforeEnd', '<DIV class=date day="' + stamp + '" onmousedown="toggle( this )" onmouseover="this.className=\'date-over\';// document.getElementById( this.day ).className = \'day-over\';" onmouseout="this.className=\'date\';// document.getElementById( this.day ).className = \'day\';"><NOBR><SPAN class=noprint><IMG title="' + external.globals( 'Translator' ).Translate( 'history', 'tooltip_print' ) + '" onmousedown="event.cancelBubble = true" onclick="printer(\'' + stamp + '\');" style="cursor: hand" align=right src="../images/dials/printer.gif"><IMG title="' + external.globals( 'Translator' ).Translate( 'history', 'tooltip_save' ) + '" onmousedown="event.cancelBubble = true" onclick="save(\'' + stamp + '\');" style="cursor: hand" align=right src="../images/dials/disk.gif"><IMG align=absmiddle src="../images/misc/hidden.gif"></SPAN> ' + ( new Date( stamp.substr( 0, 4 ), stamp.substr( 4, 2 ) - 1, stamp.substr( 6, 2 ) ) ).toLocaleDateString() + '</NOBR></DIV>' );
+				log.insertAdjacentHTML( 'beforeEnd', '<DIV class=date day="' + stamp + '" onmousedown="toggle( this )" onmouseover="this.className=\'date-over\';// document.getElementById( this.day ).className = \'day-over\';" onmouseout="this.className=\'date\';// document.getElementById( this.day ).className = \'day\';"><NOBR><SPAN class=noprint><IMG title="' + external.globals( 'Translator' ).Translate( 'history', 'tooltip_print' ) + '" onmousedown="event.cancelBubble = true" onclick="printer(\'' + stamp + '\');" style="cursor: hand" align=right src="../images/history/printer.png"><IMG title="' + external.globals( 'Translator' ).Translate( 'history', 'tooltip_save' ) + '" onmousedown="event.cancelBubble = true" onclick="save(\'' + stamp + '\');" style="cursor: hand" align=right src="../images/history/disk.png"><IMG align=absmiddle src="../images/history/arrow-right.png"></SPAN> ' + ( new Date( stamp.substr( 0, 4 ), stamp.substr( 4, 2 ) - 1, stamp.substr( 6, 2 ) ) ).toLocaleDateString() + '</NOBR></DIV>' );
 				elem = document.createElement( 'DIV' );
 				elem.id = stamp;
 				elem.style.display = 'none';
@@ -82,7 +82,7 @@ function toggle ( bar )
 {
 	var day = bar.day;
 	var elem = document.getElementById( day );
-	bar.children(0).children(0).children(2).src = '../images/misc/' + ( elem.style.display == 'block' ? 'hidden' : 'shown' ) + '.gif';
+	bar.children(0).children(0).children(2).src = '../images/history/' + ( elem.style.display == 'block' ? 'arrow-right.png' : 'arrow-down.png' );
 	elem.style.display = elem.style.display == 'block' ? 'none' : 'block';
 
 	if ( elem.children.length )
@@ -134,7 +134,7 @@ function receive ( params )
 	{
 		document.getElementById( 'loading' ).style.display = 'none';
 		var log = document.getElementById( 'log' );
-		log.insertAdjacentHTML( 'beforeEnd', '<DIV class=date day="' + stamp + '" onmousedown="toggle( this )" onmouseover="this.className=\'date-over\';// document.getElementById( this.day ).className = \'day-over\';" onmouseout="this.className=\'date\';// document.getElementById( this.day ).className = \'day\';"><NOBR><SPAN class=noprint><IMG title="' + external.globals( 'Translator' ).Translate( 'history', 'tooltip_print' ) + '" onmousedown="event.cancelBubble = true" onclick="printer(\'' + stamp + '\');" style="cursor: hand" align=right src="../images/dials/printer.gif"><IMG title="' + external.globals( 'Translator' ).Translate( 'history', 'tooltip_save' ) + '" onmousedown="event.cancelBubble = true" onclick="save(\'' + stamp + '\');" style="cursor: hand" align=right src="../images/dials/disk.gif"><IMG align=absmiddle src="../images/misc/hidden.gif"></SPAN> ' + ( new Date( stamp.substr( 0, 4 ), stamp.substr( 4, 2 ) - 1, stamp.substr( 6, 2 ) ) ).toLocaleDateString() + '</NOBR></DIV>' );
+		log.insertAdjacentHTML( 'beforeEnd', '<DIV class=date day="' + stamp + '" onmousedown="toggle( this )" onmouseover="this.className=\'date-over\';// document.getElementById( this.day ).className = \'day-over\';" onmouseout="this.className=\'date\';// document.getElementById( this.day ).className = \'day\';"><NOBR><SPAN class=noprint><IMG title="' + external.globals( 'Translator' ).Translate( 'history', 'tooltip_print' ) + '" onmousedown="event.cancelBubble = true" onclick="printer(\'' + stamp + '\');" style="cursor: hand" align=right src="../images/history/printer.png"><IMG title="' + external.globals( 'Translator' ).Translate( 'history', 'tooltip_save' ) + '" onmousedown="event.cancelBubble = true" onclick="save(\'' + stamp + '\');" style="cursor: hand" align=right src="../images/history/disk.png"><IMG align=absmiddle src="../images/history/arrow-right.png"></SPAN> ' + ( new Date( stamp.substr( 0, 4 ), stamp.substr( 4, 2 ) - 1, stamp.substr( 6, 2 ) ) ).toLocaleDateString() + '</NOBR></DIV>' );
 		day = document.createElement( 'DIV' );
 		day.id = stamp;
 		day.style.display = 'none';
@@ -565,7 +565,7 @@ function hideprint ( day )
 		{
 			node.style.display = 'block';
 			var txt = document.getElementById( node.day );
-			node.children(0).children(0).children(2).src = '../images/misc/hidden.gif';
+			node.children(0).children(0).children(2).src = '../images/history/arrow-right.png';
 			txt.style.display = 'none';
 		}
 	}
@@ -615,12 +615,11 @@ BUTTON {
 	font-family: Tahoma;
 	font-size: 11px;
 	width: 50px;
-	height: 37px;
-	border-width: 0px;
+	height: 46px;
 	padding: 1px;
+	margin: 4px 0 4px 4px;
 }
 .dial_on {
-	border-width: 1px;
 	padding: 0px;
 }
 .bar {
@@ -754,12 +753,12 @@ BODY {
 <BODY scroll=no onload="init()" onkeypress="if(event.keyCode==27)external.wnd.close();" onbeforeprint="showprint( gPRINTDAY )" onafterprint="hideprint( gPRINTDAY )">
 
 <TABLE cellspacing=0 cellpadding=0 border=0 height="100%" width="100%">
-<TR height=37 valign=bottom class=noprint>
+<TR height=54 valign=bottom class=noprint>
 <TD>
 <NOBR>
-<BUTTON onmouseover="this.className='dial_on'" onmouseout="this.className=''" onclick="save( '' ); document.getElementById( 'search' ).focus();"><IMG src="../images/dials/disk.gif"><BR><SPAN id=txt_save></SPAN></BUTTON>
-<BUTTON onmouseover="this.className='dial_on'" onmouseout="this.className=''" onclick="printer( '' ); document.getElementById( 'search' ).focus();"><IMG src="../images/dials/printer.gif"><BR><SPAN id=txt_print></SPAN></BUTTON>
-<BUTTON onmouseover="this.className='dial_on'" onmouseout="this.className=''" onclick="history_clear(); document.getElementById( 'search' ).focus();"><IMG src="../images/dials/bin.gif" border=0><BR><SPAN id=txt_erase></SPAN></BUTTON>
+<BUTTON onmouseover="this.className='dial_on'" onmouseout="this.className=''" onclick="save( '' ); document.getElementById( 'search' ).focus();"><IMG src="../images/history/disk.png"><BR><SPAN id=txt_save></SPAN></BUTTON>
+<BUTTON onmouseover="this.className='dial_on'" onmouseout="this.className=''" onclick="printer( '' ); document.getElementById( 'search' ).focus();"><IMG src="../images/history/printer.png"><BR><SPAN id=txt_print></SPAN></BUTTON>
+<BUTTON onmouseover="this.className='dial_on'" onmouseout="this.className=''" onclick="history_clear(); document.getElementById( 'search' ).focus();"><IMG src="../images/history/dustbin.png" border=0><BR><SPAN id=txt_erase></SPAN></BUTTON>
 </NOBR>
 </TD>
 </TR>

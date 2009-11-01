@@ -10,7 +10,7 @@ function dial_console ()
 			MinHeight = 210;
 			MinWidth = 400;
 			setPos( ( screen.availWidth - 800 ) / 2, ( screen.availHeight - 500 ) / 2 );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\calc.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\console\\monitor.ico' );
 			hide( false );
 			focus();
 		}

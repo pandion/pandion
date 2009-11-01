@@ -285,7 +285,7 @@ function ChatSessionPool ()
 
 		with ( external.createWindow( ContainerName + '/container', external.globals( 'cwd' ) + 'chat-container.html', [ window, ContainerName ] ) )
 		{
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\letter.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\chat-container\\bubble.ico' );
 			MinWidth = 180;
 			MinHeight = 210;
 			setAOT( external.globals( 'cfg' )( 'aotchat' ).toString() == 'true' );

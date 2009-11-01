@@ -65,7 +65,7 @@ function XMPPOnPresence ( ReceivedXML )
 					with ( external.createWindow( ShortAddress + '/request', external.globals( 'cwd' ) + 'auth_invitation.html', new Array( window, ShortAddress ) ) )
 					{
 						setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_authrequest' ) );
-						setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\hand.ico' );
+						setIcon( external.globals( 'cwd' ) + '..\\images\\contact-add\\contact-add.ico' );
 						resizeable( false );
 						showMinBox( true );
 						MinHeight = MinWidth = 0;

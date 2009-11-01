@@ -9,7 +9,7 @@
 		with ( external.createWindow( 'preferences', external.globals( 'cwd' ) + 'preferences.html', new Array( window, section ) ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_settings' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\tools.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\preferences\\tools.ico' );
 			resizeable( false );
 			showMinBox( true );
 			setSize( 490, 320 );

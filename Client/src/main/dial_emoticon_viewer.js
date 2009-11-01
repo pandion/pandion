@@ -6,7 +6,7 @@ function dial_emoticon_viewer ( StyleName )
 		with ( external.createWindow( StyleName + '/emoset_view', external.globals( 'cwd' ) + 'emoset_view.html', [ window, StyleName ] ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_emoticon_view' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\smiley.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\emoticons\\emoticon.ico' );
 			MinWidth = 240;
 			MinHeight = 200;
 			setSize( 385, 382 );

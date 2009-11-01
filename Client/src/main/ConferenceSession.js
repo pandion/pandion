@@ -138,7 +138,7 @@ function ConferenceSessionPool ()
 
 		with ( external.createWindow( ContainerName + '/container', external.globals( 'cwd' ) + 'conference-container.html', [ window, ContainerName ] ) )
 		{
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\group.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\conference\\contacts.ico' );
 			MinWidth = 250;
 			MinHeight = 210;
 		}

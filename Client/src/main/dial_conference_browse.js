@@ -6,7 +6,7 @@
 		with ( external.createWindow( 'conference_browse', external.globals( 'cwd' ) + 'conference_browse.html', window ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_room_browse' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\group.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\conference\\contacts.ico' );
 			resizeable( false );
 			showMinBox( true );
 			setSize( 550, 450 );

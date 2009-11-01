@@ -7,7 +7,7 @@ function dial_conference_invite ( Tracker, Contact, Group )
 		with ( external.createWindow( 'conference_invite/' + ShortAddress, external.globals( 'cwd' ) + 'conference-invite.html', [ window, Tracker, Contact, Group ] ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_conference_invite' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\userlist.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\conference\\contacts.ico' );
 			resizeable( false );
 			MinHeight = MinWidth = 0;
 			setSize( 300, 450 );

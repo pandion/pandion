@@ -6,7 +6,7 @@ function dial_background_download ()
 		with ( external.createWindow( 'background_download', external.globals( 'cwd' ) + 'background_download.html', window ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_background_download' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\mountains.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\backgrounds\\theme.ico' );
 			setSize( 385, 382 );
 			MinHeight = 382;
 			MinWidth = 385;

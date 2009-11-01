@@ -6,7 +6,7 @@ function dial_transport_list ()
 		with ( external.createWindow( 'transport_list', external.globals( 'cwd' ) + 'transport_list.html', window ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_transport_list' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\bulb.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\transports\\connector.ico' );
 			setSize( 385, 382 );
 			MinHeight = 382;
 			MinWidth = 385;

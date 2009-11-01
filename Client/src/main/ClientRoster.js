@@ -403,7 +403,7 @@ function ClientRoster ()
 				Counter += QueuedEvents( QueueAddresses[i] ).length;
 			document.getElementById( 'unread-messages-counter' ).innerText = Counter == 1 ? external.globals( 'Translator' ).Translate( 'main', 'cl_waiting_one' ) : external.globals( 'Translator' ).Translate( 'main', 'cl_waiting_multiple', [ Counter ] );
 			document.getElementById( 'unread-messages-area' ).style.display = 'block';
-			external.notifyIcon.setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\letter.ico', 0 );
+			external.notifyIcon.setIcon( external.globals( 'cwd' ) + '..\\images\\chat-container\\bubble.ico', 0 );
 			external.notifyIcon.setText( external.globals( 'softwarename' ) + '\n' + ( Counter == 1 ? external.globals( 'Translator' ).Translate( 'main', 'cl_waiting_one' ) : external.globals( 'Translator' ).Translate( 'main', 'cl_waiting_multiple', [ Counter ] ) ) );
 			external.notifyIcon.update();
 		}
@@ -430,7 +430,7 @@ function ClientRoster ()
 			Times--;
 			if ( Times % 2 )
 			{
-				external.notifyIcon.setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\letter.ico', 0 );
+				external.notifyIcon.setIcon( external.globals( 'cwd' ) + '..\\images\\chat-container\\bubble.ico', 0 );
 			}
 			else
 			{

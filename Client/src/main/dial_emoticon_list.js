@@ -6,7 +6,7 @@ function dial_emoticon_list ()
 		with ( external.createWindow( 'emoticon_list', external.globals( 'cwd' ) + 'emoticon_list.html', window ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_emoticon_list' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\smiley.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\emoticons\\emoticon.ico' );
 			setSize( 385, 382 );
 			MinHeight = 382;
 			MinWidth = 385;

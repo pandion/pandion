@@ -6,7 +6,7 @@ function dial_conference_create ()
 		with ( external.createWindow( 'conference_create', external.globals( 'cwd' ) + 'conference_create.html', new Array( window ) ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_room_create' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\group.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\conference\\contacts.ico' );
 			resizeable( false );
 			MinHeight = MinWidth = 0;
 			setSize( 450, 300 );

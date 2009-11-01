@@ -191,7 +191,7 @@ function XMPPOnIQ ( ReceivedXML )
 				with ( external.createWindow( jid + '/' + iq.Id + '/file_recv', external.globals( 'cwd' ) + 'file_recv.html', new Array( jid, res, iq.From, iq.Id, iq ) ) )
 				{
 					setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_file_recv', [ external.globals( 'ClientRoster' ).Items( jid ).Name ] ) );
-					setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\disk.ico' );
+					setIcon( external.globals( 'cwd' ) + '..\\images\\filetransfer\\disk.ico' );
 					resizeable( false );
 					showMinBox( true );
 					MinHeight = MinWidth = 0;

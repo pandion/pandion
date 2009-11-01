@@ -9,7 +9,7 @@ function dial_status_message ( Mode )
 		with ( external.createWindow( 'leaveanote', external.globals( 'cwd' ) + 'mode_select.html', [ window, Mode ] ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_status' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\tty.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\idle\\note.ico' );
 			resizeable( false );
 			MinHeight = MinWidth = 0;
 			setSize( 420, 160 );

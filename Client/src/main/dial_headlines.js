@@ -6,7 +6,7 @@ function dial_headlines ()
 		with ( external.createWindow( 'headline_log', external.globals( 'cwd' ) + 'headline_log.html', window ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_headlines' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\dials\\message-alert.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\headlines\\feed.ico' );
 			MinHeight = 382;
 			MinWidth = 385;
 			setSize( 385, 382 );
