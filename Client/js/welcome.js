@@ -24,12 +24,13 @@ window.attachEvent("onload", function () {
 		Client.CSS.Hide(document.getElementById("shortcuts"));
 	}
 	*/
-	Client.CSS.Show(document.getElementById("settings")); // TODO
-	Client.CSS.Hide(document.getElementById("shortcuts")); // TODO
+	Client.CSS.Hide(document.getElementById("settings")); // TODO
+	Client.CSS.Show(document.getElementById("shortcuts")); // TODO
 	if (external.wnd.params.document.getElementById("signin-dialog").style.display == "block")
 		Client.CSS.Disable(document.getElementById("shortcuts"));
 
 	var saveSettings = function () {
+		return;
 		// TODO external.globals("welcomesettings") = false;
 
 		if (document.getElementById("default-xmpp-client").checked) {
