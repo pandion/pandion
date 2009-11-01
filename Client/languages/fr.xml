@@ -1,20 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--
-LangString DESC_SecCopyRequired		${LANG_ENGLISH}	"Ces fichier sont requis pour l'installation de ${PRODUCT}."
-LangString DESC_SecCreateStartMenu	${LANG_ENGLISH}	"Le menu Démarrer vous donne un accès rapide à ${PRODUCT}."
-LangString DESC_SecCreateQuickstart	${LANG_ENGLISH}	"Ajouter ${PRODUCT} à la barre de lancement rapide."
-LangString DESC_SecCreateDesktop	${LANG_ENGLISH}	"Placer un raccourci sur le bureau."
-LangString DESC_SecCreateAutoStart	${LANG_ENGLISH}	"${PRODUCT} sera lancé lors du démarrage de Windows."
-LangString ITEM_SecCreateStartMenu	${LANG_ENGLISH}	"Menu démarrer"
-LangString ITEM_SecCreateQuickstart	${LANG_ENGLISH}	"Lancement rapide"
-LangString ITEM_SecCreateDesktop	${LANG_ENGLISH}	"Raccourci sur le bureau"
-LangString ITEM_SecCreateAutoStart	${LANG_ENGLISH}	"Ouvrir ${PRODUCT} au démarrage"
-LangString TEXT_WindowsOutdated		${LANG_ENGLISH}	"Impossible d'installer ${PRODUCT}.$\nWindows NT 4 ou supérieur est nécessaire."
-LangString TEXT_AlreadyRunning		${LANG_ENGLISH}	"Fermez ${PRODUCT} pour poursuivre l'installation."
-LangString TEXT_InternetExplorer	${LANG_ENGLISH}	"Impossible d'installer ${PRODUCT}.$\n$\nMicrosoft Internet Explorer version 5.5 ou supérieure est nécessaire. Voulez-vous télécharger la mise-à-jour maintenant?"
-LangString TEXT_DownloadFailed		${LANG_ENGLISH}	"Erreur: impossible de télécharger le composant requis. Vérifiez votre connexion internet."
-LangString un.TEXT_RemoveProfiles	${LANG_ENGLISH}	"Supprimer les profils et fichiers d'historique?"
-LangString un.TEXT_RemoveDirectory	${LANG_ENGLISH}	"Note: impossible de supprimer $INSTDIR."
+	This file is part of Pandion instant messenger
+	Copyright (c) 2009 Bruno Gleyze
+	Copyright (c) 2004 Pascal Craponne
+	License: GNU General Public License version 3 or later
 -->
 <!--
 voici ci-dessous une liste de termes pour les futurs traducteurs. A compléter lorsque vous en rajoutez.
@@ -33,6 +22,16 @@ background: (image d') arrière-plan
   <about>
     <language>Français</language>
     <history>
+      <revision>
+        <author>
+          <name>Bruno Gleyze</name>
+          <email>bgleyze@ifth.org</email>
+        </author>
+        <date>2009-10-31</date>
+        <description>
+          I've update the french translation. Maybe it's not perfect, but I've had missing text.
+        </description>
+      </revision>
       <revision>
         <author>
           <name>Pascal Craponne</name>
@@ -84,44 +83,92 @@ background: (image d') arrière-plan
       <title>Personnes et groupes de votre liste de contacts</title>
     </item>
 
+	<item id="signin-instructions">
+      <innerText>Connectez-vous avec votre adresse de messagerie instantanée</innerText>
+    </item>
+    <item id="txt-signin-address">
+      <innerText>Addresse:</innerText>
+    </item>
+    <item id="txt-signin-examples">
+      <innerText>Exemples:</innerText>
+    </item>
+    <item id="txt-signin-password">
+      <innerText>Mot de passe:</innerText>
+    </item>
+    <item id="txt-signin-remember">
+      <innerText>Retenir le mot de passe</innerText>
+    </item>
+    <item id="txt-signin-autoconnect">
+      <innerText>Se connecter automatiquement</innerText>
+    </item>
+    <item id="signin-connect">
+      <innerText>Connexion</innerText>
+    </item>
+    <item id="signin-register">
+      <innerText>Enregistrer une nouvelle adresse de messagerie instantanée</innerText>
+    </item>
+    <item id="signin-settings">
+      <innerText>Paramètres de connexion</innerText>
+    </item>
+	
     <code id="tt-group-hide">Cacher les contacts de ce groupe. Cliquez-droit pour plus d'options</code>
     <code id="tt-group-show">Afficher les contacts de ce groupe. Cliquez-droit pour plus d'options</code>
-    <code id="import_msn_not_registered">Pour importer votre liste de contacts MSN, le transport MSN doit être enregistré. Le transport doit aussi être actif. Allez dans le menu Outils et choisissez Transports pour voir le statut du transport MSN</code>
+    <code id="emoticon_unknown">Inconnu</code>
+	<code id="txt_welcome">Bienvene sur ${0}!</code>
+	<code id="user_online">${0} vient de se connecter</code>
+	<code id="cl_tooltip">contacts de ${0}</code>
+	<code id="autoawaymessage">Absent depuis plus de 5 minutes</code>
+	<code id="autoxawaymessage">Absent depuis plus de 30 minutes</code>
+	<code id="import_files">Contacts</code>
+	<code id="import_invalid">Le fichier contient des données invalides.</code>
+	<code id="import_no_new">Tous les contacts du fichier sont déjà dans votre liste de contacts.</code>
+	<code id="import_confirm">Les contacts suivants vont être ajoutés à votre liste:&#13;&#13;${0}&#13;&#13;Êtes-vous sûr(e) de vouloir les ajouter à votre liste?</code>
+	<code id="import_aim_not_registered">Pour importer votre liste de contacts AIM, le transport AIM doit être enregistré. Le transport doit aussi être actif. Allez dans le menu Outils et choisissez Transports pour voir le statut du transport AIM</code>
+	<code id="import_msn_not_registered">Pour importer votre liste de contacts MSN, le transport MSN doit être enregistré. Le transport doit aussi être actif. Allez dans le menu Outils et choisissez Transports pour voir le statut du transport MSN</code>
     <code id="import_gadu_not_registered">Pour importer votre liste de contacts Gadu-Gadu, le transport Gadu-Gadu doit être enregistré. Le transport doit aussi être actif. Allez dans le menu Outils et choisissez Transports pour voir le statut du transport Gadu-Gadu</code>
+	<code id="conference_invitation">${0} vous invite au salon de conférence: ${1}&#13;&#13;Voulez-vous rejoindre ce salon?</code>
     <code id="sspi_autoreconnecting">La connection au serveur de messagerie instantanée a échouée.</code>
-    <code id="menu_axn_invite">&amp;Inviter quelqu'un par Email</code>
+    <code id="search_info">Rechercher un contact...</code>
+	<code id="invalid-user-address">Entrez votre adresse de messagerie instantanée.&#13;&#13;If you do not have an address, click "Register a new instant messaging address" below.</code>
+    <code id="invalid-sso-server">Enter the address of your instant messaging server.</code>
+
+    <code id="menu_status">&amp;Statut</code>
+    <code id="menu_status_received">Ouvrir mes fichiers &amp;reçus</code>
+    <code id="menu_status_export">&amp;Exporter la liste de contacts...</code>
+    <code id="menu_status_import">&amp;Importer une liste de contacts...</code>
+    <code id="menu_status_change">Changer mon &amp;message d'état...</code>
+    <code id="menu_status_ffc">Disponible pour &amp;chat</code>
+    <code id="menu_status_available">&amp;Disponible</code>
+    <code id="menu_status_busy">&amp;Occupé</code>
+    <code id="menu_status_away">&amp;Parti</code>
+    <code id="menu_status_xaway">Parti depuis &amp;longtemps</code>
+    <code id="menu_status_invisible">&amp;Invisible</code>
+    <code id="menu_status_offline">&amp;Déconnecté</code>
+    <code id="menu_status_status">&amp;Mon état</code>
+    <code id="menu_status_out">Déc&amp;onnexion</code>
+    <code id="menu_status_exit">&amp;Quitter</code>
+	
     <code id="cl_group_display_none">Aucun contacts</code>
     <code id="cl_group_display_online">Contacts en ligne seulement</code>
     <code id="cl_group_display_all">Tous les contacts</code>
-    <code id="emoticon_unknown">Inconnu</code>
+    
     <code id="txt_welcome">Bienvene sur ${0}!</code>
-    <code id="user_online">${0} vient de se connecter</code>
+    
     <code id="cl_tooltip">contacts de ${0}</code>
     <code id="autoawaymessage">Absent depuis plus de 5 minutes</code>
     <code id="autoxawaymessage">Absent depuis plus de 30 minutes</code>
-    <code id="import_files">Contacts</code>
-    <code id="import_invalid">Le fichier contient des données invalides.</code>
-    <code id="import_no_new">Tous les contacts du fichier sont déjà dans votre liste de contacts.</code>
-    <code id="import_confirm">Les contacts suivants vont être ajoutés à votre liste:&#13;&#13;${0}&#13;&#13;Êtes-vous sûr(e) de vouloir les ajouter à votre liste?</code>
+    
+    
+    
+    
     <code id="import_aim_not_registered">Afin d'importer vos contacts AIM, le transport AIM doit être enregistré et activé.&#13;Allez dans le menu outils et cliquez sur Transports pour voir l'état du transport AIM.</code>
-    <code id="conference_invitation">${0} vous invite au salon de conférence: ${1}&#13;&#13;Voulez-vous rejoindre ce salon?</code>
+    
+	<code id="sspi_autoreconnecting">La connexion au serveur de messagerie instantanée a échoué.</code>
+	
+	
 
-    <code id="menu_file">&amp;Fichier</code>
-    <code id="menu_file_received">Ouvrir mes fichiers &amp;reçus</code>
-    <code id="menu_file_export">&amp;Exporter la liste de contacts...</code>
-    <code id="menu_file_import">&amp;Importer une liste de contacts...</code>
-    <code id="menu_file_change">Changer mon &amp;message d'état...</code>
-    <code id="menu_file_ffc">Disponible pour &amp;chat</code>
-    <code id="menu_file_available">&amp;Disponible</code>
-    <code id="menu_file_busy">&amp;Occupé</code>
-    <code id="menu_file_away">&amp;Parti</code>
-    <code id="menu_file_xaway">Parti depuis &amp;longtemps</code>
-    <code id="menu_file_invisible">&amp;Invisible</code>
-    <code id="menu_file_offline">&amp;Déconnecté</code>
-    <code id="menu_file_status">&amp;Mon état</code>
-    <code id="menu_file_out">Déc&amp;onnexion</code>
-    <code id="menu_file_exit">&amp;Quitter</code>
-
+	
+	<code id="menu_axn_invite">&amp;Inviter quelqu'un par Email</code>
     <code id="menu_axn_bookmarks">&amp;Salons de conférence favoris</code>
     <code id="menu_axn_bookmarks_add">&amp;Ajouter un favori...</code>
     <code id="menu_axn_bookmarks_manage">&amp;Organiser vos favoris...</code>
@@ -148,9 +195,11 @@ background: (image d') arrière-plan
     <code id="menu_tool_settings">&amp;Préférences</code>
 
     <code id="menu_help">A&amp;ide</code>
+	<code id="menu_help_welcome">&amp;Ecran de bienvenue</code>
     <code id="menu_help_manual">&amp;Manuel en ligne</code>
     <code id="menu_help_forum">Forum de &amp;support</code>
     <code id="menu_help_contact">Nous &amp;contacter</code>
+	<code id="menu_help_update">Vérifier les mises à jour</code>
     <code id="menu_help_about">À &amp;propos</code>
 
     <code id="menu_tray_about">&amp;À propos de ${0}</code>
@@ -196,7 +245,8 @@ background: (image d') arrière-plan
     <code id="wnd_bookmarks_edit">Editer un salon de conférence favori</code>
     <code id="wnd_bookmarks_manage">Salons de conférence favoris</code>
     <code id="wnd_connection_settings">Paramètres de connexion</code>
-
+	<code id="wnd_welcome">Bienvenue à ${0}</code>
+	
     <code id="msg_emoticon_install">Ce groupe d'émoticones est déjà installé.</code>
     <code id="msg_received_files">Le répertoire de réception de fichier a été supprimé.</code>
     <code id="msg_plugin_install">Voulez-vous installer ce plug-in?&#13;&#13;Nom: ${0}&#13;Description: ${1}</code>
@@ -254,6 +304,22 @@ background: (image d') arrière-plan
     <code id="cl_xaway">Parti(e) depuis longtemps</code>
     <code id="cl_invisible">Invisible</code>
     <code id="cl_tooltip_online">Adresse: ${0}&#13;Ressource: ${1}</code>
+	
+	<code id="time-now">maintenant</code>
+    <code id="time-second">depuis 1 seconde</code>
+    <code id="time-seconds">depuis ${0} secondes</code>
+    <code id="time-minute">depuis 1 minute</code>
+    <code id="time-minutes">depuis ${0} minutes</code>
+    <code id="time-hour">depuis 1 heure</code>
+    <code id="time-hours">depuis ${0} heures</code>
+    <code id="time-day">depuis 1 jour</code>
+    <code id="time-days">depuis ${0} jours</code>
+    <code id="time-week">depuis 1 semaine</code>
+    <code id="time-weeks">depuis ${0} semaines</code>
+    <code id="time-month">depuis 1 mois</code>
+    <code id="time-months">depuis ${0} mois</code>
+    <code id="time-year">depuis 1 an</code>
+    <code id="time-years">depuis ${0} ans</code>
   </window>
   <window name="about">
     <item id="btn_credits">
@@ -627,6 +693,61 @@ background: (image d') arrière-plan
     <code id="no_new_plugins">Il n'y a pas de nouveau plug-in disponible.</code>
   </window>
   <window name="autoupdate">
+	<item id="txt-unavailable">
+      <innerText>Pas de mise à jour disponible.</innerText>
+    </item>
+    <item id="txt-no-feed">
+      <innerText>Connexion impossiblecter. Réessayer plus tard.</innerText>
+    </item>
+    <item id="txt-available-updates">
+      <innerText>Mises à jour disponibles</innerText>
+    </item>
+    <item id="txt-tracks-info">
+      <innerText>Des versions différentes fournissent plus de stabilité ou bien les dernières améliorations.</innerText>
+    </item>
+    <item id="txt-latest">
+      <innerText>Dernières version dans cette branche :</innerText>
+    </item>
+    <item id="txt-alternatives">
+      <innerText>Autres versions:</innerText>
+    </item>
+    <item id="btn-close">
+      <value>Fermer</value>
+    </item>
+	
+	<item id="txt-new-version">
+      <innerText>Une nouvelle version est disponible.</innerText>
+    </item>
+    <item id="txt-whats-new">
+      <innerText>Nouveautés</innerText>
+    </item>
+    <item id="txt-learn-more">
+      <innerText>Voir les améliorations apportées par cette mise à jour. Ce lien s'ouvre dans votre navigateur web.</innerText>
+    </item>
+    <item id="txt-continue">
+      <innerText>Vous pouvez continuer à utiliser ${softwarename} pendant le téléchargement de la mise à jour.</innerText>
+    </item>
+    <item id="txt-restart">
+      <innerText>La mise à jour sera installée quand ${softwarename} sera redémarré. Vous pouvez continuer à utiliser ${softwarename} sans redémarrer. Voulez-vous redémarrer maintenant ?</innerText>
+    </item>
+    <item id="txt-browser">
+      <innerText>Le téléchargement va commencer dans votre navigateur web.</innerText>
+    </item>
+    <item id="btn-update">
+      <value>Mettre à jour maintenant</value>
+    </item>
+    <item id="btn-download">
+      <value>Télécharger maintenant</value>
+    </item>
+    <item id="btn-later">
+      <value>Plus tard</value>
+    </item>
+	<code id="up-to-date">A jour</code>
+    <code id="recommended">Recommendé</code>
+    <code id="description-stable">Les versions stables ont été testées depuis le plus longtemps.</code>
+    <code id="description-beta">Contient des corrections de bug et des fonctionnalités qui sont en test.</code>
+    <code id="description-development">Certaines fonctionnalités peuvent être en panne pendant ce travail.</code>
+    <code id="title">Mise à jour logicielle : ${0} ${1}</code>
     <code id="download_confirm">Une nouvelle version de ce logiciel est disponible: ${0} ${1}&#13;&#13;Voulez-vous la télécharger?</code>
     <item id="btn_cancel">
       <value>Annuler</value>
@@ -639,6 +760,66 @@ background: (image d') arrière-plan
     </item>
     <code id="downloading">Téléchargement en cours...</code>
     <code id="complete">Téléchargement terminé. Cliquez sur Installer pour continuer.</code>
+  </window>
+  <window name="welcome">
+    <item id="txt-hello">
+      <innerText>Bonjour et bienvenue sur ${softwarename}</innerText>
+    </item>
+    <item id="txt-free-software">
+      <innerText>Cette application est libre et gratuite. Tous les développements, traductions et assistance est fournit par nos merveilleux membres de la communauté.</innerText>
+    </item>
+    <item id="txt-more-information">
+      <innerHTML>pour plus d'informations suivre @&lt;a href="http://twitter.com/${twittername}"&gt;${twittername}&lt;/a&gt; sur Twitter ou devenez un fan à  &lt;a href="http://www.facebook.com/${facebookpage}"&gt;Facebook.com/${facebookpage}&lt;/a&gt;.</innerHTML>
+    </item>
+    <item id="txt-enjoy">
+      <innerText>nous esperons que vous apprécierez notre application.</innerText>
+    </item>
+    <item id="txt-team">
+      <innerText>Le team ${softwarename}</innerText>
+    </item>
+    <item id="settings-close">
+      <title>Enregistrer et fermer</title>
+    </item>
+    <item id="btn-add-contact">
+      <innerText>Ajouter un contact</innerText>
+    </item>
+    <item id="btn-edit-profile">
+      <innerText>Editer mon Profile</innerText>
+    </item>
+    <item id="btn-transports">
+      <innerText>Transports</innerText>
+    </item>
+    <item id="btn-settings">
+      <innerText>Paramètres</innerText>
+    </item>
+    <item id="txt-confirm">
+      <innerText>Confirmer ces paramètres :</innerText>
+    </item>
+    <item id="txt-default-xmpp">
+      <innerText>Utiliser ${softwarename} comme mon client XMPP par défaut</innerText>
+    </item>
+    <item id="txt-homepage">
+      <innerText>Set my homepage to ${browsersearchboxname}</innerText>
+    </item>
+    <item id="txt-search-engine">
+      <innerText>Add ${browsersearchboxname} to my search engines</innerText>
+    </item>
+    <item id="txt-feed-title">
+      <innerText>Support and Feedback</innerText>
+    </item>
+    <item id="txt-ask-question">
+      <innerText>Ask a question</innerText>
+    </item>
+    <item id="txt-powered-by">
+      <innerText>powered by GetSatisfaction</innerText>
+    </item>
+    <item id="txt-show-welcome">
+      <innerText>Show this welcome screen at startup</innerText>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+    </item>
+    <code id="search-topics">Search all topics...</code>
   </window>
   <window name="conference_create">
     <item id="btn_ok">
