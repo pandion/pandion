@@ -48,6 +48,8 @@ function Translator ()
 		if ( dom.documentElement.getAttribute( 'dir' ) !== null )
 			this.Direction = dom.documentElement.getAttribute( 'dir' ).toString().toLowerCase() == 'rtl';
 
+		var stringFilter = function ( $0, $1 ){ return external.globals.Exists( $1 ) ? external.globals( $1 ) : $0; };
+
 		var windowNodes = dom.documentElement.selectNodes( '/translation/window[@name]' );
 		for ( var i = windowNodes.length - 1; i >= 0; --i )
 		{
@@ -64,13 +66,7 @@ function Translator ()
 				var data = {};
 				var childTags = itemTag.childNodes;
 				for ( var k = childTags.length - 1; k >= 0; --k )
-					data[ childTags.item(k).tagName ] = childTags.item(k).text.replace(
-						/\$\{(\w+)\}/mg,
-						function ( $0, $1 )
-						{
-							return external.globals.Exists( $1 ) ? external.globals( $1 ) : $0;
-						}
-					);
+					data[ childTags.item(k).tagName ] = childTags.item(k).text.replace( /\$\{(\w+)\}/mg, stringFilter );
 				if ( ! this.HTMLCache( windowName ).Exists( itemTag.getAttribute( 'id' ) ) )
 					this.HTMLCache( windowName ).Add( itemTag.getAttribute( 'id' ), data );
 				else
@@ -80,9 +76,9 @@ function Translator ()
 			iterator = windowNodes.item(i).selectNodes( './code[@id]' );
 			for ( var j = iterator.length - 1; j >= 0; --j )
 				if ( ! this.CodeCache( windowName ).Exists( iterator.item(j).getAttribute( 'id' ) ) )
-					this.CodeCache( windowName ).Add( iterator.item(j).getAttribute( 'id' ), iterator.item(j).text );
+					this.CodeCache( windowName ).Add( iterator.item(j).getAttribute( 'id' ), iterator.item(j).text.replace( /\$\{(\w+)\}/mg, stringFilter ) );
 				else
-					this.CodeCache( windowName )( iterator.item(j).getAttribute( 'id' ) ) = iterator.item(j).text;
+					this.CodeCache( windowName )( iterator.item(j).getAttribute( 'id' ) ) = iterator.item(j).text.replace( /\$\{(\w+)\}/mg, stringFilter );
 		}
 	}
 
