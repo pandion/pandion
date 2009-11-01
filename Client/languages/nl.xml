@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<translation xml:lang="nl">
+<!--
+	This file is part of Pandion instant messenger
+	Copyright (c) 2004-2009 Sebastiaan Deckers
+	License: GNU General Public License version 3 or later
+-->
+<translation xml:lang="nl" dir="ltr">
   <about>
     <language>Nederlands</language>
     <history>
@@ -17,9 +22,6 @@
     </history>
   </about>
   <window name="main">
-    <item id="txt_pleasewait">
-      <innerText>Een ogenblik geduld</innerText>
-    </item>
     <item id="txt_disconnected">
       <innerText>Verbinding verbroken</innerText>
     </item>
@@ -55,6 +57,34 @@
       <title>Personen en groepen in uw contactenlijst</title>
     </item>
 
+    <item id="signin-instructions">
+      <innerText>Meld aan met uw instant messaging adres</innerText>
+    </item>
+    <item id="txt-signin-address">
+      <innerText>Adres:</innerText>
+    </item>
+    <item id="txt-signin-examples">
+      <innerText>Voorbeelden:</innerText>
+    </item>
+    <item id="txt-signin-password">
+      <innerText>Wachtwoord:</innerText>
+    </item>
+    <item id="txt-signin-remember">
+      <innerText>Mijn wachtwoord onthouden</innerText>
+    </item>
+    <item id="txt-signin-autoconnect">
+      <innerText>Automatisch aanmelden</innerText>
+    </item>
+    <item id="signin-connect">
+      <innerText>Aanmelden</innerText>
+    </item>
+    <item id="signin-register">
+      <innerText>Een nieuw instant messaging adres registreren</innerText>
+    </item>
+    <item id="signin-settings">
+      <innerText>Verbindingsinstellingen</innerText>
+    </item>
+
     <code id="tt-group-hide">De contactpersonen in deze groep verbergen&#13;Klik met de rechtermuisknop voor andere keuzes</code>
     <code id="tt-group-show">De contactpersonen in deze groep weergeven&#13;Klik met de rechtermuisknop voor andere keuzes</code>
     <code id="emoticon_unknown">Geen naam</code>
@@ -73,22 +103,29 @@
     <code id="conference_invitation">${0} nodigt u uit tot de gespreksruimte: ${1}&#13;&#13;Wilt u deze gespreksruimte bezoeken?</code>
     <code id="sspi_autoreconnecting">De verbinding met de instant messaging server is mislukt.</code>
     <code id="search_info">Zoeken in contactpersonen...</code>
+    <code id="invalid-user-address">Voer uw instant messaging adres in.&#13;&#13;Als u geen adres hebt, klik op "Een nieuw instant messaging adres registreren" onderaan.</code>
+    <code id="invalid-sso-server">Voer het adres in van uw instant messaging server.</code>
+    <code id="program-description">${softwarename} is een instant messaging cliënt voor XMPP netwerken.</code>
+    <code id="extension-jisp">Jabber Icoon Stijl Pakket</code>
+    <code id="extension-pdn">${softwarename} Plug-In</code>
+    <code id="extension-xmpp">Extensible Messaging and Presence Protocol (XMPP) Metagegevens</code>
+    <code id="uri-xmpp">Extensible Messaging and Presence Protocol (XMPP) Adres</code>
 
-    <code id="menu_file">&amp;Bestand</code>
-    <code id="menu_file_received">&amp;Ontvangen bestanden openen</code>
-    <code id="menu_file_export">Contactenlijst &amp;exporteren...</code>
-    <code id="menu_file_import">Contactenlijst &amp;importeren...</code>
-    <code id="menu_file_change">Mijn status&amp;bericht veranderen...</code>
-    <code id="menu_file_ffc">&amp;Ik wil chatten</code>
-    <code id="menu_file_available">&amp;Aanwezig</code>
-    <code id="menu_file_busy">&amp;Bezet</code>
-    <code id="menu_file_away">A&amp;fwezig</code>
-    <code id="menu_file_xaway">&amp;Lang afwezig</code>
-    <code id="menu_file_invisible">&amp;Offline weergeven</code>
-    <code id="menu_file_offline">&amp;Offline</code>
-    <code id="menu_file_status">Mijn &amp;status</code>
-    <code id="menu_file_out">Af&amp;melden</code>
-    <code id="menu_file_exit">&amp;Sluiten</code>
+    <code id="menu_status">&amp;Status</code>
+    <code id="menu_status_received">&amp;Ontvangen bestanden openen</code>
+    <code id="menu_status_export">Contactenlijst &amp;exporteren...</code>
+    <code id="menu_status_import">Contactenlijst &amp;importeren...</code>
+    <code id="menu_status_change">Mijn status&amp;bericht veranderen...</code>
+    <code id="menu_status_ffc">&amp;Ik wil chatten</code>
+    <code id="menu_status_available">&amp;Aanwezig</code>
+    <code id="menu_status_busy">&amp;Bezet</code>
+    <code id="menu_status_away">A&amp;fwezig</code>
+    <code id="menu_status_xaway">&amp;Lang afwezig</code>
+    <code id="menu_status_invisible">&amp;Offline weergeven</code>
+    <code id="menu_status_offline">&amp;Offline</code>
+    <code id="menu_status_status">Mijn &amp;status</code>
+    <code id="menu_status_out">Af&amp;melden</code>
+    <code id="menu_status_exit">&amp;Sluiten</code>
 
     <code id="menu_axn">&amp;Acties</code>
     <code id="menu_axn_add">Persoon &amp;toevoegen...</code>
@@ -107,7 +144,6 @@
     <code id="menu_tool_transport">&amp;Transporten</code>
     <code id="menu_tool_head">&amp;Meldingen</code>
     <code id="menu_tool_plugin">&amp;Plug-ins</code>
-    <code id="menu_tool_admin">&amp;Server beheer</code>
     <code id="menu_tool_traffic">&amp;Netwerkverkeer monitor</code>
     <code id="menu_tool_view">&amp;Weergave</code>
     <code id="menu_tool_detailed">&amp;Gedetailleerd</code>
@@ -117,9 +153,11 @@
     <code id="menu_tool_settings">&amp;Instellingen</code>
 
     <code id="menu_help">&amp;Help</code>
+    <code id="menu_help_welcome">&amp;Welkomscherm</code>
     <code id="menu_help_manual">&amp;Online handleiding</code>
     <code id="menu_help_forum">&amp;Forum</code>
     <code id="menu_help_contact">&amp;Contacteren</code>
+    <code id="menu_help_update">Controleren op &amp;updates</code>
     <code id="menu_help_about">&amp;Info</code>
 
     <code id="menu_tray_about">&amp;Info</code>
@@ -149,14 +187,12 @@
     <code id="wnd_plugins">Plug-ins</code>
     <code id="wnd_password">Wachtwoord wijzigen</code>
     <code id="wnd_settings">Instellingen</code>
-    <code id="wnd_admin_server">Serverbeheer</code>
     <code id="wnd_status">Statusbericht</code>
     <code id="wnd_vcard_view">Profiel</code>
     <code id="wnd_group_create">Nieuwe groep maken</code>
     <code id="wnd_group_rename">Naam wijzigen</code>
     <code id="wnd_contact_rename">Naam wijzigen</code>
     <code id="wnd_authrequest">Toelatingsaanvraag</code>
-    <code id="wnd_login">Aanmelding - ${0}</code>
     <code id="wnd_signup">Registratie - ${0}</code>
     <code id="wnd_extension_download">Installatie van ${0}</code>
     <code id="wnd_background_list">Achtergronden</code>
@@ -165,6 +201,7 @@
     <code id="wnd_bookmarks_edit">Gespreksruimte bladwijzer wijzigen</code>
     <code id="wnd_bookmarks_manage">Gespreksruimte bladwijzers</code>
     <code id="wnd_connection_settings">Verbindingsinstellingen</code>
+    <code id="wnd_welcome">Welkom op ${0}</code>
 
     <code id="msg_emoticon_install">Deze emoticons zijn reeds geïnstalleerd.</code>
     <code id="msg_received_files">De map voor ontvangen bestanden is verwijderd.</code>
@@ -173,7 +210,6 @@
     <code id="msg_expired">De demonstratie periode van dit programma is verlopen.</code>
     <code id="msg_cl_adding">${0} werd toegevoegd aan uw lijst.</code>
     <code id="msg_cl_added">${0} heeft u toegevoegd aan zijn of haar lijst.</code>
-    <code id="msg_cl_removed">${0} heeft u verwijderd van zijn of haar lijst.</code>
     <code id="msg_blocked">U wordt geblokkeerd door deze persoon.</code>
     <code id="msg_autherror">Kan niet aanmelden. Mogelijke oorzaken:&#13;&#13;- Het wachtwoord is verkeerd&#13;- het adres bestaat niet&#13;&#13;Probeer opnieuw.</code>
 
@@ -226,6 +262,22 @@
     <code id="cl_xaway">Lang afwezig</code>
     <code id="cl_invisible">Offline weergeven</code>
     <code id="cl_tooltip_online">Adres: ${0}&#13;Extensie: ${1}</code>
+
+    <code id="time-now">zopas</code>
+    <code id="time-second">1 seconde geleden</code>
+    <code id="time-seconds">${0} seconden geleden</code>
+    <code id="time-minute">1 minuut geleden</code>
+    <code id="time-minutes">${0} minuten geleden</code>
+    <code id="time-hour">1 uur geleden</code>
+    <code id="time-hours">${0} uren geleden</code>
+    <code id="time-day">1 dag geleden</code>
+    <code id="time-days">${0} dagen geleden</code>
+    <code id="time-week">1 week geleden</code>
+    <code id="time-weeks">${0} weeken geleden</code>
+    <code id="time-month">1 maand geleden</code>
+    <code id="time-months">${0} maanden geleden</code>
+    <code id="time-year">1 jaar geleden</code>
+    <code id="time-years">${0} jaren geleden</code>
   </window>
   <window name="about">
     <item id="btn_credits">
@@ -267,62 +319,6 @@
     <item id="txt_question">
       <innerText>Wilt u deze persoon aanvaarden of afwijzen tot uw contactenlijst?</innerText>
     </item>
-  </window>
-  <window name="admin_users">
-    <item id="btn_refresh">
-      <value>Vernieuwen</value>
-    </item>
-    <item id="btn_ok">
-      <value>OK</value>
-    </item>
-    <item id="txt_desc">
-      <innerText>Klik op een gebruiker om een bericht te zenden. Rechtsklik om meer opties te zien.</innerText>
-    </item>
-    <code id="add_to_list">Toevoegen aan mijn lijst</code>
-    <code id="tooltip_with">Adres: ${0}&#13;Extensie: ${1}&#13;Online tijd: ${2}</code>
-    <code id="tooltip_without">Adres: ${0}&#13;Online tijd: ${1}</code>
-    <code id="loading">Bezig met laden...</code>
-    <code id="invalid_data">Ongeldige gegevens ontvangen.</code>
-    <code id="server_error">Server probleem:</code>
-    <code id="server_failed">Fout tijdens het ontvangen van de online gebruikerslijst.&lt;BR&gt;Verifiëer dat u beheerder machtigingen hebt.</code>
-    <code id="user">1 persoon online</code>
-    <code id="users">${0} personen online</code>
-  </window>
-  <window name="admin">
-    <item id="btn_view">
-      <value>Bekijk online gebruikers</value>
-    </item>
-    <item id="btn_close">
-      <value>Sluiten</value>
-    </item>
-    <item id="admin_btn_wall">
-      <value>Verzenden</value>
-    </item>
-    <item id="admin_btn_motd">
-      <value>Verzenden</value>
-    </item>
-    <item id="txt_wall_desc">
-      <innerText>Dit wordt naar alle verbonden gebruikers gestuurd.</innerText>
-    </item>
-    <item id="txt_motd_desc">
-      <innerText>Dit wordt naar gebruikers gestuurd wanneer ze aanmelden.</innerText>
-    </item>
-    <item id="txt_wall">
-      <innerText>Aankondiging</innerText>
-    </item>
-    <item id="txt_motd">
-      <innerText>Dagelijkse melding</innerText>
-    </item>
-    <item id="txt_view">
-      <innerText>Controleer wie verbonden is met de server.</innerText>
-    </item>
-    <item id="txt_desc">
-      <innerText>Deze gereedschappen zijn bedoeld om de server en gebruikers te beheren.</innerText>
-    </item>
-    <item id="txt_users">
-      <innerText>Gebruikers</innerText>
-    </item>
-    <code id="wnd_users">Online gebruikers</code>
   </window>
   <window name="console">
     <item id="btn_clear">
@@ -460,8 +456,8 @@
     <item id="txt_password">
       <innerText>Nieuw wachtwoord:</innerText>
     </item>
-    <code id="no_match">De wachtwoorden komen niet overeen.&#13;&#13;Typ het nieuwe wachtwoord twee keer.</code>
-    <code id="no_pass">Typ het nieuwe wachtwoord.</code>
+    <code id="no_match">De wachtwoorden komen niet overeen.&#13;&#13;Voer het nieuwe wachtwoord twee keer in.</code>
+    <code id="no_pass">Voer het nieuwe wachtwoord in.</code>
   </window>
   <window name="emoset_view">
     <item id="btn_ok">
@@ -599,18 +595,121 @@
     <code id="no_new_plugins">Er zijn geen nieuwe plug-ins beschikbaar.</code>
   </window>
   <window name="autoupdate">
-    <item id="btn_cancel">
-      <value>Annuleren</value>
+    <item id="txt-unavailable">
+      <innerText>Er zijn geen beschikbare updates.</innerText>
     </item>
-    <item id="btn_install">
-      <value>Installeren</value>
+    <item id="txt-no-feed">
+      <innerText>Geen toegang tot het update feed. Probeer later opnieuw.</innerText>
     </item>
-    <item id="txt_status">
-      <innerText>Bezig met verbinden...</innerText>
+    <item id="txt-available-updates">
+      <innerText>Beschikbare Updates</innerText>
     </item>
-    <code id="download_confirm">Een nieuwere versie van deze software is beschikbaar: ${0} ${1}&#13;&#13;Wilt u deze downloaden?</code>
-    <code id="downloading">Bezig met downloaden...</code>
-    <code id="complete">Download voltooid. Druk op Installeren om verder te gaan.</code>
+    <item id="txt-tracks-info">
+      <innerText>Sommige versies bieden meer stabiliteit of de laatste nieuwigheden.</innerText>
+    </item>
+    <item id="txt-latest">
+      <innerText>Recentste versie in het huidige spoor:</innerText>
+    </item>
+    <item id="txt-alternatives">
+      <innerText>Alternatieve versies:</innerText>
+    </item>
+    <item id="btn-close">
+      <value>Sluiten</value>
+    </item>
+
+    <item id="txt-new-version">
+      <innerText>Een nieuwe versie is beschikbaar.</innerText>
+    </item>
+    <item id="txt-whats-new">
+      <innerText>Wat is er nieuw?</innerText>
+    </item>
+    <item id="txt-learn-more">
+      <innerText>Ontdek de nieuwigheden die deze update brengt. Deze link opent in uw webbrowser.</innerText>
+    </item>
+    <item id="txt-continue">
+      <innerText>U kan ${softwarename} verder blijven gebruiken terwijl de update wordt gedownload.</innerText>
+    </item>
+    <item id="txt-restart">
+      <innerText>De update wordt geïnstalleerd wanneer ${softwarename} opnieuw opstart. U kan ${softwarename} verder blijven gebruiken zonder opnieuw op te starten. Wil u nu herstarten en updaten?</innerText>
+    </item>
+    <item id="txt-browser">
+      <innerText>De download zal laden in uw webbrowser.</innerText>
+    </item>
+    <item id="btn-update">
+      <value>Nu Updaten</value>
+    </item>
+    <item id="btn-download">
+      <value>Nu Downloaden</value>
+    </item>
+    <item id="btn-later">
+      <value>Later</value>
+    </item>
+    <code id="up-to-date">Actueel</code>
+    <code id="recommended">Aanbevolen</code>
+    <code id="description-stable">Stabiele versies zijn het langst getest.</code>
+    <code id="description-beta">Bevat bugfixen en nieuwe functies die nog worden getest.</code>
+    <code id="description-development">Sommige functies kunnen buiten werking zijn terwijl eraan gewerkt wordt.</code>
+    <code id="title">Software Update: ${0} ${1}</code>
+  </window>
+  <window name="welcome">
+    <item id="txt-hello">
+      <innerText>Hallo en welkom op ${softwarename}</innerText>
+    </item>
+    <item id="txt-free-software">
+      <innerText>Dit programma is vrije en open software. Alle ontwikkeling, vertaling en ondersteuning gebeurt door de geweldige leden van onze gemeenschap.</innerText>
+    </item>
+    <item id="txt-more-information">
+      <innerHTML>Voor meer informatie, volg @&lt;a href="http://twitter.com/${twittername}"&gt;${twittername}&lt;/a&gt; op Twitter of wordt een fan op &lt;a href="http://www.facebook.com/${facebookpage}"&gt;Facebook.com/${facebookpage}&lt;/a&gt;.</innerHTML>
+    </item>
+    <item id="txt-enjoy">
+      <innerText>We hopen dat u geniet van ons programma.</innerText>
+    </item>
+    <item id="txt-team">
+      <innerText>Het ${softwarename} Team</innerText>
+    </item>
+    <item id="settings-close">
+      <title>Bevestigen en sluiten</title>
+    </item>
+    <item id="btn-add-contact">
+      <innerText>Persoon Toevoegen</innerText>
+    </item>
+    <item id="btn-edit-profile">
+      <innerText>Mijn Profiel Wijzigen</innerText>
+    </item>
+    <item id="btn-transports">
+      <innerText>Transporten</innerText>
+    </item>
+    <item id="btn-settings">
+      <innerText>Instellingen</innerText>
+    </item>
+    <item id="txt-confirm">
+      <innerText>Gelieve deze instellingen te bevestigen:</innerText>
+    </item>
+    <item id="txt-default-xmpp">
+      <innerText>Gebruik ${softwarename} als mijn standaard XMPP client</innerText>
+    </item>
+    <item id="txt-homepage">
+      <innerText>Stel mijn homepage in op ${browsersearchboxname}</innerText>
+    </item>
+    <item id="txt-search-engine">
+      <innerText>Voeg ${browsersearchboxname} toe aan mijn zoekmachines</innerText>
+    </item>
+    <item id="txt-feed-title">
+      <innerText>Ondersteuning en Feedback</innerText>
+    </item>
+    <item id="txt-ask-question">
+      <innerText>Stel een vraag</innerText>
+    </item>
+    <item id="txt-powered-by">
+      <innerText>ondersteund door GetSatisfaction</innerText>
+    </item>
+    <item id="txt-show-welcome">
+      <innerText>Dit welkomscherm tonen bij het laden</innerText>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+    </item>
+    <code id="search-topics">Alle onderwerpen doorzoeken...</code>
   </window>
   <window name="conference_create">
     <item id="btn_ok">
@@ -620,7 +719,7 @@
       <value>Annuleren</value>
     </item>
     <item id="txt_instructions">
-      <innerText>Iedere gespreksruimte heeft een uniek adres. Typ het adres van de chatdienst en een unieke naam voor de gespreksruimte.</innerText>
+      <innerText>Iedere gespreksruimte heeft een uniek adres. Voer het adres in van de chatdienst en een unieke naam voor de gespreksruimte.</innerText>
     </item>
     <item id="txt_service">
       <innerText>Chatdienst adres:</innerText>
@@ -818,7 +917,7 @@
       <innerText>Voorbeeld: chatdienst.voorbeeld.net</innerText>
     </item>
     <item id="txt_instructions">
-      <innerText>Typ het adres van een chatdienst of server.</innerText>
+      <innerText>Voer het adres in van een chatdienst of server.</innerText>
     </item>
     <code id="error_already_exists">De dienst "${0}" staat reeds in de lijst. Vul het adres in van een chatdienst of server die nog niet in de lijst staat.</code>
   </window>
@@ -1067,7 +1166,7 @@
       <innerText>Voorbeeld: sms.voorbeeld.net</innerText>
     </item>
     <item id="txt_instructions">
-      <innerText>Typ het adres van een transport of server.</innerText>
+      <innerText>Voer het adres in van een transport of server.</innerText>
     </item>
     <code id="error_already_exists">De dienst "${0}" staat reeds in de lijst. Vul het adres in van een transport of server die nog niet in de lijst staat.</code>
   </window>
@@ -1129,7 +1228,7 @@
 
     <code id="default_window_title">Transport configuratie</code>
     <code id="default_begin_intro">Deze wizard helpt u te registreren bij het transport.&lt;BR&gt;Het transport is een brug tussen u en een ander netwerk.&lt;BR&gt;Om dit transport te gebruiken hebt u een bestaand adres nodig op het andere netwerk.&lt;BR&gt;</code>
-    <code id="default_newaccount_instructions">Typ uw adres and wachtwoord.&lt;BR&gt;De bijnaam is hoe anderen u zien.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">Voer uw adres and wachtwoord in.&lt;BR&gt;De bijnaam is hoe anderen u zien.&lt;BR&gt;</code>
     <code id="default_newaccount_examples">&amp;nbsp;</code>
     <code id="default_creating_busy">Uw adres wordt geregistreerd bij het transport.</code>
     <code id="default_removing_busy">Uw adres wordt verwijderd van het transport.&lt;BR&gt;</code>
@@ -1138,7 +1237,7 @@
 
     <code id="msn_window_title">MSN Messenger - Transport configuratie</code>
     <code id="msn_begin_intro">Deze wizard helpt u te registreren bij het MSN transport.&lt;BR&gt;Het transport is een brug tussen u en het MSN netwerk.&lt;BR&gt;Om dit transport te gebruiken hebt u een Microsoft Passport nodig.&lt;BR&gt;</code>
-    <code id="msn_newaccount_instructions">Typ uw MSN adres and wachtwoord.&lt;BR&gt;De bijnaam is hoe anderen u zien.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">Voer uw MSN adres and wachtwoord in.&lt;BR&gt;De bijnaam is hoe anderen u zien.&lt;BR&gt;</code>
     <code id="msn_newaccount_examples">Voorbeelden: iemand@msn.com, jan_peters@hotmail.com</code>
     <code id="msn_creating_busy">Uw adres wordt geregistreerd bij het MSN transport.</code>
     <code id="msn_removing_busy">Uw adres wordt verwijderd van het MSN transport.&lt;BR&gt;U kan uw MSN adres nog steeds gebruiken voor andere diensten (vb. Hotmail, MSN Explorer, etc.).&lt;BR&gt;</code>
@@ -1147,7 +1246,7 @@
 
     <code id="icq_window_title">ICQ - Transport configuratie</code>
     <code id="icq_begin_intro">Deze wizard helpt u te registreren bij het ICQ transport.&lt;BR&gt;Het transport is een brug tussen u en het ICQ netwerk.&lt;BR&gt;Om dit transport te gebruiken hebt u een User Identification Number (ICQ UIN) nodig.&lt;BR&gt;</code>
-    <code id="icq_newaccount_instructions">Typ uw ICQ nummer en wachtwoord.&lt;BR&gt;De bijnaam is hoe anderen u zien.&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Voer uw ICQ nummer en wachtwoord in.&lt;BR&gt;De bijnaam is hoe anderen u zien.&lt;BR&gt;</code>
     <code id="icq_newaccount_examples">Voorbeelden: 39230793, 158525087</code>
     <code id="icq_creating_busy">Uw adres wordt geregistreerd bij het ICQ transport.</code>
     <code id="icq_removing_busy">Uw adres wordt verwijderd van het ICQ transport.&lt;BR&gt;</code>
@@ -1156,7 +1255,7 @@
 
     <code id="yahoo_window_title">Yahoo! Messenger - Transport configuratie</code>
     <code id="yahoo_begin_intro">Deze wizard helpt u te registreren bij het Yahoo! transport.&lt;BR&gt;Het transport is een brug tussen u en het Yahoo! netwerk.&lt;BR&gt;Om dit transport te gebruiken hebt u een Yahoo! adres nodig.&lt;BR&gt;</code>
-    <code id="yahoo_newaccount_instructions">Typ uw Yahoo! adres and wachtwoord.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Voer uw Yahoo! adres and wachtwoord in.&lt;BR&gt;</code>
     <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
     <code id="yahoo_creating_busy">Uw adres wordt geregistreerd bij het Yahoo! transport.</code>
     <code id="yahoo_removing_busy">Uw adres wordt verwijderd van het Yahoo! transport.&lt;BR&gt;U kan uw Yahoo! adres nog steeds gebruiken voor andere diensten (vb. Yahoo! mail, Yahoo! Messenger, etc.).&lt;BR&gt;</code>
@@ -1165,7 +1264,7 @@
 
     <code id="aim_window_title">AOL Instant Messenger - Transport configuratie</code>
     <code id="aim_begin_intro">Deze wizard helpt u te registreren bij het AOL IM transport.&lt;BR&gt;Het transport is een brug tussen u en het AOL IM netwerk.&lt;BR&gt;Om dit transport te gebruiken hebt u een AOL IM adres nodig.&lt;BR&gt;</code>
-    <code id="aim_newaccount_instructions">Typ uw AOL IM schermnaam and wachtwoord.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">Voer uw AOL IM schermnaam and wachtwoord in.&lt;BR&gt;</code>
     <code id="aim_newaccount_examples">&amp;nbsp;</code>
     <code id="aim_creating_busy">Uw adres wordt geregistreerd bij het AOL IM transport.</code>
     <code id="aim_removing_busy">Uw adres wordt verwijderd van het Yahoo! transport.&lt;BR&gt;U kan uw AOL IM adres nog steeds gebruiken voor andere software.&lt;BR&gt;</code>
@@ -1174,7 +1273,7 @@
 
     <code id="gadu_window_title">Gadu-Gadu - Transport configuratie</code>
     <code id="gadu_begin_intro">Deze wizard helpt u te registreren bij het Gadu-Gadu transport.&lt;BR&gt;Het transport is een brug tussen u en het Gadu-Gadu netwerk.&lt;BR&gt;Om dit transport te gebruiken hebt u een Gadu-Gadu nummer nodig.&lt;BR&gt;</code>
-    <code id="gadu_newaccount_instructions">Typ uw Gadu-Gadu nummer and wachtwoord.&lt;BR&gt;De bijnaam is hoe anderen u zien.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_instructions">Voer uw Gadu-Gadu nummer and wachtwoord in.&lt;BR&gt;De bijnaam is hoe anderen u zien.&lt;BR&gt;</code>
     <code id="gadu_newaccount_examples">&amp;nbsp;</code>
     <code id="gadu_creating_busy">Uw Gadu-Gadu nummer wordt geregistreerd bij het transport.</code>
     <code id="gadu_removing_busy">Uw Gadu-Gadu nummer wordt verwijderd van het transport.&lt;BR&gt;</code>
@@ -1251,7 +1350,7 @@
       <title>De persoon die uw berichten ontvangt</title>
     </item>
     <item id="send-text">
-      <title>Typ hier uw bericht</title>
+      <title>Voer hier uw bericht in</title>
     </item>
     <item id="btn-send">
       <value>Zenden</value>
@@ -1273,6 +1372,7 @@
 	<code id="palette_expand">Alle emoticons in deze stijl weergeven</code>
 	<code id="palette_browse">Andere emoticonstijlen...</code>
 
+    <code id="menu_file">&amp;Bestand</code>
     <code id="menu_file_received">&amp;Ontvangen bestanden openen</code>
     <code id="menu_file_history">Berichten &amp;archief</code>
     <code id="menu_file_close">Gesprek &amp;sluiten</code>
@@ -1508,7 +1608,7 @@
       <title>Naam, adres en onderwerp van deze gespreksruimte</title>
     </item>
     <item id="send-text">
-      <title>Typ hier uw bericht</title>
+      <title>Voer hier uw bericht in</title>
     </item>
     <item id="btn-send">
       <value>Zenden</value>
@@ -1557,6 +1657,7 @@
     <code id="joining">${0} komt in de gespreksruimte binnen</code>
     <code id="renaming">${0} is nu bekend als ${1}</code>
 
+    <code id="menu_file">&amp;Bestand</code>
     <code id="menu_file_close">Gespreksruimte &amp;sluiten</code>
 
     <code id="menu_axn_invite">Contactpersonen &amp;uitnodigen</code>
@@ -1641,6 +1742,9 @@
     <item id="txt_startup">
       <innerText>Laden wanneer uw computer opstart</innerText>
     </item>
+    <item id="txt_updates">
+      <innerText>Automatisch controleren op beschikbare updates</innerText>
+    </item>
     <item id="txt_auth_request">
       <innerText>Wanneer iemand uw toelating vraagt</innerText>
     </item>
@@ -1711,7 +1815,7 @@
       <innerText>Iemand toevoegen of opzoeken</innerText>
     </item>
     <item id="txt_p1_tagline">
-      <innerText>U kan iemand zoeken in de publieke profielen of door die persoon's adres te typen.</innerText>
+      <innerText>U kan iemand zoeken in de publieke profielen of door die persoon's adres in te voeren.</innerText>
     </item>
     <item id="txt_p1_how">
       <innerText>Hoe wilt u iemand toevoegen?</innerText>
@@ -1879,7 +1983,7 @@
       <value>Sluiten</value>
     </item>
 
-	<code id="correct">Typ een correct adres.&#13;&#13;Voorbeeld: iemand123@${0}</code>
+	<code id="correct">Voer een correct adres in.&#13;&#13;Voorbeeld: iemand123@${0}</code>
     <code id="example_address">Voorbeeld: iemand123@${0}</code>
     <code id="contacting_adding">&lt;B&gt;Server aan het contacteren&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Dit kan een minuut duren.&lt;BR&gt;Even geduld.&lt;BR&gt;</code>
     <code id="contacting_transport">&lt;B&gt;Transport aan het contacteren&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Dit kan een minuut duren.&lt;BR&gt;Even geduld.&lt;BR&gt;</code>
@@ -1899,52 +2003,6 @@
     <code id="view">Profiel bekijken</code>
     <code id="foundone">1 resultaat</code>
     <code id="foundmany">${0} resultaten</code>
-  </window>
-  <window name="login">
-    <code id="invalid">Het adres is fout. Verbeter het adres en probeer opnieuw.&#13;&#13;Indien u geen adres heeft, druk op Registreren en volg de instructies.</code>
-    <code id="invalid-ntlm">Het adres van de instant messaging server is fout. Verbeter het adres en probeer opnieuw.</code>
-    <item id="txt_instructions">
-      <innerText>Typ uw instant messaging adres en wachtwoord om aan te melden.</innerText>
-    </item>
-    <item id="txt_instructions_ntlm">
-      <innerText>Typ het adres van uw instant messaging server om aan te melden.</innerText>
-    </item>
-    <item id="txt_address">
-      <innerText>Adres:</innerText>
-    </item>
-    <item id="txt_example">
-      <innerText>Voorbeeld: iemand123@voorbeeld.net</innerText>
-    </item>
-    <item id="txt_password">
-      <innerText>Wachtwoord:</innerText>
-    </item>
-    <item id="txt_forgot_password">
-      <innerText>Wachtwoord vergeten?</innerText>
-    </item>
-    <item id="txt_remember">
-      <innerText>Mijn wachtwoord onthouden</innerText>
-    </item>
-    <item id="txt_autologin">
-      <innerText>Automatisch aanmelden</innerText>
-    </item>
-    <item id="txt_connection_settings">
-      <innerText>Verbindingsinstellingen</innerText>
-    </item>
-    <item id="txt_server_ntlm">
-      <innerText>IM server:</innerText>
-    </item>
-    <item id="txt_example_ntlm">
-      <innerText>Voorbeeld: intranet.voorbeeld.net</innerText>
-    </item>
-    <item id="btn_signup">
-      <value>Registreren</value>
-    </item>
-    <item id="btn_login">
-      <value>Aanmelden</value>
-    </item>
-    <item id="btn_close">
-      <value>Sluiten</value>
-    </item>
   </window>
   <window name="connection-settings">
     <code id="logout">U moet afmelden om de wijzigingen toe te passen.&#13;&#13;Wilt u nu afmelden?</code>
@@ -1990,25 +2048,6 @@
       <innerHTML>Geïntegreerde &lt;U&gt;W&lt;/U&gt;indows authenticatie</innerHTML>
       <accessKey>w</accessKey>
     </item>
-    <item id="txt_proxy">
-      <innerText>Proxyserver</innerText>
-    </item>
-    <item id="lbl_proxy_none">
-      <innerHTML>G&lt;U&gt;e&lt;/U&gt;en</innerHTML>
-      <accessKey>e</accessKey>
-    </item>
-    <item id="lbl_proxy_http">
-      <innerHTML>&lt;U&gt;H&lt;/U&gt;TTP</innerHTML>
-      <accessKey>h</accessKey>
-    </item>
-    <item id="lbl_proxy_address">
-      <innerHTML>Ad&lt;U&gt;r&lt;/U&gt;es:</innerHTML>
-      <accessKey>r</accessKey>
-    </item>
-    <item id="lbl_proxy_port">
-      <innerHTML>P&lt;U&gt;o&lt;/U&gt;ort:</innerHTML>
-      <accessKey>o</accessKey>
-    </item>
     <item id="btn_ok">
       <value>OK</value>
     </item>
@@ -2019,7 +2058,7 @@
   <window name="sign_up">
     <code id="close_confirm">Het nieuwe adres is nog niet geregistreerd.&#13;&#13;Wilt u de wizard sluiten?</code>
     <code id="incomplete">Vul alle velden in...</code>
-    <code id="pass_match">De wachtwoorden komen niet overeen.&#13;&#13;Typ het nieuwe wachtwoord in beide velden.</code>
+    <code id="pass_match">De wachtwoorden komen niet overeen.&#13;&#13;Voer het nieuwe wachtwoord in in beide velden.</code>
 
     <code id="contacting">Bezig met het contacteren van de server...</code>
     <code id="registered">Uw adres wordt geregistreerd. Dit kan een minuut duren.&lt;BR&gt;Even geduld.&lt;BR&gt;</code>
@@ -2057,7 +2096,7 @@
       <innerText>Deze gegevens helpen vrienden en collega's u te vinden.</innerText>
     </item>
     <item id="txt_page_nickname_desc">
-      <innerText>Typ uw naam om het eenvoudiger te maken voor vrienden en collega's u te contacteren.</innerText>
+      <innerText>Voer uw naam in om het eenvoudiger te maken voor vrienden en collega's u te contacteren.</innerText>
     </item>
     <item id="txt_page_nickname_name">
       <innerHTML>&lt;U&gt;N&lt;/U&gt;aam:</innerHTML>
@@ -2142,7 +2181,7 @@
       <innerText>Adres registratie</innerText>
     </item>
     <item id="txt_page_creating_autherr">
-      <innerHTML>Het adres kan niet geregistreerd worden. De gebruikersnaam is reeds in gebruik.&lt;BR&gt;&lt;BR&gt;Drup op &lt;B&gt;Vorige&lt;/B&gt;, typ een andere gebruikersnaam en probeer opnieuw.</innerHTML>
+      <innerHTML>Het adres kan niet geregistreerd worden. De gebruikersnaam is reeds in gebruik.&lt;BR&gt;&lt;BR&gt;Drup op &lt;B&gt;Vorige&lt;/B&gt;, voer een andere gebruikersnaam in en probeer opnieuw.</innerHTML>
     </item>
     <item id="txt_page_creating_forbidden">
       <innerHTML>Het adres kan niet geregistreerd worden. Deze server laat geen nieuwe registraties toe.&lt;BR&gt;&lt;BR&gt;Druk op &lt;B&gt;Vorige&lt;/B&gt;, kies een andere server en probeer opnieuw.</innerHTML>
