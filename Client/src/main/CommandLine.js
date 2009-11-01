@@ -50,6 +50,73 @@ function CommandLineShift ()
 		external.wnd.hide( true );
 	}
 
+	/* Default Programs - remove all shortcuts
+	 */
+	else if ( argument.substr( 0, 5 ) == '/hide' )
+	{
+		var locations = [
+			external.GetSpecialFolder(16), // DESKTOPDIRECTORY
+			external.GetSpecialFolder(25), // COMMON_DESKTOPDIRECTORY
+			external.GetSpecialFolder(7), // STARTUP
+			external.GetSpecialFolder(24), // COMMON_STARTUP
+			external.GetSpecialFolder(2), // PROGRAMS
+			external.GetSpecialFolder(23), // COMMON_PROGRAMS
+			external.GetSpecialFolder(26) + "\\Microsoft\\Internet Explorer\\Quick Launch", // APPDATA Quick Launch
+			external.GetSpecialFolder(35) + "\\Microsoft\\Internet Explorer\\Quick Launch" // COMMON_APPDATA Quick Launch
+		];
+		for (var i in locations) {
+			var shortcut = locations[i] + "\\" + external.globals("softwarenamesafe") + ".lnk";
+			if (external.FileExists(shortcut))
+				try {
+					external.file(shortcut).Delete();
+				} catch (error) {
+				}
+		}
+		try {
+			external.RegWriteDWORD("HKEY_LOCAL_MACHINE", "Software\\Clients\\IM\\" + external.globals("softwarenamesafe") + "\\InstallInfo", "IconsVisible", 0);
+		} catch (error) {
+		}
+		if (external.CmdLine == command)
+			setTimeout( 'external.wnd.close()', 0 );
+	}
+
+	/* Default Programs - reveal all shortcuts
+	 */
+	else if ( argument.substr( 0, 5 ) == '/show' || argument.substr( 0, 10 ) == '/reinstall' )
+	{
+		var locations = [
+			[external.GetSpecialFolder(25), // COMMON_DESKTOPDIRECTORY
+			external.GetSpecialFolder(16), // DESKTOPDIRECTORY
+			""],
+			[external.GetSpecialFolder(24), // COMMON_STARTUP
+			external.GetSpecialFolder(7), // STARTUP
+			"/minimized"],
+			[external.GetSpecialFolder(23), // COMMON_PROGRAMS
+			external.GetSpecialFolder(2), // PROGRAMS
+			""]
+		];
+		var shortcut = external.Shortcut;
+		shortcut.path = external.globals("cwd") + "..\\" + external.globals("softwarenamesafe") + ".exe";
+		shortcut.IconLocation = external.globals("cwd") + '..\\images\\brand\\default.ico,0';
+		for (var i in locations) {
+			shortcut.Arguments = locations[i][2];
+			try {
+				shortcut.Save(locations[i][0] + "\\" + external.globals("softwarenamesafe") + ".lnk");
+			} catch (error) {
+				try {
+					shortcut.Save(locations[i][1] + "\\" + external.globals("softwarenamesafe") + ".lnk");
+				} catch (error) {
+				}
+			}
+		}	
+		try {
+			external.RegWriteDWORD("HKEY_LOCAL_MACHINE", "Software\\Clients\\IM\\" + external.globals("softwarenamesafe") + "\\InstallInfo", "IconsVisible", 1);
+		} catch (error) {
+		}
+		if (external.CmdLine == command)
+			setTimeout( 'external.wnd.close()', 0 );
+	}
+
 	/* Queue the command until we are fully authenticated
 	 */
 	else if ( ! external.globals( 'XMPPConnected' ) )

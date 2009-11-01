@@ -41,9 +41,9 @@ window.attachEvent("onload", function () {
 				name: external.globals("softwarenamesafe"),
 				client: {
 					category: "IM",
-					show: open + " /registerdefaultprogram show",
-					hide: open + " /registerdefaultprogram hide",
-					reinstall: open + " /registerdefaultprogram reinstall",
+					show: open + " /show",
+					hide: open + " /hide",
+					reinstall: open + " /reinstall",
 				},
 				associations: {
 					"JISP": {
