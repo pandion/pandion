@@ -101,7 +101,7 @@ function menu ( file )
 	menu.AddSeparator();
 	menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'avatar', 'menu_saveas' ), 2 );
 	menu.AddItem( file != external.globals( 'cfg' )( 'avatar' ), false, false, false, 0, external.globals( 'Translator' ).Translate( 'avatar', 'menu_delete' ), 3 );
-	menu.Show( event.screenX, event.screenY );
+	menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
 	switch ( menu.Choice )
 	{
 		case 1:

@@ -1603,7 +1603,7 @@ function OccupantsContextMenu ()
 	Menu.AddItem( Connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'conference-container', 'menu_axn_invite' ), 1 );
 	Menu.AddSeparator();
 	Menu.AddItem( true, false, false, false, Display.Handle, external.globals( 'Translator' ).Translate( 'main', 'menu_tool_view' ), 3 );
-	Menu.Show( event.screenX, event.screenY );
+	Menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
 
 	switch ( Menu.Choice )
 	{
@@ -1673,7 +1673,7 @@ function OccupantContextMenu ( Occupant, MenuX, MenuY )
 	Menu.AddSeparator();
 	Menu.AddItem( ShortAddress.length,
 		false, false, false, 0, external.globals( 'Translator' ).Translate( 'conference-container', 'menu_occupant_profile' ), 6 );
-	Menu.Show( MenuX, MenuY );
+	Menu.Show( MenuX, MenuY, external.globals( 'Translator' ).Direction );
 
 	switch ( Menu.Choice )
 	{
