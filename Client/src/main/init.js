@@ -304,11 +304,6 @@ function init ()
 	external.wnd.setSize( external.globals( 'lastwidth' ), external.globals( 'lastheight' ) );
 	external.wnd.setPos( external.globals( 'lastposx' ), external.globals( 'lastposy' ) );
 
-	/* Prepare banner area
-	 */
-	if ( external.globals( 'bannerhalf' ).length )
-		BannerLoad( 234, 60, external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'bannerhalf' ) ) );
-
 	/* Use SSPI to login
 	 */
 	if ( external.globals( 'sspiserver' ).length )

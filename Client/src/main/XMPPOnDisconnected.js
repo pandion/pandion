@@ -8,9 +8,9 @@ function XMPPOnDisconnected ()
 	external.globals( 'ClientRoster' ).AllOffline();
 	external.globals( 'ClientServices' ).Clear();
 
-	external.globals( 'XMPPConnected' )		= false;
-	external.globals( 'XMPPEncryption' )	= '';
-	external.globals( 'XMPPPrivacy' )		= -1;
+	external.globals( 'XMPPConnected' ) = false;
+	external.globals( 'XMPPEncryption' ) = '';
+	external.globals( 'XMPPPrivacy' ) = -1;
 
 	clearTimeout( external.globals( 'AutoUpdateTimeout' ) );
 
@@ -19,27 +19,13 @@ function XMPPOnDisconnected ()
 
 	MenuBarUpdate();
 
-	if ( external.globals( 'bannerhalf' ).length )
-		BannerDisconnect();
-
 	if ( external.windows.Exists( 'signup' ) )
 		external.windows( 'signup' ).Do( 'step1_error', '' );
 	else
 	{
 		var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
 		for ( var i = 0; i < ContainerNames.length; ++i )
-		{
-			if ( external.globals( 'bannerfull' ).length )
-				external.globals( 'ChatSessionPool' ).Containers( ContainerNames[i] ).DOM.BannerDisconnect();
 			external.globals( 'ChatSessionPool' ).Containers( ContainerNames[i] ).InputUpdate();
-		}
-
-		if ( external.globals( 'bannerfull' ).length )
-		{
-			ContainerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Containers.Keys() ) ).toArray();
-			for ( var i = 0; i < ContainerNames.length; ++i )
-					external.globals( 'ConferenceSessionPool' ).Containers( ContainerNames[i] ).DOM.BannerDisconnect();
-		}
 
 		var TrackerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Trackers.Keys() ) ).toArray();
 		for ( var i = 0; i < TrackerNames.length; ++i )
@@ -64,20 +50,18 @@ function XMPPOnDisconnected ()
 		if ( external.windows.Exists( 'conference_browse' ) )
 			external.windows( 'conference_browse' ).Do( 'Refresh', null );
 
-		document.getElementById( 'connecting'	).style.display = 'none';
-		document.getElementById( 'welcomemsg'	).style.display = 'none';
-		document.getElementById( 'mode-secure'	).style.display = 'none';
-		document.getElementById( 'rosterfield'	).style.display = external.globals( 'ClientRoster' ).Items.Count ? 'block' : 'none';
-		document.getElementById( 'commerror'	).style.display = external.globals( 'ClientRoster' ).Items.Count ? 'none'  : 'block';
-		document.getElementById( 'mode-message'	).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' );
+		document.getElementById( 'connecting' ).style.display = 'none';
+		document.getElementById( 'welcomemsg' ).style.display = 'none';
+		document.getElementById( 'mode-secure' ).style.display = 'none';
+		document.getElementById( 'rosterfield' ).style.display = external.globals( 'ClientRoster' ).Items.Count ? 'block' : 'none';
+		document.getElementById( 'commerror' ).style.display = external.globals( 'ClientRoster' ).Items.Count ? 'none'  : 'block';
+		document.getElementById( 'mode-message' ).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' );
 
 		external.globals( 'XMPPReconnectTimeout' ) = setTimeout(
 			function ()
 			{
 				if ( external.globals( 'XMPPReconnect' ) && ! external.globals( 'XMPPConnected' ) )
-				{
 					Reconnect();
-				}
 			},
 			10000 + Math.round( Math.random() * 20000 )
 		);
@@ -87,13 +71,12 @@ function XMPPOnDisconnected ()
 			if ( ! external.globals( 'XMPPSSPIReconnect' ) )
 			{
 				external.globals( 'XMPPSSPIReconnect' ) = true;
-				var Toaster		= new Headline();
-				Toaster.Archive	= false;
-				Toaster.Title	= external.globals( 'softwarename' );
-				Toaster.Message	= external.globals( 'Translator' ).Translate( 'main', 'sspi_autoreconnecting' );
+				var Toaster = new Headline();
+				Toaster.Archive = false;
+				Toaster.Title = external.globals( 'softwarename' );
+				Toaster.Message = external.globals( 'Translator' ).Translate( 'main', 'sspi_autoreconnecting' );
 				Toaster.Show();
 			}
-
 			setTimeout( "login( ( new XMPPAddress( external.globals( 'sspiserver' ) ) ), '' );", 10000 );
 		}
 

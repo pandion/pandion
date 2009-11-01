@@ -110,14 +110,6 @@
   -->
 <welcomesearchurl>http://getsatisfaction.com/pandion/searches?query=${query}&amp;commit=Search</welcomesearchurl>
 
-<!-- URI of full size banner (468x60)
-  -->
-<bannerfull></bannerfull>
-
-<!-- URI of half size banner (234x60)
-  -->
-<bannerhalf></bannerhalf>
-
 <!-- Whether to show the welcome screen (yes/no)
   -->
 <welcomescreen>yes</welcomescreen>

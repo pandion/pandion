@@ -13,14 +13,6 @@ function Begin ()
 	window.attachEvent( 'onresize', ResizeCheck );
 	external.wnd.setActivationHandler( 'OnWindowActivate' );
 
-	/* Display banner
-	 */
-	if ( external.globals( 'bannerfull' ).length )
-	{
-		BannerLoad( 468, 60, external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'bannerfull' ) ) );
-		BannerDelayConnect( 0 );
-	}
-
 	/* Initialize the container
 	 */
 	var SessionPool = external.globals( 'ChatSessionPool' );

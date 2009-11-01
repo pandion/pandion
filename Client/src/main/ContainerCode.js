@@ -749,8 +749,7 @@ function ResizePosition ()
 	{
 		var InputRow = document.getElementById( 'send-text' ).parentNode.parentNode;
 		var TabbarRow = document.getElementById( 'tab-bar-row' );
-		var BannerRow = document.getElementById( 'banner-area' );
-		var InputBottomY = external.wnd.top + external.wnd.height - TabbarRow.height - ( BannerRow.style.display == 'block' ? BannerRow.height : 0 ) + 8;
+		var InputBottomY = external.wnd.top + external.wnd.height - TabbarRow.height + 8;
 		var MaxHeight = InputBottomY - ( external.wnd.top + 200 );
 		external.globals( 'cfg' )( 'textinputheight' ) = Math.max( 60, Math.min( MaxHeight, InputBottomY - external.cursorY ) );
 		InputRow.height = external.globals( 'cfg' )( 'textinputheight' );
@@ -772,8 +771,7 @@ function ResizeCheck ()
 {
 	var Height = parseInt( external.globals( 'cfg' )( 'textinputheight' ), 10 );
 	var TabbarRow = document.getElementById( 'tab-bar-row' );
-	var BannerRow = document.getElementById( 'banner-area' );
-	var InputBottomY = external.wnd.top + external.wnd.height - TabbarRow.height - ( BannerRow.style.display == 'block' ? BannerRow.height : 0 ) + 50;
+	var InputBottomY = external.wnd.top + external.wnd.height - TabbarRow.height + 50;
 	var MaxHeight = InputBottomY - ( external.wnd.top + 200 );
 	if ( Height > MaxHeight )
 	{
