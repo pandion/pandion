@@ -41,6 +41,17 @@ function dial_login ( visible )
 	while ( document.getElementById( 'signin-recently-used' ).options.length )
 		document.getElementById( 'signin-recently-used' ).options.remove(0);
 
+	/* If no previous account exists (eg. first run) then try to extract last used account from GTalk
+	 */
+	if ( external.globals( 'last_address' ).length == 0 && external.globals( 'authentication' ) == 'normal' )
+	{
+		try {
+			external.globals( 'last_address' ) = external.RegRead( 'HKEY_CURRENT_USER', 'Software\\Google\\Google Talk\\Accounts', 'a' ).split( '/' )[0];
+		} catch ( error ) {
+			debugger;
+		}
+	}
+
 	/* Show last used address and password
 	 */
 	document.getElementById( 'signin-address' ).focus();
