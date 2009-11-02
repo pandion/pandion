@@ -139,15 +139,6 @@ function init ()
 	external.globals( 'Translator' ).TranslateWindow( 'main', document );
 	document.getElementById( 'txt_welcome' ).innerText = external.globals( 'Translator' ).Translate( 'main', 'txt_welcome', [ external.globals( 'softwarename' ) ] );
 
-	/* Check the time limit
-	 */
-	if ( external.globals( 'softwareexpiredate' ).match( /^(\d{1,2})-(\d{1,2})-(\d{4})$/ ) && ( new Date() ).getTime() >= ( new Date( RegExp.$3, RegExp.$2 - 1, RegExp.$1 ) ).getTime() )
-	{
-		external.wnd.messageBox( false, external.globals( 'Translator' ).Translate( 'main', 'msg_expired' ), external.globals( 'softwarename' ), 0 | 48 );
-		setTimeout( 'external.wnd.close()', 0 );
-		return;
-	}
-
 	/* Copy default avatars to profiles directory
 	 */
 	if ( ! external.Directory.Exists( external.globals( 'usersdir' ) + 'Avatars' ) )

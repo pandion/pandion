@@ -8,7 +8,7 @@ function dial_about ()
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_about', [ external.globals( 'softwarename' ) ] ) );
 			setIcon( external.globals( 'cwd' ) + '..\\images\\brand\\default.ico' );
 			resizeable( false );
-			setSize( 400, 338 );
-			setPos( ( screen.availWidth - 400 ) / 2, ( screen.availHeight - 338 ) / 2 );
+			setSize( 516, 266 );
+			setPos( ( screen.availWidth - 516 ) / 2, ( screen.availHeight - 266 ) / 2 );
 		}
 }

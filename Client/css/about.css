@@ -1,0 +1,82 @@
+﻿/*
+	This file is part of Pandion instant messenger
+	Copyright (c) 2009 Sebastiaan Deckers
+	License: GNU General Public License version 3 or later
+*/
+/* Reset */
+html, body, #content {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+body, td, button, input {
+	cursor: default;
+	font-family: "Segoe UI", Tahoma;
+	font-size: 12px;
+}
+a {
+	color: highlight;
+}
+a:hover {
+	color: red;
+}
+
+/* Common switches to toggle elements from JavaScript */
+.visible {
+	display: block;
+}
+.hidden {
+	display: none;
+}
+
+/* Product information */
+#logo {
+	position: absolute;
+	height: 119px;
+	width: 100%;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	border-bottom: 1px solid gray;
+	background: transparent url(../images/about/logo.png) no-repeat top right;
+}
+#software-name {
+	margin: 20px 0 0 20px;
+	font-weight: normal;
+	font-size: 3em;
+	margin-bottom: 0.25em;
+}
+#software-version {
+	margin: 10px 0 0 20px;
+	font-weight: normal;
+	font-size: 1em;
+	color: #333;
+}
+#header p {
+	margin: 5px 0 0 20px;
+}
+
+/* Copyright information */
+#legal-notice {
+	position: absolute;
+	top: 120px;
+	left: 0;
+	height: 146px;
+	padding: 20px;
+	background-color: buttonface;
+	border-top: 1px solid white;
+}
+#legal-notice p {
+	margin-bottom: 10px;
+}
+
+/* Close the dialog */
+#btn-ok {
+	float: right;
+	position: absolute;
+	bottom: 15px;
+	right: 15px;
+	height: 40px;
+	width: 90px;
+	height: 24px;
+}

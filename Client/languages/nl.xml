@@ -207,7 +207,6 @@
     <code id="msg_received_files">De map voor ontvangen bestanden is verwijderd.</code>
     <code id="msg_plugin_install">Wilt u deze plug-in installeren?&#13;&#13;Naam: ${0}&#13;&#13;Omschrijving: ${1}</code>
     <code id="msg_plugin_exists">Deze plug-in is al geïnstalleerd.</code>
-    <code id="msg_expired">De demonstratie periode van dit programma is verlopen.</code>
     <code id="msg_cl_adding">${0} werd toegevoegd aan uw lijst.</code>
     <code id="msg_cl_added">${0} heeft u toegevoegd aan zijn of haar lijst.</code>
     <code id="msg_blocked">U wordt geblokkeerd door deze persoon.</code>
@@ -280,28 +279,15 @@
     <code id="time-years">${0} jaren geleden</code>
   </window>
   <window name="about">
-    <item id="btn_credits">
-      <value>Aftiteling &gt;&gt;</value>
+    <item id="txt-copyright">
+      <innerHTML>Auteursrecht &amp;copy; ${copyrightyear} ${copyrightholder}. Alle rechten voorbehouden. Deze applicatie wordt uitgegeven onder de voorwaarden van &lt;a href="${licenseurl}"&gt;${licensename}&lt;/a&gt;. Bijkomende &lt;a href="${termsandcontitionsurl}"&gt;voorwaarden en condities&lt;/a&gt; kunnen van toepassing zijn op inbegrepen componenten.</innerHTML>
     </item>
-    <item id="btn_copyright">
-      <value>Auteursrecht &gt;&gt;</value>
+    <item id="txt-trademark">
+      <innerText>De ${softwarename} naam and logo's zijn handelsmerken van ${trademarkholder}. Alle rechten voorbehouden.</innerText>
     </item>
-    <item id="btn_ok">
+    <item id="btn-ok">
       <value>OK</value>
     </item>
-    <item id="copy_darkproject">
-      <innerHTML>Sommige pictogrammen en emoticons zijn auteursrecht &amp;copy; 2001 Greg Fleming.</innerHTML>
-    </item>
-    <item id="copy_rsa">
-      <innerHTML>Bevat MD5 Message-Digest Algorithm. Auteursrecht RSA Data Security, Inc.</innerHTML>
-    </item>
-    <item id="copy_dns">
-      <innerHTML>Gebaseerd op BIND. Auteursrecht Internet Software Consortium, Inc.</innerHTML>
-    </item>
-    <item id="txt_copyright">
-      <innerHTML>Auteursrecht &amp;copy;</innerHTML>
-    </item>
-    <code id="copy_basis">Gebaseerd op ${0}. Auteursrecht &amp;copy; ${1} ${2}.</code>
   </window>
   <window name="auth_invitation">
     <item id="btn_view">

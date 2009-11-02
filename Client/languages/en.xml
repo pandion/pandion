@@ -211,7 +211,6 @@
     <code id="msg_received_files">The directory for received files has been removed.</code>
     <code id="msg_plugin_install">Do you want to install this plug-in?&#13;&#13;Name: ${0}&#13;Description: ${1}</code>
     <code id="msg_plugin_exists">This plug-in is already installed.</code>
-    <code id="msg_expired">The demonstration period of this software has expired.</code>
     <code id="msg_cl_adding">${0} has been added to your contact list.</code>
     <code id="msg_cl_added">${0} has added you to his or her contact list.</code>
     <code id="msg_blocked">You are on this person's blocking list.</code>
@@ -284,28 +283,15 @@
     <code id="time-years">${0} years ago</code>
   </window>
   <window name="about">
-    <item id="btn_credits">
-      <value>Credits &gt;&gt;</value>
+    <item id="txt-copyright">
+      <innerHTML>Copyright &amp;copy; ${copyrightyear} ${copyrightholder}. All rights reserved. This application is published under the terms of the &lt;a href="${licenseurl}"&gt;${licensename}&lt;/a&gt;. Additional &lt;a href="${termsandcontitionsurl}"&gt;terms and conditions&lt;/a&gt; may apply to included dependencies.</innerHTML>
     </item>
-    <item id="btn_copyright">
-      <value>Copyrights &gt;&gt;</value>
+    <item id="txt-trademark">
+      <innerText>The ${softwarename} name and logos are trademarks of ${trademarkholder}. All rights reserved.</innerText>
     </item>
-    <item id="btn_ok">
+    <item id="btn-ok">
       <value>OK</value>
     </item>
-    <item id="copy_darkproject">
-      <innerHTML>Most icons and default emoticons are copyright &amp;copy; 2001 Greg Fleming.</innerHTML>
-    </item>
-    <item id="copy_rsa">
-      <innerHTML>Uses the MD5 Message-Digest Algorithm. Copyright RSA Data Security, Inc.</innerHTML>
-    </item>
-    <item id="copy_dns">
-      <innerHTML>Based on BIND. Copyright Internet Software Consortium, Inc.</innerHTML>
-    </item>
-    <item id="txt_copyright">
-      <innerHTML>Copyright &amp;copy;</innerHTML>
-    </item>
-    <code id="copy_basis">Based on ${0}. Copyright &amp;copy; ${1} ${2}.</code>
   </window>
   <window name="auth_invitation">
     <item id="btn_view">
