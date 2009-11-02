@@ -44,7 +44,7 @@ window.attachEvent("onload", function () {
 					category: "IM",
 					show: open + " /show",
 					hide: open + " /hide",
-					reinstall: open + " /reinstall",
+					reinstall: open + " /reinstall"
 				},
 				associations: {
 					"JISP": {
