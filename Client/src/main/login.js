@@ -11,6 +11,8 @@ function login ( Address, Password )
 	*/
 	document.getElementById( 'content-dialog' ).style.display = 'block';
 	document.getElementById( 'signin-dialog' ).style.display = 'none';
+	external.wnd.MinWidth = 0;
+	external.wnd.MinHeight = 0;
 
 	/* Reset the client
 	 */

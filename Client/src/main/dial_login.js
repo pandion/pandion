@@ -28,6 +28,8 @@ function dial_login ( visible )
 	 */
 	document.getElementById( 'content-dialog' ).style.display = 'none';
 	document.getElementById( 'signin-dialog' ).style.display = 'block';
+	external.wnd.MinWidth = 330;
+	external.wnd.MinHeight = 530;
 	MenuBarUpdate();
 	if ( visible )
 	{
