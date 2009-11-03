@@ -63,7 +63,6 @@ function init ()
 	external.globals.Add( 'XMPPReconnectTimeout', 0 ); // reconnect interval
 	external.globals.Add( 'XMPPReconnect', false ); // reconnect flag
 	external.globals.Add( 'XMPPStreamVersion', null ); // server protocol version
-	external.globals.Add( 'XMPPSSPIReconnect', false ); // already reconnecting with SSPI
 
 	/* Load branding data from XML files
 	 */
@@ -100,7 +99,7 @@ function init ()
 
 	/* Load branding data from registry
 	 */
-	var SettingNames = [ 'sspiserver', 'trayonly' ];
+	var SettingNames = [ 'sspiserver' ];
 	for ( var i = 0; i < SettingNames.length; ++i )
 	{
 		try

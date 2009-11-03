@@ -10,10 +10,6 @@ function CommandLine ( command )
 		external.windows( 'signup' ).restore();
 		external.windows( 'signup' ).focus();
 	}
-	else if ( external.globals( 'trayonly' ) == 'yes' )
-	{
-		external.wnd.hide( true );
-	}
 }
 
 /* Parse the command line.

@@ -2,6 +2,8 @@ function dial_password_change ()
 {
 	if ( external.windows.Exists( 'pass_change' ) )
 		external.windows( 'pass_change' ).focus();
+	else if ( external.globals( 'passwordpage' ).length )
+		dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'passwordpage' ) ) );
 	else
 		with ( external.createWindow( 'pass_change', external.globals( 'cwd' ) + 'pass_change.html', 0 ) )
 		{

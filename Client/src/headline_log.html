@@ -24,7 +24,6 @@ function Begin ()
 	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
 	external.wnd.focus();
 	document.getElementById( 'page1' ).focus();
-	document.getElementById( 'alertonline' ).parentNode.parentNode.style.display = external.globals( 'trayonly' ) == 'yes' ? 'none' : '';
 	document.getElementById( 'alertonline' ).checked = external.globals( 'cfg' )( 'alertonline' ).toString() == 'true';
 	external.wnd.hide( false );
 	setTimeout( 'alerts_refresh()', 0 );

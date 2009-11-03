@@ -47,8 +47,6 @@ function MenuBarUpdate ( section )
 	{
 		external.wnd.menuBar.RemItem( 2 );
 
-		var InviteLink = external.globals( 'invitepage' );
-
 		var Bookmarks = external.newPopupMenu;
 		Bookmarks.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks_add' ), 220 );
 		Bookmarks.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks_manage' ), 221 );
@@ -71,8 +69,6 @@ function MenuBarUpdate ( section )
 		var actions = external.newPopupMenu;
 		actions.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_add' ), 20 );
 		actions.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_addgroup' ), 21 );
-		if ( InviteLink.length )
-			actions.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_invite' ), 28 );
 		actions.AddSeparator();
 		actions.AddItem( roster, false, false, false, Bookmarks.handle,external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks' ), 22 );
 		actions.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_join' ), 23 );
@@ -224,8 +220,6 @@ function MenuBarSelect ( id )
 			dial_adduser(); break;
 		case 21: // add group
 			dial_group_create(); break;
-		case 28: // invite by email
-			dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'invitepage' ) ) ); break;
 		case 220: // add bookmark
 			dial_bookmarks_add(); break;
 		case 221: // manage bookmarks

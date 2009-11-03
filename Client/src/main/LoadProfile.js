@@ -65,9 +65,6 @@ function LoadProfile ( Address )
 	/* Display the window
 	 */
 	external.wnd.setTitle( Address.ShortAddress() + ' - ' + external.globals( 'softwarename' ) );
-	if ( external.globals( 'trayonly' ) != 'yes' )
-	{
-		external.wnd.hide( false );
-		external.wnd.focus();
-	}
+	external.wnd.hide( false );
+	external.wnd.focus();
 }

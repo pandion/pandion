@@ -68,13 +68,6 @@ function Begin ()
 
 	external.globals( 'cfg' ) = external.wnd.params.file2hash( external.globals( 'cwd' ) + '..\\settings\\default.xml' );
 
-	if ( external.globals( 'showsignupserver' ) != 'yes' )
-		document.getElementById( 'data_server' ).parentNode.parentNode.style.display = 'none';
-	if ( external.globals( 'showsignuppreview' ) != 'yes' )
-		document.getElementById( 'txt_page_account_preview' ).parentNode.style.display = 'none';
-	if ( external.globals( 'showsignupemail' ) != 'yes' )
-		document.getElementById( 'txt_page_account_email' ).parentNode.style.display = 'none';
-
 	if ( external.globals( 'fixedserver' ).length )
 	{
 		document.getElementById( 'data_server' ).value						= external.globals( 'fixedserver' );

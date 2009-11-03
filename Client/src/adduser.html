@@ -100,11 +100,6 @@ function init ()
 	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
 	document.getElementById( 'page1_example_jid' ).innerText = external.globals( 'Translator' ).Translate( 'adduser', 'example_address', [ external.globals( 'cfg' )( 'server' ) ] );
 	document.getElementById( 'page1_default_network' ).innerText = external.globals( 'softwarename' ) + ' (XMPP)';
-	if ( external.globals( 'invitepage' ).length )
-	{
-		document.getElementById( 'txt_p1_invite_email' ).style.display = 'inline';
-		document.getElementById( 'txt_p1_invite_email' ).href = external.globals( 'invitepage' );
-	}
 	document.getElementById( 'page1' ).style.display = 'block';
 	var searches = external.globals( 'ClientServices' ).FindByOptions( 0x0100 );
 	for ( var i = 0; i < searches.length; i++ )
@@ -866,7 +861,7 @@ function page4_add ( jid )
 			</TD>
 		</TR>
 		<TR valign=top>
-			<TD colspan=2 style="padding-left: 40px; padding-right: 40px; padding-top: 10px; color: windowtext;">
+			<TD style="padding-left: 40px; padding-right: 40px; padding-top: 10px; color: windowtext;">
 				<BR>
 				<DIV id=txt_p1_how></DIV>
 				<BR>
@@ -924,7 +919,6 @@ function page4_add ( jid )
 			</TD>
 		</TR>
 		<TR valign=top height=45>
-			<TD width=250 valign=middle style="border-top: 2px groove; padding-left: 10px;"><A id=txt_p1_invite_email style="padding: 10px; display: none;" href="#" onclick="external.windows( 'MainWindow' ).Do( 'dial_webbrowser', this.href ); external.wnd.close(); return false;"></A></TD>
 			<TD align=right style="padding: 10px; border-top: 2px groove;">
 				<INPUT type=submit style="height: 24px; width: 80px; font-size: 11px;" id=btn_p1_next>&nbsp;
 				<INPUT type=button style="height: 24px; width: 80px; font-size: 11px;" id=btn_p1_close onclick="external.wnd.close()">

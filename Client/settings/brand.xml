@@ -12,12 +12,13 @@
      Build number is appended automatically from built.txt. -->
 <softwareversion>2.6</softwareversion>
 
-<!-- Type of updates to auto-install (stable/beta/development) -->
+<!-- Type of updates to auto-install (stable/beta/development)
+     The track is determined automatically from the update feed. -->
 <softwaretrack>stable</softwaretrack>
 
 <!-- Shown in the About dialog -->
 <copyrightholder>Contributors</copyrightholder>
-<copyrightyear>2009</copyrightyear>
+<copyrightyear>2001-2009</copyrightyear>
 <softwareurl>http://www.pandion.be/</softwareurl>
 <licensename>GNU General Public License 3 or later</licensename>
 <licenseurl>http://www.gnu.org/licenses/gpl-3.0.html</licenseurl>
@@ -30,26 +31,13 @@
 <!-- Only connect to this server and only create accounts on this server -->
 <fixedserver></fixedserver>
 
-<!-- Show the server hostname field in the Sign Up wizard (yes/no)
-     Use <fixedserver/> or servers.xml to set the default server when this field is not shown. -->
-<showsignupserver>yes</showsignupserver>
-
-<!-- Show the IM address preview in the Sign Up wizard (yes/no) -->
-<showsignuppreview>yes</showsignuppreview>
-
-<!-- Show the email address field in the Sign Up wizard (yes/no) -->
-<showsignupemail>no</showsignupemail>
-
 <!-- Connect to this XMPP server and use SSPI (Kerberos/NTLM) to authenticate without user interaction -->
 <sspiserver></sspiserver>
 
-<!-- Show the client in the systray without access to the contact list (yes/no) -->
-<trayonly>no</trayonly>
-
 <!-- Shown in the Help menu -->
 <helpcontact>http://www.pandion.be/about</helpcontact>
-<helpforum>http://www.pandion.be/support</helpforum>
-<helpmanual>http://www.pandion.be/documentation/?n=${softwarename}&amp;v=${softwareversion}</helpmanual>
+<helpforum>http://getsatisfaction.com/pandion</helpforum>
+<helpmanual>http://pandion.pbworks.com/</helpmanual>
 
 <!-- URI of plug-in listing -->
 <pluginlist>http://plugins.pandion.be/?n=${softwarename}&amp;v=${softwareversion}</pluginlist>
@@ -57,64 +45,33 @@
 <!-- URI of emoticon listing -->
 <emoticonlist>http://emoticons.pandion.be/?n=${softwarename}&amp;v=${softwareversion}</emoticonlist>
 
-<!-- URI of Sign Up page -->
-<websignup></websignup>
-
-<!-- Whether websignup is embedded in client window or launched in default browser (external/embedded) -->
-<websignupmethod>external</websignupmethod>
-
-<!-- Whether or not to show the Sign Up button (yes/no) -->
-<showsignup>yes</showsignup>
+<!-- URI of background listing -->
+<backgroundlist>http://backgrounds.pandion.be/?n=${softwarename}&amp;v=${softwareversion}</backgroundlist>
 
 <!-- URI of software version checker (Atom 1.0 + Appcaster) -->
 <autoupdate>http://feeds.feedburner.com/pandionupdates?r=${random}</autoupdate>
 
-<!-- URI of background listing -->
-<backgroundlist>http://backgrounds.pandion.be/?n=${softwarename}&amp;v=${softwareversion}</backgroundlist>
-
-<!-- Whether to show the welcome screen (yes/no) -->
+<!-- Shown in the Welcome screen -->
 <welcomescreen>yes</welcomescreen>
-
-<!-- URI of welcome screen support and feedback feed (Atom 1.0) -->
 <welcomefeedurl>http://feeds.feedburner.com/pandiongetsatisfaction?r=${random}</welcomefeedurl>
-
-<!-- URI of welcome screen search box target -->
 <welcomesearchurl>http://getsatisfaction.com/pandion/searches?query=${query}&amp;commit=Search</welcomesearchurl>
-
-<!-- The welcome screen invites users to follow this Twitter user -->
 <twittername>pandion</twittername>
-
-<!-- The welcome screen invites users to follow this Twitter user -->
 <facebookpage>pandion.im</facebookpage>
-
-<!-- The welcome screen invites users to follow this Twitter user -->
 <getsatisfactioncompany>pandion</getsatisfactioncompany>
-
-<!-- Ask the user to change their web browser homepage -->
 <browserhomepage>http://search.pandion.be/</browserhomepage>
-
-<!-- Ask the user to change their web browser search engine -->
 <browsersearchboxname>Pandion Search</browsersearchboxname>
-
-<!-- Ask the user to change their web browser search box (IE6/IE7 only) -->
 <browsersearchboxurl>http://search.pandion.be/?q=%s</browsersearchboxurl>
 
-<!-- URI of email invitation webpage -->
-<invitepage></invitepage>
+<!-- URI of a web page to replace the Sign Up dialog -->
+<websignup></websignup>
 
-<!-- URI of password reminder/reset webpage -->
+<!-- URI of a web page to replace the Change my Password dialog -->
 <passwordpage></passwordpage>
 
-<!-- Connection settings: Server Address -->
+<!-- Connection settings dialog -->
 <serveraddress></serveraddress>
-
-<!-- Connection settings: Server Port -->
 <serverport></serverport>
-
-<!-- Connection settings: Secure Communication (optional/tls/ssl/none) -->
-<encryption>optional</encryption>
-
-<!-- Connection settings: Log In Authentication (normal/ntlm) -->
-<authentication>normal</authentication>
+<encryption>optional</encryption> <!-- optional/tls/ssl/none -->
+<authentication>normal</authentication> <!-- normal/ntlm -->
 
 </brand>

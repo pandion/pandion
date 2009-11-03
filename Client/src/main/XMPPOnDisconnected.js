@@ -66,20 +66,6 @@ function XMPPOnDisconnected ()
 			10000 + Math.round( Math.random() * 20000 )
 		);
 
-		if ( external.globals( 'sspiserver' ).length && external.globals( 'trayonly' ) == 'yes' )
-		{
-			if ( ! external.globals( 'XMPPSSPIReconnect' ) )
-			{
-				external.globals( 'XMPPSSPIReconnect' ) = true;
-				var Toaster = new Headline();
-				Toaster.Archive = false;
-				Toaster.Title = external.globals( 'softwarename' );
-				Toaster.Message = external.globals( 'Translator' ).Translate( 'main', 'sspi_autoreconnecting' );
-				Toaster.Show();
-			}
-			setTimeout( "login( ( new XMPPAddress( external.globals( 'sspiserver' ) ) ), '' );", 10000 );
-		}
-
 		/* Plugin event
 		 */
 		var context = new ActiveXObject( 'Scripting.Dictionary' );

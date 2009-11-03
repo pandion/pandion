@@ -6,7 +6,6 @@ function dial_login ( visible )
 	/* Branding
 	 */
 	external.wnd.setTitle( external.globals( 'softwarename' ) );
-	document.getElementById( 'signin-register' ).href = external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'websignup' ) );
 
 	/* Reset user profile
 	 */

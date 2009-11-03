@@ -19,14 +19,6 @@ function TrayOnMinimize ()
  */
 function TrayCommotion ( id )
 {
-	if ( external.globals( 'trayonly' ) == 'yes' )
-		TrayCommotionTrayOnly( id );
-	else
-		TrayCommotionNormal( id );
-}
-
-function TrayCommotionNormal ( id )
-{
 	if ( id == 514 )
 	// left up
 	{
@@ -152,39 +144,6 @@ function TrayCommotionNormal ( id )
 					dial_status_message( -1 );
 				else
 					mode_new( -1, msg );
-			break;
-		}
-	}
-}
-
-function TrayCommotionTrayOnly ( id )
-{
-	if ( id == 513 || id == 514 || id == 515 )
-	// left down, left up, double left
-	{
-		if ( external.windows.Exists( 'signup' ) )
-		{
-			external.windows( 'signup' ).restore();
-			external.windows( 'signup' ).focus();
-		}
-		else
-		{
-			dial_headlines();
-		}
-	}
-	else if ( id == 516 )
-	// right down
-	{
-		var menu = external.newPopupMenu;
-		menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tray_about', [ external.globals( 'softwarename' ) ] ), 1 );
-		menu.Show( external.cursorX, external.cursorY, external.globals( 'Translator' ).Direction, true );
-
-		switch ( menu.Choice )
-		{
-			case 1:
-				/* About
-				 */
-				dial_about();
 			break;
 		}
 	}
