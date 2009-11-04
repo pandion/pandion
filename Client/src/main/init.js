@@ -196,7 +196,8 @@ function init ()
 
 	/* Auto-update
 	 */
-	if ( external.FileExists( external.globals( 'usersdir' ) + 'Downloads\\Update.txt' ) )
+	if ( external.globals( 'installupdates' ) == 'yes'
+		&& external.FileExists( external.globals( 'usersdir' ) + 'Downloads\\Update.txt' ) )
 	{
 		var file = external.File( external.globals( 'usersdir' ) + 'Downloads\\Update.txt' );
 		var command = '', parameters = '';
