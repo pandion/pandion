@@ -1,78 +1,72 @@
-<HTML>
-<HEAD>
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
-<META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
-<LINK rel="stylesheet" type="text/css" href="../css/autoupdate.css"></LINK>
-<SCRIPT type="text/javascript" src="main/XMPPAddress.js"></SCRIPT>
-<SCRIPT type="text/javascript" src="main/XMPPMessage.js"></SCRIPT>
-<SCRIPT type="text/javascript" src="main/XHTML-IM.js"></SCRIPT>
-<SCRIPT type="text/javascript" src="../js/autoupdate.js"></SCRIPT>
-</HEAD>
-<BODY scroll=no onkeydown="if(event.keyCode==27)external.wnd.close()">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
+<!--
+	This file is part of Pandion instant messenger
+	Copyright (c) 2009 Sebastiaan Deckers
+	License: GNU General Public License version 3 or later
+-->
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="MSThemeCompatible" content="Yes" />
+<link rel="stylesheet" type="text/css" href="../css/lib/meyerweb-reset.css" />
+<link rel="stylesheet" type="text/css" href="../css/autoupdate.css"></link>
+<script type="text/javascript" src="main/XMPPAddress.js"></script>
+<script type="text/javascript" src="main/XMPPMessage.js"></script>
+<script type="text/javascript" src="main/XHTML-IM.js"></script>
+<script type="text/javascript" src="../js/client/client.js"></script>
+<script type="text/javascript" src="../js/client/client.css.js"></script>
+<script type="text/javascript" src="../js/client/client.os.browser.js"></script>
+<script type="text/javascript" src="../js/client/client.os.registry.js"></script>
+<script type="text/javascript" src="../js/client/client.utils.js"></script>
+<script type="text/javascript" src="../js/autoupdate.js"></script>
+</head>
+<body>
 
-<FORM onsubmit="event.returnValue = false; external.wnd.close();">
-<TABLE class=panel id=panel-tracks cellspacing=0 cellpadding=0>
-<TR valign=top height=60 class=wizard-header>
-	<TD>
-		<SPAN id=txt-available-updates class=panel-title></SPAN>
-		<DIV id=txt-tracks-info class=panel-subtitle></DIV>
-	</TD>
-</TR>
-<TR valign=top>
-	<TD class=panel-content>
-		<DIV id=preloader></DIV>
-		<DIV id=txt-unavailable></DIV>
-		<DIV id=txt-no-feed></DIV>
-		<H3 id=txt-latest class=tracks-header></H3>
-		<DIV id=tracks-current></DIV>
-		<H3 id=txt-alternatives class=tracks-header></H3>
-		<DIV id=tracks-alternative></DIV>
-	</TD>
-</TR>
-<TR valign=top height=45 class=wizard-footer>
-	<TD>
-		<DIV id=tracks-version disabled></DIV>
-		<INPUT type=submit class=btn id=btn-close>
-	</TD>
-</TR>
-</TABLE>
-</FORM>
+<form id="available-updates" class="panel">
+	<div class="header">
+		<h1 id="txt-available-updates"></h1>
+		<h2 id="txt-tracks-info"></h2>
+	</div>
+	<div id="available-preloader"></div>
+	<div id="txt-unavailable"></div>
+	<div id="txt-no-feed"></div>
+	<div id="available-list">
+		<h3 id="txt-latest"></h3>
+		<div id="tracks-current"></div>
+		<h3 id="txt-alternatives"></h3>
+		<div id="tracks-alternative"></div>
+	</div>
+	<div class="footer">
+		<input type="submit" class="btn" id="btn-close" />
+		<div id="tracks-version"></div>
+	</div>
+</form>
 
-<FORM onsubmit="event.returnValue = false; external.wnd.close();">
-<TABLE class=panel id=panel-progress cellspacing=0 cellpadding=0>
-<TR valign=top height=60 class=wizard-header>
-	<TD>
-		<SPAN id=txt-version class=panel-title></SPAN>
-		<DIV id=txt-new-version class=panel-subtitle></DIV>
-	</TD>
-</TR>
-<TR valign=top>
-	<TD class=panel-content>
-		<DIV><A href="#" id=txt-whats-new onclick="external.windows( 'MainWindow' ).Do( 'dial_webbrowser', this.href ); return false;"></A></DIV>
-		<DIV id=txt-learn-more></DIV>
-		<DIV id=progress-area>
-			<DIV class=progress-bar id=progress-completed>0%</DIV>
-			<DIV class=progress-bar id=progress-remaining>0%</DIV>
-		</DIV>
-	</TD>
-</TR>
-<TR valign=top height=45>
-	<TD id=txt-continue-using>
-		<DIV id=txt-continue></DIV>
-		<DIV id=txt-restart></DIV>
-		<DIV id=txt-browser></DIV>
-	</TD>
-</TR>
-<TR valign=top height=45 class=wizard-footer>
-	<TD>
-		<DIV id=progress-version disabled></DIV>
-		<INPUT type=button class="btn wide" id=btn-update onclick="update()">
-		<INPUT type=button class="btn wide" id=btn-download onclick="download()">
-		<INPUT type=submit class=btn id=btn-later>
-	</TD>
-</TR>
-</TABLE>
-</FORM>
+<form id="download-progress" class="panel">
+	<div class="header">
+		<h1 id="txt-version"></h1>
+		<h2 id="txt-new-version"></h2>
+	</div>
+	<div id="more-information">
+		<a href="#" id="txt-whats-new"></a>
+		<p id="txt-learn-more"></p>
+	</div>
+	<div class="progress-bar-total" id="progress-total">
+		<div class="progress-bar-completed" id="progress-completed">
+			<div class="progress-bar-counter" id="progress-counter">0%</div>
+		</div>
+	</div>
+	<div id="txt-continue"></div>
+	<div id="txt-restart"></div>
+	<div id="txt-browser"></div>
+	<div class="footer">
+		<input type="submit" class="btn" id="btn-later" />
+		<input type="button" class="btn wide" id="btn-download" />
+		<input type="button" class="btn wide" id="btn-update" />
+		<div id="progress-version"></div>
+	</div>
+</form>
 
-</BODY>
-</HTML>
+</body>
+</html>

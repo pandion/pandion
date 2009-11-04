@@ -128,7 +128,7 @@ function ClientRosterSearch ()
 	{
 		if (domSearchField.value == external.globals("Translator").Translate("main", "search_info"))
 			domSearchField.value = "";
-		domSearchField.className = "on";
+		domSearchField.className = "";
 	}
 
 	domSearchClose.attachEvent("onblur", searchBlur);
@@ -137,7 +137,7 @@ function ClientRosterSearch ()
 	{
 		if (domSearchField.value == "")
 		{
-			domSearchField.className = "off";
+			domSearchField.className = "inactive";
 			domSearchField.value = external.globals("Translator").Translate("main", "search_info");
 		}
 	}
@@ -146,9 +146,9 @@ function ClientRosterSearch ()
 	function displayClose ()
 	{
 		if (domSearchField.value == "" || domSearchField.value == external.globals("Translator").Translate("main", "search_info"))
-			domSearchClose.className = "off";
+			domSearchClose.className = "inactive";
 		else
-			domSearchClose.className = "on";
+			domSearchClose.className = "";
 	}
 
 	domSearchField.attachEvent("onpropertychange", checkQuery);

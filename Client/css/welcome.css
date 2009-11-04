@@ -3,8 +3,8 @@
 	Copyright (c) 2009 Sebastiaan Deckers
 	License: GNU General Public License version 3 or later
 */
-/* Reset */
-html, body, #content {
+/* Shared */
+html, body, form.panel {
 	height: 100%;
 	width: 100%;
 	overflow: hidden;
@@ -38,8 +38,6 @@ a:hover {
 #introduction {
 	color: #333;
 	background: transparent url(../images/welcome/translucent.png) repeat top left;
-	_background-image: none; /* ie6 only */
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/welcome/translucent.png", sizingMethod="scale"); /* ie6 only */
 	margin: 20px 0 0 10px;
 	padding: 33px 8px 25px 18px;
 	width: 320px;
@@ -69,8 +67,6 @@ a:hover {
 #shortcuts {
 	color: #333;
 	background: transparent url(../images/welcome/translucent.png) repeat top left;
-	_background-image: none;
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/welcome/translucent.png", sizingMethod="scale");
 	margin-left: 10px;
 	padding: 0 0 8px 0;
 	width: 346px;
@@ -111,8 +107,6 @@ a:hover {
 #settings {
 	color: #333;
 	background: transparent url(../images/welcome/translucent.png) repeat top left;
-	_background-image: none;
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/welcome/translucent.png", sizingMethod="scale");
 	margin-left: 10px;
 	padding: 0 8px 8px 8px;
 	width: 330px;
@@ -154,8 +148,6 @@ a:hover {
 	top: 0;
 	right: 0;
 	background: transparent url(../images/welcome/translucent.png) repeat top left;
-	_background-image: none;
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/welcome/translucent.png", sizingMethod="scale");
 	width: 310px;
 	margin: 20px 10px 0 0;
 	padding: 0 18px 0 18px;

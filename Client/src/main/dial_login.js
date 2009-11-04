@@ -49,7 +49,6 @@ function dial_login ( visible )
 		try {
 			external.globals( 'last_address' ) = external.RegRead( 'HKEY_CURRENT_USER', 'Software\\Google\\Google Talk\\Accounts', 'a' ).split( '/' )[0];
 		} catch ( error ) {
-			debugger;
 		}
 	}
 

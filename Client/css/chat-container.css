@@ -146,7 +146,7 @@ textarea, input, button {
 	display: block;
 	width: 100%;
 	height: 100%;
-	padding: 1px 0 0 4px;
+	padding: 2px 0 0 4px;
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
@@ -198,6 +198,8 @@ textarea, input, button {
 }
 .tab-bar-button {
 	background-image: url(../images/chat-container/tab-button-faded.png);
+	_background-image: none; /* ie6 only */
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/chat-container/tab-button-faded.png", sizingMethod="crop"); /* ie6 only */
 	background-repeat: no-repeat;
 	float: left;
 	height: 28px;
@@ -291,9 +293,11 @@ textarea, input, button {
 #toolbar button {
 	cursor: default;
 	height: 30px;
-	padding-left: 6px;
 	text-align: left;
 	font-size: 11px;
+	width: auto;
+	padding: 0 15px 0 3px;
+	overflow: visible;
 }
 .toolbar-button {
 	color: #4f575c;

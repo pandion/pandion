@@ -23,19 +23,8 @@ window.attachEvent("onload", function () {
 	var anchors = document.getElementsByTagName("a");
 	for (var i = 0; i < anchors.length; i++)
 		if (anchors[i].href.indexOf("http") != -1)
-			Client.Utils.AnchorToBrowser(anchors[i]);
+			client.utils.anchorToBrowser(anchors[i]);
 
 	document.getElementById("btn-ok").focus();
 	external.wnd.hide(false);
 });
-
-var Client = {};
-
-Client.Utils = {};
-
-Client.Utils.AnchorToBrowser = function (anchor) {
-	anchor.attachEvent("onclick", function () {
-		dial_webbrowser(event.srcElement.href);
-		event.returnValue = false;
-	});
-};
