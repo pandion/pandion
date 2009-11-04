@@ -150,6 +150,8 @@ a:hover {
 }
 .progress-bar-total, .progress-bar-completed {
 	background: #d4d4d4 url(../images/autoupdate/progress-overlay.png) no-repeat top left;
+	_background-image: none; /* ie6 only */
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/autoupdate/progress-overlay.png", sizingMethod="crop"); /* ie6 only */
 }
 .progress-bar-total {
 	border: 1px solid #999;
