@@ -169,10 +169,7 @@ TD {
 #find-close:hover {
 	background-image: url(../images/misc/tab-bar-close-over-lite.gif);
 }
-#find-close.on {
-	display: block;
-}
-#find-close.off {
+#find-close.inactive {
 	display: none;
 }
 
