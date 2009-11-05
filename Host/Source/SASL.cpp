@@ -40,15 +40,10 @@ STDMETHODIMP SASL::PlainGenerateResponse(BSTR jid, BSTR username,
 	BSTR password, BSTR* strBase64)
 {
 	std::stringstream stringBuffer;
-	stringBuffer << CW2UTF8(jid) << '\0' << CW2UTF8(username) << '\0' <<
+	stringBuffer <<	CW2UTF8(jid) << '\0' << CW2UTF8(username) << '\0' <<
 		CW2UTF8(password);
-
-	const char *pStr = stringBuffer.str().c_str();
-	const unsigned int len = stringBuffer.str().length();
-	std::wstring b64Buffer = Base64::Base64Encode(stringBuffer.str().c_str(),
-			stringBuffer.str().length(), false);
-
-	*strBase64 = ::SysAllocString(b64Buffer.c_str());
+	*strBase64 = ::SysAllocString(Base64::Base64Encode(stringBuffer.str().c_str(),
+		stringBuffer.str().length(), false).c_str());
 	return S_OK;
 }
 STDMETHODIMP SASL::DigestGenerateResponse(BSTR username, BSTR realm,
