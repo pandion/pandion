@@ -319,11 +319,9 @@ SECURITY_STATUS Socket::ClientHandshakeLoop(bool initialRead)
 
         if(status == SEC_I_INCOMPLETE_CREDENTIALS)
         {
-//TODO: Get new credentials...
-//            doRead = false;
-//            status = SEC_I_CONTINUE_NEEDED;
-//            continue;
-			return SEC_E_INTERNAL_ERROR;
+			doRead = false;
+			status = SEC_I_CONTINUE_NEEDED;
+			continue;
         }
 
         if (inBuffers[1].BufferType == SECBUFFER_EXTRA)
