@@ -39,8 +39,8 @@ public:
 		while(dataLength - i > 2)
 		{
 			base64data += alphabet[(data[i] >> 2) & 63];
-			base64data += alphabet[(((data[i] & 3) << 4) | (data[i+1] >> 4)) & 63];
-			base64data += alphabet[(((data[i+1] & 15) << 2) | (data[i+2] >> 6)) & 63];
+			base64data += alphabet[(((data[i] & 3) << 4) | (data[i+1] >> 4) & 15) & 63];
+			base64data += alphabet[(((data[i+1] & 15) << 2) | (data[i+2] >> 6) & 3) & 63];
 			base64data += alphabet[data[i+2] & 63];
 			if(addCRLF && (i / 3 * 4) % 72 == 0)
 			{
@@ -51,15 +51,15 @@ public:
 		if(dataLength - i == 2)
 		{
 			base64data += alphabet[(data[i] >> 2) & 63];
-			base64data += alphabet[(((data[i] & 3) << 4) | (data[i+1] >> 4)) & 63];
-			base64data += alphabet[(((data[i+1] & 15) << 2) | (data[i+2] >> 6)) & 63];
+			base64data += alphabet[(((data[i] & 3) << 4) | (data[i+1] >> 4) & 15) & 63];
+			base64data += alphabet[((data[i+1] & 15) << 2)];
 			base64data += L'=';
 			i += 3;
 		}
 		else if(dataLength - i == 1)
 		{
 			base64data += alphabet[(data[i] >> 2) & 63];
-			base64data += alphabet[(((data[i] & 3) << 4) | (data[i+1] >> 4)) & 63];
+			base64data += alphabet[((data[i] & 3) << 4)];
 			base64data += L'=';
 			base64data += L'=';
 			i += 3;
