@@ -400,9 +400,10 @@ STDMETHODIMP External::Base64ToString(BSTR b64String, BSTR *UTF16String)
 }
 STDMETHODIMP External::StringToBase64(BSTR UTF16String, BSTR *b64String)
 {
+	std::string UTF8String = CW2UTF8(UTF16String);
 	*b64String = ::SysAllocString(
-		Base64::Base64Encode(UTF16String,
-		::SysStringLen(UTF16String), false).c_str());
+		Base64::Base64Encode(UTF8String.c_str(),
+		UTF8String.length(), false).c_str());
 	return S_OK;
 }
 BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam)
