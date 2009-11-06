@@ -23,8 +23,6 @@ function XMPPOnDocumentStart ( ReceivedFragment )
 		external.globals( 'cfg' )( 'username' )	= Username;
 		external.globals( 'cfg' )( 'server' )	= Server;
 		external.globals( 'cfg' )( 'resource' )	= Resource;
-
-		mode_new( parseInt( external.globals( 'cfg' )( 'lastmode' ), 10 ), external.globals( 'cfg' )( 'lastmsg' ) );
 	}
 
 	/* XMPP 1.0 compliant server
