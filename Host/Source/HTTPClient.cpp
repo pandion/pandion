@@ -87,6 +87,7 @@ DWORD __stdcall HTTPClient::UploadFileProc(void *pThis)
 }
 DWORD HTTPClient::DownloadFile()
 {
+	BOOL fileTransferCompleted = false;
 	HANDLE hLocalFile = ::CreateFile(m_FileName.c_str(), GENERIC_WRITE,
 		FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(hLocalFile)
@@ -128,6 +129,7 @@ DWORD HTTPClient::DownloadFile()
 						}
 						else if(bytesRead == 0)
 						{
+							fileTransferCompleted = true;
 							break;
 						}
 						else
@@ -145,13 +147,13 @@ DWORD HTTPClient::DownloadFile()
 		::CloseHandle(hLocalFile);
 	}
 
-	if(m_Abort)
+	if(fileTransferCompleted)
 	{
-		m_EventRouter->OnTransferAborted(m_SessionID);
+		m_EventRouter->OnTransferComplete(m_SessionID);
 	}
 	else
 	{
-		m_EventRouter->OnTransferComplete(m_SessionID);
+		m_EventRouter->OnTransferAborted(m_SessionID);
 	}
 
 	delete this;

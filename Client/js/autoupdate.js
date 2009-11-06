@@ -127,7 +127,10 @@ window.attachEvent("onload", function () {
 	document.attachEvent("onselectstart", selectionFilter);
 	document.attachEvent("ondragstart", selectionFilter);
 	document.attachEvent("oncontextmenu", selectionFilter);
-	document.attachEvent("onkeydown", function () {if (event.keyCode == 27) external.wnd.close()});
+	document.attachEvent("onkeydown", function () {
+		if (event.keyCode == 27)
+			external.wnd.close();
+	});
 
 	client.utils.anchorToBrowser(document.getElementById("txt-whats-new"));
 
@@ -149,14 +152,16 @@ window.attachEvent("onload", function () {
 			external.globals.Add("autoupdatecommand", DownloadLocation + gFileName);
 			external.globals.Add("autoupdateparameters", gParameters);
 			external.globals.Add("autoupdatedirectory", DownloadLocation);
-			gShutdownOnClose = true;
+			window.attachEvent("onunload", function () {
+				external.windows("MainWindow").close();
+			});
 			external.wnd.close();
 		}
 	});
 
 	document.getElementById("btn-download").attachEvent("onclick", function () {
 		external.wnd.hide(true);
-		external.windows("MainWindow").Do("dial_webbrowser", gLocation);
+		client.utils.launchInBrowser(gLocation);
 		external.wnd.close();
 	});
 
@@ -164,10 +169,10 @@ window.attachEvent("onload", function () {
 		external.HTTPEngine.unsubscribe(external.wnd);
 		if (gSession)
 			external.HTTPEngine.Abort(gSession);
-		if (gShutdownOnClose)
-			external.wnd.params.window.setTimeout(function () {external.wnd.close()}, 0);
 		if (!external.wnd.params.selectVersion)
-			external.globals("AutoUpdateTimeout") = external.wnd.params.window.setTimeout(function(){dial_autoupdate( false )}, 24 * 3600 * 1000);
+			external.globals("AutoUpdateTimeout") = external.wnd.params.window.setTimeout(function () {
+				dial_autoupdate( false );
+			}, 24 * 3600 * 1000);
 	});
 
 	if (external.wnd.params.selectVersion) {
@@ -263,7 +268,6 @@ window.attachEvent("onload", function () {
 });
 
 var gFileName, gSession, gInterval, gParameters, gLocation = '';
-var gShutdownOnClose = false;
 
 var HTTPOnTimeout = HTTPOnSockErr = OnHTTPFileErr = HTTPOnTransferAborted = function (sessionID, error) {
 	if (sessionID == gSession)
