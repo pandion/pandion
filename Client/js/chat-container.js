@@ -674,20 +674,6 @@ function SessionTracker ( Address )
 			this.HTMLButton = document.createElement( 'SPAN' );
 			this.HTMLButton.className = this.IsActive ? 'tab-bar-button-active' : 'tab-bar-button';
 			this.HTMLButton.SessionTracker = this;
-			this.HTMLButton.attachEvent(
-				'onmouseup',
-				function ()
-				{
-					if ( event.button == 4 )
-					{
-						event.cancelBubble = true;
-						if ( event.srcElement.tagName == 'SPAN' )
-							event.srcElement.SessionTracker.Close();
-						else
-							event.srcElement.parentNode.SessionTracker.Close();
-					}
-				}
-			);
 
 			var Picture = document.createElement( 'IMG' );
 			Picture.className = 'tab-avatar';
@@ -760,10 +746,18 @@ function SessionTracker ( Address )
 				'onmouseup',
 				function ()
 				{
-					if ( event.button != 1 || event.srcElement.tagName == 'IMG' )
-						return;
-					else if ( ! document.getElementById( 'send-text' ).disabled )
-						document.getElementById( 'send-text' ).focus();
+					if ( event.button == 1 )
+					{
+						if ( ! document.getElementById( 'send-text' ).disabled )
+							document.getElementById( 'send-text' ).focus();
+					}
+					else if ( event.button == 4 )
+					{
+						if ( event.srcElement.tagName == 'SPAN' )
+							event.srcElement.SessionTracker.Close();
+						else
+							event.srcElement.parentNode.SessionTracker.Close();
+					}
 				}
 			);
 			this.Container.HTMLTabBar.insertAdjacentElement( 'beforeEnd', this.HTMLButton );
@@ -876,6 +870,7 @@ function SessionTracker ( Address )
 	{
 		if ( StealFocus )
 		{
+			external.wnd.hide( false );
 			external.wnd.focus();
 			if ( external.wnd.isHidden || external.wnd.isMinimized )
 				if ( external.wnd.width >= screen.availWidth || external.wnd.height >= screen.availHeight )
@@ -898,7 +893,7 @@ function SessionTracker ( Address )
 			TabAddDeactivate();
 
 			 /* Deactivate old tab
-			 */
+			  */
 			if ( this.Container.Trackers.Exists( this.Container.ActiveTrackerAddress ) )
 				this.Container.Trackers( this.Container.ActiveTrackerAddress ).Deactivate();
 
