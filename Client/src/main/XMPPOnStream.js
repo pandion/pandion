@@ -144,121 +144,87 @@ function XMPPOnStream ( ReceivedXML )
 
 	/* Decode authentication challenge and answer with correct credentials
 	 */
-	else if ( ReceivedXML.documentElement.selectSingleNode( '/challenge[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]' ) )
-	{
-		if ( external.globals( 'sspiserver' ).length || external.globals( 'authentication' ) == 'ntlm'  )
-		{
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
-			dom.loadXML( '<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl"/>' );
-			dom.documentElement.text = external.SASL.SSPIGenerateResponse( ReceivedXML.documentElement.selectSingleNode( '/challenge[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]' ).text, true );
-			warn( 'SENT: ' + dom.xml );
-			external.XMPP.SendXML( dom );
-		}
-		else
-		{
-			var Encoded	= ReceivedXML.documentElement.selectSingleNode( '/challenge[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]' ).text;
-			var Pairs	= external.Base64ToString( Encoded ).replace( /\\\n/gm, '' ).split( ',' );
-			var Dataset	= new ActiveXObject( 'Scripting.Dictionary' );
-
-			warn( 'SASL: ' + Pairs );
-
-			for ( var i = 0; i < Pairs.length; ++i )
-			{
-				if ( Pairs[i].indexOf( '=' ) > 0 )
-				{
-					var Name	= Pairs[i].substr( 0, Pairs[i].indexOf( '=' ) );
-					var Value	= Pairs[i].substr( Pairs[i].indexOf( '=' ) + 1 );
-
-					if ( Value.charAt( 0 ) == '"' && Value.charAt( Value.length - 1 ) == '"' )
-						Value	= Value.substr( 1, Value.length - 2 );
-
-					if ( Dataset.Exists( Name ) )
-						Dataset( Name ).push( Value );
-					else
-						Dataset.Add( Name, [ Value ] );
+	else if (ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']")) {
+		if (external.globals("sspiserver").length || external.globals("authentication") == "ntlm") {
+			var dom = new ActiveXObject("Msxml2.DOMDocument");
+			dom.loadXML("<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>");
+			dom.documentElement.text = external.SASL.SSPIGenerateResponse(ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text, true);
+			warn("SENT: " + dom.xml);
+			external.XMPP.SendXML(dom);
+		} else {
+			var encoded = ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text;
+			var decoded = external.Base64ToString(encoded);
+			warn("SASL: " + decoded);
+			var saslPattern = '\\s*([a-z\\-]+)\\s*(?:\\=\\s*(?:(?:\\"([^\\"]+)\\")|(?:([^\\"\\,\\s]+)))\\s*)?\\,?';
+			var saslPairs = decoded.match(new RegExp(saslPattern, "g"));
+			var dataset = {};
+			if (saslPairs !== null)
+				for (var i = 0; i < saslPairs.length; i++) {
+					var pair = saslPairs[i].match(new RegExp(saslPattern));
+					if (pair !== null)
+						dataset[pair[1]] = pair[2].length ? pair[2] : pair[3];
 				}
-			}
 
 			/* Successful authentication
 			 */
-			if ( Dataset.Exists( 'rspauth' ) && Dataset.Count == 1 )
-			{
-				var Str = '<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl"/>';
-				warn( 'SENT: ' + Str );
-				external.XMPP.SendText( Str );
-			}
+			if ("rspauth" in dataset) {
+				var Str = "<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>";
+				warn("SENT: " + Str);
+				external.XMPP.SendText(Str);
 
 			/* Solve the MD5 challenge
 			 */
-			else if ( Dataset.Exists( 'algorithm' ) && Dataset( 'algorithm' )[0].toLowerCase() == 'md5-sess' && Dataset.Exists( 'nonce' ) && Dataset.Exists( 'qop' ) )
-			{
-				var Response = new ActiveXObject( 'Scripting.Dictionary' );
+			} else if (dataset["algorithm"] == "md5-sess" && "realm" in dataset && "nonce" in dataset && "qop" in dataset) {
+				var response = {
+//					"authzid": external.globals("cfg")("username") + "@" + external.globals("cfg")("server"),
+					"charset": "utf-8",
+					"cnonce": external.StringToSHA1(Math.random().toString()),
+					"digest-uri": "xmpp/" + external.globals("cfg")("server"),
+					"host": external.globals("cfg")("server"),
+					"nonce": dataset["nonce"],
+					"nc": "00000001",
+					"password": external.globals("cfg")("password"),
+					"qop": dataset["qop"],
+					"realm": "realm" in dataset ? dataset["realm"] : "",
+					"serv-type": "xmpp",
+					"username": external.globals("cfg")("username")
+				};
 
-				Response.Add( 'username',	external.globals( 'cfg' )( 'username' ) );
-				Response.Add( 'realm',		Dataset.Exists( 'realm' ) ? Dataset( 'realm' )[0] : '' );
-				Response.Add( 'nonce',		Dataset( 'nonce' )[0] );
-				Response.Add( 'cnonce',		external.StringToSHA1( Math.random().toString() ) );
-				Response.Add( 'nc',			'00000001' );
-				Response.Add( 'serv-type',	'xmpp' );
-				Response.Add( 'host',		external.globals( 'cfg' )( 'server' ) );
-				Response.Add( 'digest-uri',	'xmpp/' + Response( 'host' ) );
-				Response.Add( 'charset',	'utf-8' );
-//				Response.Add( 'authzid',	Response( 'username' ) + '@' + Response( 'host' ) );
-				Response.Add( 'qop',		Dataset( 'qop' )[0] );
-				Response.Add( 'password',	external.globals( 'cfg' )( 'password' ) );
-
-				/* MD5-Session algorithm:
-				var md5	= new MD5();
-				var X	= Response( 'username' ) + ':' + Response( 'realm' ) + ':' + Response( 'password' );
-				var Y	= md5.digest( X ); // This should be binary data instead of the hexadecimal string
-				var A1	= Y + ':' + Response( 'nonce' ) + ':' + Response( 'cnonce' ); // + ':' + Response( 'authzid' )
-				var A2	= 'AUTHENTICATE:' + Response( 'digest-uri' );
-				var HA1	= md5.digest( A1 );
-				var HA2	= md5.digest( A2 );
-				var KD	= HA1 + ':' + Response( 'nonce' ) + ':' + Response( 'nc' ) + ':' + Response( 'cnonce' ) + ':' + Response( 'qop' ) + ':' + HA2;
-				var Z	= md5.digest( KD );
-				*/
-
-				var Z = external.SASL.DigestGenerateResponse(
-					Response( 'username'	),
-					Response( 'realm'		),
-					Response( 'password'	),
-					Response( 'nonce'		),
-					Response( 'cnonce'		),
-					Response( 'digest-uri'	),
-					Response( 'nc'			),
-					Response( 'qop'			)
+				response["response"] = external.SASL.DigestGenerateResponse(
+					response["username"],
+					response["realm"],
+					response["password"],
+					response["nonce"],
+					response["cnonce"],
+					response["digest-uri"],
+					response["nc"],
+					response["qop"]
 				);
 
-				Response.Add( 'response', Z );
+				var output = "username=\"" + response["username"] + "\"," +
+					"realm=\"" + response["realm"] + "\"," +
+					"nonce=\"" + response["nonce"] + "\"," +
+					"cnonce=\"" + response["cnonce"] + "\"," +
+					"nc=" + response["nc"] + ","  +
+					"qop=" + response["qop"] + ","  +
+					"digest-uri=\"" + response["digest-uri"] + "\"," +
+					"charset=" + response["charset"] + ","  +
+//					"authzid=\"" + response["authzid"] + "\"," +
+					"response=" + response["response"];
 
-				var Output =	'username="'	+ Response( 'username'		) + '",' +
-								'realm="'		+ Response( 'realm'			) + '",' +
-								'nonce="'		+ Response( 'nonce'			) + '",' +
-								'cnonce="'		+ Response( 'cnonce'		) + '",' +
-								'nc='			+ Response( 'nc'			) + ','  +
-								'qop='			+ Response( 'qop'			) + ','  +
-								'digest-uri="'	+ Response( 'digest-uri'	) + '",' +
-								'charset='		+ Response( 'charset'		) + ','  +
-//								'authzid="'		+ Response( 'authzid'		) + '",' +
-								'response='		+ Response( 'response'		);
-
-				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
-				dom.loadXML( '<response xmlns="urn:ietf:params:xml:ns:xmpp-sasl"/>' );
-				dom.documentElement.text = external.StringToBase64( Output );
-				warn( 'SENT: ' + dom.xml );
-				external.XMPP.SendXML( dom );
-
-				warn( 'SASL: ' + Output );
-			}
+				var dom = new ActiveXObject("Msxml2.DOMDocument");
+				dom.loadXML("<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>" );
+				dom.documentElement.text = external.StringToBase64(output);
+				warn("SENT: " + dom.xml);
+				external.XMPP.SendXML(dom);
+				warn("SASL: " + output);
 
 			/* Return an error message and abort the connection
 			 */
-			else
-			{
-				var Str = '<abort xmlns="urn:ietf:params:xml:ns:xmpp-sasl"/>';
-				warn( 'SENT: ' + Str );
-				external.XMPP.SendText( Str );
+			} else {
+				var Str = "<abort xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>";
+				warn("SENT: " + Str);
+				external.XMPP.SendText(Str);
 				OnLoginAuthError();
 			}
 		}
