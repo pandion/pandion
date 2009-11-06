@@ -101,7 +101,6 @@
     <code id="import_msn_not_registered">Om uw MSN contactpersonen te importeren moet het MSN transport geregistreerd zijn.  Het transport moet ook actief zijn.&#13;Open het Gereedschap menu en kies Transporten om de status van het MSN transport te zien.</code>
     <code id="import_gadu_not_registered">Om uw Gadu-Gadu contactpersonen te importeren moet het Gadu-Gadu transport geregistreerd zijn.  Het transport moet ook actief zijn.&#13;Open het Gereedschap menu en kies Transporten om de status van het Gadu-Gadu transport te zien.</code>
     <code id="conference_invitation">${0} nodigt u uit tot de gespreksruimte: ${1}&#13;&#13;Wilt u deze gespreksruimte bezoeken?</code>
-    <code id="sspi_autoreconnecting">De verbinding met de instant messaging server is mislukt.</code>
     <code id="search_info">Zoeken in contactpersonen...</code>
     <code id="invalid-user-address">Voer uw instant messaging adres in.&#13;&#13;Als u geen adres hebt, klik op "Een nieuw instant messaging adres registreren" onderaan.</code>
     <code id="invalid-sso-server">Voer het adres in van uw instant messaging server.</code>
@@ -130,7 +129,6 @@
     <code id="menu_axn">&amp;Acties</code>
     <code id="menu_axn_add">Persoon &amp;toevoegen...</code>
     <code id="menu_axn_addgroup">&amp;Groep toevoegen...</code>
-    <code id="menu_axn_invite">Iemand uitnodigen per &amp;email</code>
     <code id="menu_axn_bookmarks">&amp;Bladwijzers van gespreksruimtes</code>
     <code id="menu_axn_bookmarks_add">Bladwijzer toe&amp;voegen...</code>
     <code id="menu_axn_bookmarks_manage">Bladwijzers be&amp;heren...</code>
@@ -1837,9 +1835,6 @@
     </item>
     <item id="txt_p1_configure">
       <innerText>Configureer de transporten</innerText>
-    </item>
-    <item id="txt_p1_invite_email">
-      <innerText>Iemand uitnodigen per email</innerText>
     </item>
     <item id="btn_p1_next">
       <value>Volgende &gt;</value>

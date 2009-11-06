@@ -45,9 +45,6 @@ background: (image d') arrière-plan
     </history>
   </about>
   <window name="main">
-    <item id="txt_pleasewait">
-      <innerText>Veuillez patienter</innerText>
-    </item>
     <item id="txt_disconnected">
       <innerText>Déconnecté</innerText>
     </item>
@@ -114,16 +111,11 @@ background: (image d') arrière-plan
     <code id="tt-group-hide">Cacher les contacts de ce groupe. Cliquez-droit pour plus d'options</code>
     <code id="tt-group-show">Afficher les contacts de ce groupe. Cliquez-droit pour plus d'options</code>
     <code id="emoticon_unknown">Inconnu</code>
-	<code id="txt_welcome">Bienvene sur ${0}!</code>
 	<code id="user_online">${0} vient de se connecter</code>
-	<code id="cl_tooltip">contacts de ${0}</code>
-	<code id="autoawaymessage">Absent depuis plus de 5 minutes</code>
-	<code id="autoxawaymessage">Absent depuis plus de 30 minutes</code>
 	<code id="import_files">Contacts</code>
 	<code id="import_invalid">Le fichier contient des données invalides.</code>
 	<code id="import_no_new">Tous les contacts du fichier sont déjà dans votre liste de contacts.</code>
 	<code id="import_confirm">Les contacts suivants vont être ajoutés à votre liste:&#13;&#13;${0}&#13;&#13;Êtes-vous sûr(e) de vouloir les ajouter à votre liste?</code>
-	<code id="import_aim_not_registered">Pour importer votre liste de contacts AIM, le transport AIM doit être enregistré. Le transport doit aussi être actif. Allez dans le menu Outils et choisissez Transports pour voir le statut du transport AIM</code>
 	<code id="import_msn_not_registered">Pour importer votre liste de contacts MSN, le transport MSN doit être enregistré. Le transport doit aussi être actif. Allez dans le menu Outils et choisissez Transports pour voir le statut du transport MSN</code>
     <code id="import_gadu_not_registered">Pour importer votre liste de contacts Gadu-Gadu, le transport Gadu-Gadu doit être enregistré. Le transport doit aussi être actif. Allez dans le menu Outils et choisissez Transports pour voir le statut du transport Gadu-Gadu</code>
 	<code id="conference_invitation">${0} vous invite au salon de conférence: ${1}&#13;&#13;Voulez-vous rejoindre ce salon?</code>
@@ -131,7 +123,12 @@ background: (image d') arrière-plan
     <code id="search_info">Rechercher un contact...</code>
 	<code id="invalid-user-address">Entrez votre adresse de messagerie instantanée.&#13;&#13;If you do not have an address, click "Register a new instant messaging address" below.</code>
     <code id="invalid-sso-server">Enter the address of your instant messaging server.</code>
-
+	<code id="program-description">${softwarename} est un client de messagerie instantannée pour les réseaux XMPP.</code>
+	<code id="extension-jisp">Jabber Icon Style Package</code>
+    <code id="extension-pdn">${softwarename} Plug-In</code>
+    <code id="extension-xmpp">Meta Data XMPP</code>
+    <code id="uri-xmpp">Adresse XMPP</code>
+	
     <code id="menu_status">&amp;Statut</code>
     <code id="menu_status_received">Ouvrir mes fichiers &amp;reçus</code>
     <code id="menu_status_export">&amp;Exporter la liste de contacts...</code>
@@ -168,8 +165,7 @@ background: (image d') arrière-plan
 	
 
 	
-	<code id="menu_axn_invite">&amp;Inviter quelqu'un par Email</code>
-    <code id="menu_axn_bookmarks">&amp;Salons de conférence favoris</code>
+	<code id="menu_axn_bookmarks">&amp;Salons de conférence favoris</code>
     <code id="menu_axn_bookmarks_add">&amp;Ajouter un favori...</code>
     <code id="menu_axn_bookmarks_manage">&amp;Organiser vos favoris...</code>
     <code id="menu_axn">&amp;Actions</code>
@@ -185,7 +181,6 @@ background: (image d') arrière-plan
     <code id="menu_tool_transport">&amp;Transports</code>
     <code id="menu_tool_head">Titres et &amp;alertes</code>
     <code id="menu_tool_plugin">Plug-&amp;ins</code>
-    <code id="menu_tool_admin">&amp;Administration de serveur</code>
     <code id="menu_tool_traffic">Traffic &amp;réseau</code>
     <code id="menu_tool_view">&amp;Vue</code>
     <code id="menu_tool_detailed">&amp;Détaillée</code>
@@ -230,14 +225,12 @@ background: (image d') arrière-plan
     <code id="wnd_plugins">Plug-ins</code>
     <code id="wnd_password">Changer le mot de passe</code>
     <code id="wnd_settings">Préférences</code>
-    <code id="wnd_admin_server">Administration de serveur</code>
     <code id="wnd_status">Message d'état</code>
     <code id="wnd_vcard_view">Informations sur le compte</code>
     <code id="wnd_group_create">Créer un groupe</code>
     <code id="wnd_group_rename">Renommer le groupe</code>
     <code id="wnd_contact_rename">Renommer le contact</code>
     <code id="wnd_authrequest">Demande d'authorisation</code>
-    <code id="wnd_login">Login - ${0}</code>
     <code id="wnd_extension_download">Installation de ${0}</code>
     <code id="wnd_background_list">Arrière-plans</code>
     <code id="wnd_background_download">Télécharger des arrière-plans</code>
@@ -251,10 +244,8 @@ background: (image d') arrière-plan
     <code id="msg_received_files">Le répertoire de réception de fichier a été supprimé.</code>
     <code id="msg_plugin_install">Voulez-vous installer ce plug-in?&#13;&#13;Nom: ${0}&#13;Description: ${1}</code>
     <code id="msg_plugin_exists">Ce plug-in est déjà installé.</code>
-    <code id="msg_expired">La période de démonstration de ce logiciel a expiré.</code>
     <code id="msg_cl_adding">${0} a été ajouté à votre liste de contacts.</code>
     <code id="msg_cl_added">${0} vous a ajouté à sa liste de contacts.</code>
-    <code id="msg_cl_removed">${0} vous a supprimé de sa liste de contacts.</code>
     <code id="msg_blocked">Vous êtes sur la liste noire de ce contact.</code>
     <code id="msg_autherror">Impossible de se connecter. Cela peut être dû à une des causes suivantes:&#13;&#13;- Vous avez tapé un mauvais mot de passe&#13;- Le compte spécifié n'existe pas&#13;&#13;Veuillez essayer à nouveau.</code>
 
@@ -322,28 +313,15 @@ background: (image d') arrière-plan
     <code id="time-years">depuis ${0} ans</code>
   </window>
   <window name="about">
-    <item id="btn_credits">
-      <value>Crédits &gt;&gt;</value>
+	<item id="txt-copyright">
+      <innerHTML>Copyright &amp;copy; ${copyrightyear} ${copyrightholder}. Tous droits réservés. Cette application est publiée sous les termes de la &lt;a href="${licenseurl}"&gt;${licensename}&lt;/a&gt;. &lt;a href="${termsandcontitionsurl}"&gt;Des conditions complémentaires &lt;/a&gt; peuvent s'appliquer pour inclure des dépendances.</innerHTML>
     </item>
-    <item id="btn_copyright">
-      <value>Copyrights &gt;&gt;</value>
+	<item id="txt-trademark">
+      <innerText>Le nom ${softwarename} et les logos sont des marques déposées de ${trademarkholder}. Tous droits réservés.</innerText>
     </item>
-    <item id="btn_ok">
+    <item id="btn-ok">
       <value>OK</value>
     </item>
-    <item id="copy_darkproject">
-      <innerHTML>La majorité des icones et émoticones sont copyright &amp;copy; 2001 Greg Fleming.</innerHTML>
-    </item>
-    <item id="copy_rsa">
-      <innerHTML>Utilise l'algorithme MD5. Copyright RSA Data Security, Inc.</innerHTML>
-    </item>
-    <item id="copy_dns">
-      <innerHTML>Basé sur BIND. Copyright Internet Software Consortium, Inc.</innerHTML>
-    </item>
-    <item id="txt_copyright">
-      <innerHTML>Copyright &amp;copy;</innerHTML>
-    </item>
-    <code id="copy_basis">Basé sur ${0}. Copyright &amp;copy; ${1} ${2}.</code>
   </window>
   <window name="auth_invitation">
     <item id="btn_view">
@@ -362,62 +340,7 @@ background: (image d') arrière-plan
       <innerText>Voulez-vous accepter ou refuser cette personne dans votre liste de contacts ?</innerText>
     </item>
   </window>
-  <window name="admin_users">
-    <item id="btn_refresh">
-      <value>Actualiser</value>
-    </item>
-    <item id="btn_ok">
-      <value>OK</value>
-    </item>
-    <item id="txt_desc">
-      <innerText>Cliquez sur un compte pour envoyer un message. Cliquez avec le bouton droit pour plus d'options.</innerText>
-    </item>
-    <code id="add_to_list">Ajouter à la liste de contacts</code>
-    <code id="tooltip_with">Adresse: ${0}&#13;Ressource: ${1}&#13;Temps de connexion: ${2}</code>
-    <code id="tooltip_without">Adresse: ${0}&#13;Temps de connexion: ${1}</code>
-    <code id="loading">Chargement...</code>
-    <code id="invalid_data">Données invalides reçues.</code>
-    <code id="server_error">Erreur de serveur:</code>
-    <code id="server_failed">Impossible de retrouver la liste des utilisateurs connectés.&lt;BR&gt;Vérifiez que vous avez les droits administratifs sur le serveur.</code>
-    <code id="user">1 utilisateur connecté</code>
-    <code id="users">${0} utilisateurs connectés</code>
-  </window>
-  <window name="admin">
-    <item id="btn_view">
-      <value>Voir tous les utilisateurs connectés</value>
-    </item>
-    <item id="btn_close">
-      <value>Fermer</value>
-    </item>
-    <item id="admin_btn_wall">
-      <value>Envoyer</value>
-    </item>
-    <item id="admin_btn_motd">
-      <value>Envoyer</value>
-    </item>
-    <item id="txt_wall_desc">
-      <innerText>Cette alerte sera envoyée à tous les utilisateurs connectés.</innerText>
-    </item>
-    <item id="txt_motd_desc">
-      <innerText>Cette alerte sera envoyée à tous les utilisateurs lors de leur ouverture de session.</innerText>
-    </item>
-    <item id="txt_wall">
-      <innerText>Diffusion de message</innerText>
-    </item>
-    <item id="txt_motd">
-      <innerText>Message du jour</innerText>
-    </item>
-    <item id="txt_view">
-      <innerText>Voir qui est connecté sur le serveur.</innerText>
-    </item>
-    <item id="txt_desc">
-      <innerText>Utiliser ces outils pour suivre et administrer le serveur de messagerie instantanée.</innerText>
-    </item>
-    <item id="txt_users">
-      <innerText>Utilisateurs</innerText>
-    </item>
-    <code id="wnd_users">Utilisateurs connectés</code>
-  </window>
+  
   <window name="console">
     <item id="btn_clear">
       <value>Effacer la sortie</value>
@@ -733,7 +656,7 @@ background: (image d') arrière-plan
     <item id="txt-browser">
       <innerText>Le téléchargement va commencer dans votre navigateur web.</innerText>
     </item>
-    <item id="btn-update">
+	<item id="btn-update">
       <value>Mettre à jour maintenant</value>
     </item>
     <item id="btn-download">
@@ -746,20 +669,8 @@ background: (image d') arrière-plan
     <code id="recommended">Recommendé</code>
     <code id="description-stable">Les versions stables ont été testées depuis le plus longtemps.</code>
     <code id="description-beta">Contient des corrections de bug et des fonctionnalités qui sont en test.</code>
-    <code id="description-development">Certaines fonctionnalités peuvent être en panne pendant ce travail.</code>
+    <code id="description-development">Certaines fonctionnalités peuvent être absentes pendant le développement.</code>
     <code id="title">Mise à jour logicielle : ${0} ${1}</code>
-    <code id="download_confirm">Une nouvelle version de ce logiciel est disponible: ${0} ${1}&#13;&#13;Voulez-vous la télécharger?</code>
-    <item id="btn_cancel">
-      <value>Annuler</value>
-    </item>
-    <item id="btn_install">
-      <value>Installer</value>
-    </item>
-    <item id="txt_status">
-      <innerText>Connexion en cours...</innerText>
-    </item>
-    <code id="downloading">Téléchargement en cours...</code>
-    <code id="complete">Téléchargement terminé. Cliquez sur Installer pour continuer.</code>
   </window>
   <window name="welcome">
     <item id="txt-hello">
@@ -1481,6 +1392,7 @@ background: (image d') arrière-plan
     <code id="palette_expand">Affiche toutes les émoticônes de ce style</code>
     <code id="palette_browse">Autres styles d'émoticônes...</code>
 
+	<code id="menu_file">&amp;Fichier</code>
     <code id="menu_file_received">Ouvrir mes fichiers &amp;reçus</code>
     <code id="menu_file_history">&amp;Historique des messages</code>
     <code id="menu_file_close">&amp;Fermer la conversation</code>
@@ -1767,7 +1679,8 @@ background: (image d') arrière-plan
     <code id="leaving">${0} quitte le salon de conférence</code>
     <code id="joining">${0} rejoint le salon de conférence</code>
     <code id="renaming">${0} se nomme maintenant ${1}</code>
-
+	
+	<code id="menu_file">&amp;Fichier</code>
     <code id="menu_file_close">&amp;Fermer la conférence</code>
 
     <code id="menu_axn_invite">&amp;Inviter des contacts</code>
@@ -1851,6 +1764,9 @@ background: (image d') arrière-plan
     </item>
     <item id="txt_startup">
       <innerText>Lancer automatiquement au démarrage</innerText>
+    </item>
+	<item id="txt_updates">
+      <innerText>Rechercher automatiquement des mises à jour</innerText>
     </item>
     <item id="txt_auth_request">
       <innerText>Quand quelqu'un demande mon autorisation</innerText>
@@ -1958,9 +1874,6 @@ background: (image d') arrière-plan
     </item>
     <item id="txt_p1_configure">
       <innerText>Configurer les transports</innerText>
-    </item>
-    <item id="txt_p1_invite_email">
-      <innerText>Invite someone by email</innerText>
     </item>
     <item id="btn_p1_next">
       <value>Suivant &gt;</value>
@@ -2111,52 +2024,7 @@ background: (image d') arrière-plan
     <code id="foundone">1 resultat</code>
     <code id="foundmany">${0} resultats</code>
   </window>
-  <window name="login">
-    <code id="invalid">L'adresse saisie est invalide. Corrigez-la et recommencez.&#13;&#13;Si vous n'avez pas d'adresse, cliquez sur "S'inscrire" et suivez les instructions.</code>
-    <code id="invalid-ntlm">L'adresse du serveur de messagerie instantanée est invalide. Corrigez l'adresse et réessayez.</code>
-    <item id="txt_instructions">
-      <innerText>Entrez vos adresse de messagerie instantanée et mot de passe pour vous connecter.</innerText>
-    </item>
-    <item id="txt_instructions_ntlm">
-      <innerText>Entrez l'adresse de votre serveur de messagerie instantanée pour vous connecter.</innerText>
-    </item>
-    <item id="txt_address">
-      <innerText>Adresse:</innerText>
-    </item>
-    <item id="txt_example">
-      <innerText>Exemple: prenom.nom@exemple.com</innerText>
-    </item>
-    <item id="txt_password">
-      <innerText>Mot de passe:</innerText>
-    </item>
-    <item id="txt_forgot_password">
-      <innerText>Vous avez oublié votre mot de passe?</innerText>
-    </item>
-    <item id="txt_remember">
-      <innerText>Mémoriser mon mot de passe</innerText>
-    </item>
-    <item id="txt_autologin">
-      <innerText>Ouvrir la session automatiquement</innerText>
-    </item>
-    <item id="txt_connection_settings">
-      <innerText>Paramètres de connection</innerText>
-    </item>
-    <item id="txt_server_ntlm">
-      <innerText>Serveur de messagerie:</innerText>
-    </item>
-    <item id="txt_example_ntlm">
-      <innerText>Exemple: intranet.exemple.com</innerText>
-    </item>
-    <item id="btn_signup">
-      <value>S'inscrire</value>
-    </item>
-    <item id="btn_login">
-      <value>Connexion</value>
-    </item>
-    <item id="btn_close">
-      <value>Fermer</value>
-    </item>
-  </window>
+  
   <window name="connection-settings">
     <code id="logout">Vous devez vous déconnecter pour appliquer les changements.&#13;&#13;Voulez-vous vous déconnecter maintenant?</code>
     <code id="automatic">Automatique</code>
@@ -2200,25 +2068,6 @@ background: (image d') arrière-plan
     <item id="lbl_authentication_ntlm">
       <innerHTML>Identification &lt;U&gt;W&lt;/U&gt;indows intégrée</innerHTML>
       <accessKey>w</accessKey>
-    </item>
-    <item id="txt_proxy">
-      <innerText>Serveur proxy</innerText>
-    </item>
-    <item id="lbl_proxy_none">
-      <innerHTML>&lt;U&gt;A&lt;/U&gt;cun</innerHTML>
-      <accessKey>a</accessKey>
-    </item>
-    <item id="lbl_proxy_http">
-      <innerHTML>&lt;U&gt;H&lt;/U&gt;TTP</innerHTML>
-      <accessKey>h</accessKey>
-    </item>
-    <item id="lbl_proxy_address">
-      <innerHTML>Add&lt;U&gt;r&lt;/U&gt;esse:</innerHTML>
-      <accessKey>r</accessKey>
-    </item>
-    <item id="lbl_proxy_port">
-      <innerHTML>P&lt;U&gt;o&lt;/U&gt;rt:</innerHTML>
-      <accessKey>o</accessKey>
     </item>
     <item id="btn_ok">
       <value>OK</value>
