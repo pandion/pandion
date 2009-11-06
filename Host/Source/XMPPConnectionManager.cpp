@@ -38,6 +38,8 @@ XMPPConnectionManager::XMPPConnectionManager(XMPPHandlers& handlers,
 	m_DoStartTLS = false;
 	m_DoStartSC = false;
 	m_DoDisconnect = false;
+
+	m_CanStartNewThread = ::CreateEvent(NULL, FALSE, TRUE, NULL);
 }
 
 /*
@@ -45,6 +47,7 @@ XMPPConnectionManager::XMPPConnectionManager(XMPPHandlers& handlers,
  */
 XMPPConnectionManager::~XMPPConnectionManager()
 {
+	::CloseHandle(m_CanStartNewThread);
 }
 
 /*
@@ -53,6 +56,8 @@ XMPPConnectionManager::~XMPPConnectionManager()
 void XMPPConnectionManager::Connect(const std::wstring& server,
 			   unsigned short port, bool useSSL)
 {
+	::WaitForSingleObject(m_CanStartNewThread, INFINITE);
+
 	m_Server = server;
 	m_Port   = port;
 	m_UseSSL = useSSL;
@@ -67,6 +72,7 @@ void XMPPConnectionManager::Connect(const std::wstring& server,
 void XMPPConnectionManager::Disconnect()
 {
 	m_DoDisconnect = true;
+	m_Handlers.OnDisconnected();
 }
 
 /*
@@ -141,10 +147,17 @@ DWORD XMPPConnectionManager::ConnectionMain()
 			canContinue = DoRecvData();
 		}
 	}
+
 	m_SendQueue.SetDisconnected();
 	m_XMLParser.SetDisconnected();
 	m_Socket.Disconnect();
-	m_Handlers.OnDisconnected();
+
+	if(!m_DoDisconnect)
+	{
+		m_Handlers.OnDisconnected();
+	}
+	
+	::SetEvent(m_CanStartNewThread);
 
 	return 0;
 }
@@ -194,7 +207,7 @@ bool XMPPConnectionManager::DoConnectWithoutSRV()
 {
 	bool success = m_Socket.Connect((BSTR) m_Server.c_str(), m_Port) == 0;
 
-	if(success)
+	if(success && !m_DoDisconnect)
 	{
 		if(m_UseSSL)
 		{

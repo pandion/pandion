@@ -43,6 +43,7 @@ private:
 	bool			m_DoStartSC;
 	bool			m_DoDisconnect;
 
+	HANDLE          m_CanStartNewThread;
 public:
 	XMPPConnectionManager(XMPPHandlers& handlers, XMPPLogger& logger);
 	~XMPPConnectionManager();
