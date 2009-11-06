@@ -39,7 +39,7 @@ XMPPConnectionManager::XMPPConnectionManager(XMPPHandlers& handlers,
 	m_DoStartSC = false;
 	m_DoDisconnect = false;
 
-	m_CanStartNewThread = ::CreateEvent(NULL, FALSE, TRUE, NULL);
+	m_CanStartNewThread = ::CreateEvent(NULL, TRUE, TRUE, NULL);
 }
 
 /*
@@ -57,6 +57,7 @@ void XMPPConnectionManager::Connect(const std::wstring& server,
 			   unsigned short port, bool useSSL)
 {
 	::WaitForSingleObject(m_CanStartNewThread, INFINITE);
+	::ResetEvent(m_CanStartNewThread);
 
 	m_Server = server;
 	m_Port   = port;
@@ -71,8 +72,11 @@ void XMPPConnectionManager::Connect(const std::wstring& server,
  */
 void XMPPConnectionManager::Disconnect()
 {
-	m_DoDisconnect = true;
-	m_Handlers.OnDisconnected();
+	if(::WaitForSingleObject(m_CanStartNewThread, 0) != WAIT_OBJECT_0)
+	{
+		m_DoDisconnect = true;
+		m_Handlers.OnDisconnected();
+	}
 }
 
 /*
