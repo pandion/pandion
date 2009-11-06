@@ -114,8 +114,7 @@ DWORD Socket::Disconnect()
 		m_bUsingSC = false;
 	}
 
-	//FIXME: Second parameter should be SD_BOTH instead of 0x02.
-	shutdown(m_Socket, 0x02);
+	shutdown(m_Socket, SD_BOTH);
 	closesocket(m_Socket);
 	m_Socket = INVALID_SOCKET;
 	m_bConnected = false;
@@ -304,6 +303,7 @@ SECURITY_STATUS Socket::ClientHandshakeLoop(bool initialRead)
         if(status == SEC_E_OK)
         {
 			m_pendingEncoded.clear();
+			m_pendingDecoded.clear();
 			for(unsigned long i = 0; i <outBuffer.cBuffers; i++)
 			{
 				if(outBuffers[i].BufferType == SECBUFFER_EXTRA)
@@ -702,7 +702,8 @@ int Socket::Select(bool bRead, bool bWrite, timeval *tv)
 	}
 	// If we're reading from an SSL socket, see if it's still got buffered
 	// data.
-	if(bRead && m_bUsingSSL && !m_pendingEncoded.empty())
+	if(bRead && m_bUsingSSL &&
+		!m_pendingEncoded.empty() || !m_pendingDecoded.empty())
 	{
 		return 1;
 	}
@@ -720,6 +721,28 @@ int Socket::Select(bool bRead, bool bWrite, timeval *tv)
 SECURITY_STATUS Socket::SecureRecv(PBYTE message, DWORD messageSize,
 								   PDWORD bytesReceived)
 {
+	if(!m_pendingDecoded.empty())
+	{
+		if(messageSize < m_pendingDecoded.size())
+		{
+			std::copy(m_pendingDecoded.begin(),
+				m_pendingDecoded.begin() + messageSize,	message);
+			*bytesReceived = messageSize;
+			std::copy(m_pendingDecoded.begin() + messageSize,
+				m_pendingDecoded.end(), m_pendingDecoded.begin());
+			m_pendingDecoded.resize(m_pendingDecoded.size() - messageSize);
+			return 0;
+		}
+		else
+		{
+			std::copy(m_pendingDecoded.begin(),
+				m_pendingDecoded.end(), message);
+			*bytesReceived = m_pendingDecoded.size();
+			m_pendingDecoded.clear();
+			return 0;
+		}
+	}
+
 	*bytesReceived = 0;
 
 	SecPkgContext_StreamSizes sizes;
@@ -813,20 +836,33 @@ SECURITY_STATUS Socket::SecureRecv(PBYTE message, DWORD messageSize,
         }
 		else
 		{
-			for(int i = 1; i <4; i++)
+			for(int i = 1; i < 4; i++)
 			{
 				if(buffers[i].BufferType == SECBUFFER_DATA)
 				{
-					/* FIXME: account for message size */
-					std::copy((char*) buffers[i].pvBuffer, 
-						(char*) buffers[i].pvBuffer + buffers[i].cbBuffer, 
-						message);
-					*bytesReceived = buffers[i].cbBuffer;
+					if(messageSize > buffers[i].cbBuffer)
+					{
+						std::copy((char*) buffers[i].pvBuffer, 
+							(char*) buffers[i].pvBuffer + buffers[i].cbBuffer, 
+							message);
+						*bytesReceived = buffers[i].cbBuffer;
+					}
+					else
+					{
+						std::copy((char*) buffers[i].pvBuffer, 
+							(char*) buffers[i].pvBuffer + messageSize, 
+							message);
+						*bytesReceived = messageSize;
+
+						m_pendingDecoded.resize(buffers[i].cbBuffer - messageSize, 0);
+						std::copy((char*) buffers[i].pvBuffer + messageSize,
+							(char*) buffers[i].pvBuffer + buffers[i].cbBuffer,
+							&m_pendingDecoded.begin()[0]);
+					}
 				}
 				else if(buffers[i].BufferType == SECBUFFER_EXTRA)
 				{
-					m_pendingEncoded.resize(
-						m_pendingEncoded.size() + buffers[i].cbBuffer, 0);
+					m_pendingEncoded.resize(buffers[i].cbBuffer, 0);
 					std::copy((char*) buffers[i].pvBuffer, 
 						(char*) buffers[i].pvBuffer + buffers[i].cbBuffer,
 						&m_pendingEncoded.begin()[0]);
