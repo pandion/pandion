@@ -460,7 +460,8 @@ DWORD Socket::Send(BYTE *buf, DWORD nBufLen)
 	}
 	if(m_bUsingSSL)
 	{
-		SECURITY_STATUS status = SecureSend(outputBuffer, outputSize, (DWORD *)&iResult);
+		SECURITY_STATUS status = SecureSend(outputBuffer,
+			outputSize, (DWORD *)&iResult);
 	}
 	else
 	{
@@ -855,38 +856,56 @@ SECURITY_STATUS Socket::SecureSend(PBYTE message, DWORD messageSize,
 	SECURITY_STATUS status = QueryContextAttributes(&m_context,
 		SECPKG_ATTR_STREAM_SIZES, &sizes);
 
-	// FIXME: allow for larger messages to be sent in multiple rounds
-	if(sizes.cbMaximumMessage <messageSize)
+	if(messageSize > sizes.cbMaximumMessage)
 	{
-		return SEC_E_INTERNAL_ERROR;
+		DWORD bytesSent = 0, d = 0;
+		while(bytesSent != messageSize && SUCCEEDED(status))
+		{
+			if(messageSize - bytesSent > sizes.cbMaximumMessage)
+			{
+				status = SecureSend(message + bytesSent,
+					sizes.cbMaximumMessage, &d);
+				bytesSent += sizes.cbMaximumMessage;
+			}
+			else
+			{
+				status = SecureSend(message + bytesSent,
+					messageSize - bytesSent, &d);
+				bytesSent += messageSize - bytesSent;
+			}
+		}
 	}
-
-	DWORD ioBufferSize = sizes.cbHeader + 
-		sizes.cbMaximumMessage + sizes.cbTrailer;
-	std::vector<char> ioBuffer(ioBufferSize);
-	std::copy(message, message + messageSize, &ioBuffer[sizes.cbHeader]);
-
-	SecBuffer buffers[4] = {
-		{sizes.cbHeader, SECBUFFER_STREAM_HEADER, &ioBuffer[0]},
-		{messageSize, SECBUFFER_DATA, &ioBuffer[sizes.cbHeader]},
-		{sizes.cbTrailer, SECBUFFER_STREAM_TRAILER,
-			&ioBuffer[sizes.cbHeader + messageSize]},
-		{0, NULL, SECBUFFER_EMPTY }
-	};
-	SecBufferDesc cipherText = {SECBUFFER_VERSION, 4, buffers};
-
-	status = EncryptMessage(&m_context, 0, &cipherText, 0);
-	if(FAILED(status))
+	else
 	{
-		return status;
-	}
+		DWORD ioBufferSize = sizes.cbHeader + 
+			sizes.cbMaximumMessage + sizes.cbTrailer;
+		std::vector<char> ioBuffer(ioBufferSize);
+		std::copy(message, message + messageSize, &ioBuffer[sizes.cbHeader]);
 
-	*bytesSent = send(m_Socket, &ioBuffer[0],
-		buffers[0].cbBuffer + buffers[1].cbBuffer + buffers[2].cbBuffer, 0);
-	if(*bytesSent == SOCKET_ERROR || *bytesSent == 0)
-    {
-        return SEC_E_INTERNAL_ERROR;
-    }
+		SecBuffer buffers[4] = {
+			{sizes.cbHeader, SECBUFFER_STREAM_HEADER, &ioBuffer[0]},
+			{messageSize, SECBUFFER_DATA, &ioBuffer[sizes.cbHeader]},
+			{sizes.cbTrailer, SECBUFFER_STREAM_TRAILER,
+				&ioBuffer[sizes.cbHeader + messageSize]},
+			{0, NULL, SECBUFFER_EMPTY }
+		};
+		SecBufferDesc cipherText = {SECBUFFER_VERSION, 4, buffers};
+
+		status = EncryptMessage(&m_context, 0, &cipherText, 0);
+		if(FAILED(status))
+		{
+			return status;
+		}
+
+		*bytesSent = send(m_Socket, &ioBuffer[0],
+			buffers[0].cbBuffer + 
+			buffers[1].cbBuffer + 
+			buffers[2].cbBuffer, 0);
+		if(*bytesSent == SOCKET_ERROR || *bytesSent == 0)
+		{
+			return SEC_E_INTERNAL_ERROR;
+		}
+	}
 
 	return status;
 }
