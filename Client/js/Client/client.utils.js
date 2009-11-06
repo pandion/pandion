@@ -84,7 +84,7 @@ client.utils.iso8601 = function (timestamp) {
 			match[8] // ms
 		);
 		if (typeof match[9] != "undefined" && match[9].length > 0) // offset
-			ms += (match[9] == '+' ? -1 : 1) * (match[10] * 3600 * 1000 + match[11] * 1000); // oh om
+			ms += (match[9] == '+' ? -1 : 1) * (match[10]*3600*1000 + match[11]*60*1000); // oh om
 		if (match[2] >= 0 && match[2] <= 99) // 1-99 AD
 			ms -= 59958144000000;
 		return ms;
