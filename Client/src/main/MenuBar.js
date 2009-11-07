@@ -154,7 +154,7 @@ function MenuBarUpdate ( section )
 function MenuBarSelect ( id )
 {
 	var cfg = external.globals( 'cfg' );
-	var msg = cfg( 'lastmsg' );
+	var msg = cfg && cfg( 'lastmsg' );
 	switch ( id )
 	{
 		case 11: //	sign out
