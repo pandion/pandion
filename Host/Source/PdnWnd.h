@@ -40,8 +40,6 @@ protected:
 
 	UINT            m_TaskbarRestartMessage;
 
-	BOOL	        m_bPopUnder;
-
 	_bstr_t         m_sMinHandler;
 	_bstr_t         m_sCloseHandler;
 	_bstr_t         m_sMenuHandler;
@@ -68,9 +66,9 @@ public:
 	virtual void OnFinalRelease();
 
 	HRESULT Create(RECT& rect, std::wstring Name, std::wstring URL,
-		_variant_t& windowParams, PdnModule* Module);
+		_variant_t& windowParams, PdnModule* Module, BOOL popUnder = FALSE);
 private:
-	HRESULT ContainerCreate();
+	HRESULT ContainerCreate(BOOL popUnder);
 	void ChangeIcon(int icon);
 	void PopUnder(BOOL b);
 

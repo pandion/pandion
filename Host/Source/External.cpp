@@ -109,7 +109,7 @@ STDMETHODIMP External::createWindow(BSTR name, BSTR file, VARIANT* params,
 {
 	RECT rc = { 300, 300, rc.left + 500, rc.top + 300 };
 	CPdnWnd* newWindow = new CPdnWnd;
-    newWindow->Create(rc, name, file, _variant_t(params), m_pModule);
+    newWindow->Create(rc, name, file, _variant_t(params), m_pModule, bPopUnder);
 
 	newWindow->QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
 	pDisp->vt = VT_DISPATCH;

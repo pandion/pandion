@@ -45,7 +45,7 @@ public:
 	AxHostWnd(IUnknown *parentWindow);
 	~AxHostWnd();
 
-	IOleObject* Create(HWND hWndParent, std::wstring controlName);
+	IOleObject* Create(HWND hWndParent, std::wstring controlName, BOOL popUnder);
 	void Destroy();
 	bool IsDestroyed();
 

@@ -43,7 +43,8 @@ AxHostWnd::~AxHostWnd()
 {
 }
 
-IOleObject* AxHostWnd::Create(HWND hWndParent, std::wstring controlName)
+IOleObject* AxHostWnd::Create(HWND hWndParent, std::wstring controlName, 
+							  BOOL popUnder)
 {
 	m_hWndParent = hWndParent;
 
@@ -74,7 +75,7 @@ IOleObject* AxHostWnd::Create(HWND hWndParent, std::wstring controlName)
 	HRESULT hr = ::OleCreate(clsid, IID_IOleObject, OLERENDER_DRAW,
 		NULL, dynamic_cast<IOleClientSite*>(this), storage,
 		(LPVOID*) &m_ActiveXControl);
-	
+
 	hr = m_ActiveXControl->QueryInterface(IID_IOleInPlaceObject,
 		(LPVOID*) &m_InPlaceObject);
 	hr = m_ActiveXControl->QueryInterface(IID_IOleInPlaceActiveObject,
@@ -82,8 +83,21 @@ IOleObject* AxHostWnd::Create(HWND hWndParent, std::wstring controlName)
 
 	hr = ::OleSetContainedObject(m_ActiveXControl, TRUE);
 	hr = ::OleRun(m_ActiveXControl);
-	hr = m_ActiveXControl->DoVerb(OLEIVERB_SHOW, NULL, 
-		dynamic_cast<IOleClientSite*>(this), 0, m_hWndParent, NULL);
+
+	if(popUnder)
+	{
+		HWND hForeground = ::GetForegroundWindow();
+		::LockSetForegroundWindow(LSFW_LOCK);
+		hr = m_ActiveXControl->DoVerb(OLEIVERB_SHOW, NULL, 
+			dynamic_cast<IOleClientSite*>(this), 0, m_hWndParent, NULL);
+		::LockSetForegroundWindow(LSFW_UNLOCK);
+		::SetForegroundWindow(hForeground);
+	}
+	else
+	{
+		hr = m_ActiveXControl->DoVerb(OLEIVERB_SHOW, NULL, 
+			dynamic_cast<IOleClientSite*>(this), 0, m_hWndParent, NULL);
+	}
 
 	m_ActiveXControl.AddRef();
 	return m_ActiveXControl;
@@ -334,7 +348,7 @@ STDMETHODIMP AxHostWnd::OnInPlaceActivateEx(BOOL *pfNoRedraw, DWORD dwFlags)
 {
 	if(pfNoRedraw)
 	{
-		*pfNoRedraw = FALSE;
+		*pfNoRedraw = TRUE;
 	}
 	return S_OK;
 }
