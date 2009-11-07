@@ -208,6 +208,10 @@ LRESULT CPdnWnd::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		return OnActivate(uMsg, wParam, lParam);
 	}
+	else if(uMsg == WM_NCACTIVATE)
+	{
+		return OnNCActivate(uMsg, wParam, lParam);
+	}
 	else if(uMsg == WM_SIZE)
 	{
 		OnSize(uMsg, wParam, lParam);
@@ -311,18 +315,23 @@ LRESULT CPdnWnd::OnActivate(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	static HWND m_hWndLastFocusedWindow = NULL;
 	if (LOWORD(wParam) == WA_INACTIVE)
 	{
-/*		if (::GetFocus() && m_hWndLastFocusedWindow == NULL)
-			m_hWndLastFocusedWindow = ::GetFocus();*/
+		if (::GetFocus() && m_hWndLastFocusedWindow == NULL)
+			m_hWndLastFocusedWindow = ::GetFocus();
 	}
 	else
 	{
-/*		::SetActiveWindow(::GetWindow(m_hWnd, GW_CHILD));
+		::SetActiveWindow(::GetWindow(m_hWnd, GW_CHILD));
 		if (m_hWndLastFocusedWindow)
-			::SetFocus(m_hWndLastFocusedWindow);*/
+			::SetFocus(m_hWndLastFocusedWindow);
 		if(m_sActivationHandler.length())
             FireEvent(m_sActivationHandler, 0, 0);
 	}
 	return 0;
+}
+LRESULT CPdnWnd::OnNCActivate(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	::SetActiveWindow(::GetWindow(m_hWnd, GW_CHILD));
+	return TRUE;
 }
 LRESULT CPdnWnd::OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
