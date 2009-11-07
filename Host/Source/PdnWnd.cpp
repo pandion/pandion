@@ -328,8 +328,7 @@ LRESULT CPdnWnd::OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	RECT rect;
 	::GetClientRect(m_hWnd, &rect);
-	m_ActiveXHost.SetWindowPos(HWND_TOP, rect.left, rect.top, 
-		rect.right - rect.left, rect.bottom - rect.top, SWP_NOACTIVATE);
+	m_ActiveXHost.OnSize(uMsg, wParam, lParam);
 	return 0;
 }
 LRESULT CPdnWnd::OnCommand(UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -361,7 +360,7 @@ LRESULT CPdnWnd::OnFinalMessage(HWND hWnd,
 	m_pSecurityMgr->Release();
 
 	/* Free this */
-	while(Release() != 1) continue;
+	while(Release() != 2) continue;
 
 	return 0;
 }
@@ -700,7 +699,15 @@ STDMETHODIMP CPdnWnd::setIcon(BSTR IconPath)
 }
 STDMETHODIMP CPdnWnd::hide(BOOL b)
 {
-	ShowWindow(m_hWnd, b ? SW_HIDE : SW_SHOWNOACTIVATE);
+	if(!b)
+	{
+		::ShowWindow(m_hWnd, SW_SHOWNOACTIVATE);
+		::UpdateWindow(m_hWnd);
+	}
+	else
+	{
+		::ShowWindow(m_hWnd, SW_HIDE);
+	}
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::rightToLeft(BOOL b)
@@ -861,8 +868,7 @@ STDMETHODIMP CPdnWnd::get_params(VARIANT* retVal)
 }
 STDMETHODIMP CPdnWnd::focus()
 {
-//	return SetForegroundWindow(m_hWnd) ? S_OK : S_FALSE;
-	return S_OK;
+	return SetForegroundWindow(m_hWnd) ? S_OK : S_FALSE;
 }
 STDMETHODIMP CPdnWnd::get_left(VARIANT* retVal)
 {
