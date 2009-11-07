@@ -33,7 +33,6 @@ private:
 
 	bool                       m_Destroyed;
 
-	HWND                       m_hWnd;
 	HWND                       m_hWndParent;
 
 	IUnknownPtr                m_ParentWindow;
@@ -45,23 +44,13 @@ public:
 	AxHostWnd(IUnknown *parentWindow);
 	~AxHostWnd();
 
-	IOleObject* Create(HWND hWndParent, std::wstring controlName);
+	IOleObject* Create(HWND hWndParent, std::wstring controlName, BOOL popUnder);
 	void Destroy();
 	bool IsDestroyed();
 
-	static LRESULT CALLBACK StartWindowProc(
-		HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-	LRESULT WindowProc(
-		HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-
 	LRESULT OnForwardMessage(HWND hWnd, UINT uMsg,
 		WPARAM wParam, LPARAM lParam);
-	LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam);
 	LRESULT OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam);
-	LRESULT OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam);
-
-	BOOL SetWindowPos(HWND hWndInsertAfter, int X, int Y, int cx, int cy,
-		UINT uFlags);
 
 	/* IUnknown */
 	STDMETHOD(QueryInterface)(const IID &riid, void **ppvObject);

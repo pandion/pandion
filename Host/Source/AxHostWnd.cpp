@@ -30,7 +30,6 @@ AxHostWnd::AxHostWnd(IUnknown *parentWindow)
 
 	m_Destroyed = false;
 
-	m_hWnd       = NULL;
 	m_hWndParent = NULL;
 
 	m_ActiveXControl = NULL;
@@ -43,25 +42,10 @@ AxHostWnd::~AxHostWnd()
 {
 }
 
-IOleObject* AxHostWnd::Create(HWND hWndParent, std::wstring controlName)
+IOleObject* AxHostWnd::Create(HWND hWndParent, std::wstring controlName, 
+							  BOOL popUnder)
 {
 	m_hWndParent = hWndParent;
-
-	WNDCLASSEX wc =
-	{ 
-		sizeof(WNDCLASSEX), CS_DBLCLKS, StartWindowProc, 0, 0, NULL, NULL,
-		NULL, (HBRUSH)(COLOR_BTNFACE), NULL, controlName.c_str(), NULL 
-	};
-	::RegisterClassEx(&wc);
-
-	RECT rect;
-	::GetClientRect(m_hWndParent, &rect);
-	m_hWnd = ::CreateWindowEx(0, controlName.c_str(), L"",
-		WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS,
-		rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top,
-		m_hWndParent, 0, GetModuleHandle(NULL), this);
-	::SetWindowPos(m_hWnd, HWND_TOP, 0, 0, 0, 0, SWP_NOACTIVATE |
-		SWP_NOSIZE | SWP_NOMOVE);
 
 	CLSID clsid;
 	::CLSIDFromProgID(controlName.c_str(), &clsid);
@@ -74,7 +58,7 @@ IOleObject* AxHostWnd::Create(HWND hWndParent, std::wstring controlName)
 	HRESULT hr = ::OleCreate(clsid, IID_IOleObject, OLERENDER_DRAW,
 		NULL, dynamic_cast<IOleClientSite*>(this), storage,
 		(LPVOID*) &m_ActiveXControl);
-	
+
 	hr = m_ActiveXControl->QueryInterface(IID_IOleInPlaceObject,
 		(LPVOID*) &m_InPlaceObject);
 	hr = m_ActiveXControl->QueryInterface(IID_IOleInPlaceActiveObject,
@@ -82,8 +66,21 @@ IOleObject* AxHostWnd::Create(HWND hWndParent, std::wstring controlName)
 
 	hr = ::OleSetContainedObject(m_ActiveXControl, TRUE);
 	hr = ::OleRun(m_ActiveXControl);
-	hr = m_ActiveXControl->DoVerb(OLEIVERB_SHOW, NULL, 
-		dynamic_cast<IOleClientSite*>(this), 0, m_hWndParent, NULL);
+
+	if(popUnder)
+	{
+		HWND hForeground = ::GetForegroundWindow();
+		::LockSetForegroundWindow(LSFW_LOCK);
+		hr = m_ActiveXControl->DoVerb(OLEIVERB_SHOW, NULL, 
+			dynamic_cast<IOleClientSite*>(this), 0, m_hWndParent, NULL);
+		::LockSetForegroundWindow(LSFW_UNLOCK);
+		::SetForegroundWindow(hForeground);
+	}
+	else
+	{
+		hr = m_ActiveXControl->DoVerb(OLEIVERB_SHOW, NULL, 
+			dynamic_cast<IOleClientSite*>(this), 0, m_hWndParent, NULL);
+	}
 
 	m_ActiveXControl.AddRef();
 	return m_ActiveXControl;
@@ -97,53 +94,12 @@ void AxHostWnd::Destroy()
 		m_ActiveXControl.Detach()->Release();
 		m_InPlaceObject.Detach()->Release();
 		m_ActiveObject.Detach()->Release();
-
-		::DestroyWindow(m_hWnd);
 		m_ParentWindow.Detach()->Release();
 	}
 }
 bool AxHostWnd::IsDestroyed()
 {
 	return m_Destroyed;
-}
-LRESULT CALLBACK AxHostWnd::StartWindowProc(
-	HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-	if(uMsg == WM_CREATE)
-	{
-		CREATESTRUCT* cs = (CREATESTRUCT*) lParam;
-		::SetWindowLong(hWnd, GWL_USERDATA, (LONG) cs->lpCreateParams);
-	}
-	AxHostWnd* axHostWindow = (AxHostWnd*) ::GetWindowLong(hWnd, GWL_USERDATA);
-	if(axHostWindow != NULL)
-	{
-		return axHostWindow->WindowProc(hWnd, uMsg, wParam, lParam);
-	}
-	else
-	{
-		return ::DefWindowProc(hWnd, uMsg, wParam, lParam);
-	}
-}
-
-LRESULT AxHostWnd::WindowProc(
-	HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-	if(uMsg == WM_CREATE)
-	{
-		return OnCreate(uMsg, wParam, lParam);
-	}
-	else if(uMsg == WM_PAINT)
-	{
-		return OnPaint(uMsg, wParam, lParam);
-	}
-	else if(uMsg == WM_SIZE)
-	{
-		return OnSize(uMsg, wParam, lParam);
-	}
-	else
-	{
-		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
-	}
 }
 
 LRESULT AxHostWnd::OnForwardMessage(HWND hWnd, UINT uMsg,
@@ -153,10 +109,6 @@ LRESULT AxHostWnd::OnForwardMessage(HWND hWnd, UINT uMsg,
 		return S_OK;
 	else
 		return m_ActiveObject->TranslateAccelerator((LPMSG)lParam) == S_OK;
-}
-LRESULT AxHostWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-	return 0;
 }
 LRESULT AxHostWnd::OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -170,25 +122,6 @@ LRESULT AxHostWnd::OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	}
 
 	return 0;
-}
-LRESULT AxHostWnd::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-	RECT updateRect;
-	if(::GetUpdateRect(m_hWnd, &updateRect, FALSE))
-	{
-		PAINTSTRUCT ps;
-		HDC dc = ::BeginPaint(m_hWnd, &ps);
-		HRESULT hr = ::OleDraw(m_ActiveXControl, DVASPECT_TRANSPARENT,
-			dc, &updateRect);
-		::EndPaint(m_hWnd, &ps);
-	}
-	return 0;
-}
-
-BOOL AxHostWnd::SetWindowPos(HWND hWndInsertAfter, int X, int Y, int cx, 
-	int cy, UINT uFlags)
-{
-	return ::SetWindowPos(m_hWnd, hWndInsertAfter, X, Y, cx, cy, uFlags);
 }
 
 /*
@@ -293,12 +226,12 @@ STDMETHODIMP AxHostWnd::GetWindowContext(IOleInPlaceFrame **ppFrame,
 	ppDoc = 0;
 	
 	RECT r;
-	::GetClientRect(m_hWnd, &r);
+	::GetClientRect(m_hWndParent, &r);
 	*lprcPosRect = r;
 	*lprcClipRect = r;
 
 	lpFrameInfo->fMDIApp = FALSE;
-	lpFrameInfo->hwndFrame = m_hWnd;
+	lpFrameInfo->hwndFrame = m_hWndParent;
 	lpFrameInfo->haccel = 0;
 	lpFrameInfo->cAccelEntries = 0;
 
@@ -334,7 +267,7 @@ STDMETHODIMP AxHostWnd::OnInPlaceActivateEx(BOOL *pfNoRedraw, DWORD dwFlags)
 {
 	if(pfNoRedraw)
 	{
-		*pfNoRedraw = FALSE;
+		*pfNoRedraw = TRUE;
 	}
 	return S_OK;
 }
@@ -350,7 +283,7 @@ STDMETHODIMP AxHostWnd::RequestUIActivate()
 /* IOleWindow */
 STDMETHODIMP AxHostWnd::GetWindow(HWND *phwnd)
 {
-	*phwnd = m_hWnd;
+	*phwnd = m_hWndParent;
 	return S_OK;
 }
 STDMETHODIMP AxHostWnd::ContextSensitiveHelp(BOOL fEnterMode)

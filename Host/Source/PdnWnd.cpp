@@ -39,8 +39,7 @@ public:
 };
 
 CPdnWnd::CPdnWnd() :
-	m_bPopUnder(false), m_External(*this), 
-	m_ActiveXHost(dynamic_cast<IPdnWnd*>(this))
+	m_External(*this), m_ActiveXHost(dynamic_cast<IPdnWnd*>(this))
 {
 	m_WindowClass.cbSize = sizeof(WNDCLASSEX);
 	m_WindowClass.style = CS_DBLCLKS;
@@ -71,7 +70,7 @@ void CPdnWnd::OnFinalRelease()
 }
 
 HRESULT CPdnWnd::Create(RECT& rect, std::wstring Name, std::wstring URL,
-	_variant_t& windowParams, PdnModule* Module)
+	_variant_t& windowParams, PdnModule* Module, BOOL popUnder)
 {
 	m_Name          = Name;
 	m_URL           = URL;
@@ -80,7 +79,7 @@ HRESULT CPdnWnd::Create(RECT& rect, std::wstring Name, std::wstring URL,
 
 	::RegisterClassEx(&m_WindowClass);
 	m_hWnd = ::CreateWindowEx(0, m_WindowClass.lpszClassName, L"", 
-		WS_OVERLAPPEDWINDOW,
+		WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN,
 		rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top,
 		0, 0, GetModuleHandle(NULL), this);
 
@@ -108,19 +107,18 @@ HRESULT CPdnWnd::Create(RECT& rect, std::wstring Name, std::wstring URL,
 		&_variant_t(dynamic_cast<IDispatch*>(this)));
 
 	/* Create the Internet Explorer control */
-	return ContainerCreate();
+	return ContainerCreate(popUnder);
 }
 
-HRESULT CPdnWnd::ContainerCreate()
+HRESULT CPdnWnd::ContainerCreate(BOOL popUnder)
 {
 	/* Create the control */
 	IOleObject* activeXControl = 
-		m_ActiveXHost.Create(m_hWnd, L"Shell.Explorer.2");
+		m_ActiveXHost.Create(m_hWnd, L"Shell.Explorer.2", popUnder);
 	if(activeXControl == NULL)
 	{
 		return E_FAIL;
 	}
-
 	/* Get the webbrowser control and initialize the browser */
 	HRESULT hr = activeXControl->QueryInterface(IID_IWebBrowser2,
 		(void**) &m_pBrowser);
@@ -140,6 +138,7 @@ HRESULT CPdnWnd::ContainerCreate()
 		m_pBrowser->Navigate(_bstr_t(m_URL.c_str()), 0, 0, 0, 0);
 	}
 	activeXControl->Release();
+
 	return hr;
 }
 
@@ -157,10 +156,6 @@ void CPdnWnd::ChangeIcon(int icon)
 
 	SendMessage(m_hWnd, WM_SETICON, ICON_BIG, (LPARAM) hIcon32);
 	SendMessage(m_hWnd, WM_SETICON, ICON_SMALL, (LPARAM) hIcon16);
-}
-void CPdnWnd::PopUnder(BOOL b)
-{
-	m_bPopUnder = b;
 }
 
 /* Message Handlers */
@@ -333,8 +328,7 @@ LRESULT CPdnWnd::OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	RECT rect;
 	::GetClientRect(m_hWnd, &rect);
-	m_ActiveXHost.SetWindowPos(HWND_TOP, rect.left, rect.top, 
-		rect.right - rect.left, rect.bottom - rect.top, SWP_NOACTIVATE);
+	m_ActiveXHost.OnSize(uMsg, wParam, lParam);
 	return 0;
 }
 LRESULT CPdnWnd::OnCommand(UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -366,7 +360,7 @@ LRESULT CPdnWnd::OnFinalMessage(HWND hWnd,
 	m_pSecurityMgr->Release();
 
 	/* Free this */
-	while(Release() != 1) continue;
+	while(Release() != 2) continue;
 
 	return 0;
 }
@@ -705,7 +699,15 @@ STDMETHODIMP CPdnWnd::setIcon(BSTR IconPath)
 }
 STDMETHODIMP CPdnWnd::hide(BOOL b)
 {
-	ShowWindow(m_hWnd, b ? SW_HIDE : SW_SHOWNOACTIVATE);
+	if(!b)
+	{
+		::ShowWindow(m_hWnd, SW_SHOWNOACTIVATE);
+		::UpdateWindow(m_hWnd);
+	}
+	else
+	{
+		::ShowWindow(m_hWnd, SW_HIDE);
+	}
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::rightToLeft(BOOL b)
@@ -742,7 +744,7 @@ STDMETHODIMP CPdnWnd::flash(DWORD u)
     fwi.uCount = u;
 
 	::FlashWindowEx(&fwi);
-	::SetForegroundWindow(FGWindow);
+//	::SetForegroundWindow(FGWindow);
 	
 	return S_OK;
 }
