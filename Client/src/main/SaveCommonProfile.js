@@ -17,10 +17,8 @@ function SaveCommonProfile ()
 	Data.Add( 'welcomescreen', external.globals( 'welcomescreen' ) );
 	Data.Add( 'welcomesettings', external.globals( 'welcomesettings' ) );
 
-	if ( external.wnd.left > 0 - external.wnd.width / 2 )
-		Data.Add( 'lastposx', external.wnd.left );
-	if ( external.wnd.top > 0 - 20 )
-		Data.Add( 'lastposy', external.wnd.top );
+	Data.Add( 'lastposx', external.wnd.left );
+	Data.Add( 'lastposy', external.wnd.top );
 	if ( external.wnd.width > 100 )
 		Data.Add( 'lastwidth', external.wnd.width );
 	if ( external.wnd.height > 100 )

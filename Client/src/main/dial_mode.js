@@ -16,7 +16,6 @@ function dial_mode ()
 	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_profile' ), 10 );
 	Menu.Show( window.screenLeft + 50, window.screenTop + 48, external.globals( 'Translator' ).Direction );
 
-	var ask = external.globals( 'cfg' )( 'askstatus' ).toString() == 'true';
 	var msg = external.globals( 'cfg' )( 'lastmsg' );
 	switch ( Menu.Choice )
 	{
@@ -24,40 +23,22 @@ function dial_mode ()
 			dial_status_message();
 		break;
 		case 2: // ffc
-			if ( ask )
-				dial_status_message( 1 );
-			else
-				mode_new( 1, msg );
+			mode_new( 1, msg );
 		break;
 		case 3: // available
-			if ( ask )
-				dial_status_message( 0 );
-			else
-				mode_new( 0, msg );
+			mode_new( 0, msg );
 		break;
 		case 4: // dnd
-			if ( ask )
-				dial_status_message( 4 );
-			else
-				mode_new( 4, msg );
+			mode_new( 4, msg );
 		break;
 		case 5: // away
-			if ( ask )
-				dial_status_message( 2 );
-			else
-				mode_new( 2, msg );
+			mode_new( 2, msg );
 		break;
 		case 6: // xaway
-			if ( ask )
-				dial_status_message( 3 );
-			else
-				mode_new( 3, msg );
+			mode_new( 3, msg );
 		break;
 		case 7: // invisible
-			if ( ask )
-				dial_status_message( 5 );
-			else
-				mode_new( 5, msg );
+			mode_new( 5, msg );
 		break;
 		case 9: // avatar
 			dial_avatar_pick();

@@ -12,7 +12,7 @@ function dial_status_message ( Mode )
 			setIcon( external.globals( 'cwd' ) + '..\\images\\idle\\note.ico' );
 			resizeable( false );
 			MinHeight = MinWidth = 0;
-			setSize( 420, 160 );
-			setPos( ( screen.availWidth - 420 ) / 2, ( screen.availHeight - 160 ) / 2 );
+			setSize( 420, 140 );
+			setPos( ( screen.availWidth - 420 ) / 2, ( screen.availHeight - 140 ) / 2 );
 		}
 }

@@ -154,18 +154,13 @@ function MenuBarUpdate ( section )
 function MenuBarSelect ( id )
 {
 	var cfg = external.globals( 'cfg' );
-	var ask = cfg && cfg.Exists( 'askstatus' ) ? ( cfg( 'askstatus' ).toString() == 'true' ) : false;
-	var msg = cfg && cfg.Exists( 'lastmsg' ) ? cfg( 'lastmsg' ) : "";
+	var msg = cfg( 'lastmsg' );
 	switch ( id )
 	{
 		case 11: //	sign out
-			if ( ask )
-				dial_status_message( -1 );
-			else
-			{
-				mode_new( -1, '' );
-				dial_logout();
-			} break;
+			mode_new( -1, '' );
+			dial_logout();
+			break;
 		case 12: // exit
 			external.wnd.close(); break;
 		case 13: // received files
@@ -181,40 +176,19 @@ function MenuBarSelect ( id )
 		case 107: // status message
 			dial_status_message(); break;
 		case 100: // ffc
-			if ( ask )
-				dial_status_message( 1 );
-			else
-				mode_new( 1, msg ); break;
+			mode_new( 1, msg ); break;
 		case 101: // available
-			if ( ask )
-				dial_status_message( 0 );
-			else
-				mode_new( 0, msg ); break;
+			mode_new( 0, msg ); break;
 		case 102: // dnd
-			if ( ask )
-				dial_status_message( 4 );
-			else
-				mode_new( 4, msg ); break;
+			mode_new( 4, msg ); break;
 		case 103: // away
-			if ( ask )
-				dial_status_message( 2 );
-			else
-				mode_new( 2, msg ); break;
+			mode_new( 2, msg ); break;
 		case 104: // xaway
-			if ( ask )
-				dial_status_message( 3 );
-			else
-				mode_new( 3, msg ); break;
+			mode_new( 3, msg ); break;
 		case 105: // invisible
-			if ( ask )
-				dial_status_message( 5 );
-			else
-				mode_new( 5, msg ); break;
+			mode_new( 5, msg ); break;
 		case 106: // offline
-			if ( ask )
-				dial_status_message( -1 );
-			else
-				mode_new( -1, msg ); break;
+			mode_new( -1, msg ); break;
 
 		case 20: // add contact
 			dial_adduser(); break;

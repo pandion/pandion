@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+	This file is part of Pandion instant messenger
+	Copyright (c) 2009 Sebastiaan Deckers
+	License: GNU General Public License version 3 or later
+-->
 <Include>
 	<!--
 		These properties are shown in the installer UI, add/remove programs, ...
@@ -28,4 +33,9 @@
 	<?else?>
 		<?define Version="$(var.BaseVersion).0" ?>
 	<?endif?>
+
+	<!--
+		Unique for each application to prevent update conflicts.
+	-->
+	<?define UpgradeCode="{9F661F94-F17F-4F5C-B1C8-2955C85C8FE9}" ?>
 </Include>

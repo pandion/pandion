@@ -19,7 +19,6 @@ function Begin ()
 	external.globals( 'Translator' ).TranslateWindow( 'mode_select', document );
 	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
 	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
-	document.getElementById( 'ask_status' ).checked = external.globals( 'cfg' )( 'askstatus' ).toString() == 'true';
 	SetMode( external.wnd.params[1] );
 	document.getElementById( 'StatusMessage' ).value = gMode == -1 ? '' : external.globals( 'cfg' )( 'lastmsg' );
 	document.getElementById( 'StatusMessage' ).select();
@@ -30,7 +29,6 @@ function Begin ()
 
 function SetStatus ()
 {
-	external.globals( 'cfg' )( 'askstatus' ) = document.getElementById( 'ask_status' ).checked;
 	var StatusMessage = document.getElementById( 'StatusMessage' ).value;
 	if ( gMode == -1 )
 	{
@@ -73,9 +71,6 @@ function UpdateOKButton ()
 </TR>
 <TR>
 	<TD><TEXTAREA id=StatusMessage onkeydown="if ( event.keyCode == 13 && ! event.shiftKey ) { event.returnValue = false; event.cancelBubble = true; setTimeout( 'SetStatus()', 0 ); }" onpropertychange="UpdateOKButton()" style="font-family: Tahoma; font-size: 11px; width: 100%; height: 100%; padding-left: 2px;"></TEXTAREA></TD>
-</TR>
-<TR>
-	<TD height=1 style="font-family: Tahoma; font-size: 11px; color: buttontext;"><INPUT type=checkbox checked id=ask_status> <LABEL for=ask_status id=lbl_ask_status></LABEL></TD>
 </TR>
 <TR>
 	<TD height=1 align=center>

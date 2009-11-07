@@ -6,7 +6,6 @@
 <settings>
 <alertonline>true</alertonline>
 <aotchat>false</aotchat>
-<askstatus>true</askstatus>
 <authorization>2</authorization>
 <autoawaytext/>
 <autoawaytime>300000</autoawaytime>

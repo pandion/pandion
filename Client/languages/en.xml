@@ -392,9 +392,6 @@
     <item id="txt_message">
       <innerText>Your status message shows your mood, activity, or anything else:</innerText>
     </item>
-    <item id="lbl_ask_status">
-      <innerText>Ask me to enter a message when I change my status</innerText>
-    </item>
     <code id="btn_ok">OK</code>
     <code id="btn_ok_empty">OK (no message)</code>
   </window>

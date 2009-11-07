@@ -1,14 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
-    Copyright (c) 2009 Sebastiaan Deckers
-    
-    The use and distribution terms for this software are covered by the
-    Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-    which can be found in the file CPL.TXT at the root of this distribution.
-    By using this software in any fashion, you are agreeing to be bound by
-    the terms of this license.
-    
-    You must not remove this notice, or any other, from this software.
+	This file is part of Pandion instant messenger
+	Copyright (c) 2009 Sebastiaan Deckers
+	License: GNU General Public License version 3 or later
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<?include version.wxs ?>
@@ -17,7 +11,7 @@
 		Language="1033"
 		Manufacturer="$(var.Manufacturer)"
 		Name="$(var.Name)"
-		UpgradeCode="{9F661F94-F17F-4F5C-B1C8-2955C85C8FE9}"
+		UpgradeCode="$(var.UpgradeCode)"
 		Version="$(var.Version)"
 	>
 
@@ -41,6 +35,7 @@
 			<ComponentRef Id="DesktopShortcut"/>
 			<ComponentRef Id="StartMenuShortcut"/>
 			<ComponentRef Id="StartupShortcut"/>
+			<ComponentRef Id="WriteInstallPathToRegistry"/>
 			<ComponentRef Id="RegistryCleanupHKCU"/>
 			<ComponentRef Id="RegistryCleanupHKLM"/>
 		</Feature>
@@ -138,17 +133,53 @@
 		</SetDirectory>
 
 		<!--
+			Reuse previously installed location when deployed or upgraded with administrative access.
+		-->
+		<CustomAction Id="SetARPINSTALLLOCATION" Property="ARPINSTALLLOCATION" Value="[DESTINATION]" />
+		<InstallExecuteSequence>
+			<Custom Action="SetARPINSTALLLOCATION" After="InstallValidate">
+				<![CDATA[Privileged]]>
+			</Custom>
+		</InstallExecuteSequence>
+		<Property Id="OLDINSTALLPATH">
+			<RegistrySearch
+				Id="OldInstallPath"
+				Type="raw"
+				Root="HKLM"
+				Key="SOFTWARE\$(var.SafeName)"
+				Name="InstallPath"
+			/>
+		</Property>
+		<SetDirectory Id="DESTINATION" Sequence="both" Value="[OLDINSTALLPATH]">
+			Privileged and not (OLDINSTALLPATH = "")
+		</SetDirectory>
+		<Component Id="WriteInstallPathToRegistry" Directory="TARGETDIR" Guid="{63eaff7f-ca4f-4f80-aa5b-e61f18c312c0}">
+			<RegistryValue
+				Root="HKLM"
+				Key="Software\$(var.SafeName)"
+				Name="InstallPath"
+				Type="string"
+				Value="[DESTINATION]"
+				KeyPath="yes"
+			/>
+			<Condition>Privileged</Condition>
+		</Component>
+
+		<!--
 			Remove older versions but do not overwrite newer versions.
 		-->
-		<Upgrade Id="{9F661F94-F17F-4F5C-B1C8-2955C85C8FE9}">
+		<Upgrade Id="$(var.UpgradeCode)">
+			<UpgradeVersion Minimum="$(var.Version)" OnlyDetect="yes" Property="NEWERVERSIONDETECTED" />
 			<UpgradeVersion
 				Property="OLDERVERSIONBEINGUPGRADED"
-				Minimum="1.0.0"
+				IgnoreRemoveFailure="yes"
+				IncludeMaximum="no"
 				IncludeMinimum="yes"
 				Maximum="$(var.Version)"
-				IncludeMaximum="no"
+				Minimum="1.0.0"
 			/>
 		</Upgrade>
+		<Condition Message="A later version of [ProductName] is already installed.">NOT NEWERVERSIONDETECTED</Condition>
 		<InstallExecuteSequence>
 			<RemoveExistingProducts After="InstallValidate"/>
 		</InstallExecuteSequence>
@@ -182,6 +213,8 @@
 		<WixVariable Id="WixUILicenseRtf" Value="./Temp/License.rtf"/>
 		<Property Id="ARPHELPLINK" Value="$(var.AppHelpLink)"/>
 		<Property Id="ARPURLINFOABOUT" Value="$(var.AppUrlInfoAbout)"/>
+		<Property Id="ARPPRODUCTICON" Value="default.ico"/>
+		<Icon Id="default.ico" SourceFile="./Temp/images/brand/default.ico" />
 
 		<!--
 			Launch the application from the Finish dialog or in auto-update mode.
@@ -213,6 +246,7 @@
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKCU" Key="Software\Classes\$(var.SafeName).File.PDN"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKCU" Key="Software\Classes\$(var.SafeName).File.XMPP"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKCU" Key="Software\Classes\$(var.SafeName).Url.xmpp"/>
+			<Condition>NOT LAUNCHAPP</Condition>
 		</Component>
 		<Component Id="RegistryCleanupHKLM" Directory="TARGETDIR" Guid="{dcd110c8-a3b5-4df0-9dbb-64ea3cc2bedb}">
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\Applications\$(var.SafeName).exe"/>
@@ -220,7 +254,7 @@
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\$(var.SafeName).File.PDN"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\$(var.SafeName).File.XMPP"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\$(var.SafeName).Url.xmpp"/>
-			<Condition>ALLUSERS = 1</Condition>
+			<Condition>Privileged and (NOT LAUNCHAPP)</Condition>
 		</Component>
 	</Product>
 </Wix>
