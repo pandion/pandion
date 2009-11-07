@@ -29,13 +29,11 @@ function Headline ()
 		if ( i <= 8 )
 			with ( external.createWindow( 'headline' + i, external.globals( 'cwd' ) + 'toaster.html', [ window, this ] ) )
 			{
-				external.wnd.pushFocus();
 				showTitlebar( false );
 				MinHeight = MinWidth = 0;
 				setAOT( true );
 				setSize( 200, 120 );
 				setPos( screen.availWidth - 218, screen.availHeight - i * 120 );
-				external.wnd.popFocus();
 			}
 	}
 }
