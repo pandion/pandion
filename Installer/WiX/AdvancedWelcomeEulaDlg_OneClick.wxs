@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	Changes to create simpler 1-click installer
-    Copyright (c) Sebastiaan Deckers.  All rights reserved.
-    
-    The use and distribution terms for this software are covered by the
-    Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-    which can be found in the file CPL.TXT at the root of this distribution.
-    By using this software in any fashion, you are agreeing to be bound by
-    the terms of this license.
-    
-    You must not remove this notice, or any other, from this software.
+	This file is part of Pandion instant messenger
+	Copyright (c) 2009 Sebastiaan Deckers
+	License: GNU General Public License version 3 or later
 -->
 <!--
     Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -30,7 +23,7 @@
 			-->
             <Dialog Id="AdvancedWelcomeEulaDlg_OneClick" Width="370" Height="270" Title="!(loc.AdvancedWelcomeEulaDlg_Title)">
                 <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="!(loc.AdvancedWelcomeEulaDlgBannerBitmap)" />
-                <Control Id="Title" Type="Text" X="20" Y="10" Width="300" Height="24" Transparent="yes" NoPrefix="yes" Text="!(loc.AdvancedWelcomeEulaDlgTitle)" />
+                <Control Id="Title" Type="Text" X="20" Y="10" Width="150" Height="24" Transparent="yes" NoPrefix="yes" Text="!(loc.AdvancedWelcomeEulaDlgTitle)" />
 				<!--
                 <Control Id="LicenseText" Type="ScrollableText" X="20" Y="55" Width="330" Height="121" Sunken="yes" TabSkip="no">
                     <Text SourceFile="!(wix.WixUILicenseRtf=$(var.licenseRtf))" />
