@@ -60,7 +60,8 @@ IOleObject* AxHostWnd::Create(HWND hWndParent, std::wstring controlName)
 		WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS,
 		rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top,
 		m_hWndParent, 0, GetModuleHandle(NULL), this);
-	::SetWindowPos(m_hWnd, HWND_TOP, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+	::SetWindowPos(m_hWnd, HWND_TOP, 0, 0, 0, 0, SWP_NOACTIVATE |
+		SWP_NOSIZE | SWP_NOMOVE);
 
 	CLSID clsid;
 	::CLSIDFromProgID(controlName.c_str(), &clsid);

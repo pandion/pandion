@@ -215,8 +215,6 @@ library PandionLib
 			[in,defaultvalue(1)] DWORD nParams);
 		HRESULT focus();
 		HRESULT isActive ([out,retval] BOOL*);
-		HRESULT pushFocus();
-		HRESULT popFocus();
 		HRESULT setMinHandler([in] BSTR);
 		HRESULT setCloseHandler([in] BSTR);
 		HRESULT setMenuHandler([in] BSTR);

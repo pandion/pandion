@@ -36,9 +36,6 @@ class CPdnWnd :
 protected:
 	WNDCLASSEX      m_WindowClass;
 	HWND            m_hWnd;
-	HWND	        m_hWndFocus;
-	HWND	        m_hWndActiveWindow;
-	HWND	        m_hWndLastFocusedWindow;
 	AxHostWnd       m_ActiveXHost;
 
 	UINT            m_TaskbarRestartMessage;
@@ -194,8 +191,6 @@ public:
 	STDMETHOD(get_isMinimized)(BOOL *);
 	STDMETHOD(get_isMaximized)(BOOL *);
 	STDMETHOD(get_isHidden)(BOOL *);
-	STDMETHOD(pushFocus)();
-	STDMETHOD(popFocus)();
 	STDMETHOD(setMinHandler)(BSTR);
 	STDMETHOD(setCloseHandler)(BSTR);
 	STDMETHOD(setMenuHandler)(BSTR);

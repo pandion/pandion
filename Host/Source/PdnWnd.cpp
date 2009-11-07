@@ -55,9 +55,6 @@ CPdnWnd::CPdnWnd() :
 	m_WindowClass.lpszClassName = L"Pandion Window";
 	m_WindowClass.hIconSm = NULL;
 	m_hWnd = NULL;
-	m_hWndFocus = NULL;
-	m_hWndActiveWindow = NULL;
-	m_hWndLastFocusedWindow = NULL;
 
 	m_TaskbarRestartMessage = -1;
 
@@ -316,16 +313,17 @@ LRESULT CPdnWnd::OnGetMinMaxInfo(UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 LRESULT CPdnWnd::OnActivate(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+	static HWND m_hWndLastFocusedWindow = NULL;
 	if (LOWORD(wParam) == WA_INACTIVE)
 	{
-		if (::GetFocus() && m_hWndLastFocusedWindow == NULL)
-			m_hWndLastFocusedWindow = ::GetFocus();
+/*		if (::GetFocus() && m_hWndLastFocusedWindow == NULL)
+			m_hWndLastFocusedWindow = ::GetFocus();*/
 	}
 	else
 	{
-		::SetActiveWindow(::GetWindow(m_hWnd, GW_CHILD));
+/*		::SetActiveWindow(::GetWindow(m_hWnd, GW_CHILD));
 		if (m_hWndLastFocusedWindow)
-			::SetFocus(m_hWndLastFocusedWindow);
+			::SetFocus(m_hWndLastFocusedWindow);*/
 		if(m_sActivationHandler.length())
             FireEvent(m_sActivationHandler, 0, 0);
 	}
@@ -336,7 +334,7 @@ LRESULT CPdnWnd::OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	RECT rect;
 	::GetClientRect(m_hWnd, &rect);
 	m_ActiveXHost.SetWindowPos(HWND_TOP, rect.left, rect.top, 
-		rect.right - rect.left, rect.bottom - rect.top, 0);
+		rect.right - rect.left, rect.bottom - rect.top, SWP_NOACTIVATE);
 	return 0;
 }
 LRESULT CPdnWnd::OnCommand(UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -641,7 +639,7 @@ STDMETHODIMP CPdnWnd::setTitle(BSTR Title)
 STDMETHODIMP CPdnWnd::setAOT(BOOL b)
 {
 	::SetWindowPos(m_hWnd, b ? HWND_TOPMOST : HWND_NOTOPMOST, 0, 0, 0, 0,
-		SWP_NOMOVE | SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOACTIVATE);
+		SWP_NOMOVE | SWP_NOACTIVATE | SWP_NOSIZE);
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::minimize()
@@ -868,7 +866,7 @@ STDMETHODIMP CPdnWnd::get_params(VARIANT* retVal)
 }
 STDMETHODIMP CPdnWnd::focus()
 {
-	return 	SetForegroundWindow(m_hWnd) ? S_OK : S_FALSE;
+	return SetForegroundWindow(m_hWnd) ? S_OK : S_FALSE;
 }
 STDMETHODIMP CPdnWnd::get_left(VARIANT* retVal)
 {
@@ -921,25 +919,6 @@ STDMETHODIMP CPdnWnd::isActive(BOOL *b)
 		*b = FALSE;
 	return S_OK;
 }
-STDMETHODIMP CPdnWnd::pushFocus()
-{
-	m_hWndActiveWindow = ::GetActiveWindow();
-	m_hWndFocus = ::GetFocus();
-	return S_OK;
-}
-
-STDMETHODIMP CPdnWnd::popFocus()
-{
-	if (::IsWindow(m_hWndActiveWindow))
-	{
-		::SetActiveWindow(m_hWndActiveWindow);
-		::SetFocus(m_hWndFocus);
-		m_hWndFocus = NULL;
-		m_hWndActiveWindow = NULL;
-	}
-	return S_OK;
-}
-
 STDMETHODIMP CPdnWnd::get_isMinimized(BOOL* pBool)
 {
 	*pBool = ::IsIconic(m_hWnd);
