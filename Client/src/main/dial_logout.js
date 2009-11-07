@@ -24,8 +24,6 @@ function dial_logout ()
 			external.windows( keys[i] ).close();
 
 	SettingsSave();
-	external.globals( 'cfg' ).RemoveAll();
-	external.globals( 'cfg' ) = false;
 
 	dial_login();
 }
