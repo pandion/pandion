@@ -213,6 +213,7 @@
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKCU" Key="Software\Classes\$(var.SafeName).File.PDN"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKCU" Key="Software\Classes\$(var.SafeName).File.XMPP"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKCU" Key="Software\Classes\$(var.SafeName).Url.xmpp"/>
+			<Condition>NOT LAUNCHAPP</Condition>
 		</Component>
 		<Component Id="RegistryCleanupHKLM" Directory="TARGETDIR" Guid="{dcd110c8-a3b5-4df0-9dbb-64ea3cc2bedb}">
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\Applications\$(var.SafeName).exe"/>
@@ -220,7 +221,7 @@
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\$(var.SafeName).File.PDN"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\$(var.SafeName).File.XMPP"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\$(var.SafeName).Url.xmpp"/>
-			<Condition>ALLUSERS = 1</Condition>
+			<Condition>Privileged and (NOT LAUNCHAPP)</Condition>
 		</Component>
 	</Product>
 </Wix>
