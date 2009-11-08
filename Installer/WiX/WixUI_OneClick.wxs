@@ -25,18 +25,12 @@ First-time install dialog sequence:      Maintenance dialog sequence:
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Fragment>
-		<!--
-        <UI Id="WixUI_Minimal">
-		-->
         <UI Id="WixUI_OneClick">
             <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
             <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
             <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
 
             <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
-			<!--
-            <Property Id="WixUI_Mode" Value="Minimal" />
-			-->
             <Property Id="WixUI_Mode" Value="OneClick" />
 
             <DialogRef Id="ErrorDlg" />
@@ -47,12 +41,15 @@ First-time install dialog sequence:      Maintenance dialog sequence:
             <DialogRef Id="ProgressDlg" />
             <DialogRef Id="ResumeDlg" />
             <DialogRef Id="UserExit" />
-			<!--
-            <DialogRef Id="WelcomeEulaDlg" />
-			-->
             <DialogRef Id="AdvancedWelcomeEulaDlg_OneClick" />
 
-            <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
+			<!-- <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish> -->
+            <InstallUISequence>
+				<Custom OnExit="success" Action="SkipFinishDialog"/>
+            </InstallUISequence>
+            <AdminUISequence>
+				<Custom OnExit="success" Action="SkipFinishDialog"/>
+            </AdminUISequence>
 
             <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
 
@@ -64,6 +61,9 @@ First-time install dialog sequence:      Maintenance dialog sequence:
 
             <Property Id="ARPNOMODIFY" Value="1" />
         </UI>
+
+		<!-- NOOP action to substitute the Finish dialog -->
+		<CustomAction Id="SkipFinishDialog" Property="Foo" Value="Bar"/>
 
         <UIRef Id="WixUI_Common" />
     </Fragment>

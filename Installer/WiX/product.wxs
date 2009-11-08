@@ -217,22 +217,15 @@
 		<Icon Id="default.ico" SourceFile="./Temp/images/brand/default.ico" />
 
 		<!--
-			Launch the application from the Finish dialog or in auto-update mode.
+			Launch the application after normal installation or in silent auto-update mode.
 			To run auto-update mode use the following command line:
 			msiexec.exe /i $(var.SafeName).msi LAUNCHAPP=yes
 		-->
-		<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch $(var.Name)"/>
-		<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1"/>
 		<Property Id="WixShellExecTarget" Value="[DESTINATION]$(var.SafeName).exe"/>
 		<CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes"/>
-		<UI>
-			<Publish Dialog="ExitDialog" Control="Finish" Event="DoAction" Value="LaunchApplication">
-				WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed
-			</Publish>
-		</UI>
 		<InstallExecuteSequence>
 			<Custom Action="LaunchApplication" After="InstallFinalize">
-				<![CDATA[LAUNCHAPP]]>
+				<![CDATA[LAUNCHAPP="yes" or UILevel=5]]>
 			</Custom>
 		</InstallExecuteSequence>
 
