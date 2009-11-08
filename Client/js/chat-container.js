@@ -1120,7 +1120,7 @@ function MenuBarUpdate ( section )
 		actions.AddItem( true, false, false, false, contact.Handle, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_contact' ), 20 );
 		actions.AddSeparator();
 		actions.AddItem( Connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_profile' ), 22 );
-		actions.AddItem( Connected && IsOnline, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_file' ), 23 );
+//		actions.AddItem( Connected && IsOnline, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_file' ), 23 );
 
 		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'main', 'menu_axn' ), 1, 2, actions );
 	}
@@ -1208,9 +1208,9 @@ function MenuBarSelect ( id )
 		case 22: // view profile
 			external.wnd.params[0].dial_userinfo( gContainer.Trackers( gContainer.ActiveTrackerAddress ).Address );
 			break;
-		case 23: // send file
-			external.wnd.params[0].dial_file( gContainer.Trackers( gContainer.ActiveTrackerAddress ).Address );
-			break;
+//		case 23: // send file
+//			external.wnd.params[0].dial_file( gContainer.Trackers( gContainer.ActiveTrackerAddress ).Address );
+//			break;
 
 		case 30: // font
 			external.wnd.params[0].dial_font();
@@ -1373,7 +1373,7 @@ function MouseMenu ()
 	var Blocked = external.globals( 'block' ).Exists( ShortAddress ) && ! IsMe;
 
 	var Menu = external.newPopupMenu;
-	Menu.AddItem( Online, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_filetransfer' ), 1 );
+//	Menu.AddItem( Online, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_filetransfer' ), 1 );
 
 	var submenu_rooms = external.newPopupMenu;
 	submenu_rooms.AddItem( Connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_room_create' ), 200 );
@@ -1411,9 +1411,9 @@ function MouseMenu ()
 
 	switch ( Menu.Choice )
 	{
-		case 1:
-			external.wnd.params[0].dial_file( ShortAddress + '/' + Resource );
-		break;
+//		case 1:
+//			external.wnd.params[0].dial_file( ShortAddress + '/' + Resource );
+//		break;
 		case 200:
 			external.wnd.params[0].dial_conference_create();
 		break;

@@ -156,14 +156,14 @@ function ClientRosterVcard ( iq )
 		var firstname	= vcard.get( 'given' ).replace( /\s+/mg, ' ' );
 		var lastname	= vcard.get( 'family' ).replace( /\s+/mg, ' ' );
 		var show = '';
-		if ( nickname.length )
-			show = nickname;
-		else if ( fullname.length )
+		if ( fullname.length )
 			show = fullname;
 		else if ( firstname.length && lastname.length )
 			show = firstname + ' ' + lastname;
 		else if ( firstname.length )
 			show = firstname;
+		else if ( nickname.length )
+			show = nickname;
 		if ( show.length && show != external.globals( 'ClientRoster' ).Items( ShortAddress ).Name )
 			external.globals( 'ClientRoster' ).Items( ShortAddress ).SetName( show );
 	}

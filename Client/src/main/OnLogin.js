@@ -488,7 +488,7 @@ function OnLoginRoster ( iq )
 
 	/* Activate the fileserver on a random or mapped port
 	 */
-	external.HTTPEngine.Listen( isNaN( parseInt( external.globals( 'cfg' )( 'filetransferport' ), 10 ) ) ? 0 : parseInt( external.globals( 'cfg' )( 'filetransferport' ), 10 ) );
+//	external.HTTPEngine.Listen( isNaN( parseInt( external.globals( 'cfg' )( 'filetransferport' ), 10 ) ) ? 0 : parseInt( external.globals( 'cfg' )( 'filetransferport' ), 10 ) );
 
 	/* Execute any command line actions that were queued while disconnected.
 	 */

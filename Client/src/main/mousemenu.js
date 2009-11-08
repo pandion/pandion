@@ -7,7 +7,7 @@ function mousemenu ( jid, res, group )
 	var Online = external.globals( 'ClientRoster' ).Items.Exists( jid ) && external.globals( 'ClientRoster' ).Items( jid ).Resources.Count;
 	var menu = external.newPopupMenu;
 	menu.AddItem( true,		false, false, true,  0, external.globals( 'Translator' ).Translate( 'main', 'menu_message' ),		1 );
-	menu.AddItem( Online,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_filetransfer' ),	10 );
+//	menu.AddItem( Online,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_filetransfer' ),	10 );
 
 	var submenu_rooms = external.newPopupMenu;
 	submenu_rooms.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_room_create' ), 100 );
@@ -80,7 +80,7 @@ function mousemenu ( jid, res, group )
 		case   7: dial_block( jid );														break;
 		case   8: external.globals( 'ClientRoster' ).Items( jid ).Purge( false, group );	break;
 		case   9: external.globals( 'ClientRoster' ).Items( jid ).ReRequest();				break;
-		case  10: dial_file( jid + '/' + res );												break;
+//		case  10: dial_file( jid + '/' + res );												break;
 		case 100: dial_conference_create();													break;
 		case 200: dial_group_create( jid, group );											break;
 		case 300: dial_group_create( jid, '' );												break;

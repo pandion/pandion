@@ -2,8 +2,8 @@ function XMPPOnDisconnected ()
 {
 	warn( 'EVNT: Disconnected' );
 
-	external.globals( 'HTTPEnginePort' ) = 0;
-	external.HTTPEngine.StopListening( 0 );
+//	external.globals( 'HTTPEnginePort' ) = 0;
+//	external.HTTPEngine.StopListening( 0 );
 
 	external.globals( 'ClientRoster' ).AllOffline();
 	external.globals( 'ClientServices' ).Clear();

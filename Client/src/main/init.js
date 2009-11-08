@@ -32,7 +32,7 @@ function init ()
 	external.globals.Add( 'CommandLineQueue', new Array() ); // buffer of command line actions
 	external.globals.Add( 'debug', false ); // enables console output
 	external.globals.Add( 'headlines', new Array() ); // alerts and headlines buffer
-	external.globals.Add( 'HTTPEnginePort', 0 ); // port on which the HTTPEngine is listening
+//	external.globals.Add( 'HTTPEnginePort', 0 ); // port on which the HTTPEngine is listening
 	external.globals.Add( 'language', '' ); // which translation is being used
 	external.globals.Add( 'last_address', '' ); // last used address
 	external.globals.Add( 'last_autoupdate', 0 ); // time of the last auto update check
@@ -276,7 +276,7 @@ function init ()
 
 	/* Connect to the HTTPEngine
 	 */
-	external.HTTPEngine.subscribe( external.wnd );
+//	external.HTTPEngine.subscribe( external.wnd );
 
 	/* Menubar event
 	 */
