@@ -93,8 +93,6 @@ public:
 		WPARAM wParam, LPARAM lParam);
 	virtual LRESULT OnActivate(UINT uMsg,
 		WPARAM wParam, LPARAM lParam);
-	virtual LRESULT OnNCActivate(UINT uMsg,
-		WPARAM wParam, LPARAM lParam);
 	virtual LRESULT OnSize(UINT uMsg,
 		WPARAM wParam, LPARAM lParam);
 	virtual LRESULT OnCommand(UINT uMsg,
