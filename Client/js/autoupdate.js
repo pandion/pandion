@@ -36,18 +36,26 @@ window.attachEvent("onload", function () {
 	};
 
 	var parseAppcastFromEntry = function (entry) {
-		var appcastNamespaceUri = "http://pandion.im/protocol/appcast/1.0";
-		var appcast = {
-			arguments: entry.selectSingleNode("link[@rel='enclosure'][@href]").attributes.getQualifiedItem("arguments", appcastNamespaceUri),
-			name: entry.attributes.getQualifiedItem( 'name', appcastNamespaceUri).value,
-			enclosure: entry.selectSingleNode("link[@rel='enclosure']/@href").value,
-			track: entry.attributes.getQualifiedItem("track", appcastNamespaceUri).value,
-			version: entry.attributes.getQualifiedItem("version", appcastNamespaceUri).value
+		var getXpathTagValue = function (element, xpath) {
+			var match = element.selectSingleNode(xpath);
+			return match ? match.text : "";
 		};
-		appcast["arguments"] = appcast["arguments"] ? appcast["arguments"].value : "";
-		appcast["alternate"] = entry.selectSingleNode("link[@rel='alternate'][@type='text/html' or @type='text/plain']/@href");
-		appcast["alternate"] = appcast["alternate"] ? appcast["alternate"].value : "";
-		return appcast;
+		var getNamespacedAttribute = function (element, attribute, xmlns) {
+			if (!("attributes" in element))
+				return "";
+			var match = element.attributes.getQualifiedItem(attribute, xmlns);
+			return match ? match.value : "";
+		};
+		var appcastNamespaceUri = "http://pandion.im/protocol/appcast/1.0";
+		return {
+			alternate: getXpathTagValue(entry, "link[@rel='alternate'][@type='text/html' or @type='text/plain']/@href"),
+			arguments: getNamespacedAttribute(entry.selectSingleNode("link[@rel='enclosure'][@href]"), "arguments", appcastNamespaceUri),
+			enclosure: entry.selectSingleNode("link[@rel='enclosure']/@href").value,
+			name: getNamespacedAttribute(entry, "name", appcastNamespaceUri),
+			summary: getXpathTagValue(entry, "summary"),
+			track: getNamespacedAttribute(entry, "track", appcastNamespaceUri),
+			version: getNamespacedAttribute(entry, "version", appcastNamespaceUri)
+		};
 	};
 
 	var versionIsHigherThanCurrent = function (version) {
@@ -69,6 +77,7 @@ window.attachEvent("onload", function () {
 		document.getElementById("txt-version").innerText = external.globals("Translator").Translate("autoupdate", "title", [appcastEntry.name, appcastEntry.version]);
 		document.getElementById("txt-whats-new").href = appcastEntry.alternate ? appcastEntry.alternate : external.globals("ClientPluginContainer").ParseURL(external.globals("softwareurl"));
 		document.getElementById("progress-version").innerText = external.globals("softwareversion") + " " + external.globals("softwaretrack");
+		document.createElement("div").innerHTML = appcastEntry.summary;
 
 		if (appcastEntry.enclosure.length) {
 			appcastEntry.enclosure = appcastEntry.enclosure.substr(appcastEntry.enclosure.indexOf("//") + 2);
