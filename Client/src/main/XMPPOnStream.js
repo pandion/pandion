@@ -303,7 +303,26 @@ function XMPPOnStream ( ReceivedXML )
 			OnLoginAbort();
 		else
 		{
+			var temporaryStreamErrors = [
+				'bad-format',
+				'connection-timeout',
+				'internal-server-error',
+				'invalid-from',
+				'invalid-xml',
+				'policy-violation',
+				'resource-constraint',
+				'restricted-xml',
+				'system-shutdown',
+				'unsupported-stanza-type',
+				'xml-not-well-formed'
+			];
 			external.globals( 'XMPPReconnect' ) = false;
+			for ( var i in temporaryStreamErrors )
+				if ( ReceivedXML.documentElement.selectSingleNode( '/stream:error/' + temporaryStreamErrors[i] ) !== null )
+				{
+					external.globals( 'XMPPReconnect' ) = true;
+					break;
+				}
 			var Str = '</stream:stream>';
 			warn( 'SENT: ' + Str );
 			external.XMPP.SendText( Str );
