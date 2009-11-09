@@ -36,7 +36,7 @@ window.attachEvent("onload", function () {
 		if (document.getElementById("default-xmpp-client").checked) {
 			var logo = external.globals("cwd") + "..\\images\\brand\\default.ico";
 			var open = "\"" + external.globals("cwd") + "..\\" + external.globals("softwarenamesafe") + ".exe\"";
-			client.os.registry.registerDefaultPrograms({
+			client.os.registerDefaultPrograms({
 				description: external.globals("Translator").Translate("main", "program-description"),
 				icon: logo,
 				name: external.globals("softwarenamesafe"),
@@ -66,13 +66,15 @@ window.attachEvent("onload", function () {
 						icon: logo,
 						name: external.globals("Translator").Translate("main", "extension-xmpp"),
 						extension: [".xmpp"],
-						mime: ["application/jabber+xml"]
+						mime: ["application/jabber+xml"],
+						shortcut: true
 					},
 					"xmpp": {
 						command: open + " \"%1\"",
 						icon: logo,
 						name: external.globals("Translator").Translate("main", "uri-xmpp"),
-						protocol: ["xmpp"]
+						protocol: ["xmpp"],
+						shortcut: true
 					}
 				}
 			});
