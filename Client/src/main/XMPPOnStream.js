@@ -174,7 +174,7 @@ function XMPPOnStream ( ReceivedXML )
 
 			/* Solve the MD5 challenge
 			 */
-			} else if (dataset["algorithm"] == "md5-sess" && "realm" in dataset && "nonce" in dataset && "qop" in dataset) {
+			} else if (dataset["algorithm"] == "md5-sess" && "nonce" in dataset && "qop" in dataset) {
 				var response = {
 //					"authzid": external.globals("cfg")("username") + "@" + external.globals("cfg")("server"),
 					"charset": "utf-8",
