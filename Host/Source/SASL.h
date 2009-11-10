@@ -22,14 +22,14 @@
 #pragma once
 #include "DispInterfaceImpl.h"
 #include "SSPI.h"
-
-#define PACKAGE_NAME	TEXT("Negotiate")
+#include "GSSAPI.h"
 
 class SASL :
 	public DispInterfaceImpl<ISASL>
 {
 private:
-	SSPI m_SSPI;
+	SSPI   m_SSPI;
+	GSSAPI m_GSSAPI;
 public:
 	SASL();
 	~SASL();

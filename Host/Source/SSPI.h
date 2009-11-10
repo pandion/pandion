@@ -23,8 +23,6 @@
 #pragma once
 #include "DispInterfaceImpl.h"
 
-#define PACKAGE_NAME	TEXT("Negotiate")
-
 class SSPI :
 	public DispInterfaceImpl<ISSPI>
 {

@@ -28,6 +28,7 @@
 
 SASL::SASL()
 {
+	m_CannotSelfDelete = true;
 }
 SASL::~SASL()
 {
@@ -114,7 +115,7 @@ STDMETHODIMP SASL::get_SSPI(VARIANT* pDispatch)
 STDMETHODIMP SASL::get_GSSAPI(VARIANT* pDispatch)
 {
 	pDispatch->vt = VT_DISPATCH;
-	return m_SSPI.QueryInterface(IID_IDispatch, (void**)&pDispatch->pdispVal);
+	return m_GSSAPI.QueryInterface(IID_IDispatch, (void**)&pDispatch->pdispVal);
 }
 void SASL::HexString(const unsigned char *binaryData, char *hexString, int n)
 {
