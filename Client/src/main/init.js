@@ -286,14 +286,19 @@ function init ()
 	/* Restore window display settings
 	 */
 	external.wnd.setAOT( external.globals( 'aot' ).toString() == 'true' );
-	external.wnd.MinWidth = 0;
-	external.wnd.MinHeight = 200;
-	external.globals( 'lastwidth' ) = Math.min( Math.max( parseInt( external.globals( 'lastwidth' ), 10 ), 0 ), 10000 );
-	external.globals( 'lastheight' ) = Math.min( Math.max( parseInt( external.globals( 'lastheight' ), 10 ), 200 ), 10000 );
-	external.globals( 'lastposx' ) = Math.max( parseInt( external.globals( 'lastposx' ), 10 ), -10000 );
-	external.globals( 'lastposy' ) = Math.max( parseInt( external.globals( 'lastposy' ), 10 ), -10000 );
-	external.wnd.setSize( external.globals( 'lastwidth' ), external.globals( 'lastheight' ) );
-	external.wnd.setPos( external.globals( 'lastposx' ), external.globals( 'lastposy' ) );
+	external.globals( 'lastwidth' ) = parseInt( external.globals( 'lastwidth' ), 10 );
+	external.globals( 'lastheight' ) = parseInt( external.globals( 'lastheight' ), 10 );
+	external.globals( 'lastposx' ) = parseInt( external.globals( 'lastposx' ), 10 );
+	external.globals( 'lastposy' ) = parseInt( external.globals( 'lastposy' ), 10 );
+	if ( external.IsRectOnMonitor(
+		external.globals( 'lastposy' ),
+		external.globals( 'lastposx' ) + external.globals( 'lastwidth' ),
+		external.globals( 'lastposy' ) + external.globals( 'lastheight' ),
+		external.globals( 'lastposx' ) )
+	)
+		external.wnd.setPos( external.globals( 'lastposx' ), external.globals( 'lastposy' ) );
+	else
+		external.wnd.setPos( 400, 50 );
 
 	/* Use SSPI to login
 	 */

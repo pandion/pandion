@@ -17,12 +17,29 @@ function SaveCommonProfile ()
 	Data.Add( 'welcomescreen', external.globals( 'welcomescreen' ) );
 	Data.Add( 'welcomesettings', external.globals( 'welcomesettings' ) );
 
-	Data.Add( 'lastposx', external.wnd.left );
-	Data.Add( 'lastposy', external.wnd.top );
-	if ( external.wnd.width > 100 )
-		Data.Add( 'lastwidth', external.wnd.width );
-	if ( external.wnd.height > 100 )
-		Data.Add( 'lastheight', external.wnd.height );
+	if ( external.IsRectOnMonitor(
+		external.wnd.top,
+		external.wnd.left + external.globals( 'lastwidth' ),
+		external.wnd.top + external.globals( 'lastheight' ),
+		external.wnd.left )
+	)
+	{
+		Data.Add( 'lastposx', external.wnd.left );
+		Data.Add( 'lastposy', external.wnd.top );
+	}
+	else
+	{
+		Data.Add( 'lastposx', external.globals( 'lastposx' ) );
+		Data.Add( 'lastposy', external.globals( 'lastposy' ) );
+	}
+
+	if ( document.getElementById( 'content-dialog' ).style.display == 'block' )
+	{
+		if ( external.wnd.width > 100 )
+			Data.Add( 'lastwidth', external.wnd.width );
+		if ( external.wnd.height > 100 )
+			Data.Add( 'lastheight', external.wnd.height );
+	}
 
 	hash2file( Data, external.globals( 'usersdir' ) + 'global.xml' );
 }

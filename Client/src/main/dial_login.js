@@ -29,6 +29,7 @@ function dial_login ( visible )
 	document.getElementById( 'signin-dialog' ).style.display = 'block';
 	external.wnd.MinWidth = 330;
 	external.wnd.MinHeight = 530;
+	external.wnd.setSize( Math.max( external.globals( 'lastwidth' ), 330 ), Math.max( external.globals( 'lastheight' ), 530 ) );
 	MenuBarUpdate();
 	if ( visible )
 	{

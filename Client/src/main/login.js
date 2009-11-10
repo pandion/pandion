@@ -13,6 +13,7 @@ function login ( Address, Password )
 	document.getElementById( 'signin-dialog' ).style.display = 'none';
 	external.wnd.MinWidth = 0;
 	external.wnd.MinHeight = 0;
+	external.wnd.setSize( Math.max( external.globals( 'lastwidth' ), 200 ), Math.max( external.globals( 'lastheight' ), 250 ) );
 
 	/* Reset the client
 	 */
