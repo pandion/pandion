@@ -33,12 +33,14 @@ function SaveCommonProfile ()
 		Data.Add( 'lastposy', external.globals( 'lastposy' ) );
 	}
 
+	Data.Add( 'lastwidth', external.globals( 'lastwidth' ) );
+	Data.Add( 'lastheight', external.globals( 'lastheight' ) );
 	if ( document.getElementById( 'content-dialog' ).style.display == 'block' )
 	{
 		if ( external.wnd.width > 100 )
-			Data.Add( 'lastwidth', external.wnd.width );
+			Data( 'lastwidth' ) = external.wnd.width;
 		if ( external.wnd.height > 100 )
-			Data.Add( 'lastheight', external.wnd.height );
+			Data( 'lastheight' ) = external.wnd.height;
 	}
 
 	hash2file( Data, external.globals( 'usersdir' ) + 'global.xml' );
