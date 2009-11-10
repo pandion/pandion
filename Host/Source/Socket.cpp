@@ -83,7 +83,7 @@ DWORD Socket::Connect(_bstr_t ServerAddress, WORD wPort)
 
 	LeaveCriticalSection(&m_csWriting);
 	LeaveCriticalSection(&m_csReading);
-	return ::WSAGetLastError();
+	return cerror == SOCKET_ERROR? ::WSAGetLastError() : 0;
 }
 
 /*
