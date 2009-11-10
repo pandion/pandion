@@ -11,7 +11,7 @@ window.attachEvent("onload", function () {
 		var topAppcastEntry = null;
 		var topTimestamp = Number.NEGATIVE_INFINITY;
 		for (var i = 0; i < appcasts.length; i++)
-			if (appcasts[i].attributes.getQualifiedItem("track", appcastNamespaceUri).value === track) {
+			if (appcasts[i].attributes.getQualifiedItem("track", appcastNamespaceUri).value == track) {
 				var timestamp = appcasts[i].selectSingleNode("updated").text;
 				var timeFromEpoch = client.utils.iso8601(timestamp);
 				if (timeFromEpoch > topTimestamp) {
@@ -26,7 +26,7 @@ window.attachEvent("onload", function () {
 		var appcastNamespaceUri = "http://pandion.im/protocol/appcast/1.0";
 		var appcasts = getAppcastsFromFeed(doc);
 		for (var i = 0; i < appcasts.length; i++)
-			if (appcasts[i].attributes.getQualifiedItem("version", appcastNamespaceUri).value === external.globals("softwareversion"))
+			if (appcasts[i].attributes.getQualifiedItem("version", appcastNamespaceUri).value == external.globals("softwareversion"))
 				return parseAppcastFromEntry(appcasts[i]);
 		return null;
 	};
@@ -219,14 +219,16 @@ window.attachEvent("onload", function () {
 						var button = document.createElement("<button type='button' />");
 						button.className = "update-button";
 						insertSimpleElement(button, "h4", tracks[name].name + " " + tracks[name].version + " " + name);
-						if (tracks[name].version === external.globals("softwareversion")) {
+						if (tracks[name].version == external.globals("softwareversion")) {
 							button.disabled = true;
 							insertSimpleElement(button, "div", external.globals("Translator").Translate("autoupdate", "up-to-date"));
 						}
-						else if (name === "stable")
+						else if (name == external.globals("softwaretrack") && !versionIsHigherThanCurrent(tracks[name].version))
+							insertSimpleElement(button, "div", external.globals("Translator").Translate("autoupdate", "previous-version"));
+						else if (name == "stable")
 							insertSimpleElement(button, "div", external.globals("Translator").Translate("autoupdate", "recommended"));
 						insertSimpleElement(button, "p", descriptions[name]);
-						document.getElementById("tracks-" + (name === external.globals("softwaretrack") ? "current" : "alternative")).appendChild(button);
+						document.getElementById("tracks-" + (name == external.globals("softwaretrack") ? "current" : "alternative")).appendChild(button);
 						button.onclick = (function (name) {return function () {
 							client.css.hide(document.getElementById("available-updates"));
 							client.css.show(document.getElementById("download-progress"));
@@ -237,7 +239,7 @@ window.attachEvent("onload", function () {
 				client.css.hide(document.getElementById("available-preloader"));
 				if (!doc) {
 					client.css.show(document.getElementById("txt-no-feed"));
-				} else if (document.getElementById("tracks-current").childNodes.length + document.getElementById("tracks-alternative").childNodes.length === 0) {
+				} else if (document.getElementById("tracks-current").childNodes.length + document.getElementById("tracks-alternative").childNodes.length == 0) {
 					client.css.show(document.getElementById("txt-unavailable"));
 				} else {
 					if (document.getElementById("tracks-current").childNodes.length)

@@ -630,6 +630,7 @@
       <value>Later</value>
     </item>
     <code id="up-to-date">Up to date</code>
+    <code id="previous-version">Previous version</code>
     <code id="recommended">Recommended</code>
     <code id="description-stable">Stable versions have been tested for the longest time.</code>
     <code id="description-beta">Contains bug fixes and features that are being tested.</code>

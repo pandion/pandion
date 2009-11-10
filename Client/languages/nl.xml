@@ -629,6 +629,7 @@
       <value>Later</value>
     </item>
     <code id="up-to-date">Actueel</code>
+    <code id="previous-version">Vorige versie</code>
     <code id="recommended">Aanbevolen</code>
     <code id="description-stable">Stabiele versies zijn het langst getest.</code>
     <code id="description-beta">Bevat bugfixen en nieuwe functies die nog worden getest.</code>

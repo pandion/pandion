@@ -33,7 +33,7 @@ function MenuBarUpdate ( section )
 		status.AddSeparator();
 		status.AddItem( roster, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_change' ), 107 );
 		status.AddSeparator();
-		status.AddItem( roster, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_received' ), 13 );
+//		status.AddItem( roster, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_received' ), 13 );
 		status.AddItem( roster, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_export' ), 14 );
 		status.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_import' ), 15 );
 		status.AddSeparator();
@@ -301,6 +301,8 @@ function MenuBarSelect ( id )
 								}
 							}
 							external.globals( 'ClientRoster' ).RefreshAll();
+							external.globals( 'ClientRoster' ).Search.Reset();
+							external.globals( 'ClientRoster' ).Search.Blur();
 							var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
 							for ( var i = 0; i < ContainerNames.length; ++i )
 								external.globals( 'ChatSessionPool' ).Containers( ContainerNames[i] ).LanguageUpdate();

@@ -1092,7 +1092,7 @@ function MenuBarUpdate ( section )
 		external.wnd.menuBar.RemItem( 1 );
 
 		var file = external.newPopupMenu;
-		file.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_file_received' ), 10 );
+//		file.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_file_received' ), 10 );
 		file.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_file_history' ), 11 );
 		file.AddSeparator();
 		file.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_file_close' ), 12 );
