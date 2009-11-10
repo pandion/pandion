@@ -91,6 +91,9 @@ public:
 	STDMETHOD(InstallMSIESearchProvider)(BSTR url, BSTR* serviceID);
 	STDMETHOD(SetDefaultMSIESearchProvider)(BSTR serviceID);
 	STDMETHOD(IsProcessRunning)(BSTR processName, BOOL* isRunning);
+	STDMETHOD(IsRectOnMonitor)(DWORD top, DWORD right,
+								  DWORD bottom, DWORD left,
+								  BOOL* onMonitor);
 
 private:
 	HKEY StringToRegRootKey(BSTR str);

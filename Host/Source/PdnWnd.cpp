@@ -79,7 +79,7 @@ HRESULT CPdnWnd::Create(RECT& rect, std::wstring Name, std::wstring URL,
 
 	::RegisterClassEx(&m_WindowClass);
 	m_hWnd = ::CreateWindowEx(0, m_WindowClass.lpszClassName, L"", 
-		WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN,
+		WS_OVERLAPPEDWINDOW,
 		rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top,
 		0, 0, GetModuleHandle(NULL), this);
 
@@ -210,8 +210,7 @@ LRESULT CPdnWnd::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	}
 	else if(uMsg == WM_SIZE)
 	{
-		OnSize(uMsg, wParam, lParam);
-		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
+		return OnSize(uMsg, wParam, lParam);
 	}
 	else if(uMsg == WM_COMMAND)
 	{
@@ -326,10 +325,7 @@ LRESULT CPdnWnd::OnActivate(UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 LRESULT CPdnWnd::OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	RECT rect;
-	::GetClientRect(m_hWnd, &rect);
-	m_ActiveXHost.OnSize(uMsg, wParam, lParam);
-	return 0;
+	return m_ActiveXHost.OnSize(uMsg, wParam, lParam);
 }
 LRESULT CPdnWnd::OnCommand(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {

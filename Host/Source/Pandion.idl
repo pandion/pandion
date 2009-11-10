@@ -112,6 +112,12 @@ library PandionLib
 		HRESULT IsProcessRunning(
 			[in] BSTR processName,
 			[out,retval] BOOL* isRunning);
+		HRESULT IsRectOnMonitor(
+			[in] DWORD top,
+			[in] DWORD right,
+			[in] DWORD bottom,
+			[in] DWORD left,
+			[out,retval] BOOL* onMonitor);
 	}
 	[uuid(A2691BAF-EEFE-4e1a-BD58-30D3DE8F85FF)]
 	interface IPdnFile : IDispatch
@@ -434,8 +440,23 @@ library PandionLib
 			[in] BSTR nc,
 			[in] BSTR qop,
 			[out,retval] BSTR* strDigest);
-		HRESULT SSPIReset();
-		HRESULT SSPIGenerateResponse(
+		[propget] HRESULT SSPI([out, retval] VARIANT* pDispatch);
+		[propget] HRESULT GSSAPI([out, retval] VARIANT* pDispatch);
+	}
+	[uuid(D4C00020-E57A-434e-9289-937C53CC07ED)]
+	interface ISSPI : IDispatch
+	{
+		HRESULT Reset();
+		HRESULT GenerateResponse(
+			[in] BSTR Challenge,
+			[out] BOOL* Continue,
+			[out,retval] BSTR* Response);
+	}
+	[uuid(5FA5AC97-F9E0-4ea0-A1BD-2957A331FF47)]
+	interface IGSSAPI : IDispatch
+	{
+		HRESULT Reset();
+		HRESULT GenerateResponse(
 			[in] BSTR Challenge,
 			[out] BOOL* Continue,
 			[out,retval] BSTR* Response);

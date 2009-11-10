@@ -112,13 +112,10 @@ LRESULT AxHostWnd::OnForwardMessage(HWND hWnd, UINT uMsg,
 }
 LRESULT AxHostWnd::OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	if(m_InPlaceObject)
+	if(m_InPlaceObject && (wParam == SIZE_RESTORED || wParam == SIZE_MAXIMIZED))
 	{
-		HRESULT hr;
-		RECT rPos;
-		::GetClientRect(m_hWndParent, &rPos);
-		RECT rClip = rPos;
-		hr = m_InPlaceObject->SetObjectRects(&rPos, &rClip);
+		RECT rPos = {0, 0, LOWORD(lParam), HIWORD(lParam)}, rClip = rPos;
+		HRESULT hr = m_InPlaceObject->SetObjectRects(&rPos, &rClip);
 	}
 
 	return 0;

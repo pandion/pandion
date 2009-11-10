@@ -537,6 +537,15 @@ HRESULT External::IsProcessRunning(BSTR processName, BOOL* isRunning)
 	}
 	return S_OK;
 }
+HRESULT External::IsRectOnMonitor(DWORD top, DWORD right,
+								  DWORD bottom, DWORD left,
+								  BOOL* onMonitor)
+{
+	RECT rect = {top, right, bottom, left};
+	HMONITOR monitor = ::MonitorFromRect(&rect, MONITOR_DEFAULTTONULL);
+	*onMonitor = monitor == NULL ? FALSE : TRUE;
+	return S_OK;
+}
 HKEY External::StringToRegRootKey(BSTR strHKey)
 {
 	HKEY RootKey;
