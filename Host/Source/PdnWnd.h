@@ -36,6 +36,7 @@ class CPdnWnd :
 protected:
 	WNDCLASSEX      m_WindowClass;
 	HWND            m_hWnd;
+	HWND            m_hWndLastFocusedWindow;
 	AxHostWnd       m_ActiveXHost;
 
 	UINT            m_TaskbarRestartMessage;
