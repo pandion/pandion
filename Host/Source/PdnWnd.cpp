@@ -54,6 +54,7 @@ CPdnWnd::CPdnWnd() :
 	m_WindowClass.lpszClassName = L"Pandion Window";
 	m_WindowClass.hIconSm = NULL;
 	m_hWnd = NULL;
+	m_hWndLastFocusedWindow = NULL;
 
 	m_TaskbarRestartMessage = -1;
 
@@ -307,10 +308,9 @@ LRESULT CPdnWnd::OnGetMinMaxInfo(UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 LRESULT CPdnWnd::OnActivate(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	static HWND m_hWndLastFocusedWindow = NULL;
 	if (LOWORD(wParam) == WA_INACTIVE)
 	{
-		if (::GetFocus() && m_hWndLastFocusedWindow == NULL)
+		if(::IsChild(m_hWnd, ::GetFocus()))
 			m_hWndLastFocusedWindow = ::GetFocus();
 	}
 	else
