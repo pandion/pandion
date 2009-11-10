@@ -541,7 +541,7 @@ HRESULT External::IsRectOnMonitor(DWORD top, DWORD right,
 								  DWORD bottom, DWORD left,
 								  BOOL* onMonitor)
 {
-	RECT rect = {top, right, bottom, left};
+	RECT rect = {left, top, right, bottom};
 	HMONITOR monitor = ::MonitorFromRect(&rect, MONITOR_DEFAULTTONULL);
 	*onMonitor = monitor == NULL ? FALSE : TRUE;
 	return S_OK;

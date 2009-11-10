@@ -310,7 +310,7 @@ LRESULT CPdnWnd::OnActivate(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	static HWND m_hWndLastFocusedWindow = NULL;
 	if (LOWORD(wParam) == WA_INACTIVE)
 	{
-		if (::GetFocus() && m_hWndLastFocusedWindow == NULL)
+		if(IsChild(m_hWnd, ::GetFocus()))
 			m_hWndLastFocusedWindow = ::GetFocus();
 	}
 	else
