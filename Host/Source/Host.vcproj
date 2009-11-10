@@ -442,11 +442,27 @@
 				Name="SASL"
 				>
 				<File
+					RelativePath=".\GSSAPI.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GSSAPI.h"
+					>
+				</File>
+				<File
 					RelativePath=".\SASL.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\SASL.h"
+					>
+				</File>
+				<File
+					RelativePath=".\SSPI.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\SSPI.h"
 					>
 				</File>
 			</Filter>
