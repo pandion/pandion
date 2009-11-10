@@ -63,6 +63,7 @@ function init ()
 	external.globals.Add( 'XMPPReconnectTimeout', 0 ); // reconnect interval
 	external.globals.Add( 'XMPPReconnect', false ); // reconnect flag
 	external.globals.Add( 'XMPPStreamVersion', null ); // server protocol version
+	external.globals.Add( 'XMPPSASLMechanism', '' ); // selected authentication method
 
 	/* Load branding data from XML files
 	 */

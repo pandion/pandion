@@ -43,14 +43,16 @@ function XMPPOnStream ( ReceivedXML )
 		{
 			if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "GSSAPI" ]' ) )
 			{
+				external.globals( 'XMPPSASLMechanism' ) = 'GSSAPI';
 				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 				dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="GSSAPI"/>' );
-				external.SASL.SSPI.Reset();
+				external.SASL.GSSAPI.Reset();
 				warn( 'SENT: ' + dom.xml );
 				external.XMPP.SendXML( dom );
 			}
 			else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "GSS-SPNEGO" ]' ) )
 			{
+				external.globals( 'XMPPSASLMechanism' ) = 'GSS-SPNEGO';
 				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 				dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="GSS-SPNEGO"/>' );
 				external.SASL.SSPI.Reset();
@@ -59,6 +61,7 @@ function XMPPOnStream ( ReceivedXML )
 			}
 			else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "NTLM" ]' ) )
 			{
+				external.globals( 'XMPPSASLMechanism' ) = 'NTLM';
 				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 				dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="NTLM"/>' );
 				external.SASL.SSPI.Reset();
@@ -78,6 +81,7 @@ function XMPPOnStream ( ReceivedXML )
 		 */
 		else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "DIGEST-MD5" ]' ) )
 		{
+			external.globals( 'XMPPSASLMechanism' ) = 'DIGEST-MD5';
 			var Str = '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="DIGEST-MD5"/>';
 			warn( 'SENT: ' + Str );
 			external.XMPP.SendText( Str );
@@ -87,6 +91,7 @@ function XMPPOnStream ( ReceivedXML )
 		 */
 		else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "PLAIN" ]' ) )
 		{
+			external.globals( 'XMPPSASLMechanism' ) = 'PLAIN';
 			var User = external.globals( 'cfg' )( 'username' );
 			var Addr = User + '@' + external.globals( 'cfg' )( 'server' );
 			var Pass = external.globals( 'cfg' )( 'password' );
@@ -148,7 +153,7 @@ function XMPPOnStream ( ReceivedXML )
 		if (external.globals("sspiserver").length || external.globals("authentication") == "ntlm") {
 			var dom = new ActiveXObject("Msxml2.DOMDocument");
 			dom.loadXML("<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>");
-			dom.documentElement.text = external.SASL.SSPI.GenerateResponse(ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text, true);
+			dom.documentElement.text = external.SASL[ external.globals( 'XMPPSASLMechanism' ) == 'GSSAPI' ? 'GSSAPI' : 'SSPI' ].GenerateResponse(ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text, true);
 			warn("SENT: " + dom.xml);
 			external.XMPP.SendXML(dom);
 		} else {
