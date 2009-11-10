@@ -3,7 +3,7 @@ function handle_keyboard ()
 	var k = event.keyCode;
 
 	if ( k == 9 && event.ctrlKey )
-	// tab + ctrl: activate next or previous tab
+	// tab [+ shift] + ctrl: activate next or previous tab
 	{
 		event.returnValue = false;
 		var buttons = external.globals( 'ClientPluginContainer' ).HTMLTabBar.children;
@@ -27,33 +27,5 @@ function handle_keyboard ()
 	// F12: show console
 	{
 		dial_console();
-	}
-
-	else if ( k == 107 )
-	// plus: detailed view
-	{
-		if ( external.globals( 'cfg' )( 'contactlistdisplay' ) == 'compact' )
-		{
-			external.globals( 'cfg' )( 'contactlistdisplay' ) = 'detailed';
-			var TrackerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Trackers.Keys() ) ).toArray();
-			for ( var i = 0; i < TrackerNames.length; ++i )
-				external.globals( 'ConferenceSessionPool' ).Trackers( TrackerNames[i] ).RefreshOccupants();
-			external.globals( 'ClientRoster' ).RefreshAll();
-			MenuBarUpdate( 'tools' );
-		}
-	}
-
-	else if ( k == 109 )
-	// minus: compact view
-	{
-		if ( external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' )
-		{
-			external.globals( 'cfg' )( 'contactlistdisplay' ) = 'compact';
-			var TrackerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Trackers.Keys() ) ).toArray();
-			for ( var i = 0; i < TrackerNames.length; ++i )
-				external.globals( 'ConferenceSessionPool' ).Trackers( TrackerNames[i] ).RefreshOccupants();
-			external.globals( 'ClientRoster' ).RefreshAll();
-			MenuBarUpdate( 'tools' );
-		}
 	}
 }
