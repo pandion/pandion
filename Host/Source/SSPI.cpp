@@ -24,6 +24,7 @@
 
 SSPI::SSPI()
 {
+	m_CannotSelfDelete = true;
 	m_fNewConversation = TRUE;
 	m_fHaveCredHandle  = FALSE;
 	m_fHaveCtxtHandle  = FALSE;
@@ -37,7 +38,7 @@ STDMETHODIMP SSPI::Reset()
 	/* Query Security Package Information */
 	PSecPkgInfo SecurityPackage;
 	SECURITY_STATUS ss = 
-		::QuerySecurityPackageInfo(PACKAGE_NAME, &SecurityPackage);
+		::QuerySecurityPackageInfo(L"Negotiate", &SecurityPackage);
 	if (ss != SEC_E_OK)
 	{
 		Error(L"Reset()",
@@ -72,7 +73,7 @@ STDMETHODIMP SSPI::GenerateResponse(BSTR Challenge, BOOL *Continue, BSTR *Respon
 
 		SECURITY_STATUS	ss = AcquireCredentialsHandle(
 						NULL,	// principal
-						PACKAGE_NAME,
+						L"Negotiate",
 						SECPKG_CRED_OUTBOUND,
 						NULL,	// LOGON id
 						NULL,	// auth data

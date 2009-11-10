@@ -457,8 +457,8 @@ library PandionLib
 	{
 		HRESULT Reset();
 		HRESULT GenerateResponse(
+			[in] BSTR ServiceName,
 			[in] BSTR Challenge,
-			[out] BOOL* Continue,
 			[out,retval] BSTR* Response);
 	}
 	[uuid(3AA4A7CE-829F-4b24-BB86-D96A23084F51)]

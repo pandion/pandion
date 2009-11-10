@@ -47,6 +47,9 @@ function XMPPOnStream ( ReceivedXML )
 				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 				dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="GSSAPI"/>' );
 				external.SASL.GSSAPI.Reset();
+				var ServiceName = 'xmpp/' + external.globals( 'sspiserver' );
+				warn( 'GSSAPI: SERVICENAME: ' + ServiceName );
+				dom.documentElement.text = external.SASL.GSSAPI.GenerateResponse( ServiceName, '' );
 				warn( 'SENT: ' + dom.xml );
 				external.XMPP.SendXML( dom );
 			}

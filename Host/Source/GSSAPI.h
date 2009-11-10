@@ -23,8 +23,6 @@
 #pragma once
 #include "DispInterfaceImpl.h"
 
-#define PACKAGE_NAME	TEXT("Kerberos")
-
 class GSSAPI :
 	public DispInterfaceImpl<IGSSAPI>
 {
@@ -43,9 +41,9 @@ public:
 	~GSSAPI();
 
 	STDMETHOD(Reset)();
-	STDMETHOD(GenerateResponse)(
-		BSTR Challenge, BOOL *Continue, BSTR *Response);
+	STDMETHOD(GenerateResponse)(BSTR ServiceName, BSTR Challenge,
+		BSTR *Response);
 
 private:
-	void Error(LPWSTR Where, LPWSTR WhenCalling, LPWSTR ErrorMessage);
+	void Error(LPWSTR Where, LPWSTR WhenCalling, DWORD ErrorCode);
 };
