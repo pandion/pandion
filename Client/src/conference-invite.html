@@ -127,26 +127,19 @@ function Toggle_Contact ( Enabled, GroupCheckbox )
 
 function Invite ()
 {
-	var OuterList	= document.getElementById( 'list_area' );
-	var Contacts	= OuterList.getElementsByTagName( 'LI' );
-	var Singularity	= new ActiveXObject( 'Scripting.Dictionary' );
-
-	for ( var i = 0; i < Contacts.length; ++i )
+	var addresses = [];
+	var addressesUnique = {};
+	var contacts = document.getElementById( 'list_area' ).getElementsByTagName( 'LI' );
+	for ( var i = 0; i < contacts.length; i++ )
 	{
-		var Address = Contacts[i].title;
-		if ( Address.length && Contacts[i].firstChild.firstChild.checked && ! Singularity.Exists( Address ) && external.globals( 'ClientRoster' ).Items.Exists( Address ) )
+		var jid = contacts[i].title;
+		if ( jid.length && contacts[i].firstChild.firstChild.checked && ! ( jid in addressesUnique ) )
 		{
-			Singularity.Add( Address, null );
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
-			dom.loadXML( '<message><x><invite/></x></message>' );
-			dom.documentElement.setAttribute( 'to', external.wnd.params[1].Address.ShortAddress() );
-			dom.documentElement.firstChild.firstChild.setAttribute( 'to', Address );
-			dom.documentElement.firstChild.setAttribute( 'xmlns', 'http://jabber.org/protocol/muc#user' );
-			external.wnd.params[0].warn( 'SENT: ' + dom.xml );
-			external.XMPP.SendXML( dom );
+			addressesUnique[jid] = null;
+			addresses.push( jid );
 		}
 	}
-
+	external.wnd.params[1].SendInvite( addresses );
 	external.wnd.close();
 }
 

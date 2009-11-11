@@ -79,12 +79,11 @@ function mode_new ( mode, msg )
 
 			/* Attempt the connection
 			 */
-			warn( 'EVNT: Connecting to ' + cfg( 'server' ) );
-			external.XMPP.Connect(
-				external.globals( 'serveraddress' ).length ? external.globals( 'serveraddress' ) : cfg( 'server' ),
-				external.globals( 'serverport' ).length ? external.globals( 'serverport' ) : ( external.globals( 'encryption' ) == 'ssl' ? 5223 : 5222 ),
-				external.globals( 'encryption' ) == 'ssl' ? 1 : 0
-			);
+			var host = external.globals( 'serveraddress' ).length ? external.globals( 'serveraddress' ) : cfg( 'server' );
+			var port = external.globals( 'serverport' ).length ? external.globals( 'serverport' ) : ( external.globals( 'encryption' ) == 'ssl' ? 5223 : 5222 );
+			var ssl = external.globals( 'encryption' ) == 'ssl' ? 1 : 0;
+			warn( 'EVNT: Connecting to ' + host + ( ssl ? ':' + port + ' (ssl on)' : '' ) );
+			external.XMPP.Connect( host, port, ssl );
 		}
 		else if ( cfg( 'username' ).length && cfg( 'server' ).length && cfg( 'resource' ).length )
 		{

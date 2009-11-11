@@ -135,7 +135,7 @@ function CheckFields ()
 function CreateRoom ()
 {
 	external.globals( 'cfg' )( 'conferenceroom' ) = document.getElementById( 'room' ).value + '@' + document.getElementById( 'service' ).value;
-	external.wnd.params[0].dial_conference( document.getElementById( 'preview' ).value );
+	external.wnd.params[0].dial_conference( document.getElementById( 'preview' ).value, '', external.wnd.params[1], external.wnd.params[2] );
 	external.wnd.close();
 }
 

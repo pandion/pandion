@@ -7,27 +7,27 @@ function XMPPOnDocumentStart ( ReceivedFragment )
 
 	/* Get the stream ID and version
 	 */
-	external.globals( 'XMPPSessionID' )		= dom.documentElement.getAttribute( 'id' );
-	external.globals( 'XMPPStreamVersion' )	= dom.documentElement.getAttribute( 'version' );
+	external.globals( 'XMPPSessionID' ) = dom.documentElement.getAttribute( 'id' );
+	external.globals( 'XMPPStreamVersion' ) = dom.documentElement.getAttribute( 'version' );
 
 	/* Accept server specified hostname
 	 */
 	if ( dom.documentElement.getAttribute( 'from' ) && dom.documentElement.getAttribute( 'from' ).toLowerCase() != external.globals( 'cfg' )( 'server' ).toLowerCase() )
 	{
-		var Username	= external.globals( 'cfg' )( 'username' );
-		var Server		= dom.documentElement.getAttribute( 'from' );
-		var Resource	= external.globals( 'cfg' )( 'resource' );
+		var Username = external.globals( 'cfg' )( 'username' );
+		var Server = dom.documentElement.getAttribute( 'from' );
+		var Resource = external.globals( 'cfg' )( 'resource' );
 
 		LoadProfile( new XMPPAddress( Username + '@' + Server + '/' + Resource ) );
 
-		external.globals( 'cfg' )( 'username' )	= Username;
-		external.globals( 'cfg' )( 'server' )	= Server;
-		external.globals( 'cfg' )( 'resource' )	= Resource;
+		external.globals( 'cfg' )( 'username' ) = Username;
+		external.globals( 'cfg' )( 'server' ) = Server;
+		external.globals( 'cfg' )( 'resource' ) = Resource;
 	}
 
 	/* XMPP 1.0 compliant server
 	 */
-	if ( external.globals( 'XMPPStreamVersion' ) == '1.0' && external.globals( 'encryption' ) != 'ssl' )
+	if ( external.globals( 'XMPPStreamVersion' ).length > 0 )
 	{
 		/* Wait for stream:features to arrive at XMPPOnStream
 		 */
@@ -49,9 +49,9 @@ function XMPPOnDocumentStart ( ReceivedFragment )
 		 */
 		else
 		{
-			var hook		= new XMPPHookIQ();
-			hook.Window		= external.wnd;
-			hook.Callback	= 'OnLoginAuthSend';
+			var hook = new XMPPHookIQ();
+			hook.Window = external.wnd;
+			hook.Callback = 'OnLoginAuthSend';
 
 			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 			dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:auth"><username/></query></iq>' );

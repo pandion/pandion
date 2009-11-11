@@ -300,6 +300,7 @@ function ClientRoster ()
 	AvatarMap.Add( 'gabber',			'gnome'			);
 	AvatarMap.Add( 'gaim',				'gaim'			);
 	AvatarMap.Add( 'gajim',				'gajim'			);
+	AvatarMap.Add( 'gmail',				'googletalk'	);
 	AvatarMap.Add( 'greenthumb',		'thumb'			);
 	AvatarMap.Add( 'gossip',			'gnome'			);
 	AvatarMap.Add( 'gush',				'gush'			);
@@ -1244,7 +1245,7 @@ function ClientRosterGroup ( roster, name )
 						external.globals( 'ClientRoster' ).Groups( event.srcElement.GroupName ).ChangeName();
 					break;
 					case 100:
-						dial_conference_create();
+						dial_conference_create( '', event.srcElement.GroupName );
 					break;
 					default:
 						if ( menu.Choice > 100 && menu.Choice - 101 < rooms.length )

@@ -81,7 +81,7 @@ function mousemenu ( jid, res, group )
 		case   8: external.globals( 'ClientRoster' ).Items( jid ).Purge( false, group );	break;
 		case   9: external.globals( 'ClientRoster' ).Items( jid ).ReRequest();				break;
 //		case  10: dial_file( jid + '/' + res );												break;
-		case 100: dial_conference_create();													break;
+		case 100: dial_conference_create( jid );											break;
 		case 200: dial_group_create( jid, group );											break;
 		case 300: dial_group_create( jid, '' );												break;
 

@@ -870,20 +870,26 @@ function SessionTracker ( Address )
 	{
 		if ( StealFocus )
 		{
-			external.wnd.hide( false );
-			external.wnd.focus();
-			if ( external.wnd.isHidden || external.wnd.isMinimized )
+			if ( external.wnd.IsHidden == 1 )
+				external.wnd.hide( false );
+			if ( external.wnd.isActive() == 0 )
+				external.wnd.focus();
+			if ( external.wnd.IsHidden || external.wnd.isMinimized )
+			{
 				if ( external.wnd.width >= screen.availWidth || external.wnd.height >= screen.availHeight )
 					external.wnd.Maximize();
 				else
 					external.wnd.restore();
+			}
 		}
 		else
 		{
 			if ( ! ( external.wnd.isActive() || external.windows( 'MainWindow' ).isActive() ) && ! this.Container.ActiveTrackerAddress )
 				external.wnd.Minimize();
-			external.wnd.hide( false );
-			external.wnd.flash( 6 );
+			if ( external.wnd.IsHidden == 1 )
+				external.wnd.hide( false );
+			if ( external.wnd.isActive() == 0 )
+				external.wnd.flash( 6 );
 		}
 
 		if ( ! this.IsActive )

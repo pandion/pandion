@@ -5,7 +5,7 @@ function XMPPOnStream ( ReceivedXML )
 	/* Server supports stream encryption
 	 */
 	if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/starttls[@xmlns="urn:ietf:params:xml:ns:xmpp-tls"]' ) 
-		&& external.globals( 'encryption' ) != 'none' )
+		&& ( external.globals( 'encryption' ) == 'optional' || external.globals( 'encryption' ) == 'tls' ) )
 	{
 		var Str = '<starttls xmlns="urn:ietf:params:xml:ns:xmpp-tls"/>';
 		warn( 'SENT: ' + Str );

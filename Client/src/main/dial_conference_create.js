@@ -1,9 +1,11 @@
-function dial_conference_create ()
+function dial_conference_create ( inviteJid, inviteGroup )
 {
+	inviteJid = inviteJid || '';
+	inviteGroup = inviteGroup || '';
 	if ( external.windows.Exists( 'conference_create' ) )
 		return external.windows( 'conference_create' ).focus();
 	else
-		with ( external.createWindow( 'conference_create', external.globals( 'cwd' ) + 'conference_create.html', new Array( window ) ) )
+		with ( external.createWindow( 'conference_create', external.globals( 'cwd' ) + 'conference_create.html', [ window, inviteJid, inviteGroup ] ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_room_create' ) );
 			setIcon( external.globals( 'cwd' ) + '..\\images\\conference\\contacts.ico' );

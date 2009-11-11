@@ -4,65 +4,65 @@ var AllowedTags = new ActiveXObject( 'Scripting.Dictionary' );
 
 /* Text Module
  */
-AllowedTags.Add( 'blockquote',	null );
-AllowedTags.Add( 'br',			null );
-AllowedTags.Add( 'cite',		null );
-AllowedTags.Add( 'code',		null );
-AllowedTags.Add( 'div',			null );
-AllowedTags.Add( 'em',			null );
-AllowedTags.Add( 'h1',			null );
-AllowedTags.Add( 'h2',			null );
-AllowedTags.Add( 'h3',			null );
-AllowedTags.Add( 'p',			null );
-AllowedTags.Add( 'pre',			null );
-AllowedTags.Add( 'q',			null );
-AllowedTags.Add( 'span',		null );
-AllowedTags.Add( 'strong',		null );
+AllowedTags.Add( 'blockquote', null );
+AllowedTags.Add( 'br', null );
+AllowedTags.Add( 'cite', null );
+AllowedTags.Add( 'code', null );
+AllowedTags.Add( 'div', null );
+AllowedTags.Add( 'em', null );
+AllowedTags.Add( 'h1', null );
+AllowedTags.Add( 'h2', null );
+AllowedTags.Add( 'h3', null );
+AllowedTags.Add( 'p', null );
+AllowedTags.Add( 'pre', null );
+AllowedTags.Add( 'q', null );
+AllowedTags.Add( 'span', null );
+AllowedTags.Add( 'strong', null );
 
 /* Hypertext Module
  */
-AllowedTags.Add( 'a',			new ActiveXObject( 'Scripting.Dictionary' ) );
+AllowedTags.Add( 'a', new ActiveXObject( 'Scripting.Dictionary' ) );
 
 /* List Module
  */
-AllowedTags.Add( 'ol',			null );
-AllowedTags.Add( 'ul',			null );
-AllowedTags.Add( 'li',			null );
+AllowedTags.Add( 'ol', null );
+AllowedTags.Add( 'ul', null );
+AllowedTags.Add( 'li', null );
 
 /* Image Module
  */
-AllowedTags.Add( 'img',			new ActiveXObject( 'Scripting.Dictionary' ) );
+AllowedTags.Add( 'img', new ActiveXObject( 'Scripting.Dictionary' ) );
 
 /* Allowed attributes for A
  */
 with ( AllowedTags( 'a' ) )
 {
-	Add( 'href',	null );
+	Add( 'href', null );
 }
 
 /* Allowed attributes for IMG
  */
 with ( AllowedTags( 'img' ) )
 {
-	Add( 'align',	null );
-	Add( 'alt',		null );
-	Add( 'height',	null );
-	Add( 'src',		null );
-	Add( 'width',	null );
+	Add( 'align', null );
+	Add( 'alt', null );
+	Add( 'height', null );
+	Add( 'src', null );
+	Add( 'width', null );
 }
 
 /* Compatibility
  */
-AllowedTags.Add( 'b',			null );
-AllowedTags.Add( 'i',			null );
-AllowedTags.Add( 'u',			null );
-AllowedTags.Add( 'font',		new ActiveXObject( 'Scripting.Dictionary' ) );
+AllowedTags.Add( 'b', null );
+AllowedTags.Add( 'i', null );
+AllowedTags.Add( 'u', null );
+AllowedTags.Add( 'font', new ActiveXObject( 'Scripting.Dictionary' ) );
 
 with ( AllowedTags( 'font' ) )
 {
-	Add( 'face',	null );
-	Add( 'color',	null );
-	Add( 'size',	null );
+	Add( 'face', null );
+	Add( 'color', null );
+	Add( 'size', null );
 }
 
 /* CSS blacklist
@@ -135,12 +135,12 @@ function MessageToHTMLElement ( Message, HTMLElement )
 	if ( external.globals( 'ClientServices' ).Services.Exists( Message.ToAddress.Host ) && ( external.globals( 'ClientServices' ).Services( Message.ToAddress.Host ).Options & 0x0001 ) )
 		switch ( external.globals( 'ClientServices' ).Services( Message.ToAddress.Host ).Options & 0x881E )
 		{
-			case 0x0002: Message.EmoticonSet = 'msn_messenger';		break;
-			case 0x0004: Message.EmoticonSet = 'icq';				break;
-			case 0x0008: Message.EmoticonSet = 'aim';				break;
-			case 0x0010: Message.EmoticonSet = 'yahoo_messenger';	break;
-			case 0x0800: Message.EmoticonSet = 'gadu-gadu';			break;
-			case 0x8000: Message.EmoticonSet = 'tlen.pl';			break;
+			case 0x0002: Message.EmoticonSet = 'msn_messenger'; break;
+			case 0x0004: Message.EmoticonSet = 'icq'; break;
+			case 0x0008: Message.EmoticonSet = 'aim'; break;
+			case 0x0010: Message.EmoticonSet = 'yahoo_messenger'; break;
+			case 0x0800: Message.EmoticonSet = 'gadu-gadu'; break;
+			case 0x8000: Message.EmoticonSet = 'tlen.pl'; break;
 		}
 	else if ( Message.ToAddress.Host == 'jabber.wp.pl' )
 		Message.EmoticonSet = 'wpkontakt';
@@ -148,12 +148,12 @@ function MessageToHTMLElement ( Message, HTMLElement )
 	if ( external.globals( 'ClientServices' ).Services.Exists( Message.FromAddress.Host ) && ( external.globals( 'ClientServices' ).Services( Message.FromAddress.Host ).Options & 0x0001 ) )
 		switch ( external.globals( 'ClientServices' ).Services( Message.FromAddress.Host ).Options & 0x881E )
 		{
-			case 0x0002: Message.EmoticonSet = 'msn_messenger';		break;
-			case 0x0004: Message.EmoticonSet = 'icq';				break;
-			case 0x0008: Message.EmoticonSet = 'aim';				break;
-			case 0x0010: Message.EmoticonSet = 'yahoo_messenger';	break;
-			case 0x0800: Message.EmoticonSet = 'gadu-gadu';			break;
-			case 0x8000: Message.EmoticonSet = 'tlen.pl';			break;
+			case 0x0002: Message.EmoticonSet = 'msn_messenger'; break;
+			case 0x0004: Message.EmoticonSet = 'icq'; break;
+			case 0x0008: Message.EmoticonSet = 'aim'; break;
+			case 0x0010: Message.EmoticonSet = 'yahoo_messenger'; break;
+			case 0x0800: Message.EmoticonSet = 'gadu-gadu'; break;
+			case 0x8000: Message.EmoticonSet = 'tlen.pl'; break;
 		}
 	else if ( Message.FromAddress.Host == 'jabber.wp.pl' )
 		Message.EmoticonSet = 'wpkontakt';
@@ -224,8 +224,8 @@ function FilterNode ( Message, HTMLElement, XMLTag )
 		 */
 		if ( TagName == 'a' )
 		{
-			NodeHTMLElement.attachEvent( 'oncontextmenu',	HyperlinkMenu );
-			NodeHTMLElement.attachEvent( 'onclick',			HyperlinkClick );
+			NodeHTMLElement.attachEvent( 'oncontextmenu', HyperlinkMenu );
+			NodeHTMLElement.attachEvent( 'onclick', HyperlinkClick );
 			if ( ! NodeHTMLElement.title.length )
 				NodeHTMLElement.title = NodeHTMLElement.href;
 		}
@@ -260,23 +260,28 @@ function FilterNode ( Message, HTMLElement, XMLTag )
  */
 function FilterHyperlinks ( Message, HTMLElement, MessageText )
 {
-	var Expression = /(?:irc:\/\/|callto:|mailto:|http:\/\/|https:\/\/|ftp:\/\/|xmpp:|www\.|ftp\.)([^\s\"\'\(\)\<\>])+/m;
+	var PathExpression = /(?:([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(?:(?:(news|telnet|nttp|file|http|ftp|https|irc|callto):\/\/)|(www|ftp)[-A-Za-z0-9]*\.)[-A-Za-z0-9\.]+)(?::[0-9]*)?(?:\/[-A-Za-z0-9_\$\.\+\!\*\(\),;:@&=\?\/~\#\%]*[^]'\.}>\),\\"])?/m; // 1. IP address, 2. protocol, 3. www or ftp
+	var AddressExpression = /(?:(xmpp|mailto):)?[-A-Za-z0-9\.]+(@)[-A-Za-z0-9\.]+(?:(\?)[-A-Za-z0-9_\$\.\+\!\*\(\),;:@&=\?\/~\#\%]*[^]'\.}>\),\\"])?/m; // 1. protocol, 2. '@' symbol, 3. '?' symbol
 	var Result = null;
-	while ( Result = Expression.exec( MessageText ) )
+	while ( Result = ( PathExpression.exec( MessageText ) || AddressExpression.exec( MessageText ) ) )
 	{
 		FilterEmoticons( Message, HTMLElement, MessageText.substr( 0, Result.index ) );
 		MessageText = MessageText.substr( Result.lastIndex );
 
 		var Hyperlink = document.createElement( 'A' );
+		Hyperlink.href = Result[0];
+		if ( Result[2] == '@' )
+		{
+			if ( Result[1].length == 0 )
+				Hyperlink.href = 'xmpp:' + Result[0];
+		}
+		else if ( Result[1].length > 0 || Result[3] == 'www' )
+			Hyperlink.href = 'http://' + Result[0];
+		else if ( Result[3] == 'ftp' )
+			Hyperlink.href = 'ftp://' + Result[0];
 		Hyperlink.innerText = Result[0];
 		Hyperlink.attachEvent( 'oncontextmenu', HyperlinkMenu );
 		Hyperlink.attachEvent( 'onclick', HyperlinkClick );
-		switch ( Result[0].substr( 0, 4 ) )
-		{
-			case 'www.':	Hyperlink.href = 'http://' + Result[0];	break;
-			case 'ftp.':	Hyperlink.href = 'ftp://'  + Result[0];	break;
-			default:		Hyperlink.href = Result[0];
-		}
 		HTMLElement.insertAdjacentElement( 'beforeEnd', Hyperlink );
 	}
 	FilterEmoticons( Message, HTMLElement, MessageText );
@@ -304,13 +309,13 @@ function FilterEmoticons ( Message, HTMLElement, MessageText )
 
 			if ( Action.Graphic && Action.Sound )
 			{
-				var Graphic				= document.createElement( 'IMG' );
-				Graphic.align			= 'absmiddle';
-				Graphic.alt				= Result[0];
-				Graphic.border			= 0;
-				Graphic.src				= external.globals( 'usersdir' ) + 'Emoticons\\' + Message.EmoticonSet + '\\' + Action.Graphic;
-				Graphic.style.cursor	= 'hand';
-				Graphic.SoundFile		= external.globals( 'usersdir' ) + 'Emoticons\\' + Message.EmoticonSet + '\\' + Action.Sound;
+				var Graphic = document.createElement( 'IMG' );
+				Graphic.align = 'absmiddle';
+				Graphic.alt = Result[0];
+				Graphic.border = 0;
+				Graphic.src = external.globals( 'usersdir' ) + 'Emoticons\\' + Message.EmoticonSet + '\\' + Action.Graphic;
+				Graphic.style.cursor = 'hand';
+				Graphic.SoundFile = external.globals( 'usersdir' ) + 'Emoticons\\' + Message.EmoticonSet + '\\' + Action.Sound;
 				Graphic.attachEvent(
 					'onclick',
 					function ( event )
@@ -324,11 +329,11 @@ function FilterEmoticons ( Message, HTMLElement, MessageText )
 			}
 			else if ( Action.Graphic )
 			{
-				var Graphic		= document.createElement( 'IMG' );
-				Graphic.align	= 'absmiddle';
-				Graphic.alt		= Result[0];
-				Graphic.border	= 0;
-				Graphic.src		= external.globals( 'usersdir' ) + 'Emoticons\\' + Message.EmoticonSet + '\\' + Action.Graphic;
+				var Graphic = document.createElement( 'IMG' );
+				Graphic.align = 'absmiddle';
+				Graphic.alt = Result[0];
+				Graphic.border = 0;
+				Graphic.src = external.globals( 'usersdir' ) + 'Emoticons\\' + Message.EmoticonSet + '\\' + Action.Graphic;
 				Graphic.attachEvent(
 					'onclick',
 					function ( event )
@@ -340,9 +345,9 @@ function FilterEmoticons ( Message, HTMLElement, MessageText )
 				);
 				HTMLElement.insertAdjacentElement( 'beforeEnd', Graphic );
 
-				var Alternative				= document.createElement( 'SPAN' );
-				Alternative.style.display	= 'none';
-				Alternative.innerText		= Result[0];
+				var Alternative = document.createElement( 'SPAN' );
+				Alternative.style.display = 'none';
+				Alternative.innerText = Result[0];
 				Alternative.attachEvent(
 					'onclick',
 					function ( event )
@@ -356,14 +361,14 @@ function FilterEmoticons ( Message, HTMLElement, MessageText )
 			}
 			else if ( Action.Sound )
 			{
-				var Label		= document.createElement( 'LABEL' );
-				Label.className	= 'sound-label';
-				Label.innerText	= Result[0];
+				var Label = document.createElement( 'LABEL' );
+				Label.className = 'sound-label';
+				Label.innerText = Result[0];
 				HTMLElement.insertAdjacentElement( 'beforeEnd', Label );
 
-				var PlayButton			= document.createElement( 'BUTTON' );
-				PlayButton.className	= 'sound-button';
-				PlayButton.SoundFile	= external.globals( 'usersdir' ) + 'Emoticons\\' + Message.EmoticonSet + '\\' + Action.Sound;
+				var PlayButton = document.createElement( 'BUTTON' );
+				PlayButton.className = 'sound-button';
+				PlayButton.SoundFile = external.globals( 'usersdir' ) + 'Emoticons\\' + Message.EmoticonSet + '\\' + Action.Sound;
 				PlayButton.attachEvent(
 					'onclick',
 					function ( event )
@@ -373,10 +378,10 @@ function FilterEmoticons ( Message, HTMLElement, MessageText )
 					}
 				);
 
-				var PlayIcon		= document.createElement( 'IMG' );
-				PlayIcon.align		= 'absmiddle';
-				PlayIcon.border		= 0;
-				PlayIcon.src		= external.globals( 'cwd' ) + '..\\images\\misc\\play.gif';
+				var PlayIcon = document.createElement( 'IMG' );
+				PlayIcon.align = 'absmiddle';
+				PlayIcon.border = 0;
+				PlayIcon.src = external.globals( 'cwd' ) + '..\\images\\misc\\play.gif';
 				PlayButton.insertAdjacentElement( 'beforeEnd', PlayIcon );
 
 				HTMLElement.insertAdjacentElement( 'beforeEnd', PlayButton );
@@ -385,9 +390,9 @@ function FilterEmoticons ( Message, HTMLElement, MessageText )
 			}
 			else if ( Action.Format )
 			{
-				var Format				= document.createElement( 'SPAN' );
-				Format.style.cssText	= Action.Format;
-				Format.innerText		= Result[0];
+				var Format = document.createElement( 'SPAN' );
+				Format.style.cssText = Action.Format;
+				Format.innerText = Result[0];
 				HTMLElement.insertAdjacentElement( 'beforeEnd', Format );
 			}
 		}
@@ -413,10 +418,10 @@ function FilterMarkup ( HTMLElement, MessageText )
 			Markup.innerText = Result[0].substr( 1, Result[0].length - 2 );
 			switch ( Result[0].charAt( 0 ) )
 			{
-				case '/': Markup.style.fontStyle					= 'italic';	break;
-				case '*': Markup.style.fontWeight					= 'bold';	break;
-				case '_': Markup.style.textDecorationUnderline		= true;		break;
-				case '-': Markup.style.textDecorationLineThrough	= true;		break;
+				case '/': Markup.style.fontStyle = 'italic'; break;
+				case '*': Markup.style.fontWeight = 'bold'; break;
+				case '_': Markup.style.textDecorationUnderline = true; break;
+				case '-': Markup.style.textDecorationLineThrough = true; break;
 			}
 			HTMLElement.insertAdjacentElement( 'beforeEnd', Markup );
 		}
@@ -442,8 +447,8 @@ function FilterNothing ( HTMLElement, MessageText )
  */
 function HyperlinkClick ( event )
 {
-	event.returnValue	= false;
-	event.cancelBubble	= true;
+	event.returnValue = false;
+	event.cancelBubble = true;
 	if ( document.getElementById( 'send-text' ) && ! document.getElementById( 'send-text' ).disabled )
 		document.getElementById( 'send-text' ).focus();
 	external.windows( 'MainWindow' ).Do( 'dial_webbrowser', event.srcElement.href );
@@ -453,8 +458,8 @@ function HyperlinkClick ( event )
  */
 function HyperlinkMenu ( event )
 {
-	event.returnValue	= false;
-	event.cancelBubble	= true;
+	event.returnValue = false;
+	event.cancelBubble = true;
 
 	var Menu = external.newPopupMenu;
 	Menu.AddItem( true, false, false, true,  0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_open' ), 1 );

@@ -18,7 +18,6 @@ function ConferenceSessionPool ()
 	this.Trackers			= new ActiveXObject( 'Scripting.Dictionary' );
 	this.Containers			= new ActiveXObject( 'Scripting.Dictionary' );
 	this.TrackersLoading	= new ActiveXObject( 'Scripting.Dictionary' );
-	this.PasswordsLoading	= new ActiveXObject( 'Scripting.Dictionary' );
 	this.ContainersLoading	= new ActiveXObject( 'Scripting.Dictionary' );
 
 	this.Clear				= Clear;
@@ -36,7 +35,6 @@ function ConferenceSessionPool ()
 		this.Trackers.RemoveAll();
 		this.Containers.RemoveAll();
 		this.TrackersLoading.RemoveAll();
-		this.PasswordsLoading.RemoveAll();
 		this.ContainersLoading.RemoveAll();
 	}
 
@@ -71,10 +69,7 @@ function ConferenceSessionPool ()
 		 */
 		this.Trackers.Add( ShortAddress, Tracker );
 		if ( this.TrackersLoading.Exists( ShortAddress ) )
-		{
 			this.TrackersLoading.Remove( ShortAddress );
-			this.PasswordsLoading.Remove( ShortAddress );
-		}
 
 		/* Fire all queued events
 		 */
@@ -126,14 +121,13 @@ function ConferenceSessionPool ()
 		this.Containers.Remove( Container.Name );
 	}
 
-	function CreateContainer ( Address, Password )
+	function CreateContainer ( room )
 	{
 		var cfg = external.globals( 'cfg' );
-		var ShortAddress = Address.ShortAddress();
+		var ShortAddress = room.address.ShortAddress();
 		var ContainerName = external.StringToSHA1( Math.random().toString() );
 
-		this.TrackersLoading.Add( ShortAddress, Address );
-		this.PasswordsLoading.Add( ShortAddress, Password );
+		this.TrackersLoading.Add( ShortAddress, room );
 		this.ContainersLoading.Add( ContainerName, null );
 
 		with ( external.createWindow( ContainerName + '/container', external.globals( 'cwd' ) + 'conference-container.html', [ window, ContainerName ] ) )

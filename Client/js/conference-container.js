@@ -52,11 +52,7 @@ function Begin ()
 	 */
 	var TrackerNames = ( new VBArray( SessionPool.TrackersLoading.Keys() ) ).toArray();
 	for ( var i = SessionPool.TrackersLoading.Count - SessionPool.ContainersLoading.Count - 1; i >= 0; i-- )
-	{
-		var Address = SessionPool.TrackersLoading( TrackerNames[i] );
-		var Password = SessionPool.PasswordsLoading( TrackerNames[i] );
-		gContainer.CreateTracker( Address, Password );
-	}
+		gContainer.CreateTracker( SessionPool.TrackersLoading( TrackerNames[i] ) );
 }
 
 function End ()
@@ -98,13 +94,15 @@ function SessionContainer ( SessionPool )
 	/* Create a tracker object, draw a tab
 	 * TrackerCreated will be fired when the tracker is ready to receive events
 	 */
-	function CreateTracker ( Address, Password )
+	function CreateTracker ( room )
 	{
-		var ShortAddress = Address.ShortAddress();
-		var Tracker = new SessionTracker( Address );
+		var ShortAddress = room.address.ShortAddress();
+		var Tracker = new SessionTracker( room.address );
 		Tracker.Container = this;
 		Tracker.HTMLArea = document.createElement( 'IFRAME' );
-		Tracker.Password = Password;
+		Tracker.InviteGroup = room.inviteGroup
+		Tracker.InviteJid = room.inviteJid;
+		Tracker.Password = room.password;
 
 		var BackgroundPath = external.globals( 'usersdir' ) + 'Backgrounds\\' + Tracker.Background + '\\';
 		if ( external.FileExists( BackgroundPath + 'index.html' ) )
@@ -213,6 +211,8 @@ function SessionTracker ( Address )
 	this.HTMLModerators = document.createElement( 'DIV' );
 	this.HTMLParticipants = document.createElement( 'DIV' );
 	this.HTMLVisitors = document.createElement( 'DIV' );
+	this.InviteGroup = '';
+	this.InviteJid = '';
 	this.IsActive = false;
 	this.IsFlashing = false;
 	this.Name = Address.User;
@@ -232,6 +232,7 @@ function SessionTracker ( Address )
 	this.DrawContainerInfo = DrawContainerInfo;
 	this.Flash = Flash;
 	this.RefreshOccupants = RefreshOccupants;
+	this.SendInvite = SendInvite;
 	this.SendMessage = SendMessage;
 	this.SendPresence = SendPresence;
 
@@ -409,7 +410,10 @@ function SessionTracker ( Address )
 			{
 				this.Occupants.Add( Event.Payload.FromAddress.Resource, new ConferenceParticipant( this, Event.Payload ) );
 				if ( Event.Payload.FromAddress.Resource == this.Address.Resource )
+				{
 					ServerMessage( this, external.globals( 'Translator' ).Translate( 'conference-container', 'connected' ) );
+					this.SendInvite( [ this.InviteJid ], this.InviteGroup );
+				}
 				else
 					ServerMessage( this, external.globals( 'Translator' ).Translate( 'conference-container', 'joining', [ Event.Payload.FromAddress.Resource ] ) );
 			}
@@ -487,7 +491,7 @@ function SessionTracker ( Address )
 			{
 				this.BackgroundLoading = false;
 				var ShortAddress = this.Address.ShortAddress();
-				this.Container.SessionPool.TrackersLoading.Add( ShortAddress, this.Address );
+				this.Container.SessionPool.TrackersLoading.Add( ShortAddress, { 'address': this.Address, 'password': this.Password } );
 				this.Container.SessionPool.DeleteTracker( this );
 				this.Container.Trackers.Remove( ShortAddress );
 
@@ -513,7 +517,7 @@ function SessionTracker ( Address )
 			this.Background = '';
 			this.BackgroundLoading = false
 			var ShortAddress = this.Address.ShortAddress();
-			this.Container.SessionPool.TrackersLoading.Add( ShortAddress, this.Address );
+			this.Container.SessionPool.TrackersLoading.Add( ShortAddress, { 'address': this.Address } );
 			this.Container.SessionPool.DeleteTracker( this );
 			this.Container.Trackers.Remove( ShortAddress );
 
@@ -866,6 +870,30 @@ function SessionTracker ( Address )
 			external.wnd.params[0].warn( 'SENT: ' + dom.xml );
 			external.XMPP.SendXML( dom );
 		}
+	}
+
+	/* Send MUC invitation messages
+	 */
+	function SendInvite ( addresses, group )
+	{
+		if ( external.globals( 'ClientRoster' ).Groups.Exists( group ) )
+		{
+			var jids = ( new VBArray( external.globals( 'ClientRoster' ).Groups( group ).Items.Keys() ) ).toArray();
+			for ( var i in jids )
+				if ( external.globals( 'ClientRoster' ).Items( jids[i] ).Resources.Count > 0 )
+					addresses.push( jids[i] );
+		}
+		for ( var i in addresses )
+			if ( addresses[i] != '' )
+			{
+				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+				dom.loadXML( '<message><x><invite/></x></message>' );
+				dom.documentElement.setAttribute( 'to', this.Address.ShortAddress() );
+				dom.documentElement.firstChild.firstChild.setAttribute( 'to', addresses[i] );
+				dom.documentElement.firstChild.setAttribute( 'xmlns', 'http://jabber.org/protocol/muc#user' );
+				external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+				external.XMPP.SendXML( dom );
+			}
 	}
 
 	/* Update the list of occupants

@@ -14,7 +14,7 @@ function XMPPOnConnected ()
 		document.getElementById( 'mode-secure' ).style.display = 'inline';
 	}
 
-	var Str = '<stream:stream to="' + external.globals( 'cfg' )( 'server' ) + '" xml:lang="' + external.globals( 'language' ) + '" xmlns="jabber:client" xmlns:stream="http://etherx.jabber.org/streams"' + ( external.globals( 'encryption' ) == 'ssl' ? '' : ' version="1.0"' ) + '>';
+	var Str = '<stream:stream to="' + external.globals( 'cfg' )( 'server' ) + '" xml:lang="' + external.globals( 'language' ) + '" xmlns="jabber:client" xmlns:stream="http://etherx.jabber.org/streams" version="1.0">';
 	warn( 'SENT: ' + Str );
 	external.XMPP.SendText( Str );
 }

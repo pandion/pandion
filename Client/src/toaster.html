@@ -8,7 +8,7 @@ BODY {
 	margin: 0px;
 	padding: 0px;
 	border: 2px outset;
-	background-image: url( ../images/misc/headline-bg-lite.gif );
+	background-image: url( ../images/toaster/background.gif );
 }
 #close {
 	cursor: default;
@@ -80,7 +80,7 @@ function Begin ()
 			document.getElementById( 'icon' ).src = external.globals( 'cwd' ) + '..\\images\\clients\\' + Headline.Icon;
 	}
 	else
-		document.getElementById( 'icon' ).src = external.globals( 'cwd' ) + '..\\images\\brand\\default.ico';
+		document.getElementById( 'icon' ).src = external.globals( 'cwd' ) + '..\\images\\toaster\\star.png';
 
 	document.getElementById( 'title' ).innerText	= Headline.Title.length ? Headline.Title : external.globals( 'softwarename' );
 	document.getElementById( 'message' ).innerText	= Headline.Message;

@@ -393,9 +393,10 @@ function ChooseBackground ()
 					Tracker.Background			= '';
 					Tracker.BackgroundLoading	= false
 					var ShortAddress			= Tracker.Address.ShortAddress();
-					gContainer.SessionPool.TrackersLoading.Add( ShortAddress, Tracker.Address );
-					if ( typeof Tracker.Password != 'undefined' )
-						gContainer.SessionPool.PasswordsLoading.Add( ShortAddress, Tracker.Password );
+					if ( typeof Tracker.Password == 'undefined' )
+						gContainer.SessionPool.TrackersLoading.Add( ShortAddress, Tracker.Address );
+					else
+						gContainer.SessionPool.TrackersLoading.Add( ShortAddress, { 'address': Tracker.Address, 'password': Tracker.Password } );
 					gContainer.SessionPool.DeleteTracker( Tracker );
 					gContainer.Trackers.Remove( ShortAddress );
 
@@ -482,9 +483,10 @@ function ChooseBackground ()
 						Tracker.Background			= event.srcElement.BackgroundName;
 						Tracker.BackgroundLoading	= false;
 						var ShortAddress			= Tracker.Address.ShortAddress();
-						gContainer.SessionPool.TrackersLoading.Add( ShortAddress, Tracker.Address );
-						if ( typeof Tracker.Password != 'undefined' )
-							gContainer.SessionPool.PasswordsLoading.Add( ShortAddress, Tracker.Password );
+						if ( typeof Tracker.Password == 'undefined' )
+							gContainer.SessionPool.TrackersLoading.Add( ShortAddress, Tracker.Address );
+						else
+							gContainer.SessionPool.TrackersLoading.Add( ShortAddress, { 'address': Tracker.Address, 'password': Tracker.Password } );
 						gContainer.SessionPool.DeleteTracker( Tracker );
 						gContainer.Trackers.Remove( ShortAddress );
 
