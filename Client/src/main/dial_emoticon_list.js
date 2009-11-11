@@ -1,7 +1,11 @@
 function dial_emoticon_list ()
 {
 	if ( external.windows.Exists( 'emoticon_list' ) )
+	{
+		if ( external.windows( 'emoticon_list' ).isMinimized )
+			external.windows( 'emoticon_list' ).restore();
 		external.windows( 'emoticon_list' ).focus();
+	}
 	else
 		with ( external.createWindow( 'emoticon_list', external.globals( 'cwd' ) + 'emoticon_list.html', window ) )
 		{

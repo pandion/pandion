@@ -1,7 +1,11 @@
 function dial_emoticon_viewer ( StyleName )
 {
 	if ( external.windows.Exists( StyleName + '/emoset_view' ) )
+	{
+		if ( external.windows( StyleName + '/emoset_view' ).isMinimized )
+			external.windows( StyleName + '/emoset_view' ).restore();
 		external.windows( StyleName + '/emoset_view' ).focus();
+	}
 	else
 		with ( external.createWindow( StyleName + '/emoset_view', external.globals( 'cwd' ) + 'emoset_view.html', [ window, StyleName ] ) )
 		{

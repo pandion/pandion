@@ -3,6 +3,8 @@ function dial_status_message ( Mode )
 	if ( external.windows.Exists( 'leaveanote' ) )
 	{
 		external.windows( 'leaveanote' ).Do( 'SetMode', Mode );
+		if ( external.windows( 'leaveanote' ).isMinimized )
+			external.windows( 'leaveanote' ).restore();
 		external.windows( 'leaveanote' ).focus();
 	}
 	else

@@ -3,11 +3,11 @@ function dial_contacts_export ()
 	var Dialog, Location;
 	try
 	{
-		Dialog			= external.ComCtrl.ComDlg.GetFileName;
-		Dialog.FileName	= external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '.xml';
-		Dialog.Flags	= 4 | 32768;
-		Dialog.Filter	= 'XML (*.xml)|*.xml';
-		Location		= Dialog.DisplaySave();
+		Dialog = external.ComCtrl.ComDlg.GetFileName;
+		Dialog.FileName = external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '.xml';
+		Dialog.Flags = 4 | 32768;
+		Dialog.Filter = 'XML (*.xml)|*.xml';
+		Location = Dialog.DisplaySave();
 	}
 	catch ( e )
 	{
@@ -22,13 +22,13 @@ function dial_contacts_export ()
 	{
 		var Contact = external.globals( 'ClientRoster' ).Items( ContactAddresses[i] );
 		var Item = dom.createElement( 'item' );
-		Item.setAttribute( 'jid',	ContactAddresses[i] );
-		Item.setAttribute( 'name',	Contact.Name );
+		Item.setAttribute( 'jid', ContactAddresses[i] );
+		Item.setAttribute( 'name', Contact.Name );
 		for ( var j = 0; j < Contact.Groups.length; ++j )
 		{
 			Item.appendChild( dom.createTextNode( '\n\t\t' ) );
-			var Group	= dom.createElement( 'group' );
-			Group.text	= Contact.Groups[j];
+			var Group = dom.createElement( 'group' );
+			Group.text = Contact.Groups[j];
 			Item.appendChild( Group );
 		}
 		Item.appendChild( dom.createTextNode( '\n\t' ) );

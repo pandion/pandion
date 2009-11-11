@@ -8,7 +8,11 @@ function dial_bookmarks_add ( Address, Password, AutoJoin, Edit )
 		Address = Address.LongAddress();
 
 	if ( external.windows.Exists( 'bookmarks_add/' + Address ) )
-		return external.windows( 'bookmarks_add/' + Address ).focus();
+	{
+		if ( external.windows( 'bookmarks_add/' + Address ).isMinimized )
+			external.windows( 'bookmarks_add/' + Address ).restore();
+		external.windows( 'bookmarks_add/' + Address ).focus();
+	}
 	else
 		with ( external.createWindow( 'bookmarks_add/' + Address, external.globals( 'cwd' ) + 'bookmarks_add.html', new Array( window, Address, Password, AutoJoin, Edit ) ) )
 		{

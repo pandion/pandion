@@ -1,7 +1,11 @@
 function dial_connection_settings ()
 {
 	if ( external.windows.Exists( 'connection_settings' ) )
+	{
+		if ( external.windows( 'connection_settings' ).isMinimized )
+			external.windows( 'connection_settings' ).restore();
 		external.windows( 'connection_settings' ).focus();
+	}
 	else
 		with ( external.createWindow( 'connection_settings', external.globals( 'cwd' ) + 'connection_settings.html', window ) )
 		{

@@ -1,7 +1,11 @@
 function dial_bookmarks_manage ()
 {
 	if ( external.windows.Exists( 'bookmarks_manage' ) )
-		return external.windows( 'bookmarks_manage' ).focus();
+	{
+		if ( external.windows( 'bookmarks_manage' ).isMinimized )
+			external.windows( 'bookmarks_manage' ).restore();
+		external.windows( 'bookmarks_manage' ).focus();
+	}
 	else
 		with ( external.createWindow( 'bookmarks_manage', external.globals( 'cwd' ) + 'bookmarks_manage.html', new Array( window ) ) )
 		{

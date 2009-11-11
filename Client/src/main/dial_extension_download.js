@@ -2,7 +2,11 @@ function dial_extension_download ( Location, Name, Visible, Type )
 {
 	var LocationHash = external.StringToSHA1( Location );
 	if ( external.windows.Exists( 'extension-download/' + LocationHash ) )
+	{
+		if ( external.windows( 'extension-download/' + LocationHash ).isMinimized )
+			external.windows( 'extension-download/' + LocationHash ).restore();
 		external.windows( 'extension-download/' + LocationHash ).focus();
+	}
 	else
 		with ( external.createWindow( 'extension-download/' + LocationHash, external.globals( 'cwd' ) + 'extension-download.html', [ window, Location, Name, Visible, Type ] ) )
 		{

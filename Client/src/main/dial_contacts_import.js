@@ -3,10 +3,10 @@ function dial_contacts_import ()
 	var Dialog, Location;
 	try
 	{
-		Dialog			= external.ComCtrl.ComDlg.GetFileName;
-		Dialog.Flags	= 2048;
-		Dialog.Filter	= external.globals( 'Translator' ).Translate( 'main', 'import_files' ) + ' (*.xml, *.blt, *.ctt, *.txt)|*.xml;*.blt;*.ctt;*.txt|' + external.globals( 'softwarename' ) + ' (*.xml)|*.xml|AIM (*.blt)|*.blt|MSN (*.ctt)|*.ctt|Gadu-Gadu (*.txt)|*.txt';
-		Location		= Dialog.DisplayOpen();
+		Dialog = external.ComCtrl.ComDlg.GetFileName;
+		Dialog.Flags = 2048;
+		Dialog.Filter = external.globals( 'Translator' ).Translate( 'main', 'import_files' ) + ' (*.xml, *.blt, *.ctt, *.txt)|*.xml;*.blt;*.ctt;*.txt|' + external.globals( 'softwarename' ) + ' (*.xml)|*.xml|AIM (*.blt)|*.blt|MSN (*.ctt)|*.ctt|Gadu-Gadu (*.txt)|*.txt';
+		Location = Dialog.DisplayOpen();
 	}
 	catch ( e )
 	{
@@ -19,16 +19,16 @@ function dial_contacts_import ()
 	 */
 	if ( Extension == 'xml' )
 	{
-		var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
-		dom.async				= false;
-		dom.resolveExternals	= false;
+		var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+		dom.async = false;
+		dom.resolveExternals = false;
 		dom.load( Location );
 
 		if ( dom.documentElement )
 		{
-			var AddressList			= new Array();
-			var ContactsToImport	= new Array();
-			var ImportContacts		= dom.documentElement.selectNodes( '/query[@xmlns="jabber:iq:roster"]/item[@jid]' );
+			var AddressList = new Array();
+			var ContactsToImport = new Array();
+			var ImportContacts = dom.documentElement.selectNodes( '/query[@xmlns="jabber:iq:roster"]/item[@jid]' );
 
 			if ( ImportContacts.length )
 			{
@@ -77,10 +77,10 @@ function dial_contacts_import ()
 	 */
 	else if ( Extension == 'blt' )
 	{
-		var Group				= '';
-		var Transport			= '';
-		var AddressList			= new Array();
-		var ContactsToImport	= new ActiveXObject( 'Scripting.Dictionary' );
+		var Group = '';
+		var Transport = '';
+		var AddressList = new Array();
+		var ContactsToImport = new ActiveXObject( 'Scripting.Dictionary' );
 
 		var Transports = external.globals( 'ClientServices' ).FindByOptions( 0x0001 | 0x0008 );
 		for ( var i = 0; i < Transports.length; ++i )
@@ -204,8 +204,8 @@ function dial_contacts_import ()
 							dom.documentElement.firstChild.firstChild.setAttribute( 'name', ContactNames[i] );
 							for ( var j = 0; j < ContactsToImport( ContactNames[i] ).length; ++j )
 							{
-								var Group	= dom.createElement( 'group' );
-								Group.text	= ContactsToImport( ContactNames[i] )[j];
+								var Group = dom.createElement( 'group' );
+								Group.text = ContactsToImport( ContactNames[i] )[j];
 								dom.documentElement.firstChild.firstChild.appendChild( Group );
 							}
 							dom.documentElement.firstChild.setAttribute( 'xmlns', 'jabber:iq:roster' );
@@ -232,8 +232,8 @@ function dial_contacts_import ()
 	 */
 	else if ( Extension == 'ctt' )
 	{
-		var Transport		= '';
-		var Transports		= external.globals( 'ClientServices' ).FindByOptions( 0x0001 | 0x0002 );
+		var Transport = '';
+		var Transports = external.globals( 'ClientServices' ).FindByOptions( 0x0001 | 0x0002 );
 		for ( var i = 0; i < Transports.length; ++i )
 			if ( Transports[i].TransportMode )
 			{
@@ -243,16 +243,16 @@ function dial_contacts_import ()
 
 		if ( Transport.length )
 		{
-			var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
-			dom.async				= false;
-			dom.resolveExternals	= false;
+			var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+			dom.async = false;
+			dom.resolveExternals = false;
 			dom.load( Location );
 
 			if ( dom.documentElement )
 			{
-				var AddressList			= new Array();
-				var ContactsToImport	= new ActiveXObject( 'Scripting.Dictionary' );
-				var ImportContacts		= dom.documentElement.selectNodes( '/messenger/service/contactlist/contact' );
+				var AddressList = new Array();
+				var ContactsToImport = new ActiveXObject( 'Scripting.Dictionary' );
+				var ImportContacts = dom.documentElement.selectNodes( '/messenger/service/contactlist/contact' );
 
 				if ( ImportContacts.length )
 				{
@@ -305,10 +305,10 @@ function dial_contacts_import ()
 	 */
 	else if ( Extension == 'txt' )
 	{
-		var Group				= '';
-		var Transport			= '';
-		var AddressList			= new Array();
-		var ContactsToImport	= new ActiveXObject( 'Scripting.Dictionary' );
+		var Group = '';
+		var Transport = '';
+		var AddressList = new Array();
+		var ContactsToImport = new ActiveXObject( 'Scripting.Dictionary' );
 
 		var Transports = external.globals( 'ClientServices' ).FindByOptions( 0x0001 | 0x0800 );
 		for ( var i = 0; i < Transports.length; ++i )
@@ -328,8 +328,8 @@ function dial_contacts_import ()
 					var Record = File.ReadLine().split( ';' );
 					if ( Record.length >= 6 && Record[3].length )
 					{
-						var Name	= Record[3];
-						var Groups	= new Array();
+						var Name = Record[3];
+						var Groups = new Array();
 						for ( var i = 5; i < Record.length; ++i )
 						{
 							if ( Record[i].match( /^\d{2,}$/ ) )
@@ -360,8 +360,8 @@ function dial_contacts_import ()
 							dom.documentElement.firstChild.firstChild.setAttribute( 'name', ContactsToImport( Accounts[i] )[0] );
 							for ( var j = 0; j < ContactsToImport( Accounts[i] )[1].length; ++j )
 							{
-								var Group	= dom.createElement( 'group' );
-								Group.text	= ContactsToImport( Accounts[i] )[1][j];
+								var Group = dom.createElement( 'group' );
+								Group.text = ContactsToImport( Accounts[i] )[1][j];
 								dom.documentElement.firstChild.firstChild.appendChild( Group );
 							}
 							dom.documentElement.firstChild.setAttribute( 'xmlns', 'jabber:iq:roster' );

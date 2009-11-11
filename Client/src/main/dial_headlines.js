@@ -1,7 +1,11 @@
 function dial_headlines ()
 {
 	if ( external.windows.Exists( 'headline_log' ) )
+	{
+		if ( external.windows( 'headline_log' ).isMinimized )
+			external.windows( 'headline_log' ).restore();
 		external.windows( 'headline_log' ).focus();
+	}
 	else
 		with ( external.createWindow( 'headline_log', external.globals( 'cwd' ) + 'headline_log.html', window ) )
 		{

@@ -1,7 +1,11 @@
 function dial_about ()
 {
 	if ( external.windows.Exists( 'about' ) )
+	{
+		if ( external.windows( 'about' ).isMinimized )
+			external.windows( 'about' ).restore();
 		external.windows( 'about' ).focus();
+	}
 	else
 		with ( external.createWindow( 'about', external.globals( 'cwd' ) + 'about.html', 0 ) )
 		{

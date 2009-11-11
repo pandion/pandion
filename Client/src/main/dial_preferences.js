@@ -2,8 +2,10 @@
 {
 	if ( external.windows.Exists( 'preferences' ) )
 	{
-		external.windows( 'preferences' ).focus();
 		external.windows( 'preferences' ).Do( 'tree_goto', section );
+		if ( external.windows( 'preferences' ).isMinimized )
+			external.windows( 'preferences' ).restore();
+		external.windows( 'preferences' ).focus();
 	}
 	else
 		with ( external.createWindow( 'preferences', external.globals( 'cwd' ) + 'preferences.html', new Array( window, section ) ) )

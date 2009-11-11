@@ -17,7 +17,11 @@ function dial_service_register ( address )
 	}
 
 	if ( external.windows.Exists( address + '/transport_register' ) )
+	{
+		if ( external.windows( address + '/transport_register' ).isMinimized )
+			external.windows( address + '/transport_register' ).restore();
 		external.windows( address + '/transport_register' ).focus();
+	}
 	else
 		with ( external.createWindow( address + '/transport_register', external.globals( 'cwd' ) + 'transport_register.html', new Array( address, type ) ) )
 		{

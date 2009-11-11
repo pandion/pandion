@@ -12,7 +12,11 @@ function dial_userinfo ( Address )
 		Name = external.globals( 'cfg' )( 'nick' );
 
 	if ( external.windows.Exists( ShortAddress + '/' + Address.Resource + '/vcard' ) )
+	{
+		if ( external.windows( ShortAddress + '/' + Address.Resource + '/vcard' ).isMinimized )
+			external.windows( ShortAddress + '/' + Address.Resource + '/vcard' ).restore();
 		external.windows( ShortAddress + '/' + Address.Resource + '/vcard' ).focus();
+	}
 	else
 		with ( external.createWindow( ShortAddress + '/' + Address.Resource + '/vcard', external.globals( 'cwd' ) + 'vcard.html', new Array( ShortAddress, Address.Resource ) ) )
 		{

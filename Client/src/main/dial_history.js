@@ -1,7 +1,11 @@
 ﻿function dial_history ( jid )
 {
 	if ( external.windows.Exists( jid + '/history' ) )
+	{
+		if ( external.windows( jid + '/history' ).isMinimized )
+			external.windows( jid + '/history' ).restore();
 		external.windows( jid + '/history' ).focus();
+	}
 	else
 		with ( external.createWindow( jid + '/history', external.globals( 'cwd' ) + 'history.html', new Array( window, jid ) ) )
 		{

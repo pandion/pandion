@@ -1,7 +1,11 @@
 ﻿function dial_adduser ()
 {
 	if ( external.windows.Exists( 'adduser' ) )
+	{
+		if ( external.windows( 'adduser' ).isMinimized )
+			external.windows( 'adduser' ).restore();
 		external.windows( 'adduser' ).focus();
+	}
 	else
 		with ( external.createWindow( 'adduser', external.globals( 'cwd' ) + 'adduser.html', window ) )
 		{

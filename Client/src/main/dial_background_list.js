@@ -1,7 +1,11 @@
 function dial_background_list ()
 {
 	if ( external.windows.Exists( 'background_list' ) )
+	{
+		if ( external.windows( 'background_list' ).isMinimized )
+			external.windows( 'background_list' ).restore();
 		external.windows( 'background_list' ).focus();
+	}
 	else
 		with ( external.createWindow( 'background_list', external.globals( 'cwd' ) + 'background_list.html', window ) )
 		{
