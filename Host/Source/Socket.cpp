@@ -782,10 +782,17 @@ SECURITY_STATUS Socket::SecureRecv(PBYTE message, DWORD messageSize,
             *bytesReceived = recv(m_Socket,
 				&ioBuffer.begin()[0] + ioBufferUsed, 
 				ioBufferSize - ioBufferUsed, 0);
-            if(*bytesReceived == SOCKET_ERROR)
-            {
-                status = SEC_E_INTERNAL_ERROR;
-                break;
+			if(*bytesReceived == SOCKET_ERROR)
+			{
+				if(::WSAGetLastError() != WSAEWOULDBLOCK)
+				{
+					status = SEC_E_INTERNAL_ERROR;
+					break;
+				}
+				else
+				{
+					Sleep(1);
+				}
             }
             else if(*bytesReceived == 0 && ioBufferUsed)
             {
