@@ -1,7 +1,11 @@
 function dial_console ()
 {
 	if ( external.windows.Exists( 'stderr' ) )
+	{
+		if ( external.windows( 'stderr' ).isMinimized )
+			external.windows( 'stderr' ).restore();
 		external.windows( 'stderr' ).focus();
+	}
 	else
 		with ( external.createWindow( 'stderr', external.globals( 'cwd' ) + 'console.html', window ) )
 		{
