@@ -1,7 +1,11 @@
 function dial_signup ()
 {
 	if ( external.windows.Exists( 'signup' ) )
+	{
+		if ( external.windows( 'signup' ).isMinimized )
+			external.windows( 'signup' ).restore();
 		external.windows( 'signup' ).focus();
+	}
 	else if ( external.globals( 'websignup' ).length )
 		dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'websignup' ) ) );
 	else

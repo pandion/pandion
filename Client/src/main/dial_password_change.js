@@ -1,7 +1,11 @@
 function dial_password_change ()
 {
 	if ( external.windows.Exists( 'pass_change' ) )
+	{
+		if ( external.windows( 'pass_change' ).isMinimized )
+			external.windows( 'pass_change' ).restore();
 		external.windows( 'pass_change' ).focus();
+	}
 	else if ( external.globals( 'passwordpage' ).length )
 		dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'passwordpage' ) ) );
 	else

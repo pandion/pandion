@@ -1,7 +1,11 @@
 function dial_transport_list ()
 {
 	if ( external.windows.Exists( 'transport_list' ) )
+	{
+		if ( external.windows( 'transport_list' ).isMinimized )
+			external.windows( 'transport_list' ).restore();
 		external.windows( 'transport_list' ).focus();
+	}
 	else
 		with ( external.createWindow( 'transport_list', external.globals( 'cwd' ) + 'transport_list.html', window ) )
 		{

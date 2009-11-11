@@ -2,7 +2,11 @@ function dial_group_create ( address, group )
 {
 	var WindowName = address ? address + '/newgroup' : 'newgroup';
 	if ( external.windows.Exists( WindowName ) )
-		return external.windows( WindowName ).focus();
+	{
+		if ( external.windows( WindowName ).isMinimized )
+			external.windows( WindowName ).restore();
+		external.windows( WindowName ).focus();
+	}
 	else
 		with ( external.createWindow( WindowName, external.globals( 'cwd' ) + 'group_create.html', new Array( window, address, group ) ) )
 		{

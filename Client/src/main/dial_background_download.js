@@ -1,7 +1,11 @@
 function dial_background_download ()
 {
 	if ( external.windows.Exists( 'background_download' ) )
+	{
+		if ( external.windows( 'background_download' ).isMinimized )
+			external.windows( 'background_download' ).restore();
 		external.windows( 'background_download' ).focus();
+	}
 	else
 		with ( external.createWindow( 'background_download', external.globals( 'cwd' ) + 'background_download.html', window ) )
 		{

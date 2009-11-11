@@ -1,7 +1,11 @@
 function dial_emoticon_download ()
 {
 	if ( external.windows.Exists( 'emoticon_download' ) )
+	{
+		if ( external.windows( 'emoticon_download' ).isMinimized )
+			external.windows( 'emoticon_download' ).restore();
 		external.windows( 'emoticon_download' ).focus();
+	}
 	else
 		with ( external.createWindow( 'emoticon_download', external.globals( 'cwd' ) + 'emoticon_download.html', window ) )
 		{

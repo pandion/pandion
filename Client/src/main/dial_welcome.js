@@ -6,7 +6,11 @@
 function dial_welcome ()
 {
 	if ( external.windows.Exists( 'welcome' ) )
+	{
+		if ( external.windows( 'welcome' ).isMinimized )
+			external.windows( 'welcome' ).restore();
 		external.windows( 'welcome' ).focus();
+	}
 	else
 		with ( external.createWindow( 'welcome', external.globals( 'cwd' ) + 'welcome.html', window ) )
 		{

@@ -1,7 +1,11 @@
 function dial_avatar_pick ()
 {
 	if ( external.windows.Exists( 'pick_avatar' ) )
+	{
+		if ( external.windows( 'pick_avatar' ).isMinimized )
+			external.windows( 'pick_avatar' ).restore();
 		external.windows( 'pick_avatar' ).focus();
+	}
 	else
 		with ( external.createWindow( 'pick_avatar', external.globals( 'cwd' ) + 'avatar.html', window ) )
 		{

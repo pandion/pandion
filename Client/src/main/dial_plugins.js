@@ -1,7 +1,11 @@
 function dial_plugins ()
 {
 	if ( external.windows.Exists( 'plugins' ) )
+	{
+		if ( external.windows( 'plugins' ).isMinimized )
+			external.windows( 'plugins' ).restore();
 		external.windows( 'plugins' ).focus();
+	}
 	else
 		with ( external.createWindow( 'plugins', external.globals( 'cwd' ) + 'plugins.html', window ) )
 		{
