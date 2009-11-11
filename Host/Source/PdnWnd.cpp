@@ -246,6 +246,10 @@ LRESULT CPdnWnd::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		return OnSysCommand(uMsg, wParam, lParam);
 	}
+	else if(uMsg == 0x02B1 /*WM_WTSSESSION_CHANGE*/)
+	{
+		return OnWTSSessionChange(uMsg, wParam, lParam);
+	}
 	else
 	{
 		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
@@ -258,10 +262,38 @@ LRESULT CPdnWnd::OnForwardMessage(HWND hWnd, UINT uMsg,
 }
 LRESULT CPdnWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+	/* Register the window for receiving session change notifications */
+	HINSTANCE wtsapi32_dll = ::LoadLibrary(TEXT("Wtsapi32.dll"));
+	if(wtsapi32_dll != NULL)
+	{
+		typedef BOOL (__stdcall* WTSRSN)(HWND, DWORD);
+		WTSRSN WTSRegisterSessionNotification =	(WTSRSN)
+			::GetProcAddress(wtsapi32_dll, "WTSRegisterSessionNotification");
+		if(WTSRegisterSessionNotification != NULL)
+		{
+			WTSRegisterSessionNotification(m_hWnd, 0);
+		}
+		::FreeLibrary(wtsapi32_dll);
+	}
+
 	return 0;
 }
 LRESULT CPdnWnd::OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+	/* Register the window for receiving session change notifications */
+	HINSTANCE wtsapi32_dll = ::LoadLibrary(TEXT("Wtsapi32.dll"));
+	if(wtsapi32_dll != NULL)
+	{
+		typedef BOOL (__stdcall* WTSURSN)(HWND);
+		WTSURSN WTSUnRegisterSessionNotification = (WTSURSN)
+			::GetProcAddress(wtsapi32_dll, "WTSUnRegisterSessionNotification");
+		if(WTSUnRegisterSessionNotification != NULL)
+		{
+			WTSUnRegisterSessionNotification(m_hWnd);
+		}
+		::FreeLibrary(wtsapi32_dll);
+	}
+
 	if(!m_ActiveXHost.IsDestroyed())
 	{
 		m_pBrowser.Detach()->Release();
@@ -404,7 +436,33 @@ LRESULT CPdnWnd::OnSysCommand(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	}
 	return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
 }
+LRESULT CPdnWnd::OnWTSSessionChange(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	if(wParam == 0x1 /* WTS_CONSOLE_CONNECT */) {
+	}
+	else if(wParam == 0x2 /* WTS_CONSOLE_DISCONNECT */) {
+	}
+	else if(wParam == 0x3 /* WTS_REMOTE_CONNECT */) {
+	}
+	else if(wParam == 0x4 /* WTS_REMOTE_DISCONNECT */) {
+	}
+	else if(wParam == 0x5 /* WTS_SESSION_LOGON */) {
+	}
+	else if(wParam == 0x6 /* WTS_SESSION_LOGOFF */) {
+	}
+	else if(wParam == 0x7 /* WTS_SESSION_LOCK */ &&
+		m_sWorkstationLockHandler.length()) {
+		FireEvent(m_sWorkstationLockHandler, 0, 0);
+	}
+	else if(wParam == 0x8 /* WTS_SESSION_UNLOCK */ &&
+		m_sWorkstationUnlockHandler.length()) {
+		FireEvent(m_sWorkstationUnlockHandler, 0, 0);
+	}
+	else if(wParam == 0x9 /* WTS_SESSION_REMOTE_CONTROL */) {
+	}
 
+	return 0;
+}
 /* DWebBrowserEvents2 */
 STDMETHODIMP_(void) CPdnWnd::BeforeNavigate2(IDispatch *pDisp, VARIANT *url,
 	VARIANT *Flags, VARIANT *TargetFrameName, VARIANT *PostData,
@@ -960,6 +1018,16 @@ STDMETHODIMP CPdnWnd::setRestoreHandler(BSTR str)
 STDMETHODIMP CPdnWnd::setActivationHandler(BSTR str)
 {
 	m_sActivationHandler = str;
+	return S_OK;
+}
+STDMETHODIMP CPdnWnd::setWorkstationLockHandler(BSTR str)
+{
+	m_sWorkstationLockHandler = str;
+	return S_OK;
+}
+STDMETHODIMP CPdnWnd::setWorkstationUnlockHandler(BSTR str)
+{
+	m_sWorkstationUnlockHandler = str;
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::FireEvent(BSTR handler, VARIANT* parameters,

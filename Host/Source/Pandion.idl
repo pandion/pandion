@@ -227,6 +227,8 @@ library PandionLib
 		HRESULT setCmdLineHandler([in] BSTR);
 		HRESULT setRestoreHandler([in] BSTR);
 		HRESULT setActivationHandler([in] BSTR);
+		HRESULT setWorkstationLockHandler([in] BSTR);
+		HRESULT setWorkstationUnlockHandler([in] BSTR);
 		HRESULT restore();
 		HRESULT FireEvent(
 			[in] BSTR handler,
@@ -457,7 +459,7 @@ library PandionLib
 	{
 		HRESULT Reset();
 		HRESULT GenerateResponse(
-			[in] BSTR ServiceName,
+			[in] BSTR ServerName,
 			[in] BSTR Challenge,
 			[out,retval] BSTR* Response);
 	}

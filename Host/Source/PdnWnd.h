@@ -47,6 +47,8 @@ protected:
 	_bstr_t         m_sCmdLineHandler;
 	_bstr_t         m_sRestoreHandler;
 	_bstr_t         m_sActivationHandler;
+	_bstr_t			m_sWorkstationLockHandler;
+	_bstr_t			m_sWorkstationUnlockHandler;
 
 	std::wstring    m_Name;
 	std::wstring    m_URL;
@@ -109,6 +111,8 @@ public:
 	virtual LRESULT OnTaskbarRestart(UINT uMsg,
 		WPARAM wParam, LPARAM lParam);
 	virtual LRESULT OnSysCommand(UINT uMsg,
+		WPARAM wParam, LPARAM lParam);
+	virtual LRESULT OnWTSSessionChange(UINT uMsg,
 		WPARAM wParam, LPARAM lParam);
 
 	/* Webbrowser Events */
@@ -196,6 +200,8 @@ public:
 	STDMETHOD(setCmdLineHandler)(BSTR);
 	STDMETHOD(setRestoreHandler)(BSTR);
 	STDMETHOD(setActivationHandler)(BSTR);
+	STDMETHOD(setWorkstationLockHandler)(BSTR);
+	STDMETHOD(setWorkstationUnlockHandler)(BSTR);
 	STDMETHOD(FireEvent)(BSTR , VARIANT[], DWORD);
 	STDMETHOD(get_menuBar)(VARIANT*);
 	STDMETHOD(messageBox)(BOOL, BSTR, BSTR, DWORD, DWORD*);

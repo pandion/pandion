@@ -41,7 +41,7 @@ public:
 	~GSSAPI();
 
 	STDMETHOD(Reset)();
-	STDMETHOD(GenerateResponse)(BSTR ServiceName, BSTR Challenge,
+	STDMETHOD(GenerateResponse)(BSTR ServerName, BSTR Challenge,
 		BSTR *Response);
 
 private:
