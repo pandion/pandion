@@ -260,8 +260,8 @@ function FilterNode ( Message, HTMLElement, XMLTag )
  */
 function FilterHyperlinks ( Message, HTMLElement, MessageText )
 {
-	var PathExpression = /(?:([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(?:(?:(news|telnet|nttp|file|http|ftp|https|irc|callto):\/\/)|(www|ftp)[-A-Za-z0-9]*\.)[-A-Za-z0-9\.]+)(?::[0-9]*)?(?:\/[-A-Za-z0-9_\$\.\+\!\*\(\),;:@&=\?\/~\#\%]*[^]'\.}>\),\\"])?/m; // 1. IP address, 2. protocol, 3. www or ftp
-	var AddressExpression = /(?:(xmpp|mailto):)?[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*(@)(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:(\?)[-A-Za-z0-9_\$\.\+\!\*\(\),;:@&=\?\/~\#\%]*[^]'\.}>\),\\"])?/m; // 1. protocol, 2. '@' symbol, 3. '?' symbol
+	var PathExpression = /(?:([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(?:(?:(news|telnet|nttp|file|http|ftp|https|irc|callto):\/\/)|(www|ftp)[-a-z0-9]*\.)[-a-z0-9\.]+)(?::[0-9]*)?(?:\/(?:[-a-z0-9_\$\.\+\!\*,;:@&=\?\/~\#\%]*)?(?:(?:[(\[{][-a-z0-9_\$\.\+\!\*,;:@&=\?\/~\#\%]*[)\]}])*)?[-a-z0-9_\$\.\+\!\*,;:@&=\?\/~\#\%]*)?/im; // 1. IP address, 2. protocol, 3. www or ftp
+	var AddressExpression = /(?:(xmpp|mailto):)?[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*(@)(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:(\?)(?:[-a-z0-9_\$\.\+\!\*,;:@&=\?\/~\#\%]*)?(?:(?:[(\[{][-a-z0-9_\$\.\+\!\*,;:@&=\?\/~\#\%]*[)\]}])*)?[-a-z0-9_\$\.\+\!\*,;:@&=\?\/~\#\%]*)?/im; // 1. protocol, 2. '@' symbol, 3. '?' symbol
 	var Result = null;
 	while ( Result = ( PathExpression.exec( MessageText ) || AddressExpression.exec( MessageText ) ) )
 	{
