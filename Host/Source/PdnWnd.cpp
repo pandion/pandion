@@ -434,6 +434,11 @@ LRESULT CPdnWnd::OnSysCommand(UINT uMsg, WPARAM wParam, LPARAM lParam)
 			FireEvent(m_sRestoreHandler, 0, 0);
 		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
 	}
+	else if(wParam == SC_SCREENSAVE){
+		if(m_sScreenSaveHandler.length())
+			FireEvent(m_sScreenSaveHandler, 0, 0);
+		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
+	}
 	return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
 }
 LRESULT CPdnWnd::OnWTSSessionChange(UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -1028,6 +1033,11 @@ STDMETHODIMP CPdnWnd::setWorkstationLockHandler(BSTR str)
 STDMETHODIMP CPdnWnd::setWorkstationUnlockHandler(BSTR str)
 {
 	m_sWorkstationUnlockHandler = str;
+	return S_OK;
+}
+STDMETHODIMP CPdnWnd::setScreenSaveHandler(BSTR str)
+{
+	m_sScreenSaveHandler = str;
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::FireEvent(BSTR handler, VARIANT* parameters,

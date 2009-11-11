@@ -229,6 +229,7 @@ library PandionLib
 		HRESULT setActivationHandler([in] BSTR);
 		HRESULT setWorkstationLockHandler([in] BSTR);
 		HRESULT setWorkstationUnlockHandler([in] BSTR);
+		HRESULT setScreenSaveHandler([in] BSTR);
 		HRESULT restore();
 		HRESULT FireEvent(
 			[in] BSTR handler,

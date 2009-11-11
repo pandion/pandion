@@ -49,6 +49,7 @@ protected:
 	_bstr_t         m_sActivationHandler;
 	_bstr_t			m_sWorkstationLockHandler;
 	_bstr_t			m_sWorkstationUnlockHandler;
+	_bstr_t			m_sScreenSaveHandler;
 
 	std::wstring    m_Name;
 	std::wstring    m_URL;
@@ -202,6 +203,7 @@ public:
 	STDMETHOD(setActivationHandler)(BSTR);
 	STDMETHOD(setWorkstationLockHandler)(BSTR);
 	STDMETHOD(setWorkstationUnlockHandler)(BSTR);
+	STDMETHOD(setScreenSaveHandler)(BSTR);
 	STDMETHOD(FireEvent)(BSTR , VARIANT[], DWORD);
 	STDMETHOD(get_menuBar)(VARIANT*);
 	STDMETHOD(messageBox)(BOOL, BSTR, BSTR, DWORD, DWORD*);
