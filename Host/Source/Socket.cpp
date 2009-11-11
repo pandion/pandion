@@ -135,6 +135,11 @@ DWORD Socket::Disconnect()
  */
 DWORD Socket::StartTLS()
 {
+	if(m_bUsingSSL)
+	{
+		return 1;
+	}
+
 	EnterCriticalSection(&m_csReading);
 	EnterCriticalSection(&m_csWriting);
 

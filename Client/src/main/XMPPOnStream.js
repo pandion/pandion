@@ -46,12 +46,17 @@ function XMPPOnStream ( ReceivedXML )
 				external.globals( 'XMPPSASLMechanism' ) = 'GSSAPI';
 				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 				dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="GSSAPI"/>' );
-				external.SASL.GSSAPI.Reset();
-				var ServiceName = 'xmpp/' + external.globals( 'sspiserver' );
-				warn( 'GSSAPI: SERVICENAME: ' + ServiceName );
-				dom.documentElement.text = external.SASL.GSSAPI.GenerateResponse( ServiceName, '' );
-				warn( 'SENT: ' + dom.xml );
-				external.XMPP.SendXML( dom );
+				try {
+					external.SASL.GSSAPI.Reset();
+					dom.documentElement.text = external.SASL.GSSAPI.GenerateResponse( external.globals( 'cfg' )( 'server' ), '' );
+				}
+				catch(e) {
+					warn( 'GSSAPI: ERROR: ' + e.number );
+				}
+				finally {
+					warn( 'SENT: ' + dom.xml );
+					external.XMPP.SendXML( dom );
+				}
 			}
 			else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "GSS-SPNEGO" ]' ) )
 			{
@@ -156,9 +161,14 @@ function XMPPOnStream ( ReceivedXML )
 		if (external.globals("sspiserver").length || external.globals("authentication") == "ntlm") {
 			var dom = new ActiveXObject("Msxml2.DOMDocument");
 			dom.loadXML("<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>");
-			dom.documentElement.text = external.SASL[ external.globals( 'XMPPSASLMechanism' ) == 'GSSAPI' ? 'GSSAPI' : 'SSPI' ].GenerateResponse(ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text, true);
-			warn("SENT: " + dom.xml);
-			external.XMPP.SendXML(dom);
+			if (external.globals( 'XMPPSASLMechanism' ) == 'GSSAPI') {
+				dom.documentElement.text = external.SASL.GSSAPI.GenerateResponse(external.globals( 'cfg' )( 'server' ), ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text);
+			}
+			else {
+				dom.documentElement.text = external.SASL.SSPI.GenerateResponse(ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text, true);
+			}
+				warn("SENT: " + dom.xml);
+				external.XMPP.SendXML(dom);
 		} else {
 			var encoded = ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text;
 			var decoded = external.Base64ToString(encoded);

@@ -22,6 +22,7 @@
 #include "stdafx.h"
 #include "GSSAPI.h"
 #include "Base64.h"
+#include "UTF8.h"
 
 GSSAPI::GSSAPI() :
 	m_fNewConversation(TRUE), m_fHaveCredHandle(FALSE), m_fHaveCtxtHandle(FALSE)
@@ -63,12 +64,15 @@ STDMETHODIMP GSSAPI::Reset()
 	m_fNewConversation = TRUE;
 	return S_OK;
 }
-STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServiceName, BSTR Challenge,
+STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServerName, BSTR Challenge,
 									  BSTR *Response)
 {
+	std::wstring ServiceName(L"xmpp/");
+	ServiceName += ServerName;
+
+	/* Acquire a credentials handle if this is the initial response */
 	if(m_fNewConversation == TRUE)
 	{
-		/* Acquire a credentials handle if this is the initial response */
 		TimeStamp Expiry;
 		SECURITY_STATUS	ss = ::AcquireCredentialsHandle(NULL, TEXT("Kerberos"),
 						SECPKG_CRED_OUTBOUND, NULL, NULL, NULL, NULL,
@@ -80,6 +84,7 @@ STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServiceName, BSTR Challenge,
 		}
 		m_fHaveCredHandle = TRUE;
 	}
+
 	/* Decode the Challenge */
 	DWORD DecodedChallengeLength = 0;
 	::CryptStringToBinary(Challenge, ::SysStringLen(Challenge),
@@ -104,8 +109,9 @@ STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServiceName, BSTR Challenge,
 	TimeStamp		Expiry;
 
 	SECURITY_STATUS	ss = ::InitializeSecurityContext(&m_hCred,
-		m_fNewConversation ? NULL : &m_hCtxt, ServiceName, 0,
-		0, SECURITY_NATIVE_DREP, m_fNewConversation ? NULL : &InBuffDesc,
+		m_fNewConversation ? NULL : &m_hCtxt, (SEC_WCHAR*) ServiceName.c_str(),
+		ISC_REQ_MUTUAL_AUTH, 0, SECURITY_NATIVE_DREP, 
+		m_fNewConversation ? NULL : &InBuffDesc,
 		0, &m_hCtxt, &OutBuffDesc, &ContextAttributes, &Expiry);
 	if(ss != SEC_E_OK && ss != SEC_I_CONTINUE_NEEDED &&
 		ss != SEC_I_COMPLETE_NEEDED && ss != SEC_I_COMPLETE_AND_CONTINUE)
