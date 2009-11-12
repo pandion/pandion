@@ -68,6 +68,7 @@
 #include <Schnlsp.h>
 #include <Security.h>
 #include <WinInet.h>
+#include <Mstcpip.h>
 
 /*
  * Compiler-specific headers
