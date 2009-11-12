@@ -74,7 +74,7 @@ background: (image d') arrière-plan
       <title>Modifiez votre disponibilité, message de statut, ou profil personnel</title>
     </item>
     <item id="mode-secure">
-      <title>La connexion est sécurisé par un cryptage SSL/TLS</title>
+      <title>La connexion est sécurisée par un cryptage SSL/TLS</title>
     </item>
     <item id="rosterfield">
       <title>Personnes et groupes de votre liste de contacts</title>
@@ -425,9 +425,6 @@ background: (image d') arrière-plan
     <item id="txt_message">
       <value>Votre message de statut reflète votre état d'esprit, activité, ou quoique-ce-soit d'autre :</value>
     </item>
-    <item id="lbl_ask_status">
-      <value>Me demander de saisir un message quand je change mon statut</value>
-    </item>
     <code id="btn_ok">OK</code>
     <code id="btn_ok_empty">OK (pas de message)</code>
   </window>
@@ -666,6 +663,7 @@ background: (image d') arrière-plan
       <value>Plus tard</value>
     </item>
 	<code id="up-to-date">A jour</code>
+	 <code id="previous-version">Version précédente</code>
     <code id="recommended">Recommendé</code>
     <code id="description-stable">Les versions stables ont été testées depuis le plus longtemps.</code>
     <code id="description-beta">Contient des corrections de bug et des fonctionnalités qui sont en test.</code>
