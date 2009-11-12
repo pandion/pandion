@@ -406,38 +406,26 @@ LRESULT CPdnWnd::OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 LRESULT CPdnWnd::OnSysCommand(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	if(wParam == SC_CLOSE || wParam == SC_DEFAULT)
+	if((wParam == SC_CLOSE || wParam == SC_DEFAULT) && m_sCloseHandler.length())
 	{
-		if(m_sCloseHandler.length())
-		{
-			FireEvent(m_sCloseHandler, 0, 0);
-			return 0;
-		}
-		else
-		{
-			return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
-		}
+		FireEvent(m_sCloseHandler, 0, 0);
+		return 0;
 	}
-	else if(wParam == SC_MINIMIZE)
+	else if((wParam == SC_SCREENSAVE || (wParam == SC_MONITORPOWER &&
+		lParam == 2) ) && m_sScreenSaveHandler.length())
 	{
-		if(m_sMinHandler.length())
-			FireEvent(m_sMinHandler, 0, 0);
-		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
+		FireEvent(m_sScreenSaveHandler, 0, 0);
+	}
+	else if(wParam == SC_MINIMIZE && m_sMinHandler.length())
+	{
+		FireEvent(m_sMinHandler, 0, 0);
+	}
+	else if(wParam == SC_RESTORE && m_sRestoreHandler.length())
+	{
+		FireEvent(m_sRestoreHandler, 0, 0);
 	}
 	else if(wParam == SC_MAXIMIZE)
 	{
-		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
-	}
-	else if(wParam == SC_RESTORE)
-	{
-		if(m_sRestoreHandler.length())
-			FireEvent(m_sRestoreHandler, 0, 0);
-		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
-	}
-	else if(wParam == SC_SCREENSAVE){
-		if(m_sScreenSaveHandler.length())
-			FireEvent(m_sScreenSaveHandler, 0, 0);
-		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
 	}
 	return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
 }
