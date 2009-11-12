@@ -130,9 +130,9 @@ window.attachEvent("onload", function () {
 	var anchors = document.getElementsByTagName("a");
 	for (var i = 0; i < anchors.length; i++)
 		if (anchors[i].href.indexOf("http") != -1)
-			client.utils.anchorToBrowser(anchors[i]);
+			client.html.anchorToBrowser(anchors[i]);
 
-	client.utils.searchBox({
+	client.html.searchBox({
 		element: document.getElementById("search-box"),
 		placeholder: external.globals("Translator").Translate("welcome", "search-topics"),
 		action: function () {
@@ -140,14 +140,14 @@ window.attachEvent("onload", function () {
 				external.globals("welcomesearchurl"),
 				{query: document.getElementById("search-box").value}
 			);
-			dial_webbrowser(url);
+			client.os.launchInBrowser(url);
 		}
 	});
 
 	client.css.show(document.getElementById("feed-loading"));
 	client.css.hide(document.getElementById("feed-unavailable"));
 	client.css.hide(document.getElementById("feed"));
-	client.utils.ajax({
+	client.io.ajax({
 		url: external.globals("welcomefeedurl"),
 		callback: function (doc) {
 			var getPlainText = function (parent, tagName) {
@@ -175,11 +175,11 @@ window.attachEvent("onload", function () {
 					var anchor = document.createElement("a");
 					anchor.innerText = getPlainText(entries[i], "title");
 					anchor.href = entries[i].selectSingleNode("link[@rel='alternate' and @type='text/html' and @href]").getAttribute("href");
-					client.utils.anchorToBrowser(anchor);
+					client.html.anchorToBrowser(anchor);
 					listItem.appendChild(anchor);
 					var timestamp = document.createElement("div");
 					client.css.addClass(timestamp, "timestamp");
-					timestamp.innerText = client.utils.prettytime(client.utils.iso8601(entries[i].selectSingleNode("updated").text));
+					timestamp.innerText = client.data.prettytime(client.data.iso8601(entries[i].selectSingleNode("updated").text));
 					listItem.appendChild(timestamp);
 					feed.appendChild(listItem);
 				}

@@ -13,7 +13,7 @@ window.attachEvent("onload", function () {
 		for (var i = 0; i < appcasts.length; i++)
 			if (appcasts[i].attributes.getQualifiedItem("track", appcastNamespaceUri).value == track) {
 				var timestamp = appcasts[i].selectSingleNode("updated").text;
-				var timeFromEpoch = client.utils.iso8601(timestamp);
+				var timeFromEpoch = client.data.iso8601(timestamp);
 				if (timeFromEpoch > topTimestamp) {
 					topTimestamp = timeFromEpoch;
 					topAppcastEntry = parseAppcastFromEntry(appcasts[i]);
@@ -141,7 +141,7 @@ window.attachEvent("onload", function () {
 			external.wnd.close();
 	});
 
-	client.utils.anchorToBrowser(document.getElementById("txt-whats-new"));
+	client.html.anchorToBrowser(document.getElementById("txt-whats-new"));
 
 	document.getElementById("available-updates").attachEvent("onsubmit", function () {
 		event.returnValue = false;
@@ -170,7 +170,7 @@ window.attachEvent("onload", function () {
 
 	document.getElementById("btn-download").attachEvent("onclick", function () {
 		external.wnd.hide(true);
-		client.utils.launchInBrowser(gLocation);
+		client.os.launchInBrowser(gLocation);
 		external.wnd.close();
 	});
 
@@ -195,7 +195,7 @@ window.attachEvent("onload", function () {
 		client.css.show(document.getElementById("available-updates"));
 		document.getElementById("btn-close").focus();
 		external.wnd.hide(false);
-		client.utils.ajax({
+		client.io.ajax({
 			url: external.globals("ClientPluginContainer").ParseURL(external.globals("autoupdate")),
 			callback: function (doc) {
 				var tracks = {
@@ -258,7 +258,7 @@ window.attachEvent("onload", function () {
 		/* Automatically download latest update */
 		client.css.hide(document.getElementById("available-updates"));
 		client.css.show(document.getElementById("download-progress"));
-		client.utils.ajax({
+		client.io.ajax({
 			url: external.globals("ClientPluginContainer").ParseURL(external.globals("autoupdate")),
 			callback: function (doc) {
 				if (doc) {

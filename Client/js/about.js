@@ -23,7 +23,7 @@ window.attachEvent("onload", function () {
 	var anchors = document.getElementsByTagName("a");
 	for (var i = 0; i < anchors.length; i++)
 		if (anchors[i].href.indexOf("http") != -1)
-			client.utils.anchorToBrowser(anchors[i]);
+			client.html.anchorToBrowser(anchors[i]);
 
 	document.getElementById("btn-ok").focus();
 	external.wnd.hide(false);
