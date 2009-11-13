@@ -148,8 +148,8 @@ window.attachEvent("onload", function () {
 	client.css.hide(document.getElementById("feed-unavailable"));
 	client.css.hide(document.getElementById("feed"));
 	client.io.ajax({
-		url: external.globals("welcomefeedurl"),
-		callback: function (doc) {
+		url: external.globals("ClientPluginContainer").ParseURL(external.globals("welcomefeedurl")),
+		callback: function (xhr) {
 			var getPlainText = function (parent, tagName) {
 				var node = null;
 				if (node = parent.selectSingleNode(tagName + "[@type='text' or not(@type)]"))
@@ -166,25 +166,23 @@ window.attachEvent("onload", function () {
 					return "";
 			};
 			client.css.hide(document.getElementById("feed-loading"));
-			if (doc) {
-				var feed = document.getElementById("feed");
-				client.css.show(feed);
-				var entries = doc.selectNodes("/feed/entry[updated][title][link[@rel='alternate' and @type='text/html' and @href]]");
-				for (var i = 0; i < entries.length; ++i) {
-					var listItem = document.createElement("li");
-					var anchor = document.createElement("a");
-					anchor.innerText = getPlainText(entries[i], "title");
-					anchor.href = entries[i].selectSingleNode("link[@rel='alternate' and @type='text/html' and @href]").getAttribute("href");
-					client.html.anchorToBrowser(anchor);
-					listItem.appendChild(anchor);
-					var timestamp = document.createElement("div");
-					client.css.addClass(timestamp, "timestamp");
-					timestamp.innerText = client.data.prettytime(client.data.iso8601(entries[i].selectSingleNode("updated").text));
-					listItem.appendChild(timestamp);
-					feed.appendChild(listItem);
-				}
+			var feed = document.getElementById("feed");
+			client.css.show(feed);
+			var entries = xhr.responseXML ? xhr.responseXML.selectNodes("/feed/entry[updated][title][link[@rel='alternate' and @type='text/html' and @href]]") : [];
+			for (var i = 0; i < entries.length; ++i) {
+				var listItem = document.createElement("li");
+				var anchor = document.createElement("a");
+				anchor.innerText = getPlainText(entries[i], "title");
+				anchor.href = entries[i].selectSingleNode("link[@rel='alternate' and @type='text/html' and @href]").getAttribute("href");
+				client.html.anchorToBrowser(anchor);
+				listItem.appendChild(anchor);
+				var timestamp = document.createElement("div");
+				client.css.addClass(timestamp, "timestamp");
+				timestamp.innerText = client.data.prettytime(client.data.iso8601(entries[i].selectSingleNode("updated").text));
+				listItem.appendChild(timestamp);
+				feed.appendChild(listItem);
 			}
-			else
+			if (entries.length < 1)
 				client.css.show(document.getElementById("feed-unavailable"));
 		}
 	});

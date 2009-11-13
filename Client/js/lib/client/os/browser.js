@@ -1,3 +1,8 @@
+/*
+	This file is part of Pandion instant messenger
+	Copyright (c) 2009 Sebastiaan Deckers
+	License: GNU General Public License version 3 or later
+*/
 client.namespace("client.os");
 
 client.os.browser = {};
