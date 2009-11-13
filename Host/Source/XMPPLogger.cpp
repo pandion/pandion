@@ -77,9 +77,17 @@ void XMPPLogger::LogSent(const std::wstring& dataSent)
 void XMPPLogger::LogReadError()
 {
 #ifdef CANLOG
-	std::wostringstream dbgmsg;
-	dbgmsg << L"Read error: 0x" << std::hex << WSAGetLastError() << std::endl;
-	Log(dbgmsg.str());
+	LPTSTR ErrorMessage;
+	DWORD ErrorCode = ::WSAGetLastError();
+	::FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+		FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_MAX_WIDTH_MASK,
+		NULL, ErrorCode, 0, (LPTSTR)&ErrorMessage, 0, NULL);
+	std::wostringstream dbgMsg;
+	dbgMsg << L"Read error: (ERROR 0x" <<
+		std::hex <<	std::setw(8) <<	std::setfill(L'0') << 
+		ErrorCode << L") " << ErrorMessage << std::endl;
+	Log(dbgMsg.str());
+	::LocalFree(ErrorMessage);
 #endif
 }
 

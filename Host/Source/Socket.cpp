@@ -285,16 +285,15 @@ SECURITY_STATUS Socket::ClientHandshakeLoop(bool initialRead)
 
         if(status == SEC_E_OK)
         {
-			m_pendingEncoded.clear();
-			m_pendingDecoded.clear();
+			m_PendingEncoded.clear();
 			for(unsigned long i = 0; i <outBuffer.cBuffers; i++)
 			{
 				if(outBuffers[i].BufferType == SECBUFFER_EXTRA)
 				{
-					m_pendingEncoded.resize(outBuffers[i].cbBuffer);
+					m_PendingEncoded.resize(outBuffers[i].cbBuffer);
 					std::copy((char*) outBuffers[i].pvBuffer, 
 						(char*) outBuffers[i].pvBuffer + outBuffers[i].cbBuffer, 
-						&m_pendingEncoded.begin()[0]);
+						&m_PendingEncoded.begin()[0]);
 				}
 			}
             break;
@@ -358,7 +357,7 @@ DWORD Socket::LookupAddress(_bstr_t ServerAddress)
 /*
  * This method sends raw data to the remote host.
  */
-DWORD Socket::Send(std::vector<BYTE>& data)
+int Socket::Send(std::vector<BYTE>& data)
 {
 	EnterCriticalSection(&m_csWriting);
 	int iResult;
@@ -385,34 +384,46 @@ DWORD Socket::Send(std::vector<BYTE>& data)
 /*
  * This method receives raw data from the remote host.
  */
-DWORD Socket::Recv(std::vector<BYTE>& data)
+int Socket::Recv(std::vector<BYTE>& data)
 {
 	EnterCriticalSection(&m_csReading);
-	int iResult;
+
+	int bytesReceived = recv(m_Socket, (char*) &data[0], data.size(), 0);
+	if(bytesReceived > 0)
+	{
+		data.resize(bytesReceived);
+	}
+	else if(bytesReceived < 0 && ::WSAGetLastError() == WSAEWOULDBLOCK)
+	{
+		::WSASetLastError(WSAEWOULDBLOCK);
+		data.resize(0);
+	}
+	else
+	{
+		LeaveCriticalSection(&m_csReading);
+		return bytesReceived;
+	}
 
 	if(m_bUsingSSL)
 	{
-		SecureRecv(&data[0], data.size(), (PDWORD) &iResult);
+		data = TLSDecrypt(data);
+	}
+	if(m_bUsingSC)
+	{
+		data = m_SocketCompressor.Decompress(data);
+	}
+	if(data.size())
+	{
+		bytesReceived = data.size();
 	}
 	else
 	{
-		iResult = recv(m_Socket, (char*) &data[0], data.size(), 0);
-	}
-	if(iResult >= 0)
-	{
-		data.resize(iResult);
-		if(m_bUsingSC)
-		{
-			data = m_SocketCompressor.Decompress(data);
-			iResult = data.size();
-		}
-	}
-	else
-	{
+		::WSASetLastError(WSAEWOULDBLOCK);
+		bytesReceived = -1;
 	}
 
 	LeaveCriticalSection(&m_csReading);
-	return iResult;
+	return bytesReceived;
 }
 
 /*
@@ -561,7 +572,7 @@ int Socket::Select(bool bRead, bool bWrite, long seconds, long useconds)
 	 * data.
 	 */
 	if(bRead && m_bUsingSSL &&
-		!m_pendingEncoded.empty() || !m_pendingDecoded.empty())
+		!m_PendingEncoded.empty())
 	{
 		return 1;
 	}
@@ -577,180 +588,68 @@ int Socket::Select(bool bRead, bool bWrite, long seconds, long useconds)
 		NULL, &tv);
 }
 
-SECURITY_STATUS Socket::SecureRecv(PBYTE message, DWORD messageSize,
-								   PDWORD bytesReceived)
+std::vector<BYTE> Socket::TLSDecrypt(std::vector<BYTE>& data)
 {
-	if(!m_pendingDecoded.empty())
+	std::vector<BYTE> decodedData;
+	m_PendingEncoded.insert(m_PendingEncoded.end(), data.begin(), data.end());
+	if(m_PendingEncoded.size() == 0)
 	{
-		if(messageSize < m_pendingDecoded.size())
-		{
-			std::copy(m_pendingDecoded.begin(),
-				m_pendingDecoded.begin() + messageSize,	message);
-			*bytesReceived = messageSize;
-			std::copy(m_pendingDecoded.begin() + messageSize,
-				m_pendingDecoded.end(), m_pendingDecoded.begin());
-			m_pendingDecoded.resize(m_pendingDecoded.size() - messageSize);
-			return 0;
-		}
-		else
-		{
-			std::copy(m_pendingDecoded.begin(),
-				m_pendingDecoded.end(), message);
-			*bytesReceived = m_pendingDecoded.size();
-			m_pendingDecoded.clear();
-			return 0;
-		}
+		return data;
 	}
 
-	*bytesReceived = 0;
-
 	SecPkgContext_StreamSizes sizes;
-	SECURITY_STATUS status = QueryContextAttributes(&m_context,
+	SECURITY_STATUS status = ::QueryContextAttributes(&m_context,
 		SECPKG_ATTR_STREAM_SIZES, &sizes);
 
+	std::vector<BYTE> ioBuffer;
 	DWORD ioBufferSize = sizes.cbHeader + 
 		sizes.cbMaximumMessage + sizes.cbTrailer;
-	DWORD ioBufferUsed = 0;
-	std::vector<char> ioBuffer(ioBufferSize);
+	DWORD ioBufferUsed = m_PendingEncoded.size() < ioBufferSize ? 
+		m_PendingEncoded.size() : ioBufferSize;
+	ioBuffer.insert(ioBuffer.begin(), m_PendingEncoded.begin(),
+		m_PendingEncoded.begin() + ioBufferUsed);
+	m_PendingEncoded.erase(m_PendingEncoded.begin(),
+		m_PendingEncoded.begin() + ioBufferUsed);
 
-    while(TRUE)
-    {
-		if(!m_pendingEncoded.empty())
+	SecBuffer buffers[4] = {{ioBuffer.size(), SECBUFFER_DATA, &ioBuffer[0]},
+		{0, SECBUFFER_EMPTY, NULL},
+		{0, SECBUFFER_EMPTY ,NULL},
+		{0, SECBUFFER_EMPTY, NULL}};
+	SecBufferDesc cipherText = {SECBUFFER_VERSION, 4, buffers};
+
+	status = ::DecryptMessage(&m_context, &cipherText, 0, NULL);
+	if(status == SEC_E_OK || status == SEC_I_RENEGOTIATE)
+	{
+		for(int i = 1; i < 4; i++)
 		{
-			DWORD ioBufferFree = ioBuffer.size() - ioBufferUsed;
-			if(m_pendingEncoded.size() > ioBufferFree)
+			if(buffers[i].BufferType == SECBUFFER_DATA)
 			{
-				std::copy(m_pendingEncoded.begin(),
-					m_pendingEncoded.begin() + ioBufferFree,
-					ioBuffer.begin() + ioBufferUsed);
-				ioBufferUsed += ioBufferFree;
-				m_pendingEncoded.erase(m_pendingEncoded.begin(), 
-					m_pendingEncoded.begin() + ioBufferFree);
+				decodedData.insert(decodedData.begin(), 
+					(BYTE*) buffers[i].pvBuffer,
+					(BYTE*) buffers[i].pvBuffer + buffers[i].cbBuffer);
 			}
-			else
+			else if(buffers[i].BufferType == SECBUFFER_EXTRA)
 			{
-				std::copy(m_pendingEncoded.begin(),
-					m_pendingEncoded.end(),
-					ioBuffer.begin() + ioBufferUsed);
-				ioBufferUsed += m_pendingEncoded.size();
-				m_pendingEncoded.clear();
+				m_PendingEncoded.insert(m_PendingEncoded.begin(), 
+					(BYTE*) buffers[i].pvBuffer,
+					(BYTE*) buffers[i].pvBuffer + buffers[i].cbBuffer);
 			}
 		}
-        if(0 == ioBufferUsed || status == SEC_E_INCOMPLETE_MESSAGE)
-        {
-            *bytesReceived = recv(m_Socket,
-				&ioBuffer.begin()[0] + ioBufferUsed, 
-				ioBufferSize - ioBufferUsed, 0);
-			if(*bytesReceived == SOCKET_ERROR)
-			{
-				if(::WSAGetLastError() != WSAEWOULDBLOCK)
-				{
-					status = SEC_E_INTERNAL_ERROR;
-					break;
-				}
-				else
-				{
-					*bytesReceived = 0;
-					status = SEC_E_OK;
-					break;
-				}
-            }
-            else if(*bytesReceived == 0 && ioBufferUsed)
-            {
-				return SEC_E_INTERNAL_ERROR;
-			}
-			else if(*bytesReceived == 0)
-			{
-				break;
-			}
-            else
-            {
-                ioBufferUsed += *bytesReceived;
-            }
-        }
-
-		SecBuffer               buffers[4];
-		buffers[0].pvBuffer     = &ioBuffer.begin()[0];
-		buffers[0].cbBuffer     = ioBufferUsed;
-		buffers[0].BufferType   = SECBUFFER_DATA;
-		buffers[1].pvBuffer     = NULL;
-		buffers[1].cbBuffer     = 0;
-		buffers[1].BufferType   = SECBUFFER_EMPTY;
-		buffers[2].pvBuffer     = NULL;
-		buffers[2].cbBuffer     = 0;
-		buffers[2].BufferType   = SECBUFFER_EMPTY;
-		buffers[3].pvBuffer     = NULL;
-		buffers[3].cbBuffer     = 0;
-		buffers[3].BufferType   = SECBUFFER_EMPTY;
-
-		SecBufferDesc           cipherText;
-		cipherText.ulVersion    = SECBUFFER_VERSION;
-		cipherText.cBuffers     = 4;
-		cipherText.pBuffers     = buffers;
-
-		status = DecryptMessage(&m_context, &cipherText, 0, NULL);
-
-        if(status == SEC_E_INCOMPLETE_MESSAGE)
-        {
-            continue;
-        }
-		else if(status == SEC_I_CONTEXT_EXPIRED)
+		if(status == SEC_I_RENEGOTIATE)
 		{
-			break;
+			status = ClientHandshakeLoop(false);
 		}
-		else if(status != SEC_E_OK && status != SEC_I_RENEGOTIATE)
-        {
-            return status;
-        }
-		else
-		{
-			for(int i = 1; i < 4; i++)
-			{
-				if(buffers[i].BufferType == SECBUFFER_DATA)
-				{
-					if(messageSize > buffers[i].cbBuffer)
-					{
-						std::copy((char*) buffers[i].pvBuffer, 
-							(char*) buffers[i].pvBuffer + buffers[i].cbBuffer, 
-							message);
-						*bytesReceived = buffers[i].cbBuffer;
-					}
-					else
-					{
-						std::copy((char*) buffers[i].pvBuffer, 
-							(char*) buffers[i].pvBuffer + messageSize, 
-							message);
-						*bytesReceived = messageSize;
-
-						m_pendingDecoded.resize(buffers[i].cbBuffer - messageSize, 0);
-						std::copy((char*) buffers[i].pvBuffer + messageSize,
-							(char*) buffers[i].pvBuffer + buffers[i].cbBuffer,
-							&m_pendingDecoded.begin()[0]);
-					}
-				}
-				else if(buffers[i].BufferType == SECBUFFER_EXTRA)
-				{
-					m_pendingEncoded.resize(buffers[i].cbBuffer, 0);
-					std::copy((char*) buffers[i].pvBuffer, 
-						(char*) buffers[i].pvBuffer + buffers[i].cbBuffer,
-						&m_pendingEncoded.begin()[0]);
-				}
-			}
-			ioBufferUsed = 0;
-
-			if(status == SEC_I_RENEGOTIATE)
-			{
-				status = ClientHandshakeLoop(false);
-				if(status != SEC_E_OK)
-				{
-					return status;
-				}
-				continue;
-			}
-			break;
-		}
-    }
-	return status;
+	}
+	else if(status == SEC_E_INCOMPLETE_MESSAGE)
+	{
+		m_PendingEncoded.insert(m_PendingEncoded.begin(),
+			ioBuffer.begin(), ioBuffer.end());
+	}
+	else
+	{
+		OutputDebugString(L"Decryption error\n");
+	}
+	return decodedData;
 }
 
 SECURITY_STATUS Socket::SecureSend(PBYTE message, DWORD messageSize,
