@@ -83,7 +83,7 @@
 				Name="VCLinkerTool"
 				RegisterOutput="true"
 				IgnoreImportLibrary="true"
-				AdditionalDependencies="Winmm.lib Secur32.lib Crypt32.lib dnsapi.lib oldnames.lib comsupp.lib shlwapi.lib version.lib wsock32.lib shfolder.lib comctl32.lib ..\zlib-1.2.3.win32\lib\zlibstat.lib comsuppw.lib libcmtd.lib libcpmtd.lib WinInet.lib Psapi.lib"
+				AdditionalDependencies="Winmm.lib Secur32.lib Crypt32.lib dnsapi.lib oldnames.lib comsupp.lib shlwapi.lib version.lib Ws2_32.lib shfolder.lib comctl32.lib ..\zlib-1.2.3.win32\lib\zlibstat.lib comsuppw.lib libcmtd.lib libcpmtd.lib WinInet.lib Psapi.lib"
 				OutputFile="$(OutDir)pandiond.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"

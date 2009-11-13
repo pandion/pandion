@@ -73,6 +73,13 @@ DWORD Socket::Connect(_bstr_t ServerAddress, WORD wPort)
 {
 	EnterCriticalSection(&m_csReading);
 	EnterCriticalSection(&m_csWriting);
+
+	/* Enable keepalive at thirty seconds */
+	tcp_keepalive params = {1, 30000, 1000};
+	DWORD unused;
+	::WSAIoctl(m_Socket, SIO_KEEPALIVE_VALS, &params, sizeof(tcp_keepalive),
+		NULL, 0, &unused, NULL, NULL);
+
 	sockaddr_in sinRemote;
 	sinRemote.sin_family = AF_INET;
 	sinRemote.sin_addr.s_addr = LookupAddress(ServerAddress);
