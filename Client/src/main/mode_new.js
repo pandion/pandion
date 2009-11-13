@@ -34,11 +34,8 @@ function mode_new ( mode, msg )
 	else
 	// any kind of online
 	{
-		if ( ! external.globals( 'autoawaymode' ) )
-		{
-			cfg( 'lastmode' ) = mode;
-			cfg( 'lastmsg' ) = msg;
-		}
+		cfg( 'lastmsg' ) = msg;
+		cfg( 'lastmode' ) = mode;
 		MenuBarUpdate( 'file' );
 		if ( ! cfg( 'nick' ).length )
 			cfg( 'nick' ) = cfg( 'username' );
@@ -52,7 +49,8 @@ function mode_new ( mode, msg )
 			external.globals( 'Translator' ).Translate( 'main', 'cl_away' ),
 			external.globals( 'Translator' ).Translate( 'main', 'cl_xaway' ),
 			external.globals( 'Translator' ).Translate( 'main', 'cl_busy' ),
-			external.globals( 'Translator' ).Translate( 'main', 'cl_invisible' )
+			external.globals( 'Translator' ).Translate( 'main', 'cl_invisible' ),
+			external.globals( 'Translator' ).Translate( 'main', 'cl_idle' )
 		];
 		document.getElementById( 'mode-message' ).innerText = mode_text[mode] + ( msg.length ? ' - ' + msg.replace( /[\n\r]+/mg, ' - ' ) : '' );
 

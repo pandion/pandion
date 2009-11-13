@@ -679,7 +679,7 @@ function Keyboard ( EventData )
  */
 function OnTypeInput ( HTMLElement )
 {
-	external.globals( 'autoawaytime' ) = 0;
+	external.globals("idle").keepalive();
 	if ( event.keyCode == 13 && ! event.shiftKey )
 	{
 		if ( ! document.getElementById( 'btn-send' ).disabled )

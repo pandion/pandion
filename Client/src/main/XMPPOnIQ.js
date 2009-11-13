@@ -86,7 +86,7 @@ function XMPPOnIQ ( ReceivedXML )
 	{
 		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 		dom.loadXML( '<iq type="result"><query xmlns="jabber:iq:last"/></iq>' );
-		dom.documentElement.firstChild.setAttribute( 'seconds', Math.floor( parseInt( external.globals( 'autoawaytime' ), 10 ) / 1000 ) );
+		dom.documentElement.firstChild.setAttribute("seconds", Math.floor(external.globals("idle").timePassed() / 1000));
 		dom.documentElement.setAttribute( 'to', iq.From );
 		if ( iq.Id.length )
 			dom.documentElement.setAttribute( 'id', iq.Id );
@@ -215,6 +215,19 @@ function XMPPOnIQ ( ReceivedXML )
 		}
 	}
 
+	/* Send pong
+	 */
+	else if ( iq.Namespace == 'urn:xmpp:ping' && iq.Type == 'get' )
+	{
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="result"/>' );
+		dom.documentElement.setAttribute( 'to', iq.From );
+		if ( iq.Id.length )
+			dom.documentElement.setAttribute( 'id', iq.Id );
+		warn( 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+
 	/* Answer with information or error for service discovery
 	 */
 	else if ( iq.Namespace == 'http://jabber.org/protocol/disco#info' && iq.Type == 'get' )
@@ -246,7 +259,8 @@ function XMPPOnIQ ( ReceivedXML )
 				'jabber:iq:last',
 				'jabber:iq:oob',
 				'jabber:iq:time',
-				'jabber:iq:version'
+				'jabber:iq:version',
+				'urn:xmpp:ping'
 			];
 			for ( var i = 0; i < SupportedFeatures.length; ++i )
 			{

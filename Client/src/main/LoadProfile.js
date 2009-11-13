@@ -42,19 +42,17 @@ function LoadProfile ( Address )
 	if ( ! cfg( 'downloaddir' ).length )
 		cfg( 'downloaddir' ) = external.GetSpecialFolder( 0x0005 ) + '\\';
 
-	/* Default translated auto-away messages
-	 */
-	if ( ! cfg( 'autoawaytext' ).length )
-		cfg( 'autoawaytext' ) = external.globals( 'Translator' ).Translate( 'main', 'autoawaymessage' );
-	if ( ! cfg( 'autoxawaytext' ).length )
-		cfg( 'autoxawaytext' ) = external.globals( 'Translator' ).Translate( 'main', 'autoxawaymessage' );
-
 	/* List of addresses that are blocked
 	 */
 	cfg( 'blocklist' ) = cfg( 'blocklist' ).split( ',' );
 	for ( var i = 0; i < cfg( 'blocklist' ).length; i++ )
 		if ( cfg( 'blocklist' )[i].length && ! external.globals( 'block' ).Exists( cfg( 'blocklist' )[i] ) )
 			external.globals( 'block' ).Add( cfg( 'blocklist' )[i], '' );
+
+	/* Don't restore as idle, use available instead
+	 */
+	if ( ! cfg( 'lastmode' ) == 6 )
+		cfg( 'lastmode' ) = 0;
 
 	/* Restore the user's preferred window dimensions and location
 	 */

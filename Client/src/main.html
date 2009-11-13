@@ -5,6 +5,15 @@
 <LINK rel="stylesheet" type="text/css" href="../css/main.css"></LINK>
 <LINK rel="stylesheet" type="text/css" href="../css/roster.css"></LINK>
 
+<script type="text/javascript" src="../js/lib/client.js"></script>
+<script type="text/javascript" src="../js/lib/client/events/manager.js"></script>
+<script type="text/javascript" src="../js/lib/client/utils/countdown.js"></script>
+<script type="text/javascript" src="../js/lib/client/ui/idle/manager.js"></script>
+<script type="text/javascript" src="../js/lib/client/ui/idle/sensor/mouseMovement.js"></script>
+<script type="text/javascript" src="../js/lib/client/ui/idle/sensor/screenSaver.js"></script>
+<script type="text/javascript" src="../js/lib/client/ui/idle/sensor/workstationLock.js"></script>
+<script type="text/javascript" src="main/idle.js"></script>
+
 <SCRIPT src="main/warn.js"></SCRIPT>
 <SCRIPT src="main/file2hash.js"></SCRIPT>
 <SCRIPT src="main/hash2file.js"></SCRIPT>
@@ -16,7 +25,6 @@
 <SCRIPT src="main/mousemenu.js"></SCRIPT>
 <SCRIPT src="main/sound_play.js"></SCRIPT>
 <SCRIPT src="main/login_check.js"></SCRIPT>
-<SCRIPT src="main/autoaway.js"></SCRIPT>
 <SCRIPT src="main/md5_obj.js"></SCRIPT>
 <SCRIPT src="main/mode_new.js"></SCRIPT>
 <SCRIPT src="main/vcard.js"></SCRIPT>
@@ -226,7 +234,7 @@
 											<B id=txt_welcome></B>
 											<HR width=128>
 											<BR>
-											<A href="" onclick="dial_addcontact(); return false;" id=txt_addtolist></A>
+											<A href="" onclick="dial_adduser(); return false;" id=txt_addtolist></A>
 											<BR>
 											<BR>
 											<SPAN id=txt_welcor></SPAN>

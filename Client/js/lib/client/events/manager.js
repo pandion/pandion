@@ -6,9 +6,10 @@ client.events.manager = function (callbacks) {
 		this.subscribe(name, callbacks[name]);
 };
 
-client.events.manager.prototype.publish = function (name) {
-	for (var i = 0; i < this.callbacks[name].length; i++)
-		this.callbacks[name][i]();
+client.events.manager.prototype.publish = function (name, data) {
+	if (name in this.callbacks)
+		for (var i = 0; i < this.callbacks[name].length; i++)
+			this.callbacks[name][i](data);
 };
 
 client.events.manager.prototype.subscribe = function (name, callback) {

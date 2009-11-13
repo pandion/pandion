@@ -154,11 +154,6 @@ function init ()
 
 	doc.autoupdate.checked = external.globals( 'installupdates' ) == 'yes';
 
-	doc.autoawaytime.value = isNaN( parseInt( cfg( 'autoawaytime' ), 10 ) ) ? 5 : Math.round( cfg( 'autoawaytime' ) / 60000 );
-	doc.autoxawaytime.value = isNaN( parseInt( cfg( 'autoawaytime' ), 10 ) ) ? 30 : Math.round( cfg( 'autoxawaytime' ) / 60000 );
-	doc.autoawaytext.value = cfg( 'autoawaytext' ).length? cfg( 'autoawaytext' ) : external.globals( 'Translator' ).Translate( 'main', 'autoawaymessage' );
-	doc.autoxawaytext.value = cfg( 'autoxawaytext' ).length? cfg( 'autoxawaytext' ) : external.globals( 'Translator' ).Translate( 'main', 'autoxawaymessage' );
-
 //	doc.filetransferhost.value = cfg( 'filetransferhost' );
 //	doc.filetransferport.value = isNaN( parseInt( cfg( 'filetransferport' ), 10 ) ) ? 0 : parseInt( cfg( 'filetransferport' ), 10 );
 
@@ -208,27 +203,6 @@ function save ()
 //	}
 //	cfg( 'filetransferhost' ) = doc.filetransferhost.value;
 //	cfg( 'filetransferport' ) = doc.filetransferport.value;
-
-	var time1 = parseInt( doc.autoawaytime.value, 10 );
-	var time2 = parseInt( doc.autoxawaytime.value, 10 );
-	if ( isNaN( time1 ) || time1 < 1 )
-		time1 = 5;
-	if ( isNaN( time2 ) || time2 < 1 )
-		time2 = 30;
-	if ( time1 <= time2 )
-	{
-		cfg( 'autoawaytime' ) = time1 * 60000;
-		cfg( 'autoxawaytime' ) = time2 * 60000;
-		cfg( 'autoawaytext' ) = doc.autoawaytext.value;
-		cfg( 'autoxawaytext' ) = doc.autoxawaytext.value;
-	}
-	else
-	{
-		cfg( 'autoawaytime' ) = time2 * 60000;
-		cfg( 'autoxawaytime' ) = time1 * 60000;
-		cfg( 'autoawaytext' ) = doc.autoxawaytext.value;
-		cfg( 'autoxawaytext' ) = doc.autoawaytext.value;
-	}
 
 	var LocalStartupLink = external.GetSpecialFolder( 0x0007 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk';
 	var CommonStartupLink = external.GetSpecialFolder( 0x0018 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk';
@@ -368,7 +342,6 @@ function pick_soundfile ( field )
 
 <DIV style="background-color: window; border: 2px inset; width: 100%; height: 270px;" onkeydown="handle_keyboard()" tabindex=0>
 <TABLE id=tree border=0 cellspacing=0 cellpadding=0 width="100%" style="table-layout: fixed;">
-<TR section=autoaway><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/preferences/note.png">&nbsp;&nbsp;<SPAN id=lbl_autoaway></SPAN></TD></TR>
 <TR section=blocking><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/preferences/wall.png">&nbsp;&nbsp;<SPAN id=lbl_blocking></SPAN></TD></TR>
 <TR section=connection><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/preferences/network.png">&nbsp;&nbsp;<SPAN id=lbl_connection></SPAN></TD></TR>
 <TR section=privacy><TD class=tree onmousedown="tree()"><IMG align=top height=16 width=16 src="../images/preferences/person.png">&nbsp;&nbsp;<SPAN id=lbl_privacy></SPAN></TD></TR>
@@ -381,18 +354,6 @@ function pick_soundfile ( field )
 <TD>
 
 <DIV id=header>&nbsp;</DIV>
-
-<!-- Automatically Away Messages -->
-<DIV id=autoaway class=panel>
-<DIV id=txt_autoaway></DIV>
-<BR>
-<SPAN id=txt_displayawaymsg_left></SPAN>&nbsp;<INPUT id=autoawaytime type=text class=text style="text-align: center; width: 24px;" maxlength=2 onkeypress="event.returnValue=event.keyCode>47&&event.keyCode<58">&nbsp;<SPAN id=txt_displayawaymsg_right></SPAN><BR>
-<TEXTAREA id=autoawaytext class=text style="width: 250px; height: 40px; overflow: auto;"></TEXTAREA>
-<BR>
-<BR>
-<SPAN id=txt_displayxawaymsg_left></SPAN>&nbsp;<INPUT id=autoxawaytime type=text class=text style="text-align: center; width: 24px;" maxlength=3 onkeypress="event.returnValue=event.keyCode>47&&event.keyCode<58">&nbsp;<SPAN id=txt_displayxawaymsg_right></SPAN><BR>
-<TEXTAREA id=autoxawaytext class=text style="width: 250px; height: 40px; overflow: auto;"></TEXTAREA>
-</DIV>
 
 <!-- Blocking List -->
 <DIV id=blocking class=panel>

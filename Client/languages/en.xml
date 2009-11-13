@@ -95,8 +95,6 @@
     <code id="txt_welcome">Welcome to ${0}!</code>
     <code id="user_online">${0} is now online</code>
     <code id="cl_tooltip">${0} Contact List</code>
-    <code id="autoawaymessage">Idle for more than 5 minutes</code>
-    <code id="autoxawaymessage">Idle for more than 30 minutes</code>
     <code id="import_files">Contact lists</code>
     <code id="import_invalid">The file does not contain valid data.</code>
     <code id="import_no_new">All contacts in the file are already in your contact list.</code>
@@ -262,6 +260,7 @@
     <code id="cl_away">Away</code>
     <code id="cl_xaway">Extended Away</code>
     <code id="cl_invisible">Invisible</code>
+    <code id="cl_idle">Idle</code>
     <code id="cl_tooltip_online">Address: ${0}&#13;Resource: ${1}</code>
 
     <code id="time-now">just now</code>
@@ -1673,21 +1672,6 @@
     <code id="error-item-not-found">Item Not Found: Room is locked</code>
   </window>
   <window name="preferences">
-    <item id="txt_autoaway">
-      <innerText>When you do not use this computer for several minutes, your status will change to "Away".</innerText>
-    </item>
-    <item id="txt_displayawaymsg_left">
-      <innerText>Display this message after</innerText>
-    </item>
-    <item id="txt_displayxawaymsg_left">
-      <innerText>Display this message after</innerText>
-    </item>
-    <item id="txt_displayawaymsg_right">
-      <innerText>minutes:</innerText>
-    </item>
-    <item id="txt_displayxawaymsg_right">
-      <innerText>minutes:</innerText>
-    </item>
     <item id="txt_blocking">
       <innerText>The blocking list contains addresses of people you do not want to receive messages from.</innerText>
     </item>
@@ -1769,9 +1753,6 @@
     <item id="btn_cancel">
       <value>Cancel</value>
     </item>
-    <item id="lbl_autoaway">
-      <innerText>Auto-away</innerText>
-    </item>
     <item id="lbl_blocking">
       <innerText>Blocking</innerText>
     </item>
@@ -1784,7 +1765,6 @@
     <item id="lbl_sound">
       <innerText>Sound</innerText>
     </item>
-    <code id="autoaway">Automatically Away Messages</code>
     <code id="blocking">Blocking List</code>
     <code id="connection">Connection Settings</code>
     <code id="privacy">Privacy</code>
