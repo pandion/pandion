@@ -52,6 +52,9 @@ a:hover {
 	font-size: 1em;
 	color: #333;
 }
+#software-track {
+	text-transform: lowercase;
+}
 #header p {
 	margin: 5px 0 0 20px;
 }

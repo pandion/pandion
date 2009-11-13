@@ -12,7 +12,9 @@ window.attachEvent("onload", function () {
 	document.attachEvent("onkeydown", function () {if (event.keyCode == 27) external.wnd.close()});
 
 	document.getElementById("software-name").innerText = external.globals("softwarename");
-	document.getElementById("software-version").innerText = external.globals("softwareversion") + " " + external.globals("softwaretrack");
+	document.getElementById("software-number").innerText = external.globals("softwareversion");
+	document.getElementById("software-track").innerText = external.globals("Translator").Translate("main", "track-" + external.globals("softwaretrack"));
+	client.css.addClass(document.getElementById("software-track"), external.globals("softwaretrack"));
 	document.getElementById("software-link").innerText = document.getElementById("software-link").href = external.globals("softwareurl");
 
 	document.getElementById("content").attachEvent("onsubmit", function () {

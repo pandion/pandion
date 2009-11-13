@@ -76,7 +76,9 @@ window.attachEvent("onload", function () {
 
 		document.getElementById("txt-version").innerText = external.globals("Translator").Translate("autoupdate", "title", [appcastEntry.name, appcastEntry.version]);
 		document.getElementById("txt-whats-new").href = appcastEntry.alternate ? appcastEntry.alternate : external.globals("ClientPluginContainer").ParseURL(external.globals("softwareurl"));
-		document.getElementById("progress-version").innerText = external.globals("softwareversion") + " " + external.globals("softwaretrack");
+		document.getElementById("progress-version-number").innerText = external.globals("softwareversion");
+		document.getElementById("progress-version-track").innerText = external.globals("Translator").Translate("main", "track-" + external.globals("softwaretrack"));
+		client.css.addClass(document.getElementById("progress-version-track"), external.globals("softwareversion"));
 		document.createElement("div").innerHTML = appcastEntry.summary;
 
 		if (appcastEntry.enclosure.length) {
@@ -186,7 +188,9 @@ window.attachEvent("onload", function () {
 
 	if (external.wnd.params.selectVersion) {
 		/* Load list of latest updates */
-		document.getElementById("tracks-version").innerText = external.globals("softwareversion") + " " + external.globals("softwaretrack");
+		document.getElementById("tracks-version-number").innerText = external.globals("softwareversion");
+		document.getElementById("tracks-version-track").innerText = external.globals("Translator").Translate("main", "track-" + external.globals("softwaretrack"));
+		client.css.addClass(document.getElementById("tracks-version-track"), external.globals("softwareversion"));
 		client.css.hide(document.getElementById("download-progress"));
 		client.css.hide(document.getElementById("txt-unavailable"));
 		client.css.hide(document.getElementById("txt-no-feed"));
@@ -218,7 +222,10 @@ window.attachEvent("onload", function () {
 					if (tracks[name]) {
 						var button = document.createElement("<button type='button' />");
 						button.className = "update-button";
-						insertSimpleElement(button, "h4", tracks[name].name + " " + tracks[name].version + " " + name);
+						var title = insertSimpleElement(button, "h4", "");
+						client.css.addClass(insertSimpleElement(title, "span", tracks[name].name), "name");
+						client.css.addClass(insertSimpleElement(title, "span", tracks[name].version), "number");
+						client.css.addClass(insertSimpleElement(title, "span", external.globals("Translator").Translate("main", "track-" + name)), "track");
 						if (tracks[name].version == external.globals("softwareversion")) {
 							button.disabled = true;
 							insertSimpleElement(button, "div", external.globals("Translator").Translate("autoupdate", "up-to-date"));

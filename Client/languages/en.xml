@@ -278,6 +278,10 @@
     <code id="time-months">${0} months ago</code>
     <code id="time-year">1 year ago</code>
     <code id="time-years">${0} years ago</code>
+
+    <code id="track-stable">Stable</code>
+    <code id="track-beta">Beta</code>
+    <code id="track-development">Development</code>
   </window>
   <window name="about">
     <item id="txt-copyright">

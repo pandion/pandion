@@ -79,6 +79,9 @@ a:hover {
 	margin: 7px 0 0 10px;
 	color: inactivecaptiontext;
 }
+#tracks-version-track, #progress-version-track {
+	text-transform: lowercase;
+}
 
 /* Panel: Tracks
  */
@@ -119,6 +122,15 @@ a:hover {
 	font-size: 1.2em;
 	margin: 0 0 6px 0;
 	padding: 0;
+}
+.update-button .name, .update-button .number {
+	=margin-right: 4px; /* ie6/ie7 */
+}
+.update-button .name:after, .update-button .number:after {
+	content: " "; /* w3c */
+}
+.update-button .track {
+	text-transform: lowercase;
 }
 .update-button div {
 	color: highlight;
