@@ -22,6 +22,7 @@
  *              applications.
  */
 #pragma once
+#include "SocketCompressor.h"
 
 /*
  * This class provides thread-safe implementation of basic socket functionality
@@ -42,23 +43,16 @@ private:
 	SOCKET  m_Socket;
 
 	/*
-	 * These objects hold the state of the (de)compression stream.
-	 */
-	z_stream    compressionStream;
-	z_stream    decompressionStream;
-
-	/*
-	 * Data that has yet to be decompressed.
-	 */
-	BYTE*       pendingCompressed;
-	bool		decHasMoreInput;
-
-	/*
 	 * These members describe the current state of the Socket.
 	 */
 	BOOL		m_bConnected;
 	BOOL		m_bUsingSSL;
 	BOOL		m_bUsingSC;
+
+	/*
+	 * The object that handles stream (de)compression.
+	 */
+	SocketCompressor m_SocketCompressor;
 
 	/*
 	 * These objects hold the state of the TLS stream.
@@ -74,7 +68,7 @@ private:
 	std::vector<char>  m_pendingEncoded;
 	std::vector<char>  m_pendingDecoded;
 public:
-	Socket(SOCKET s = INVALID_SOCKET);
+	Socket();
 	~Socket();
 
 	DWORD   Connect(_bstr_t ServerAddress, WORD wPort);
@@ -83,26 +77,23 @@ public:
 	DWORD	StartTLS();
 	DWORD   StartSC();
 	
-	int     Select(bool bRead, bool bWrite, timeval *tv = NULL);
-	BOOL    SetTimeout(DWORD nSeconds);
+	int     Select(bool bRead, bool bWrite, 
+		long seconds = 0, long useconds = 0);
 
-	USHORT  Listen(WORD nPort);
-	Socket* Accept();
+	DWORD   Send(std::vector<BYTE>& data);
+	DWORD	Recv(std::vector<BYTE>& data);
 
-	DWORD   Send(BYTE* buf, DWORD nBufLen);
-	DWORD	Recv(BYTE* buf, DWORD nBufLen);
-
-	DWORD	SendLine(LPWSTR str);
-	DWORD	RecvLine(LPWSTR *str);
+	void	SetBlocking();
+	void	SetNonBlocking();
+	void    SetSendTimeout(DWORD milliseconds);
+	void    SetRecvTimeout(DWORD milliseconds);
+	void	EnableKeepalive(DWORD timeout, DWORD interval);
+	void	DisableKeepalive();
 
 	_bstr_t GetRemoteAddress();
 	WORD    GetRemotePort();
 	_bstr_t GetLocalAddress();
 	WORD	GetLocalPort();
-	SOCKET	GetHandle();
-
-	void	SetBlocking();
-	void	SetNonBlocking();
 
 	/*
 	 * Private helper methods

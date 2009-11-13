@@ -231,17 +231,16 @@ bool XMPPConnectionManager::DoConnectWithoutSRV()
  */
 bool XMPPConnectionManager::DoRecvData()
 {
-	static std::vector<BYTE> recvBuffer(0x10000);
+	static std::vector<BYTE> recvBuffer;
+	recvBuffer.resize(0x10000);
 	bool canContinue = false;
-	timeval tv = { 0, 32 }; // 32ms
-	int select = m_Socket.Select(true, false, &tv);
+	int select = m_Socket.Select(true, false, 0, 10000);
 	if(select == 1)
 	{
-		int bytesRead = m_Socket.Recv(&recvBuffer[0], 
-			recvBuffer.size() - 1);
+		int bytesRead = m_Socket.Recv(recvBuffer);
 		if(bytesRead > 0)
 		{
-			recvBuffer[bytesRead] = L'\0';
+			recvBuffer.push_back(L'\0');
 			std::wstring recvString(
 				CUTF82W((char*)&recvBuffer[0]));
 

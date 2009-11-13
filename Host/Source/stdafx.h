@@ -23,11 +23,11 @@
  */
 #pragma once
 
-/* Target Windows 2000 or later:
+/*
+ * Target Windows 2000 or later:
  * http://msdn.microsoft.com/en-us/library/aa383745(VS.85).aspx
  */
 #define WINVER 0x0500
-#define _WIN32_WINDOWS 0x0500
 #define _WIN32_WINNT 0x0500
 
 /*
@@ -52,6 +52,14 @@
  * Use Win32 security API.
  */
 #define SECURITY_WIN32
+
+/*
+ * Request Common Controls v6 when available
+ * http://msdn.microsoft.com/en-us/library/ms649781(VS.85).aspx
+ */
+#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Wi"\
+	"ndows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publi"\
+	"cKeyToken='6595b64144ccf1df' language='*'\"")
 
 /*
  * Microsoft Windows API headers

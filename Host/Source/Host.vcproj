@@ -271,6 +271,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\SocketCompressor.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SocketCompressor.h"
+				>
+			</File>
+			<File
 				RelativePath=".\SRVLookup.cpp"
 				>
 			</File>
