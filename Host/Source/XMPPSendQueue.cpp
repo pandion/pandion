@@ -114,7 +114,7 @@ void XMPPSendQueue::WaitForData()
 		{
 			if(!m_Buffers.front().empty())
 			{
-				m_Socket->Send(&(m_Buffers.front())[0], m_Buffers.front().size());
+				m_Socket->Send(m_Buffers.front());
 			}
 			
 			m_Buffers.pop();

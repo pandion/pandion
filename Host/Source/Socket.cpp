@@ -27,17 +27,13 @@
 /*
  * Constructor for the Socket object
  */
-Socket::Socket(SOCKET s):
-	m_Socket(s), m_bUsingSSL(0), m_bUsingSC(0), m_bConnected(false),
-	pendingCompressed(NULL), decHasMoreInput(false)
+Socket::Socket():
+	m_bUsingSSL(0), m_bUsingSC(0), m_bConnected(false)
 {
-	InitializeCriticalSection(&m_csReading);
-	InitializeCriticalSection(&m_csWriting);
+	::InitializeCriticalSection(&m_csReading);
+	::InitializeCriticalSection(&m_csWriting);
 
-	if(m_Socket == INVALID_SOCKET)
-	{
-        m_Socket = socket(AF_INET, SOCK_STREAM, 0);
-	}
+	m_Socket = ::socket(AF_INET, SOCK_STREAM, 0);
 }
 
 /*
@@ -47,23 +43,8 @@ Socket::~Socket()
 {
 	Disconnect();
 
-	DeleteCriticalSection(&m_csReading);
-	DeleteCriticalSection(&m_csWriting);
-}
-
-/*
- * This method sets the network timeout value for the socket in seconds.
- */
-BOOL Socket::SetTimeout(DWORD nSeconds)
-{
-	DWORD dwMSecs = nSeconds * 1000;
-
-	setsockopt(m_Socket, SOL_SOCKET, SO_RCVTIMEO,
-		(char*) &dwMSecs, sizeof(DWORD));
-	setsockopt(m_Socket, SOL_SOCKET, SO_SNDTIMEO,
-		(char*) &dwMSecs, sizeof(DWORD));
-
-	return true;
+	::DeleteCriticalSection(&m_csReading);
+	::DeleteCriticalSection(&m_csWriting);
 }
 
 /*
@@ -74,11 +55,7 @@ DWORD Socket::Connect(_bstr_t ServerAddress, WORD wPort)
 	EnterCriticalSection(&m_csReading);
 	EnterCriticalSection(&m_csWriting);
 
-	/* Enable keepalive at thirty seconds */
-	tcp_keepalive params = {1, 30000, 1000};
-	DWORD unused;
-	::WSAIoctl(m_Socket, SIO_KEEPALIVE_VALS, &params, sizeof(tcp_keepalive),
-		NULL, 0, &unused, NULL, NULL);
+	EnableKeepalive(30000, 1000);
 
 	sockaddr_in sinRemote;
 	sinRemote.sin_family = AF_INET;
@@ -86,7 +63,12 @@ DWORD Socket::Connect(_bstr_t ServerAddress, WORD wPort)
 	sinRemote.sin_port = htons(wPort);
 
 	int cerror = connect(m_Socket, (sockaddr*)&sinRemote, sizeof(sockaddr_in));
-	m_bConnected = (cerror != SOCKET_ERROR);
+
+	if(cerror != SOCKET_ERROR)
+	{
+		m_bConnected = true;
+		m_SocketCompressor.OnConnected();
+	}
 
 	LeaveCriticalSection(&m_csWriting);
 	LeaveCriticalSection(&m_csReading);
@@ -111,15 +93,8 @@ DWORD Socket::Disconnect()
 		FreeCredentialsHandle(&m_clientCreds);
 		DeleteSecurityContext(&m_context);
 	}
-	if(m_bUsingSC)
-	{
-		deflateEnd(&compressionStream);
-		inflateEnd(&decompressionStream);
-		if(pendingCompressed)
-			delete pendingCompressed;
-		pendingCompressed = NULL;
-		m_bUsingSC = false;
-	}
+	m_SocketCompressor.OnDisconnected();
+	m_bUsingSC = false;
 
 	shutdown(m_Socket, SD_BOTH);
 	closesocket(m_Socket);
@@ -364,31 +339,8 @@ SECURITY_STATUS Socket::ClientHandshakeLoop(bool initialRead)
  */
 DWORD Socket::StartSC()
 {
-	EnterCriticalSection(&m_csReading);
-	EnterCriticalSection(&m_csWriting);
-
-	compressionStream.zalloc = Z_NULL;
-	compressionStream.zfree = Z_NULL;
-	compressionStream.opaque = Z_NULL;
-
-	decompressionStream.next_in = Z_NULL;
-	decompressionStream.avail_in = 0;
-	decompressionStream.zalloc = Z_NULL;
-	decompressionStream.zfree = Z_NULL;
-	decompressionStream.opaque = Z_NULL;
-
-	if(deflateInit(&compressionStream, 9) == Z_OK &&
-		inflateInit(&decompressionStream) == Z_OK)
-	{
-		m_bUsingSC = true;
-		LeaveCriticalSection(&m_csWriting);
-		LeaveCriticalSection(&m_csReading);
-		return 1;
-	}
-
-	LeaveCriticalSection(&m_csWriting);
-	LeaveCriticalSection(&m_csReading);
-	return 0;
+	m_bUsingSC = true;
+	return 1;
 }
 
 DWORD Socket::LookupAddress(_bstr_t ServerAddress)
@@ -407,81 +359,25 @@ DWORD Socket::LookupAddress(_bstr_t ServerAddress)
 }
 
 /*
- * This method sets the Socket to listen on the specified port.
- */
-USHORT Socket::Listen(WORD nPort)
-{
-	sockaddr_in sinLocal;
-	sinLocal.sin_family = AF_INET;
-	sinLocal.sin_addr.s_addr = LookupAddress("0.0.0.0");
-	sinLocal.sin_port = htons(nPort);
-
-	if(bind(m_Socket, (sockaddr*) &sinLocal, sizeof(sockaddr_in)))
-	{
-		return 0;
-	}
-	if(listen(m_Socket, SOMAXCONN))
-	{
-		return 0;
-	}
-
-	int namelen = sizeof(sockaddr);
-	getsockname(m_Socket, (sockaddr*) &sinLocal, &namelen);
-
-	return ntohs(sinLocal.sin_port);
-}
-
-/*
- * This method accepts an incoming connection if there is one.
- */
-Socket* Socket::Accept()
-{
-	SOCKET s = accept(m_Socket, 0, 0);
-
-	if(s == INVALID_SOCKET)
-	{
-		return NULL;
-	}
-
-	return new Socket(s);
-}
-
-/*
  * This method sends raw data to the remote host.
  */
-DWORD Socket::Send(BYTE *buf, DWORD nBufLen)
+DWORD Socket::Send(std::vector<BYTE>& data)
 {
 	EnterCriticalSection(&m_csWriting);
 	int iResult;
 
-	BYTE *outputBuffer = buf;
-	DWORD outputSize = nBufLen;
 	if(m_bUsingSC)
 	{
-		compressionStream.next_in = buf;
-		compressionStream.avail_in = nBufLen;
-
-		outputSize = nBufLen + nBufLen / 1000 + 12;
-		outputBuffer = new BYTE[outputSize];
-		compressionStream.next_out = outputBuffer;
-		compressionStream.avail_out = outputSize;
-
-		deflate(&compressionStream, Z_SYNC_FLUSH);
-
-		outputSize -= compressionStream.avail_out;
+		data = m_SocketCompressor.Compress(data);
 	}
 	if(m_bUsingSSL)
 	{
-		SECURITY_STATUS status = SecureSend(outputBuffer,
-			outputSize, (DWORD *)&iResult);
+		SECURITY_STATUS status = SecureSend(&data[0],
+			data.size(), (DWORD *)&iResult);
 	}
 	else
 	{
-		iResult = send(m_Socket, (char*) outputBuffer, outputSize, 0);
-	}
-	if(m_bUsingSC)
-	{
-		delete outputBuffer;
+		iResult = send(m_Socket, (char*) &data[0], data.size(), 0);
 	}
 
     LeaveCriticalSection(&m_csWriting);
@@ -492,85 +388,29 @@ DWORD Socket::Send(BYTE *buf, DWORD nBufLen)
 /*
  * This method receives raw data from the remote host.
  */
-//TODO: Clean this up a bit
-DWORD Socket::Recv(BYTE *buf, DWORD nBufLen)
+DWORD Socket::Recv(std::vector<BYTE>& data)
 {
 	EnterCriticalSection(&m_csReading);
 	int iResult;
 
-	if(pendingCompressed)
-	{
-		int oldavail_in = decompressionStream.avail_in;
-		decompressionStream.avail_out = nBufLen;
-		decompressionStream.next_out = buf;
-
-		inflate(&decompressionStream, Z_SYNC_FLUSH);
-
-		if(decompressionStream.avail_in == 0)
-		{
-			decHasMoreInput = false;
-			delete pendingCompressed;
-			pendingCompressed = NULL;
-		}
-
-		if(oldavail_in != decompressionStream.avail_in)
-		{
-            return nBufLen - decompressionStream.avail_out;
-		}
-		else
-		{
-			decHasMoreInput = false;
-			/* nothing was decompressed, queue up some more bytes */
-		}
-	}
 	if(m_bUsingSSL)
 	{
-		SecureRecv(buf, nBufLen, (PDWORD) &iResult);
+		SecureRecv(&data[0], data.size(), (PDWORD) &iResult);
 	}
 	else
 	{
-		iResult = recv(m_Socket, (char*) buf, nBufLen, 0);
+		iResult = recv(m_Socket, (char*) &data[0], data.size(), 0);
 	}
-	if(m_bUsingSC && iResult > 0)
+	if(iResult >= 0)
 	{
-		if(pendingCompressed)
+		data.resize(iResult);
+		if(m_bUsingSC)
 		{
-			BYTE *oldPendingCompressed = pendingCompressed;
-			pendingCompressed = new BYTE[decompressionStream.avail_in+iResult];
-			memcpy(pendingCompressed,
-				oldPendingCompressed, decompressionStream.avail_in);
-			memcpy(pendingCompressed + decompressionStream.avail_in,
-				buf, iResult);
-			decompressionStream.avail_in =
-				decompressionStream.avail_in + iResult;
-			delete oldPendingCompressed;
+			data = m_SocketCompressor.Decompress(data);
 		}
-		else
-		{
-			pendingCompressed = new BYTE[iResult];
-			memcpy(pendingCompressed, buf, iResult);
-			decompressionStream.avail_in = iResult;
-		}
-
-		int oldavail_in = decompressionStream.avail_in;
-		decompressionStream.next_in = pendingCompressed;
-
-		decompressionStream.avail_out = nBufLen;
-		decompressionStream.next_out = buf;
-
-		inflate(&decompressionStream, Z_SYNC_FLUSH);
-		iResult = nBufLen - decompressionStream.avail_out;
-
-		if(decompressionStream.avail_in == 0)
-		{
-			decHasMoreInput = false;
-			delete pendingCompressed;
-			pendingCompressed = NULL;
-		}
-		else
-		{
-			decHasMoreInput = true;
-		}
+	}
+	else
+	{
 	}
 
 	LeaveCriticalSection(&m_csReading);
@@ -578,37 +418,8 @@ DWORD Socket::Recv(BYTE *buf, DWORD nBufLen)
 }
 
 /*
- * This method converts the string in the parameter to UTF-8 encoding, adds a
- * \r\n line delimiter and sens it to the remote host.
- */
-DWORD Socket::SendLine(LPWSTR strLine)
-{
-	DWORD reqBufSize = ::WideCharToMultiByte(CP_UTF8, 0, 
-		strLine, wcslen(strLine), NULL, 0, NULL, NULL);
-	char *strUTF8 = new char[reqBufSize+2];
-	::WideCharToMultiByte(CP_UTF8, 0, 
-		strLine, wcslen(strLine), strUTF8, reqBufSize, NULL, NULL);
-	strUTF8[reqBufSize] = '\r';
-	strUTF8[reqBufSize+1] = '\n';
-
-	DWORD retVal = Send((BYTE *)strUTF8, reqBufSize+2);
-
-	delete strUTF8;
-	return retVal;
-}
-/*
- * This method receives a \r\n delimited line from the remote host. The line is
- * assumed to be UTF-8 encoded and is subsequently transcoded into UTF-16.
- */
-//TODO: implement me.
-DWORD Socket::RecvLine(LPWSTR *str)
-{
-	return 0;
-}
-
-/*
  * This method returns the IPv4 address of the remote host this socket is
- * conntected to.
+ * connected to.
  */
 _bstr_t Socket::GetRemoteAddress()
 {
@@ -674,15 +485,6 @@ WORD Socket::GetLocalPort()
 }
 
 /*
- * This method returns the OS handle to the socket.
- */
-//TODO: outphase this method
-SOCKET Socket::GetHandle()
-{
-	return m_Socket;
-}
-
-/*
  * This method makes the connect, send, receive and accept methods block.
  */
 void Socket::SetBlocking()
@@ -702,24 +504,71 @@ void Socket::SetNonBlocking()
 }
 
 /*
+ * This method sets the send timeout value for the socket.
+ */
+void Socket::SetSendTimeout(DWORD milliseconds)
+{
+	setsockopt(m_Socket, SOL_SOCKET, SO_SNDTIMEO,
+		(char*) &milliseconds, sizeof(DWORD));
+}
+
+/*
+ * This method sets the receive timeout value for the socket.
+ */
+void Socket::SetRecvTimeout(DWORD milliseconds)
+{
+	setsockopt(m_Socket, SOL_SOCKET, SO_RCVTIMEO,
+		(char*) &milliseconds, sizeof(DWORD));
+}
+
+/*
+ * Enables TCP keepalive on this socket. This will send a TCP keepalive packet
+ * to the remote host every timeout seconds, with an OS determined number of 
+ * retries every interval seconds.
+ * http://msdn.microsoft.com/en-us/library/dd877220(VS.85).aspx
+ */
+void Socket::EnableKeepalive(DWORD timeout, DWORD interval)
+{
+	tcp_keepalive params = {1, timeout, interval};
+	DWORD unused;
+	::WSAIoctl(m_Socket, SIO_KEEPALIVE_VALS, &params, sizeof(tcp_keepalive),
+		NULL, 0, &unused, NULL, NULL);
+}
+
+/*
+ * Disables TCP keepalive on this socket.
+ */
+void Socket::DisableKeepalive()
+{
+	tcp_keepalive params = {0, 0, 0};
+	DWORD unused;
+	::WSAIoctl(m_Socket, SIO_KEEPALIVE_VALS, &params, sizeof(tcp_keepalive),
+		NULL, 0, &unused, NULL, NULL);
+}
+
+/*
  * The select function determines the status of the socket, waiting if
  * necessary, to perform synchronous I/O.
  */
-int Socket::Select(bool bRead, bool bWrite, timeval *tv)
+int Socket::Select(bool bRead, bool bWrite, long seconds, long useconds)
 {
-	 // If we still have some compressed data to be read.
-	if(bRead && decHasMoreInput)
+	 /* If we still have some compressed data to be read. */
+	if(m_SocketCompressor.Select(bRead, bWrite))
 	{
 		return 1;
 	}
-	// If we're reading from an SSL socket, see if it's still got buffered
-	// data.
+
+	/*
+	 * If we're reading from an SSL socket, see if it's still got buffered
+	 * data.
+	 */
 	if(bRead && m_bUsingSSL &&
 		!m_pendingEncoded.empty() || !m_pendingDecoded.empty())
 	{
 		return 1;
 	}
 
+	timeval tv = {seconds, useconds};
 	fd_set fdSet;
 	FD_ZERO(&fdSet);
 	FD_SET(m_Socket, &fdSet);
@@ -727,7 +576,7 @@ int Socket::Select(bool bRead, bool bWrite, timeval *tv)
 	return select(FD_SETSIZE,
 		bRead ? &fdSet : NULL,
 		bWrite ? &fdSet : NULL,
-		NULL, tv);
+		NULL, &tv);
 }
 
 SECURITY_STATUS Socket::SecureRecv(PBYTE message, DWORD messageSize,
