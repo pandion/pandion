@@ -56,7 +56,6 @@ function init ()
 	external.globals.Add( 'XMPPConnected', false ); // connection state
 	external.globals.Add( 'XMPPEncryption', '' ); // which method of encryption is being used
 	external.globals.Add( 'XMPPSessionID', '' ); // stream session ID used for login
-	external.globals.Add( 'XMPPKeepAliveInterval', 0 ); // keep alive packet interval
 	external.globals.Add( 'XMPPPrivacy', -1 ); // iq:privacy unsupported: -1, default: 0, invisible: 1
 	external.globals.Add( 'XMPPReconnectTimeout', 0 ); // reconnect interval
 	external.globals.Add( 'XMPPReconnect', false ); // reconnect flag

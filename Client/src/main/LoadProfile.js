@@ -49,6 +49,11 @@ function LoadProfile ( Address )
 		if ( cfg( 'blocklist' )[i].length && ! external.globals( 'block' ).Exists( cfg( 'blocklist' )[i] ) )
 			external.globals( 'block' ).Add( cfg( 'blocklist' )[i], '' );
 
+	/* Don't restore as idle, use available instead
+	 */
+	if ( ! cfg( 'lastmode' ) == 6 )
+		cfg( 'lastmode' ) = 0;
+
 	/* Restore the user's preferred window dimensions and location
 	 */
 	MenuBarUpdate();

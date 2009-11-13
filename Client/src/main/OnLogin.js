@@ -463,7 +463,6 @@ function OnLoginRoster ( iq )
 	external.globals("idle").start();
 	external.globals( 'connecttime' )			= ( new Date() ).getTime();
 	external.globals( 'soundtime' )				= ( new Date() ).getTime() + 8000;
-	external.globals( 'XMPPKeepAliveInterval' )	= setInterval( 'external.XMPP.SendText( " " )', 30000 );
 	external.globals( 'XMPPReconnect' )			= true;
 
 	mode_new( external.globals( 'cfg' )( 'lastmode' ), external.globals( 'cfg' )( 'lastmsg' ) );
