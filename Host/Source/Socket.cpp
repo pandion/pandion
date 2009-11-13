@@ -57,6 +57,7 @@ DWORD Socket::Connect(_bstr_t ServerAddress, WORD wPort)
 
 	EnableKeepalive(30000, 1000);
 
+
 	sockaddr_in sinRemote;
 	sinRemote.sin_family = AF_INET;
 	sinRemote.sin_addr.s_addr = LookupAddress(ServerAddress);
@@ -125,9 +126,6 @@ DWORD Socket::StartTLS()
 	EnterCriticalSection(&m_csReading);
 	EnterCriticalSection(&m_csWriting);
 
-	DWORD arg = 0;
-	ioctlsocket(m_Socket, FIONBIO, &arg);
-
 	if(m_bConnected)
 	{
 		HCERTSTORE certificateStore = CertOpenSystemStore(NULL, TEXT("MY"));
@@ -190,9 +188,6 @@ DWORD Socket::StartTLS()
 		}
 	}
 
-	arg = 1;
-	ioctlsocket(m_Socket, FIONBIO, &arg);
-
 	LeaveCriticalSection(&m_csWriting);
 	LeaveCriticalSection(&m_csReading);
 	return 0;
@@ -224,6 +219,7 @@ SECURITY_STATUS Socket::ClientHandshakeLoop(bool initialRead)
         {
             if(doRead)
             {
+				Select(true, false, 10, 0);
                 dataSize = recv(m_Socket, &ioBuffer.begin()[0] + ioBufferUsed, 
                               ioBufferSize - ioBufferUsed, 0);
                 if(dataSize == SOCKET_ERROR || dataSize == 0)
@@ -339,6 +335,7 @@ SECURITY_STATUS Socket::ClientHandshakeLoop(bool initialRead)
  */
 DWORD Socket::StartSC()
 {
+	SetNonBlocking();
 	m_bUsingSC = true;
 	return 1;
 }
@@ -407,6 +404,7 @@ DWORD Socket::Recv(std::vector<BYTE>& data)
 		if(m_bUsingSC)
 		{
 			data = m_SocketCompressor.Decompress(data);
+			iResult = data.size();
 		}
 	}
 	else
@@ -652,7 +650,9 @@ SECURITY_STATUS Socket::SecureRecv(PBYTE message, DWORD messageSize,
 				}
 				else
 				{
-					Sleep(1);
+					*bytesReceived = 0;
+					status = SEC_E_OK;
+					break;
 				}
             }
             else if(*bytesReceived == 0 && ioBufferUsed)
