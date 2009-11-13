@@ -274,6 +274,10 @@
     <code id="time-months">${0} maanden geleden</code>
     <code id="time-year">1 jaar geleden</code>
     <code id="time-years">${0} jaren geleden</code>
+
+    <code id="track-stable">Stabiel</code>
+    <code id="track-beta">Bèta</code>
+    <code id="track-development">Ontwikkeling</code>
   </window>
   <window name="about">
     <item id="txt-copyright">
