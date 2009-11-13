@@ -7,11 +7,7 @@
 <alertonline>true</alertonline>
 <aotchat>false</aotchat>
 <authorization>2</authorization>
-<autoawaytext/>
-<autoawaytime>300000</autoawaytime>
 <autopopupmsg>true</autopopupmsg>
-<autoxawaytext/>
-<autoxawaytime>1800000</autoxawaytime>
 <avatar/>
 <background/>
 <blocklist/>
@@ -41,7 +37,7 @@
 <msnworkaround>true</msnworkaround>
 <nick/>
 <password/>
-<preferencessection>autoaway</preferencessection>
+<preferencessection>blocking</preferencessection>
 <resource/>
 <server/>
 <soundmessage>true</soundmessage>

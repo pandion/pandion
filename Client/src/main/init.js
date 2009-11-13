@@ -16,9 +16,6 @@ function init ()
 	/* Global objects and variables
 	 */
 	external.globals.Add( 'aot', false ); // always on top
-	external.globals.Add( 'autoaway', '' ); // timeout id
-	external.globals.Add( 'autoawaymode', 0 ); // 2=away, 3=xaway
-	external.globals.Add( 'autoawaytime', 0 ); // in-activity
 	external.globals.Add( 'autologin', false ); // skip the login window
 	external.globals.Add( 'AutoUpdateTimeout', null ); // timeout of check for new versions
 	external.globals.Add( 'BackgroundHooks', new ActiveXObject( 'Scripting.Dictionary' ) ); // names of backgrounds being downloaded
@@ -33,6 +30,7 @@ function init ()
 	external.globals.Add( 'debug', false ); // enables console output
 	external.globals.Add( 'headlines', new Array() ); // alerts and headlines buffer
 //	external.globals.Add( 'HTTPEnginePort', 0 ); // port on which the HTTPEngine is listening
+	external.globals.Add( 'idle', null ); // idle time tracking
 	external.globals.Add( 'language', '' ); // which translation is being used
 	external.globals.Add( 'last_address', '' ); // last used address
 	external.globals.Add( 'last_autoupdate', 0 ); // time of the last auto update check
@@ -237,6 +235,26 @@ function init ()
 	external.XMPP.MessageHandler = 'XMPPOnMessage';
 	external.XMPP.PresenceHandler = 'XMPPOnPresence';
 	external.XMPP.StreamHandler = 'XMPPOnStream';
+
+	/* Set idle status on inactivity or OS events
+	 */
+	var modeBeforeIdle;
+	external.globals("idle") = new client.ui.idle.manager({
+		sensors: [
+			client.ui.idle.sensor.mouseMovement,
+			//client.ui.idle.sensor.screenSaver,
+			client.ui.idle.sensor.workstationLock
+		],
+		events: {
+			enteringIdle: function () {
+				modeBeforeIdle = external.globals("cfg")("lastmode");
+				mode_new(6, external.globals("cfg")("lastmsg"));
+			},
+			leavingIdle: function () {
+				mode_new(modeBeforeIdle, external.globals("cfg")("lastmsg"));
+			}
+		}
+	});
 
 	/* Create the roster tab button
 	 */

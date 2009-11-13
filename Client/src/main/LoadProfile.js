@@ -42,13 +42,6 @@ function LoadProfile ( Address )
 	if ( ! cfg( 'downloaddir' ).length )
 		cfg( 'downloaddir' ) = external.GetSpecialFolder( 0x0005 ) + '\\';
 
-	/* Default translated auto-away messages
-	 */
-	if ( ! cfg( 'autoawaytext' ).length )
-		cfg( 'autoawaytext' ) = external.globals( 'Translator' ).Translate( 'main', 'autoawaymessage' );
-	if ( ! cfg( 'autoxawaytext' ).length )
-		cfg( 'autoxawaytext' ) = external.globals( 'Translator' ).Translate( 'main', 'autoxawaymessage' );
-
 	/* List of addresses that are blocked
 	 */
 	cfg( 'blocklist' ) = cfg( 'blocklist' ).split( ',' );

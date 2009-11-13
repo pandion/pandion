@@ -91,8 +91,6 @@
     <code id="txt_welcome">Welkom bij ${0}!</code>
     <code id="user_online">${0} is nu online</code>
     <code id="cl_tooltip">${0} Contactpersonen</code>
-    <code id="autoawaymessage">Meer dan 5 minuten afwezig</code>
-    <code id="autoxawaymessage">Meer dan 30 minuten afwezig</code>
     <code id="import_files">Contactenlijsten</code>
     <code id="import_invalid">Het bestand bevat foute gegevens.</code>
     <code id="import_no_new">Alle contactpersonen in het bestand bevinden zich reeds in de contactenlijst.</code>
@@ -258,6 +256,7 @@
     <code id="cl_away">Afwezig</code>
     <code id="cl_xaway">Lang afwezig</code>
     <code id="cl_invisible">Offline weergeven</code>
+    <code id="cl_idle">Inactief</code>
     <code id="cl_tooltip_online">Adres: ${0}&#13;Extensie: ${1}</code>
 
     <code id="time-now">zopas</code>
@@ -387,9 +386,6 @@
   <window name="mode_select">
     <item id="txt_message">
       <innerText>Uw statusbericht toont uw gevoelens, activiteit, of om het even wat:</innerText>
-    </item>
-    <item id="lbl_ask_status">
-      <innerText>Vraag me een bericht op te geven wanneer ik mijn status wijzig</innerText>
     </item>
     <code id="btn_ok">OK</code>
     <code id="btn_ok_empty">OK (geen bericht)</code>
@@ -1673,21 +1669,6 @@
     <code id="error-item-not-found">Item niet gevonden: chatruimte is geblokkeerd</code>
   </window>
   <window name="preferences">
-    <item id="txt_autoaway">
-      <innerText>Wanneer u de computer enkele minuten niet gebruikt verandert uw status in "Afwezig".</innerText>
-    </item>
-    <item id="txt_displayawaymsg_left">
-      <innerText>Dit bericht tonen na</innerText>
-    </item>
-    <item id="txt_displayxawaymsg_left">
-      <innerText>Dit bericht tonen na</innerText>
-    </item>
-    <item id="txt_displayawaymsg_right">
-      <innerText>minuten:</innerText>
-    </item>
-    <item id="txt_displayxawaymsg_right">
-      <innerText>minuten:</innerText>
-    </item>
     <item id="txt_blocking">
       <innerText>Deze lijst bevat adressen van mensen die geblokkeerd worden.</innerText>
     </item>
@@ -1769,9 +1750,6 @@
     <item id="btn_cancel">
       <value>Annuleren</value>
     </item>
-    <item id="lbl_autoaway">
-      <innerText>Afwezig</innerText>
-    </item>
     <item id="lbl_blocking">
       <innerText>Blokkeren</innerText>
     </item>
@@ -1784,7 +1762,6 @@
     <item id="lbl_sound">
       <innerText>Geluid</innerText>
     </item>
-    <code id="autoaway">Automatisch afwezig</code>
     <code id="blocking">Blokkeerlijst</code>
     <code id="connection">Verbindingen</code>
     <code id="privacy">Privacy</code>
