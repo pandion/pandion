@@ -1,3 +1,8 @@
+/*
+	This file is part of Pandion instant messenger
+	Copyright (c) 2009 Sebastiaan Deckers
+	License: GNU General Public License version 3 or later
+*/
 /* Create a global variable to communicate with the rest of the conversation window
  */
 if ( ! window.SessionTracker )

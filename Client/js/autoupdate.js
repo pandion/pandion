@@ -197,11 +197,11 @@ window.attachEvent("onload", function () {
 		external.wnd.hide(false);
 		client.io.ajax({
 			url: external.globals("ClientPluginContainer").ParseURL(external.globals("autoupdate")),
-			callback: function (doc) {
+			callback: function (xhr) {
 				var tracks = {
-					stable: getLatestAppcastByTrack(doc, "stable"),
-					beta: getLatestAppcastByTrack(doc, "beta"),
-					development: getLatestAppcastByTrack(doc, "development")
+					stable: getLatestAppcastByTrack(xhr.responseXML, "stable"),
+					beta: getLatestAppcastByTrack(xhr.responseXML, "beta"),
+					development: getLatestAppcastByTrack(xhr.responseXML, "development")
 				};
 				var descriptions = {
 					stable: external.globals("Translator").Translate("autoupdate", "description-stable"),
@@ -237,7 +237,7 @@ window.attachEvent("onload", function () {
 						}})(name);
 					}
 				client.css.hide(document.getElementById("available-preloader"));
-				if (!doc) {
+				if (!xhr.responseXML) {
 					client.css.show(document.getElementById("txt-no-feed"));
 				} else if (document.getElementById("tracks-current").childNodes.length + document.getElementById("tracks-alternative").childNodes.length == 0) {
 					client.css.show(document.getElementById("txt-unavailable"));
@@ -260,14 +260,18 @@ window.attachEvent("onload", function () {
 		client.css.show(document.getElementById("download-progress"));
 		client.io.ajax({
 			url: external.globals("ClientPluginContainer").ParseURL(external.globals("autoupdate")),
-			callback: function (doc) {
-				if (doc) {
-					var currentAppcast = getAppcastByVersion(doc, external.globals("softwareversion"));
+			headers: {
+				"Cache-Control": "no-cache",
+				"Pragma": "no-cache"
+			},
+			callback: function (xhr) {
+				if (xhr.responseXML) {
+					var currentAppcast = getAppcastByVersion(xhr.responseXML, external.globals("softwareversion"));
 					if (currentAppcast && currentAppcast.track.length > 0)
 						external.globals("softwaretrack") = currentAppcast.track;
 					external.globals("last_autoupdate") = (new Date()).getTime();
 					external.wnd.params.window.SaveCommonProfile();
-					var topAppcastEntry = getLatestAppcastByTrack(doc, external.globals("softwaretrack"));
+					var topAppcastEntry = getLatestAppcastByTrack(xhr.responseXML, external.globals("softwaretrack"));
 					if (topAppcastEntry && versionIsHigherThanCurrent(topAppcastEntry.version) && external.globals("installupdates") == "yes")
 						return downloadUpdate(topAppcastEntry);
 				}

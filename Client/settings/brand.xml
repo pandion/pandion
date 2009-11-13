@@ -40,20 +40,20 @@
 <helpmanual>http://pandion.pbworks.com/</helpmanual>
 
 <!-- URI of plug-in listing -->
-<pluginlist>http://plugins.pandion.be/?n=${softwarename}&amp;v=${softwareversion}</pluginlist>
+<pluginlist>http://plugins.pandion.be/</pluginlist>
 
 <!-- URI of emoticon listing -->
-<emoticonlist>http://emoticons.pandion.be/?n=${softwarename}&amp;v=${softwareversion}</emoticonlist>
+<emoticonlist>http://emoticons.pandion.be/</emoticonlist>
 
 <!-- URI of background listing -->
-<backgroundlist>http://backgrounds.pandion.be/?n=${softwarename}&amp;v=${softwareversion}</backgroundlist>
+<backgroundlist>http://backgrounds.pandion.be/</backgroundlist>
 
 <!-- URI of software version checker (Atom 1.0 + Appcaster) -->
-<autoupdate>http://feeds.feedburner.com/pandionupdates?r=${random}</autoupdate>
+<autoupdate>http://feeds.feedburner.com/pandionupdates</autoupdate>
 
 <!-- Shown in the Welcome screen -->
 <welcomescreen>yes</welcomescreen>
-<welcomefeedurl>http://feeds.feedburner.com/pandiongetsatisfaction?r=${random}</welcomefeedurl>
+<welcomefeedurl>http://feeds.feedburner.com/pandiongetsatisfaction</welcomefeedurl>
 <welcomesearchurl>http://getsatisfaction.com/pandion/searches?query=${query}&amp;commit=Search</welcomesearchurl>
 <twittername>pandion</twittername>
 <facebookpage>pandion.im</facebookpage>
