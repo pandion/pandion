@@ -25,13 +25,13 @@ First-time install dialog sequence:      Maintenance dialog sequence:
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Fragment>
-        <UI Id="WixUI_OneClick">
+        <UI Id="WixUI_ZeroClick">
             <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
             <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
             <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
 
             <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
-            <Property Id="WixUI_Mode" Value="OneClick" />
+            <Property Id="WixUI_Mode" Value="ZeroClick" />
 
             <DialogRef Id="ErrorDlg" />
             <DialogRef Id="FatalError" />
