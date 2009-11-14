@@ -77,6 +77,7 @@
 #include <Security.h>
 #include <WinInet.h>
 #include <Mstcpip.h>
+#include <Ntdsapi.h>
 
 /*
  * Compiler-specific headers

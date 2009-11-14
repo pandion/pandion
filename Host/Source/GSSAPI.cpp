@@ -67,16 +67,12 @@ STDMETHODIMP GSSAPI::Reset()
 STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServerName, BSTR Challenge,
 									  BSTR *Response)
 {
-	std::wstring ServiceName(L"xmpp/");
-	ServiceName += ServerName;
-
 	/* Acquire a credentials handle if this is the initial response */
 	if(m_fNewConversation == TRUE)
 	{
 		TimeStamp Expiry;
 		SECURITY_STATUS	ss = ::AcquireCredentialsHandle(NULL, TEXT("Kerberos"),
-						SECPKG_CRED_OUTBOUND, NULL, NULL, NULL, NULL,
-						&m_hCred, &Expiry);
+			SECPKG_CRED_OUTBOUND, NULL, NULL, NULL, NULL, &m_hCred, &Expiry);
 		if(ss != SEC_E_OK)
 		{
 			Error(L"GenerateResponse()", L"AcquireCredentialsHandle()", ss);
@@ -104,15 +100,21 @@ STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServerName, BSTR Challenge,
 	SecBuffer OutSecBuff = {m_dwMaxTokenSize, SECBUFFER_TOKEN, &outputBuffer[0]};
 	SecBufferDesc OutBuffDesc = {SECBUFFER_VERSION, 1, &OutSecBuff};
 
+	/* Generate the Service Principal Name */
+	DWORD SpnLength = 0;
+	::DsMakeSpn(TEXT("xmpp"), ServerName, NULL, 0, NULL, &SpnLength, NULL);
+	LPTSTR Spn = (LPTSTR) ::HeapAlloc(::GetProcessHeap(), 0, SpnLength * sizeof(TCHAR));
+	::DsMakeSpn(TEXT("xmpp"), ServerName, NULL, 0, NULL, &SpnLength, Spn);
+
 	/* Process the input, generate new output */
 	ULONG			ContextAttributes;
 	TimeStamp		Expiry;
 
 	SECURITY_STATUS	ss = ::InitializeSecurityContext(&m_hCred,
-		m_fNewConversation ? NULL : &m_hCtxt, (SEC_WCHAR*) ServiceName.c_str(),
-		ISC_REQ_MUTUAL_AUTH, 0, SECURITY_NATIVE_DREP, 
-		m_fNewConversation ? NULL : &InBuffDesc,
+		m_fNewConversation ? NULL : &m_hCtxt, Spn, ISC_REQ_MUTUAL_AUTH, 0,
+		SECURITY_NATIVE_DREP, m_fNewConversation ? NULL : &InBuffDesc,
 		0, &m_hCtxt, &OutBuffDesc, &ContextAttributes, &Expiry);
+	::HeapFree(::GetProcessHeap(), 0, Spn);
 	if(ss != SEC_E_OK && ss != SEC_I_CONTINUE_NEEDED &&
 		ss != SEC_I_COMPLETE_NEEDED && ss != SEC_I_COMPLETE_AND_CONTINUE)
 	{
