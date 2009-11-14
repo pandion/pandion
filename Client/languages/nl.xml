@@ -641,7 +641,7 @@
       <innerText>Hallo en welkom op ${softwarename}</innerText>
     </item>
     <item id="txt-free-software">
-      <innerText>Dit programma is vrije en open software. Alle ontwikkeling, vertaling en ondersteuning gebeurt door de geweldige leden van onze gemeenschap.</innerText>
+      <innerText>Dit programma is vrije en open bron software. Alle ontwikkeling, vertaling en ondersteuning gebeurt door de geweldige leden van onze gemeenschap.</innerText>
     </item>
     <item id="txt-more-information">
       <innerHTML>Voor meer informatie, volg @&lt;a href="http://twitter.com/${twittername}"&gt;${twittername}&lt;/a&gt; op Twitter of wordt een fan op &lt;a href="http://www.facebook.com/${facebookpage}"&gt;Facebook.com/${facebookpage}&lt;/a&gt;.</innerHTML>

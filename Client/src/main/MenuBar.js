@@ -273,16 +273,22 @@ function MenuBarSelect ( id )
 						var Code = LanguageNodes.item( id - 3800 ).getAttribute( 'code' );
 						if ( Code != external.globals( 'language' ) )
 						{
-							var OldDefaultStatus = external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' );
 							external.globals( 'language' ) = Code;
 							SaveCommonProfile();
 							external.globals( 'Translator' ).Reload();
 							external.globals( 'Translator' ).TranslateWindow( 'main', document );
-							var NewDefaultStatus = external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' );
-							document.getElementById( 'txt_welcome' ).innerText = external.globals( 'Translator' ).Translate( 'main', 'txt_welcome', [ external.globals( 'softwarename' ) ] );
 							MenuBarUpdate();
+							document.getElementById( 'txt_welcome' ).innerText = external.globals( 'Translator' ).Translate( 'main', 'txt_welcome', [ external.globals( 'softwarename' ) ] );
+							external.notifyIcon.setText( external.globals( 'softwarename' ) );
 							if ( document.getElementById( 'content-dialog' ).style.display == 'block' )
+							{
 								mode_new( cfg( 'lastmode' ), cfg( 'lastmsg' ) );
+								external.wnd.setTitle( cfg( 'username' ) + '@' + cfg( 'server' ) + ' - ' + external.globals( 'softwarename' ) );
+							}
+							else
+							{
+								external.wnd.setTitle( external.globals( 'softwarename' ) );
+							}
 							var GroupNames = ( new VBArray( external.globals( 'ClientRoster' ).Groups.Keys() ) ).toArray();
 							for ( var i = 0; i < GroupNames.length; ++i )
 							{
@@ -296,8 +302,8 @@ function MenuBarSelect ( id )
 									var RosterItem = external.globals( 'ClientRoster' ).Items( RosterItems[j] );
 									var Resources = ( new VBArray( RosterItem.Resources.Keys() ) ).toArray();
 									for ( var k = 0; k < Resources.length; ++k )
-										if ( RosterItem.Resources( Resources[k] ).Status == OldDefaultStatus )
-											RosterItem.Resources( Resources[k] ).Status = NewDefaultStatus;
+										if ( RosterItem.Resources( Resources[k] ).Status == external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' ) )
+											RosterItem.Resources( Resources[k] ).Status = external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' );
 								}
 							}
 							external.globals( 'ClientRoster' ).RefreshAll();

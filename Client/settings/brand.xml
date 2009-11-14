@@ -1,11 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <brand>
 
-<!-- Used in various locations throughout the interface -->
+<!-- Used in various locations throughout the interface.
+     Translate to another script by adding the xml:lang attribute. -->
 <softwarename>Pandion</softwarename>
+<softwarename xml:lang="bg">Пандион</softwarename>
+<softwarename xml:lang="ru">Пандион</softwarename>
+<softwarename xml:lang="vn">Pan-di-on</softwarename>
 
 <!-- Used as name of files and directories.
-     Must not contain / \ : * ? " < > | -->
+     Must not contain / \ : * ? " < > |
+	 Should not be translated. -->
 <softwarenamesafe>Pandion</softwarenamesafe>
 
 <!-- Major and minor version (x.y) of the application.

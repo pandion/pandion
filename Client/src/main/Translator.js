@@ -4,8 +4,9 @@ function Translator ()
 	this.Direction = false; // false: LTR, true: RTL
 	this.HTMLCache = new ActiveXObject( 'Scripting.Dictionary' );
 
-	this.Reload = Reload;
+	this.GetSoftwareNameT10n = GetSoftwareNameT10n;
 	this.LoadFile = LoadFile;
+	this.Reload = Reload;
 	this.Translate = Translate;
 	this.TranslateWindow = TranslateWindow;
 
@@ -34,6 +35,39 @@ function Translator ()
 			this.LoadFile( path + language + '.xml' );
 
 		external.globals( 'language' ) = language;
+
+		external.globals( 'softwarename' ) = this.GetSoftwareNameT10n();
+	}
+
+	function GetSoftwareNameT10n ()
+	{
+		var dom = new ActiveXObject("MSXML2.DOMDocument");
+		dom.async = false;
+		dom.resolveExternals = false;
+		dom.load(external.globals("cwd") + "..\\settings\\brand.xml");
+		var appLanguageName, appLanguagePrefixName, userLanguageName, userLanguagePrefixName, defaultName = external.globals("softwarename");
+		if (dom.documentElement) {
+			var appLanguage = external.globals("language").toLowerCase();
+			var appLanguagePrefix = appLanguage.split("-")[0];
+			var userLanguage = navigator.userLanguage.toLowerCase();
+			if ( userLanguage == 'zh-hk' || userLanguage == 'zh-sg' )
+				userLanguage = 'zh-tw';
+			var userLanguagePrefix = userLanguage.split("-")[0];
+			var names = dom.documentElement.selectNodes("/brand/softwarename");
+			for (var i = 0; i < names.length; i++) {
+				var xmlLang = names[i].getAttribute("xml:lang") !== null ? names[i].getAttribute("xml:lang").toLowerCase() : "";
+				switch (xmlLang) {
+					case appLanguage: appLanguageName = names[i].text; break;
+					case appLanguagePrefix: appLanguagePrefixName = names[i].text; break;
+					case userLanguage: userLanguageName = names[i].text; break;
+					case userLanguagePrefix: userLanguagePrefixName = names[i].text; break;
+					case "en":
+					case "":
+						defaultName = names[i].text; break;
+				}
+			}
+		}
+		return appLanguageName || appLanguagePrefixName || userLanguageName || userLanguagePrefixName || defaultName;
 	}
 
 	function LoadFile ( path )
