@@ -1,8 +1,8 @@
 function Translator ()
 {
-	this.CodeCache = new ActiveXObject( 'Scripting.Dictionary' );
+	this.CodeCache = {};
 	this.Direction = false; // false: LTR, true: RTL
-	this.HTMLCache = new ActiveXObject( 'Scripting.Dictionary' );
+	this.HTMLCache = {};
 
 	this.GetSoftwareNameT10n = GetSoftwareNameT10n;
 	this.LoadFile = LoadFile;
@@ -10,37 +10,35 @@ function Translator ()
 	this.Translate = Translate;
 	this.TranslateWindow = TranslateWindow;
 
-	function Reload ()
-	{
+	function Reload () {
 		this.Direction = false;
-		this.CodeCache.RemoveAll();
-		this.HTMLCache.RemoveAll();
+		this.CodeCache = {};
+		this.HTMLCache = {};
 
-		var path = external.globals( 'cwd' ) + '..\\languages\\';
-		var language = 'en';
+		var path = external.globals("cwd") + "..\\languages\\";
+		var language = "en";
 		var userLanguage = navigator.userLanguage.toLowerCase();
-		if ( userLanguage == 'zh-hk' || userLanguage == 'zh-sg' )
-			userLanguage = 'zh-tw';
+		if (userLanguage == "zh-hk"|| userLanguage == "zh-sg")
+			userLanguage = "zh-tw";
 
-		this.LoadFile( path + language + '.xml' );
+		this.LoadFile(path + language + ".xml");
 
-		if ( external.FileExists( path + external.globals( 'language' ) + '.xml' ) )
-			language = external.globals( 'language' );
-		else if ( external.FileExists( path + userLanguage + '.xml' ) )
+		if (external.FileExists(path + external.globals("language") + ".xml"))
+			language = external.globals("language");
+		else if (external.FileExists(path + userLanguage + ".xml"))
 			language = userLanguage;
-		else if ( userLanguage.indexOf( '-' ) > 0 && external.FileExists( path + userLanguage.substr( 0, userLanguage.indexOf( '-' ) ) + '.xml' ) )
-			language = userLanguage.substr( 0, userLanguage.indexOf( '-' ) );
+		else if (userLanguage.indexOf("-") > 0 && external.FileExists(path + userLanguage.substr(0, userLanguage.indexOf("-")) + ".xml"))
+			language = userLanguage.substr(0, userLanguage.indexOf("-"));
 
-		if ( language != 'en' )
-			this.LoadFile( path + language + '.xml' );
+		if (language != "en")
+			this.LoadFile(path + language + ".xml");
 
-		external.globals( 'language' ) = language;
+		external.globals("language") = language;
 
-		external.globals( 'softwarename' ) = this.GetSoftwareNameT10n();
+		external.globals("softwarename") = this.GetSoftwareNameT10n();
 	}
 
-	function GetSoftwareNameT10n ()
-	{
+	function GetSoftwareNameT10n () {
 		var dom = new ActiveXObject("MSXML2.DOMDocument");
 		dom.async = false;
 		dom.resolveExternals = false;
@@ -50,8 +48,8 @@ function Translator ()
 			var appLanguage = external.globals("language").toLowerCase();
 			var appLanguagePrefix = appLanguage.split("-")[0];
 			var userLanguage = navigator.userLanguage.toLowerCase();
-			if ( userLanguage == 'zh-hk' || userLanguage == 'zh-sg' )
-				userLanguage = 'zh-tw';
+			if (userLanguage == "zh-hk"|| userLanguage == "zh-sg")
+				userLanguage = "zh-tw";
 			var userLanguagePrefix = userLanguage.split("-")[0];
 			var names = dom.documentElement.selectNodes("/brand/softwarename");
 			for (var i = 0; i < names.length; i++) {
@@ -70,90 +68,74 @@ function Translator ()
 		return appLanguageName || appLanguagePrefixName || userLanguageName || userLanguagePrefixName || defaultName;
 	}
 
-	function LoadFile ( path )
-	{
-		var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+	function LoadFile (path) {
+		var dom = new ActiveXObject("MSXML2.DOMDocument");
 		dom.async = false;
 		dom.resolveExternals = false;
-		dom.load( path );
-		if ( dom.documentElement == null )
+		dom.load(path);
+		if (dom.documentElement == null)
 			return;
 
-		if ( dom.documentElement.getAttribute( 'dir' ) !== null )
-			this.Direction = dom.documentElement.getAttribute( 'dir' ).toString().toLowerCase() == 'rtl';
+		if (dom.documentElement.getAttribute("dir") !== null)
+			this.Direction = dom.documentElement.getAttribute("dir").toString().toLowerCase() == "rtl";
 
-		var stringFilter = function ( $0, $1 ){ return external.globals.Exists( $1 ) ? external.globals( $1 ) : $0; };
+		var stringFilter = function ($0, $1) {return external.globals.Exists($1) ? external.globals($1) : $0};
 
-		var windowNodes = dom.documentElement.selectNodes( '/translation/window[@name]' );
-		for ( var i = windowNodes.length - 1; i >= 0; --i )
-		{
-			var windowName = windowNodes.item(i).getAttribute( 'name' );
-			if ( ! this.CodeCache.Exists( windowName ) )
-				this.CodeCache.Add( windowName, new ActiveXObject( 'Scripting.Dictionary' ) );
-			if ( ! this.HTMLCache.Exists( windowName ) )
-				this.HTMLCache.Add( windowName, new ActiveXObject( 'Scripting.Dictionary' ) );
+		var windowNodes = dom.documentElement.selectNodes("/translation/window[@name]");
+		for (var i = windowNodes.length - 1; i >= 0; --i) {
+			var windowName = windowNodes.item(i).getAttribute("name");
+			if (!(windowName in this.CodeCache))
+				this.CodeCache[windowName] = {};
+			if (!(windowName in this.HTMLCache))
+				this.HTMLCache[windowName] = {};
 
-			var iterator = windowNodes.item(i).selectNodes( './item[@id]' );
-			for ( var j = iterator.length - 1; j >= 0; --j )
-			{
+			var iterator = windowNodes.item(i).selectNodes("./item[@id]");
+			for (var j = iterator.length - 1; j >= 0; --j) {
 				var itemTag = iterator.item(j);
 				var data = {};
 				var childTags = itemTag.childNodes;
-				for ( var k = childTags.length - 1; k >= 0; --k )
-					data[ childTags.item(k).tagName ] = childTags.item(k).text.replace( /\$\{(\w+)\}/mg, stringFilter );
-				if ( ! this.HTMLCache( windowName ).Exists( itemTag.getAttribute( 'id' ) ) )
-					this.HTMLCache( windowName ).Add( itemTag.getAttribute( 'id' ), data );
-				else
-					this.HTMLCache( windowName )( itemTag.getAttribute( 'id' ) ) = data;
+				for (var k = childTags.length - 1; k >= 0; --k)
+					data[childTags.item(k).tagName] = childTags.item(k).text.replace(/\$\{(\w+)\}/mg, stringFilter);
+				this.HTMLCache[windowName][itemTag.getAttribute("id")] = data;
 			}
 
-			iterator = windowNodes.item(i).selectNodes( './code[@id]' );
-			for ( var j = iterator.length - 1; j >= 0; --j )
-				if ( ! this.CodeCache( windowName ).Exists( iterator.item(j).getAttribute( 'id' ) ) )
-					this.CodeCache( windowName ).Add( iterator.item(j).getAttribute( 'id' ), iterator.item(j).text.replace( /\$\{(\w+)\}/mg, stringFilter ) );
-				else
-					this.CodeCache( windowName )( iterator.item(j).getAttribute( 'id' ) ) = iterator.item(j).text.replace( /\$\{(\w+)\}/mg, stringFilter );
+			iterator = windowNodes.item(i).selectNodes("./code[@id]");
+			for (var j = iterator.length - 1; j >= 0; --j)
+				this.CodeCache[windowName][iterator.item(j).getAttribute("id")] = iterator.item(j).text.replace(/\$\{(\w+)\}/mg, stringFilter);
 		}
 	}
 
-	function Translate ( windowName, stringName, variables )
-	{
-		if ( ! this.CodeCache.Exists( windowName ) )
-			return '';
-		if ( ! this.CodeCache( windowName ).Exists( stringName ) )
-			return '';
-		return this.CodeCache( windowName )( stringName ).replace(
+	function Translate (windowName, stringName, variables) {
+		if (!(windowName in this.CodeCache))
+			return "";
+		if (!(stringName in this.CodeCache[windowName]))
+			return "";
+		return this.CodeCache[windowName][stringName].replace(
 			/\${(\d+)}/mg,
-			function ( $0, $1 )
-			{
-				if ( variables && $1 < variables.length )
+			function ($0, $1) {
+				if (variables && $1 < variables.length)
 					return variables[$1];
 				return $0;
 			}
 		);
 	}
 
-	function TranslateWindow ( translationWindowName, DOMDocument, externalWindow )
-	{
-		if ( ! externalWindow )
+	function TranslateWindow (translationWindowName, DOMDocument, externalWindow) {
+		if (!externalWindow)
 			externalWindow = DOMDocument.parentWindow.external.wnd;
 
-		externalWindow.rightToLeft( this.Direction );
-		if ( DOMDocument.documentElement.dir == 'rtl' && ! this.Direction )
-			DOMDocument.dir = DOMDocument.documentElement.dir = DOMDocument.documentElement.className = 'ltr';
-		else if ( DOMDocument.documentElement.dir != 'rtl' && this.Direction )
-			DOMDocument.dir = DOMDocument.documentElement.dir = DOMDocument.documentElement.className = 'rtl';
+		externalWindow.rightToLeft(this.Direction);
+		if (DOMDocument.documentElement.dir == "rtl" && !this.Direction)
+			DOMDocument.dir = DOMDocument.documentElement.dir = DOMDocument.documentElement.className = "ltr";
+		else if (DOMDocument.documentElement.dir != "rtl" && this.Direction)
+			DOMDocument.dir = DOMDocument.documentElement.dir = DOMDocument.documentElement.className = "rtl";
 
-		if ( ! this.HTMLCache.Exists( translationWindowName ) )
-			return;
-		var windowCache = this.HTMLCache( translationWindowName );
-		var names = ( new VBArray( windowCache.Keys() ) ).toArray();
-		for ( var i = names.length - 1; i >= 0; --i )
-		{
-			var htmlElem = DOMDocument.getElementById( names[i] );
-			if ( htmlElem )
-				for ( var textItem in windowCache( names[i] ) )
-					htmlElem[ textItem ] = windowCache( names[i] )[ textItem ];
-		}
+		if (translationWindowName in this.HTMLCache)
+			for (var name in this.HTMLCache[translationWindowName]) {
+				var htmlElem = DOMDocument.getElementById(name);
+				if (htmlElem)
+					for (var textItem in this.HTMLCache[translationWindowName][name])
+						htmlElem[textItem] = this.HTMLCache[translationWindowName][name][textItem];
+			}
 	}
 }

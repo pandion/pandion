@@ -273,6 +273,7 @@ function MenuBarSelect ( id )
 						var Code = LanguageNodes.item( id - 3800 ).getAttribute( 'code' );
 						if ( Code != external.globals( 'language' ) )
 						{
+							var OldDefaultStatus = external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' );
 							external.globals( 'language' ) = Code;
 							SaveCommonProfile();
 							external.globals( 'Translator' ).Reload();
@@ -302,7 +303,7 @@ function MenuBarSelect ( id )
 									var RosterItem = external.globals( 'ClientRoster' ).Items( RosterItems[j] );
 									var Resources = ( new VBArray( RosterItem.Resources.Keys() ) ).toArray();
 									for ( var k = 0; k < Resources.length; ++k )
-										if ( RosterItem.Resources( Resources[k] ).Status == external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' ) )
+										if ( RosterItem.Resources( Resources[k] ).Status == OldDefaultStatus )
 											RosterItem.Resources( Resources[k] ).Status = external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' );
 								}
 							}
