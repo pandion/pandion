@@ -44,6 +44,8 @@ private:
 	bool			m_DoDisconnect;
 
 	HANDLE          m_CanStartNewThread;
+
+	std::vector<BYTE> m_RecvBuffer;
 public:
 	XMPPConnectionManager(XMPPHandlers& handlers, XMPPLogger& logger);
 	~XMPPConnectionManager();

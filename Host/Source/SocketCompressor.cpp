@@ -96,16 +96,19 @@ std::vector<BYTE> SocketCompressor::Decompress(std::vector<BYTE>& data)
 	std::vector<BYTE> decompressedData(0x1000);
 
 	m_PendingCompressed.insert(m_PendingCompressed.end(), data.begin(), data.end());
+	if(m_PendingCompressed.size() == 0)
+	{
+		return data;
+	}
 
 	m_DecompressionStream.avail_in = m_PendingCompressed.size();
 	m_DecompressionStream.next_in = &m_PendingCompressed[0];
-	int oldavail_in = m_DecompressionStream.avail_in;
 	m_DecompressionStream.avail_out = decompressedData.size();
 	m_DecompressionStream.next_out = &decompressedData[0];
 
 	inflate(&m_DecompressionStream, Z_SYNC_FLUSH);
 
-	if(oldavail_in != m_DecompressionStream.avail_in)
+	if(m_PendingCompressed.size() != m_DecompressionStream.avail_in)
 	{
 		decompressedData.resize(decompressedData.size() - 
 			m_DecompressionStream.avail_out);
@@ -116,9 +119,8 @@ std::vector<BYTE> SocketCompressor::Decompress(std::vector<BYTE>& data)
 		}
 		else
 		{
-			std::vector<BYTE> temp(m_PendingCompressed.end() - 
-				m_DecompressionStream.avail_in, m_PendingCompressed.end());
-			m_PendingCompressed.assign(temp.begin(), temp.end());
+			m_PendingCompressed.erase(m_PendingCompressed.begin(),
+				m_PendingCompressed.end() - m_DecompressionStream.avail_in);
 			m_CanDecompressMore = true;
 		}
 	}

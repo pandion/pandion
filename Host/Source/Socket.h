@@ -65,8 +65,7 @@ private:
 	/*
 	 * Data that has yet to be decrypted.
 	 */
-	std::vector<char>  m_pendingEncoded;
-	std::vector<char>  m_pendingDecoded;
+	std::vector<BYTE>  m_PendingEncoded;
 public:
 	Socket();
 	~Socket();
@@ -80,8 +79,8 @@ public:
 	int     Select(bool bRead, bool bWrite, 
 		long seconds = 0, long useconds = 0);
 
-	DWORD   Send(std::vector<BYTE>& data);
-	DWORD	Recv(std::vector<BYTE>& data);
+	int		Send(std::vector<BYTE>& data);
+	int		Recv(std::vector<BYTE>& data);
 
 	void	SetBlocking();
 	void	SetNonBlocking();
@@ -100,8 +99,7 @@ public:
 	 */
 private:
 	SECURITY_STATUS ClientHandshakeLoop(bool initialRead);
-	SECURITY_STATUS SecureRecv(PBYTE message,
-		DWORD messageSize, PDWORD bytesReceived);
+	std::vector<BYTE> TLSDecrypt(std::vector<BYTE>& data);
 	SECURITY_STATUS SecureSend(PBYTE message, 
 		DWORD messageSize, PDWORD bytesSent);
 
