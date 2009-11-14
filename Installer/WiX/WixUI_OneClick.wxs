@@ -17,7 +17,7 @@
 -->
 <!--
 First-time install dialog sequence:      Maintenance dialog sequence:
- - AdvancedWelcomeEulaDlg_OneClick      - WixUI_MaintenanceWelcomeDlg
+ - [Nothing, 0-click installation]      - WixUI_MaintenanceWelcomeDlg
                                           - WixUI_MaintenanceTypeDlg
                                             - WixUI_CustomizeDlg
                                             - WixUI_VerifyReadyDlg
@@ -41,9 +41,7 @@ First-time install dialog sequence:      Maintenance dialog sequence:
             <DialogRef Id="ProgressDlg" />
             <DialogRef Id="ResumeDlg" />
             <DialogRef Id="UserExit" />
-            <DialogRef Id="AdvancedWelcomeEulaDlg_OneClick" />
 
-			<!-- <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish> -->
             <InstallUISequence>
 				<Custom OnExit="success" Action="SkipFinishDialog"/>
             </InstallUISequence>

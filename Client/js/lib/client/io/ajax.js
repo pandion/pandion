@@ -18,7 +18,9 @@ client.io.ajax = function (request) {
 		request.headers["Content-Type"] = "application/x-www-form-urlencoded";
 
 	if (!("User-Agent" in request.headers))
-		request.headers["User-Agent"] = external.globals("softwarename") + "/" + external.globals("softwareversion");
+		request.headers["User-Agent"] = external.globals("softwarenamesafe")
+			+ "/" + external.globals("softwareversion")
+			+ " (" + (external.globals("cfg") ? external.globals("cfg")("language") : navigator.userLanguage) + ")";
 
 	var xhrFactories = [
 		function () {return new XMLHttpRequest()},

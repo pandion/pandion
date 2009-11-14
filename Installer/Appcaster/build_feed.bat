@@ -9,8 +9,11 @@ SET VERSION_MINOR=6
 IF NOT DEFINED BUILD_NUMBER SET BUILD_NUMBER=0
 IF NOT DEFINED HUDSON_URL SET HUDSON_URL=http://build.pandion.im/
 IF NOT DEFINED JOB_NAME SET JOB_NAME=Pandion
-SET PACKAGE=Pandion_%VERSION_MAJOR%.%VERSION_MINOR%.%BUILD_NUMBER%.msi
+SET VERSION=%VERSION_MAJOR%.%VERSION_MINOR%.%BUILD_NUMBER%
+SET PACKAGE=%JOB_NAME%_%VERSION%.msi
 SET LOCAL_FILE=../WiX/%PACKAGE%
-SET FEED_LOCATION=http://feeds.feedburner.com/pandionupdates
+SET DOWNLOAD_URL=http://downloads.sourceforge.net/project/pandion/builds/%PACKAGE%
+SET INFO_URL=%HUDSON_URL%job/%JOB_NAME%/%BUILD_NUMBER%/changes
+SET FEED_URL=http://feeds.feedburner.com/pandionupdates
 
-CScript.exe //NoLogo appcaster.wsf /maxcount:25 /source:"%FEED_LOCATION%" /path:index.xml /overwrite:false /application:Pandion /author:"Pandion Team" /description:"Pandion software updates feed" /location:"%FEED_LOCATION%" /history:"%HUDSON_URL%" /arguments:"/passive LAUNCHAPP=yes" /changes:"Development build" /info:"%HUDSON_URL%job/%JOB_NAME%/%BUILD_NUMBER%/changes" /mime:application/x-msi /size:"%LOCAL_FILE%" /track:development /version:"%VERSION_MAJOR%.%VERSION_MINOR%.%BUILD_NUMBER%" /url:"http://downloads.sourceforge.net/project/pandion/builds/%PACKAGE%"
+CScript.exe //NoLogo appcaster.wsf /maxcount:25 /source:"%FEED_URL%" /path:index.xml /overwrite:false /application:"%JOB_NAME%" /author:"%JOB_NAME% Team" /description:"%JOB_NAME% software updates feed" /location:"%FEED_URL%" /history:"%HUDSON_URL%" /arguments:"/passive LAUNCHAPP=yes AUTOUPDATE=yes" /changes:"Development build" /info:"%INFO_URL%" /mime:application/x-msi /size:"%LOCAL_FILE%" /track:development /version:"%VERSION%" /url:"%DOWNLOAD_URL%"

@@ -73,6 +73,7 @@
 						Value="1"
 						KeyPath="yes"
 					/>
+					<Condition>NOT AUTOUPDATE</Condition>
 				</Component>
 			</Directory>
 
@@ -96,6 +97,7 @@
 						Value="1"
 						KeyPath="yes"
 					/>
+					<Condition>NOT AUTOUPDATE</Condition>
 				</Component>
 			</Directory>
 
@@ -119,6 +121,7 @@
 						Value="1"
 						KeyPath="yes"
 					/>
+					<Condition>NOT AUTOUPDATE</Condition>
 				</Component>
 			</Directory>
 
@@ -239,7 +242,7 @@
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKCU" Key="Software\Classes\$(var.SafeName).File.PDN"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKCU" Key="Software\Classes\$(var.SafeName).File.XMPP"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKCU" Key="Software\Classes\$(var.SafeName).Url.xmpp"/>
-			<Condition>NOT LAUNCHAPP</Condition>
+			<Condition>NOT AUTOUPDATE</Condition>
 		</Component>
 		<Component Id="RegistryCleanupHKLM" Directory="TARGETDIR" Guid="{dcd110c8-a3b5-4df0-9dbb-64ea3cc2bedb}">
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\Applications\$(var.SafeName).exe"/>
@@ -247,7 +250,7 @@
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\$(var.SafeName).File.PDN"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\$(var.SafeName).File.XMPP"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\$(var.SafeName).Url.xmpp"/>
-			<Condition>Privileged and (NOT LAUNCHAPP)</Condition>
+			<Condition>Privileged and (NOT AUTOUPDATE)</Condition>
 		</Component>
 	</Product>
 </Wix>
