@@ -4,13 +4,15 @@
 <!-- Used in various locations throughout the interface.
      Translate to another script by adding the xml:lang attribute. -->
 <softwarename>Pandion</softwarename>
+<softwarename xml:lang="ar">بانديون</softwarename>
 <softwarename xml:lang="bg">Пандион</softwarename>
+<softwarename xml:lang="hi">पैन्दिऑन्</softwarename>
 <softwarename xml:lang="ru">Пандион</softwarename>
 <softwarename xml:lang="vn">Pan-di-on</softwarename>
 
 <!-- Used as name of files and directories.
      Must not contain / \ : * ? " < > |
-	 Should not be translated. -->
+	 Should not be transliterated. -->
 <softwarenamesafe>Pandion</softwarenamesafe>
 
 <!-- Major and minor version (x.y) of the application.
@@ -30,31 +32,26 @@
 <termsandcontitionsurl>http://www.pandion.be/about</termsandcontitionsurl>
 <trademarkholder>Sebastiaan Deckers</trademarkholder>
 
-<!-- Automatically download and install any updates (yes/no) -->
-<installupdates>yes</installupdates>
-
-<!-- Only connect to this server and only create accounts on this server -->
-<fixedserver></fixedserver>
-
 <!-- Connect to this XMPP server and use SSPI (Kerberos/NTLM) to authenticate without user interaction -->
 <sspiserver></sspiserver>
+
+<!-- Only connect to this server and only create accounts on this server.
+     Overrides anything entered by a user. -->
+<fixedserver></fixedserver>
 
 <!-- Shown in the Help menu -->
 <helpcontact>http://www.pandion.be/about</helpcontact>
 <helpforum>http://getsatisfaction.com/pandion</helpforum>
 <helpmanual>http://pandion.pbworks.com/</helpmanual>
 
-<!-- URI of plug-in listing -->
+<!-- URI of extras -->
 <pluginlist>http://plugins.pandion.be/</pluginlist>
-
-<!-- URI of emoticon listing -->
 <emoticonlist>http://emoticons.pandion.be/</emoticonlist>
-
-<!-- URI of background listing -->
 <backgroundlist>http://backgrounds.pandion.be/</backgroundlist>
 
 <!-- URI of software version checker (Atom 1.0 + Appcaster) -->
 <autoupdate>http://feeds.feedburner.com/pandionupdates</autoupdate>
+<installupdates>yes</installupdates> <!-- yes/no -->
 
 <!-- Shown in the Welcome screen -->
 <welcomescreen>yes</welcomescreen>
