@@ -55,7 +55,7 @@ function XMPPOnDisconnected ()
 		document.getElementById( 'mode-secure' ).style.display = 'none';
 		document.getElementById( 'rosterfield' ).style.display = external.globals( 'ClientRoster' ).Items.Count ? 'block' : 'none';
 		document.getElementById( 'commerror' ).style.display = external.globals( 'ClientRoster' ).Items.Count ? 'none'  : 'block';
-		document.getElementById( 'mode-message' ).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' );
+		document.getElementById( 'mode-message' ).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' ) + ( external.globals( 'cfg' )( 'lastmsg' ).length ? ' - ' + external.globals( 'cfg' )( 'lastmsg' ) : '' );
 
 		external.globals( 'XMPPReconnectTimeout' ) = setTimeout(
 			function ()

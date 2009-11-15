@@ -9,7 +9,9 @@ function mode_new ( mode, msg )
 		document.getElementById( 'rosterfield' ).style.display = 'block';
 		document.getElementById( 'mode-avatar' ).src = external.globals( 'usersdir' ) + 'My Avatars\\' + cfg( 'avatar' );
 		document.getElementById( 'mode-name' ).innerText = cfg( 'nick' );
-		document.getElementById( 'mode-message' ).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' );
+		if ( msg.length )
+			cfg( 'lastmsg' ) = msg;
+		document.getElementById( 'mode-message' ).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' ) + ( cfg( 'lastmsg' ).length ? ' - ' + cfg( 'lastmsg' ) : '' );
 
 		if ( external.globals( 'XMPPConnected' ) )
 		{

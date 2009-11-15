@@ -82,12 +82,12 @@ function alerts_refresh ()
 			if ( external.FileExists( external.globals( 'usersdir' ) + 'Avatars\\' + Headline.Icon ) )
 				Icon.src = external.globals( 'usersdir' ) + 'Avatars\\' + Headline.Icon;
 			else
-				Icon.src = external.globals( 'cwd' ) + '..\\images\\brand\\default.ico';
+				Icon.src = external.globals( 'cwd' ) + '..\\images\\headline_log\\star.png';
 		}
 		else if ( Headline.Icon.length )
 			Icon.src = external.globals( 'cwd' ) + '..\\images\\clients\\' + Headline.Icon;
 		else
-			Icon.src = external.globals( 'cwd' ) + '..\\images\\brand\\default.ico';
+			Icon.src = external.globals( 'cwd' ) + '..\\images\\headline_log\\star.png';
 
 		Icon.height			= 24;
 		Icon.width			= 24;

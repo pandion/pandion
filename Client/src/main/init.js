@@ -273,7 +273,7 @@ function init ()
 	external.globals( 'ClientPluginContainer' ).Plugins.Add( '/roster', new ClientPluginCore( external.globals( 'ClientPluginContainer' ) ) );
 	with ( external.globals( 'ClientPluginContainer' ).Plugins( '/roster' ).ClientPluginTab = new ClientPluginTab( external.globals( 'ClientPluginContainer' ).Plugins( '/roster' ) ) )
 	{
-		Icon = external.globals( 'cwd' ) + '..\\images\\brand\\default.ico';
+		Icon = external.globals( 'cwd' ) + '..\\images\\main\\logo.png';
 		Tooltip = external.globals( 'Translator' ).Translate( 'main', 'cl_tooltip', [ external.globals('softwarename' ) ] );
 		IsActive = true;
 		HTMLArea = document.getElementById( 'rosterfield' );
