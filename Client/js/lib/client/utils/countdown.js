@@ -8,7 +8,7 @@ client.namespace("client.utils");
 client.utils.countdown = function (arg) {
 	arg = arg || {};
 	this.duration = arg.duration || 0;
-	this.period = arg.period || Math.round(this.timeout / 10);
+	this.period = arg.period || null;
 	this._timeout = null;
 	this._interval = null;
 	this._timestamp = null;
@@ -21,14 +21,16 @@ client.utils.countdown.prototype._start = function () {
 	this._timeout = setTimeout(function () {
 		that.trigger();
 	}, this.duration);
-	this._interval = setInterval(function () {
-		that.events.publish("onStep");
-	}, this.period);
+	if (this.period !== null)
+		this._interval = setInterval(function () {
+			that.events.publish("onStep");
+		}, this.period);
 };
 
 client.utils.countdown.prototype._cancel = function () {
 	clearTimeout(this._timeout);
-	clearInterval(this._interval);
+	if (this.period !== null)
+		clearInterval(this._interval);
 	this._timeout = null;
 	this._interval = null;
 	this._timestamp = null;

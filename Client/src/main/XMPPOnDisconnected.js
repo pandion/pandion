@@ -15,6 +15,7 @@ function XMPPOnDisconnected ()
 	clearTimeout( external.globals( 'AutoUpdateTimeout' ) );
 
 	external.globals("idle").cancel();
+	external.globals("XMPPKeepalive").cancel();
 
 	MenuBarUpdate();
 

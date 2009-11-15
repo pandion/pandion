@@ -7,8 +7,10 @@ client.namespace("client.ui.idle");
 
 client.ui.idle.manager = function (arg) {
 	this.events = new client.events.manager(arg.events || {});
+	this.isIdle = 0;
+	this.sensors = arg.sensors || [];
 
-	that = this, this.isIdle = 0, this.sensors = arg.sensors || [];
+	var that = this;
 	for (var i = 0; i < this.sensors.length; i++)
 		this.sensors[i] = new this.sensors[i]({
 			events: {

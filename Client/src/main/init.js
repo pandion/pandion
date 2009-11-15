@@ -61,6 +61,7 @@ function init ()
 	external.globals.Add( 'XMPPReconnect', false ); // reconnect flag
 	external.globals.Add( 'XMPPStreamVersion', null ); // server protocol version
 	external.globals.Add( 'XMPPSASLMechanism', '' ); // selected authentication method
+	external.globals.Add( 'XMPPKeepalive', null ); // Whitespace keepalive
 
 	/* Load branding data from XML files
 	 */
@@ -251,6 +252,18 @@ function init ()
 			},
 			leavingIdle: function () {
 				mode_new(modeBeforeIdle, external.globals("cfg")("lastmsg"));
+			}
+		}
+	});
+
+	/* Send whitespace to keep the socket from getting closed by NAT/server
+	 */
+	external.globals("XMPPKeepalive") = new client.utils.countdown({
+		duration: 30*1000,
+		events: {
+			onTrigger: function () {
+				external.XMPP.SendText(" ");
+				external.globals("XMPPKeepalive").start();
 			}
 		}
 	});

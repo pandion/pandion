@@ -461,6 +461,7 @@ function OnLoginRoster ( iq )
 	MenuBarUpdate( 'actions' );
 	MenuBarUpdate( 'tools' );
 	external.globals("idle").start();
+	external.globals("XMPPKeepalive").start();
 	external.globals( 'connecttime' )			= ( new Date() ).getTime();
 	external.globals( 'soundtime' )				= ( new Date() ).getTime() + 8000;
 	external.globals( 'XMPPReconnect' )			= true;
