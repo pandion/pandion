@@ -3,6 +3,7 @@
 	This file is part of Pandion instant messenger
 	Copyright (c) 2009 Deng Chang Hua
 	Copyright (c) 2005 Vnds
+	Copyright (c) 2004 zlowly
 	License: GNU General Public License version 3 or later
 -->
 <translation xml:lang="zh">
@@ -29,6 +30,17 @@
         <date>2005-11-08</date>
         <description>
           简体中文语言文件 VMessenger
+        </description>
+      </revision>
+      <revision>
+        <author>
+          <name>zlowly</name>
+          <email>zlowly@21cn.com</email>
+          <xmpp>zlowly@jabber.com.cn</xmpp>
+        </author>
+        <date>2004-07-06</date>
+        <description>
+          简体中文语言文件 Pandion 2.x
         </description>
       </revision>
     </history>
