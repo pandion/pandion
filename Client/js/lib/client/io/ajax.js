@@ -20,7 +20,7 @@ client.io.ajax = function (request) {
 	if (!("User-Agent" in request.headers))
 		request.headers["User-Agent"] = external.globals("softwarenamesafe")
 			+ "/" + external.globals("softwareversion")
-			+ " (" + (external.globals("cfg") ? external.globals("cfg")("language") : navigator.userLanguage) + ")";
+			+ " (" + external.globals("language") + ")";
 
 	var xhrFactories = [
 		function () {return new XMLHttpRequest()},

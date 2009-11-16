@@ -276,7 +276,7 @@ function init ()
 		Icon = external.globals( 'cwd' ) + '..\\images\\main\\logo.png';
 		Tooltip = external.globals( 'Translator' ).Translate( 'main', 'cl_tooltip', [ external.globals('softwarename' ) ] );
 		IsActive = true;
-		HTMLArea = document.getElementById( 'rosterfield' );
+		HTMLArea = document.getElementById( 'content-area' );
 		DrawButton();
 	}
 

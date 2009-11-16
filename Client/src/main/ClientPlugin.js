@@ -127,7 +127,7 @@ function ClientPluginContainer ()
 {
 	this.Plugins		= new ActiveXObject( 'Scripting.Dictionary' ); // filename->PluginCore
 	this.HTMLTabBar		= document.getElementById( 'tab-bar' );
-	this.HTMLTabArea	= document.getElementById( 'content-area' );
+	this.HTMLTabArea	= document.getElementById( 'plugin-tab-area' );
 
 	this.Reload			= Reload;
 	this.ParseURL		= ParseURL;
