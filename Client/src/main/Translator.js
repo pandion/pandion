@@ -1,5 +1,4 @@
-function Translator ()
-{
+function Translator () {
 	this.CodeCache = {};
 	this.Direction = false; // false: LTR, true: RTL
 	this.HTMLCache = {};
@@ -21,8 +20,6 @@ function Translator ()
 		if (userLanguage == "zh-hk"|| userLanguage == "zh-sg")
 			userLanguage = "zh-tw";
 
-		this.LoadFile(path + language + ".xml");
-
 		if (external.FileExists(path + external.globals("language") + ".xml"))
 			language = external.globals("language");
 		else if (external.FileExists(path + userLanguage + ".xml"))
@@ -30,12 +27,11 @@ function Translator ()
 		else if (userLanguage.indexOf("-") > 0 && external.FileExists(path + userLanguage.substr(0, userLanguage.indexOf("-")) + ".xml"))
 			language = userLanguage.substr(0, userLanguage.indexOf("-"));
 
+		external.globals("language") = language;
+		external.globals("softwarename") = this.GetSoftwareNameT10n();
+		this.LoadFile(path + "en.xml");
 		if (language != "en")
 			this.LoadFile(path + language + ".xml");
-
-		external.globals("language") = language;
-
-		external.globals("softwarename") = this.GetSoftwareNameT10n();
 	}
 
 	function GetSoftwareNameT10n () {
