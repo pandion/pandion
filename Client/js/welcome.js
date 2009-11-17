@@ -149,7 +149,7 @@ window.attachEvent("onload", function () {
 	client.css.hide(document.getElementById("feed"));
 	client.io.ajax({
 		url: external.globals("ClientPluginContainer").ParseURL(external.globals("welcomefeedurl")),
-		callback: function (xhr) {
+		callback: function (dom, xhr) {
 			var getPlainText = function (parent, tagName) {
 				var node = null;
 				if (node = parent.selectSingleNode(tagName + "[@type='text' or not(@type)]"))
@@ -159,16 +159,13 @@ window.attachEvent("onload", function () {
 					html.innerHtml = node.text;
 					return html.innerText;
 				}
-				else if (node = parent.selectSingleNode(tagName + "[@type='xhtml']")) {
+				else if (node = parent.selectSingleNode(tagName + "[@type='xhtml']"))
 					return node.text;
-				}
 				else
 					return "";
 			};
-			client.css.hide(document.getElementById("feed-loading"));
 			var feed = document.getElementById("feed");
-			client.css.show(feed);
-			var entries = xhr.responseXML ? xhr.responseXML.selectNodes("/feed/entry[updated][title][link[@rel='alternate' and @type='text/html' and @href]]") : [];
+			var entries = dom ? dom.selectNodes("/feed/entry[updated][title][link[@rel='alternate' and @type='text/html' and @href]]") : [];
 			for (var i = 0; i < entries.length; ++i) {
 				var listItem = document.createElement("li");
 				var anchor = document.createElement("a");
@@ -182,8 +179,8 @@ window.attachEvent("onload", function () {
 				listItem.appendChild(timestamp);
 				feed.appendChild(listItem);
 			}
-			if (entries.length < 1)
-				client.css.show(document.getElementById("feed-unavailable"));
+			client.css.hide(document.getElementById("feed-loading"));
+			client.css.show(entries.length > 0 ? feed : document.getElementById("feed-unavailable"));
 		}
 	});
 

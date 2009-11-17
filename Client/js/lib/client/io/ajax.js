@@ -23,11 +23,11 @@ client.io.ajax = function (request) {
 			+ " (" + external.globals("language") + ")";
 
 	var xhrFactories = [
-		function () {return new XMLHttpRequest()},
-		function () {return new ActiveXObject("Msxml2.XMLHTTP.6.0")},
-		function () {return new ActiveXObject("Msxml2.XMLHTTP.3.0")},
-		function () {return new ActiveXObject("Msxml2.XMLHTTP")},
-		function () {return new ActiveXObject("Microsoft.XMLHTTP")}
+		function () {return new XMLHttpRequest()}, /* ie7/ie8 */
+		function () {return new ActiveXObject("Msxml2.XMLHTTP.6.0")}, /* xpsp3/vista/7 */
+		function () {return new ActiveXObject("Msxml2.XMLHTTP.3.0")}, /* 2ksp4 */
+		function () {return new ActiveXObject("Msxml2.XMLHTTP")}, /* ie6 */
+		function () {return new ActiveXObject("Microsoft.XMLHTTP")} /* ie5/ie5.5/ie6 */
 	];
 
 	var getXhr = function () {
@@ -48,7 +48,9 @@ client.io.ajax = function (request) {
 		if (xhr.readyState == 4) {
 			if (xhr.responseText.length > 0 && xhr.responseXML !== null && xhr.responseXML.documentElement === null && xhr.responseXML.parseError.errorCode == 0)
 				xhr.responseXML.loadXML(xhr.responseText);
-			request.callback(xhr);
+			var dom = new ActiveXObject("Msxml2.DOMDocument");
+			dom.loadXML(xhr.responseText);
+			request.callback(dom, xhr);
 		}
 	};
 	xhr.send(request.data);
