@@ -122,67 +122,53 @@ DWORD Socket::StartTLS()
 	{
 		return 1;
 	}
+	else if(!m_bConnected)
+	{
+		return 0;
+	}
 
 	EnterCriticalSection(&m_csReading);
 	EnterCriticalSection(&m_csWriting);
 
-	if(m_bConnected)
+	HCERTSTORE certificateStore = CertOpenSystemStore(NULL, TEXT("MY"));
+	if(certificateStore != NULL)
 	{
-		HCERTSTORE certificateStore = CertOpenSystemStore(NULL, TEXT("MY"));
+		TimeStamp expiry;
+		SCHANNEL_CRED schannelCred = {SCHANNEL_CRED_VERSION, 0, 0, 0, 0,
+			0, 0, 0, SP_PROT_SSL3_CLIENT, 0, 0, 0,
+			SCH_CRED_AUTO_CRED_VALIDATION | SCH_CRED_NO_SERVERNAME_CHECK, 0};
 
-		if(certificateStore != NULL)
+		SECURITY_STATUS status = AcquireCredentialsHandle(NULL, UNISP_NAME,
+			SECPKG_CRED_OUTBOUND, NULL, &schannelCred, NULL, NULL,
+			&m_clientCreds, &expiry);
+		if(status == SEC_E_OK)
 		{
-			TimeStamp expiry;
-			SCHANNEL_CRED schannelCred;
-			ZeroMemory(&schannelCred, sizeof(schannelCred));
-			schannelCred.dwVersion = SCHANNEL_CRED_VERSION;
-			schannelCred.grbitEnabledProtocols = SP_PROT_SSL3_CLIENT;
-			schannelCred.dwFlags = SCH_CRED_AUTO_CRED_VALIDATION | SCH_CRED_NO_SERVERNAME_CHECK;
+			SecBuffer outBuffers[1] = {0, SECBUFFER_TOKEN, NULL};
+			SecBufferDesc outBuffer = {SECBUFFER_VERSION, 1, outBuffers};
+			m_contextRequests = ISC_REQ_SEQUENCE_DETECT |
+				ISC_REQ_REPLAY_DETECT | ISC_REQ_CONFIDENTIALITY |
+				ISC_RET_EXTENDED_ERROR | ISC_REQ_ALLOCATE_MEMORY |
+				ISC_REQ_STREAM | ISC_REQ_MANUAL_CRED_VALIDATION;
 
-			SECURITY_STATUS status = AcquireCredentialsHandle(NULL, 
-				UNISP_NAME, SECPKG_CRED_OUTBOUND, NULL, 
-				&schannelCred, NULL, NULL, &m_clientCreds, &expiry);
-
-			if(status == SEC_E_OK)
+			status = ::InitializeSecurityContext(&m_clientCreds,
+				NULL, NULL, m_contextRequests, 0, SECURITY_NETWORK_DREP,
+				NULL, 0, &m_context, &outBuffer, &m_contextAttributes, 
+				&expiry);
+			if(status == SEC_I_CONTINUE_NEEDED)
 			{
-				SecBufferDesc outBuffer;
-				SecBuffer outBuffers[1];
+				send(m_Socket, (const char*)outBuffers[0].pvBuffer, 
+					outBuffers[0].cbBuffer, 0);
 
+				FreeContextBuffer(outBuffers[0].pvBuffer);
 				outBuffers[0].pvBuffer = NULL;
-				outBuffers[0].cbBuffer = 0;
-				outBuffers[0].BufferType = SECBUFFER_TOKEN;
 
-				outBuffer.pBuffers = outBuffers;
-				outBuffer.cBuffers = 1;
-				outBuffer.ulVersion = SECBUFFER_VERSION;
-
-				m_contextRequests = ISC_REQ_SEQUENCE_DETECT |
-					ISC_REQ_REPLAY_DETECT | ISC_REQ_CONFIDENTIALITY |
-					ISC_RET_EXTENDED_ERROR | ISC_REQ_ALLOCATE_MEMORY |
-					ISC_REQ_STREAM | ISC_REQ_MANUAL_CRED_VALIDATION;
-
-				TimeStamp expiry;
-				status = InitializeSecurityContext(&m_clientCreds,
-					NULL, NULL, m_contextRequests, 0, SECURITY_NETWORK_DREP,
-					NULL, 0, &m_context, &outBuffer, &m_contextAttributes, 
-					&expiry);
-
-				if(status == SEC_I_CONTINUE_NEEDED)
+				status = ClientHandshakeLoop(true);
+				if(status == SEC_E_OK)
 				{
-					send(m_Socket, (const char*)outBuffers[0].pvBuffer, 
-						outBuffers[0].cbBuffer, 0);
-
-					FreeContextBuffer(outBuffers[0].pvBuffer);
-					outBuffers[0].pvBuffer = NULL;
-
-					status = ClientHandshakeLoop(true);
-
-					if(status == SEC_E_OK) {
-						m_bUsingSSL = true;
-						LeaveCriticalSection(&m_csWriting);
-						LeaveCriticalSection(&m_csReading);
-						return 1;
-					}
+					m_bUsingSSL = true;
+					LeaveCriticalSection(&m_csWriting);
+					LeaveCriticalSection(&m_csReading);
+					return 1;
 				}
 			}
 		}
@@ -198,80 +184,56 @@ DWORD Socket::StartTLS()
  */
 SECURITY_STATUS Socket::ClientHandshakeLoop(bool initialRead)
 {
-    SecBufferDesc   inBuffer;
-    SecBuffer       inBuffers[2];
-    SecBufferDesc   outBuffer;
-    SecBuffer       outBuffers[1];
-
-	DWORD           dataSize;
+	BOOL  doRead = initialRead;
+	CHAR  ioBuffer[0x10000];
+    DWORD ioBufferUsed = 0, ioBufferSize = sizeof(ioBuffer);
     SECURITY_STATUS status = SEC_I_CONTINUE_NEEDED;
-    bool            doRead = initialRead;
 	
-	const DWORD		ioBufferSize = 0x10000;
-    DWORD           ioBufferUsed = 0;
-	std::vector<char> ioBuffer(ioBufferSize);
-
-	while(status == SEC_I_CONTINUE_NEEDED        ||
-          status == SEC_E_INCOMPLETE_MESSAGE     ||
-          status == SEC_I_INCOMPLETE_CREDENTIALS) 
+	while(status == SEC_I_CONTINUE_NEEDED ||
+		status == SEC_E_INCOMPLETE_MESSAGE ||
+		status == SEC_I_INCOMPLETE_CREDENTIALS)
    {
-        if(0 == ioBufferUsed || status == SEC_E_INCOMPLETE_MESSAGE)
+        if(0 == ioBufferUsed || status == SEC_E_INCOMPLETE_MESSAGE && doRead)
         {
-            if(doRead)
+			Select(true, false, 10, 0);
+            DWORD dataSize = recv(m_Socket, ioBuffer + ioBufferUsed, 
+                          ioBufferSize - ioBufferUsed, 0);
+            if(dataSize == SOCKET_ERROR || dataSize == 0)
             {
-				Select(true, false, 10, 0);
-                dataSize = recv(m_Socket, &ioBuffer.begin()[0] + ioBufferUsed, 
-                              ioBufferSize - ioBufferUsed, 0);
-                if(dataSize == SOCKET_ERROR || dataSize == 0)
-                {
-                    status = SEC_E_INTERNAL_ERROR;
-                    break;
-                }
-                ioBufferUsed += dataSize;
+                status = SEC_E_INTERNAL_ERROR;
+                break;
             }
-            else
-            {
-                doRead = true;
-            }
+            ioBufferUsed += dataSize;
+		}
+		else if(0 == ioBufferUsed || status == SEC_E_INCOMPLETE_MESSAGE && !doRead)
+		{
+			doRead = true;
         }
-        inBuffers[0].pvBuffer   = &ioBuffer.begin()[0];
-        inBuffers[0].cbBuffer   = ioBufferUsed;
-        inBuffers[0].BufferType = SECBUFFER_TOKEN;
-        inBuffers[1].pvBuffer   = NULL;
-        inBuffers[1].cbBuffer   = 0;
-        inBuffers[1].BufferType = SECBUFFER_EMPTY;
-        inBuffer.cBuffers       = 2;
-        inBuffer.pBuffers       = inBuffers;
-        inBuffer.ulVersion      = SECBUFFER_VERSION;
-
-        outBuffers[0].pvBuffer  = NULL;
-        outBuffers[0].BufferType= SECBUFFER_TOKEN;
-        outBuffers[0].cbBuffer  = 0;
-        outBuffer.cBuffers      = 1;
-        outBuffer.pBuffers      = outBuffers;
-        outBuffer.ulVersion     = SECBUFFER_VERSION;
 
 		TimeStamp expiry;
-        status = InitializeSecurityContext(&m_clientCreds,
-			&m_context, NULL, m_contextRequests, 0, SECURITY_NATIVE_DREP,
-			&inBuffer, 0, NULL, &outBuffer, &m_contextAttributes, &expiry);
+		SecBuffer inBuffers[2] = 
+			{{ioBufferUsed, SECBUFFER_TOKEN, ioBuffer}, 
+			{0, SECBUFFER_EMPTY, NULL}};
+		SecBufferDesc inBuffer[1] = {SECBUFFER_VERSION, 2, inBuffers};
+		SecBuffer outBuffers[1] = {0, SECBUFFER_TOKEN, NULL};
+		SecBufferDesc outBuffer[1] = {SECBUFFER_VERSION, 1, outBuffers};
+		status = ::InitializeSecurityContext(&m_clientCreds,
+			&m_context, NULL, m_contextRequests, 0, SECURITY_NETWORK_DREP,
+			inBuffer, 0, NULL, outBuffer, &m_contextAttributes, &expiry);
 
-        if(status == SEC_E_OK                ||
-           status == SEC_I_CONTINUE_NEEDED   ||
-           FAILED(status) && (m_contextAttributes & ISC_RET_EXTENDED_ERROR))
+        if((status == SEC_E_OK || status == SEC_I_CONTINUE_NEEDED ||
+            FAILED(status) && (m_contextAttributes & ISC_RET_EXTENDED_ERROR)) &&
+			(outBuffers[0].cbBuffer != 0 && outBuffers[0].pvBuffer != NULL))
         {
-            if(outBuffers[0].cbBuffer != 0 && outBuffers[0].pvBuffer != NULL)
-            {
-                dataSize = send(m_Socket, (const char*) outBuffers[0].pvBuffer,
-					outBuffers[0].cbBuffer, 0);
-				FreeContextBuffer(outBuffers[0].pvBuffer);
-                outBuffers[0].pvBuffer = NULL;
+            DWORD dataSize = send(m_Socket,
+				(const char*) outBuffers[0].pvBuffer, outBuffers[0].cbBuffer, 0);
+			FreeContextBuffer(outBuffers[0].pvBuffer);
+            outBuffers[0].pvBuffer = NULL;
 
-                if(dataSize == SOCKET_ERROR || dataSize == 0)
-                {
-                    DeleteSecurityContext(&m_context);
-                    return SEC_E_INTERNAL_ERROR;
-                }
+            if(dataSize == SOCKET_ERROR || dataSize == 0)
+            {
+                DeleteSecurityContext(&m_context);
+                return SEC_E_INTERNAL_ERROR;
             }
         }
 		else if(status == SEC_E_INCOMPLETE_MESSAGE)
@@ -286,13 +248,13 @@ SECURITY_STATUS Socket::ClientHandshakeLoop(bool initialRead)
         if(status == SEC_E_OK)
         {
 			m_PendingEncoded.clear();
-			for(unsigned long i = 0; i <outBuffer.cBuffers; i++)
+			for(unsigned long i = 0; i < outBuffer->cBuffers; i++)
 			{
 				if(outBuffers[i].BufferType == SECBUFFER_EXTRA)
 				{
 					m_PendingEncoded.resize(outBuffers[i].cbBuffer);
 					std::copy((char*) outBuffers[i].pvBuffer, 
-						(char*) outBuffers[i].pvBuffer + outBuffers[i].cbBuffer, 
+						(char*) outBuffers[i].pvBuffer + outBuffers[i].cbBuffer,
 						&m_PendingEncoded.begin()[0]);
 				}
 			}
@@ -308,9 +270,9 @@ SECURITY_STATUS Socket::ClientHandshakeLoop(bool initialRead)
 
         if (inBuffers[1].BufferType == SECBUFFER_EXTRA)
         {
-            MoveMemory(&ioBuffer.begin()[0],
-                       &ioBuffer.begin()[0] + (ioBufferUsed - inBuffers[1].cbBuffer),
-                       inBuffers[1].cbBuffer);
+            MoveMemory(ioBuffer,
+				ioBuffer + (ioBufferUsed - inBuffers[1].cbBuffer),
+				inBuffers[1].cbBuffer);
 
             ioBufferUsed = inBuffers[1].cbBuffer;
         }
