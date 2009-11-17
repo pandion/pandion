@@ -9,18 +9,14 @@
 	Instructions:
 	http://pandion.pbworks.com/Translating
 -->
-<!--
-	13-11-2009 valmablog.net
-	Update translation by cRoW2k (crow2k@novafeltria.net) for 2.6.x branch
--->
 <translation xml:lang="it" dir="ltr">
-  <about>
+   <about>
     <language>Italiano</language>
     <history>
-      <revision>
+       <revision>
         <author>
           <name>Leonardo Cursi</name>
-          <email>crow2k@gmail.com</email>
+          <email>crow2k@novafeltria.net</email>
         </author>
         <date>13-11-2009</date>
         <description>
@@ -29,16 +25,16 @@
       </revision>
       <revision>
         <author>
-          <name>Scorpion</name>
-          <xmpp>sg-1@jabber.org</xmpp>
-        </author>
-        <date>24-01-2005</date>
+           <name>Scorpion</name>
+           <xmpp>sg-1@jabber.org</xmpp>
+         </author>
+		 <date>24-01-2005</date>
         <description>
           :)
         </description>
-      </revision>
-    </history>
-  </about>
+	   </revision>
+	</history>
+   </about>
   <window name="main">
     <item id="txt_disconnected">
       <innerText>Disconnesso dal server</innerText>
@@ -66,10 +62,10 @@
       <title>Scegli un immagine differente</title>
     </item>
     <item id="mode-bar">
-      <title>Cambia la tua disponibilita', il messaggio di stato o il tuo profilo personale</title>
+      <title>Cambia la tua disponibilità, il messaggio di stato o il tuo profilo personale</title>
     </item>
     <item id="mode-secure">
-      <title>La connessione e' sicura grazie alla crittografia SSL/TLS</title>
+      <title>La connessione è sicura grazie alla crittografia SSL/TLS</title>
     </item>
     <item id="rosterfield">
       <title>Persone e gruppi nella tua lista contatti</title>
@@ -103,15 +99,15 @@
       <innerText>Impostazioni di connessione</innerText>
     </item>
 
-    <code id="tt-group-hide">Nascondi i contatti in questo gruppo&#13;Tasto destro per piu' opzioni</code>
-    <code id="tt-group-show">Mostra i contatti in questo gruppo&#13;Tasto destro per piu' opzioni</code>
+    <code id="tt-group-hide">Nascondi i contatti in questo gruppo&#13;Tasto destro per più opzioni</code>
+    <code id="tt-group-show">Mostra i contatti in questo gruppo&#13;Tasto destro per più opzioni</code>
     <code id="emoticon_unknown">Sconosciuto</code>
     <code id="txt_welcome">Benvenuto a ${0}!</code>
     <code id="user_online">${0} è ora in linea</code>
     <code id="cl_tooltip">${0} Lista Contatti</code>
     <code id="import_files">Lista Contatti</code>
     <code id="import_invalid">Il file non contiene dati validi.</code>
-    <code id="import_no_new">Tutti i contatti nel file sono gia' nella lista dei contatti.</code>
+    <code id="import_no_new">Tutti i contatti nel file sono già nella lista dei contatti.</code>
     <code id="import_confirm">Questi indirizzi verranno aggiunti alla lista dei contatti:&#13;&#13;${0}&#13;&#13;Sei sicuro di voler aggiungere questi indirizzi alla lista dei contatti?</code>
     <code id="import_aim_not_registered">Per importare la tua lista dei contatti AIM, il trasporto AIM deve essere registrato.  Il trasporto deve essere attivo.&#13;Vai nel menu Strumenti e scegli Trasporti per visualizzare lo stato del trasporto AIM.</code>
     <code id="import_msn_not_registered">Per importare la tua lista dei contatti MSN, il trasporto MSN deve essere registrato.  Il trasporto deve essere attivo.&#13;Vai nel menu Strumenti e scegli Trasporti per visualizzare lo stato del trasporto MSN.</code>
@@ -120,7 +116,7 @@
     <code id="search_info">Trova un contatto...</code>
     <code id="invalid-user-address">Inserisci il tuo indirizzo di instant messaging.&#13;&#13;Se non si dispone di un indirizzo, fare clic su "Registra un nuovo indirizzo di instant messaging" qui sotto</code>
     <code id="invalid-sso-server">Inserisci l'indirizzo del tuo server di instant messaging.</code>
-    <code id="program-description">${softwarename} e' un client di instant messaging per le reti XMPP.</code>
+    <code id="program-description">${softwarename} è un client di instant messaging per le reti XMPP.</code>
     <code id="extension-jisp">Pacchetto di Stile Icone Jabber</code>
     <code id="extension-pdn">${softwarename} Plug-In</code>
     <code id="extension-xmpp">Meta Dati di protocollo aperto di messaggistica istantanea e presenza basato su XML (XMPP)</code>
@@ -130,29 +126,29 @@
     <code id="menu_status_received">&amp;Apri i miei file ricevuti</code>
     <code id="menu_status_export">&amp;Esporta la lista dei contatti...</code>
     <code id="menu_status_import">&amp;Importa la lista dei contatti...</code>
-    <code id="menu_status_change">Cambia il mio Messaggio di &amp;Stato...</code>
+    <code id="menu_status_change">Cambia il mio messaggio di &amp;stato...</code>
     <code id="menu_status_ffc">&amp;Libero per la chat</code>
     <code id="menu_status_available">&amp;Disponibile</code>
     <code id="menu_status_busy">&amp;Occupato</code>
-    <code id="menu_status_away">N&amp;on al Computer</code>
+    <code id="menu_status_away">N&amp;on al computer</code>
     <code id="menu_status_xaway">&amp;Via per molto tempo</code>
     <code id="menu_status_invisible">&amp;Invisibile</code>
     <code id="menu_status_offline">&amp;Non in linea</code>
-    <code id="menu_status_status">My &amp;Stato</code>
+    <code id="menu_status_status">Il mio &amp;Stato</code>
     <code id="menu_status_out">&amp;Disconnetti</code>
     <code id="menu_status_exit">C&amp;hiudi</code>
 
     <code id="menu_axn">&amp;Azioni</code>
     <code id="menu_axn_add">&amp;Aggiungi un contatto...</code>
-    <code id="menu_axn_addgroup">Aggiungi un &amp;Gruppo...</code>
+    <code id="menu_axn_addgroup">Aggiungi un &amp;gruppo...</code>
     <code id="menu_axn_bookmarks">&amp;Sale conferenze preferite</code>
-    <code id="menu_axn_bookmarks_add">&amp;Aggiungi un Segnalibro...</code>
-    <code id="menu_axn_bookmarks_manage">&amp;Organizza i Segnalibri...</code>
-    <code id="menu_axn_join">&amp;Iscriviti a una Sala Conferenze...</code>
-    <code id="menu_axn_create">&amp;Crea una Sala Conferenze...</code>
-    <code id="menu_axn_password">Cambia la mia &amp;Password...</code>
-    <code id="menu_axn_profile">&amp;Modifica il mio Profilo...</code>
-    <code id="menu_axn_avatar">Cambia il mio A&amp;vatar...</code>
+    <code id="menu_axn_bookmarks_add">&amp;Aggiungi un segnalibro...</code>
+    <code id="menu_axn_bookmarks_manage">&amp;Organizza i segnalibri...</code>
+    <code id="menu_axn_join">&amp;Iscriviti ad una sala conferenze...</code>
+    <code id="menu_axn_create">&amp;Crea una sala conferenze...</code>
+    <code id="menu_axn_password">Cambia la mia &amp;password...</code>
+    <code id="menu_axn_profile">&amp;Modifica il mio profilo...</code>
+    <code id="menu_axn_avatar">Cambia il mio a&amp;vatar...</code>
 
     <code id="menu_tool">S&amp;trumenti</code>
     <code id="menu_tool_transport">&amp;Transports</code>
@@ -171,15 +167,15 @@
     <code id="menu_help_manual">G&amp;uida in linea</code>
     <code id="menu_help_forum">Forum di &amp;supporto</code>
     <code id="menu_help_contact">&amp;Contattaci</code>
-	<code id="menu_help_update">Controlla &amp;Aggiornamenti</code>
-    <code id="menu_help_about">&amp;About</code>
+	<code id="menu_help_update">Controlla &amp;aggiornamenti</code>
+    <code id="menu_help_about">&amp;Informazioni</code>
 
-    <code id="menu_tray_about">&amp;About ${0}</code>
+    <code id="menu_tray_about">&amp;Informazioni ${0}</code>
     <code id="menu_tray_settings">Op&amp;zioni</code>
 
     <code id="wnd_autoupdate">Aggiornamento ${0}</code>
     <code id="wnd_vcard_edit">Informazioni utente</code>
-    <code id="wnd_about">About ${0}</code>
+    <code id="wnd_about">Informazioni ${0}</code>
     <code id="wnd_signup">Registrazione - ${0}</code>
     <code id="wnd_adduser">Cerca o aggiungi un contatto</code>
     <code id="wnd_avatar">Immagine</code>
@@ -217,14 +213,14 @@
 	<code id="wnd_connection_settings">Impostazioni di Connessione</code>
     <code id="wnd_welcome">Benvenuto in ${0}</code>
 
-    <code id="msg_emoticon_install">Questo gruppo di emoticon e' gia' stato installato.</code>
-    <code id="msg_received_files">La directory dei files ricevuti e' stata rimossa.</code>
+    <code id="msg_emoticon_install">Questo gruppo di emoticon è già stato installato.</code>
+    <code id="msg_received_files">La directory dei files ricevuti è stata rimossa.</code>
     <code id="msg_plugin_install">Vuoi installare questo plug-in?&#13;&#13;Nome: ${0}&#13;Descrizione: ${1}</code>
-    <code id="msg_plugin_exists">Questo plug-in e' gia' installato.</code>
-    <code id="msg_cl_adding">${0} e' stato aggiunto alla tua lista contatti.</code>
+    <code id="msg_plugin_exists">Questo plug-in è già installato.</code>
+    <code id="msg_cl_adding">${0} è stato aggiunto alla tua lista contatti.</code>
     <code id="msg_cl_added">${0} ti ha aggiunto alla sua lista contatti.</code>
     <code id="msg_blocked">Sei nella lista indirizzi bloccati di questa persona.</code>
-    <code id="msg_autherror">Impossibile accedere. Puo' essere dovuto alle seguenti cause:&#13;&#13;- Hai inserito una password non corretta&#13;- L'account non esiste nel server&#13;&#13;Prego prova ancora.</code>
+    <code id="msg_autherror">Impossibile accedere. Può essere dovuto alle seguenti cause:&#13;&#13;- Hai inserito una password non corretta&#13;- L'account non esiste nel server&#13;&#13;Prego prova ancora.</code>
 
     <code id="menu_message">Messaggio istantaneo</code>
     <code id="menu_filetransfer">Invia un file</code>
@@ -318,7 +314,7 @@
       <innerText>Hai ricevuto una richiesta di autorizzazione da:</innerText>
     </item>
     <item id="txt_question">
-      <innerText>Volete accettare o rifiutare questa persona nella tua lista dei contatti?</innerText>
+      <innerText>Vuoi accettare o rifiutare questa persona nella tua lista dei contatti?</innerText>
 	</item>
   </window>
  
@@ -359,7 +355,7 @@
       <innerText>Avvisi e Headlines</innerText>
     </item>
     <item id="txt_desc">
-      <innerText>Vengono mostrati quando ricevete brevi informazioni.</innerText>
+      <innerText>Vengono mostrati quando ricevi brevi informazioni.</innerText>
     </item>
     <item id="txt_empty">
       <innerText>Nessun avviso o headlines ricevuto.</innerText>
@@ -392,7 +388,7 @@
       <innerText>Caricamento...</innerText>
     </item>
     <code id="error_size">Impossibile caricare immagine. La dimensione del file supera gli 8Kb.</code>
-    <code id="error_empty">Impossibile caricare immagine. Il file e' vuoto.</code>
+    <code id="error_empty">Impossibile caricare immagine. Il file è vuoto.</code>
     <code id="error_load">Attenzione: Impossibile caricare immagine.&#13;&#13;${0}</code>
     <code id="menu_use">Usa questa immagine</code>
     <code id="menu_saveas">Salva come...</code>
@@ -404,7 +400,7 @@
   </window>
   <window name="mode_select">
     <item id="txt_message">
-      <innerText>Il messaggio di stato puo' mostrare il vostro umore, l'attivita' che state svolgendo o qualsiasi altra cosa:</innerText>
+      <innerText>Il messaggio di stato può mostrare il tuo umore, l'attività che stai svolgendo o qualsiasi altra cosa:</innerText>
     </item>
     <code id="btn_ok">OK</code>
     <code id="btn_ok_empty">OK (nessun messaggio)</code>
@@ -455,7 +451,7 @@
     <item id="txt_password">
       <innerText>Nuova password:</innerText>
     </item>
-    <code id="no_match">Le password specificate non coincidono.&#13;&#13;Digitare la nuova password in entrambi i campi.</code>
+    <code id="no_match">Le password specificate non coincidono.&#13;&#13;Digita la nuova password in entrambi i campi.</code>
     <code id="no_pass">Inserisci la nuova password.</code>
   </window>
   <window name="emoset_view">
@@ -474,11 +470,11 @@
     <item id="header-markup">
       <innerText>Testo marcato</innerText>
     </item>
-    <code id="empty">Questo gruppo di emoticon e' vuoto.</code>
+    <code id="empty">Questo gruppo di emoticon è vuoto.</code>
     <code id="file_error">Errore file</code>
     <code id="cannot_load">Impossibile caricare le emoticon.</code>
     <code id="count_one">1 emoticon</code>
-    <code id="count_multiple">${0} emoticon</code>
+    <code id="count_multiple">${0} emoticons</code>
   </window>
   <window name="emoticon_download">
     <item id="btn_close">
@@ -488,7 +484,7 @@
       <innerText>Download Emoticon</innerText>
     </item>
     <item id="txt_subtitle">
-      <innerText>E' necessaria una connessione ad internet per sfogliare il catalogo dei gruppi di emoticon.</innerText>
+      <innerText>è necessaria una connessione ad internet per sfogliare il catalogo dei gruppi di emoticon.</innerText>
     </item>
     <item id="txt_loading">
       <innerText>Caricamento...</innerText>
@@ -527,7 +523,7 @@
       <innerText>Download Sfondi</innerText>
     </item>
     <item id="txt_subtitle">
-      <innerText>E' necessaria una connessione ad internet per sfogliare il catalogo degli sfondi.</innerText>
+      <innerText>è necessaria una connessione ad internet per sfogliare il catalogo degli sfondi.</innerText>
     </item>
     <item id="txt_loading">
       <innerText>Caricamento...</innerText>
@@ -564,16 +560,16 @@
       <innerText>Plugin disponibili</innerText>
     </item>
     <item id="txt_subtitle">
-      <innerText>Aggiungi o rimuovi plug-in.</innerText>
+      <innerText>Aggiungi o rimuovi plugin.</innerText>
     </item>
     <item id="btn_plugin_download">
       <value>Mostra altri plugin</value>
     </item>
     <item id="txt_plugin_empty">
-      <innerText>Nessun plug-in installato.</innerText>
+      <innerText>Nessun plugin installato.</innerText>
     </item>
     <code id="plugin_uninstall">Cancella</code>
-    <code id="plugin_confirm">Sei sicuro di voler eliminare questo plug-in?</code>
+    <code id="plugin_confirm">Sei sicuro di voler eliminare questo plugin?</code>
   </window>
   <window name="plugins">
     <item id="btn_close">
@@ -583,28 +579,28 @@
       <innerText>Scarica i Plugin</innerText>
     </item>
     <item id="txt_subtitle">
-      <innerText>E' necessaria una connessione ad internet per sfogliare il catalogo dei plugin.</innerText>
+      <innerText>è necessaria una connessione ad internet per sfogliare il catalogo dei plugin.</innerText>
     </item>
     <item id="txt_loading">
       <innerText>Caricamento...</innerText>
     </item>
     <code id="install">Installa</code>
-    <code id="cannot_download">Errore: Impossibile eseguire il download dei plug-in.&#13;${0}</code>
+    <code id="cannot_download">Errore: Impossibile eseguire il download dei plugin.&#13;${0}</code>
     <code id="invalid_xml">Il documento non contiene codice XML valido.</code>
-    <code id="no_new_plugins">Non sono presenti nuovi plug-in disponibili.</code>
+    <code id="no_new_plugins">Non sono disponibili nuovi plugin.</code>
   </window>
   <window name="autoupdate">
     <item id="txt-unavailable">
-      <innerText>Nessun Aggiornamento disponibile.</innerText>
+      <innerText>Nessun aggiornamento disponibile.</innerText>
     </item>
     <item id="txt-no-feed">
-      <innerText>Non possono accedere al feed degli aggiornamenti. Prova piu' tardi.</innerText>
+      <innerText>Non possono accedere al feed degli aggiornamenti. Riprova più tardi.</innerText>
     </item>
     <item id="txt-available-updates">
       <innerText>Aggiornamenti Disponibili</innerText>
     </item>
     <item id="txt-tracks-info">
-      <innerText>Diverse versioni garantiscono una maggiore stabilità o gli ultimi miglioramenti.</innerText>
+      <innerText>Le diverse versioni garantiscono una maggiore stabilità e mettono a disposizione gli ultimi miglioramenti.</innerText>
     </item>
     <item id="txt-latest">
       <innerText>Ultima versione del ramo corrente:</innerText>
@@ -617,10 +613,10 @@
     </item>
 
     <item id="txt-new-version">
-      <innerText>Una nuova versione e' disponibile.</innerText>
+      <innerText>Una nuova versione è disponibile.</innerText>
     </item>
     <item id="txt-whats-new">
-      <innerText>Quali sono le novita'?</innerText>
+      <innerText>Quali sono le novità?</innerText>
     </item>
     <item id="txt-learn-more">
       <innerText>Ulteriori informazioni sui miglioramenti che questo aggiornamento comporta. Clicca qui per aprire la pagina web.</innerText>
@@ -629,16 +625,16 @@
       <innerText>Puoi continuare ad utilizzare ${softwarename} mentre l'aggiornamento viene scaricato.</innerText>
     </item>
     <item id="txt-restart">
-      <innerText>L'aggiornamento sarà installato quando ${softwarename} verra' riavviato. Puoi continuare ad utilizzare ${softwarename} senza riavviarlo. Vuoi riavvarlo e installare gli aggiornamenti?</innerText>
+      <innerText>L'aggiornamento sarà installato quando ${softwarename} verrà riavviato. Puoi continuare ad utilizzare ${softwarename} senza riavviarlo. Vuoi riavvarlo e installare gli aggiornamenti?</innerText>
     </item>
     <item id="txt-browser">
       <innerText>Il download comincerà nel tuo browser.</innerText>
     </item>
     <item id="btn-update">
-      <value>Aggiorna Ora</value>
+      <value>Aggiorna ora</value>
     </item>
     <item id="btn-download">
-      <value>Scarica Ora</value>
+      <value>Scarica ora</value>
     </item>
     <item id="btn-later">
       <value>Dopo</value>
@@ -646,9 +642,9 @@
     <code id="up-to-date">Aggiornato</code>
     <code id="previous-version">Versione precedente</code>
     <code id="recommended">Raccomandata</code>
-    <code id="description-stable">Le versioni stabili sono state testate per molto tempo.</code>
-    <code id="description-beta">Contiene le correzioni dei bug e funzionalità che sono in fase di test.</code>
-    <code id="description-development">Alcune funzionalità potrebbero essere non funzionanti dato che ci sono lavori in corso.</code>
+    <code id="description-stable">Le versioni stabili sono state testate per diverso tempo.</code>
+    <code id="description-beta">Contiene le correzioni di bug ed offre funzionalità che sono ancora in fase di test.</code>
+    <code id="description-development">Alcune funzionalità potrebbero essere non disponibili o non utilizzabili (essendo la versione in sviluppo).</code>
     <code id="title">Aggiornamento Software: ${0} ${1}</code>
   </window>
   <window name="welcome">
@@ -656,7 +652,7 @@
       <innerText>Ciao e Benvenuto in ${softwarename}</innerText>
     </item>
     <item id="txt-free-software">
-      <innerText>Questa applicazione è gratuita e disponibile a tutti. Tutto lo sviluppo, la traduzione e il supporto è fatto dai membri della nostra meravigliosa comunita'</innerText>
+      <innerText>Questa applicazione è gratuita e disponibile a tutti. Tutto lo sviluppo, la traduzione e il supporto è fatto dai membri della nostra meravigliosa comunità.</innerText>
     </item>
     <item id="txt-more-information">
       <innerHTML>Per ulteriori informazioni segui @&lt;a href="http://twitter.com/${twittername}"&gt;${twittername}&lt;/a&gt; su Twitter o diventa fan della nostra pagina di Facebook &lt;a href="http://www.facebook.com/${facebookpage}"&gt;Facebook.com/${facebookpage}&lt;/a&gt;.</innerHTML>
@@ -793,7 +789,7 @@
       <innerText>Nome file:</innerText>
     </item>
     <item id="txt_location">
-      <innerText>Locazione:</innerText>
+      <innerText>Percorso:</innerText>
     </item>
     <item id="txt_progress">
       <innerText>Progresso:</innerText>
@@ -836,12 +832,12 @@
       <innerText>Nome file:</innerText>
     </item>
     <item id="txt_location">
-      <innerText>Locazione:</innerText>
+      <innerText>Percorso:</innerText>
     </item>
     <item id="txt_progress">
       <innerText>Progresso:</innerText>
     </item>
-    <code id="socket">Impossibile inviare il file.&#13;Impossibile aprire network socket.</code>
+    <code id="socket">Impossibile inviare il file.&#13;Impossibile aprire il network socket.</code>
     <code id="file">Impossibile leggere il file:&#13;${0}</code>
     <code id="filetransfer">Trasferimento file:</code>
     <code id="title_saving">${0}% di ${1} inviato</code>
@@ -894,13 +890,13 @@
     <code id="bookmarks">Segnalibri</code>
     <code id="menu_join">Entra</code>
     <code id="menu_add">Aggiungi nei segnalibri...</code>
-    <code id="empty_filter">Nessuna stanza abinata al filtro</code>
+    <code id="empty_filter">Nessuna stanza abbinata al filtro</code>
     <code id="empty_no_rooms">Nessuna stanza disponibile in questo servizio</code>
     <code id="status_connecting">Connessione...</code>
     <code id="status_downloading">Ricezione lista stanza conferenze...</code>
-    <code id="error_unknown">Il servizio "${0}" non e' disponibile. Assicurarsi di aver inserito un indirizzo corretto. Provare ancora o inserire un indirizzo differente.</code>
+    <code id="error_unknown">Il servizio "${0}" non è disponibile. Assicurarsi di aver inserito un indirizzo corretto. Provare ancora o inserire un indirizzo differente.</code>
     <code id="error_no_services">Il server "${0}" non ha servizi di conferenza installati. Contatta l'amministratore per maggiori informazioni.</code>
-    <code id="error_no_new">Tutti i servizi di conferenze del server "${0}" sono gia' presenti nella lista.</code>
+    <code id="error_no_new">Tutti i servizi di conferenze del server "${0}" sono già presenti nella lista.</code>
   </window>
   <window name="conference_other">
     <item id="btn_ok">
@@ -929,7 +925,7 @@
       <innerText>Richiesta informazioni dal server</innerText>
     </item>
     <item id="txt_requesting2">
-      <innerHTML>L'operazione potrebbe richiedere 1 o piu' minuti.&lt;BR&gt;Si prega di attendere.</innerHTML>
+      <innerHTML>L'operazione potrebbe richiedere uno o più minuti.&lt;BR&gt;Si prega di attendere.</innerHTML>
     </item>
 
     <item id="btn_save">
@@ -1007,7 +1003,7 @@
       <innerText>Dettagli aggiuntivi</innerText>
     </item>
     <item id="txt_age">
-      <innerText>Eta':</innerText>
+      <innerText>Età:</innerText>
     </item>
     <item id="txt_bday">
       <innerText>Data di nascita:</innerText>
@@ -1032,7 +1028,7 @@
       <innerText>Indirizzo 2:</innerText>
     </item>
     <item id="txt_homelocality">
-      <innerText>Citta':</innerText>
+      <innerText>Città:</innerText>
     </item>
     <item id="txt_homepcode">
       <innerText>Codice postale:</innerText>
@@ -1086,7 +1082,7 @@
       <innerText>Indirizzo 2:</innerText>
     </item>
     <item id="txt_worklocality">
-      <innerText>Citta':</innerText>
+      <innerText>Città:</innerText>
     </item>
     <item id="txt_workpcode">
       <innerText>Codice postale:</innerText>
@@ -1137,7 +1133,7 @@
       <innerHTML>&lt;B&gt;Nota:&lt;/B&gt; Per configurare un transport devi essere connesso ad un server di messaggistica istantanea.</innerHTML>
     </item>
     <item id="transport_unsupported">
-      <innerHTML>&lt;B&gt;Nota:&lt;/B&gt; Il server a cui si e' connessi non ha transport installati. Contattare l'amministratore del server per maggior informazioni.</innerHTML>
+      <innerHTML>&lt;B&gt;Nota:&lt;/B&gt; Il server a cui si è connessi non ha transport installati. Contattare l'amministratore del server per maggior informazioni.</innerHTML>
     </item>
     <item id="msnworkaroundlabel">
       <innerText>Permetti ai contatti MSN di cambiare il loro nickname</innerText>
@@ -1147,9 +1143,9 @@
     <code id="status_disconnected">Disconnesso</code>
     <code id="status_connecting">Connessione...</code>
     <code id="name_unknown">Servizio Sconosciuto</code>
-    <code id="error_unknown">Il servizio "${0}" non e' disponibile. Assicurarsi che l'indirizzo sia corretto. Provare ancora o inserire un indirizzo differente.</code>
+    <code id="error_unknown">Il servizio "${0}" non è disponibile. Assicurarsi che l'indirizzo sia corretto. Provare ancora o inserire un indirizzo differente.</code>
     <code id="error_no_transports">Il server "${0}" non ha transport installati. Contatta l'amministratore per maggiori informazioni.</code>
-    <code id="error_no_new_transport">Tutti i transport del server "${0}" sono gia' presenti nella lista.</code>
+    <code id="error_no_new_transport">Tutti i transport del server "${0}" sono già presenti nella lista.</code>
   </window>
   <window name="transport_other">
     <item id="btn_ok">
@@ -1167,7 +1163,7 @@
     <item id="txt_instructions">
       <innerText>Inserisci l'indirizzo del transport o del server.</innerText>
     </item>
-    <code id="error_already_exists">Il servizio "${0}" e' gia' nella lista. Inserisci l'indirizzo di un transport o di un server non presente nella lista.</code>
+    <code id="error_already_exists">Il servizio "${0}" è già nella lista. Inserisci l'indirizzo di un transport o di un server non presente nella lista.</code>
   </window>
   <window name="transport_register">
     <item id="btn_back">
@@ -1199,7 +1195,7 @@
       <innerText>Nickname:</innerText>
     </item>
     <item id="txt_registered">
-      <innerHTML>Sei gia' registrato con questo transport.&lt;BR&gt;L'account registrato e':</innerHTML>
+      <innerHTML>Sei già registrato con questo transport.&lt;BR&gt;L'account registrato è:</innerHTML>
     </item>
     <item id="btn_remove">
       <value>Disabilita transport</value>
@@ -1209,7 +1205,7 @@
       <innerText>Contatto con il server</innerText>
     </item>
     <item id="txt_requesting2">
-      <innerHTML>L'operazione potrebbe richiedere 1 o piu' minuti.&lt;BR&gt;Si prega di attendere.</innerHTML>
+      <innerHTML>L'operazione potrebbe richiedere uno o più minuti.&lt;BR&gt;Si prega di attendere.</innerHTML>
     </item>
 
     <item id="clickfinish">
@@ -1231,53 +1227,53 @@
     <code id="default_newaccount_examples">&amp;nbsp;</code>
     <code id="default_creating_busy">Il tuo account sta per essere registrato con il transport.</code>
     <code id="default_removing_busy">Il tuo account Sta per essere rimosso dal transport.&lt;BR&gt;</code>
-    <code id="default_creating_done">L'account e' stato registrato con successo con il transport.</code>
-    <code id="default_removing_done">L'account e' stato de-resitrato con successo dal transport.</code>
+    <code id="default_creating_done">L'account è stato registrato con successo con il transport.</code>
+    <code id="default_removing_done">L'account è stato de-resitrato con successo dal transport.</code>
 
     <code id="msn_window_title">MSN Messenger - Configurazione transport</code>
-    <code id="msn_begin_intro">Questo wizard ti aiutera' a configurare il transport per MSN.&lt;BR&gt;Questo transport e' un collegamento tra te ed il tuo account MSN.&lt;BR&gt;Hai bisogno di un account Microsoft Passport gia' esistente per utilizzare questo transport.&lt;BR&gt;</code>
+    <code id="msn_begin_intro">Questo wizard ti aiuterà a configurare il transport per MSN.&lt;BR&gt;Questo transport è un collegamento tra te ed il tuo account MSN.&lt;BR&gt;Hai bisogno di un account Microsoft Passport già esistente per utilizzare questo transport.&lt;BR&gt;</code>
     <code id="msn_newaccount_instructions">Inserisci il tuo indirizzo e la tua password MSN.&lt;BR&gt;Potete anche inserire il nickname che gli altri utenti visualizzeranno.&lt;BR&gt;</code>
     <code id="msn_newaccount_examples">Esempi: tizio@msn.com, tizio@hotmail.com</code>
     <code id="msn_creating_busy">Il tuo account sta per essere registrato con il transport MSN.</code>
     <code id="msn_removing_busy">Il tuo account sta per essere rimosso dal transport MSN.&lt;BR&gt;Potrete comunque continuare ad utilizzare il vostro account MSN con altri servizi (per esempio: Hotmail, MSN Explorer, ecc.).&lt;BR&gt;</code>
-    <code id="msn_creating_done">L'account e' stato registrato con successo con il transport MSN.</code>
-    <code id="msn_removing_done">L'account e' stato de-registrato con successo dal transport MSN.</code>
+    <code id="msn_creating_done">L'account è stato registrato con successo con il transport MSN.</code>
+    <code id="msn_removing_done">L'account è stato de-registrato con successo dal transport MSN.</code>
 
     <code id="icq_window_title">ICQ - Configurazione transport</code>
-    <code id="icq_begin_intro">Questo wizard ti aiutera' a configurare il transport per ICQ.&lt;BR&gt;Questo transport e' un collegamento tra te ed il tuo account ICQ.&lt;BR&gt;Hai bisogno di un numero di identificazione utente (&lt;BR&gt;numbero ICQ) gia' esistente per utilizzare questo transport.&lt;BR&gt;</code>
+    <code id="icq_begin_intro">Questo wizard ti aiuterà a configurare il transport per ICQ.&lt;BR&gt;Questo transport è un collegamento tra te ed il tuo account ICQ.&lt;BR&gt;Hai bisogno di un numero di identificazione utente (&lt;BR&gt;numbero ICQ) già esistente per utilizzare questo transport.&lt;BR&gt;</code>
     <code id="icq_newaccount_instructions">Inserisci il tuo numero e la tua password ICQ.&lt;BR&gt;Potete anche inserire il nickname che gli altri utenti visualizzeranno.&lt;BR&gt;</code>
     <code id="icq_newaccount_examples">Esempi: 39230793, 158525087</code>
     <code id="icq_creating_busy">Il tuo account sta per essere registrato con il transport ICQ.</code>
     <code id="icq_removing_busy">Il tuo account sta per essere rimosso dal transport ICQ.&lt;BR&gt;Potete comunque continuare ad utilizzare il vostro account ICQ con altri software.&lt;BR&gt;</code>
-    <code id="icq_creating_done">L'account e' stato registrato con successo con il transport ICQ.</code>
-    <code id="icq_removing_done">L'account e' stato de-registrato con successo dal transport ICQ.</code>
+    <code id="icq_creating_done">L'account è stato registrato con successo con il transport ICQ.</code>
+    <code id="icq_removing_done">L'account è stato de-registrato con successo dal transport ICQ.</code>
 
     <code id="yahoo_window_title">Yahoo! Messenger - Configurazione transport</code>
-    <code id="yahoo_begin_intro">Questo wizard ti aiutera' a configurare il transport per Yahoo!.&lt;BR&gt;Questo transport e' un collegamento tra te ed il tuo account Yahoo!.&lt;BR&gt;Hai bisogno di un account Yahoo! gia' esistente per utilizzare questo transport.&lt;BR&gt;</code>
+    <code id="yahoo_begin_intro">Questo wizard ti aiuterà a configurare il transport per Yahoo!.&lt;BR&gt;Questo transport è un collegamento tra te ed il tuo account Yahoo!.&lt;BR&gt;Hai bisogno di un account Yahoo! già esistente per utilizzare questo transport.&lt;BR&gt;</code>
     <code id="yahoo_newaccount_instructions">Inserisci il tuo nome utente e la tua password Yahoo!.&lt;BR&gt;</code>
     <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
     <code id="yahoo_creating_busy">Il tuo account sta per essere registrato con il transport Yahoo!.</code>
     <code id="yahoo_removing_busy">Il tuo account sta per essere rimosso dal transport Yahoo!.&lt;BR&gt;Potete comunque continuare ad utilizzare il vostro account Yahoo! con altri servizi (per esempio. Yahoo! Mail, Yahoo! Messenger, ecc.).&lt;BR&gt;</code>
-    <code id="yahoo_creating_done">L'account e' stato registrato con successo con il transport Yahoo!.</code>
-    <code id="yahoo_removing_done">L'account e' stato de-registrato con successo dal transport Yahoo!.</code>
+    <code id="yahoo_creating_done">L'account è stato registrato con successo con il transport Yahoo!.</code>
+    <code id="yahoo_removing_done">L'account è stato de-registrato con successo dal transport Yahoo!.</code>
 
     <code id="aim_window_title">AOL Instant Messenger - Configurazione transport</code>
-    <code id="aim_begin_intro">Questo wizard ti aiutera' a configurare il transport per AIM.&lt;BR&gt;Questo transport e' un collegamento tra te ed il tuo account AIM.&lt;BR&gt;Hai bisogno di un account AIM per utilizzare questo transport.&lt;BR&gt;</code>
+    <code id="aim_begin_intro">Questo wizard ti aiuterà a configurare il transport per AIM.&lt;BR&gt;Questo transport è un collegamento tra te ed il tuo account AIM.&lt;BR&gt;Hai bisogno di un account AIM per utilizzare questo transport.&lt;BR&gt;</code>
     <code id="aim_newaccount_instructions">Inserisci il tuo nome utente e la tua password AIM.&lt;BR&gt;</code>
     <code id="aim_newaccount_examples">&amp;nbsp;</code>
     <code id="aim_creating_busy">Il tuo account sta per essere registrato con il transport AIM.</code>
     <code id="aim_removing_busy">Il tuo account sta per essere rimosso dal transport AIM.&lt;BR&gt;Potete comunque continuare ad utilizzare il vostro account AIM con altri software.&lt;BR&gt;</code>
-    <code id="aim_creating_done">L'account e' stato registrato con successo con il transport AIM.</code>
-    <code id="aim_removing_done">L'account e' stato de-registrato con successo dal transport AIM.</code>
+    <code id="aim_creating_done">L'account è stato registrato con successo con il transport AIM.</code>
+    <code id="aim_removing_done">L'account è stato de-registrato con successo dal transport AIM.</code>
     
     <code id="gadu_window_title">Gadu-Gadu - Configurazione transport</code>
-    <code id="gadu_begin_intro">Questo wizard ti aiutera' a configurare il transport per Gadu-Gadu.&lt;BR&gt;Questo transport e' un collegamento tra te ed il tuo account Gadu-Gadu.&lt;BR&gt;Hai bisogno di un numero Gadu-Gadu per utilizzare questo transport.&lt;BR&gt;</code>
+    <code id="gadu_begin_intro">Questo wizard ti aiuterà a configurare il transport per Gadu-Gadu.&lt;BR&gt;Questo transport è un collegamento tra te ed il tuo account Gadu-Gadu.&lt;BR&gt;Hai bisogno di un numero Gadu-Gadu per utilizzare questo transport.&lt;BR&gt;</code>
     <code id="gadu_newaccount_instructions">Inserisci il tuo numero e la tua password Gadu-Gadu.&lt;BR&gt;Potete anche inserire il nickname che gli altri utenti visualizzeranno.&lt;BR&gt;</code>
     <code id="gadu_newaccount_examples">&amp;nbsp;</code>
     <code id="gadu_creating_busy">Il tuo numero Gadu-Gadu sta per essere registrato con il transport.</code>
     <code id="gadu_removing_busy">Il tuo numero Gadu-Gadu sta per essere rimosso dal transport.&lt;BR&gt;</code>
-    <code id="gadu_creating_done">Il numero Gadu-Gadu e' stato registrato con successo con il transport.</code>
-    <code id="gadu_removing_done">Il numero Gadu-Gadu e' stato de-registrato con successo dal transport.</code>
+    <code id="gadu_creating_done">Il numero Gadu-Gadu è stato registrato con successo con il transport.</code>
+    <code id="gadu_removing_done">Il numero Gadu-Gadu è stato de-registrato con successo dal transport.</code>
   </window>
   <window name="history">
     <item id="btn_go">
@@ -1299,7 +1295,7 @@
       <innerText>Cerca:</innerText>
     </item>
     <code id="loading">Caricamento della cronologia messaggi...</code>
-    <code id="empty">La cronologia messaggi e' vuota.</code>
+    <code id="empty">La cronologia messaggi è vuota.</code>
     <code id="error_load">Impossibile caricare la cronologia messaggi:&#13;${0}</code>
     <code id="one_message">1 messaggio</code>
     <code id="many_messages">${0} messaggi</code>
@@ -1308,8 +1304,8 @@
     <code id="error_open">Errore: Impossibile aprire la cronologia messaggi.</code>
     <code id="error_read">Errore: Impossibile leggere la cronologia messaggi.</code>
     <code id="delete_confirm">Sei sicuro di voler eliminare l'intera cronologia messaggi di ${0}?</code>
-    <code id="delete_cannot">Impossibile rimuovere la cronologia: ${0}&#13;&#13;Nessun messaggio e' stato eliminato.</code>
-    <code id="error_print">Impossibile stampare qualcosa.&#13;La cronologia messaggi e' vuota.</code>
+    <code id="delete_cannot">Impossibile rimuovere la cronologia: ${0}&#13;&#13;Nessun messaggio è stato eliminato.</code>
+    <code id="error_print">Impossibile stampare qualcosa.&#13;La cronologia messaggi è vuota.</code>
     <code id="error_save">Impossibile salvare la cronologia messaggi.&#13;${0}</code>
   </window>
   <window name="chat-messages">
@@ -1349,7 +1345,7 @@
       <title>La persona che riceve i vostri messaggi</title>
     </item>
     <item id="send-text">
-      <title>Scrivi il tuo messaggio qui'</title>
+      <title>Scrivi il tuo messaggio quì</title>
     </item>
     <item id="btn-send">
       <value>Invia</value>
@@ -1360,7 +1356,7 @@
     <code id="tt-messages">Messaggi inviati e ricevuti</code>
     <code id="tt-close">Finisci questa conversazione</code>
     <code id="msg_typing">${0} sta scrivendo un messaggio.</code>
-    <code id="unknown">${0} potrebbe non rispondere poiche' il suo stato e' sconosciuto</code>
+    <code id="unknown">${0} potrebbe non rispondere poichè il suo stato è sconosciuto</code>
     <code id="lastonline">Ultima volta in linea: ${0}</code>
     <code id="windowtitle">${0} - Conversazione</code>
     <code id="background_no">Non visualizzare uno sfondo</code>
@@ -1389,7 +1385,7 @@
     <code id="menu_tool_background">&amp;Cambia sfondo...</code>
     <code id="menu_tool_aot">Sempre in primo pi&amp;ano</code>
     <code id="menu_tool_popup">&amp;Popup per nuovi messaggi</code>
-    <code id="menu_tool_tabbed">Mos&amp;tra piu' contatti in una conversazione</code>
+    <code id="menu_tool_tabbed">Mos&amp;tra più contatti in una conversazione</code>
     <code id="menu_tool_emoticons">&amp;Visualizza emotion nei messaggi istantanei</code>
     <code id="menu_tool_settings">Op&amp;zioni</code>
   </window>
@@ -1412,7 +1408,7 @@
     <item id="btn_cancel">
       <value>Annulla</value>
     </item>
-    <code id="error_invalid_address">L'indirizzo della stanza conferenze non e' valido.</code>
+    <code id="error_invalid_address">L'indirizzo della stanza conferenze non è valido.</code>
   </window>
   <window name="conference-bookmarks-manage">
     <item id="txt_head">
@@ -1522,19 +1518,19 @@
       <innerText>Visitatore</innerText>
     </item>
     <item id="txt-visitor-desc">
-      <innerText>Puo' leggere messaggi</innerText>
+      <innerText>Può leggere messaggi</innerText>
     </item>
 	<item id="txt-participant">
       <innerText>Partecipante</innerText>
     </item>
     <item id="txt-participant-desc">
-      <innerText>Puo' anche inviare messaggi</innerText>
+      <innerText>Può anche inviare messaggi</innerText>
     </item>
 	<item id="txt-moderator">
       <innerText>Moderatore</innerText>
     </item>
     <item id="txt-moderator-desc">
-      <innerText>Puo' anche 'kickare' partecipanti e visitatori</innerText>
+      <innerText>Può anche 'kickarè partecipanti e visitatori</innerText>
     </item>
 
 	<item id="txt-affiliation">
@@ -1544,19 +1540,19 @@
       <innerText>Nessuna/Membro</innerText>
     </item>
     <item id="txt-none-desc">
-      <innerText>Puo' entrare nella stanza conferenze</innerText>
+      <innerText>Può entrare nella stanza conferenze</innerText>
     </item>
 	<item id="txt-admin">
       <innerText>Amministratore</innerText>
     </item>
     <item id="txt-admin-desc">
-      <innerText>Puo' anche aggiungere moderatori e 'bannare' gli occupanti</innerText>
+      <innerText>Può anche aggiungere moderatori e 'bannarè gli occupanti</innerText>
     </item>
 	<item id="txt-owner">
       <innerText>Proprietario</innerText>
     </item>
     <item id="txt-owner-desc">
-      <innerText>Puo' anche aggiungere amministratori</innerText>
+      <innerText>Può anche aggiungere amministratori</innerText>
     </item>
 
     <item id="btn-default">
@@ -1607,7 +1603,7 @@
       <title>Nome, indirizzo e soggetto della stanza conferenze</title>
     </item>
     <item id="send-text">
-      <title>Scrivi il tuo messaggio qui'</title>
+      <title>Scrivi il tuo messaggio quì</title>
     </item>
     <item id="btn-send">
       <value>Invia</value>
@@ -1623,7 +1619,7 @@
     </item>
     <item id="txt-moderators">
       <innerText>Moderatori</innerText>
-      <title>I moderators possono leggere e scrivere messaggi e 'kickare' gli altri occupanti dalla stanza conferenze</title>
+      <title>I moderatori possono leggere e scrivere messaggi e buttar fuori gli altri presenti dalla stanza conferenze</title>
     </item>
     <item id="txt-participants">
       <innerText>Partecipanti</innerText>
@@ -1640,21 +1636,21 @@
     <code id="tt-close">Lascia questa stanza conferenze</code>
     <code id="default_subject">Questa stanza conferenze non ha oggetto.</code>
     <code id="windowtitle">${0} - Conferenza</code>
-    <code id="destroy">Distruggendo questa stanza conferenze verranno rimossi tutti i partecipanti e la stanza verra' rimossa dal server.&#13;&#13;Sei sicuro di voler distruggere questa stanza conferenze?</code>
+    <code id="destroy">Distruggendo questa stanza conferenze verranno rimossi tutti i partecipanti e la stanza verrà rimossa dal server.&#13;&#13;Sei sicuro di voler distruggere questa stanza conferenze?</code>
     <code id="connecting">Connessione...</code>
     <code id="connected">Connesso</code>
     <code id="disconnected">Disconnesso</code>
-    <code id="confirm-kick">Sei sicuro di voler 'kickare' "${0}" da questa stanza conferenze?</code>
-    <code id="kick-error">Impossibile 'kickare' l'occupante: ${0}</code>
-    <code id="kicked">${0} e' stato 'kickato' dalla stanza conferenze</code>
-    <code id="kicked-by">${0} e' stato 'kickato' dalla stanza conferenze da ${1}</code>
-    <code id="confirm-ban">Sei sicuro di voler 'bannare' "${0}" da questa stanza conferenze?</code>
-    <code id="ban-error">Impossibile 'bannare' l'occupante: ${0}</code>
-    <code id="banned">${0} e' stato 'bannato' dalla stanza conferenze</code>
-    <code id="banned-by">${0} e' stato 'bannato' dalla stanza conferenze da ${1}</code>
+    <code id="confirm-kick">Sei sicuro di voler kickarè "${0}" da questa stanza conferenze?</code>
+    <code id="kick-error">Impossibile kickare l'occupante: ${0}</code>
+    <code id="kicked">${0} è stato kickatò dalla stanza conferenze</code>
+    <code id="kicked-by">${0} è stato kickato dalla stanza conferenze da ${1}</code>
+    <code id="confirm-ban">Sei sicuro di voler bannare "${0}" da questa stanza conferenze?</code>
+    <code id="ban-error">Impossibile bannare l'occupante: ${0}</code>
+    <code id="banned">${0} è stato bannato dalla stanza conferenze</code>
+    <code id="banned-by">${0} è stato bannato dalla stanza conferenze da ${1}</code>
     <code id="leaving">${0} ha lasciato la stanza conferenze</code>
-    <code id="joining">${0} e' entrato nella stanza conferenze</code>
-    <code id="renaming">${0} e' ora conosciuto come ${1}</code>
+    <code id="joining">${0} è entrato nella stanza conferenze</code>
+    <code id="renaming">${0} è ora conosciuto come ${1}</code>
 
 	<code id="menu_file">&amp;File</code>
     <code id="menu_file_close">&amp;Chiudi conferenza</code>
@@ -1680,11 +1676,11 @@
     <code id="unrecognized-error">Errore non riconosciuto Error</code>
     <code id="error-service-unavailable">Servizio non disponibile</code>
     <code id="error-not-allowed">Non permesso</code>
-    <code id="error-conflict">Conflitto: il nickname e' gia' in uso</code>
+    <code id="error-conflict">Conflitto: il nickname è già in uso</code>
     <code id="error-registration-required">Registrazione richiesta: solo membri</code>
     <code id="error-forbidden">Accesso negato: Bannato</code>
     <code id="error-not-authorized">Non autorizzato: Richiesta password</code>
-    <code id="error-item-not-found">Elemento non trovato: La stanza e' bloccata</code>
+    <code id="error-item-not-found">Elemento non trovato: La stanza è bloccata</code>
   </window>
   <window name="preferences">
     <item id="txt_blocking">
@@ -1788,7 +1784,7 @@
 
     <code id="privacy">Privacy</code>
     <code id="sound">Suoni</code>
-    <code id="reconnect">E' necessario riconnettersi per applicare le modifiche.&#13;&#13;Riconnettersi ora?</code>
+    <code id="reconnect">è necessario riconnettersi per applicare le modifiche.&#13;&#13;Riconnettersi ora?</code>
     <code id="shortcut">Invia e ricevi messaggi instantanei</code>
     <code id="choose_sound">Seleziona un suono di notifica</code>
     <code id="file_audio">File audio</code>
@@ -1799,10 +1795,10 @@
       <innerText>Cerca o aggiungi un contatto</innerText>
     </item>
     <item id="txt_p1_tagline">
-      <innerText>E' possibile cercare un contatto basandosi sulle informazioni pubbliche o specificare il nome utente del contatto.</innerText>
+      <innerText>è possibile cercare un contatto basandosi sulle informazioni pubbliche o specificare il nome utente del contatto.</innerText>
     </item>
     <item id="txt_p1_how">
-      <innerText>Scegliere la modalita' con la quale aggiungere il contatto:</innerText>
+      <innerText>Scegliere la modalità con la quale aggiungere il contatto:</innerText>
     </item>
     <item id="txt_page1_a">
       <innerHTML>Non cono&lt;U&gt;s&lt;/U&gt;co il nome utente, esegui la ricerca.</innerHTML>
@@ -1831,7 +1827,7 @@
       <accessKey>u</accessKey>
     </item>
     <item id="txt_p1_help">
-      <innerText>Per comunicare con un contatto presente in un differente network di messaggistica istantanea, e' necessario registrarsi con il transport di quel network.</innerText>
+      <innerText>Per comunicare con un contatto presente in un differente network di messaggistica istantanea, è necessario registrarsi con il transport di quel network.</innerText>
     </item>
     <item id="txt_p1_configure">
       <innerText>Configura transports</innerText>
@@ -1892,7 +1888,7 @@
       <innerText>Risultati ricerca</innerText>
     </item>
     <item id="txt_p4_tagline">
-      <innerText>E' possibile visualizzare i dati personali di un utente o aggiungere l'utente alla tua lista dei contatti.</innerText>
+      <innerText>è possibile visualizzare i dati personali di un utente o aggiungere l'utente alla tua lista dei contatti.</innerText>
     </item>
     <item id="page4_btn_back">
       <value>&lt; Indietro</value>
@@ -1912,7 +1908,7 @@
       <innerText>La lista dei contatti è memorizzato sul server.</innerText>
     </item>
     <item id="txt_p5_desc">
-      <innerText>La richiesta di autorizzazione sara' trasmessa a:</innerText>
+      <innerText>La richiesta di autorizzazione sarà trasmessa a:</innerText>
     </item>
     <item id="txt_p5_user">
       <innerText>Nome utente:</innerText>
@@ -1937,7 +1933,7 @@
       <innerText>Hai completato con successo la procedura guidata per il Trova o Aggiungi una Persona.</innerText>
     </item>
     <item id="txt_p6_desc">
-      <innerText>Questa persona e' stata correttamente aggiunta alla lista dei contatti:</innerText>
+      <innerText>Questa persona è stata correttamente aggiunta alla lista dei contatti:</innerText>
     </item>
     <item id="txt_p6_user">
       <innerText>Nome Utente:</innerText>
@@ -1966,12 +1962,12 @@
 
     <code id="correct">Inserisci un username corretto.&#13;&#13;Esempio: tizio123@${0}</code>
     <code id="example_address">Esempio: tizio123@${0}</code>
-    <code id="contacting_adding">&lt;B&gt;Contatto il server&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Puo' richiedere qualche minuto.&lt;BR&gt;Siate pazienti.&lt;BR&gt;</code>
-	<code id="contacting_transport">&lt;B&gt;Contatto con il transport&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Puo' richiedere qualche minuto.&lt;BR&gt;Siate pazienti.&lt;BR&gt;</code>
-    <code id="contacting_search">&lt;B&gt;Contatto con il servizio di ricerca&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Puo' richiedere qualche minuto.&lt;BR&gt;Siate pazientit.&lt;BR&gt;</code>
-    <code id="error_adding">&lt;B&gt;Errore Server:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;L'utente non puo' essere aggiunto alla tua lista contatti.&lt;BR&gt;Contatta l'amministratore per maggiorni informazioni.</code>
-	<code id="error_transport">&lt;B&gt;Errore server:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(codice ${1})&lt;BR&gt;&lt;BR&gt;L'utente non puo' essere aggiunto alla lista contatti.&lt;BR&gt;Assicurarsi di aver inserito il nome utente corretto.</code>
-    <code id="error_search">&lt;B&gt;Errore server:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(codice ${1})&lt;BR&gt;&lt;BR&gt;Il form di ricerca non puo' essere scaricato.&lt;BR&gt;Provare piu' tardi o scegliere un servizio differente.</code>
+    <code id="contacting_adding">&lt;B&gt;Contatto il server&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Può richiedere qualche minuto.&lt;BR&gt;Siate pazienti.&lt;BR&gt;</code>
+	<code id="contacting_transport">&lt;B&gt;Contatto con il transport&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Può richiedere qualche minuto.&lt;BR&gt;Siate pazienti.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Contatto con il servizio di ricerca&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Può richiedere qualche minuto.&lt;BR&gt;Siate pazientit.&lt;BR&gt;</code>
+    <code id="error_adding">&lt;B&gt;Errore Server:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;L'utente non può essere aggiunto alla tua lista contatti.&lt;BR&gt;Contatta l'amministratore per maggiorni informazioni.</code>
+	<code id="error_transport">&lt;B&gt;Errore server:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(codice ${1})&lt;BR&gt;&lt;BR&gt;L'utente non può essere aggiunto alla lista contatti.&lt;BR&gt;Assicurarsi di aver inserito il nome utente corretto.</code>
+    <code id="error_search">&lt;B&gt;Errore server:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(codice ${1})&lt;BR&gt;&lt;BR&gt;Il form di ricerca non può essere scaricato.&lt;BR&gt;Provare più tardi o scegliere un servizio differente.</code>
     <code id="error_invalid">Dati ricevuti non validi.</code>
     <code id="search_title">Ricerca utente</code>
     <code id="search_tagline">Riempi un campo per trovare una corrispondenza con gli utenti della ricerca.</code>
@@ -1989,10 +1985,10 @@
     <code id="logout">Ti devi disconnettere per applicare i cambiamenti.&#13;&#13;Vuoi disconnetterti ora?</code>
     <code id="automatic">Automatico</code>
     <item id="txt_connection">
-      <innerText>Connessione al Server</innerText>
+      <innerText>Connessione al server</innerText>
     </item>
     <item id="lbl_server_address">
-      <innerHTML>&lt;U&gt;I&lt;/U&gt;ndirizzi:</innerHTML>
+      <innerHTML>&lt;U&gt;I&lt;/U&gt;ndirizzo:</innerHTML>
       <accessKey>a</accessKey>
     </item>
     <item id="lbl_server_port">
@@ -2003,26 +1999,26 @@
       <innerText>Comunicazione sicura</innerText>
     </item>
     <item id="lbl_encryption_optional">
-      <innerHTML>&lt;U&gt;U&lt;/U&gt;s la crittografia TLS se disponibile sul server</innerHTML>
+      <innerHTML>&lt;U&gt;U&lt;/U&gt;sa la crittografia TLS se disponibile sul server</innerHTML>
       <accessKey>u</accessKey>
     </item>
     <item id="lbl_encryption_tls">
-      <innerHTML>Richiede la crittografia &lt;U&gt;T&lt;/U&gt;LS </innerHTML>
+      <innerHTML>Richiede crittografia &lt;U&gt;T&lt;/U&gt;LS </innerHTML>
       <accessKey>t</accessKey>
     </item>
     <item id="lbl_encryption_ssl">
-      <innerHTML>Richede la crittografia &lt;U&gt;S&lt;/U&gt;SL </innerHTML>
+      <innerHTML>Richede crittografia &lt;U&gt;S&lt;/U&gt;SL </innerHTML>
       <accessKey>s</accessKey>
     </item>
     <item id="lbl_encryption_none">
-      <innerHTML>U&lt;U&gt;n&lt;/U&gt;ot la crittografia</innerHTML>
+      <innerHTML>&lt;U&gt;N&lt;/U&gt;essuna crittografia</innerHTML>
       <accessKey>n</accessKey>
     </item>
     <item id="txt_authentication">
-      <innerText>Metodo di Login</innerText>
+      <innerText>Metodo di login</innerText>
     </item>
     <item id="lbl_authentication_normal">
-      <innerHTML>I&lt;U&gt;d&lt;/U&gt;ndirizzo e password</innerHTML>
+      <innerHTML>I&lt;U&gt;n&lt;/U&gt;dirizzo e password</innerHTML>
       <accessKey>d</accessKey>
     </item>
     <item id="lbl_authentication_ntlm">
@@ -2037,7 +2033,7 @@
     </item>
   </window>
   <window name="sign_up">
-    <code id="close_confirm">Il nuovo account non e' ancora stato creato.&#13;&#13;Uscire ora?</code>
+    <code id="close_confirm">Il nuovo account non è ancora stato creato.&#13;&#13;Uscire ora?</code>
     <code id="incomplete">Completa tutti i campi...</code>
     <code id="pass_match">Le password specificate non coincidono.&#13;&#13;Digitare la nuova password in entrambi i campi.</code>
 
@@ -2055,7 +2051,7 @@
       <innerText>Benvenuto nella registrazione guidata</innerText>
     </item>
     <item id="txt_page_welcome_intro">
-      <innerText>Questa creazione guidata ti aiutera' a registrare un indirizzo nel network dell'instant messaging.</innerText>
+      <innerText>Questa creazione guidata ti aiuterà a registrare un indirizzo nel network dell'instant messaging.</innerText>
     </item>
     <item id="txt_page_welcome_next">
       <innerHTML>Per continuare, scegliere &lt;B&gt;Avanti&lt;/B&gt;.</innerHTML>
@@ -2101,7 +2097,7 @@
       <innerText>Scelta indirizzo</innerText>
     </item>
     <item id="txt_page_account_tagline">
-      <innerText>E' possibile utilizzare un server pubblico su Internet o utilizzare un server privato sulla vostra rete aziendale.</innerText>
+      <innerText>è possibile utilizzare un server pubblico su Internet o utilizzare un server privato sulla vostra rete aziendale.</innerText>
     </item>
     <item id="txt_page_account_server">
       <innerHTML>&lt;U&gt;S&lt;/U&gt;erver:</innerHTML>
@@ -2161,10 +2157,10 @@
       <innerText>Registrazione indirizzo</innerText>
     </item>
     <item id="txt_page_creating_autherr">
-      <innerHTML>L'indirizzo non puo' essere registrato. L'username non e' disponibile.&lt;BR&gt;&lt;BR&gt;Scegliere &lt;B&gt;Indietro&lt;/B&gt;, specificare un username differente e provare ancora.</innerHTML>
+      <innerHTML>L'indirizzo non può essere registrato. L'username non è disponibile.&lt;BR&gt;&lt;BR&gt;Scegliere &lt;B&gt;Indietro&lt;/B&gt;, specificare un username differente e provare ancora.</innerHTML>
     </item>
     <item id="txt_page_creating_forbidden">
-      <innerHTML>L'indirizzo non puo' essere registrato. Questo server non permette la creazione di nuovi account.&lt;BR&gt;&lt;BR&gt;Scegliere &lt;B&gt;Indietro&lt;/B&gt;, scegliere un server differente e provare ancora.</innerHTML>
+      <innerHTML>L'indirizzo non può essere registrato. Questo server non permette la creazione di nuovi account.&lt;BR&gt;&lt;BR&gt;Scegliere &lt;B&gt;Indietro&lt;/B&gt;, scegliere un server differente e provare ancora.</innerHTML>
     </item>
     <item id="txt_page_creating_commerr">
       <innerHTML>Impossibile contattare il server. Assicurarsi che l'indirizzo del server sia corretto.&lt;BR&gt;Controllare la propria connessione al network e riprovare. Se si utilizza un firewall,&lt;BR&gt;configurare le preferenze di connessione.</innerHTML>
