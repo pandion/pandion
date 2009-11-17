@@ -118,13 +118,9 @@ DWORD Socket::Disconnect()
  */
 DWORD Socket::StartTLS()
 {
-	if(m_bUsingSSL)
+	if(m_bUsingSSL || !m_bConnected)
 	{
-		return 1;
-	}
-	else if(!m_bConnected)
-	{
-		return 0;
+		return m_bConnected;
 	}
 
 	EnterCriticalSection(&m_csReading);
@@ -330,10 +326,9 @@ int Socket::Send(std::vector<BYTE>& data)
 	}
 	if(m_bUsingSSL)
 	{
-		SECURITY_STATUS status = SecureSend(&data[0],
-			data.size(), (DWORD *)&iResult);
+		data = TLSEncrypt(data);
 	}
-	else
+	if(data.size())
 	{
 		iResult = send(m_Socket, (char*) &data[0], data.size(), 0);
 	}
@@ -374,6 +369,7 @@ int Socket::Recv(std::vector<BYTE>& data)
 	{
 		data = m_SocketCompressor.Decompress(data);
 	}
+
 	if(data.size())
 	{
 		bytesReceived = data.size();
@@ -614,63 +610,58 @@ std::vector<BYTE> Socket::TLSDecrypt(std::vector<BYTE>& data)
 	return decodedData;
 }
 
-SECURITY_STATUS Socket::SecureSend(PBYTE message, DWORD messageSize,
-								   PDWORD bytesSent)
+std::vector<BYTE> Socket::TLSEncrypt(std::vector<BYTE>& data)
 {
-	SecPkgContext_StreamSizes sizes;
-	SECURITY_STATUS status = QueryContextAttributes(&m_context,
-		SECPKG_ATTR_STREAM_SIZES, &sizes);
+	std::vector<BYTE> encryptedData(0);
+	SecPkgContext_StreamSizes streamSizes;
+	SECURITY_STATUS status = ::QueryContextAttributes(&m_context,
+		SECPKG_ATTR_STREAM_SIZES, &streamSizes);
 
-	if(messageSize > sizes.cbMaximumMessage)
+	DWORD bytesEncrypted = 0;
+	while(bytesEncrypted != data.size() && SUCCEEDED(status))
 	{
-		DWORD bytesSent = 0, d = 0;
-		while(bytesSent != messageSize && SUCCEEDED(status))
-		{
-			if(messageSize - bytesSent > sizes.cbMaximumMessage)
-			{
-				status = SecureSend(message + bytesSent,
-					sizes.cbMaximumMessage, &d);
-				bytesSent += sizes.cbMaximumMessage;
-			}
-			else
-			{
-				status = SecureSend(message + bytesSent,
-					messageSize - bytesSent, &d);
-				bytesSent += messageSize - bytesSent;
-			}
-		}
-	}
-	else
-	{
-		DWORD ioBufferSize = sizes.cbHeader + 
-			sizes.cbMaximumMessage + sizes.cbTrailer;
-		std::vector<char> ioBuffer(ioBufferSize);
-		std::copy(message, message + messageSize, &ioBuffer[sizes.cbHeader]);
-
-		SecBuffer buffers[4] = {
-			{sizes.cbHeader, SECBUFFER_STREAM_HEADER, &ioBuffer[0]},
-			{messageSize, SECBUFFER_DATA, &ioBuffer[sizes.cbHeader]},
-			{sizes.cbTrailer, SECBUFFER_STREAM_TRAILER,
-				&ioBuffer[sizes.cbHeader + messageSize]},
-			{0, NULL, SECBUFFER_EMPTY }
-		};
-		SecBufferDesc cipherText = {SECBUFFER_VERSION, 4, buffers};
-
-		status = EncryptMessage(&m_context, 0, &cipherText, 0);
-		if(FAILED(status))
-		{
-			return status;
-		}
-
-		*bytesSent = send(m_Socket, &ioBuffer[0],
-			buffers[0].cbBuffer + 
-			buffers[1].cbBuffer + 
-			buffers[2].cbBuffer, 0);
-		if(*bytesSent == SOCKET_ERROR || *bytesSent == 0)
-		{
-			return SEC_E_INTERNAL_ERROR;
-		}
+		DWORD messageSize = 
+			min(streamSizes.cbMaximumMessage, data.size() - bytesEncrypted);
+		std::vector<BYTE>::const_iterator it =
+			data.begin() + bytesEncrypted;
+		std::vector<BYTE> encryptedMessage =
+			TLSEncryptSingleMessage(std::vector<BYTE>(it, it + messageSize));
+		encryptedData.insert(encryptedData.end(),
+			encryptedMessage.begin(), encryptedMessage.end());
+		bytesEncrypted += messageSize;
 	}
 
-	return status;
+	return encryptedData;
+}
+
+std::vector<BYTE> Socket::TLSEncryptSingleMessage(std::vector<BYTE>& data)
+{
+	SecPkgContext_StreamSizes streamSizes;
+	SECURITY_STATUS status = ::QueryContextAttributes(&m_context,
+		SECPKG_ATTR_STREAM_SIZES, &streamSizes);
+
+	if(FAILED(status))
+	{
+		return std::vector<BYTE>(0);
+	}
+
+	DWORD ioBufferSize = streamSizes.cbHeader + 
+		streamSizes.cbMaximumMessage + streamSizes.cbTrailer;
+	std::vector<BYTE> ioBuffer(ioBufferSize);
+	std::copy(data.begin(), data.end(), &ioBuffer[streamSizes.cbHeader]);
+
+	SecBuffer buffers[4] = {
+		{streamSizes.cbHeader, SECBUFFER_STREAM_HEADER, &ioBuffer[0]},
+		{data.size(), SECBUFFER_DATA, &ioBuffer[streamSizes.cbHeader]},
+		{streamSizes.cbTrailer, SECBUFFER_STREAM_TRAILER,
+			&ioBuffer[streamSizes.cbHeader + data.size()]},
+		{0, NULL, SECBUFFER_EMPTY }
+	};
+	SecBufferDesc cipherText = {SECBUFFER_VERSION, 4, buffers};
+	status = ::EncryptMessage(&m_context, 0, &cipherText, 0);
+
+	ioBuffer.resize(buffers[0].cbBuffer +
+		buffers[1].cbBuffer +
+		buffers[2].cbBuffer);
+	return ioBuffer;
 }
