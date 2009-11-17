@@ -100,8 +100,8 @@ public:
 private:
 	SECURITY_STATUS ClientHandshakeLoop(bool initialRead);
 	std::vector<BYTE> TLSDecrypt(std::vector<BYTE>& data);
-	SECURITY_STATUS SecureSend(PBYTE message, 
-		DWORD messageSize, PDWORD bytesSent);
+	std::vector<BYTE> TLSEncrypt(std::vector<BYTE>& data);
+	std::vector<BYTE> TLSEncryptSingleMessage(std::vector<BYTE>& data);
 
 	DWORD   LookupAddress(_bstr_t ServerAddress);
 };

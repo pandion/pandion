@@ -53,10 +53,8 @@ function XMPPOnStream ( ReceivedXML )
 				catch(e) {
 					warn( 'GSSAPI: ERROR: ' + e.number );
 				}
-				finally {
-					warn( 'SENT: ' + dom.xml );
-					external.XMPP.SendXML( dom );
-				}
+				warn( 'SENT: ' + dom.xml );
+				external.XMPP.SendXML( dom );
 			}
 			else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "GSS-SPNEGO" ]' ) )
 			{
@@ -162,13 +160,17 @@ function XMPPOnStream ( ReceivedXML )
 			var dom = new ActiveXObject("Msxml2.DOMDocument");
 			dom.loadXML("<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>");
 			if (external.globals( 'XMPPSASLMechanism' ) == 'GSSAPI') {
-				dom.documentElement.text = external.SASL.GSSAPI.GenerateResponse(external.globals( 'cfg' )( 'server' ), ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text);
-			}
-			else {
+				try {
+					external.SASL.GSSAPI.Reset();
+					dom.documentElement.text = external.SASL.GSSAPI.GenerateResponse(external.globals( 'cfg' )( 'server' ), ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text);
+				} catch(e) {
+					warn( 'GSSAPI: ERROR: ' + e.number );
+				}
+			} else {
 				dom.documentElement.text = external.SASL.SSPI.GenerateResponse(ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text, true);
 			}
-				warn("SENT: " + dom.xml);
-				external.XMPP.SendXML(dom);
+			warn("SENT: " + dom.xml);
+			external.XMPP.SendXML(dom);
 		} else {
 			var encoded = ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text;
 			var decoded = external.Base64ToString(encoded);
