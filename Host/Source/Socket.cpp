@@ -131,7 +131,7 @@ DWORD Socket::StartTLS()
 	{
 		TimeStamp expiry;
 		SCHANNEL_CRED schannelCred = {SCHANNEL_CRED_VERSION, 0, 0, 0, 0,
-			0, 0, 0, SP_PROT_SSL3_CLIENT, 0, 0, 0,
+			0, 0, 0, SP_PROT_SSL3_CLIENT | SP_PROT_TLS1_CLIENT, 0, 0, 0,
 			SCH_CRED_AUTO_CRED_VALIDATION | SCH_CRED_NO_SERVERNAME_CHECK, 0};
 
 		SECURITY_STATUS status = AcquireCredentialsHandle(NULL, UNISP_NAME,
@@ -318,7 +318,7 @@ DWORD Socket::LookupAddress(_bstr_t ServerAddress)
 int Socket::Send(std::vector<BYTE>& data)
 {
 	EnterCriticalSection(&m_csWriting);
-	int iResult;
+	int totalBytesSent = 0;
 
 	if(m_bUsingSC)
 	{
@@ -330,11 +330,24 @@ int Socket::Send(std::vector<BYTE>& data)
 	}
 	if(data.size())
 	{
-		iResult = send(m_Socket, (char*) &data[0], data.size(), 0);
+		while(totalBytesSent != data.size())
+		{
+			int bytesSent = send(m_Socket,
+				(char*) &data[0] + totalBytesSent, data.size(), 0);
+			if(bytesSent <= 0)
+			{
+				totalBytesSent = bytesSent;
+				break;
+			}
+			else
+			{
+				totalBytesSent += bytesSent;
+			}
+		}
 	}
 
     LeaveCriticalSection(&m_csWriting);
-	return iResult;
+	return totalBytesSent;
 }
 
 
