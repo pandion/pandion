@@ -128,7 +128,7 @@ function XMPPOnPresence ( ReceivedXML )
 					external.wnd.focus();
 				}
 
-				external.wnd.messageBox( false, external.globals( 'Translator' ).Translate( 'main', 'msg_cl_added', [ Presence.FromAddress.CleanAddress() ] ), external.globals( 'softwarename' ), 0 | 64 );
+				external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'main', 'msg_cl_added', [ Presence.FromAddress.CleanAddress() ] ), external.globals( 'softwarename' ), 0 | 64 );
 			}
 		}
 	}
@@ -165,7 +165,7 @@ function XMPPOnPresence ( ReceivedXML )
 				external.wnd.focus();
 			}
 
-			external.wnd.messageBox( false, external.globals( 'Translator' ).Translate( 'main', 'cl_error_cannotadd', [ Presence.FromAddress.CleanAddress(), desc ] ), external.globals( 'softwarename' ), 0 | 48 );
+			external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'main', 'cl_error_cannotadd', [ Presence.FromAddress.CleanAddress(), desc ] ), external.globals( 'softwarename' ), 0 | 48 );
 		}
 	}
 
