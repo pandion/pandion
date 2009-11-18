@@ -98,7 +98,7 @@ STDMETHODIMP CListEntry::get_CreationTime(VARIANT *vCreationTime)
 
 	::FileTimeToSystemTime(&m_Data.ftCreationTime, &st);
 	::SystemTimeToVariantTime(&st, &vtime);
-	*vLastWriteTime = _variant_t(vtime).Detach();
+	*vCreationTime = _variant_t(vtime).Detach();
 
 	return S_OK;
 }
@@ -109,7 +109,7 @@ STDMETHODIMP CListEntry::get_LastAccessTime(VARIANT *vLastAccessTime)
 
 	::FileTimeToSystemTime(&m_Data.ftLastAccessTime, &st);
 	::SystemTimeToVariantTime(&st, &vtime);
-	*vLastWriteTime = _variant_t(vtime).Detach();
+	*vLastAccessTime = _variant_t(vtime).Detach();
 
 	return S_OK;
 }
