@@ -1224,7 +1224,7 @@ function MenuBarSelect ( id )
 //			break;
 
 		case 30: // font
-			external.wnd.params[0].dial_font();
+			dial_font();
 			break;
 		case 31: // always on top
 			cfg( 'aotchat' ) = ! ( cfg( 'aotchat' ).toString() == 'true' );

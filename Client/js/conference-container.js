@@ -1543,7 +1543,7 @@ function MenuBarSelect ( id )
 			external.wnd.params[0].dial_emoticon_list();
 			break;
 		case 41: // font
-			external.wnd.params[0].dial_font();
+			dial_font();
 			break;
 		case 42: // multiple tabs
 			cfg( 'tabbedchat' ) = ! ( cfg( 'tabbedchat' ).toString() == 'true' );
