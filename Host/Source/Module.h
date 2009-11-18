@@ -55,5 +55,5 @@ public :
 	void PostMessageLoop();
 
 private:
-	bool PreTranslateAccelerator(MSG* pMsg);
+	static LRESULT CALLBACK GetMsgProc(int code, WPARAM wParam, LPARAM lParam);
 };

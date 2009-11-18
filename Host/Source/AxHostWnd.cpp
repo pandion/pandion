@@ -106,7 +106,7 @@ LRESULT AxHostWnd::OnForwardMessage(HWND hWnd, UINT uMsg,
 	WPARAM wParam, LPARAM lParam)
 {
 	if(m_ActiveObject == NULL)
-		return S_OK;
+		return 0;
 	else
 		return m_ActiveObject->TranslateAccelerator((LPMSG)lParam) == S_OK;
 }

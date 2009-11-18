@@ -84,6 +84,9 @@ ScrRun::IDictionary* PdnModule::GetWindows()
 }
 void PdnModule::PreMessageLoop(int nShowCmd)
 {
+	::SetWindowsHookEx(WH_GETMESSAGE, GetMsgProc,
+		NULL, ::GetCurrentThreadId());
+
 	wchar_t path[MAX_PATH];
 	::GetCurrentDirectory(MAX_PATH, &path[0]);
 	::PathAddBackslash(path);
@@ -97,30 +100,31 @@ void PdnModule::RunMessageLoop()
 	MSG msg;
 	while(::GetMessage(&msg, 0, 0, 0))
 	{
-		if(!PreTranslateAccelerator(&msg))
-		{
-			::TranslateMessage(&msg);
-			::DispatchMessage(&msg);
-		}
+		::TranslateMessage(&msg);
+		::DispatchMessage(&msg);
 	}
 }
 void PdnModule::PostMessageLoop()
 {
 }
-bool PdnModule::PreTranslateAccelerator(MSG* pMsg)
+LRESULT CALLBACK PdnModule::GetMsgProc(int code, WPARAM wParam, LPARAM lParam)
 {
-	if((pMsg->message < WM_KEYFIRST || pMsg->message > WM_KEYLAST) &&
-		(pMsg->message < WM_MOUSEFIRST || pMsg->message > WM_MOUSELAST))
+	LPMSG msg = (LPMSG) lParam;
+	if((msg->message >= WM_KEYFIRST && msg->message <= WM_KEYLAST) ||
+		(msg->message >= WM_MOUSEFIRST && msg->message <= WM_MOUSELAST))
 	{
-		return false;
+		HWND TargetWnd = GetAncestor(msg->hwnd, GA_ROOT);
+		if(TargetWnd != msg->hwnd &&
+			::SendMessage(TargetWnd, WM_FORWARDMSG, 0, (LPARAM) msg) == 1)
+		{
+			msg->message = WM_NULL;
+			msg->hwnd = NULL;
+			msg->lParam = 0;
+			msg->wParam = 0;
+		}
 	}
-
-	HWND TargetWnd = pMsg->hwnd;
-	while(HWND parent = ::GetParent(TargetWnd)) TargetWnd = parent;
-
-	return ::SendMessage(TargetWnd, WM_FORWARDMSG, 0, (LPARAM) pMsg);
+	return ::CallNextHookEx(NULL, code, wParam, lParam);
 }
-
 static bool IsIEVersionOK()
 {
 	HINSTANCE hDllInst = ::LoadLibrary(L"shdocvw.dll");

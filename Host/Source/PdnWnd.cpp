@@ -70,6 +70,11 @@ void CPdnWnd::OnFinalRelease()
 {
 }
 
+void CPdnWnd::HasModalDialog(bool hasModal)
+{
+	m_hasModalDialog = hasModal;
+}
+
 HRESULT CPdnWnd::Create(RECT& rect, std::wstring Name, std::wstring URL,
 	_variant_t& windowParams, PdnModule* Module, BOOL popUnder)
 {
@@ -258,7 +263,10 @@ LRESULT CPdnWnd::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 LRESULT CPdnWnd::OnForwardMessage(HWND hWnd, UINT uMsg,
 	WPARAM wParam, LPARAM lParam)
 {
-	return m_ActiveXHost.OnForwardMessage(hWnd, uMsg, wParam, lParam);
+	if(!m_hasModalDialog)
+		return m_ActiveXHost.OnForwardMessage(hWnd, uMsg, wParam, lParam);
+	else
+		return 0;
 }
 LRESULT CPdnWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -544,8 +552,8 @@ STDMETHODIMP CPdnWnd::TranslateAccelerator(LPMSG lpMsg,
 
 	if(keys[VK_F5] > 1)
 		return S_OK; // Disable F5
-	if(keys[VK_F6] > 1)
-		return S_OK; // Disable F5
+	else if(keys[VK_F6] > 1)
+		return S_OK; // Disable F6
 	else if(keys['F'] > 1 && keys[VK_CONTROL] > 1 && keys[VK_MENU] <= 1)
 		return S_OK; // Disable Ctrl + F
 	else if(keys['L'] > 1 && keys[VK_CONTROL] > 1 && keys[VK_MENU] <= 1)
@@ -701,6 +709,11 @@ STDMETHODIMP CPdnWnd::restore()
 STDMETHODIMP CPdnWnd::close()
 {
 	hide(true);
+	if(m_hasModalDialog)
+	{
+		HWND hDlg = ::GetWindow(m_hWnd, GW_HWNDPREV);
+		::DestroyWindow(hDlg);
+	}
 	::PostMessage(m_hWnd, WM_CLOSE, 0, 0);
 	return S_OK;
 }
@@ -1075,7 +1088,9 @@ STDMETHODIMP CPdnWnd::get_menuBar(VARIANT* pMenu)
 STDMETHODIMP CPdnWnd::messageBox(BOOL modal, BSTR text, BSTR caption,
 	DWORD type, DWORD* retval)
 {
+	HasModalDialog(modal);
 	*retval = ::MessageBoxW(modal ? m_hWnd : 0, text, caption, type);
+	HasModalDialog(modal);
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::get_Handle(DWORD *pHandle)
