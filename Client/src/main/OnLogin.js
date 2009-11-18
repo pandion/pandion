@@ -96,7 +96,7 @@ function OnLoginAbort ()
 		if ( ! external.globals( 'sspiserver' ).length )
 		{
 			dial_login();
-			external.wnd.messageBox( false, external.globals( 'Translator' ).Translate( 'main', 'msg_autherror' ), external.globals( 'softwarename' ), 0 | 48 );
+			external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'main', 'msg_autherror' ), external.globals( 'softwarename' ), 0 | 48 );
 		}
 	}
 }
