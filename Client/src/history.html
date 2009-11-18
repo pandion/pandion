@@ -41,35 +41,37 @@ function filter ( query )
 	var wnd = external.wnd.params[0];
 	var cfg = external.globals( 'cfg' );
 	var filepath = external.globals( 'usersdir' ) + 'Profiles\\' + cfg( 'username' ) + '@' + cfg( 'server' ) + '\\' + ( new MD5() ).digest( external.wnd.params[1] ) + '.log';
-
-	var file = external.File( filepath );
-
-	var date = '';
-	var elem;
-	gCOUNT = 0;
-	while ( ! file.AtEnd )
+	if ( external.FileExists( filepath ) )
 	{
-		var line = file.ReadLine();
-		if ( line.length < 21 )
-			continue;
-		if ( gQUERY.length )
-			if ( line.toLowerCase().indexOf( gQUERY, 21 ) == -1 )
-				continue;
-		var stamp = line.substr( 0, 8 );
-		if ( date != stamp )
+		var file = external.file( filepath );
+		var date = '';
+		var elem;
+		gCOUNT = 0;
+		while ( ! file.AtEnd )
 		{
-			if ( ! document.getElementById( stamp ) )
+			var line = file.ReadLine();
+			if ( line.length < 21 )
+				continue;
+			if ( gQUERY.length )
+				if ( line.toLowerCase().indexOf( gQUERY, 21 ) == -1 )
+					continue;
+			var stamp = line.substr( 0, 8 );
+			if ( date != stamp )
 			{
-				log.insertAdjacentHTML( 'beforeEnd', '<DIV class=date day="' + stamp + '" onmousedown="toggle( this )" onmouseover="this.className=\'date-over\';// document.getElementById( this.day ).className = \'day-over\';" onmouseout="this.className=\'date\';// document.getElementById( this.day ).className = \'day\';"><NOBR><SPAN class=noprint><IMG title="' + external.globals( 'Translator' ).Translate( 'history', 'tooltip_print' ) + '" onmousedown="event.cancelBubble = true" onclick="printer(\'' + stamp + '\');" style="cursor: hand" align=right src="../images/history/printer.png"><IMG title="' + external.globals( 'Translator' ).Translate( 'history', 'tooltip_save' ) + '" onmousedown="event.cancelBubble = true" onclick="save(\'' + stamp + '\');" style="cursor: hand" align=right src="../images/history/disk.png"><IMG align=absmiddle src="../images/history/arrow-right.png"></SPAN> ' + ( new Date( stamp.substr( 0, 4 ), stamp.substr( 4, 2 ) - 1, stamp.substr( 6, 2 ) ) ).toLocaleDateString() + '</NOBR></DIV>' );
-				elem = document.createElement( 'DIV' );
-				elem.id = stamp;
-				elem.style.display = 'none';
-				elem.className = 'day';
-				log.insertAdjacentElement( 'beforeEnd', elem );
+				if ( ! document.getElementById( stamp ) )
+				{
+					log.insertAdjacentHTML( 'beforeEnd', '<DIV class=date day="' + stamp + '" onmousedown="toggle( this )" onmouseover="this.className=\'date-over\';// document.getElementById( this.day ).className = \'day-over\';" onmouseout="this.className=\'date\';// document.getElementById( this.day ).className = \'day\';"><NOBR><SPAN class=noprint><IMG title="' + external.globals( 'Translator' ).Translate( 'history', 'tooltip_print' ) + '" onmousedown="event.cancelBubble = true" onclick="printer(\'' + stamp + '\');" style="cursor: hand" align=right src="../images/history/printer.png"><IMG title="' + external.globals( 'Translator' ).Translate( 'history', 'tooltip_save' ) + '" onmousedown="event.cancelBubble = true" onclick="save(\'' + stamp + '\');" style="cursor: hand" align=right src="../images/history/disk.png"><IMG align=absmiddle src="../images/history/arrow-right.png"></SPAN> ' + ( new Date( stamp.substr( 0, 4 ), stamp.substr( 4, 2 ) - 1, stamp.substr( 6, 2 ) ) ).toLocaleDateString() + '</NOBR></DIV>' );
+					elem = document.createElement( 'DIV' );
+					elem.id = stamp;
+					elem.style.display = 'none';
+					elem.className = 'day';
+					log.insertAdjacentElement( 'beforeEnd', elem );
+				}
+				date = stamp;
 			}
-			date = stamp;
+			++gCOUNT;
 		}
-		++gCOUNT;
+		file.Close()
 	}
 	document.getElementById( 'statusfield1' ).innerText = gCOUNT == 1 ? external.globals( 'Translator' ).Translate( 'history', 'one_message' ) : external.globals( 'Translator' ).Translate( 'history', 'many_messages', [ gCOUNT ] );
 	if ( ! gCOUNT )
@@ -92,7 +94,7 @@ function toggle ( bar )
 	var cfg = external.globals( 'cfg' );
 	var filepath = external.globals( 'usersdir' ) + 'Profiles\\' + cfg( 'username' ) + '@' + cfg( 'server' ) + '\\' + ( new MD5() ).digest( external.wnd.params[1] ) + '.log';
 
-	var file = external.File( filepath );
+	var file = external.file( filepath );
 
 	var theirnick = external.wnd.params[1];
 	if ( external.globals( 'ClientRoster' ).Items.Exists( external.wnd.params[1] ) )
@@ -119,6 +121,7 @@ function toggle ( bar )
 		elem.insertAdjacentText( 'beforeEnd', '[' + fields[0].substring( 9, 14 ) + '] ' );
 		elem.insertAdjacentText( 'beforeEnd', unescape( line.substr( fields[0].length + fields[1].length + 2 ) ) );
 	}
+	file.Close()
 }
 
 function receive ( params )
@@ -177,18 +180,12 @@ function history_clear ()
 		return;
 	try
 	{
-		external.File( b ).Delete();
+		external.file( b ).Delete();
+		external.file( f ).Delete();
 	}
 	catch ( e )
 	{
-	}
-	try
-	{
-		external.File( f ).Delete();
-	}
-	catch ( e )
-	{
-		alert( external.globals( 'Translator' ).Translate( 'history', 'delete_cannot', [ e.description ] ) );
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'history', 'delete_cannot', [ e.description ] ), external.globals( 'softwarename' ), 0 | 48 );
 	}
 	document.getElementById( 'log' ).innerHTML = document.getElementById( 'loading' ).outerHTML;
 	document.getElementById( 'loading' ).innerHTML = external.globals( 'Translator' ).Translate( 'history', 'loading' );
@@ -206,13 +203,13 @@ function save ( day )
 	{
 		if ( ! external.FileExists( historypath ) )
 		{
-			alert( external.globals( 'Translator' ).Translate( 'history', 'empty' ) );
+			external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'history', 'empty' ), external.globals( 'softwarename' ), 0 | 48 );
 			return false;
 		}
 	}
 	catch ( e )
 	{
-		alert( external.globals( 'Translator' ).Translate( 'history', 'error_open' ) );
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'history', 'error_open' ), external.globals( 'softwarename' ), 0 | 48 );
 		return false;
 	}
 
@@ -252,22 +249,22 @@ function save ( day )
 	try
 	{
 		if ( external.FileExists( path ) )
-			external.File( path ).Delete();
-		var save = external.File( path );
+			external.file( path ).Delete();
+		var save = external.file( path );
 	}
 	catch ( e )
 	{
-		alert( external.globals( 'Translator' ).Translate( 'history', 'error_save', [ e.description ] ) );
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'history', 'error_save', [ e.description ] ), external.globals( 'softwarename' ), 0 | 48 );
 		return false;
 	}
 
 	try
 	{
-		var archive = external.File( historypath );
+		var archive = external.file( historypath );
 	}
 	catch ( e )
 	{
-		alert( external.globals( 'Translator' ).Translate( 'history', 'error_open' ) );
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'history', 'error_open' ), external.globals( 'softwarename' ), 0 | 48 );
 		return false;
 	}
 
@@ -390,6 +387,7 @@ function save ( day )
 				}
 			}
 		}
+		archive.Close()
 	}
 	else if ( filetype == 'html' )
 	{
@@ -527,7 +525,7 @@ function save ( day )
 function printer ( day )
 {
 	if ( ! gCOUNT )
-		return alert( external.globals( 'Translator' ).Translate( 'history', 'error_print' ) );
+		return external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'history', 'error_print' ), external.globals( 'softwarename' ), 0 | 48 );
 	gPRINTDAY = day;
 	window.print();
 }
