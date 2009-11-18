@@ -182,9 +182,9 @@ library PandionLib
 		[propget] HRESULT IsSystem([out,retval] BOOL* b);
 		[propget] HRESULT IsTemporary([out,retval] BOOL* b);
 
-		[propget] HRESULT CreationTime([out,retval] BSTR* str);
-		[propget] HRESULT LastAccessTime([out,retval] BSTR* str);
-		[propget] HRESULT LastWriteTime([out,retval] BSTR* str);
+		[propget] HRESULT CreationTime([out,retval] VARIANT* vCreationTime);
+		[propget] HRESULT LastAccessTime([out,retval] VARIANT* vLastAccessTime);
+		[propget] HRESULT LastWriteTime([out,retval] VARIANT* vLastWriteTime);
 
 		[propget] HRESULT FileSizeHigh([out,retval] DWORD* dw);
 		[propget] HRESULT FileSizeLow([out,retval] DWORD* dw);
