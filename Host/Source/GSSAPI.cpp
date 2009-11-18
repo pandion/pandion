@@ -24,6 +24,9 @@
 #include "Base64.h"
 #include "UTF8.h"
 
+#include <dsgetdc.h>
+#include <lm.h>
+
 GSSAPI::GSSAPI() :
 	m_fNewConversation(TRUE), m_fHaveCredHandle(FALSE), m_fHaveCtxtHandle(FALSE)
 {
@@ -70,15 +73,11 @@ STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServerName, BSTR Challenge,
 	/* Acquire a credentials handle if this is the initial response */
 	if(m_fNewConversation == TRUE)
 	{
-		TimeStamp Expiry;
-		SECURITY_STATUS	ss = ::AcquireCredentialsHandle(NULL, TEXT("Kerberos"),
-			SECPKG_CRED_OUTBOUND, NULL, NULL, NULL, NULL, &m_hCred, &Expiry);
-		if(ss != SEC_E_OK)
+		HRESULT hr = AcquireCredentials();
+		if(FAILED(hr))
 		{
-			Error(L"GenerateResponse()", L"AcquireCredentialsHandle()", ss);
-			return HRESULT_FROM_WIN32(ss);
+			return hr;
 		}
-		m_fHaveCredHandle = TRUE;
 	}
 
 	/* Decode the Challenge */
@@ -96,25 +95,20 @@ STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServerName, BSTR Challenge,
 	SecBufferDesc InBuffDesc = {SECBUFFER_VERSION, 1, &InSecBuff};
 
 	/* Prepare output buffer */
-	std::vector<BYTE> outputBuffer(m_dwMaxTokenSize);
-	SecBuffer OutSecBuff = {m_dwMaxTokenSize, SECBUFFER_TOKEN, &outputBuffer[0]};
+	std::vector<BYTE> OutputBuffer(m_dwMaxTokenSize);
+	SecBuffer OutSecBuff = {m_dwMaxTokenSize, SECBUFFER_TOKEN, &OutputBuffer[0]};
 	SecBufferDesc OutBuffDesc = {SECBUFFER_VERSION, 1, &OutSecBuff};
-
-	/* Generate the Service Principal Name */
-	DWORD SpnLength = 0;
-	::DsMakeSpn(TEXT("xmpp"), ServerName, NULL, 0, NULL, &SpnLength, NULL);
-	LPTSTR Spn = (LPTSTR) ::HeapAlloc(::GetProcessHeap(), 0, SpnLength * sizeof(TCHAR));
-	::DsMakeSpn(TEXT("xmpp"), ServerName, NULL, 0, NULL, &SpnLength, Spn);
 
 	/* Process the input, generate new output */
 	ULONG			ContextAttributes;
 	TimeStamp		Expiry;
+	std::wstring    Spn = GenerateServicePrincipalName(ServerName);
 
 	SECURITY_STATUS	ss = ::InitializeSecurityContext(&m_hCred,
-		m_fNewConversation ? NULL : &m_hCtxt, Spn, ISC_REQ_MUTUAL_AUTH, 0,
-		SECURITY_NATIVE_DREP, m_fNewConversation ? NULL : &InBuffDesc,
-		0, &m_hCtxt, &OutBuffDesc, &ContextAttributes, &Expiry);
-	::HeapFree(::GetProcessHeap(), 0, Spn);
+		m_fNewConversation ? NULL : &m_hCtxt, (SEC_WCHAR*) Spn.c_str(),
+		ISC_REQ_MUTUAL_AUTH |  ISC_REQ_STREAM, 0, SECURITY_NATIVE_DREP, 
+		m_fNewConversation ? NULL : &InBuffDesc, 0, &m_hCtxt, &OutBuffDesc,
+		&ContextAttributes, &Expiry);
 	if(ss != SEC_E_OK && ss != SEC_I_CONTINUE_NEEDED &&
 		ss != SEC_I_COMPLETE_NEEDED && ss != SEC_I_COMPLETE_AND_CONTINUE)
 	{
@@ -156,4 +150,36 @@ void GSSAPI::Error(LPWSTR Where, LPWSTR WhenCalling, DWORD ErrorCode)
 		ErrorMessage <<	std::endl;
 	OutputDebugString(dbgMsg.str().c_str());
 	::LocalFree(ErrorMessage);
+}
+HRESULT GSSAPI::AcquireCredentials()
+{
+	TimeStamp Expiry;
+	SECURITY_STATUS	ss = ::AcquireCredentialsHandle(NULL, TEXT("Kerberos"),
+		SECPKG_CRED_BOTH, NULL, NULL, NULL, NULL, &m_hCred, &Expiry);
+	if(ss != SEC_E_OK)
+	{
+		Error(L"GenerateResponse()", L"AcquireCredentialsHandle()", ss);
+	}
+	else
+	{
+		m_fHaveCredHandle = TRUE;
+	}
+	return HRESULT_FROM_WIN32(ss);
+}
+std::wstring GSSAPI::GenerateServicePrincipalName(std::wstring ServerName)
+{
+	std::wstring Spn(L"xmpp/");
+
+	PDOMAIN_CONTROLLER_INFO dci;
+	::DsGetDcName(NULL, NULL, NULL, NULL, DS_RETURN_DNS_NAME, &dci);
+	std::wstring DomainName(dci->DomainName);
+	std::transform(DomainName.begin(), DomainName.end(),
+		DomainName.begin(), ::toupper);
+	::NetApiBufferFree(dci);
+
+	Spn += ServerName;
+	Spn += L"@";
+	Spn += DomainName;
+
+	return Spn;
 }

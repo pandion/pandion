@@ -46,4 +46,6 @@ public:
 
 private:
 	void Error(LPWSTR Where, LPWSTR WhenCalling, DWORD ErrorCode);
+	HRESULT AcquireCredentials();
+	std::wstring GenerateServicePrincipalName(std::wstring ServerName);
 };
