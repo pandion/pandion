@@ -36,9 +36,9 @@ function init ()
 	external.globals.Add( 'last_autoupdate', 0 ); // time of the last auto update check
 	external.globals.Add( 'last_password', '' ); // last used password
 	external.globals.Add( 'last_password_remember', false ); // remember my last used password
-	external.globals.Add( 'lastheight', 530 ); // default dimension
+	external.globals.Add( 'lastheight', 560 ); // default dimension
 	external.globals.Add( 'lastposx', 400 ); // default location
-	external.globals.Add( 'lastposy', 50 ); // default location
+	external.globals.Add( 'lastposy', 20 ); // default location
 	external.globals.Add( 'lastwidth', 330 ); // default dimension
 	external.globals.Add( 'EmoticonCache', new EmoticonCache() ); // loads and caches emoticon styles
 	external.globals.Add( 'ClientRoster', new ClientRoster() ); // stores and displays the contact list
@@ -329,7 +329,7 @@ function init ()
 	)
 		external.wnd.setPos( external.globals( 'lastposx' ), external.globals( 'lastposy' ) );
 	else
-		external.wnd.setPos( 400, 50 );
+		external.wnd.setPos( 400, 20 );
 
 	/* Use SSPI to login
 	 */

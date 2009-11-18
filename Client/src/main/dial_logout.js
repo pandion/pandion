@@ -24,6 +24,6 @@ function dial_logout ()
 			external.windows( keys[i] ).close();
 
 	SettingsSave();
-
+	SaveCommonProfile();
 	dial_login();
 }

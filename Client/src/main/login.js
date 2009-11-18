@@ -8,12 +8,12 @@ function login ( Address, Password )
 		Password = new String( Password );
 
 	/* Hide the sign in dialog
-	*/
+	 */
 	document.getElementById( 'content-dialog' ).style.display = 'block';
 	document.getElementById( 'signin-dialog' ).style.display = 'none';
 	external.wnd.MinWidth = 0;
 	external.wnd.MinHeight = 0;
-	external.wnd.setSize( Math.max( external.globals( 'lastwidth' ), 200 ), Math.max( external.globals( 'lastheight' ), 250 ) );
+	external.wnd.setSize( Math.max( external.globals( 'lastwidth' ), 50 ), Math.max( external.globals( 'lastheight' ), 50 ) );
 
 	/* Reset the client
 	 */

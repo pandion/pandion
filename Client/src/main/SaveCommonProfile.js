@@ -37,10 +37,10 @@ function SaveCommonProfile ()
 	Data.Add( 'lastheight', external.globals( 'lastheight' ) );
 	if ( document.getElementById( 'content-dialog' ).style.display == 'block' )
 	{
-		if ( external.wnd.width > 100 )
-			Data( 'lastwidth' ) = external.wnd.width;
-		if ( external.wnd.height > 100 )
-			Data( 'lastheight' ) = external.wnd.height;
+		if ( external.wnd.width > 50 )
+			Data( 'lastwidth' ) = external.globals( 'lastwidth' ) = external.wnd.width;
+		if ( external.wnd.height > 50 )
+			Data( 'lastheight' ) = external.globals( 'lastheight' ) = external.wnd.height;
 	}
 
 	hash2file( Data, external.globals( 'usersdir' ) + 'global.xml' );
