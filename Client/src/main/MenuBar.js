@@ -117,7 +117,7 @@ function MenuBarUpdate ( section )
 		tools.AddSeparator();
 		tools.AddItem( roster,false,false,false, display.Handle,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_view' ), 33 );
 		tools.AddItem( true,false,false,false, language.Handle,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_language' ), 38 );
-		tools.AddItem( roster,aot,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_aot' ), 34 );
+		tools.AddItem( true,aot,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_aot' ), 34 );
 		tools.AddSeparator();
 		tools.AddItem( roster,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_settings' ), 35 );
 
