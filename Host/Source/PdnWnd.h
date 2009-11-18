@@ -54,6 +54,7 @@ protected:
 	std::wstring    m_Name;
 	std::wstring    m_URL;
 	_variant_t      m_windowParams;
+	bool            m_hasModalDialog;
 
 	POINT		    m_minSize;
 
@@ -69,8 +70,11 @@ public:
 
 	virtual void OnFinalRelease();
 
+	void HasModalDialog(bool hasModal);
+
 	HRESULT Create(RECT& rect, std::wstring Name, std::wstring URL,
 		_variant_t& windowParams, PdnModule* Module, BOOL popUnder = FALSE);
+
 private:
 	HRESULT ContainerCreate(BOOL popUnder);
 	void ChangeIcon(int icon);

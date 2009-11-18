@@ -177,6 +177,7 @@ STDMETHODIMP CGetFileName::put_DefExt(BSTR strDefExt)
 }
 STDMETHODIMP CGetFileName::DisplayOpen(BSTR *strFileName)
 {
+	m_wnd.HasModalDialog(true);
 	if(::GetOpenFileName(&m_ofn))
 	{
 		int i = 0;
@@ -189,22 +190,27 @@ STDMETHODIMP CGetFileName::DisplayOpen(BSTR *strFileName)
 			i++;
 		}
 		*strFileName = ::SysAllocString(m_ofn.lpstrFile);
+		m_wnd.HasModalDialog(false);
 		return S_OK;
 	}
 	else
 	{
+		m_wnd.HasModalDialog(false);
 		return E_ABORT;
 	}
 }
 STDMETHODIMP CGetFileName::DisplaySave(BSTR *strFileName)
 {
+	m_wnd.HasModalDialog(true);
 	if(::GetSaveFileName(&m_ofn))
 	{
+		m_wnd.HasModalDialog(false);
 		*strFileName = ::SysAllocString(m_ofn.lpstrFile);
 		return S_OK;
 	}
 	else
 	{
+		m_wnd.HasModalDialog(false);
 		return E_ABORT;
 	}
 }
@@ -428,12 +434,15 @@ STDMETHODIMP CChooseFont::put_SizeMax(INT iSizeMax)
 }
 STDMETHODIMP CChooseFont::Display()
 {
+	m_wnd.HasModalDialog(true);
 	if(::ChooseFont(&m_cf))
 	{
+		m_wnd.HasModalDialog(false);
 		return S_OK;
 	}
 	else
 	{
+		m_wnd.HasModalDialog(false);
 		return S_FALSE;
 	}
 }
