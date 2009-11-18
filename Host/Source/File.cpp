@@ -509,7 +509,7 @@ STDMETHODIMP CFile::Delete()
 	_bstr_t FileName = m_FileName;
 	if( SUCCEEDED(GetWriteAccess()) && 
 		SUCCEEDED(Close()) &&
-		::DeleteFile(m_FileName) != 0)
+		::DeleteFile(FileName) != 0)
 	{
 		return S_OK;
 	}
