@@ -61,6 +61,8 @@ CPdnWnd::CPdnWnd() :
 	m_External.DisableSelfDelete();
 	m_minSize.x  = 160;
 	m_minSize.y  = 200;
+
+	m_hasModalDialog = false;
 }
 CPdnWnd::~CPdnWnd()
 {
