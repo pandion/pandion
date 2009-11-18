@@ -308,9 +308,15 @@ function ChooseEmoticons ()
 		Popup.document.Popup = Popup;
 		var PopupWidth  = W * ( w + 1 ) + 1 + ExpandWidth + 1;
 		var PopupHeight = H * ( h + 1 ) + 1 + BrowseHeight + 1;
+		var PopupX = event.x - event.offsetX - 2;
+		var PopupY = event.y - event.offsetY - PopupHeight - 3;
+		var EdgeRight = external.wnd.left + event.x + PopupWidth;
+		var EdgeTop = external.wnd.top + event.y - PopupHeight;
+		if ( ! external.IsRectOnMonitor( EdgeTop, EdgeRight, EdgeTop + 1, EdgeRight - 1 ) )
+			PopupX -= PopupWidth - 100;
 		Popup.show(
-			event.x - event.offsetX - 2,
-			event.y - event.offsetY - PopupHeight - 3,
+			PopupX,
+			PopupY,
 			PopupWidth,
 			PopupHeight,
 			document.body
