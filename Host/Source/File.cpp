@@ -506,16 +506,16 @@ STDMETHODIMP CFile::Copy(BSTR strTo, BOOL bOverWrite, IPdnFile** retCopy)
  */
 STDMETHODIMP CFile::Delete()
 {
-	if(SUCCEEDED(GetWriteAccess()))
+	_bstr_t FileName = m_FileName;
+	if( SUCCEEDED(GetWriteAccess()) && 
+		SUCCEEDED(Close()) &&
+		::DeleteFile(m_FileName) != 0)
 	{
-		_bstr_t FileName = m_FileName;
-		Close();
-		::DeleteFile(FileName);
 		return S_OK;
 	}
 	else
 	{
-        return E_FAIL;
+		return HRESULT_FROM_WIN32(::GetLastError());
 	}
 }
 
@@ -529,7 +529,7 @@ STDMETHODIMP CFile::Flush()
 }
 
 /*
- * Closes the file and resets the object to it's original state.
+ * Closes the file and resets the object to its original state.
  */
 STDMETHODIMP CFile::Close()
 {
