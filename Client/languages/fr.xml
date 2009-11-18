@@ -152,19 +152,11 @@ background: (image d') arrière-plan
     <code id="txt_welcome">Bienvene sur ${0}!</code>
     
     <code id="cl_tooltip">contacts de ${0}</code>
-    <code id="autoawaymessage">Absent depuis plus de 5 minutes</code>
-    <code id="autoxawaymessage">Absent depuis plus de 30 minutes</code>
-    
-    
-    
-    
+        
     <code id="import_aim_not_registered">Afin d'importer vos contacts AIM, le transport AIM doit être enregistré et activé.&#13;Allez dans le menu outils et cliquez sur Transports pour voir l'état du transport AIM.</code>
     
 	<code id="sspi_autoreconnecting">La connexion au serveur de messagerie instantanée a échoué.</code>
-	
-	
-
-	
+		
 	<code id="menu_axn_bookmarks">&amp;Salons de conférence favoris</code>
     <code id="menu_axn_bookmarks_add">&amp;Ajouter un favori...</code>
     <code id="menu_axn_bookmarks_manage">&amp;Organiser vos favoris...</code>
@@ -294,6 +286,7 @@ background: (image d') arrière-plan
     <code id="cl_away">Parti(e)</code>
     <code id="cl_xaway">Parti(e) depuis longtemps</code>
     <code id="cl_invisible">Invisible</code>
+	<code id="cl_idle">Innactif</code>
     <code id="cl_tooltip_online">Adresse: ${0}&#13;Ressource: ${1}</code>
 	
 	<code id="time-now">maintenant</code>
@@ -311,6 +304,10 @@ background: (image d') arrière-plan
     <code id="time-months">depuis ${0} mois</code>
     <code id="time-year">depuis 1 an</code>
     <code id="time-years">depuis ${0} ans</code>
+	
+	<code id="track-stable">Stable</code>
+    <code id="track-beta">Bêta</code>
+    <code id="track-development">Développement</code>
   </window>
   <window name="about">
 	<item id="txt-copyright">
@@ -1709,21 +1706,6 @@ background: (image d') arrière-plan
     <code id="error-item-not-found">Item inconnu: Le salon est vérouillé</code>
   </window>
   <window name="preferences">
-    <item id="txt_autoaway">
-      <innerText>Si vous n'utilisez pas votre ordinateur, votre état va devenir "Absent" au bout de quelques minutes.</innerText>
-    </item>
-    <item id="txt_displayawaymsg_left">
-      <innerText>Afficher ce message après</innerText>
-    </item>
-    <item id="txt_displayxawaymsg_left">
-      <innerText>Afficher ce message après</innerText>
-    </item>
-    <item id="txt_displayawaymsg_right">
-      <innerText>minutes:</innerText>
-    </item>
-    <item id="txt_displayxawaymsg_right">
-      <innerText>minutes:</innerText>
-    </item>
     <item id="txt_blocking">
       <innerText>La liste noire contient des adresses d'utilisateurs dont vous ne voulez pas recevoir de message.</innerText>
     </item>
@@ -1805,9 +1787,6 @@ background: (image d') arrière-plan
     <item id="btn_cancel">
       <value>Annuler</value>
     </item>
-    <item id="lbl_autoaway">
-      <innerText>État automatique</innerText>
-    </item>
     <item id="lbl_blocking">
       <innerText>Liste noire</innerText>
     </item>
@@ -1820,7 +1799,6 @@ background: (image d') arrière-plan
     <item id="lbl_sound">
       <innerText>Son</innerText>
     </item>
-    <code id="autoaway">Messages d'état automatiques</code>
     <code id="blocking">Liste noire</code>
     <code id="connection">Paramètres de connexion</code>
     <code id="privacy">Confidentialité</code>
