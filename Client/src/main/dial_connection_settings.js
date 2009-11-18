@@ -10,7 +10,7 @@ function dial_connection_settings ()
 		with ( external.createWindow( 'connection_settings', external.globals( 'cwd' ) + 'connection_settings.html', window ) )
 		{
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_connection_settings' ) );
-			setIcon( external.globals( 'cwd' ) + '..\\images\\brand\\default.ico' );
+			setIcon( external.globals( 'cwd' ) + '..\\images\\preferences\\tools.ico' );
 			resizeable( false );
 			setSize( 375, 330 );
 			setPos( ( screen.availWidth - 375 ) / 2, ( screen.availHeight - 330 ) / 2 );
