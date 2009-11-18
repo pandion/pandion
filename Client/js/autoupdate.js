@@ -183,7 +183,7 @@ window.attachEvent("onload", function () {
 		if (!external.wnd.params.selectVersion)
 			external.globals("AutoUpdateTimeout") = external.wnd.params.window.setTimeout(function () {
 				dial_autoupdate( false );
-			}, 24 * 3600 * 1000);
+			}, 12 * 3600 * 1000);
 	});
 
 	if (external.wnd.params.selectVersion) {
