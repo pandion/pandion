@@ -44,9 +44,9 @@ public:
 	STDMETHOD(get_IsSystem)(BOOL *b);
 	STDMETHOD(get_IsTemporary)(BOOL *b);
 
-	STDMETHOD(get_CreationTime)(BSTR *str);
-	STDMETHOD(get_LastAccessTime)(BSTR *str);
-	STDMETHOD(get_LastWriteTime)(BSTR *str);
+	STDMETHOD(get_CreationTime)(VARIANT *vCreationTime);
+	STDMETHOD(get_LastAccessTime)(VARIANT *vLastAccessTime);
+	STDMETHOD(get_LastWriteTime)(VARIANT *vLastWriteTime);
 
 	STDMETHOD(get_FileSizeHigh)(DWORD *dw);
 	STDMETHOD(get_FileSizeLow)(DWORD *dw);

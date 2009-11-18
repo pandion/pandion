@@ -91,43 +91,37 @@ STDMETHODIMP CListEntry::get_IsTemporary(BOOL *b)
 	return S_OK;
 }
 
-STDMETHODIMP CListEntry::get_CreationTime(BSTR *str)
+STDMETHODIMP CListEntry::get_CreationTime(VARIANT *vCreationTime)
 {
 	SYSTEMTIME st;
+	DATE vtime;
+
 	::FileTimeToSystemTime(&m_Data.ftCreationTime, &st);
+	::SystemTimeToVariantTime(&st, &vtime);
+	*vLastWriteTime = _variant_t(vtime).Detach();
 
-	std::wstringstream buffer;
-	buffer << st.wYear << L'-' << st.wMonth << L'-' << st.wDay << L' ' <<
-		st.wHour << L':' << st.wMinute << L':' << st.wSecond << L':' << 
-		st.wMilliseconds;
-
-	*str = ::SysAllocString(buffer.str().c_str());
 	return S_OK;
 }
-STDMETHODIMP CListEntry::get_LastAccessTime(BSTR *str)
+STDMETHODIMP CListEntry::get_LastAccessTime(VARIANT *vLastAccessTime)
 {
 	SYSTEMTIME st;
+	DATE vtime;
+
 	::FileTimeToSystemTime(&m_Data.ftLastAccessTime, &st);
+	::SystemTimeToVariantTime(&st, &vtime);
+	*vLastWriteTime = _variant_t(vtime).Detach();
 
-	std::wstringstream buffer;
-	buffer << st.wYear << L'-' << st.wMonth << L'-' << st.wDay << L' ' <<
-		st.wHour << L':' << st.wMinute << L':' << st.wSecond << L':' << 
-		st.wMilliseconds;
-	
-	*str = ::SysAllocString(buffer.str().c_str());
 	return S_OK;
 }
-STDMETHODIMP CListEntry::get_LastWriteTime(BSTR *str)
+STDMETHODIMP CListEntry::get_LastWriteTime(VARIANT *vLastWriteTime)
 {
 	SYSTEMTIME st;
-	::FileTimeToSystemTime(&m_Data.ftLastWriteTime, &st);
+	DATE vtime;
 
-	std::wstringstream buffer;
-	buffer << st.wYear << L'-' << st.wMonth << L'-' << st.wDay << L' ' <<
-		st.wHour << L':' << st.wMinute << L':' << st.wSecond << L':' << 
-		st.wMilliseconds;
-	
-	*str = ::SysAllocString(buffer.str().c_str());
+	::FileTimeToSystemTime(&m_Data.ftLastWriteTime, &st);
+	::SystemTimeToVariantTime(&st, &vtime);
+	*vLastWriteTime = _variant_t(vtime).Detach();
+
 	return S_OK;
 }
 
