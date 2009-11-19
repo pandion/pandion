@@ -94,25 +94,25 @@ public:
 			decodedData[j+1] = (unsigned char)
 				(d[base64Data[i+1]] << 4 | d[base64Data[i+2]] >> 2);
 			decodedData[j+2] = (unsigned char)
-				(((d[base64Data[i+2]] << 6)) | d[base64Data[i+3]] >> 4);
+				(((d[base64Data[i+2]] << 6) & 0xC0) | d[base64Data[i+3]]);
 
-			i += 4;
-			j += 3;
+			if(base64Data[i+2] == '=')
+				j += 1;
+			else if(base64Data[i+3] == '=')
+				j += 2;
+			else
+				j += 3;
 
-			if(base64Data.length() - i >= 2 &&
-				base64Data[i] == '\r' && base64Data[i+1] == '\n')
-			{
-				i += 2;
-			}
-			if(base64Data.length() - i >= 1 && base64Data[i] == '\n')
-			{
-				i += 1;
-			}
-
+			if(base64Data.length() - i >= 6 &&
+				base64Data[i+4] == '\r' && base64Data[i+5] == '\n')
+				i += 6;
+			else if(base64Data.length() - i >= 5 && base64Data[i+4] == '\n')
+				i += 5;
+			else
+				i += 4;
 		}
 
 		decodedData.resize(j);
-
 		return decodedData;
 	}
 };

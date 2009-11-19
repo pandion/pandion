@@ -21,6 +21,7 @@
  */
 #include "stdafx.h"
 #include "SSPI.h"
+#include "base64.h"
 
 SSPI::SSPI()
 {
@@ -126,14 +127,8 @@ STDMETHODIMP SSPI::GenerateResponse(BSTR Challenge, BOOL *Continue, BSTR *Respon
 	}
 
 	/* Decode the Challenge */
-	DWORD DecodedChallengeLength;
-	::CryptStringToBinary(Challenge, ::SysStringLen(Challenge),
-		CRYPT_STRING_BASE64, NULL, &DecodedChallengeLength, NULL, NULL);
-	std::vector<BYTE> DecodedChallenge(DecodedChallengeLength > 0 ? 
-		DecodedChallengeLength : 1);
-	::CryptStringToBinary(Challenge, ::SysStringLen(Challenge),
-		CRYPT_STRING_BASE64, &DecodedChallenge[0], &DecodedChallengeLength,
-		NULL, NULL);
+	std::vector<BYTE> DecodedChallenge =
+		Base64::Base64Decode(std::wstring(Challenge));
 
 	/* prepare input buffer */
 	SecBuffer		InSecBuff;
@@ -145,7 +140,7 @@ STDMETHODIMP SSPI::GenerateResponse(BSTR Challenge, BOOL *Continue, BSTR *Respon
 		InBuffDesc.cBuffers  = 1;
 		InBuffDesc.pBuffers  = &InSecBuff;
 
-		InSecBuff.cbBuffer   = DecodedChallengeLength;
+		InSecBuff.cbBuffer   = DecodedChallenge.size();
 		InSecBuff.BufferType = SECBUFFER_TOKEN;
 		InSecBuff.pvBuffer   = &DecodedChallenge[0];
 	}
@@ -275,14 +270,9 @@ STDMETHODIMP SSPI::GenerateResponse(BSTR Challenge, BOOL *Continue, BSTR *Respon
 
 	m_fNewConversation = FALSE;
 
-	DWORD ResponseLen;
-	::CryptBinaryToString((BYTE *) OutBuffDesc.pBuffers->pvBuffer,
-		OutBuffDesc.pBuffers->cbBuffer,	CRYPT_STRING_BASE64,
-		NULL, &ResponseLen);
-	std::wstring EncodedResponse(ResponseLen, L'\0');
-	::CryptBinaryToString((BYTE *) OutBuffDesc.pBuffers->pvBuffer,
-		OutBuffDesc.pBuffers->cbBuffer,	CRYPT_STRING_BASE64,
-		&EncodedResponse[0], &ResponseLen);
+	std::wstring EncodedResponse = Base64::Base64Encode(
+		(BYTE*) OutBuffDesc.pBuffers->pvBuffer,
+		OutBuffDesc.pBuffers->cbBuffer);
 	*Response = ::SysAllocString(EncodedResponse.c_str());
 
 	*Continue = 

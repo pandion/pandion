@@ -72,7 +72,6 @@
 #include <shlwapi.h>
 #include <shlobj.h>
 #include <windns.h>
-#include <Wincrypt.h>
 #include <Schnlsp.h>
 #include <Security.h>
 #include <WinInet.h>

@@ -81,17 +81,11 @@ STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServerName, BSTR Challenge,
 	}
 
 	/* Decode the Challenge */
-	DWORD DecodedChallengeLength = 0;
-	::CryptStringToBinary(Challenge, ::SysStringLen(Challenge),
-		CRYPT_STRING_BASE64, NULL, &DecodedChallengeLength, NULL, NULL);
-	std::vector<BYTE> DecodedChallenge(
-		DecodedChallengeLength > 0 ? DecodedChallengeLength : 1);
-	::CryptStringToBinary(Challenge, ::SysStringLen(Challenge),
-		CRYPT_STRING_BASE64, &DecodedChallenge[0], &DecodedChallengeLength,
-		NULL, NULL);
+	std::vector<BYTE> DecodedChallenge =
+		Base64::Base64Decode(std::wstring(Challenge));
 
 	/* Prepare input buffer */
-	SecBuffer InSecBuff = {DecodedChallengeLength, SECBUFFER_TOKEN, &DecodedChallenge[0]};
+	SecBuffer InSecBuff = {DecodedChallenge.size(), SECBUFFER_TOKEN, &DecodedChallenge[0]};
 	SecBufferDesc InBuffDesc = {SECBUFFER_VERSION, 1, &InSecBuff};
 
 	/* Prepare output buffer */
