@@ -44,7 +44,7 @@
 <soundmessagefile>..\sounds\message.wav</soundmessagefile>
 <soundoffline>false</soundoffline>
 <soundofflinefile/>
-<soundonline>true</soundonline>
+<soundonline>false</soundonline>
 <soundonlinefile>..\sounds\online.wav</soundonlinefile>
 <tabbedchat>true</tabbedchat>
 <textinputheight>60</textinputheight>

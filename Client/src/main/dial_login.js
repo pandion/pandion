@@ -86,42 +86,24 @@ function dial_login_loadAccounts ( ValidAccount )
 	var Addresses = [];
 	var Directories = new VBArray( external.Directory.ListDirs( external.globals( 'usersdir' ) + 'Profiles\\' ) ).toArray();
 	for ( var i = 0; i < Directories.length; ++i )
-	{
-		if ( Directories[i].Name != external.globals( 'last_address' ) && Directories[i].Name.match( ValidAccount ) )
-		{
-			var Path = external.globals( 'usersdir' ) + 'Profiles\\' + Directories[i].Name + '\\settings.xml';
-			var LastWriteTime = external.FileExists( Path ) ? ( new Date( external.file( Path ).LastWriteTime ) ).getTime() : -1;
-			if ( LastWriteTime > CurrentTime - ( 30 * 24 * 3600 * 1000 ) || LastWriteTime == -1 )
-				Addresses.push({
-					LastWriteTime: LastWriteTime,
-					Name: Directories[i].Name
-				});
-		}
-	}
-
-	/* First entry should be the last used address
-	 */
-	if ( external.globals( 'last_address' ).length && external.globals( 'last_address' ).match( ValidAccount ) )
-		Addresses.push({
-			LastWriteTime: Number.MAX_VALUE,
-			Name: external.globals( 'last_address' )
-		});
+		if ( Directories[i].Name.match( ValidAccount ) )
+			Addresses.push({
+				Timestamp: Directories[i].Name == external.globals( 'last_address' ) ? Number.MAX_VALUE : Directories[i].LastWriteTime,
+				Name: Directories[i].Name
+			});
 
 	/* Order according to last used date
 	 */
-	Addresses.sort(
-		function ( a, b )
-		{
-			if ( a.LastWriteTime > b.LastWriteTime )
-				return -1;
-			else if ( a.LastWriteTime == b.LastWriteTime )
-				return 0;
-			else
-				return 1;
-		}
-	);
+	Addresses.sort( function ( a, b ) { return ( a.Timestamp < b.Timestamp ) ? 1 : -1 } );
 
 	return Addresses;
+}
+
+function dial_login_changeAddressList ()
+{
+	document.getElementById("signin-address").value = document.getElementById("signin-recently-used").value;
+	document.getElementById("signin-password").focus();
+	document.getElementById("signin-password").value = document.getElementById("signin-recently-used").value == external.globals( 'last_address' ) ? pass_code( false, external.globals( 'last_password' ) ) : "";
 }
 
 function dial_login_changeRemember ()
