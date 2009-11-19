@@ -24,6 +24,7 @@
 #include "UTF8.h"
 #include "Directory.h"
 #include "Hash.h"
+#include "Base64.h"
 
 /*
  * CFile constructor
@@ -301,16 +302,11 @@ STDMETHODIMP CFile::ReadBase64(BSTR* strBase64)
 		DWORD fileSize = ::GetFileSize(m_FileHandle, 0);
 		std::vector<BYTE> fileBuffer(fileSize);
 
-		DWORD b64Size;
-		::CryptBinaryToString(&fileBuffer[0], fileSize,
-			CRYPT_STRING_BASE64, NULL, &b64Size);
-		std::wstring b64Buffer(b64Size, L'\0');
-
-		if(SUCCEEDED(Read(fileSize, &fileBuffer[0])) &&
-			::CryptBinaryToString(&fileBuffer[0], fileSize,
-				CRYPT_STRING_BASE64, &b64Buffer[0], &b64Size))
+		if(SUCCEEDED(Read(fileSize, &fileBuffer[0])))
 		{
-			*strBase64 = ::SysAllocString(b64Buffer.c_str());
+			std::wstring base64String =
+				Base64::Base64Encode(&fileBuffer[0], fileBuffer.size());
+			*strBase64 = ::SysAllocString(base64String.c_str());
 			return S_OK;
 		}
 		else
@@ -331,13 +327,8 @@ STDMETHODIMP CFile::WriteBase64(BSTR strBase64)
 {
 	if(SUCCEEDED(GetWriteAccess()))
 	{
-		DWORD fileBufferSize;
-		::CryptStringToBinary(strBase64, ::SysStringLen(strBase64),
-			CRYPT_STRING_BASE64, NULL, &fileBufferSize, NULL, NULL);
-		std::vector<BYTE> fileBuffer(fileBufferSize);
-		::CryptStringToBinary(strBase64, ::SysStringLen(strBase64),
-			CRYPT_STRING_BASE64, &fileBuffer[0], &fileBufferSize, NULL, NULL);
-		Write(&fileBuffer[0], fileBufferSize);
+		std::vector<BYTE> fileBuffer = Base64::Base64Decode(strBase64);
+		Write(&fileBuffer[0], fileBuffer.size());
 
 		return S_OK;
 	}
