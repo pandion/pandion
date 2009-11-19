@@ -257,6 +257,16 @@ LRESULT CPdnWnd::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		return OnWTSSessionChange(uMsg, wParam, lParam);
 	}
+	else if(uMsg == WM_ENTERMENULOOP)
+	{
+		m_hasModalDialog = true;
+		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
+	}
+	else if(uMsg == WM_EXITMENULOOP)
+	{
+		m_hasModalDialog = false;
+		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
+	}
 	else
 	{
 		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
