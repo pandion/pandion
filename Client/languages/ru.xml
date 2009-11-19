@@ -1,22 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--
-LangString DESC_SecCopyRequired		${LANG_RUSSIAN}	"Эти файлы требуются для работы ${MUI_PRODUCT}."
-LangString DESC_SecCreateStartMenu	${LANG_RUSSIAN}	"Меню Пуск предоставляет удобный доступ для ${MUI_PRODUCT}."
-LangString DESC_SecCreateQuickstart	${LANG_RUSSIAN}	"Добавить ${MUI_PRODUCT} в панель Быстрого запуска."
-LangString DESC_SecCreateDesktop	${LANG_RUSSIAN}	"Поместить ярлык на ваш рабочий стол."
-LangString DESC_SecCreateAutoStart	${LANG_RUSSIAN}	"${MUI_PRODUCT} автоматически подключится, когда стартует Windows."
-LangString ITEM_SecCreateStartMenu	${LANG_RUSSIAN}	"Ярлык в меню Пуск"
-LangString ITEM_SecCreateQuickstart	${LANG_RUSSIAN}	"Ярлык для панели Быстрого запуска"
-LangString ITEM_SecCreateDesktop	${LANG_RUSSIAN}	"Ярлык на Рабочем столе"
-LangString ITEM_SecCreateAutoStart	${LANG_RUSSIAN}	"Запускать ${MUI_PRODUCT} при загрузке"
-LangString TEXT_WindowsOutdated		${LANG_RUSSIAN}	"Не могу установить ${MUI_PRODUCT}.$\nТребуется Windows NT 4 или выше."
-LangString TEXT_AlreadyRunning		${LANG_RUSSIAN}	"Закройте ${MUI_PRODUCT} перед продолжением."
-LangString TEXT_InternetExplorer	${LANG_RUSSIAN}	"Не могу продолжить инсталяцию ${MUI_PRODUCT}.$\n$\nТребуется Microsoft Internet Explorer версии 5.5 или выше. Желаете загрузить обновление сейчас?"
-LangString TEXT_DownloadFailed		${LANG_RUSSIAN}	"Ошибка: Не могу загрузить необходимые компоненты. Убедитесь что вы подключены к интернету."
-LangString un.TEXT_RemoveProfiles	${LANG_RUSSIAN}	"Удалить профили и файлы истории?"
-LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTDIR не может быть удален."
+	This file is part of Pandion instant messenger
+	Copyright (c) 2009 Valentin Prokudin
+	Copyright (c) 2005 Alexander Bykov
+	License: GNU General Public License version 3 or later
 -->
-<translation xml:lang="ru">
+<translation xml:lang="ru" dir="ltr">
   <about>
     <language>Русский</language>
     <history>
@@ -28,15 +17,23 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
         </author>
         <date>2005-05-05</date>
         <description>
-          first edition.
+          First edition.
+        </description>
+      </revision>
+      <revision>
+        <author>
+          <name>Valentin Prokudin</name>
+          <email>vorp@yandex.ru</email>
+          <xmpp>vorp@ya.ru</xmpp>
+        </author>
+        <date>2009-11-13</date>
+        <description>
+          Second edition. Update for Pandion 2.6
         </description>
       </revision>
     </history>
   </about>
   <window name="main">
-    <item id="txt_pleasewait">
-      <innerText>Один момент, пожалуйста</innerText>
-    </item>
     <item id="txt_disconnected">
       <innerText>Отключен(а) от сервера</innerText>
     </item>
@@ -56,7 +53,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <innerText>или</innerText>
     </item>
     <item id="txt_config_transport">
-      <innerText>Настроить сетевые шлюзы</innerText>
+      <innerText>Настроить транспорты сети</innerText>
     </item>
     
     <item id="mode-avatar">
@@ -72,60 +69,89 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <title>Пользователи и группы в вашем списке контактов</title>
     </item>
 
-    <code id="tt-group-hide">Свернуть группу</code>
-    <code id="tt-group-show">Развернуть группу</code>
+    <item id="signin-instructions">
+      <innerText>Войдите в сеть мгновенных сообщений</innerText>
+    </item>
+    <item id="txt-signin-address">
+      <innerText>Адрес:</innerText>
+    </item>
+    <item id="txt-signin-examples">
+      <innerText>Примеры:</innerText>
+    </item>
+    <item id="txt-signin-password">
+      <innerText>Пароль:</innerText>
+    </item>
+    <item id="txt-signin-remember">
+      <innerText>Запомнить пароль</innerText>
+    </item>
+    <item id="txt-signin-autoconnect">
+      <innerText>Войти автоматически</innerText>
+    </item>
+    <item id="signin-connect">
+      <innerText>Войти</innerText>
+    </item>
+    <item id="signin-register">
+      <innerText>Регистрация нового адреса в сети мгновенных сообщений</innerText>
+    </item>
+    <item id="signin-settings">
+      <innerText>Настройки соединения</innerText>
+    </item>
+
+    <code id="tt-group-hide">Скрыть контакты в этой группе&#13;Правая кнопка мыши для дополнительных задач</code>
+    <code id="tt-group-show">Показать контакты в этой группе&#13;Правая кнопка мыши для дополнительных задач</code>
     <code id="emoticon_unknown">Неизвестно</code>
-    <code id="txt_welcome">Приветствуем в ${0}!</code>
+    <code id="txt_welcome">${0} приветствует вас!</code>
     <code id="user_online">${0} подключился к сети</code>
     <code id="cl_tooltip">${0} Список контактов</code>
-    <code id="autoawaymessage">Отсутствую больше 5 минут</code>
-    <code id="autoxawaymessage">Отсутствую больше 30 минут</code>
     <code id="import_files">Список контактов</code>
-    
     <code id="import_invalid">Файл содержит неверные данные.</code>
     <code id="import_no_new">В указанном файле новых контактов не обнаружено.</code>
     <code id="import_confirm">Данные контакты будут добавлены в ваш список собеседников:&#13;&#13;${0}&#13;&#13;Вы уверены что хотите этого?</code>
-    <code id="import_aim_not_registered">Чтобы импортировать контакты сети AIM, необходимо настроить и активировать шлюз данной сети.&#13;Сделать это можно в разделе "Сервис -> Шлюзы".</code>
-    <code id="import_msn_not_registered">Чтобы импортировать контакты сети MSN, необходимо настроить и активировать шлюз данной сети.&#13;Сделать это можно в разделе "Сервис -> Шлюзы".</code>
-    <code id="import_gadu_not_registered">Чтобы импортировать контакты сети Gadu-Gadu, необходимо настроить и активировать шлюз данной сети.&#13;Сделать это можно в разделе "Сервис -> Шлюзы".</code>
+    <code id="import_aim_not_registered">Чтобы импортировать контакты сети AIM, необходимо настроить и активировать транспорт данной сети.&#13;Сделать это можно в разделе "Инструменты -> Транспорты".</code>
+    <code id="import_msn_not_registered">Чтобы импортировать контакты сети MSN, необходимо настроить и активировать транспорт данной сети.&#13;Сделать это можно в разделе "Инструменты -> Транспорты".</code>
+    <code id="import_gadu_not_registered">Чтобы импортировать контакты сети Gadu-Gadu, необходимо настроить и активировать транспорт данной сети.&#13;Сделать это можно в разделе "Инструменты -> Транспорты".</code>
     <code id="conference_invitation">${0} приглашает вас в конференцию: ${1}&#13;&#13;Желаете присоединиться?</code>
-    <code id="sspi_autoreconnecting">Соединение с сервером потеряно.</code>
+    <code id="search_info">Найти контакт...</code>
+    <code id="invalid-user-address">Введите свой адрес сети мгновенных сообщений.&#13;&#13;Если у вас нет адреса, нажмите ниже "Регистрация нового адреса в сети мгновенных сообщений".</code>
+    <code id="invalid-sso-server">Введите адрес вашего сервера мгновенных сообщений.</code>
+    <code id="program-description">${softwarename} это клиент обмена мгновенными сообщениями для сетей XMPP.</code>
+    <code id="extension-jisp">Пакет значков Jabber</code>
+    <code id="extension-pdn">Расширения ${softwarename}</code>
+    <code id="extension-xmpp">Мета данные XMPP (Extensible Messaging and Presence Protocol)</code>
+    <code id="uri-xmpp">Адрес XMPP (Extensible Messaging and Presence Protocol)</code>
     
-    <code id="menu_file">&amp;Файл</code>
-    <code id="menu_file_received">&amp;Открыть папку принятых файлов</code>
-
-    <code id="menu_file_export">&amp;Экспорт списка контактов...</code>
-    <code id="menu_file_import">&amp;Импорт списка контактов...</code>
-
-    <code id="menu_file_change">Изменить сообщение о &amp;статусе...</code>
-    <code id="menu_file_ffc">&amp;Свободен для разговоров</code>
-    <code id="menu_file_available">&amp;Доступен</code>
-    <code id="menu_file_busy">&amp;Занят</code>
-    <code id="menu_file_away">Вышел</code>
-    <code id="menu_file_xaway">&amp;Отсутствую</code>
-    <code id="menu_file_invisible">&amp;Невидимый</code>
-    <code id="menu_file_offline">&amp;Отключен</code>
-    <code id="menu_file_status">Мой &amp;статус</code>
-    <code id="menu_file_out">&amp;Отключиться</code>
-    <code id="menu_file_exit">&amp;Выход</code>
+    <code id="menu_status">&amp;Статус</code>
+    <code id="menu_status_received">Открыть &amp;папку принятых файлов</code>
+    <code id="menu_status_export">&amp;Экспорт списка контактов...</code>
+    <code id="menu_status_import">&amp;Импорт списка контактов...</code>
+    <code id="menu_status_change">Изменить сообщение о &amp;статусе...</code>
+    <code id="menu_status_ffc">Свободен для &amp;разговора</code>
+    <code id="menu_status_available">&amp;Доступен</code>
+    <code id="menu_status_busy">&amp;Занят</code>
+    <code id="menu_status_away">&amp;Отошёл</code>
+    <code id="menu_status_xaway">&amp;Отсутствую</code>
+    <code id="menu_status_invisible">&amp;Невидимый</code>
+    <code id="menu_status_offline">&amp;Отключен</code>
+    <code id="menu_status_status">Мой &amp;статус</code>
+    <code id="menu_status_out">&amp;Отключиться</code>
+    <code id="menu_status_exit">&amp;Выход</code>
 
     <code id="menu_axn">&amp;Действия</code>
-    <code id="menu_axn_add">&amp;Добавить контакт...</code>
+    <code id="menu_axn_add">Добавить &amp;контакт...</code>
     <code id="menu_axn_addgroup">Добавить &amp;группу...</code>
     <code id="menu_axn_bookmarks">&amp;Закладки</code>
     <code id="menu_axn_bookmarks_add">&amp;Добавить в закладки...</code>
+    <code id="menu_axn_bookmarks_manage">&amp;Редактировать закладки...</code>
     <code id="menu_axn_join">&amp;Войти в комнату...</code>
     <code id="menu_axn_create">&amp;Создать комнату...</code>
-    <code id="menu_axn_profile">&amp;Изменить профиль...</code>    
     <code id="menu_axn_password">Изменить &amp;пароль...</code>
+    <code id="menu_axn_profile">&amp;Изменить профиль...</code>    
     <code id="menu_axn_avatar">Изменить &amp;аватару...</code>
-    <code id="menu_axn_bookmarks_manage">&amp;Редактировать закладки...</code>
 
-    <code id="menu_tool">&amp;Сервис</code>
-    <code id="menu_tool_transport">&amp;Шлюзы</code>
+    <code id="menu_tool">&amp;Инструменты</code>
+    <code id="menu_tool_transport">&amp;Транспорты</code>
     <code id="menu_tool_head">&amp;Уведомления</code>
     <code id="menu_tool_plugin">&amp;Расширения</code>
-    <code id="menu_tool_admin">Настройка &amp;сервера</code>
     <code id="menu_tool_traffic">&amp;Сетевой трафик</code>
     <code id="menu_tool_view">&amp;Вид</code>
     <code id="menu_tool_detailed">&amp;Детальный</code>
@@ -134,10 +160,12 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <code id="menu_tool_aot">&amp;Поверх всех окон</code>
     <code id="menu_tool_settings">&amp;Настройки</code>
 
-    <code id="menu_help">&amp;?</code>
+    <code id="menu_help">С&amp;правка</code>
+    <code id="menu_help_welcome">Окно &amp;приветствия</code>
     <code id="menu_help_manual">&amp;Руководство в сети</code>
     <code id="menu_help_forum">&amp;Форум техподдержки</code>
     <code id="menu_help_contact">&amp;Как с нами связаться</code>
+    <code id="menu_help_update">Проверить об&amp;новления</code>
     <code id="menu_help_about">&amp;О программе</code>
 
     <code id="menu_tray_about">&amp;О программе ${0}</code>
@@ -151,7 +179,6 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <code id="wnd_avatar">Изменить аватару</code>
     <code id="wnd_room_browse">Комнаты конференций</code>
     <code id="wnd_room_create">Создание новой конференции</code>
-
     <code id="wnd_conference_invite">Пригласить собеседников</code>
     <code id="wnd_conference_other">Другие серверы конференций</code>
     <code id="wnd_console">Консоль</code>
@@ -161,37 +188,35 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <code id="wnd_file_send">Отправление файла для ${0}</code>
     <code id="wnd_file_recv">Получение файла от ${0}</code>
     <code id="wnd_group_message">Групповое сообщение</code>
-    <code id="wnd_transport_list">Шлюзы</code>
-    <code id="wnd_transport_other">Другие шлюзы</code>
+    <code id="wnd_transport_list">Транспорты</code>
+    <code id="wnd_transport_other">Другие транспорты</code>
     <code id="wnd_headlines">Просмотр уведомлений</code>
     <code id="wnd_history">${0} - История сообщений</code>
     <code id="wnd_plugin_list">Расширения</code>
     <code id="wnd_plugins">Расширения</code>
     <code id="wnd_password">Изменить пароль</code>
     <code id="wnd_settings">Настройки</code>
-    <code id="wnd_admin_server">Администрирование сервера</code>
     <code id="wnd_status">Сообщение о статусе</code>
     <code id="wnd_vcard_view">Информация о пользователе</code>
     <code id="wnd_group_create">Добавление группы</code>
     <code id="wnd_group_rename">Переименовать группу</code>
     <code id="wnd_contact_rename">Переименовать контакт</code>
     <code id="wnd_authrequest">Запросить авторизацию</code>
-    <code id="wnd_login">Подключение - ${0}</code>
     <code id="wnd_extension_download">Установка ${0}</code>
     <code id="wnd_background_list">Фон</code>
     <code id="wnd_background_download">Другой фон</code>
     <code id="wnd_bookmarks_add">Добавить в закладки</code>
     <code id="wnd_bookmarks_edit">Редактировать закладки</code>
     <code id="wnd_bookmarks_manage">Список ваших закладок</code>   
+    <code id="wnd_connection_settings">Connection Settings</code>
+    <code id="wnd_welcome">${0} приветствует вас!</code>
 
     <code id="msg_emoticon_install">Выбранный набор смайликов успешно установлен.</code>
     <code id="msg_received_files">Папка для принятых файлов была удалена.</code>
     <code id="msg_plugin_install">Желаете установить этот плагин?&#13;&#13;Название: ${0}&#13;Описание: ${1}</code>
     <code id="msg_plugin_exists">Этот плагин уже был установлен.</code>
-    <code id="msg_expired">Демонстрационый период этой программы истек.</code>
     <code id="msg_cl_adding">${0} желает добавить вас в свой список контактов.</code>
     <code id="msg_cl_added">${0} добавил(а) вас в свой список контактов.</code>
-    <code id="msg_cl_removed">${0} Удалил(а) вас из своего списка контактов.</code>
     <code id="msg_blocked">У него(неё) вы в черном списке.</code>
     <code id="msg_autherror">Не удается зарегистрироваться. Это может быть вызвано следующими причинами:&#13;&#13;- Вы ввели неверный пароль&#13;- Такой пользователь не существует на сервере&#13;&#13;Пожалуйста, попытайтесь снова.</code>
 
@@ -200,7 +225,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <code id="menu_room_create">Создать новую комнату</code>
     <code id="menu_room_invite">Пригласить в комнату</code>
     <code id="menu_rename">Переименовать</code>
-    <code id="menu_block">В черный список</code>
+    <code id="menu_block">Добавить в список игнорирования</code>
     <code id="menu_delete">Удалить</code>
     <code id="menu_group_create">Создать новую группу</code>
     <code id="menu_group_merge">Объединить с</code>
@@ -240,12 +265,44 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <code id="cl_ffc">Свободен для разговора</code>
     <code id="cl_available">Доступен</code>
     <code id="cl_busy">Занят</code>
-    <code id="cl_away">Вышел</code>
+    <code id="cl_away">Отошёл</code>
     <code id="cl_xaway">Отсутствую</code>
     <code id="cl_invisible">Невидимый</code>
+    <code id="cl_idle">Простаивает с</code>
     <code id="cl_tooltip_online">Адрес: ${0}&#13;Ресурс: ${1}</code>
+
+    <code id="time-now">сейчас</code>
+    <code id="time-second">1 секунду назад</code>
+    <code id="time-seconds">${0} секуд(ы) назад</code>
+    <code id="time-minute">1 минуту назад</code>
+    <code id="time-minutes">${0} минут(ы) назад</code>
+    <code id="time-hour">1 час назад</code>
+    <code id="time-hours">${0} часа(ов) назад</code>
+    <code id="time-day">1 день назад</code>
+    <code id="time-days">${0} дня(ей) назад</code>
+    <code id="time-week">1 неделю назад</code>
+    <code id="time-weeks">${0} недель(и) назад</code>
+    <code id="time-month">1 месяц назад</code>
+    <code id="time-months">${0} месяца(ев) назад</code>
+    <code id="time-year">1 год</code>
+    <code id="time-years">${0} года назад</code>
+
+    <code id="track-stable">Стабильная</code>
+    <code id="track-beta">Beta</code>
+    <code id="track-development">Development</code>
   </window>
-    <window name="auth_invitation">
+  <window name="about">
+    <item id="txt-copyright">
+      <innerHTML>Copyright &amp;copy; ${copyrightyear} ${copyrightholder}. Все права защищены. Это приложение опубликовано в соответствии с условиями &lt;a href="${licenseurl}"&gt;${licensename}&lt;/a&gt;. Дополнительные &lt;a href="${termsandcontitionsurl}"&gt;условия и соглашения&lt;/a&gt; могут быть включены дополнительно.</innerHTML>
+    </item>
+    <item id="txt-trademark">
+      <innerText>Название ${softwarename} и логотип являются торговыми марками ${trademarkholder}.&#13;Все права защищены.</innerText>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="auth_invitation">
     <item id="btn_view">
       <value>Посмотреть профиль</value>
     </item>
@@ -258,96 +315,9 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <item id="txt_from">
       <innerText>Получен запрос на авторизацию от:</innerText>
     </item>
-    <item id="txt_reason">
-      <innerText>Причина:</innerText>
+    <item id="txt_question">
+      <innerText>Вы хотите принять или отказать в авторизации этому человеку?</innerText>
     </item>
-    <item id="txt_add">
-      <innerText>Добавить этого пользователя в список контактов</innerText>
-    </item>
-  </window>
-  <window name="admin_users">
-    <item id="btn_refresh">
-      <value>Обновить</value>
-    </item>
-    <item id="btn_ok">
-      <value>OK</value>
-    </item>
-    <item id="txt_desc">
-      <innerText>Щелкните на аккаунте, чтобы отправить сообщение. Щелкните правой кнопкой, чтобы увидеть дополнительные опции.</innerText>
-    </item>
-    <code id="add_to_list">Добавить в список контактов</code>
-    <code id="tooltip_with">Адрес: ${0}&#13;Ресурс: ${1}&#13;Времени в сети: ${2}</code>
-    <code id="tooltip_without">Адрес: ${0}&#13;Времени в сети: ${1}</code>
-    <code id="loading">Загрузка...</code>
-    <code id="invalid_data">Получены неверные даные.</code>
-    <code id="server_error">Ошибка сервера:</code>
-    <code id="server_failed">Не удалось получить список пользователей в сети.&lt;BR&gt;Убедитесь, что вы имеете права для администрирования сервера.</code>
-    <code id="user">1 пользователь в сети</code>
-    <code id="users">${0} пользователя(ей) в сети</code>
-  </window>
-
-
- <window name="about">
-    <item id="btn_credits">
-      <value>Благодарности &gt;&gt;</value>
-    </item>
-    <item id="btn_copyright">
-      <value>Вернуться назад</value>
-    </item>
-    <item id="btn_ok">
-      <value>OK</value>
-    </item>
-    <item id="copy_darkproject">
-      <innerHTML>Права на иконки и смайлики принадлежат &amp;copy; 2001 Greg Fleming.</innerHTML>
-    </item>
-    <item id="copy_rsa">
-      <innerHTML>Используется алгоритм MD5. Права принадлежат RSA Data Security, Inc.</innerHTML>
-    </item>
-    <item id="copy_dns">
-      <innerHTML>Основано на BIND. Права принадлежат Internet Software Consortium, Inc.</innerHTML>
-    </item>
-    <item id="txt_copyright">
-      <innerHTML>Все права защищены &amp;copy;</innerHTML>
-    </item>
-    <code id="copy_basis">Основано на ${0}. Все права защищены &amp;copy; ${1} ${2}.</code>
-  </window>
-
-
-  <window name="admin">
-    <item id="btn_view">
-      <value>Показать всех пользователей в сети</value>
-    </item>
-    <item id="btn_close">
-      <value>Закрыть</value>
-    </item>
-    <item id="admin_btn_wall">
-      <value>Отправить</value>
-    </item>
-    <item id="admin_btn_motd">
-      <value>Отправить</value>
-    </item>
-    <item id="txt_wall_desc">
-      <innerText>Это объявление будет отправлено пользователям, которые сейчас в сети.</innerText>
-    </item>
-    <item id="txt_motd_desc">
-      <innerText>Это объявление будет отправлено пользователям, когда они подключатся.</innerText>
-    </item>
-    <item id="txt_wall">
-      <innerText>Широковещательное сообщение</innerText>
-    </item>
-    <item id="txt_motd">
-      <innerText>Ежедневное сообщение</innerText>
-    </item>
-    <item id="txt_view">
-      <innerText>Наблюдать за теми, кто подключен к серверу.</innerText>
-    </item>
-    <item id="txt_desc">
-      <innerText>Используйте эти инструменты для администрирования IM сервера.</innerText>
-    </item>
-    <item id="txt_users">
-      <innerText>Пользователи</innerText>
-    </item>
-    <code id="wnd_users">Пользователи в сети</code>
   </window>
   <window name="console">
     <item id="btn_clear">
@@ -360,7 +330,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <value>IQ</value>
     </item>
     <item id="btn_presence">
-      <value>Presence</value>
+      <value>Наличие</value>
     </item>
     <item id="btn_message">
       <value>Сообщение</value>
@@ -395,15 +365,13 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <innerText>Показывать уведомления, когда кто-либо подключается к сети.</innerText>
     </item>
     <code id="read_more">Далее...</code>
-    <code id="replay">Еще раз</code>
+    <code id="replay">Повтор</code>
   </window>
-
   <window name="headline-toaster">
     <item id="options">
       <innerText>Настроить...</innerText>
     </item>
   </window>
-    
   <window name="avatar">
     <item id="btn_cancel">
       <value>Отмена</value>
@@ -434,9 +402,6 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <window name="mode_select">
     <item id="txt_message">
       <innerText>Установите какое-либо сообщение о статусе:</innerText>
-    </item>
-    <item id="lbl_ask_status">
-      <innerText>Предлагать изменить данное сообщение при смене статуса.</innerText>
     </item>
     <code id="btn_ok">OK</code>
     <code id="btn_ok_empty">OK (оставить пустым)</code>
@@ -551,7 +516,43 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <code id="emoticon_confirm">Вы уверены, что хотите удалить этот набор смайликов?</code>
     <code id="no_emoticons">Смайликов не найдено.</code>
   </window>
-
+ <window name="background_download">
+    <item id="btn_close">
+      <value>Отмена</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Скачивание фоновых заставок</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Для просмотра каталога смайликов требуется подключение к интернету.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Загрузка...</innerText>
+    </item>
+    <code id="install">Установить</code>
+    <code id="cannot_download">Ошибка: не удается загрузить заставку.&#13;${0}</code>
+    <code id="invalid_xml">Источник содержит некорректные данные.</code>
+    <code id="no_new_styles">Новых заставок не обнаружено.</code>
+  </window>
+<window name="background_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Выбор фоновых заставок</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Добавление и удаление фоновых заставок.</innerText>
+    </item>
+    <item id="btn_background_download">
+      <value>Другой фон</value>
+    </item>
+    <item id="txt_background_empty">
+      <innerText>Фоновые заставки не установлены.</innerText>
+    </item>
+    <code id="background_uninstall">Удалить</code>
+    <code id="background_confirm">Вы уверены, что хотите удалить этот фон?</code>
+  </window>
   <window name="plugin_list">
     <item id="btn_ok">
       <value>OK</value>
@@ -584,28 +585,153 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <item id="txt_loading">
       <innerText>Загрузка...</innerText>
     </item>
-
     <code id="install">Установить</code>
     <code id="cannot_download">Ошибка: Не удается закачать расширение.&#13;${0}</code>
     <code id="invalid_xml">Источник содержит некорректные данные.</code>
     <code id="no_new_plugins">Новых расширений не обнаружено.</code>
-
   </window>
   <window name="autoupdate">
-  <item id="btn_cancel">
+    <item id="txt-unavailable">
+      <innerText>Обновления не доступны.</innerText>
+    </item>
+    <item id="txt-no-feed">
+      <innerText>Не удается обратиться к службе обновлений.&#13;Попробуйте ещё раз позже.</innerText>
+    </item>
+    <item id="txt-available-updates">
+      <innerText>Доступны обновления</innerText>
+    </item>
+    <item id="txt-tracks-info">
+      <innerText>Различные версии обеспечивают или стабильность в работе, или новые возможности.</innerText>
+    </item>
+    <item id="txt-latest">
+      <innerText>Последние текущие версии:</innerText>
+    </item>
+    <item id="txt-alternatives">
+      <innerText>Альтернативные версии:</innerText>
+    </item>
+    <item id="btn-close">
+      <value>Закрыть</value>
+    </item>
+
+    <item id="txt-new-version">
+      <innerText>Доступна новая версия.</innerText>
+    </item>
+    <item id="txt-whats-new">
+      <innerText>Что нового?</innerText>
+    </item>
+    <item id="txt-learn-more">
+      <innerText>Узнайте об изменениях в этом обновлении. Эта ссылка откроется в вашем веб-браузере.</innerText>
+    </item>
+    <item id="txt-continue">
+      <innerText>Вы можете продолжать использовать ${softwarename}, пока загружаются обновления.</innerText>
+    </item>
+    <item id="txt-restart">
+      <innerText>Обновление будет установлено когда ${softwarename} будет перезапущен. Вы можете продолжить использовать ${softwarename} без перезапуска. Вы хотите перезапустить и обновить приложение сейчас?</innerText>
+    </item>
+    <item id="txt-browser">
+      <innerText>Загрузка начнется в веб-браузере.</innerText>
+    </item>
+    <item id="btn-update">
+      <value>Обновить сейчас</value>
+    </item>
+    <item id="btn-download">
+      <value>Загрузить сейчас</value>
+    </item>
+    <item id="btn-later">
+      <value>Позже</value>
+    </item>
+    <code id="up-to-date">Новейшая</code>
+    <code id="previous-version">Предыдущая версия</code>
+    <code id="recommended">Рекомендуемая</code>
+    <code id="description-stable">Стабильная версия, была проверена в течение продолжительного времени.</code>
+    <code id="description-beta">Включает исправления ошибок и новые возможности, проходящие испытания.</code>
+    <code id="description-development">Ведется работа над новыми возможностями, но некоторые функции могут быть не рабочие.</code>
+    <code id="title">Обновление: ${0} ${1}</code>
+  </window>
+  <window name="welcome">
+    <item id="txt-hello">
+      <innerText>Здравствуйте и добро пожаловать в ${softwarename}</innerText>
+    </item>
+    <item id="txt-free-software">
+      <innerText>Данное приложение является бесплатным, с открытым исходным кодом. Вся разработка, перевод и поддержка осуществляется нашими замечательными членами сообщества.</innerText>
+    </item>
+    <item id="txt-more-information">
+      <innerHTML>Для получения дополнительной информации посетите @&lt;a href="http://twitter.com/${twittername}"&gt;${twittername}&lt;/a&gt; на Twitter или канал &lt;a href="http://www.facebook.com/${facebookpage}"&gt;Facebook.com/${facebookpage}&lt;/a&gt;</innerHTML>
+    </item>
+    <item id="txt-enjoy">
+      <innerText>Мы надеемся, вам понравится наше приложение.</innerText>
+    </item>
+    <item id="txt-team">
+      <innerText>Команда ${softwarename}</innerText>
+    </item>
+    <item id="settings-close">
+      <title>Подтвердите и закройте</title>
+    </item>
+    <item id="btn-add-contact">
+      <innerText>Добавить контакт</innerText>
+    </item>
+    <item id="btn-edit-profile">
+      <innerText>Изменить профиль</innerText>
+    </item>
+    <item id="btn-transports">
+      <innerText>Транспорты</innerText>
+    </item>
+    <item id="btn-settings">
+      <innerText>Настройки</innerText>
+    </item>
+    <item id="txt-confirm">
+      <innerText>Пожалуйста, подтвердите эти настройки:</innerText>
+    </item>
+    <item id="txt-default-xmpp">
+      <innerText>Использовать ${softwarename} как клиент XMPP по умолчанию</innerText>
+    </item>
+    <item id="txt-homepage">
+      <innerText>Установить домашнюю страницу ${browsersearchboxname}</innerText>
+    </item>
+    <item id="txt-search-engine">
+      <innerText>Добавить ${browsersearchboxname} к моим поисковым механизмам</innerText>
+    </item>
+    <item id="txt-feed-title">
+      <innerText>Поддержка и обратная связь</innerText>
+    </item>
+    <item id="txt-ask-question">
+      <innerText>Задать вопрос</innerText>
+    </item>
+    <item id="txt-powered-by">
+      <innerText>powered by GetSatisfaction</innerText>
+    </item>
+    <item id="txt-show-welcome">
+      <innerText>Показать этот экран приветствия при запуске</innerText>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+    </item>
+    <code id="search-topics">Поиск по всем темам...</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
       <value>Отмена</value>
     </item>
-    <item id="btn_install">
-      <value>Установить</value>
+    <item id="txt_instructions">
+      <innerText>Каждая конференция имеет свой собственный уникальный адрес. Чтобы его получить, введите адрес сервера и уникальное имя для новой конференции.</innerText>
     </item>
-    <item id="txt_status">
-      <innerText>Соединение...</innerText>
+    <item id="txt_service">
+      <innerText>Адрес сервера:</innerText>
     </item>
-    <code id="download_confirm">Появилась обновленная версия: ${0} ${1}&#13;&#13;Хотите загрузить это обновление?</code>
-    <code id="downloading">Загрузка...</code>
-    <code id="complete">Загрузка завершена. Нажмите "Установить" для продолжения.</code>
+    <item id="txt_example">
+      <innerText>Пример: conference.example.ru</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>Имя конференции:</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>Адрес конференции:</innerText>
+    </item>
+    <code id="incomplete">Необходимо заполнить все поля...</code>
   </window>
-
   <window name="groupmessage">
     <item id="btn_send">
       <value>Отправить</value>
@@ -631,6 +757,15 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <item id="txt_message">
       <innerText>Сообщение</innerText>
     </item>
+  </window>
+ <window name="extension_download">
+    <item id="btn_cancel">
+      <value>Отмена</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Соединение...</innerText>
+    </item>
+    <code id="downloading">Загрузка...</code>
   </window>
   <window name="file_recv">
     <item id="btn_close">
@@ -660,7 +795,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <item id="txt_progress">
       <innerText>Состояние:</innerText>
     </item>
-    <code id="resume">Файл уже существует. Хотите продолжить передачу?</code>
+    <code id="resume">Файл уже существует. Хотите продолжить передачу?&#13;&#13;Click yes to resume the file.&#13;Click no to overwrite the file.</code>
     <code id="cannot_overwrite">Не удается перезаписать файл:&#13;${0}&#13;&#13;${1}</code>
     <code id="incorrect">Не удается начать передачу.  Получены неверные данные.</code>
     <code id="title_saving">${0}% of ${1} Сохранено</code>
@@ -754,8 +889,8 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <innerText>Для того чтобы присоединиться к конференции, вы должны подключиться к серверу.</innerText>
     </item>
     <code id="bookmarks">Закладки</code>
-    <code id="menu_add">Добавить в закладки...</code>
     <code id="menu_join">Присоединиться</code>
+    <code id="menu_add">Добавить в закладки...</code>
     <code id="empty_filter">Ни одна конференция не соответствует фильтру</code>
     <code id="empty_no_rooms">Ни одной доступной конференции на сервере</code>
     <code id="status_connecting">Подключение...</code>
@@ -764,57 +899,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <code id="error_no_services">Сервер "${0}" не поддерживает конференции. Свяжитесь с его администратором для получения более подробной информации.</code>
     <code id="error_no_new">Новых конференций на сервере "${0}" не обнаружено.</code>
   </window>
-
- <window name="background_download">
-    <item id="btn_close">
-      <value>Отмена</value>
-    </item>
-    <item id="txt_title">
-      <innerText>Скачивание фоновых заставок</innerText>
-    </item>
-    <item id="txt_subtitle">
-      <innerText>Для просмотра каталога смайликов требуется подключение к интернету.</innerText>
-    </item>
-    <item id="txt_loading">
-      <innerText>Загрузка...</innerText>
-    </item>
-    <code id="install">Установить</code>
-    <code id="cannot_download">Ошибка: не удается загрузить заставку.&#13;${0}</code>
-    <code id="invalid_xml">Источник содержит некорректные данные.</code>
-    <code id="no_new_styles">Новых заставок не обнаружено.</code>
-  </window>
-
- <window name="extension_download">
-    <item id="btn_cancel">
-      <value>Отмена</value>
-    </item>
-    <item id="txt_status">
-      <innerText>Соединение...</innerText>
-    </item>
-    <code id="downloading">Загрузка...</code>
-  </window>
-
-<window name="background_list">
-    <item id="btn_ok">
-      <value>OK</value>
-    </item>
-    <item id="txt_title">
-      <innerText>Выбор фоновых заставок</innerText>
-    </item>
-    <item id="txt_subtitle">
-      <innerText>Добавление и удаление фоновых заставок.</innerText>
-    </item>
-    <item id="btn_background_download">
-      <value>Другой фон</value>
-    </item>
-    <item id="txt_background_empty">
-      <innerText>Фоновые заставки не установлены.</innerText>
-    </item>
-    <code id="background_uninstall">Удалить</code>
-    <code id="background_confirm">Вы уверены, что хотите удалить этот фон?</code>
-  </window>
-
- <window name="conference_other">
+  <window name="conference_other">
     <item id="btn_ok">
       <value>OK</value>
     </item>
@@ -830,36 +915,8 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <item id="txt_instructions">
       <innerText>Введите адрес сервера конференций.</innerText>
     </item>
-    <code id="error_already_exists">Конференция "${0}" уже есть в списке.</code>
+    <code id="error_already_exists">Конференция "${0}" уже есть в списке. Enter the address of a conferencing service or server that is not yet listed.</code>
   </window>
-
-
- <window name="conference_create">
-    <item id="btn_ok">
-      <value>OK</value>
-    </item>
-    <item id="btn_cancel">
-      <value>Отмена</value>
-    </item>
-    <item id="txt_instructions">
-      <innerText>Каждая конференция имеет свой собственный уникальный адрес. Чтобы его получить, введите адрес сервера и уникальное имя для новой конференции.</innerText>
-    </item>
-    <item id="txt_service">
-      <innerText>Адрес сервера:</innerText>
-    </item>
-    <item id="txt_example">
-      <innerText>Пример: conference.example.ru</innerText>
-    </item>
-    <item id="txt_room">
-      <innerText>Имя конференции:</innerText>
-    </item>
-    <item id="txt_preview">
-      <innerText>Адрес конференции:</innerText>
-    </item>
-    <code id="incomplete">Необходимо заполнить все поля...</code>
-  </window>
-
-
   <window name="vcard">
     <code id="save">Предупреждение: не удается сохранить vCard файл.&#13;&#13;${0}</code>
     <code id="personal">Данные о пользователе</code>
@@ -911,7 +968,6 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <innerText>Система</innerText>
     </item>
 
-
     <item id="txt_name">
       <innerText>Общие сведения</innerText>
     </item>
@@ -927,7 +983,6 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <item id="txt_nick">
       <innerText>Ник:</innerText>
     </item>
-
 
     <item id="txt_contact">
       <innerText>Контактная информация</innerText>
@@ -1053,7 +1108,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <innerText>Местное время:</innerText>
     </item>
     <item id="txt_software">
-      <innerText>Софт:</innerText>
+      <innerText>Программа:</innerText>
     </item>
     <item id="txt_version">
       <innerText>Версия:</innerText>
@@ -1064,22 +1119,22 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
   </window>
   <window name="transport_list">
     <item id="btn_other">
-      <value>Другие шлюзы...</value>
+      <value>Другие транспорты...</value>
     </item>
     <item id="btn_ok">
       <value>OK</value>
     </item>
     <item id="txt_title">
-      <innerText>Доступные шлюзы</innerText>
+      <innerText>Доступные транспорты</innerText>
     </item>
     <item id="txt_subtitle">
-      <innerText>Шлюзы предоставляют возможность подключения к другим сетям интернет-пейджеров.</innerText>
+      <innerText>Транспорты предоставляют возможность подключения к другим сетям мгновенных сообщений.</innerText>
     </item>
     <item id="transport_connected">
-      <innerHTML>&lt;B&gt;Внимание:&lt;/B&gt; Для настройки шлюза вы  должны быть подключены к Jabber-серверу.</innerHTML>
+      <innerHTML>&lt;B&gt;Внимание:&lt;/B&gt; Для настройки транспортов вы должны быть подключены к серверу.</innerHTML>
     </item>
     <item id="transport_unsupported">
-      <innerHTML>&lt;B&gt;Внимание:&lt;/B&gt; Сервер, к которому вы подключены, не имеет установленных шлюзов. Свяжитесь с его администратором для получения более полной информации.</innerHTML>
+      <innerHTML>&lt;B&gt;Внимание:&lt;/B&gt; Сервер, к которому вы подключены, не имеет доступных транспортов. Свяжитесь с его администратором для получения дополнительной информации.</innerHTML>
     </item>
     <item id="msnworkaroundlabel">
       <innerText>Позволить пользователям из сети MSN изменять свои ники</innerText>
@@ -1090,10 +1145,9 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <code id="status_connecting">Соединение...</code>
     <code id="name_unknown">Неизвестный сервис</code>
     <code id="error_unknown">Сервис "${0}" недоступен. Повторите попытку позже, либо выберите другой адрес.</code>
-    <code id="error_no_transports">Сервер "${0}" не предоставляет сервисов. За дополнительной информацией обратитесь к его администратору.</code>
-    <code id="error_no_new_transport">Все сервисы сервера "${0}" уже присутствуют в списке.</code>
+    <code id="error_no_transports">Сервер "${0}" не имеет доступных транспортов. За дополнительной информацией обратитесь к его администратору.</code>
+    <code id="error_no_new_transport">Все транспорт сервера "${0}" уже подключены.</code>
   </window>
-
   <window name="transport_other">
     <item id="btn_ok">
       <value>OK</value>
@@ -1108,12 +1162,10 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <innerText>Пример: sms.example.ru</innerText>
     </item>
     <item id="txt_instructions">
-      <innerText>Введите адрес шлюза.</innerText>
+      <innerText>Введите адрес транспорта или сервер.</innerText>
     </item>
-    <code id="error_already_exists">Шлюз "${0}" уже есть в списке.</code>
+    <code id="error_already_exists">Сервис "${0}" уже есть в списке. Введите другой адрес транспорта или сервера.</code>
   </window>
-
-
   <window name="transport_register">
     <item id="btn_back">
       <value>&lt; Назад</value>
@@ -1144,10 +1196,10 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <innerText>Ник:</innerText>
     </item>
     <item id="txt_registered">
-      <innerHTML>Вы уже зарегистрированы в этом шлюзе.&lt;BR&gt;Аккаунт, зарегистрированный вами ранее:</innerHTML>
+      <innerHTML>Вы уже зарегистрированы в этом сервисе.&lt;BR&gt;Аккаунт, зарегистрированный вами ранее:</innerHTML>
     </item>
     <item id="btn_remove">
-      <value>Оключить шлюз</value>
+      <value>Оключить транспорт</value>
     </item>
 
     <item id="txt_requesting1">
@@ -1170,59 +1222,59 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <code id="error_auth">&lt;B&gt;Ошибка авторизации:&lt;/B&gt;&lt;BR&gt;Неверный адрес или пароль.&lt;BR&gt;&lt;BR&gt;Не удается продолжить.</code>
     <code id="wait">&lt;B&gt;Соединение с сервером&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Это может занять несколько минут.&lt;BR&gt;Пожалуйста, подождите.&lt;BR&gt;</code>
 
-    <code id="default_window_title">Настройка шлюза</code>
-    <code id="default_begin_intro">Помощник предлагает вам настроить шлюз.&lt;BR&gt;Чтобы воспользоваться шлюзом, вам необходимо иметь аккаунт в другой сети.&lt;BR&gt;</code>
-    <code id="default_newaccount_instructions">Введите имя аккаунта и пароль к нему.&lt;BR&gt;Также вы можете ввести ник, который будут видеть ваши собеседники.&lt;BR&gt;</code>
+    <code id="default_window_title">Настройка транспорта</code>
+    <code id="default_begin_intro">Помощник настроит транспорт для сети.&lt;BR&gt;Транспорт обеспечивает связь между вами и другой сетью.&lt;BR&gt;Чтобы воспользоваться сервисом, вам необходимо иметь аккаунт в другой сети.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">Введите имя аккаунта и пароль к нему.&lt;BR&gt;Также вы можете ввести ник, который будет виден вашим собеседникам.&lt;BR&gt;</code>
     <code id="default_newaccount_examples">&amp;nbsp;</code>
-    <code id="default_creating_busy">Аккаунт зарегистрирован в шлюзе.</code>
-    <code id="default_removing_busy">Аккаунт удален из шлюза.&lt;BR&gt;</code>
-    <code id="default_creating_done">Аккаунт успешно зарегистрирован в шлюзе.</code>
-    <code id="default_removing_done">Аккаунт успешно удален из шлюза.</code>
+    <code id="default_creating_busy">Аккаунт регистрируется в транспорте.</code>
+    <code id="default_removing_busy">Аккаунт удаляется из транспорта.&lt;BR&gt;</code>
+    <code id="default_creating_done">Аккаунт успешно зарегистрирован в транспорте.</code>
+    <code id="default_removing_done">Аккаунт успешно удален из транспорта.</code>
 
-    <code id="msn_window_title">MSN Messenger - настройка шлюза</code>
-    <code id="msn_begin_intro">Помощник настроит шлюз в сеть MSN.&lt;BR&gt;Чтобы воспользоваться этим шлюзом, вам потребуется Microsoft Passport.&lt;BR&gt;</code>
-    <code id="msn_newaccount_instructions">Введите ваш адрес и пароль в сети MSN.</code>
+    <code id="msn_window_title">MSN Messenger - настройка транспорта</code>
+    <code id="msn_begin_intro">Помощник настроит транспорт в сеть MSN.&lt;BR&gt;Транспорт обеспечивает связь с вашим аккаунтом в сети MSN.&lt;BR&gt;Чтобы воспользоваться этим сервисом, вам потребуется Microsoft Passport.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">Введите ваш адрес и пароль в сети MSN.&lt;BR&gt;Также вы можете ввести ник, который будет виден вашим собеседникам.&lt;BR&gt;</code>
     <code id="msn_newaccount_examples">Например: someone@msn.com, someone@hotmail.com</code>
-    <code id="msn_creating_busy">Ваш аккаунт уже зарегистрирован в шлюзе сети MSN.</code>
-    <code id="msn_removing_busy">Ваш MSN аккаунт удален из шлюза.&lt;BR&gt;Тем не менее, вы можете продолжить использование вашего аккаунта в сети MSN с помощью других сервисов.&lt;BR&gt;</code>
-    <code id="msn_creating_done">Аккаунт был успешно зарегистрирован в шлюзе сети MSN.</code>
-    <code id="msn_removing_done">Аккаунт был успешно удален из шлюза сети MSN.</code>
+    <code id="msn_creating_busy">Ваш аккаунт регистрируется в транспорте сети MSN.</code>
+    <code id="msn_removing_busy">Ваш MSN аккаунт удаляется из транспорта.&lt;BR&gt;Вы можете использовать ваш аккаунт сети MSN в других сервисах и клиентах.&lt;BR&gt;</code>
+    <code id="msn_creating_done">Аккаунт был успешно зарегистрирован в транспорте сети MSN.</code>
+    <code id="msn_removing_done">Аккаунт был успешно удален из транспорта сети MSN.</code>
 
-    <code id="icq_window_title">ICQ - настройка шлюза</code>
-    <code id="icq_begin_intro">Помощник настроит шлюз в сеть ICQ.&lt;BR&gt;Чтобы воспользоваться этим шлюзом, вам потребуется аккаунт в сети ICQ.&lt;BR&gt;</code>
-    <code id="icq_newaccount_instructions">Введите ваш адрес ICQ и пароль для него.</code>
+    <code id="icq_window_title">ICQ - настройка транспорта</code>
+    <code id="icq_begin_intro">Помощник настроит транспорт в сеть ICQ.&lt;BR&gt;Транспорт обеспечивает связь с вашим аккаунтом в сети ICQ.&lt;BR&gt;Чтобы воспользоваться этим сервисом, вам потребуется аккаунт (номер) в сети ICQ.&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Введите ваш номер ICQ и пароль для него.&lt;BR&gt;Также вы можете ввести ник, который будет виден вашим собеседникам.&lt;BR&gt;</code>
     <code id="icq_newaccount_examples">Например: 39230793, 158525087</code>
-    <code id="icq_creating_busy">Ваш аккаунт уже зарегистрирован в шлюзе сети ICQ.</code>
-    <code id="icq_removing_busy">Ваш ICQ аккаунт удален из шлюза.&lt;BR&gt;Тем не менее, вы можете продолжить использование вашего аккаунта в сети ICQ с помощью других сервисов.&lt;BR&gt;</code>
-    <code id="icq_creating_done">Аккаунт был успешно зарегистрирован в шлюзе сети ICQ.</code>
-    <code id="icq_removing_done">Аккаунт был успешно удален из шлюза сети ICQ.</code>
+    <code id="icq_creating_busy">Ваш аккаунт регистрируется в транспорте сети ICQ.</code>
+    <code id="icq_removing_busy">Ваш ICQ аккаунт удаляется из транспорта.&lt;BR&gt;Вы можете использовать ваш аккаунт сети ICQ в других сервисах и клиентах.&lt;BR&gt;</code>
+    <code id="icq_creating_done">Аккаунт был успешно зарегистрирован в транспорте сети ICQ.</code>
+    <code id="icq_removing_done">Аккаунт был успешно удален из транспорта сети ICQ.</code>
 
-    <code id="yahoo_window_title">Yahoo! Messenger - настройка шлюза</code>
-    <code id="yahoo_begin_intro">Помощник настроит шлюз в сеть Yahoo!.&lt;BR&gt;Чтобы воспользоваться этим шлюзом, вам потребуется аккаунт в сети Yahoo!.&lt;BR&gt;</code>
+    <code id="yahoo_window_title">Yahoo! Messenger - настройка транспорта</code>
+    <code id="yahoo_begin_intro">Помощник настроит транспорт в сеть Yahoo!.&lt;BR&gt;Транспорт обеспечивает связь с вашим аккаунтом в сети Yahoo!.&lt;BR&gt;Чтобы воспользоваться этим сервисом, вам потребуется аккаунт в сети Yahoo!.&lt;BR&gt;</code>
     <code id="yahoo_newaccount_instructions">Введите ваш адрес Yahoo! и пароль для него.&lt;BR&gt;</code>
     <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
-    <code id="yahoo_creating_busy">Ваш аккаунт уже зарегистрирован в шлюзе сети Yahoo!.</code>
-    <code id="yahoo_removing_busy">Ваш Yahoo! аккаунт удален из шлюза.&lt;BR&gt;Тем не менее, вы можете продолжить использование вашего аккаунта в сети Yahoo! с помощью других сервисов.&lt;BR&gt;</code>
-    <code id="yahoo_creating_done">Аккаунт был успешно зарегистрирован в шлюзе сети Yahoo!.</code>
-    <code id="yahoo_removing_done">Аккаунт был успешно удален из шлюза сети Yahoo!.</code>
+    <code id="yahoo_creating_busy">Ваш аккаунт регистрируется в транспорте сети Yahoo!</code>
+    <code id="yahoo_removing_busy">Ваш Yahoo! аккаунт удаляется из транспорта.&lt;BR&gt;Вы можете использовать ваш аккаунт сети Yahoo! в других сервисах и клиентах.&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">Аккаунт был успешно зарегистрирован в транспорте сети Yahoo!.</code>
+    <code id="yahoo_removing_done">Аккаунт был успешно удален из транспорта сети Yahoo!.</code>
 
-    <code id="aim_window_title">AOL Instant Messenger - настройка шлюза</code>
-    <code id="aim_begin_intro">Помощник настроит шлюз в сеть AOL IM.&lt;BR&gt;Чтобы воспользоваться этим шлюзом, вам потребуется аккаунт в сети AOL IM.&lt;BR&gt;</code>
+    <code id="aim_window_title">AOL Instant Messenger - настройка транспорта</code>
+    <code id="aim_begin_intro">Помощник настроит транспорт в сеть AOL IM.&lt;BR&gt;Транспорт обеспечивает связь с вашим аккаунтом в сети AOL IM.&lt;BR&gt;Чтобы воспользоваться этим сервисом, вам потребуется аккаунт в сети AOL IM.&lt;BR&gt;</code>
     <code id="aim_newaccount_instructions">Введите ваш адрес AOL IM и пароль для него.&lt;BR&gt;</code>
     <code id="aim_newaccount_examples">&amp;nbsp;</code>
-    <code id="aim_creating_busy">Ваш аккаунт уже зарегистрирован в шлюзе сети AOL IM.</code>
-    <code id="aim_removing_busy">Ваш AOL IM аккаунт удален из шлюза.&lt;BR&gt;Тем не менее, вы можете продолжить использование вашего аккаунта в сети AOL IM с помощью других сервисов.&lt;BR&gt;</code>
-    <code id="aim_creating_done">Аккаунт был успешно зарегистрирован в шлюзе сети AOL IM.</code>
-    <code id="aim_removing_done">Аккаунт был успешно удален из шлюза сети AOL IM.</code>
+    <code id="aim_creating_busy">Ваш аккаунт регистрируется в транспорте сети AOL IM.</code>
+    <code id="aim_removing_busy">Ваш AOL IM аккаунт удаляется из транспорта.&lt;BR&gt;Вы можете использовать ваш аккаунт сети AOL IM в других сервисах и клиентах.&lt;BR&gt;</code>
+    <code id="aim_creating_done">Аккаунт был успешно зарегистрирован в транспорте сети AOL IM.</code>
+    <code id="aim_removing_done">Аккаунт был успешно удален из транспорта сети AOL IM.</code>
     
-    <code id="gadu_window_title">Gadu-Gadu - настройка шлюза</code>
-    <code id="gadu_begin_intro">Помощник настроит шлюз в сеть Gadu-Gadu.&lt;BR&gt;Чтобы воспользоваться этим шлюзом, вам потребуется аккаунт в сети Gadu-Gadu.</code>
-    <code id="gadu_newaccount_instructions">Введите ваш адрес Gadu-Gadu и пароль для него.</code>
+    <code id="gadu_window_title">Gadu-Gadu - настройка транспорта</code>
+    <code id="gadu_begin_intro">Помощник настроит транспорт в сеть Gadu-Gadu.&lt;BR&gt;Транспорт обеспечивает связь с вашим аккаунтом в сети Gadu-Gadu.&lt;BR&gt;Чтобы воспользоваться этим сервисом, вам потребуется аккаунт в сети Gadu-Gadu.</code>
+    <code id="gadu_newaccount_instructions">Введите ваш адрес Gadu-Gadu и пароль для него.&lt;BR&gt;Также вы можете ввести ник, который будет виден вашим собеседникам.&lt;BR&gt;</code>
     <code id="gadu_newaccount_examples">&amp;nbsp;</code>
-    <code id="gadu_creating_busy">Ваш аккаунт уже зарегистрирован в шлюзе сети Gadu-Gadu.</code>
-    <code id="gadu_removing_busy">Ваш Gadu-Gadu аккаунт удален из шлюза.&lt;BR&gt;Тем не менее, вы можете продолжить использование вашего аккаунта в сети Gadu-Gadu с помощью других сервисов.</code>
-    <code id="gadu_creating_done">Аккаунт был успешно зарегистрирован в шлюзе сети Gadu-Gadu.</code>
-    <code id="gadu_removing_done">Аккаунт был успешно удален из шлюза сети Gadu-Gadu.</code>
+    <code id="gadu_creating_busy">Ваш аккаунт регистрируется в транспорте сети Gadu-Gadu.</code>
+    <code id="gadu_removing_busy">Ваш Gadu-Gadu аккаунт удаляется из транспорта.&lt;BR&gt;Вы можете использовать ваш аккаунт сети Gadu-Gadu в других сервисах и клиентах.</code>
+    <code id="gadu_creating_done">Аккаунт был успешно зарегистрирован в транспорте сети Gadu-Gadu.</code>
+    <code id="gadu_removing_done">Аккаунт был успешно удален из транспорта сети Gadu-Gadu.</code>
   </window>
   <window name="history">
     <item id="btn_go">
@@ -1276,6 +1328,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <title>Выберите другой фоновый рисунок</title>
       <accessKey>b</accessKey>
     </item>
+
     <item id="txt-emoticons">
       <innerText>Смайлики</innerText>
     </item>
@@ -1307,22 +1360,22 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <code id="unknown">${0} может не отвечать потому, что его или её статус неизвестен</code>
     <code id="lastonline">Последний раз на связи: ${0}</code>
     <code id="windowtitle">${0} - Разговор</code>
+    <code id="background_no">Не использовать фон</code>
+    <code id="background_list">Другие фоновые заставки...</code>
     <code id="close_many_tabs">Вы действительно хотите закрыть все диалоги?</code>
     <code id="close_recent_message">Получено сообщение.&#13;&#13;Вы уверены, что хотите закрыть этот диалог?</code>
 	<code id="palette_compact">Уменьшить количество смайликов</code>
 	<code id="palette_expand">Показать все смайлики этой категории</code>
 	<code id="palette_browse">Выбрать другую категорию...</code>
-	
-    <code id="background_no">Не использовать фон</code>
-    <code id="background_list">Другие фоновые заставки...</code>
 
+    <code id="menu_file">&amp;Файл</code>
     <code id="menu_file_received">&amp;Открыть папку принятых файлов</code>
-    <code id="menu_file_history">История &amp;сообщений</code>
+    <code id="menu_file_history">&amp;История сообщений</code>
     <code id="menu_file_close">&amp;Закрыть разговор</code>
 
     <code id="menu_axn_contact">&amp;Контакт</code>
     <code id="menu_axn_add">Добавить в список контактов</code>
-    <code id="menu_axn_block">&amp;В черный список</code>
+    <code id="menu_axn_block">Добавить в список &amp;игнорирования</code>
     <code id="menu_axn_rename">&amp;Переименовать</code>
     <code id="menu_axn_panel">Показать &amp;панель действий</code>
     <code id="menu_axn_profile">Показать &amp;профиль</code>
@@ -1337,8 +1390,6 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <code id="menu_tool_emoticons">&amp;Отображать смайлики</code>
     <code id="menu_tool_settings">&amp;Настройки</code>
   </window>
-
-
   <window name="conference-bookmarks-add">
     <item id="txt_address">
       <innerText>Адрес конференции:</innerText>
@@ -1378,10 +1429,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     </item>
     <code id="confirm_delete">Вы уверены, что хотите удалить эту закладку?</code>
   </window>
-
-
-
- <window name="conference-configuration">
+  <window name="conference-configuration">
     <item id="btn_cancel">
       <value>Отмена</value>
     </item>
@@ -1418,7 +1466,6 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <code id="muc#roomconfig_roomsecret">Пароль для входа в конференцию</code>
     <code id="muc#roomconfig_whois">При подключении к конференции показывать реальные адреса участников</code>
   </window>
-
   <window name="conference-password">
     <item id="txt_password">
       <innerText>Пароль:</innerText>
@@ -1435,7 +1482,6 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <value>OK</value>
     </item>
   </window>
-
   <window name="conference-subject">
     <item id="txt_subject">
       <innerText>Новая тема:</innerText>
@@ -1458,8 +1504,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <innerText>К сожалению, никого из вашего списка контактов нет в сети.</innerText>
     </item>
   </window>
-  
-    <window name="conference-accesslevel">
+  <window name="conference-accesslevel">
     <item id="txt-name">
       <innerText>Имя:</innerText>
     </item>
@@ -1528,7 +1573,6 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <accessKey>c</accessKey>
     </item>
   </window>
-
   <window name="conference-container">
     <item id="btn-emoticons">
       <title>Уведомлять собеседника, когда вы набираете сообщение</title>
@@ -1552,7 +1596,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <item id="txt-background">
       <innerText>Фон</innerText>
     </item>
-    
+
     <item id="resize-grip">
       <title>Изменить размер поля ввода сообщения</title>
     </item>
@@ -1591,6 +1635,12 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
 
     <code id="tt-messages">Сообщение было отправлено и получено</code>
     <code id="tt-close">Покинуть данную конференцию</code>
+    <code id="default_subject">Конференция пока не имеет темы.</code>
+    <code id="windowtitle">${0} - Конференция</code>
+    <code id="destroy">Удаление конференции повлечет за собой удаление из нее всех участников и последующее ее удаление с сервера.&#13;&#13;Вы уверены, что хотите удалить данную конференцию?</code>
+    <code id="connecting">Соединение...</code>
+    <code id="connected">Подключен</code>
+    <code id="disconnected">Отключен</code>
     <code id="confirm-kick">Вы уверены, что хотите выкинуть "${0}" из конференции?</code>
     <code id="kick-error">Невозможно выкинуть участника: ${0}</code>
     <code id="kicked">${0} был выкинут из конференции</code>
@@ -1602,24 +1652,27 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <code id="leaving">${0} покинул конференцию</code>
     <code id="joining">${0} подключился к конференции</code>
     <code id="renaming">${0} теперь под именем ${1}</code>
-    
+
+    <code id="menu_file">&amp;Файл</code>
+    <code id="menu_file_close">&amp;Закрыть конференцию</code>
+
     <code id="menu_axn_invite">&amp;Пригласить собеседников</code>
-    <code id="menu_axn_subject">&amp;Изменить тему конференции</code>
-    <code id="menu_axn_configuration">&amp;Изменить настройки конференции</code>
+    <code id="menu_axn_change_name">Изменить мое &amp;имя...</code>
+    <code id="menu_axn_password">Подключиться с &amp;паролем...</code>
+    <code id="menu_axn_subject">Изменить &amp;тему конференции</code>
+    <code id="menu_axn_configuration">Изменить &amp;настройки конференции</code>
     <code id="menu_axn_destroy">&amp;Удалить данную конференцию</code>
+
     <code id="menu_bookmarks">&amp;Закладки</code>
+
     <code id="menu_bmrk_add">&amp;Добавить в закладки...</code>
-    
+
     <code id="menu_occupant_private">Личное &amp;сообщение</code>
     <code id="menu_occupant_kick">&amp;Выкинуть</code>
     <code id="menu_occupant_ban">&amp;Забанить</code>
     <code id="menu_occupant_access">&amp;Уровень доступа...</code>
     <code id="menu_occupant_add">&amp;Добавить в список контактов</code>
     <code id="menu_occupant_profile">&amp;Профиль</code>
-    
-    <code id="connecting">Соединение...</code>
-    <code id="connected">Подключен</code>
-    <code id="disconnected">Отключен</code>
 
     <code id="unrecognized-error">Неизвестная ошибка</code>
     <code id="error-service-unavailable">Сервис недоступен</code>
@@ -1629,40 +1682,16 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <code id="error-forbidden">Доступ запрещен: вы забанены</code>
     <code id="error-not-authorized">Доступ запрещен: необходима авторизация</code>
     <code id="error-item-not-found">Ошибка: конференция закрыта</code>
-    
-    <code id="default_subject">Конференция пока не имеет темы.</code>
-    <code id="windowtitle">${0} - Конференция</code>
-    <code id="destroy">Удаление конференции повлечет за собой удаление из нее всех участников и последующее ее удаление с сервера.&#13;&#13;Вы уверены, что хотите удалить данную конференцию?</code>
-
-    <code id="menu_file_close">&amp;Закрыть конференцию</code>
-
-    <code id="menu_axn_change_name">Изменить мое &amp;имя...</code>
-    <code id="menu_axn_password">Подключиться с &amp;паролем...</code>
   </window>
   <window name="preferences">
-    <item id="txt_autoaway">
-      <innerText>Если вы не используете компьютер несколько минут, ваш статус автоматически изменяется на "Вышел".</innerText>
-    </item>
-    <item id="txt_displayawaymsg_left">
-      <innerText>Показать это сообщение после</innerText>
-    </item>
-    <item id="txt_displayxawaymsg_left">
-      <innerText>Показать это сообщение после</innerText>
-    </item>
-    <item id="txt_displayawaymsg_right">
-      <innerText>минут(ы):</innerText>
-    </item>
-    <item id="txt_displayxawaymsg_right">
-      <innerText>минут(ы):</innerText>
-    </item>
     <item id="txt_blocking">
-      <innerText>Черный список содержит адреса людей, от которых вы не хотите получать сообщения.</innerText>
+      <innerText>Список игнорируемых содержит адреса людей, от которых вы не хотите получать сообщения.</innerText>
     </item>
     <item id="txt_msgnotinlist">
-      <innerText>Да, я хочу принимать сообщения от людей, отсутствующих в моем списке контактов.</innerText>
+      <innerText>Показывать сообщения от людей вне списка контактов.</innerText>
     </item>
     <item id="txt_blockinglist">
-      <innerText>Черный список</innerText>
+      <innerText>Список игнорируемых</innerText>
     </item>
     <item id="block_btn_remove">
       <value>Снять блокировку</value>
@@ -1670,41 +1699,20 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <item id="block_btn_view">
       <value>Посмотреть профиль</value>
     </item>
-    <item id="txt_ssl">
-      <innerText>Использовать защищенное соединение (SSL)</innerText>
+    <item id="txt_connection_settings">
+      <innerText>Настройки соединения</innerText>
     </item>
-    <item id="txt_firewall_proxy">
-      <innerText>Firewall и proxy-сервер</innerText>
+    <item id="txt_connection_desc">
+      <innerText>Изменить способ подключения к серверу мгновенными сообщениями.</innerText>
     </item>
-    <item id="txt_proxy1">
-      <innerText>Нет</innerText>
-    </item>
-    <item id="txt_proxy2">
-      <innerText>HTTP</innerText>
-    </item>
-    <item id="txt_proxy3">
-      <innerText>SOCKS4</innerText>
-    </item>
-    <item id="txt_proxy4">
-      <innerText>SOCKS5</innerText>
-    </item>
-    <item id="txt_proxyserver">
-      <innerText>Сервер:</innerText>
-    </item>
-    <item id="txt_proxyport">
-      <innerText>Порт:</innerText>
-    </item>
-    <item id="txt_proxyuser">
-      <innerText>Пользователь:</innerText>
-    </item>
-    <item id="txt_proxypass">
-      <innerText>Пароль:</innerText>
+    <item id="btn_connection_settings">
+      <value>Настроить соединение</value>
     </item>
     <item id="txt_portmap">
       <innerText>Трансляция портов при пересылке файлов (NAT, firewall)</innerText>
     </item>
     <item id="txt_filetransferhost">
-      <innerText>Машина:</innerText>
+      <innerText>Сервер:</innerText>
     </item>
     <item id="txt_filetransferport">
       <innerText>Порт:</innerText>
@@ -1714,6 +1722,9 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     </item>
     <item id="txt_startup">
       <innerText>Запускать автоматически при загрузке</innerText>
+    </item>
+    <item id="txt_updates">
+      <innerText>Автоматически проверять наличие обновлений программного обеспечения</innerText>
     </item>
     <item id="txt_auth_request">
       <innerText>Когда кто-то запрашивает мою авторизацию</innerText>
@@ -1754,11 +1765,8 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <item id="btn_cancel">
       <value>Отмена</value>
     </item>
-    <item id="lbl_autoaway">
-      <innerText>Смена статуса</innerText>
-    </item>
     <item id="lbl_blocking">
-      <innerText>Черный список</innerText>
+      <innerText>Игнорирование</innerText>
     </item>
     <item id="lbl_connection">
       <innerText>Соединение</innerText>
@@ -1769,8 +1777,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <item id="lbl_sound">
       <innerText>Мелодии</innerText>
     </item>
-    <code id="autoaway">Сообщения об отсутствии</code>
-    <code id="blocking">Черный список</code>
+    <code id="blocking">Список игнорируемых</code>
     <code id="connection">Настройки соединения</code>
     <code id="privacy">Безопасность</code>
     <code id="sound">Мелодии, уведомления</code>
@@ -1817,24 +1824,24 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <accessKey>u</accessKey>
     </item>
     <item id="txt_p1_help">
-      <innerText>Чтобы связаться с кем-либо в другой сети интернет-пейджеров, вы должны быть зарегистрированы в шлюзе этой сети.</innerText>
+      <innerText>Чтобы связаться с кем-либо в другой сети мгновенных сообщений, вы должны быть зарегистрированы в сервисе этой сети.</innerText>
     </item>
     <item id="txt_p1_configure">
-      <innerText>Для этого надо сконфигурировать шлюз.</innerText>
+      <innerText>Для этого надо настроить транспорт.</innerText>
     </item>
     <item id="btn_p1_next">
       <value>Далее &gt;</value>
       <accessKey>n</accessKey>
     </item>
-    <item id="btn_p1_cancel">
-      <value>Отмена</value>
+    <item id="btn_p1_close">
+      <value>Закрыть</value>
     </item>
 
     <item id="txt_p1b_title">
       <innerText>Обработка имени пользователя</innerText>
     </item>
     <item id="txt_p1b_tagline">
-      <innerText>Шлюз производит проверку имени пользователя.</innerText>
+      <innerText>Транспорт производит проверку имени пользователя.</innerText>
     </item>
     <item id="page1b_btn_back">
       <value>&lt; Назад</value>
@@ -1842,8 +1849,8 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <item id="page1b_btn_next">
       <value>Далее &gt;</value>
     </item>
-    <item id="page1b_btn_cancel">
-      <value>Отмена</value>
+    <item id="page1b_btn_close">
+      <value>Закрыть</value>
     </item>
 
     <item id="txt_p1c_title">
@@ -1858,44 +1865,8 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <item id="page1c_btn_next">
       <value>Далее &gt;</value>
     </item>
-    <item id="page1c_btn_cancel">
-      <value>Отмена</value>
-    </item>
-
-    <item id="txt_p2_title">
-      <innerText>Запрос на авторизацию</innerText>
-    </item>
-    <item id="txt_p2_tagline">
-      <innerText>Отправив данное сообщение, вы укажете своему потенциальному собеседнику, что хотите получить от него авторизацию.</innerText>
-    </item>
-    <item id="page2_btn_back">
-      <value>&lt; Назад</value>
-      <accessKey>b</accessKey>
-    </item>
-    <item id="page2_btn_finish">
-      <value>Завершить</value>
-      <accessKey>f</accessKey>
-    </item>
-    <item id="page2_btn_cancel">
-      <value>Отмена</value>
-    </item>
-    <item id="txt_p2_desc">
-      <innerText>Запрос на авторизацию будет отправлен для:</innerText>
-    </item>
-    <item id="txt_p2_user">
-      <innerText>Имя пользователя:</innerText>
-    </item>
-    <item id="txt_p2_network">
-      <innerText>Сеть:</innerText>
-    </item>
-    <item id="txt_p2_message">
-      <innerHTML>Введите сообщение (необязательно):</innerHTML>
-    </item>
-    <item id="page2_message">
-      <innerText>Я хотел бы добавить вас в свой список контактов.</innerText>
-    </item>
-    <item id="txt_p2_close">
-      <innerHTML>Чтобы отправить запрос и закрыть окно помощника нажмите &lt;B&gt;Завершить&lt;/B&gt;.</innerHTML>
+    <item id="page1c_btn_close">
+      <value>Закрыть</value>
     </item>
 
     <item id="page3_btn_back">
@@ -1906,8 +1877,8 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <value>Поиск</value>
       <accessKey>s</accessKey>
     </item>
-    <item id="page3_btn_cancel">
-      <value>Отмена</value>
+    <item id="page3_btn_close">
+      <value>Закрыть</value>
     </item>
 
     <item id="txt_p4_title">
@@ -1923,14 +1894,75 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <item id="page4_btn_next">
       <value>Далее &gt;</value>
     </item>
-    <item id="page4_btn_cancel">
-      <value>Отмена</value>
+    <item id="page4_btn_close">
+      <value>Закрыть</value>
     </item>
+
+    <item id="txt_p5_title">
+      <innerText>Добавление контакта</innerText>
+    </item>
+    <item id="txt_p5_tagline">
+      <innerText>Список контактов сохранен на сервере.</innerText>
+    </item>
+    <item id="txt_p5_desc">
+      <innerText>Запрос на авторизацию отправлен для:</innerText>
+    </item>
+    <item id="txt_p5_user">
+      <innerText>Имя пользователя:</innerText>
+    </item>
+    <item id="txt_p5_network">
+      <innerText>Сеть:</innerText>
+    </item>
+    <item id="page5_btn_back">
+      <value>&lt; Назад</value>
+    </item>
+    <item id="page5_btn_next">
+      <value>Далее &gt;</value>
+    </item>
+    <item id="page5_btn_close">
+      <value>Закрыть</value>
+    </item>
+
+    <item id="txt_p6_title">
+      <innerText>Завершение работы поиска или добавления контакта</innerText>
+    </item>
+    <item id="txt_p6_tagline">
+      <innerText>Вы успешно завершили поиск или добавления контакта.</innerText>
+    </item>
+    <item id="txt_p6_desc">
+      <innerText>Этот человек был успешно добавлен в ваш список контактов:</innerText>
+    </item>
+    <item id="txt_p6_user">
+      <innerText>Имя пользователя:</innerText>
+    </item>
+    <item id="txt_p6_network">
+      <innerText>Сеть:</innerText>
+    </item>
+    <item id="txt_p6_again">
+      <innerHTML>Что бы запустить помощника ещё раз, нажмите &lt;B&gt;Добавить другой контакт&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_again">
+      <value>Добавить другой контакт</value>
+    </item>
+    <item id="txt_p6_finish">
+      <innerHTML>Чтобы закрыть помощник, нажмите &lt;B&gt;Завершить&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_back">
+      <value>&lt; Назад</value>
+    </item>
+    <item id="page6_btn_finish">
+      <value>Завершить</value>
+    </item>
+    <item id="page6_btn_close">
+      <value>Закрыть</value>
+    </item>
+
     <code id="correct">Введите правильное имя пользователя.&#13;&#13;Пример: someone123@${0}</code>
-    <code id="example_address">Пример: someone123@${0}</code>
-    <code id="enter_username">Введите имя пользователя, с которым вы хотите связаться.</code>
-    <code id="contacting_transport">&lt;B&gt;Соединение со шлюзом&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Это может занять несколько минут.&lt;BR&gt;Пожалуйста, подождите.&lt;BR&gt;</code>
+    <code id="example_address">Пример: username@${0}</code>
+    <code id="contacting_adding">&lt;B&gt;Соединение с сервером&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Это может занять несколько минут.&lt;BR&gt;Пожалуйста, подождите.&lt;BR&gt;</code>
+    <code id="contacting_transport">&lt;B&gt;Соединение с транспортом&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Это может занять несколько минут.&lt;BR&gt;Пожалуйста, подождите.&lt;BR&gt;</code>
     <code id="contacting_search">&lt;B&gt;Соединение со службой поиска&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Это может занять несколько минут.&lt;BR&gt;Пожалуйста, подождите.&lt;BR&gt;</code>
+    <code id="error_adding">&lt;B&gt;Ошибка сервера:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Пользователь не может быть добавлен в ваш список контактов.&lt;BR&gt;Обратитесь к администратору для получения дополнительной информации.</code>
     <code id="error_transport">&lt;B&gt;Ошибка сервера:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Пользователь не может быть добавлен в ваш список контактов.&lt;BR&gt;Убедитесь что вы указали правильное имя пользователя.</code>
     <code id="error_search">&lt;B&gt;Ошибка сервера:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Форма поиска не может быть загружена.&lt;BR&gt;Попытайтесь позже или выберите другую службу.</code>
     <code id="error_invalid">Получены неверные данные.</code>
@@ -1946,40 +1978,61 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <code id="foundone">1 найден</code>
     <code id="foundmany">${0} найдено</code>
   </window>
-  <window name="login">
-    <code id="invalid">Указанный адрес неправильный. Исправьте ошибку и повторите попытку.&#13;&#13;Если у вас нет адреса, нажмите кнопку Регистрация и следуйте инструкциям.</code>
-		<item id="txt_instructions">
-      <innerText>Чтобы подключиться, введите ваш адрес и пароль.</innerText>
+  <window name="connection-settings">
+    <code id="logout">Вы должны выйти, чтобы применить изменения.&#13;&#13;Вы хотите выйти из системы сейчас?</code>
+    <code id="automatic">автоматически</code>
+    <item id="txt_connection">
+      <innerText>Подключение к серверу</innerText>
     </item>
-		<item id="txt_address">
-      <innerText>Адрес:</innerText>
+    <item id="lbl_server_address">
+      <innerHTML>Адрес:</innerHTML>
+      <accessKey>a</accessKey>
     </item>
-		<item id="txt_example">
-      <innerText>Пример: someone123@example.ru</innerText>
+    <item id="lbl_server_port">
+      <innerHTML>Порт:</innerHTML>
+      <accessKey>p</accessKey>
     </item>
-		<item id="txt_password">
-      <innerText>Пароль:</innerText>
+    <item id="txt_encryption">
+      <innerText>Безопасная связь</innerText>
     </item>
-		<item id="txt_remember">
-      <innerText>Запомнить мой пароль</innerText>
+    <item id="lbl_encryption_optional">
+      <innerHTML>Использовать TLS шифрование, если доступно на сервере</innerHTML>
+      <accessKey>u</accessKey>
     </item>
-     	        <item id="txt_autologin">
-      <innerText>Подключаться автоматически</innerText>
+    <item id="lbl_encryption_tls">
+      <innerHTML>Требовать TLS шифрование</innerHTML>
+      <accessKey>t</accessKey>
     </item>
-		<item id="btn_signup">
-      <value>Регистрация</value>
+    <item id="lbl_encryption_ssl">
+      <innerHTML>Требовать SSL шифрование</innerHTML>
+      <accessKey>s</accessKey>
     </item>
-		<item id="btn_login">
-      <value>Вход</value>
+    <item id="lbl_encryption_none">
+      <innerHTML>Не использовать шифрование</innerHTML>
+      <accessKey>n</accessKey>
     </item>
-		<item id="btn_close">
-      <value>Закрыть</value>
+    <item id="txt_authentication">
+      <innerText>Способ авторизации</innerText>
+    </item>
+    <item id="lbl_authentication_normal">
+      <innerHTML>Адрес и пароль</innerHTML>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="lbl_authentication_ntlm">
+      <innerHTML>Встроенная проверка подлинности Windows</innerHTML>
+      <accessKey>w</accessKey>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Отмена</value>
     </item>
   </window>
   <window name="sign_up">
-    <code id="close_confirm">Новый аккаунт не создан.&#13;&#13;Закрыть Помощника?</code>
+    <code id="close_confirm">Новый аккаунт не создан.&#13;&#13;Вы уверены, что хотите закрыть Помощника?</code>
     <code id="incomplete">Необходимо заполнить все поля ...</code>
-    <code id="pass_match">Пароли, которые вы ввели, не соответствуют друг другу.</code>
+    <code id="pass_match">Пароли, которые вы ввели, не соответствуют друг другу.&#13;&#13;Введите новый пароль в оба поля.</code>
 
     <code id="contacting">Соединение с сервером...</code>
     <code id="registered">Ваш аккаунт регистрируется. Это может занять несколько минут.&lt;BR&gt;Пожалуйста, подождите.&lt;BR&gt;</code>
@@ -1991,12 +2044,11 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <code id="address">Адрес:</code>
     <code id="nickname">Имя:</code>
     <code id="userdir">Каталог пользователя:</code>
-
-		<item id="txt_page_welcome_title">
+    <item id="txt_page_welcome_title">
       <innerText>Вас приветствует Помощник Регистрации</innerText>
     </item>
     <item id="txt_page_welcome_intro">
-      <innerText>Он поможет вам зарегистрировать адрес в сети Jabber.</innerText>
+      <innerText>Помощник поможет вам зарегистрировать адрес в сети Jabber.</innerText>
     </item>
     <item id="txt_page_welcome_next">
       <innerHTML>Чтобы продолжить, нажмите &lt;B&gt;Далее&lt;/B&gt;.</innerHTML>
@@ -2056,6 +2108,9 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <item id="txt_page_account_confirm">
       <innerHTML>Повторите пароль:</innerHTML>
     </item>
+    <item id="txt_page_account_email">
+      <innerHTML>E-Mail адрес:</innerHTML>
+    </item>
     <item id="data_server">
       <accessKey>s</accessKey>
     </item>
@@ -2068,6 +2123,9 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
     <item id="data_password_confirm">
       <accessKey>c</accessKey>
     </item>
+    <item id="data_email">
+      <accessKey>e</accessKey>
+    </item>
     <item id="txt_page_account_remember">
       <innerHTML>Запомнить мой пароль</innerHTML>
       <accessKey>r</accessKey>
@@ -2076,7 +2134,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <innerText>Ваш адрес:</innerText>
     </item>
     <item id="btn_page_account_settings">
-      <value>Настройки подключения</value>
+      <value>Настройки соединения</value>
       <accessKey>s</accessKey>
     </item>
     <item id="btn_page_account_back">
@@ -2109,7 +2167,7 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <accessKey>t</accessKey>
     </item>
     <item id="btn_page_creating_settings">
-      <value>Настройки подключения</value>
+      <value>Настройки соединения</value>
       <accessKey>s</accessKey>
     </item>
     <item id="btn_page_creating_back">
@@ -2121,52 +2179,6 @@ LangString un.TEXT_RemoveDirectory	${LANG_RUSSIAN}	"Примечание: $INSTD
       <accessKey>n</accessKey>
     </item>
     <item id="btn_page_creating_cancel">
-      <value>Отмена</value>
-      <accessKey>c</accessKey>
-    </item>
-
-    <item id="txt_conn_title">
-      <innerText>Настройка подключения</innerText>
-    </item>
-    <item id="txt_ssl">
-      <innerText>Использовать защищеное соединение (SSL)</innerText>
-    </item>
-    <item id="txt_conn_desc">
-      <innerText>Firewall и proxy-сервер</innerText>
-    </item>
-    <item id="txt_conn_none">
-      <innerText>Нет</innerText>
-    </item>
-    <item id="txt_conn_http">
-      <innerText>HTTP</innerText>
-    </item>
-    <item id="txt_conn_s4">
-      <innerText>SOCKS4</innerText>
-    </item>
-    <item id="txt_conn_s5">
-      <innerText>SOCKS5</innerText>
-    </item>
-    <item id="txt_conn_host">
-      <innerText>Сервер:</innerText>
-    </item>
-    <item id="txt_conn_port">
-      <innerText>Порт:</innerText>
-    </item>
-    <item id="txt_conn_user">
-      <innerText>Имя пользователя:</innerText>
-    </item>
-    <item id="txt_conn_pass">
-      <innerText>Пароль:</innerText>
-    </item>
-    <item id="btn_conn_default">
-      <value>По умолчанию</value>
-      <accessKey>d</accessKey>
-    </item>
-    <item id="btn_conn_ok">
-      <value>OK</value>
-      <accessKey>o</accessKey>
-    </item>
-    <item id="btn_conn_cancel">
       <value>Отмена</value>
       <accessKey>c</accessKey>
     </item>
