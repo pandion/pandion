@@ -288,8 +288,8 @@
     <code id="time-years">${0} года назад</code>
 
     <code id="track-stable">Стабильная</code>
-    <code id="track-beta">Beta</code>
-    <code id="track-development">Development</code>
+    <code id="track-beta">Бета</code>
+    <code id="track-development">Для разработчиков</code>
   </window>
   <window name="about">
     <item id="txt-copyright">
@@ -1799,29 +1799,29 @@
     </item>
     <item id="txt_page1_a">
       <innerHTML>Я желаю найти знакомых.</innerHTML>
-      <accessKey>s</accessKey>
+      <accessKey>н</accessKey>
     </item>
     <item id="txt_p1_service">
       <innerHTML>Через службу:</innerHTML>
     </item>
     <item id="page1_services">
-      <accessKey>r</accessKey>
+      <accessKey>с</accessKey>
     </item>
     <item id="txt_page1_b">
       <innerHTML>Я уже знаю адрес интернет-пейджера.</innerHTML>
-      <accessKey>a</accessKey>
+      <accessKey>а</accessKey>
     </item>
     <item id="txt_p1_network">
       <innerHTML>Сеть:</innerHTML>
     </item>
     <item id="page1_networks">
-      <accessKey>e</accessKey>
+      <accessKey>е</accessKey>
     </item>
     <item id="txt_p1_username">
       <innerHTML>Имя пользователя:</innerHTML>
     </item>
     <item id="page1_username">
-      <accessKey>u</accessKey>
+      <accessKey>и</accessKey>
     </item>
     <item id="txt_p1_help">
       <innerText>Чтобы связаться с кем-либо в другой сети мгновенных сообщений, вы должны быть зарегистрированы в сервисе этой сети.</innerText>
@@ -1831,7 +1831,7 @@
     </item>
     <item id="btn_p1_next">
       <value>Далее &gt;</value>
-      <accessKey>n</accessKey>
+      <accessKey>д</accessKey>
     </item>
     <item id="btn_p1_close">
       <value>Закрыть</value>
@@ -1871,11 +1871,11 @@
 
     <item id="page3_btn_back">
       <value>&lt; Назад</value>
-      <accessKey>b</accessKey>
+      <accessKey>н</accessKey>
     </item>
     <item id="page3_btn_search">
       <value>Поиск</value>
-      <accessKey>s</accessKey>
+      <accessKey>п</accessKey>
     </item>
     <item id="page3_btn_close">
       <value>Закрыть</value>
@@ -1889,7 +1889,7 @@
     </item>
     <item id="page4_btn_back">
       <value>&lt; Назад</value>
-      <accessKey>b</accessKey>
+      <accessKey>н</accessKey>
     </item>
     <item id="page4_btn_next">
       <value>Далее &gt;</value>
@@ -1986,18 +1986,18 @@
     </item>
     <item id="lbl_server_address">
       <innerHTML>Адрес:</innerHTML>
-      <accessKey>a</accessKey>
+      <accessKey>а</accessKey>
     </item>
     <item id="lbl_server_port">
       <innerHTML>Порт:</innerHTML>
-      <accessKey>p</accessKey>
+      <accessKey>п</accessKey>
     </item>
     <item id="txt_encryption">
       <innerText>Безопасная связь</innerText>
     </item>
     <item id="lbl_encryption_optional">
       <innerHTML>Использовать TLS шифрование, если доступно на сервере</innerHTML>
-      <accessKey>u</accessKey>
+      <accessKey>и</accessKey>
     </item>
     <item id="lbl_encryption_tls">
       <innerHTML>Требовать TLS шифрование</innerHTML>
@@ -2009,18 +2009,18 @@
     </item>
     <item id="lbl_encryption_none">
       <innerHTML>Не использовать шифрование</innerHTML>
-      <accessKey>n</accessKey>
+      <accessKey>н</accessKey>
     </item>
     <item id="txt_authentication">
       <innerText>Способ авторизации</innerText>
     </item>
     <item id="lbl_authentication_normal">
       <innerHTML>Адрес и пароль</innerHTML>
-      <accessKey>d</accessKey>
+      <accessKey>д</accessKey>
     </item>
     <item id="lbl_authentication_ntlm">
       <innerHTML>Встроенная проверка подлинности Windows</innerHTML>
-      <accessKey>w</accessKey>
+      <accessKey>в</accessKey>
     </item>
     <item id="btn_ok">
       <value>OK</value>
@@ -2055,11 +2055,11 @@
     </item>
     <item id="btn_page_welcome_next">
       <value>Далее &gt;</value>
-      <accessKey>n</accessKey>
+      <accessKey>д</accessKey>
     </item>
     <item id="btn_page_welcome_cancel">
       <value>Отмена</value>
-      <accessKey>c</accessKey>
+      <accessKey>о</accessKey>
     </item>
 
     <item id="txt_page_nickname_title">
@@ -2075,19 +2075,19 @@
       <innerHTML>Имя:</innerHTML>
     </item>
     <item id="data_name">
-      <accessKey>n</accessKey>
+      <accessKey>и</accessKey>
     </item>
     <item id="btn_page_nickname_back">
       <value>&lt; Назад</value>
-      <accessKey>b</accessKey>
+      <accessKey>н</accessKey>
     </item>
     <item id="btn_page_nickname_next">
       <value>Далее &gt;</value>
-      <accessKey>n</accessKey>
+      <accessKey>д</accessKey>
     </item>
     <item id="btn_page_nickname_cancel">
       <value>Отмена</value>
-      <accessKey>c</accessKey>
+      <accessKey>о</accessKey>
     </item>
 
     <item id="txt_page_account_title">
@@ -2112,42 +2112,42 @@
       <innerHTML>E-Mail адрес:</innerHTML>
     </item>
     <item id="data_server">
-      <accessKey>s</accessKey>
+      <accessKey>с</accessKey>
     </item>
     <item id="data_username">
-      <accessKey>u</accessKey>
+      <accessKey>и</accessKey>
     </item>
     <item id="data_password">
-      <accessKey>p</accessKey>
+      <accessKey>п</accessKey>
     </item>
     <item id="data_password_confirm">
-      <accessKey>c</accessKey>
+      <accessKey>в</accessKey>
     </item>
     <item id="data_email">
       <accessKey>e</accessKey>
     </item>
     <item id="txt_page_account_remember">
       <innerHTML>Запомнить мой пароль</innerHTML>
-      <accessKey>r</accessKey>
+      <accessKey>з</accessKey>
     </item>
     <item id="txt_page_account_preview">
       <innerText>Ваш адрес:</innerText>
     </item>
     <item id="btn_page_account_settings">
       <value>Настройки соединения</value>
-      <accessKey>s</accessKey>
+      <accessKey>о</accessKey>
     </item>
     <item id="btn_page_account_back">
       <value>&lt; Назад</value>
-      <accessKey>b</accessKey>
+      <accessKey>н</accessKey>
     </item>
     <item id="btn_page_account_next">
       <value>Далее &gt;</value>
-      <accessKey>n</accessKey>
+      <accessKey>д</accessKey>
     </item>
     <item id="btn_page_account_cancel">
       <value>Отмена</value>
-      <accessKey>c</accessKey>
+      <accessKey>о</accessKey>
     </item>
 
     <item id="txt_page_creating_title">
@@ -2168,19 +2168,19 @@
     </item>
     <item id="btn_page_creating_settings">
       <value>Настройки соединения</value>
-      <accessKey>s</accessKey>
+      <accessKey>о</accessKey>
     </item>
     <item id="btn_page_creating_back">
       <value>&lt; Назад</value>
-      <accessKey>b</accessKey>
+      <accessKey>н</accessKey>
     </item>
     <item id="btn_page_creating_next">
       <value>Далее &gt;</value>
-      <accessKey>n</accessKey>
+      <accessKey>д</accessKey>
     </item>
     <item id="btn_page_creating_cancel">
       <value>Отмена</value>
-      <accessKey>c</accessKey>
+      <accessKey>о</accessKey>
     </item>
 
     <item id="txt_page_finished_title">
@@ -2197,15 +2197,15 @@
     </item>
     <item id="btn_page_finished_back">
       <value>&lt; Назад</value>
-      <accessKey>b</accessKey>
+      <accessKey>н</accessKey>
     </item>
     <item id="btn_page_finished_finish">
       <value>Завершить</value>
-      <accessKey>f</accessKey>
+      <accessKey>з</accessKey>
     </item>
     <item id="btn_page_finished_cancel">
       <value>Отмена</value>
-      <accessKey>c</accessKey>
+      <accessKey>о</accessKey>
     </item>
   </window>
 </translation>
