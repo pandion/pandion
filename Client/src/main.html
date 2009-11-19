@@ -303,7 +303,7 @@
 			<FORM onsubmit="dial_login_connect(); return false;">
 				<LABEL for=signin-address id=txt-signin-address></LABEL>
 				<INPUT id=signin-address type=text />
-				<SELECT id=signin-recently-used tabindex="-1" onchange='document.getElementById("signin-address").focus(); document.getElementById("signin-address").value = document.getElementById("signin-recently-used").value;'></SELECT>
+				<SELECT id=signin-recently-used tabindex="-1" onchange="dial_login_changeAddressList()"></SELECT>
 				<DIV id=signin-examples>
 					<DT id=txt-signin-examples></DT>
 					<DD id=signin-example-user>bob@mycompany.com<BR />bender@gmail.com</DD>
