@@ -208,7 +208,7 @@
     <code id="wnd_bookmarks_add">Добавить в закладки</code>
     <code id="wnd_bookmarks_edit">Редактировать закладки</code>
     <code id="wnd_bookmarks_manage">Список ваших закладок</code>   
-    <code id="wnd_connection_settings">Connection Settings</code>
+    <code id="wnd_connection_settings">Настройки соединения</code>
     <code id="wnd_welcome">${0} приветствует вас!</code>
 
     <code id="msg_emoticon_install">Выбранный набор смайликов успешно установлен.</code>
@@ -251,7 +251,7 @@
     <code id="cl_room_invite">Пригласить в комнату конференций</code>
     <code id="cl_group_empty">Никого из этой группы нет в сети.</code>
     <code id="cl_status_empty">Нет сообщения о статусе</code>
-    <code id="cl_status_offline">Отключился(ась)</code>
+    <code id="cl_status_offline">Отключен(а)</code>
     <code id="cl_status_awaiting">Ожидаю авторизации</code>
     <code id="cl_status_unknown">Неизвестный статус</code>
     <code id="cl_status_waiting_one">1 непрочтенное сообщение</code>
@@ -595,16 +595,16 @@
       <innerText>Обновления не доступны.</innerText>
     </item>
     <item id="txt-no-feed">
-      <innerText>Не удается обратиться к службе обновлений.&#13;Попробуйте ещё раз позже.</innerText>
+      <innerText>Не удается обратиться к службе обновлений.&#13;Попробуйте позже ещё раз.</innerText>
     </item>
     <item id="txt-available-updates">
       <innerText>Доступны обновления</innerText>
     </item>
     <item id="txt-tracks-info">
-      <innerText>Различные версии обеспечивают или стабильность в работе, или новые возможности.</innerText>
+      <innerText>Разные версии предлагают стабильность в работе или новые возможности.</innerText>
     </item>
     <item id="txt-latest">
-      <innerText>Последние текущие версии:</innerText>
+      <innerText>Последние доступные версии:</innerText>
     </item>
     <item id="txt-alternatives">
       <innerText>Альтернативные версии:</innerText>
@@ -614,7 +614,7 @@
     </item>
 
     <item id="txt-new-version">
-      <innerText>Доступна новая версия.</innerText>
+      <innerText>Доступны новые версии.</innerText>
     </item>
     <item id="txt-whats-new">
       <innerText>Что нового?</innerText>
@@ -623,10 +623,10 @@
       <innerText>Узнайте об изменениях в этом обновлении. Эта ссылка откроется в вашем веб-браузере.</innerText>
     </item>
     <item id="txt-continue">
-      <innerText>Вы можете продолжать использовать ${softwarename}, пока загружаются обновления.</innerText>
+      <innerText>Вы можете продолжать использовать ${softwarename}, пока загружается обновление.</innerText>
     </item>
     <item id="txt-restart">
-      <innerText>Обновление будет установлено когда ${softwarename} будет перезапущен. Вы можете продолжить использовать ${softwarename} без перезапуска. Вы хотите перезапустить и обновить приложение сейчас?</innerText>
+      <innerText>Обновление будет установлено при следующем запуске ${softwarename}. Вы можете перезапустить ${softwarename} прямо сейчас, или продолжить работу и перазапустить позже.</innerText>
     </item>
     <item id="txt-browser">
       <innerText>Загрузка начнется в веб-браузере.</innerText>
@@ -640,7 +640,7 @@
     <item id="btn-later">
       <value>Позже</value>
     </item>
-    <code id="up-to-date">Новейшая</code>
+    <code id="up-to-date">Текущая версия</code>
     <code id="previous-version">Предыдущая версия</code>
     <code id="recommended">Рекомендуемая</code>
     <code id="description-stable">Стабильная версия, была проверена в течение продолжительного времени.</code>
@@ -795,7 +795,7 @@
     <item id="txt_progress">
       <innerText>Состояние:</innerText>
     </item>
-    <code id="resume">Файл уже существует. Хотите продолжить передачу?&#13;&#13;Click yes to resume the file.&#13;Click no to overwrite the file.</code>
+    <code id="resume">Файл уже существует. Хотите продолжить передачу?&#13;&#13;Нажмите да, чтобы продолжить передачу.&#13;Нажмите нет, чтобы перезаписать этот файл.</code>
     <code id="cannot_overwrite">Не удается перезаписать файл:&#13;${0}&#13;&#13;${1}</code>
     <code id="incorrect">Не удается начать передачу.  Получены неверные данные.</code>
     <code id="title_saving">${0}% of ${1} Сохранено</code>
@@ -915,7 +915,7 @@
     <item id="txt_instructions">
       <innerText>Введите адрес сервера конференций.</innerText>
     </item>
-    <code id="error_already_exists">Конференция "${0}" уже есть в списке. Enter the address of a conferencing service or server that is not yet listed.</code>
+    <code id="error_already_exists">Конференция "${0}" уже есть в списке. Введите адрес конференции или сервера, который отсутсвует в списке.</code>
   </window>
   <window name="vcard">
     <code id="save">Предупреждение: не удается сохранить vCard файл.&#13;&#13;${0}</code>
