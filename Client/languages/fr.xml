@@ -286,9 +286,8 @@ background: (image d') arrière-plan
     <code id="cl_away">Parti(e)</code>
     <code id="cl_xaway">Parti(e) depuis longtemps</code>
     <code id="cl_invisible">Invisible</code>
-	<code id="cl_idle">Innactif</code>
+	<code id="cl_idle">Inactif</code>
     <code id="cl_tooltip_online">Adresse: ${0}&#13;Ressource: ${1}</code>
-	
 	<code id="time-now">maintenant</code>
     <code id="time-second">depuis 1 seconde</code>
     <code id="time-seconds">depuis ${0} secondes</code>
