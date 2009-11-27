@@ -82,7 +82,7 @@ STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServerName, BSTR Challenge,
 
 	/* Decode the Challenge */
 	std::vector<BYTE> DecodedChallenge =
-		Base64::Base64Decode(std::wstring(Challenge));
+		Base64::Decode(CW2UTF8(Challenge));
 
 	/* Prepare input buffer */
 	SecBuffer InSecBuff = {DecodedChallenge.size(), SECBUFFER_TOKEN, &DecodedChallenge[0]};
@@ -124,7 +124,7 @@ STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServerName, BSTR Challenge,
 	m_fNewConversation = FALSE;
 
 	/* Encode the response in Base64 */
-	*Response = ::SysAllocString(Base64::Base64Encode(
+	*Response = ::SysAllocString(Base64::Encode(
 		(BYTE*)OutBuffDesc.pBuffers->pvBuffer,
 		OutBuffDesc.pBuffers->cbBuffer, false).c_str());
 

@@ -305,7 +305,7 @@ STDMETHODIMP CFile::ReadBase64(BSTR* strBase64)
 		if(SUCCEEDED(Read(fileSize, &fileBuffer[0])))
 		{
 			std::wstring base64String =
-				Base64::Base64Encode(&fileBuffer[0], fileBuffer.size());
+				Base64::Encode(&fileBuffer[0], fileBuffer.size());
 			*strBase64 = ::SysAllocString(base64String.c_str());
 			return S_OK;
 		}
@@ -327,7 +327,7 @@ STDMETHODIMP CFile::WriteBase64(BSTR strBase64)
 {
 	if(SUCCEEDED(GetWriteAccess()))
 	{
-		std::vector<BYTE> fileBuffer = Base64::Base64Decode(strBase64);
+		std::vector<BYTE> fileBuffer = Base64::Decode(CW2UTF8(strBase64));
 		Write(&fileBuffer[0], fileBuffer.size());
 
 		return S_OK;
