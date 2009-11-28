@@ -22,6 +22,7 @@
 #include "stdafx.h"
 #include "SSPI.h"
 #include "base64.h"
+#include "utf8.h"
 
 SSPI::SSPI()
 {
@@ -128,7 +129,7 @@ STDMETHODIMP SSPI::GenerateResponse(BSTR Challenge, BOOL *Continue, BSTR *Respon
 
 	/* Decode the Challenge */
 	std::vector<BYTE> DecodedChallenge =
-		Base64::Base64Decode(std::wstring(Challenge));
+		Base64::Decode(std::string(CW2UTF8(Challenge)));
 
 	/* prepare input buffer */
 	SecBuffer		InSecBuff;
@@ -270,7 +271,7 @@ STDMETHODIMP SSPI::GenerateResponse(BSTR Challenge, BOOL *Continue, BSTR *Respon
 
 	m_fNewConversation = FALSE;
 
-	std::wstring EncodedResponse = Base64::Base64Encode(
+	std::wstring EncodedResponse = Base64::Encode(
 		(BYTE*) OutBuffDesc.pBuffers->pvBuffer,
 		OutBuffDesc.pBuffers->cbBuffer);
 	*Response = ::SysAllocString(EncodedResponse.c_str());

@@ -50,6 +50,11 @@ public:
 		return(m_psz);
 	}
 
+	operator std::string() const throw()
+	{
+		return std::string(m_psz);
+	}
+
 private:
 	void Init(LPCWSTR psz) throw(...)
 	{
@@ -105,6 +110,11 @@ public:
 	operator LPWSTR() const throw()
 	{
 		return(m_psz);
+	}
+
+	operator std::wstring() const throw()
+	{
+		return std::wstring(m_psz);
 	}
 
 private:

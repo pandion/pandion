@@ -387,7 +387,7 @@ STDMETHODIMP External::UnZip(BSTR path, BSTR targetDir, int *nSuccess)
 }
 STDMETHODIMP External::Base64ToString(BSTR b64String, BSTR *UTF16String)
 {
-	std::vector<BYTE> decodedData = Base64::Base64Decode(b64String);
+	std::vector<BYTE> decodedData = Base64::Decode(CW2UTF8(b64String));
 	std::string decodedString(decodedData.begin(), decodedData.end());
 	*UTF16String = ::SysAllocString(CUTF82W(decodedString.c_str()));
 
@@ -397,7 +397,7 @@ STDMETHODIMP External::StringToBase64(BSTR UTF16String, BSTR *b64String)
 {
 	std::string UTF8String = CW2UTF8(UTF16String);
 	*b64String = ::SysAllocString(
-		Base64::Base64Encode(UTF8String.c_str(),
+		Base64::Encode(UTF8String.c_str(),
 		UTF8String.length(), false).c_str());
 	return S_OK;
 }

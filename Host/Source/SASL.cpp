@@ -39,7 +39,7 @@ STDMETHODIMP SASL::PlainGenerateResponse(BSTR jid, BSTR username,
 	std::stringstream stringBuffer;
 	stringBuffer <<	CW2UTF8(jid) << '\0' << CW2UTF8(username) << '\0' <<
 		CW2UTF8(password);
-	*strBase64 = ::SysAllocString(Base64::Base64Encode(stringBuffer.str().c_str(),
+	*strBase64 = ::SysAllocString(Base64::Encode(stringBuffer.str().c_str(),
 		stringBuffer.str().length(), false).c_str());
 	return S_OK;
 }
