@@ -160,16 +160,23 @@ function custom ()
 	/* Copy file to avatar directory.
 	 */
 	var file = external.File( path );
-	if ( file.Size > 16 * 1024 )
-		return external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'avatar', 'error_size' ), external.globals( 'softwarename' ), 0 | 48 );
-	else if ( file.Size < 1 )
-		return external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'avatar', 'error_empty' ), external.globals( 'softwarename' ), 0 | 48 );
-	var hash = file.SHA1.toLowerCase();
-	file.Copy( external.globals( 'usersdir' ) + 'Avatars\\' + hash, true );
-	file.Copy( external.globals( 'usersdir' ) + 'My Avatars\\' + hash, true );
-	if ( ! document.getElementById( hash ) )
-		document.getElementById( 'avatars' ).insertAdjacentHTML( 'beforeEnd', '<SPAN onmousedown="pick(this.id)" oncontextmenu="menu(this.id)" ondblclick="ok()" id="' + hash + '" style="margin: 9px; border: 2px solid highlight; width: 70px; height: 70px; background: url(' + external.globals( 'usersdir' ) + 'My Avatars\\' + hash + ') no-repeat center center;"></SPAN>' );
-	pick( hash );
+	if ( file.Size > 16 * 1024 ) {
+		file.Close();
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'avatar', 'error_size' ), external.globals( 'softwarename' ), 0 | 48 );
+		return;
+	} else if ( file.Size < 1 ) {
+		file.Close();
+		external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'avatar', 'error_empty' ), external.globals( 'softwarename' ), 0 | 48 );
+		return;
+	} else {
+		var hash = file.SHA1.toLowerCase();
+		file.Copy( external.globals( 'usersdir' ) + 'Avatars\\' + hash, true );
+		file.Copy( external.globals( 'usersdir' ) + 'My Avatars\\' + hash, true );
+		file.Close();
+		if ( ! document.getElementById( hash ) )
+			document.getElementById( 'avatars' ).insertAdjacentHTML( 'beforeEnd', '<SPAN onmousedown="pick(this.id)" oncontextmenu="menu(this.id)" ondblclick="ok()" id="' + hash + '" style="margin: 9px; border: 2px solid highlight; width: 70px; height: 70px; background: url(' + external.globals( 'usersdir' ) + 'My Avatars\\' + hash + ') no-repeat center center;"></SPAN>' );
+		pick( hash );
+	}
 }
 
 </SCRIPT>
