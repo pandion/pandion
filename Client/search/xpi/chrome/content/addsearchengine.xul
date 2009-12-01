@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<!--
+	This file is part of Pandion instant messenger
+	Copyright (c) 2009 Sebastiaan Deckers
+	License: GNU General Public License version 3 or later
+-->
+<!DOCTYPE overlay> 
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<script type="application/x-javascript">
+//<![CDATA[
+window.addEventListener("load", function (event) {
+
+	const EXTENSION_ID = "{536ad1d6-d9d9-41e5-8945-864506a1f2fc}";
+
+	/* Global browser services */
+	const Ci = Components.interfaces;
+	const Cc = Components.classes;
+	const gSS = Cc["@mozilla.org/browser/search-service;1"].getService(Ci.nsIBrowserSearchService);
+	const gObs = Cc["@mozilla.org/observer-service;1"].getService(Ci.nsIObserverService);
+	const prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService);
+
+	/* Add a search engine if it does not yet exist */
+	const addEngine = function (name, icon, osd, callback) {
+		if (!gSS.getEngineByName(name)) {
+			gObs.addObserver({observe: function (subject, topic, data) {
+				if (data == "engine-added") {
+					var engine = gSS.getEngineByName(name) || gSS.getEngineByName("Google Powered " + name);
+					if (engine) {
+						callback(engine);
+						gObs.removeObserver(this, "browser-search-engine-modified");
+					}
+				}
+			}}, "browser-search-engine-modified", false);
+			gSS.addEngine(osd, Ci.nsISearchEngine.DATA_XML, icon, false);
+		}
+	};
+
+	/* Store a preference by data type */
+	const setPref = function (key, val) {
+		switch (typeof val) {
+			case "string":
+				var pls = Cc["@mozilla.org/pref-localizedstring;1"].createInstance(Ci.nsIPrefLocalizedString);
+				pls.data = val;
+				prefs.setComplexValue(key, Ci.nsIPrefLocalizedString, pls);
+				break;
+			case "boolean":
+				prefs.setBoolPref(key, val);
+				break;
+			case "number":
+				prefs.setIntPref(key, val);
+				break;
+		}
+	};
+
+	/* Read a registry value by data type */
+	const readRegValue = function (wrk, value) {
+		try {
+			switch (wrk.getValueType(value)) {
+				case wrk.TYPE_STRING:
+					return wrk.readStringValue(value);
+				case wrk.TYPE_INT:
+					return wrk.readIntValue(value);
+				case wrk.TYPE_BINARY:
+					return wrk.readBinaryValue(value);
+				case wrk.TYPE_INT64:
+					return wrk.readInt64Value(value);
+				default:
+					return null;
+			}
+		} catch (error) {
+			return null;
+		}
+	};
+
+	/* Load values from a registry key */
+	const loadRegKey = function (key, values) {
+		var data = {};
+		var wrk = Cc["@mozilla.org/windows-registry-key;1"].createInstance(Ci.nsIWindowsRegKey);
+		[wrk.ROOT_KEY_CURRENT_USER/*, wrk.ROOT_KEY_LOCAL_MACHINE*/].forEach(function (hive) {
+			try {wrk.open(hive, key, wrk.ACCESS_READ)} catch (error) {return}
+			values.forEach(function (value) {
+				data[value] = (!data[value] && wrk.hasValue(value)) ? readRegValue(wrk, value) : null;
+			});
+			wrk.close();
+		});
+		return data;
+	};
+
+	/* Search engine meta data */
+	var search = loadRegKey("Software\\Mozilla\\Firefox\\Extensions\\" + EXTENSION_ID, [
+		/* Feature flags (int) */
+		"setSearchbox",
+		"setHomepage",
+		/* Browser meta data (string) */
+		"homepage",
+		"icon",
+		"keyword",
+		"name",
+		"osd",
+		"replace"
+	]);
+
+	/* Inject the new search engine and move it to the top */
+	if (search.setSearchbox == 1 && search.name && search.icon && search.osd)
+		addEngine(search.name, search.icon, search.osd, function (engine) {
+			gSS.moveEngine(engine, 0);
+			if (search.replace) {
+				var oldEngine = gSS.getEngineByName(search.replace);
+				if (oldEngine)
+					gSS.removeEngine(oldEngine);
+			}
+		});
+
+	var settings = {};
+	if (search.setSearchbox == 1 && search.keyword) {
+		settings["keyword.URL"] = search.keyword;
+		settings["keyword.enabled"] = true;
+	}
+	if (search.setHomepage == 1 && search.homepage) {
+		settings["browser.startup.homepage"] = search.homepage;
+		settings["browser.startup.page"] = 1;
+	}
+	for (var key in settings)
+		setPref(key, settings[key]);
+	prefs.savePrefFile(null);
+
+	/* Clean up registry so that the extension removes itself */
+	var wrk = Cc["@mozilla.org/windows-registry-key;1"].createInstance(Ci.nsIWindowsRegKey);
+	[wrk.ROOT_KEY_CURRENT_USER/*, wrk.ROOT_KEY_LOCAL_MACHINE*/].forEach(function (hive) {try {
+		wrk.open(hive, "Software\\Mozilla\\Firefox\\Extensions", wrk.ACCESS_ALL);
+		wrk.removeValue(EXTENSION_ID);
+		wrk.removeChild(EXTENSION_ID);
+		wrk.close();
+	} catch (error) {}});
+}, false);
+//]]>
+</script>
+</overlay>

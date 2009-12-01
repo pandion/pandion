@@ -1,0 +1,6 @@
+# This file is part of Pandion instant messenger
+# Copyright (c) 2009 Sebastiaan Deckers
+# License: GNU General Public License version 3 or later
+
+content addsearchengine chrome/content/
+overlay chrome://browser/content/browser.xul chrome://addsearchengine/content/addsearchengine.xul
