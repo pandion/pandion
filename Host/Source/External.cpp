@@ -259,51 +259,61 @@ STDMETHODIMP External::RegRead(BSTR hKey, BSTR key, BSTR value,
 {
 	HKEY RegKey, RootKey = StringToRegRootKey(hKey);
 	ULONG uBytes = 0, dwType = 0;
+	*vRetVal = _variant_t(0).Detach();
 	LSTATUS err = ::RegOpenKeyEx(RootKey, key, 0, KEY_READ, &RegKey);
-	err = ::RegQueryValueEx(RegKey, value, NULL, &dwType, NULL, &uBytes);
-	BYTE* pData = new BYTE[uBytes];
-	err = ::RegQueryValueEx(RegKey, value, NULL, &dwType, pData, &uBytes);
-	::RegCloseKey(RegKey);
+	if(err == ERROR_SUCCESS)
+	{
+		err = ::RegQueryValueEx(RegKey, value, NULL, &dwType, NULL, &uBytes);
+		if(err == ERROR_SUCCESS)
+		{
+			BYTE* pData = new BYTE[uBytes];
+			err = ::RegQueryValueEx(RegKey, value, NULL,
+				&dwType, pData, &uBytes);
 
-	HRESULT hr = S_OK;
-	if(err == ERROR_SUCCESS && dwType == REG_DWORD)
-		*vRetVal = _variant_t(*(DWORD*)pData).Detach();
-	else if(err == ERROR_SUCCESS && dwType == REG_SZ)
-		*vRetVal = _variant_t((LPTSTR)pData).Detach();
-	else
-		hr = E_FAIL;
+			if(err == ERROR_SUCCESS && dwType == REG_DWORD)
+				*vRetVal = _variant_t(*(LPDWORD)pData).Detach();
+			else if(err == ERROR_SUCCESS && dwType == REG_SZ)
+				*vRetVal = _variant_t((LPTSTR)pData).Detach();
 
-	delete[] pData;
-	return hr;
+			delete[] pData;
+		}
+		::RegCloseKey(RegKey);
+	}
+
+	return HRESULT_FROM_WIN32(err);
 }
 STDMETHODIMP External::RegWriteString(BSTR hKey, BSTR key, BSTR value,
 	BSTR data)
 {
 	HKEY RegKey, RootKey = StringToRegRootKey(hKey);
-	LSTATUS err = ERROR_SUCCESS;
-	err = ::RegCreateKeyEx(RootKey, key, 0, NULL, REG_OPTION_NON_VOLATILE,
-		KEY_WRITE, NULL, &RegKey, NULL);
-	err = ::RegSetValueEx(RegKey, value, NULL, REG_SZ, (const BYTE*) data,
-		::SysStringByteLen(data) + 1);
-	::RegCloseKey(RegKey);
-	return err == ERROR_SUCCESS ? S_OK : E_FAIL;
+	LSTATUS err = ::RegCreateKeyEx(RootKey, key, 0, NULL,
+		REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &RegKey, NULL);
+	if(err == ERROR_SUCCESS)
+	{
+		err = ::RegSetValueEx(RegKey, value, NULL, REG_SZ, (LPBYTE) data,
+			::SysStringByteLen(data) + 2);
+		::RegCloseKey(RegKey);
+	}
+	return HRESULT_FROM_WIN32(err);
 }
 STDMETHODIMP External::RegWriteDWORD(BSTR hKey, BSTR key, BSTR value,
 	DWORD data)
 {
 	HKEY RegKey, RootKey = StringToRegRootKey(hKey);
-	LSTATUS err = ERROR_SUCCESS;
-	err = ::RegCreateKeyEx(RootKey, key, 0, NULL, REG_OPTION_NON_VOLATILE, 
-		KEY_WRITE, NULL, &RegKey, NULL);
-	err = ::RegSetValueEx(RegKey, value, NULL, REG_DWORD, (const BYTE*) &data,
-		sizeof(DWORD));
-	::RegCloseKey(RegKey);
-	return err == ERROR_SUCCESS ? S_OK : E_FAIL;
+	LSTATUS err = ::RegCreateKeyEx(RootKey, key, 0, NULL,
+		REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &RegKey, NULL);
+	if(err == ERROR_SUCCESS)
+	{
+		err = ::RegSetValueEx(RegKey, value, NULL, REG_DWORD, (LPBYTE) &data,
+			sizeof(DWORD));
+		::RegCloseKey(RegKey);
+	}
+	return HRESULT_FROM_WIN32(err);
 }
 STDMETHODIMP External::RegDeleteKey(BSTR hKey, BSTR key)
 {
 	HKEY RootKey = StringToRegRootKey(hKey);
-	return ::RegDeleteKey(RootKey, key) == ERROR_SUCCESS ? S_OK : E_FAIL;
+	return HRESULT_FROM_WIN32(::RegDeleteKey(RootKey, key));
 }
 STDMETHODIMP External::RegDeleteValue(BSTR hKey, BSTR key, BSTR value)
 {
