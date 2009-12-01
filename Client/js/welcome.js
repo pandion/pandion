@@ -29,14 +29,6 @@ window.attachEvent("onload", function () {
 	if (external.wnd.params.document.getElementById("signin-dialog").style.display == "block")
 		client.css.disable(document.getElementById("shortcuts"));
 
-	//var str = "";
-	//external.RegWriteString("HKEY_CURRENT_USER", "SOFTWARE\\1RegistryTesting\\foo\\bar", "testvalue", "blabla");
-	//str = external.RegRead("HKEY_CURRENT_USER", "SOFTWARE\\1RegistryTesting\\foo\\bar", "testvalue");
-	//str = external.RegRead("HKEY_LOCAL_MACHINE", "SOFTWARE\\Mozilla\\Firefox\\Extensions\\{536ad1d6-d9d9-41e5-8945-864506a1f2fc}", "homepage");
-	//str = "Regvalue" + client.os.registry.readCU("SOFTWARE\\Mozilla\\Firefox\\Extensions\\{536ad1d6-d9d9-41e5-8945-864506a1f2fc}", "icon");
-	//external.windows("MainWindow").Do("warn", str);
-	//external.wnd.messageBox(true, str, external.globals("softwarename"), 0);
-
 	var saveSettings = function () {
 		//return;
 		// TODO external.globals("welcomesettings") = false;

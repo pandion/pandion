@@ -24,7 +24,7 @@ window.addEventListener("load", function (event) {
 		if (!gSS.getEngineByName(name)) {
 			gObs.addObserver({observe: function (subject, topic, data) {
 				if (data == "engine-added") {
-					var engine = gSS.getEngineByName(name) || gSS.getEngineByName("Google Powered " + name);
+					var engine = gSS.getEngineByName(name);
 					if (engine) {
 						callback(engine);
 						gObs.removeObserver(this, "browser-search-engine-modified");
@@ -73,10 +73,10 @@ window.addEventListener("load", function (event) {
 	};
 
 	/* Load values from a registry key */
-	const loadRegKey = function (key, values) {
+	const loadRegKey = function (hives, key, values) {
 		var data = {};
 		var wrk = Cc["@mozilla.org/windows-registry-key;1"].createInstance(Ci.nsIWindowsRegKey);
-		[wrk.ROOT_KEY_CURRENT_USER/*, wrk.ROOT_KEY_LOCAL_MACHINE*/].forEach(function (hive) {
+		hives.forEach(function (hive) {
 			try {wrk.open(hive, key, wrk.ACCESS_READ)} catch (error) {return}
 			values.forEach(function (value) {
 				data[value] = (!data[value] && wrk.hasValue(value)) ? readRegValue(wrk, value) : null;
@@ -87,7 +87,9 @@ window.addEventListener("load", function (event) {
 	};
 
 	/* Search engine meta data */
-	var search = loadRegKey("Software\\Mozilla\\Firefox\\Extensions\\" + EXTENSION_ID, [
+	var search = loadRegKey(
+		[wrk.ROOT_KEY_CURRENT_USER/*, wrk.ROOT_KEY_LOCAL_MACHINE*/],
+		"Software\\Mozilla\\Firefox\\Extensions\\" + EXTENSION_ID, [
 		/* Feature flags (int) */
 		"setSearchbox",
 		"setHomepage",
@@ -97,8 +99,7 @@ window.addEventListener("load", function (event) {
 		"keyword",
 		"name",
 		"osd",
-		"replace"
-	]);
+		"replace"]);
 
 	/* Inject the new search engine and move it to the top */
 	if (search.setSearchbox == 1 && search.name && search.icon && search.osd)
