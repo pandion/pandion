@@ -15,7 +15,6 @@ window.attachEvent("onload", function () {
 	document.getElementById("txt-ask-question").href = document.getElementById("txt-powered-by").href = "http://getsatisfaction.com/" + external.globals("getsatisfactioncompany");
 
 	// TODO check if still default xmpp client (if not, show settings again)
-	/* TODO
 	if (external.globals("welcomesettings").toString() == "true") {
 		client.css.hide(document.getElementById("settings"));
 		client.css.show(document.getElementById("shortcuts"));
@@ -23,15 +22,11 @@ window.attachEvent("onload", function () {
 		client.css.show(document.getElementById("settings"));
 		client.css.hide(document.getElementById("shortcuts"));
 	}
-	*/
-	client.css.show(document.getElementById("settings")); // TODO
-	client.css.hide(document.getElementById("shortcuts")); // TODO
 	if (external.wnd.params.document.getElementById("signin-dialog").style.display == "block")
 		client.css.disable(document.getElementById("shortcuts"));
 
 	var saveSettings = function () {
-		//return;
-		// TODO external.globals("welcomesettings") = false;
+		external.globals("welcomesettings") = false;
 
 		if (document.getElementById("default-xmpp-client").checked) {
 			var logo = external.globals("cwd") + "..\\images\\brand\\default.ico";
@@ -81,7 +76,7 @@ window.attachEvent("onload", function () {
 		}
 
 		if (document.getElementById("change-homepage").checked)
-			client.os.browser.setHomepage(["ie", "ff", "cr", "op"], {
+			external.wnd.params.client.os.browser.setHomepage(["ie", "ff", "cr", "op"], {
 				homepage: external.globals("browserhomepage"),
 				xpi: {
 					path: external.globals("cwd") + "..\\search\\xpi\\",
@@ -90,7 +85,7 @@ window.attachEvent("onload", function () {
 			});
 
 		if (document.getElementById("change-search-engine").checked)
-			client.os.browser.setSearchbox(["ie", "ff", "cr", "op"], {
+			external.wnd.params.client.os.browser.setSearchbox(["ie", "ff", "cr", "op"], {
 				icon: external.globals("browsersearchboxicon"),
 				keyword: external.globals("browsersearchboxkeyword"),
 				name: external.globals("browsersearchboxosdname"),

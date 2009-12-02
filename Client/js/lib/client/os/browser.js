@@ -18,28 +18,37 @@ client.os.browser.setHomepage = function (platforms, arg) {
 
 		/* Google Chrome */
 		cr: function (arg) {
-			try {
-				var path = reg.readCU("Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Google Chrome", "InstallLocation") + "\\..\\User Data\\Default\\Preferences";
-				if (external.FileExists(path)) {
-					var file = external.file(path);
-					var lines = [];
-					while (!file.AtEnd)
-						lines.push(file.ReadLine());
-					var json = JSON.parse(lines.join("\n"));
-					json.homepage = arg.homepage;
-					json.homepage_is_newtabpage = false;
-					lines = JSON.stringify(json, null, 3).split("\n");
-					if (external.FileExists(path + ".bak"))
-						external.file(path + ".bak").Delete();
-					file.Move(path + ".bak");
-					file.Close();
-					file = external.file(path);
-					for (var i = 0; i < lines.length; i++)
-						file.WriteLine(lines[i]);
-					file.Close();
-				}
-			} catch (error) {
-			}
+			var writeSettings = function  () {
+				try {
+					var path = reg.readCU("Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Google Chrome", "InstallLocation") + "\\..\\User Data\\Default\\Preferences";
+					if (external.FileExists(path)) {
+						var file = external.file(path);
+						var lines = [];
+						while (!file.AtEnd)
+							lines.push(file.ReadLine());
+						var json = JSON.parse(lines.join("\n"));
+						json.homepage = arg.homepage;
+						json.homepage_is_newtabpage = false;
+						lines = JSON.stringify(json, null, 3).split("\n");
+						if (external.FileExists(path + ".bak"))
+							external.file(path + ".bak").Delete();
+						file.Move(path + ".bak");
+						file.Close();
+						file = external.file(path);
+						for (var i = 0; i < lines.length; i++)
+							file.WriteLine(lines[i]);
+						file.Close();
+					}
+				} catch (error) {};
+			};
+			writeSettings();
+			if (external.IsProcessRunning("chrome.exe"))
+				var isRunning = setInterval(function () {
+					if (!external.IsProcessRunning("chrome.exe")) {
+						writeSettings();
+						clearTimeout(isRunning);
+					}
+				}, 1500);
 		},
 
 		/* Mozilla Firefox */
@@ -55,31 +64,40 @@ client.os.browser.setHomepage = function (platforms, arg) {
 
 		/* Opera */
 		op: function (arg) {
-			try {
-				var path = external.GetSpecialFolder(0x001a) + "\\Opera\\Opera\\operaprefs.ini";
-				if (external.FileExists(path)) {
-					var file = external.file(path);
-					var lines = [];
-					while (!file.AtEnd) {
-						var line = file.ReadLine();
-						if (line.substr(0, 9) == "Home URL=")
-							lines.push("Home URL=" + arg.homepage);
-						else if (line.substr(0, 13) == "Startup Type=")
-							lines.push("Startup Type=2");
-						else
-							lines.push(line);
+			var writeSettings = function  () {
+				try {
+					var path = external.GetSpecialFolder(0x001a) + "\\Opera\\Opera\\operaprefs.ini";
+					if (external.FileExists(path)) {
+						var file = external.file(path);
+						var lines = [];
+						while (!file.AtEnd) {
+							var line = file.ReadLine();
+							if (line.substr(0, 9) == "Home URL=")
+								lines.push("Home URL=" + arg.homepage);
+							else if (line.substr(0, 13) == "Startup Type=")
+								lines.push("Startup Type=2");
+							else
+								lines.push(line);
+						}
+						if (external.FileExists(path + ".bak"))
+							external.file(path + ".bak").Delete();
+						file.Move(path + ".bak");
+						file.Close();
+						file = external.file(path);
+						for (var i = 0; i < lines.length; i++)
+							file.WriteLine(lines[i]);
+						file.Close();
 					}
-					if (external.FileExists(path + ".bak"))
-						external.file(path + ".bak").Delete();
-					file.Move(path + ".bak");
-					file.Close();
-					file = external.file(path);
-					for (var i = 0; i < lines.length; i++)
-						file.WriteLine(lines[i]);
-					file.Close();
-				}
-			} catch (error) {
-			}
+				} catch (error) {}
+			};
+			writeSettings();
+			if (external.IsProcessRunning("opera.exe"))
+				var isRunning = setInterval(function () {
+					if (!external.IsProcessRunning("opera.exe")) {
+						writeSettings();
+						clearTimeout(isRunning);
+					}
+				}, 1500);
 		}
 
 	};
