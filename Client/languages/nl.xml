@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 	This file is part of Pandion instant messenger
-	Copyright (c) 2004-2009 Sebastiaan Deckers
+	Copyright (c) 2003-2009 Sebastiaan Deckers
 	License: GNU General Public License version 3 or later
 -->
 <translation xml:lang="nl" dir="ltr">
@@ -11,8 +11,8 @@
       <revision>
         <author>
           <name>Sebastiaan Deckers</name>
-          <email>cbas@pandion.be</email>
-          <xmpp>cbas@pandion.be</xmpp>
+          <email>cbas@pandion.im</email>
+          <xmpp>cbas@pandion.im</xmpp>
         </author>
         <date>2003-05-26</date>
         <description>

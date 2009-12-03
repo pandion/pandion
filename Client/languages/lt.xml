@@ -1,25 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--
--begin-
-
-LangString DESC_SecCopyRequired		${LANG_ENGLISH}	"Šie failai reikalingi tam, kad galėtumėte naudoti ${PRODUCT}."
-LangString DESC_SecCreateStartMenu	${LANG_ENGLISH}	"Pradinis meniu lengvai leidžia naudotis ${PRODUCT}."
-LangString DESC_SecCreateQuickstart	${LANG_ENGLISH}	"Pridėkite ${PRODUCT} į savo greito paleidimo programų parankinę."
-LangString DESC_SecCreateDesktop	${LANG_ENGLISH}	"Sukurkite nuorodą savo darbastalyje"
-LangString DESC_SecCreateAutoStart	${LANG_ENGLISH}	"${PRODUCT} automatiškai prisijungs prie serverio užsikrovus kompiuteriui"
-LangString ITEM_SecCreateStartMenu	${LANG_ENGLISH}	"Pradinio meniu nuoroda"
-LangString ITEM_SecCreateQuickstart	${LANG_ENGLISH}	"Greito paleidimo programų parankinės nuoroda"
-LangString ITEM_SecCreateDesktop	${LANG_ENGLISH}	"Darbastalio nuoroda"
-LangString ITEM_SecCreateAutoStart	${LANG_ENGLISH}	"Paleisti ${PRODUCT} užsikrovus kompiuteriui"
-LangString TEXT_WindowsOutdated		${LANG_ENGLISH}	"Diegimas neįmanomas, reikalinga ${PRODUCT}.$\nWindows NT 4 ar vėlesnė Windows versija."
-LangString TEXT_AlreadyRunning		${LANG_ENGLISH}	"Išjungti ${PRODUCT} prieš tęsiant."
-LangString TEXT_InternetExplorer	${LANG_ENGLISH}	"Diegimas neįmanomas, reikalinga ${PRODUCT}.$\n$\nMicrosoft Internet Explorer 5.5 ar vėlesnė versjia.  Ar pageidaujate atnaujinti programą dabar?"
-LangString TEXT_DownloadFailed		${LANG_ENGLISH}	"Klaida: Parsisiųsti reikalingų komponentų nepavyko. Patikrinkite interneto prieigos nustatymus."
-LangString un.TEXT_RemoveProfiles	${LANG_ENGLISH}	"Ištrinti profilių ir archyvų failus?"
-LangString un.TEXT_RemoveDirectory	${LANG_ENGLISH}	"Pranešimas: $INSTDIR ištrinti negalima."
-
--end-
-
+	This file is part of Pandion instant messenger
+	Copyright (c) 2005 Elvinas Karalis
+	License: GNU General Public License version 3 or later
 -->
 <translation xml:lang="lt">
   <about>

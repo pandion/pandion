@@ -1,40 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-This is a template for translating the user interface.  Every item
-corresponds to an HTML element in the interface.  All porperties
-such as innerText, innerHTML or title can be translated and will
-override the default english text.
-Each <code> is a string that is used in the program's source code.
-Some of these strings don't accept HTML, so you must encode < and
-> as &lt; and &gt;
-
-The following text is used by the installation program. Replace
-them with the translated text so that they can be included with
-the installer.
-
--begin-
-
-LangString DESC_SecCopyRequired		${LANG_ENGLISH}	"File-file ini dibutuhkan untuk menggunakan ${PRODUCT}."
-LangString DESC_SecCreateStartMenu	${LANG_ENGLISH}	"Menu Start memudahkan Anda mengakses ke ${PRODUCT}."
-LangString DESC_SecCreateQuickstart	${LANG_ENGLISH}	"Tambahkan ${PRODUCT} ke bar Quick Launch Anda."
-LangString DESC_SecCreateDesktop	${LANG_ENGLISH}	"Tempatkan jalan pintas (shortcut) ke Desktop."
-LangString DESC_SecCreateAutoStart	${LANG_ENGLISH}	"${PRODUCT} akan otomatis dijalankan di startup Windows."
-LangString ITEM_SecCreateStartMenu	${LANG_ENGLISH}	"Jalan pintas di Menu Start"
-LangString ITEM_SecCreateQuickstart	${LANG_ENGLISH}	"Jalan pintas di Quick Launch"
-LangString ITEM_SecCreateDesktop	${LANG_ENGLISH}	"Jalan pintas di Desktop"
-LangString ITEM_SecCreateAutoStart	${LANG_ENGLISH}	"Jalankan ${PRODUCT} di startup"
-LangString TEXT_WindowsOutdated		${LANG_ENGLISH}	"Tidak dapat menginstall ${PRODUCT}.$\nWindows NT 4 atau yang lebih tinggi dibutuhkan."
-LangString TEXT_AlreadyRunning		${LANG_ENGLISH}	"Tutup ${PRODUCT} sebelum melanjutkan."
-LangString TEXT_InternetExplorer	${LANG_ENGLISH}	"Tidak dapat melanjutkan installasi ${PRODUCT}.$\n$\nMicrosoft Internet Explorer versi 5.5 atau yang lebih tinggi dibutuhkan. Anda ingin mendownload Internet Explorer versi terakhir sekarang?"
-LangString TEXT_DownloadFailed		${LANG_ENGLISH}	"Error: Tidak dapat mendownload komponen yang dibutuhkan. Pastikan bahwa Anda tersambung ke Internet."
-LangString un.TEXT_RemoveProfiles	${LANG_ENGLISH}	"Hapus profile file-file histori?"
-LangString un.TEXT_RemoveDirectory	${LANG_ENGLISH}	"Catatan: $INSTDIR tidak dapat dihapus."
-
--end-
-
-Please send your own translations to cbas@pandion.be
-Thank you,
-  Sebastiaan Deckers
+	This file is part of Pandion instant messenger
+	Copyright (c) 2007 Masino Sinaga
+	License: GNU General Public License version 3 or later
 -->
 <translation xml:lang="id">
   <about>

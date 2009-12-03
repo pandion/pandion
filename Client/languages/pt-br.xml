@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-LangString DESC_SecCopyRequired		${LANG_PORTUGUESE}	"Estes arquivos são necessários para utilizar o ${PRODUCT}."
-LangString DESC_SecCreateStartMenu	${LANG_PORTUGUESE}	"O Menu Iniciar dá fácil acesso ao  ${PRODUCT}."
-LangString DESC_SecCreateQuickstart	${LANG_PORTUGUESE}	"Adicionar o ${PRODUCT} à Barra de Inicialização Rápida."
-LangString DESC_SecCreateDesktop	${LANG_PORTUGUESE}	"Colocar atalho na Área de Trabalho."
-LangString DESC_SecCreateAutoStart	${LANG_PORTUGUESE}	"${PRODUCT} iniciará automaticamente quando o Windows iniciar."
-LangString ITEM_SecCreateStartMenu	${LANG_PORTUGUESE}	"Atalho no Menu Iniciar"
-LangString ITEM_SecCreateQuickstart	${LANG_PORTUGUESE}	"Atalho na Barra de Inicialização Rápida"
-LangString ITEM_SecCreateDesktop	${LANG_PORTUGUESE}	"Atalho na Área de Trabalho"
-LangString ITEM_SecCreateAutoStart	${LANG_PORTUGUESE}	"Carregar o ${PRODUCT} na inicialização"
-LangString TEXT_WindowsOutdated		${LANG_PORTUGUESE}	"Não é possível instalar o ${PRODUCT}.$\nWindows NT 4 or superior é requerido."
-LangString TEXT_AlreadyRunning		${LANG_PORTUGUESE}	"Feche o ${PRODUCT} antes de continuar."
-LangString TEXT_InternetExplorer	${LANG_PORTUGUESE}	"Não é possível continuar com a instalação do ${PRODUCT}.$\n$\nMicrosoft Internet Explorer version 5.5 ou superior é requerido.  Você quer baixar essa atualização agora?"
-LangString TEXT_DownloadFailed		${LANG_PORTUGUESE}	"Erro: Não é possível baixar um componente requerido. Certifique-se que sua conexão a Internet está funcionando."
-LangString un.TEXT_RemoveProfiles	${LANG_PORTUGUESE}	"Remover os arquivos de perfis históricos?"
-LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Aviso: $INSTDIR não pode ser removido."
+	This file is part of Pandion instant messenger
+	Copyright (c) 2008 Jefferson Oliveira
+	License: GNU General Public License version 3 or later
 -->
 <translation xml:lang="pt-BR">
 	<about>

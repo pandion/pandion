@@ -1,4 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file is part of Pandion instant messenger
+	Copyright (c) 2009 Sebastiaan Deckers
+	License: GNU General Public License version 3 or later
+-->
 <languages>
 <language name="العربية" code="ar"/>
 <language name="简体中文" code="zh-cn"/>

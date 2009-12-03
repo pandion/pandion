@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-
+<!--
+	This file is part of Pandion instant messenger
+	Copyright (c) 2004 Bernie 'aoshiri' masanix
+	License: GNU General Public License version 3 or later
+-->
 <translation xml:lang="ja">
   <about>
     <language>日本語</language>

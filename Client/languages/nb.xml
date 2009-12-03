@@ -1,26 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--
-
--begin-
-
-LangString DESC_SecCopyRequired		${LANG_NORWEGIAN}	"Disse filer er påkrevet for å bruke ${PRODUCT}."
-LangString DESC_SecCreateStartMenu	${LANG_NORWEGIAN}	"Menyen Start gir deg lett adgang til ${PRODUCT}."
-LangString DESC_SecCreateQuickstart	${LANG_NORWEGIAN}	"Før ${PRODUCT} til verktøyslinjen Hurtig start."
-LangString DESC_SecCreateDesktop	${LANG_NORWEGIAN}	"Plasser en snarvei på skrivebordet."
-LangString DESC_SecCreateAutoStart	${LANG_NORWEGIAN}	"${PRODUCT} vil automatisk logge på når du starter Windows."
-LangString ITEM_SecCreateStartMenu	${LANG_NORWEGIAN}	"Snarvei i menyen Start"
-LangString ITEM_SecCreateQuickstart	${LANG_NORWEGIAN}	"Snarvei i Hurtig start"
-LangString ITEM_SecCreateDesktop	${LANG_NORWEGIAN}	"Snarvei på skrivebordet"
-LangString ITEM_SecCreateAutoStart	${LANG_NORWEGIAN}	"Kjør ${PRODUCT} ved oppstart"
-LangString TEXT_WindowsOutdated		${LANG_NORWEGIAN}	"Kan ikke installere ${PRODUCT}.$\nWindows NT 4 eller høyere er påkrevet."
-LangString TEXT_AlreadyRunning		${LANG_NORWEGIAN}	"Lukk ${PRODUCT} før du fortsetter."
-LangString TEXT_InternetExplorer	${LANG_NORWEGIAN}	"Kan ikke fortsette installasjonen af ${PRODUCT}.$\n$\nMicrosoft Internet Explorer versjon 5.5 eller høyere er påkrevet. Vil du hente denne oppdateringen nå?"
-LangString TEXT_DownloadFailed		${LANG_NORWEGIAN}	"Feil: Kan ikke hente en påkrevet komponent. Kontroller, at du er koblet til internett."
-LangString un.TEXT_RemoveProfiles	${LANG_DANISH}	"Slett profiler og oversiktsfiler?"
-LangString un.TEXT_RemoveDirectory	${LANG_DANISH}	"Bemerk! $INSTDIR kan ikke slettes."
-
--end-
-
+	This file is part of Pandion instant messenger
+	Copyright (c) 2006 Frank Paul Silye
+	License: GNU General Public License version 3 or later
 -->
 <translation xml:lang="nb">
   <about>

@@ -1,40 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-This is a template for translating the user interface.  Every item
-corresponds to an HTML element in the interface.  All porperties
-such as innerText, innerHTML or title can be translated and will
-override the default english text.
-Each <code> is a string that is used in the program's source code.
-Some of these strings don't accept HTML, so you must encode < and
-> as &lt; and &gt;
-
-The following text is used by the installation program. Replace
-them with the translated text so that they can be included with
-the installer.
-
--begin-
-
-LangString DESC_SecCopyRequired		${LANG_ENGLISH}	"Tyto soubory jsou nutné pro pro funkci prgramu ${PRODUCT}."
-LangString DESC_SecCreateStartMenu	${LANG_ENGLISH}	"Start Menu umožňuje rychlý přístup k ${PRODUCT}."
-LangString DESC_SecCreateQuickstart	${LANG_ENGLISH}	"Přídá ${PRODUCT} do panelu rychlého spouštění."
-LangString DESC_SecCreateDesktop	${LANG_ENGLISH}	"Přidá zástupce na plochu."
-LangString DESC_SecCreateAutoStart	${LANG_ENGLISH}	"${PRODUCT} se automaticky přihlásí k serveru při startu Windows."
-LangString ITEM_SecCreateStartMenu	${LANG_ENGLISH}	"Zástupce Start Menu"
-LangString ITEM_SecCreateQuickstart	${LANG_ENGLISH}	"Zástupce rychlého spuštění"
-LangString ITEM_SecCreateDesktop	${LANG_ENGLISH}	"Zástupce na ploše"
-LangString ITEM_SecCreateAutoStart	${LANG_ENGLISH}	"Spustit ${PRODUCT} při startu"
-LangString TEXT_WindowsOutdated		${LANG_ENGLISH}	"Nelze instalovat ${PRODUCT}.$\n Je vyžadováné Windows NT 4 a vyšší"
-LangString TEXT_AlreadyRunning		${LANG_ENGLISH}	"Zavřete ${PRODUCT} před pokračováním."
-LangString TEXT_InternetExplorer	${LANG_ENGLISH}	"Nemohu pokračovat v instalaci ${PRODUCT}.$\n$\nMicrosoft Internet Explorer verze 5.5 nebo vyšší je vyžadován. Chcete nyní stáhnout update?"
-LangString TEXT_DownloadFailed		${LANG_ENGLISH}	"Chyba: Nemohu stáhnout požadovanou komponentu. Ujistěte se, že jste připojeni k Internetu."
-LangString un.TEXT_RemoveProfiles	${LANG_ENGLISH}	"Odebrat profily a soubory s historií?"
-LangString un.TEXT_RemoveDirectory	${LANG_ENGLISH}	"Informace: $INSTDIR nemohl být odebrán."
-
--end-
-
-Please send your own translations to cbas@pandion.be
-Thank you,
-  Sebastiaan Deckers
+	This file is part of Pandion instant messenger
+	Copyright (c) 2005 Jakub Kulaviak
+	License: GNU General Public License version 3 or later
 -->
 <translation xml:lang="cs">
   <about>

@@ -1,28 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
 Copyright © 2004-2009 Dário Ornelas
 This file is published under the Creative Commons Attribution-Share Alike 3.0 License
 http://creativecommons.org/licenses/by-sa/3.0
--->
-
-
-<!--
-LangString DESC_SecCopyRequired		${LANG_PORTUGUESE}	"Este ficheiros são necessários para usar o ${PRODUCT}."
-LangString DESC_SecCreateStartMenu	${LANG_PORTUGUESE}	"O menu iniciar dá-nos acesso fácil ao ${PRODUCT}."
-LangString DESC_SecCreateQuickstart	${LANG_PORTUGUESE}	"Adicionar o ${PRODUCT} à Barra de Lançamento Rápido."
-LangString DESC_SecCreateDesktop	${LANG_PORTUGUESE}	"Adicionar um atalho ao Ambiente de Trabalho."
-LangString DESC_SecCreateAutoStart	${LANG_PORTUGUESE}	"${PRODUCT} vai iniciar automaticamente no arranque do Windows."
-LangString ITEM_SecCreateStartMenu	${LANG_PORTUGUESE}	"Atalho do Menu Iniciar"
-LangString ITEM_SecCreateQuickstart	${LANG_PORTUGUESE}	"Atalho de Barra de Lançamento Rápido"
-LangString ITEM_SecCreateDesktop	${LANG_PORTUGUESE}	"Atalho do Ambiente de Trabalho"
-LangString ITEM_SecCreateAutoStart	${LANG_PORTUGUESE}	"Abrir o ${PRODUCT} ao iniciar o Windows"
-LangString TEXT_WindowsOutdated		${LANG_PORTUGUESE}	"Não é possível instalar o ${PRODUCT}. É necessário o $\nWindows NT 4 ou superior."
-LangString TEXT_AlreadyRunning		${LANG_PORTUGUESE}	"Feche o ${PRODUCT} antes de continuar."
-LangString TEXT_InternetExplorer	${LANG_PORTUGUESE}	"Não é possível continuar a instalação do ${PRODUCT}. É necessário o $\n$\nMicrosoft Internet Explorer versão 5.5 ou superior. Deseja fazer o update agora?"
-LangString TEXT_DownloadFailed		${LANG_PORTUGUESE}	"Erro: Não foi possível fazer descarregar um componente necessário. Verifique que está ligado à internet."
-LangString un.TEXT_RemoveProfiles	${LANG_PORTUGUESE}	"Remover os ficheiros dos perfis e do histórico?"
-LangString un.TEXT_RemoveDirectory	${LANG_PORTUGUESE}	"Nota: Não foi possível remover $INSTDIR."
 -->
 <translation xml:lang="pt-PT">
   <about>

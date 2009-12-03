@@ -1,40 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-This is a template for translating the user interface.  Every item
-corresponds to an HTML element in the interface.  All porperties
-such as innerText, innerHTML or title can be translated and will
-override the default english text.
-Each <code> is a string that is used in the program's source code.
-Some of these strings don't accept HTML, so you must encode < and
-> > as &lt; and &gt;
-
-The following text is used by the installation program. Replace
-them with the translated text so that they can be included with
-the installer.
-
--begin-
-
-LangString DESC_SecCopyRequired		{LANG_ENGLISH}	"Ovi fajlovi su neophodni za korišćenje ${PRODUCT}-a."
-LangString DESC_SecCreateStartMenu	{LANG_ENGLISH}	"Start meni ti daje lak pristup ${PRODUCT}-u."
-LangString DESC_SecCreateQuickstart	{LANG_ENGLISH}	"Dodaj ${PRODUCT} u svoje brze prečice."
-LangString DESC_SecCreateDesktop	{LANG_ENGLISH}	"Stavi prečicu na svoju radnu površinu."
-LangString DESC_SecCreateAutoStart	{LANG_ENGLISH}	"${PRODUCT} će se automatski priključiti kada pokreneš Windows."
-LangString ITEM_SecCreateStartMenu	{LANG_ENGLISH}	"Prečica za startni meni"
-LangString ITEM_SecCreateQuickstart	{LANG_ENGLISH}	"Brza prečica"
-LangString ITEM_SecCreateDesktop	{LANG_ENGLISH}	"Prečica za radnu površinu"
-LangString ITEM_SecCreateAutoStart	{LANG_ENGLISH}	"Pokreni ${PRODUCT} prilikom startovanja kompjutera"
-LangString TEXT_WindowsOutdated		{LANG_ENGLISH}	"Nemogućnost instaliranja ${PRODUCT}-a.$\nWindows NT 4 ili noviji potreban."
-LangString TEXT_AlreadyRunning		{LANG_ENGLISH}	"Zatvori ${PRODUCT} pre nastavka."
-LangString TEXT_InternetExplorer	{LANG_ENGLISH}	"Nemogućnost nastavka instalacije ${PRODUCT}-a.$\n$\nMicrosoft Internet Explorer verzija 5.5 ili novija potrebna. &#381;eliš li download nove verzije?"
-LangString TEXT_DownloadFailed		{LANG_ENGLISH}	"Greška: Nemogućnost download-a potrebne komponente. Proveri svoju Internet konekciju."
-LangString un.TEXT_RemoveProfiles	{LANG_ENGLISH}	"Ukloni profile i zapamćene poruke?"
-LangString un.TEXT_RemoveDirectory	{LANG_ENGLISH}	"Napomena: $INSTDIR ne može da se ukloni."
-
--end-
-
-Please send your own translations to cbas@pandion.be
-Thank you,
-  Sebastiaan Deckers
+	This file is part of Pandion instant messenger
+	Copyright (c) 2006 Vladimir M Skrbic
+	License: GNU General Public License version 3 or later
 -->
 <translation xml:lang="sr">
   <about>

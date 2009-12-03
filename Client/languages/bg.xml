@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-LangString DESC_SecCopyRequired		${LANG_BULGARIAN}	"Тези файлове са нужни за работата на  ${MUI_PRODUCT}."
-LangString DESC_SecCreateStartMenu	${LANG_BULGARIAN}	"Старт менюто Ви дава лесен достъп до  ${MUI_PRODUCT}."
-LangString DESC_SecCreateQuickstart	${LANG_BULGARIAN}	"Добави ${MUI_PRODUCT} в панел Бързо стартиране (Quick Launch bar)."
-LangString DESC_SecCreateDesktop	${LANG_BULGARIAN}	"Постави препратка на работния плот (desktop)."
-LangString DESC_SecCreateAutoStart	${LANG_BULGARIAN}	"${MUI_PRODUCT} автоматично зареждане, когато стартира Windows."
-LangString ITEM_SecCreateStartMenu	${LANG_BULGARIAN}	"Препратка в меню Старт"
-LangString ITEM_SecCreateQuickstart	${LANG_BULGARIAN}	"Препратка в панела Бързо стартиране (Quick Launch )"
-LangString ITEM_SecCreateDesktop	${LANG_BULGARIAN}	"Препратка на Работния плот"
-LangString ITEM_SecCreateAutoStart	${LANG_BULGARIAN}	"Стартирай ${MUI_PRODUCT} при влизане (Log On)"
-LangString TEXT_WindowsOutdated		${LANG_BULGARIAN}	"Невъзможно инсталиране ${MUI_PRODUCT}.$\nНужен е Windows NT 4 или следваща версия."
-LangString TEXT_AlreadyRunning		${LANG_BULGARIAN}	"Затворете ${MUI_PRODUCT} преди да продължите."
-LangString TEXT_InternetExplorer	${LANG_BULGARIAN}	"Не може да продължи инсталацията ${MUI_PRODUCT}.$\n$\nНеобходим е Microsoft Internet Explorer версия 5.5 или по-висока. Искате ли да се свали обновлението ?"
-LangString TEXT_DownloadFailed		${LANG_BULGARIAN}	"Грешка: Не могат да се заредят необходимите. Уверете се, че имате достъп до Интернет."
-LangString un.TEXT_RemoveProfiles	${LANG_BULGARIAN}	"Изтриване на профили и файловете с истории на чата (history files)?"
-LangString un.TEXT_RemoveDirectory	${LANG_BULGARIAN}	"Забележка: $INSTDIR не може да бъде изтрита."
+	This file is part of Pandion instant messenger
+	Copyright (c) 2008 Miroslav Valkov
+	License: GNU General Public License version 3 or later
 -->
 <translation xml:lang="bg">
 	<about>

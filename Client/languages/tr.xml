@@ -1,20 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--
-LangString DESC_SecCopyRequired     ${LANG_TURKISH} "${PRODUCT} kullanabilmek için bu dosyalar gereklidir."
-LangString DESC_SecCreateStartMenu  ${LANG_TURKISH} "Başlat menusü size ${PRODUCT} programına hızlı erişim sağlar."
-LangString DESC_SecCreateQuickstart ${LANG_TURKISH} "Hızlı başlat araç çubuğuna ${PRODUCT} ekle."
-LangString DESC_SecCreateDesktop    ${LANG_TURKISH} "Masaüstüne kısayol ekle."
-LangString DESC_SecCreateAutoStart  ${LANG_TURKISH} "${PRODUCT} Windows'u başlattığınızda otomatik giriş yapacak."
-LangString ITEM_SecCreateStartMenu  ${LANG_TURKISH} "Başlat Menüsü Kısayolu"
-LangString ITEM_SecCreateQuickstart ${LANG_TURKISH} "Hızlı Başlat Kısayolu"
-LangString ITEM_SecCreateDesktop    ${LANG_TURKISH} "Masaüstü Kısayolu"
-LangString ITEM_SecCreateAutoStart  ${LANG_TURKISH} "${PRODUCT} açılışta başlasın"
-LangString TEXT_WindowsOutdated     ${LANG_TURKISH} "${PRODUCT} kurulamıyor.$\nWindows NT 4 veya daha yükseği gerekli."
-LangString TEXT_AlreadyRunning      ${LANG_TURKISH} "Devam etmeden önce ${PRODUCT} programını kapatın."
-LangString TEXT_InternetExplorer    ${LANG_TURKISH} "${PRODUCT} kurulumuna devam edilemez.$\n$\nMicrosoft Internet Explorer sürüm 5.5 veya daha yukarısı gerekli.  Bu güncelleştirmeyi çekmek ister misiniz?"
-LangString TEXT_DownloadFailed      ${LANG_TURKISH} "Error: Gerekli bileşen çekilemedi. Internet'e bağlı olduğunuzdan emin olun."
-LangString un.TEXT_RemoveProfiles   ${LANG_TURKISH} "Profil ve geçmiş dosyaları silinsin mi?"
-LangString un.TEXT_RemoveDirectory  ${LANG_TURKISH} "Not: $INSTDIR kaldırılamadı."
+	This file is part of Pandion instant messenger
+	Copyright (c) 2004 Onur Can ÇAKMAK
+	License: GNU General Public License version 3 or later
 -->
 <translation xml:lang="en">
    <about>

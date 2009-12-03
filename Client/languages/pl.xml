@@ -1,41 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<!-- To jest Polskie Tłumaczenie, które możesz użyć jako szablon.  
-Każda pozycja odpowiada elementowi HTML w interfejsie.  
-Wszystkie właściwości takie jak innerTekst, innerHTML lub tytuły 
-tłumaczysz nadpisując polski tekst.
-Każdy fragment "<code>" jest strumieniem używanym w szyfrze 
-źródła programu. 
-Niektóre z tych strumieni nie akceptuje HTML, więc musisz zdekodować 
-"<" i ">" jako "&lt;" i "&gt;"
-
-Poniższy tekst jest używany przez program instalacyjny. Zamień
-go na przetłumaczony tekst, który zostanie dołączony przez 
-instalatora.
-
--początek-
-
-LangString DESC_SecCopyRequired		${LANG_POLISH}	"Te pliki są wymagane aby użyć ${PRODUCT}."
-LangString DESC_SecCreateStartMenu	${LANG_POLISH}	"Menu Start daje Tobie szybki dostęp do ${PRODUCT}."
-LangString DESC_SecCreateQuickstart	${LANG_POLISH}	"Dodaj ${PRODUCT} do Twojego paska Autostart."
-LangString DESC_SecCreateDesktop	${LANG_POLISH}	"Utwórz skrót na pulpicie."
-LangString DESC_SecCreateAutoStart	${LANG_POLISH}	"${PRODUCT} zostanie automatycznie uruchomione kiedy zalogujesz się do Windows."
-LangString ITEM_SecCreateStartMenu	${LANG_POLISH}	"Skrót w Menu Start"
-LangString ITEM_SecCreateQuickstart	${LANG_POLISH}	"Skrót w Autostarcie"
-LangString ITEM_SecCreateDesktop	${LANG_POLISH}	"Skrót na Pulpicie"
-LangString ITEM_SecCreateAutoStart	${LANG_POLISH}	"Uruchom ${PRODUCT} w Autostarcie"
-LangString TEXT_WindowsOutdated		${LANG_POLISH}	"Nie mogę zainstalować ${PRODUCT}.$\nWindows NT 4 lub lepszy jest wymagany."
-LangString TEXT_AlreadyRunning		${LANG_POLISH}	"Zamknij ${PRODUCT} przed kontynuowaniem."
-LangString TEXT_InternetExplorer	${LANG_POLISH}	"Nie mogę kontynuować instalacji ${PRODUCT}.$\n$\nMicrosoft Internet Explorer wersja 5.5 lub lepszy jest wymagany.  Czy chcesz pobrać tę aktualizację teraz?"
-LangString TEXT_DownloadFailed		${LANG_POLISH}	"Błąd: Nie mogę pobrać wymaganego komponentu. Upewnij się, że jesteś połączony z Internetem."
-LangString un.TEXT_RemoveProfiles	${LANG_POLISH}	"Usuną profile i archiwum plików?"
-LangString un.TEXT_RemoveDirectory	${LANG_POLISH}	"UWAGA: $INSTDIR nie może być usunięty."
-
--koniec-
-
-Proszę prześlij Swoje tłumacznie na adres: cbas@pandion.be
-Wielkie Dzięki,
-  Sebastiaan Deckers
-  PL: Mateusz Woźniak 
+<!--
+	This file is part of Pandion instant messenger
+	Copyright (c) 2005 Bartek Mazur
+	Copyright (c) 2005 Krzysztof Młodożeniec
+	Copyright (c) 2005 Mateusz Woźniak
+	Copyright (c) 2003-2004 Mariusz Smykuła
+	Copyright (c) 2003 Marek Goldmann
+	Copyright (c) 2003 Jan Starzak
+	License: GNU General Public License version 3 or later
 -->
 <translation xml:lang="pl">
   <about>
@@ -45,17 +17,14 @@ Wielkie Dzięki,
         <author>
           <name>Mateusz 'Mentos' Woźniak</name>
           <email>mateusz.wozniak@op.pl</email>
-          <xmpp>matthew.wozniak@pandion.be</xmpp>
         </author>     
         <author>
           <name>Bartek 'Mazi' Mazur</name>
           <email>bartekmazur@air.net.pl</email>
-          <xmpp>fazur@pandion.be</xmpp>
         </author>
         <author>
           <name>Krzysztof 'oprych_buc' Młodożeniec</name>
           <email>oprych_buc@yahoo.co.uk</email>
-          <xmpp>3780405@gg.pandion.be</xmpp>
         </author>
         <date>2005-08-08</date>
         <description>
