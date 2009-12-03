@@ -29,10 +29,10 @@
 <!-- Shown in the About dialog -->
 <copyrightholder>Contributors</copyrightholder>
 <copyrightyear>2001-2009</copyrightyear>
-<softwareurl>http://www.pandion.be/</softwareurl>
+<softwareurl>http://pandion.im/</softwareurl>
 <licensename>GNU General Public License 3 or later</licensename>
 <licenseurl>http://www.gnu.org/licenses/gpl-3.0.html</licenseurl>
-<termsandcontitionsurl>http://www.pandion.be/about</termsandcontitionsurl>
+<termsandcontitionsurl>http://pandion.im/about</termsandcontitionsurl>
 <trademarkholder>Sebastiaan Deckers</trademarkholder>
 
 <!-- Connect to this XMPP server and use SSPI (Kerberos/NTLM) to authenticate without user interaction -->
@@ -43,14 +43,14 @@
 <fixedserver></fixedserver>
 
 <!-- Shown in the Help menu -->
-<helpcontact>http://www.pandion.be/about</helpcontact>
+<helpcontact>http://pandion.im/about</helpcontact>
 <helpforum>http://getsatisfaction.com/pandion</helpforum>
 <helpmanual>http://pandion.pbworks.com/</helpmanual>
 
 <!-- URI of extras -->
-<pluginlist>http://plugins.pandion.be/</pluginlist>
-<emoticonlist>http://emoticons.pandion.be/</emoticonlist>
-<backgroundlist>http://backgrounds.pandion.be/</backgroundlist>
+<pluginlist>http://plugins.pandion.im/</pluginlist>
+<emoticonlist>http://emoticons.pandion.im/</emoticonlist>
+<backgroundlist>http://backgrounds.pandion.im/</backgroundlist>
 
 <!-- URI of software version checker (Atom 1.0 + Appcaster) -->
 <autoupdate>http://feeds.feedburner.com/pandionupdates</autoupdate>
@@ -65,14 +65,14 @@
 <getsatisfactioncompany>pandion</getsatisfactioncompany>
 
 <!-- Browser integration -->
-<browserhomepage>http://search.pandion.be/</browserhomepage> <!-- CR, FF, IE, OP -->
+<browserhomepage>http://search.pandion.im/</browserhomepage> <!-- CR, FF, IE, OP -->
 <browsersearchboxicon>http://www.google.com/favicon.ico</browsersearchboxicon> <!-- FF search box, overridden by OSD -->
-<browsersearchboxkeyword>http://search.pandion.be/#q=</browsersearchboxkeyword> <!-- FF address bar -->
+<browsersearchboxkeyword>http://search.pandion.im/#q=</browsersearchboxkeyword> <!-- FF address bar -->
 <browsersearchboxname>Pandion Search</browsersearchboxname> <!-- Shown in the Welcome screen -->
 <browsersearchboxosdname>Google Powered Pandion Search</browsersearchboxosdname> <!-- IE/FF search box, should match the OSD -->
-<browsersearchboxosd>http://search.pandion.be/osd.xml</browsersearchboxosd> <!-- FF, IE7/8 -->
+<browsersearchboxosd>http://search.pandion.im/osd.xml</browsersearchboxosd> <!-- FF, IE7/8 -->
 <browsersearchboxreplace>Google</browsersearchboxreplace> <!-- FF -->
-<browsersearchboxsearchpage>http://search.pandion.be/#q=%s</browsersearchboxsearchpage> <!-- IE6 -->
+<browsersearchboxsearchpage>http://search.pandion.im/#q=%s</browsersearchboxsearchpage> <!-- IE6 -->
 <browsersearchboxxpi>{536ad1d6-d9d9-41e5-8945-864506a1f2fc}</browsersearchboxxpi> <!-- FF extension ID {guid} or name@email -->
 
 <!-- URI of a web page to replace the Sign Up dialog -->
