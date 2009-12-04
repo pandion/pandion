@@ -16,18 +16,16 @@ window.attachEvent("onload", function () {
 
 	// TODO check if still default xmpp client (if not, show settings again)
 	if (external.globals("welcomesettings").toString() == "true") {
-		client.css.hide(document.getElementById("settings"));
-		client.css.show(document.getElementById("shortcuts"));
-	} else {
 		client.css.show(document.getElementById("settings"));
 		client.css.hide(document.getElementById("shortcuts"));
+	} else {
+		client.css.show(document.getElementById("shortcuts"));
+		client.css.hide(document.getElementById("settings"));
 	}
 	if (external.wnd.params.document.getElementById("signin-dialog").style.display == "block")
 		client.css.disable(document.getElementById("shortcuts"));
 
 	var saveSettings = function () {
-		external.globals("welcomesettings") = false;
-
 		if (document.getElementById("default-xmpp-client").checked) {
 			var logo = external.globals("cwd") + "..\\images\\brand\\default.ico";
 			var open = "\"" + external.globals("cwd") + "..\\" + external.globals("softwarenamesafe") + ".exe\"";
@@ -100,35 +98,38 @@ window.attachEvent("onload", function () {
 	};
 
 	document.getElementById("btn-add-contact").attachEvent("onclick", function () {
-		if (external.wnd.params.document.getElementById( 'signin-dialog' ).style.display != 'block')
+		if (external.wnd.params.document.getElementById("signin-dialog").style.display != "block")
 			external.wnd.params.dial_adduser();
 	});
 	document.getElementById("btn-edit-profile").attachEvent("onclick", function () {
-		if (external.wnd.params.document.getElementById( 'signin-dialog' ).style.display != 'block')
+		if (external.wnd.params.document.getElementById("signin-dialog").style.display != "block")
 			external.wnd.params.dial_vcard_edit();
 	});
 	document.getElementById("btn-transports").attachEvent("onclick", function () {
-		if (external.wnd.params.document.getElementById( 'signin-dialog' ).style.display != 'block')
+		if (external.wnd.params.document.getElementById("signin-dialog").style.display != "block")
 			external.wnd.params.dial_transport_list();
 	});
 	document.getElementById("btn-settings").attachEvent("onclick", function () {
-		if (external.wnd.params.document.getElementById( 'signin-dialog' ).style.display != 'block')
+		if (external.wnd.params.document.getElementById("signin-dialog").style.display != "block")
 			external.wnd.params.dial_preferences("");
 	});
 
 	document.getElementById("content").attachEvent("onsubmit", function () {
-		if (client.css.hasClass(document.getElementById("settings"), "visible"))
+		if (client.css.visible(document.getElementById("settings"))) {
 			saveSettings();
+			external.globals("welcomesettings") = false;
+		}
 		external.globals("welcomescreen") = document.getElementById("show-welcome").checked ? "yes" : "no";
-		event.returnValue = false;
 		external.wnd.close();
+		return false;
 	});
 
 	document.getElementById("settings-close").attachEvent("onclick", function () {
 		saveSettings();
+		external.globals("welcomesettings") = false;
 		client.css.hide(document.getElementById("settings"));
 		client.css.show(document.getElementById("shortcuts"));
-		event.returnValue = false;
+		return false;
 	});
 
 	var anchors = document.getElementsByTagName("a");
