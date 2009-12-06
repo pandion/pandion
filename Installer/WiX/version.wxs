@@ -8,8 +8,8 @@
 	<!--
 		These properties are shown in the installer UI, add/remove programs, ...
 	-->
-	<?define AppHelpLink="http://www.pandion.be/support" ?>
-	<?define AppUrlInfoAbout="http://www.pandion.be/about" ?>
+	<?define AppHelpLink="http://pandion.im/support" ?>
+	<?define AppUrlInfoAbout="http://pandion.im/about" ?>
 	<?define Manufacturer="Pandion Project" ?>
 	<?define Name="Pandion" ?>
 
