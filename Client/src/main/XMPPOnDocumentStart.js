@@ -25,9 +25,9 @@ function XMPPOnDocumentStart ( ReceivedFragment )
 		external.globals( 'cfg' )( 'resource' ) = Resource;
 	}
 
-	/* XMPP 1.0 compliant server
+	/* XMPP compliant server
 	 */
-	if ( external.globals( 'XMPPStreamVersion' ).length > 0 )
+	if ( external.globals( 'XMPPStreamVersion' ) )
 	{
 		/* Wait for stream:features to arrive at XMPPOnStream
 		 */
