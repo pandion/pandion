@@ -7,7 +7,7 @@ function dial_autoupdate ( selectVersion )
 			setIcon( external.globals( 'cwd' ) + '..\\images\\brand\\default.ico' );
 			resizeable( false );
 			MinHeight = MinWidth = 0;
-			setSize( 450, 350 );
-			setPos( ( screen.availWidth - 450 ) / 2, ( screen.availHeight - 350 ) / 2 );
+			setSize( 450, 380 );
+			setPos( ( screen.availWidth - 450 ) / 2, ( screen.availHeight - 380 ) / 2 );
 		}
 }

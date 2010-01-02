@@ -1,0 +1,2203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file is part of Pandion instant messenger
+	Copyright (c) 2010 Trần Song Thương Thương
+	License: GNU General Public License version 3 or later
+-->
+<translation xml:lang="vn">
+  <about>
+    <language>Tiếng Việt</language>
+    <history>
+      <revision>
+        <author>
+          <name>Trần Song Thương Thương</name>
+          <email>song3t@gmail.com</email>
+          <xmpp>song3t@gmail.com</xmpp>
+        </author>
+        <date>2010-01-01</date>
+        <description>
+          First edit.
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_disconnected">
+      <innerText>Ngừng kết nối với máy chủ</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>Kết nối lại</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>hoặc</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Thay đổi các tùy chọn kết nối</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>Thêm tên vào danh bạ của bạn</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>hoặc</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>Thay đổi các tùy chọn truyền dẫn mạng</innerText>
+    </item>
+
+    <item id="mode-avatar">
+      <title>Chọn ảnh hiện thị khác</title>
+    </item>
+    <item id="mode-bar">
+      <title>Thay đổi trạng thái, dòng thông báo trạng thái, hồ sơ cá nhân</title>
+    </item>
+    <item id="mode-secure">
+      <title>Kết nối được bảo vệ bởi chế độ mã hóa SSL/TLS</title>
+    </item>
+    <item id="rosterfield">
+      <title>Cá nhân và nhóm trong danh bạ của bạn</title>
+    </item>
+
+    <item id="signin-instructions">
+      <innerText> Đăng nhập bằng tài khoản IM của bạn</innerText>
+    </item>
+    <item id="txt-signin-address">
+      <innerText>Tên truy nhập:</innerText>
+    </item>
+    <item id="txt-signin-examples">
+      <innerText>Ví dụ:</innerText>
+    </item>
+    <item id="txt-signin-password">
+      <innerText>Mật khẩu:</innerText>
+    </item>
+    <item id="txt-signin-remember">
+      <innerText>Nhớ tên truy nhập và mật khẩu</innerText>
+    </item>
+    <item id="txt-signin-autoconnect">
+      <innerText>Đăng nhập tự động</innerText>
+    </item>
+    <item id="signin-connect">
+      <innerText>Đăng nhập</innerText>
+    </item>
+    <item id="signin-register">
+      <innerText>Đăng ký tài khoản IM mới</innerText>
+    </item>
+    <item id="signin-settings">
+      <innerText>Tùy chỉnh kết nối</innerText>
+    </item>
+
+    <code id="tt-group-hide">Ẩn các tên trong nhóm này&#13;Chuột phải để có thêm lựa chọn</code>
+    <code id="tt-group-show">Hiện các tên trong nhóm này&#13;Chuột phải để có thêm lựa chọn</code>
+    <code id="emoticon_unknown">Không có thông tin</code>
+    <code id="txt_welcome">Chào mừng bạn đến với ${0}!</code>
+    <code id="user_online">${0} vừa online</code>
+    <code id="cl_tooltip">${0} Danh bạ</code>
+    <code id="import_files">Danh bạ</code>
+    <code id="import_invalid">Tệp tin không bao gồm các dữ liệu hợp lệ.</code>
+    <code id="import_no_new">Mọi tên trong tệp tin này đều đã có trong danh bạ của bạn.</code>
+    <code id="import_confirm">Các địa chỉ này sẽ được thêm vào danh bạ của bạn, Bạn có chắc muốn thêm các địa chỉ này vào danh bạ? </code>
+    <code id="import_aim_not_registered">Để nhập và sử dụng danh bạ từ tài khoản AIM của bạn, truyền dẫn AIM cần phải được đăng ký và có hiệu lực. &#13;Chọn bảng Công cụ - Truyền dẫn để xem trạng thái hiện tại của truyền dẫn AIM</code>
+    <code id="import_msn_not_registered">Để nhập và sử dụng danh bạ từ tài khoản MSN của bạn, truyền dẫn MSN cần phải được đăng ký và có hiệu lực. &#13;Chọn bảng Công cụ - Truyền dẫn để xem trạng thái hiện tại của truyền dẫn MSN</code>
+    <code id="import_gadu_not_registered">Để nhập và sử dụng danh bạ từ tài khoản Gadu-Gadu của bạn, truyền dẫn Gadu-Gadu cần phải được đăng ký và có hiệu lực. &#13;Chọn bảng Công cụ - Truyền dẫn để xem trạng thái hiện tại của truyền dẫn Gadu-Gadu</code>
+    <code id="conference_invitation">${0} mời bạn vào Phòng họp: ${1}&#13;&#13;Bạn có muốn tham gia?</code>
+
+    <code id="search_info">Tìm tên...</code>
+    <code id="invalid-user-address">Gõ vào đây tài khoản IM của bạn.&#13;&#13;Nếu bạn chưa có tài khoản IM, chọn "Đăng ký tài khoản IM" dưới đây.</code>
+    <code id="invalid-sso-server">Gõ vào đây địa chỉ máy chủ IM của bạn.</code>
+    <code id="program-description">${softwarename} là ứng dụng IM cho các mạng XMPP.</code>
+    <code id="extension-jisp">Bộ biểu tượng cảm xúc Jabber</code>
+    <code id="extension-pdn">${softwarename} Plug-In</code>
+    <code id="extension-xmpp">Extensible Messaging and Presence Protocol (XMPP) Meta Data</code>
+    <code id="uri-xmpp">Extensible Messaging and Presence Protocol (XMPP) Địa chỉ</code>
+
+    <code id="menu_status">&amp;Trạng thái</code>
+    <code id="menu_status_received">&amp;Mở các file vừa nhận được</code>
+    <code id="menu_status_export">&amp;Xuất danh bạ...</code>
+    <code id="menu_status_import">&amp;Nhập danh bạ...</code>
+    <code id="menu_status_change">Thay đổi Trạng thái &amp;Dòng thông báo của tôi...</code>
+
+    <code id="menu_status_ffc">&amp;Chat miễn phí</code>
+    <code id="menu_status_available">&amp;Đang Online</code>
+    <code id="menu_status_busy">&amp;Đang bận</code>
+    <code id="menu_status_away">V&amp;ừa ra ngoài</code>
+    <code id="menu_status_xaway">&amp;Extended Away</code>
+    <code id="menu_status_invisible">&amp;Ẩn</code>
+    <code id="menu_status_offline">&amp;Đang offline</code>
+    <code id="menu_status_status">Trạng thái &amp;của tôi</code>
+    <code id="menu_status_out">&amp;Thoát</code>
+    <code id="menu_status_exit">E&amp;xit</code>
+
+    <code id="menu_axn">&amp;Thao tác</code>
+    <code id="menu_axn_add">&amp;Thêm tên...</code>
+    <code id="menu_axn_addgroup">Thêm &amp;Nhóm...</code>
+    <code id="menu_axn_bookmarks">&amp;Các phòng họp đã được đánh dấu</code>
+    <code id="menu_axn_bookmarks_add">&amp;Đánh dấu thêm...</code>
+    <code id="menu_axn_bookmarks_manage">&amp;Sắp xếp các đề mục đã được đánh dấu...</code>
+    <code id="menu_axn_join">&amp;Tham gia Phòng họp...</code>
+    <code id="menu_axn_create">&amp;Tạo Phòng họp...</code>
+    <code id="menu_axn_password">Đổi &amp;mật khẩu...</code>
+    <code id="menu_axn_profile">&amp;Thay đổi thông tin tài khoản...</code>
+    <code id="menu_axn_avatar">&amp;Thay đổi hình ảnh đại diện...</code>
+
+    <code id="menu_tool">&amp;Công cụ</code>
+    <code id="menu_tool_transport">&amp;Truyền dẫn</code>
+    <code id="menu_tool_head">&amp;Tiêu đề và thông báo</code>
+    <code id="menu_tool_plugin">&amp;Plug-ins</code>
+    <code id="menu_tool_traffic">&amp;Lưu lượng mạng</code>
+    <code id="menu_tool_view">&amp;Xem</code>
+    <code id="menu_tool_detailed">&amp;Chi tiết</code>
+    <code id="menu_tool_compact">&amp;Thu gọn</code>
+    <code id="menu_tool_language">&amp;Ngôn ngữ</code>
+    <code id="menu_tool_aot">&amp;Luôn hiện trên các chương trình khác</code>
+    <code id="menu_tool_settings">&amp;Tùy chỉnh</code>
+
+    <code id="menu_help">&amp;Giúp đỡ</code>
+    <code id="menu_help_welcome">&amp;Màn hình Chào mừng</code>
+    <code id="menu_help_manual">&amp;Hướng dẫn Trực tuyến</code>
+    <code id="menu_help_forum">&amp;Diễn đàn Hỗ trợ</code>
+    <code id="menu_help_contact">&amp;Liên hệ với chúng tôi</code>
+    <code id="menu_help_update"> Kiểm tra &amp;các Cập nhật</code>
+    <code id="menu_help_about">&amp;Thông tin</code>
+
+    <code id="menu_tray_about">&amp;Về ${0}</code>
+    <code id="menu_tray_settings">&amp;Tùy chỉnh</code>
+
+    <code id="wnd_autoupdate">Đang cập nhật ${0}</code>
+    <code id="wnd_vcard_edit">Thông tin về người sử dụng</code>
+    <code id="wnd_about">Về ${0}</code>
+    <code id="wnd_signup">Đăng ký - ${0}</code>
+    <code id="wnd_adduser">Tìm hoặc thêm tên</code>
+    <code id="wnd_avatar">Thay đổi hình ảnh đại diện của bạn</code>
+    <code id="wnd_room_browse">Các Phòng họp</code>
+    <code id="wnd_room_create">Tạo Phòng họp</code>
+    <code id="wnd_conference_invite">Mời các tên sau trong danh bạ</code>
+    <code id="wnd_conference_other">Các dịch vụ họp trực tuyến khác</code>
+    <code id="wnd_console">Bảng điều khiển</code>
+    <code id="wnd_emoticon_download">Tải về các Biểu tượng cảm xúc</code>
+    <code id="wnd_emoticon_list">Biểu tượng cảm xúc</code>
+    <code id="wnd_emoticon_view">Chi tiết về các Biểu tượng cảm xúc</code>
+    <code id="wnd_file_send">Đang gửi file tới ${0}</code>
+    <code id="wnd_file_recv">Đang nhận file từ ${0}</code>
+    <code id="wnd_group_message">Tín nhắn nhóm</code>
+    <code id="wnd_transport_list">Truyền dẫn</code>
+    <code id="wnd_transport_other">Các truyền dẫn khác</code>
+    <code id="wnd_headlines">Cách xem các tiêu đề</code>
+    <code id="wnd_history">${0} - Nhật ký tin nhắn</code>
+    <code id="wnd_plugin_list">Plug-ins</code>
+    <code id="wnd_plugins">Plug-ins</code>
+    <code id="wnd_password">Đổi mật khẩu</code>
+    <code id="wnd_settings">Tùy chỉnh</code>
+    <code id="wnd_status">Dòng thông báo trạng thái</code>
+    <code id="wnd_vcard_view">Thông tin người sử dụng</code>
+    <code id="wnd_group_create">Tạo nhóm</code>
+    <code id="wnd_group_rename">Đặt lại tên nhóm</code>
+    <code id="wnd_contact_rename">Đặt lại tên</code>
+    <code id="wnd_authrequest">Yêu Cầu Được Cho Phép</code>
+    <code id="wnd_extension_download">Đang cài đặt ${0}</code>
+    <code id="wnd_background_list">Phông nền</code>
+    <code id="wnd_background_download">Tải về các mẫu phông nền</code>
+    <code id="wnd_bookmarks_add">Đánh dấu thêm Phòng họp</code>
+    <code id="wnd_bookmarks_edit">Sửa thông tin Phòng họp</code>
+    <code id="wnd_bookmarks_manage">Danh sách các Phòng họp đã được đánh dấu</code>
+    <code id="wnd_connection_settings">Tùy chỉnh kết nối</code>
+    <code id="wnd_welcome">Chào mừng bạn đến với ${0}</code>
+
+    <code id="msg_emoticon_install"> Bộ biểu tượng cảm xúc này đã được cài đặt.</code>
+    <code id="msg_received_files"> Thư mục để lưu giữ file đã bị xóa.</code>
+    <code id="msg_plugin_install"> Bạn có muốn cài đặt plug-in này?&#13;&#13;Tên: ${0}&#13;Miêu tả: ${1}</code>
+    <code id="msg_plugin_exists">Plug-in này đã được cài đặt.</code>
+    <code id="msg_cl_adding">${0} đã được thêm vào danh bạ của bạn.</code>
+    <code id="msg_cl_added">${0} đã thêm tên bạn vào danh bạ của họ.</code>
+    <code id="msg_blocked">Tên bạn nằm trong danh sách bỏ qua của họ.</code>
+    <code id="msg_autherror">Không thể đăng nhập. Lý do: &#13;&#13; - Bạn dùng mật khẩu không chính xác, hoặc &#13; - Tài khoản không tồn tại trên máy chủ&#13;&#13; Xin vui lòng thử lại.</code>
+
+    <code id="menu_message">Tin nhắn</code>
+    <code id="menu_filetransfer">Chuyển file</code>
+    <code id="menu_room_create">Tạo phòng mới</code>
+    <code id="menu_room_invite">Mời đến phòng họp</code>
+    <code id="menu_rename"> Đặt lại tên</code>
+    <code id="menu_block">Bỏ qua</code>
+    <code id="menu_delete">Xóa</code>
+    <code id="menu_group_create">Tạo nhóm mới</code>
+    <code id="menu_group_merge">Nhập với...</code>
+    <code id="menu_group_move">Chuyển đến</code>
+    <code id="menu_group_copy">Sao chép đến</code>
+    <code id="menu_request">Gửi lại Yêu cầu Được Cho Phép</code>
+    <code id="menu_history">Nhật ký</code>
+    <code id="menu_profile">Hồ sơ</code>
+
+    <code id="cl_waiting_one">Bạn có 1 tin nhắn chưa đọc</code>
+    <code id="cl_waiting_multiple">Bạn có ${0} tin nhắn chưa đọc</code>
+    <code id="cl_error_notexist">Địa chỉ không tồn tại.</code>
+    <code id="cl_error_cannotadd">Không thể thêm ${0} vào danh bạ.&#13;${1}</code>
+    <code id="cl_default_group">Các tên</code>
+	<code id="cl_group_display_none">Không có tên nào</code>
+    <code id="cl_group_display_online">Chỉ những tên đang online</code>
+    <code id="cl_group_display_all">Tất cả các tên</code>
+	<code id="cl_group_expand">Hiện các tên đang offline</code>
+    <code id="cl_group_compact">Ẩn các tên đang offline</code>
+    <code id="cl_group_rename">Đặt lại tên cho nhóm này</code>
+    <code id="cl_group_message">Gửi tin nhắn cho nhiều người</code>
+    <code id="cl_room_create">Tạo nhóm mới</code>
+    <code id="cl_room_invite">Mời đến Phòng họp</code>
+    <code id="cl_group_empty">Không có ai online trong nhóm này.</code>
+    <code id="cl_status_empty">Không có dòng thông báo trạng thái</code>
+    <code id="cl_status_offline">Đang offline</code>
+    <code id="cl_status_awaiting">Chờ được cho phép</code>
+    <code id="cl_status_unknown">Trạng thái không xác định</code>
+    <code id="cl_status_waiting_one">1 tin nhắn chưa đọc</code>
+    <code id="cl_status_waiting_multiple">${0} tin nhắn chưa đọc</code>
+    <code id="cl_tooltip_offline">Địa chỉ: ${0}</code>
+    <code id="cl_contact_remove_group">Bạn có chắc muốn xóa tên này khỏi nhóm?</code>
+    <code id="cl_contact_remove_list">Bạn có chắc muốn xóa tên này khỏi danh bạ?</code>
+    <code id="cl_link_open">Mở bằng trình duyệt web</code>
+    <code id="cl_link_copy">Sao chép địa chỉ link</code>
+    <code id="cl_link_favorite">Thêm vào Danh sách Yêu thích</code>
+    <code id="cl_ffc">Chat miễn phí</code>
+    <code id="cl_available">Đang online</code>
+    <code id="cl_busy">Đang bận</code>
+    <code id="cl_away">Vừa ra ngoài</code>
+    <code id="cl_xaway">Extended Away</code>
+    <code id="cl_invisible">Ẩn</code>
+    <code id="cl_idle">Không hoạt động</code>
+    <code id="cl_tooltip_online">Địa chỉ: ${0}&#13;Nguồn: ${1}</code>
+
+    <code id="time-now">vừa mới</code>
+    <code id="time-second">1 giây trước</code>
+    <code id="time-seconds">${0} giây trước</code>
+    <code id="time-minute">1 phút trước</code>
+    <code id="time-minutes">${0} phút trước</code>
+    <code id="time-hour">1 giờ trước</code>
+    <code id="time-hours">${0} giờ trước</code>
+    <code id="time-day">1 ngày trước</code>
+    <code id="time-days">${0} ngày trước</code>
+    <code id="time-week">1 tuần trước</code>
+    <code id="time-weeks">${0} tuần trước</code>
+    <code id="time-month">1 tháng trước</code>
+    <code id="time-months">${0} tháng trước</code>
+    <code id="time-year">1 năm trước</code>
+    <code id="time-years">${0} năm trước</code>
+
+    <code id="track-stable">Ổn định</code>
+    <code id="track-beta">Mẫu</code>
+    <code id="track-development">Phát triển</code>
+  </window>
+  <window name="about">
+    <item id="txt-copyright">
+      <innerHTML>Bản quyền &amp;copy; ${copyrightyear} thuộc về ${copyrightholder}. Mọi quyền lợi đã được pháp luật quy định. Ứng dụng này được xuất bản dưới các điều khoản &lt;a href="${licenseurl}"&gt;${licensename}&lt;/a&gt;. &lt;a href="${termsandcontitionsurl}"&gt;Các điều khoản và điều kiện&lt;/a&gt; khác có thể được áp dụng trên các ràng buộc đã được bao hàm.</innerHTML>
+    </item>
+    <item id="txt-trademark">
+      <innerText>Tên ${softwarename} và các logo là thương hiệu thuộc về ${trademarkholder}. Mọi quyền lợi đã được pháp luật quy định.</innerText>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>Xem Thông tin Hồ sơ</value>
+    </item>
+    <item id="btn_deny">
+      <value>Từ chối</value>
+    </item>
+    <item id="btn_accept">
+      <value>Nhận lời</value>
+    </item>
+    <item id="txt_from">
+      <innerText>Bạn nhân được Yêu cầu Được Cho Phép từ:</innerText>
+    </item>
+    <item id="txt_question">
+      <innerText>Bạn chấp nhận hay từ chối thêm tên này vào danh bạ?</innerText>
+    </item>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>Xóa đầu ra</value>
+    </item>
+    <item id="btn_send">
+      <value>Gửi</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>Presence</value>
+    </item>
+    <item id="btn_message">
+      <value>Tin nhắn</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>Lưu lượng mạng:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>Break lines</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>Đầu vào XML:</innerText>
+    </item>
+    <code id="toggle_on">Tìm lỗi bật</code>
+    <code id="toggle_off">Tìm lỗi tắt</code>
+    <code id="valid_xml">Đầu vào phải là XML hợp lệ, không được chỉ bao gồm dấu cách hoặc các ký tự chữ cái thuần túy.</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>Đóng</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Thông báo và Đề mục</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Hiện thông báo đặc biệt khi bạn nhận được đề mục tin hoặc các tin vắn khác.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Không nhận được thông báo hay đề mục nào.</innerText>
+    </item>
+    <item id="alertonlinelabel">
+      <innerText>Hiện thông báo khi có người online.</innerText>
+    </item>
+    <code id="read_more">Thông tin thêm...</code>
+    <code id="replay">Bật lại</code>
+  </window>
+  <window name="headline-toaster">
+    <item id="options">
+      <innerText>Lựa chọn...</innerText>
+    </item>
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>Hủy</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_custom">
+      <value>Tự tạo hình ảnh..</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Chọn hình ảnh đại diện giúp xác định hồ sơ của bạn.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Đang tải...</innerText>
+    </item>
+    <code id="error_size"> Không tải được hình ảnh. Cỡ của ảnh vượt quá 8 kilobytes.</code>
+    <code id="error_empty">Không tải được hình ảnh. Tệp tin trống.</code>
+    <code id="error_load">Cảnh báo: Không tải được hình ảnh đại diện.&#13;&#13;${0}</code>
+    <code id="menu_use">Dùng hình ảnh đại diện này</code>
+    <code id="menu_saveas">Lưu mới...</code>
+    <code id="menu_delete">Xóa</code>
+    <code id="wnd_select">Chọn hình ảnh đại diện</code>
+    <code id="saveas_files">Tệp tin hình ảnh</code>
+    <code id="image_files">Tệp tin hình ảnh nhỏ hơn 8kB</code>
+    <code id="all_files">Tất cả các tệp tin</code>
+  </window>
+  <window name="mode_select">
+    <item id="txt_message">
+      <innerText>Dòng thông báo trạng thái của bạn cho biết tâm trạng, hoạt động của bạn hoặc bất cứ điều gì về bạn:</innerText>
+    </item>
+    <code id="btn_ok">OK</code>
+    <code id="btn_ok_empty">OK (không có tin nhắn)</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Hủy</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Tên mới:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Hủy</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Tên mới:</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Hủy</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Tên mới:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Hủy</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>Xác nhận mật khẩu mới:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Mật khẩu mới:</innerText>
+    </item>
+    <code id="no_match">Mật khẩu bạn vừa nhập không khớp nhau.&#13;&#13; Xin vui lòng nhập mật khẩu mới ở cả hai ô dưới đây.</code>
+    <code id="no_pass">Nhập mật khẩu mới</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="set_version">
+      <innerText>Đang tải...</innerText>
+    </item>
+    <item id="header-images">
+      <innerText>Hình ảnh</innerText>
+    </item>
+    <item id="header-sounds">
+      <innerText>Âm thanh</innerText>
+    </item>
+    <item id="header-markup">
+      <innerText>Đánh dẫu chữ</innerText>
+    </item>
+    <code id="empty">Kiểu biểu tượng cảm xúc này rỗng.</code>
+    <code id="file_error">Tệp tin có lỗi</code>
+    <code id="cannot_load">Không tải về được các biểu tượng cảm xúc.</code>
+    <code id="count_one">1 biểu tượng cảm xúc</code>
+    <code id="count_multiple">${0} biểu tượng cảm xúc</code>
+  </window>
+  <window name="emoticon_download">
+    <item id="btn_close">
+      <value>Đóng</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Tải về các biểu tượng cảm xúc</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Cần kết nối với mạng Internet để có thể xem các Catalog Biểu tượng cảm xúc.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Đang tải...</innerText>
+    </item>
+    <code id="install">Cài đặt</code>
+    <code id="cannot_download">Lỗi: Không tải được các biểu tượng cảm xúc.&#13;${0}</code>
+    <code id="invalid_xml"> Nguồn dữ liệu bao gồm các dữ liệu không hợp lệ.</code>
+    <code id="no_new_styles">Hiện tại không có bộ biểu tượng cảm xúc mới nào.</code>
+  </window>
+  <window name="emoticon_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Các biểu tượng cảm xúc có sẵn</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Chọn kiểu biểu tượng cảm xúc trong danh sách.</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>Đang tải...</innerText>
+    </item>
+    <item id="btn_emoticon_download">
+      <value>Các biểu tượng cảm xúc khác</value>
+    </item>
+    <code id="emoticon_details">Hiện chi tiết</code>
+    <code id="emoticon_remove">Xóa</code>
+    <code id="emoticon_confirm">Bạn có chắc bạn muốn xóa kiểu biểu tượng cảm xúc này?</code>
+    <code id="no_emoticons">Không tìm thấy biểu tượng cảm xúc nào.</code>
+  </window>
+  <window name="background_download">
+    <item id="btn_close">
+      <value>Đóng</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Tải về các mẫu phông nền</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Cần kết nối với mạng Internet để có thể xem các Catalog Phông nền.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Đang tải...</innerText>
+    </item>
+    <code id="install">Cài đặt</code>
+    <code id="cannot_download">Lỗi: Không tải được các mẫu phông nền.&#13;${0}</code>
+    <code id="invalid_xml">Nguồn dữ liệu bao gồm các dữ liệu không hợp lệ.</code>
+    <code id="no_new_styles">Hiện tại không có mẫu phông nền mới nào.</code>
+  </window>
+  <window name="background_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Các mẫu phông nền có sẵn</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Thêm hoặc xóa mẫu phông nền.</innerText>
+    </item>
+    <item id="btn_background_download">
+      <value>Các mẫu phông nền khác</value>
+    </item>
+    <item id="txt_background_empty">
+      <innerText>Hiện tại không có mẫu phông nền nào đang được cài đặt.</innerText>
+    </item>
+    <code id="background_uninstall">Xóa</code>
+    <code id="background_confirm">Bạn có chắc muốn xóa mẫu phông nền này?</code>
+  </window>
+  <window name="plugin_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Các plug-in đã được cài đặt</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Thêm hoặc xóa plug-in.</innerText>
+    </item>
+    <item id="btn_plugin_download">
+      <value>Các plug-in khác</value>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>Hiện tại không có plug-in đang được cài đặt.</innerText>
+    </item>
+    <code id="plugin_uninstall">Gỡ bỏ cài đặt</code>
+    <code id="plugin_confirm">Bạn có chắc bạn muốn loại bỏ plug-in này?</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>Đóng</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Tải về các plug-in</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Cần kết nối với mạng Internet để duyệt catalog plug-in.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Đang tải...</innerText>
+    </item>
+    <code id="install">Cài đặt</code>
+    <code id="cannot_download">Lỗi: Không tải được các plug-in.&#13;${0}</code>
+    <code id="invalid_xml">Nguồn dữ liệu không bao gồm XML hợp lệ.</code>
+    <code id="no_new_plugins">Hiện tại không có plug-in mới nào.</code>
+  </window>
+  <window name="autoupdate">
+    <item id="txt-unavailable">
+      <innerText>Hiện tại không có cập nhật nào.</innerText>
+    </item>
+    <item id="txt-no-feed">
+      <innerText>Không thể truy cập nguồn cung cấp cập nhật. Xin vui lòng thử lại trong giây lát.</innerText>
+    </item>
+    <item id="txt-available-updates">
+      <innerText>Các cập nhật hiện có:</innerText>
+    </item>
+    <item id="txt-tracks-info">
+      <innerText>Các phiên bản khác nhau cung cấp các tính năng ổn định hơn hoặc các thay đổi mới nhất.</innerText>
+    </item>
+    <item id="txt-latest">
+      <innerText>Phiên bản mới nhất hiện có:</innerText>
+    </item>
+    <item id="txt-alternatives">
+      <innerText>Các phiên bản khác:</innerText>
+    </item>
+    <item id="btn-close">
+      <value>Đóng</value>
+    </item>
+
+    <item id="txt-new-version">
+      <innerText>Phiên bản mới nhất đã sẵn sàng để tải về.</innerText>
+    </item>
+    <item id="txt-whats-new">
+      <innerText>Có gì mới?</innerText>
+    </item>
+    <item id="txt-learn-more">
+      <innerText>Xem thêm về những thay đổi mới của lần cập nhật này. Link này sẽ được mở ra trong trình duyệt web của bạn.</innerText>
+    </item>
+    <item id="txt-continue">
+      <innerText>Bạn có thể tiếp tục dùng ${softwarename} trong khi các cập nhật mới được tải về.</innerText>
+    </item>
+    <item id="txt-restart">
+      <innerText> Các cập nhật sẽ được cài đặt khi ${softwarename} khởi động lại. Bạn có thể tiếp tục dùng ${software} mà không cần khởi động lại. Bạn có muốn khởi động lại và cập nhật ngay bây giờ?</innerText>
+    </item>
+    <item id="txt-browser">
+      <innerText>Các cập nhật sẽ bắt đầu được tải về trong trình duyệt web của bạn.</innerText>
+    </item>
+    <item id="btn-update">
+      <value>Cập nhật luôn bây giờ</value>
+    </item>
+    <item id="btn-download">
+      <value>Cập nhật luôn bây giờ</value>
+    </item>
+    <item id="btn-later">
+      <value>Cập nhật sau</value>
+    </item>
+    <code id="up-to-date">Phiên bản mới nhất</code>
+    <code id="previous-version">Phiên bản trước</code>
+    <code id="recommended">Khuyên dùng</code>
+    <code id="description-stable">Các phiên bản ổn định đã được kiểm nghiệm trong khoảng thời gian lâu nhất.</code>
+    <code id="description-beta">Bao gồm các lỗi đã sửa và các tính năng đang được thử nghiệm.</code>
+    <code id="description-development">Một số tính năng có thể không hoạt động khi phần mềm đang được hoàn thiện.</code>
+    <code id="title">Các cập nhật cho phần mềm: ${0} ${1}</code>
+  </window>
+  <window name="welcome">
+    <item id="txt-hello">
+      <innerText>Xin chào mừng bạn đến với ${softwarename}</innerText>
+    </item>
+    <item id="txt-free-software">
+      <innerText> Đây là ứng dụng phần mềm miễn phí và mở (open source). Các phát triển, phiên bản tiếng nước ngoài và hỗ trợ đều được thực hiện và đóng góp bởi các thành viên tích cực của cộng đồng người sử dụng.</innerText>
+    </item>
+    <item id="txt-more-information">
+      <innerHTML>Để biết thêm chi tiết, theo dõi @&lt;a href="http://twitter.com/${twittername}"&gt;${twittername}&lt;/a&gt; trên Twitter hoặc trở thành fan tại &lt;a href="http://www.facebook.com/${facebookpage}"&gt;Facebook.com/${facebookpage}&lt;/a&gt;.</innerHTML>
+    </item>
+    <item id="txt-enjoy">
+      <innerText>Hi vọng bạn thích sử dụng phần mềm của chúng tôi.</innerText>
+    </item>
+    <item id="txt-team">
+      <innerText>Nhóm ${softwarename}</innerText>
+    </item>
+    <item id="settings-close">
+      <title>Xác nhận và đóng</title>
+    </item>
+    <item id="btn-add-contact">
+      <innerText>Thêm Tên</innerText>
+    </item>
+    <item id="btn-edit-profile">
+      <innerText>Sửa Hồ Sơ của Tôi</innerText>
+    </item>
+    <item id="btn-transports">
+      <innerText>Truyền dẫn</innerText>
+    </item>
+    <item id="btn-settings">
+      <innerText>Cài đặt</innerText>
+    </item>
+    <item id="txt-confirm">
+      <innerText>Xin xác nhận các cài đặt sau đây:</innerText>
+    </item>
+    <item id="txt-default-xmpp">
+      <innerText>Dùng ${softwarename} làm máy khách XMPP mặc định</innerText>
+    </item>
+    <item id="txt-homepage">
+      <innerText>Đổi trang chủ của tôi thành ${browsersearchboxname}</innerText>
+    </item>
+    <item id="txt-search-engine">
+      <innerText>Thêm ${browsersearchboxname} vào nhóm các phần mềm tìm kiếm</innerText>
+    </item>
+    <item id="txt-feed-title">
+      <innerText>Hỗ trợ và Phản hồi</innerText>
+    </item>
+    <item id="txt-ask-question">
+      <innerText>Đặt câu hỏi</innerText>
+    </item>
+    <item id="txt-powered-by">
+      <innerText>được hỗ trợ bởi GetSatisfaction</innerText>
+    </item>
+    <item id="txt-show-welcome">
+      <innerText>Hiển thị màn hình chào mừng này khi khởi động</innerText>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+    </item>
+    <code id="search-topics">Tìm tất cả các chủ đề...</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Hủy</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Mọi phòng họp đều chỉ có một địa chỉ duy nhất. Nhập vào địa chủ của dịch vụ và tên duy nhất của phòng chat.</innerText>
+    </item>
+    <item id="txt_service">
+      <innerText>Địa chỉ dịch vụ:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Ví dụ: conference.example.net</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>Tên phòng họp:</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>Địa chỉ phòng họp:</innerText>
+    </item>
+    <code id="incomplete">Xin vui lòng điền hết tất cả các mục...</code>
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>Gửi</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Hủy</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>Gửi tới những người này:</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>Tin nhắn thường</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>Thông báo mới</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>Loại tin nhắn</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>Link đính kèm</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>Tin nhắn</innerText>
+    </item>
+  </window>
+  <window name="extension_download">
+    <item id="btn_cancel">
+      <value>Hủy</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Đang kết nối...</innerText>
+    </item>
+    <code id="downloading">Đang tải về...</code>
+  </window>
+<!--
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>Đóng</value>
+    </item>
+    <item id="btn_accept">
+      <value>Chấp nhận</value>
+    </item>
+    <item id="btn_abort">
+      <value>Hủy bỏ</value>
+    </item>
+    <item id="btn_open">
+      <value>Mở</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Thời gian còn lại:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>Người gửi:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Tên file:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Vị trí:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Quá trình:</innerText>
+    </item>
+    <code id="resume">File đã tồn tại. Bạn có muốn tiếp tục chuyển file? &#13;&#13 Chọn "Có" để tiếp tục chuyển file. Chọn "Không" để viết đè lên file cũ.</code>
+    <code id="cannot_overwrite">Không thể viết đè lên file:&#13;${0}&#13;&#13;${1}</code>
+    <code id="incorrect">Không thể bắt đầu quá trình lưu chuyển. Dữ liệu nhận được không hợp lệ.</code>
+    <code id="title_saving">${0}% of ${1} Saved</code>
+    <code id="lessthanminute">Less than 1 minute at ${0}/s</code>
+    <code id="onehour">1 hour and</code>
+    <code id="hours">${0} hours and</code>
+    <code id="oneminute">1 minute at</code>
+    <code id="minutes">${0} minutes at</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Do you want to abort the transfer?</code>
+    <code id="aborted">Aborted</code>
+    <code id="finished">Finished</code>
+    <code id="error_timeout">Timeout occurred.</code>
+    <code id="error_code">Error code: ${0}</code>
+    <code id="error_file">File error code: ${0}</code>
+    <code id="title_completed">Transfer Completed - ${0}</code>
+    <code id="title_failed">Transfer Failed - ${0}</code>
+    <code id="error_move">Cannot move completed file:&#13;${0}&#13;&#13;${1}</code>
+    <code id="error_failed">Transfer failed.</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>Close</value>
+    </item>
+    <item id="btn_abort">
+      <value>Abort</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Time left:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>Recipient:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Filename:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Location:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Progress:</innerText>
+    </item>
+    <code id="socket">Unable to send the file.&#13;Cannot open the network socket.</code>
+    <code id="file">Cannot read file:&#13;${0}</code>
+    <code id="filetransfer">File transfer:</code>
+    <code id="title_saving">${0}% of ${1} Sent</code>
+    <code id="lessthanminute">Less than 1 minute at ${0}/s</code>
+    <code id="onehour">1 hour and</code>
+    <code id="hours">${0} hours and</code>
+    <code id="oneminute">1 minute at</code>
+    <code id="minutes">${0} minutes at</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Do you want to abort the transfer?</code>
+    <code id="finished">Finished</code>
+    <code id="aborted">Aborted</code>
+    <code id="error_denied">File denied.</code>
+    <code id="error_timeout">Timeout occurred.</code>
+    <code id="error_code">Error code: ${0}</code>
+    <code id="title_completed">Transfer Completed - ${0}</code>
+    <code id="title_failed">Transfer Failed - ${0}</code>
+    <code id="error_failed">Transfer failed.</code>
+  </window>
+-->
+  <window name="conference_browse">
+    <item id="btn_close">
+      <value>Đóng</value>
+    </item>
+    <item id="btn_other_service">
+      <value>Các dịch vụ khác...</value>
+    </item>
+    <item id="btn_create">
+      <value>Tạo phòng họp</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Các phòng hiện có:</innerText>
+    </item>
+    <item id="lbl_empty">
+      <innerText>Hiện các phòng trống</innerText>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="lbl_full">
+      <innerText>Hiện các phòng đã đầy người</innerText>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="lbl_filter">
+      <innerText>Sàng lọc:</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Hiện tại không có sẵn dịch vụ họp báo nào tại máy chủ này. &#13;&#13; Chọn "Các dịch vụ khác..." để thêm các dịch vụ họp báo từ máy chủ khác.</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Để có thể tham gia phòng họp bạn phải kết nối với máy chủ IM.</innerText>
+    </item>
+    <code id="bookmarks">Đánh dấu</code>
+    <code id="menu_join">Tham gia</code>
+    <code id="menu_add">Thêm vào Đánh dấu...</code>
+    <code id="empty_filter">Không có phòng nào khớp với điều kiện sàng lọc.</code>
+    <code id="empty_no_rooms">Dịch vụ này hiện đang không có phòng sẵn</code>
+    <code id="status_connecting">Đang kết nối...</code>
+    <code id="status_downloading">Đang lấy lại danh sách các phòng họp...</code>
+    <code id="error_unknown">Dịch vụ "${0}" không tồn tại. Hãy chắc chắn rằng bạn đã nhập địa chỉ chính xác. Xin vui lòng thử lại trong giây lát hoặc thử nhập vào địa chỉ khác</code>
+    <code id="error_no_services">Không có dịch vụ họp nào được cài đặt tại máy chủ "${0}". Liên hệ với admin để biết thêm thông tin.</code>
+    <code id="error_no_new">Mọi dịch vụ họp tại máy chủ "${0}" đã được liệt kê.</code>
+  </window>
+  <window name="conference_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Hủy</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Địa chỉ:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Ví dụ: conference.example.net</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Nhập vào địa chỉ của dịch vụ họp hoặc máy chủ.</innerText>
+    </item>
+    <code id="error_already_exists">Dịch vụ "${0}" đã được liệt kê. Bạn cần nhập vào địa chủ của dịch vụ họp hoặc máy chủ chưa được liệt kê.</code>
+  </window>
+  <window name="vcard">
+    <code id="save">Chú ý: Không lưu được file vCard.&#13;&#13;${0}</code>
+    <code id="personal">Chi tiết người sử dụng</code>
+    <code id="system">Chi tiết hệ thống</code>
+
+    <item id="txt_requesting1">
+      <innerText>Yêu cầu cung cấp thông tin từ máy chủ</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Thao tác này có thể cần một phút để hoàn thành. &lt;BR&gt;Xin bạn hãy kiên nhẫn</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>Lưu lại dưới dạng vCard</value>
+    </item>
+    <item id="btn_refresh">
+      <value>Tải lại</value>
+    </item>
+    <item id="btn_close">
+      <value>Đóng</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>Hủy các thay đổi</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Hủy</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>Thông tin cá nhân</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>Các thông tin khác</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>Địa chỉ nhà riêng</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>Công ty</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>Địa chỉ công ty:</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>Hệ thống</innerText>
+    </item>
+
+    <item id="txt_name">
+      <innerText>Tên</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>Tên:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>Tên đệm:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>Họ:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>Biệt danh:</innerText>
+    </item>
+
+    <item id="txt_contact">
+      <innerText>Liên hệ</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>Email:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>Điện thoại:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>Di động:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>Fax:</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>Các thông tin khác:</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>Tuổi:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>Ngày sinh:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>Giới tính:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>Tình trạng hôn nhân:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>Website:</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>Địa chỉ nhà riêng</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>Địa chỉ 1:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>Địa chỉ 2:</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>Thành phố:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>Mã vùng:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>Tỉnh/Bang:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>Nước:</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>Tổ chức</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>Tên:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>Ngành:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>Chức vụ:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>Vai trò:</innerText>
+    </item>
+
+    <item id="txt_workcontact">
+      <innerText>Liên hệ</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>Email:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>Điện thoại:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>Di động:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>Fax:</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>Địa chỉ cơ quan</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>Địa chỉ 1:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>Địa chỉ 2:</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>Thành phố:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>Mã vùng:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>Tỉnh/Bang:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>Nước:</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>Thông tin về Khách hàng</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>Địa chỉ:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>Nguồn:</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>Giờ Địa Phương:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>Phần mềm:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>Phiên bản:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>Hệ Điều Hành:</innerText>
+    </item>
+  </window>
+  <window name="transport_list">
+    <item id="btn_other">
+      <value>Các phương thức truyền dẫn khác...</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Các phương thức truyền dẫn hiện có</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Các phương thức truyền dẫn cung cấp các đường link với các mạng lưới IM.</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;Lưu ý:&lt;/B&gt; Để cài đặt các phương thức truyền dẫn, bạn phải kết nối với máy chủ IM.</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;Note:&lt;/B&gt; Không có phương thức truyền dẫn nào được cài đặt tại máy chủ đang kết nối với bạn. Liên hệ admin để biết thêm chi tiết.</innerHTML>
+    </item>
+    <item id="msnworkaroundlabel">
+      <innerText>Cho phép các tên trong MSN thay đổi biệt danh của họ</innerText>
+    </item>
+    <code id="status_active">Hoạt động</code>
+    <code id="status_noreg">Chưa đăng ký</code>
+    <code id="status_disconnected">Ngừng kết nối</code>
+    <code id="status_connecting">Đang kết nối...</code>
+    <code id="name_unknown">Dịch vụ không tồn tại</code>
+    <code id="error_unknown">Dịch vụ "${0}" không tồn tại. Hãy chắc chắn bạn đã nhập đúng địa chỉ. Xin vui lòng thử lại hoặc nhập địa chỉ khác.</code>
+    <code id="error_no_transports">Không có phương thức truyền dẫn nào được cài đặt tại máy chủ "${0}". Liên hệ admin để biết thêm chi tiết.</code>
+    <code id="error_no_new_transport">Mọi phương thức truyền dẫn tại máy chủ "${0}" đã được liệt kê.</code>
+  </window>
+  <window name="transport_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Hủy</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Địa chỉ:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Ví dụ:sms.example.net</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Nhập địa chỉ của phương thức truyền dẫn hoặc máy chủ.</innerText>
+    </item>
+    <code id="error_already_exists">Dịch vụ "${0}" đã được liệt kê. Nhập địa chỉ của phương thức truyền dẫn hoặc máy chủ chưa được liệt kê.</code>
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; Quay lại</value>
+    </item>
+    <item id="btn_next">
+      <value>Tiếp &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>Kết thúc</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>Hủy</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>Địa chỉ:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>Biệt danh:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>Địa chỉ:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Mật khẩu:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>Biệt danh:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>Bạn đã đăng ký với phương thức truyền dẫn này. &lt;BR&gt;Tài khoản bạn đã dùng để đăng ký là:</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>Tắt phương thức truyền dẫn</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText>Liên hệ với máy chủ</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Thao tác này có thể cần đến một phút để hoàn thành.&lt;BR&gt; Xin bạn hãy kiên nhẫn.</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>Để đóng thao tác này, chọn &lt;B&gt;Kết thúc&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>Để tiếp tục, chọn &lt;B&gt;Tiếp theo&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <code id="error_invalid">Thông tin nhận được không hợp lệ</code>
+    <code id="error_server">&lt;B&gt;Lỗi máy chủ:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Không thể tiếp tục.</code>
+    <code id="error_unknown">&lt;B&gt;Lỗi không xác định:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Không thể tiếp tục.</code>
+    <code id="error_auth">&lt;B&gt;Lỗi:&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;&lt;BR&gt;Không thể tiếp tục.</code>
+    <code id="wait">&lt;B&gt;Liên lạc với máy chủ&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Thao tác này cần một phút để hoàn thành.&lt;BR&gt;Xin bạn hãy kiên nhẫn.&lt;BR&gt;</code>
+
+    <code id="default_window_title">Cài đặt Truyền dẫn</code>
+    <code id="default_begin_intro">Thao tác sau đây sẽ giúp bạn cài đặt đường truyền dẫn. &lt;BR&gt; Đường truyền dẫn này nối bạn với các mạng lưới khác.&lt;BR&gt; Bạn cần có tài khoản tại các mạng lưới đó để sử dụng đường truyền dẫn này.lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">Nhập tài khoản và mật khẩu của bạn.&lt;BR&gt;Bạn cũng có thể nhập biệt danh bạn muốn người khác trông thấy.&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">Tài khoản của bạn đang được đăng ký với đường truyền dẫn.</code>
+    <code id="default_removing_busy">Tài khoản của bạn đang được xóa khỏi đường truyền dẫn.&lt;BR&gt;</code>
+    <code id="default_creating_done">Tài khoản đã được đăng ký với đường truyền dẫn.</code>
+    <code id="default_removing_done">Tài khoản đã được xóa khỏi đường truyền dẫn.</code>
+
+    <code id="msn_window_title">MSN Messenger - Cài đặt Truyền dẫn</code>
+    <code id="msn_begin_intro">Thao tác sau đây sẽ giúp bạn cài đặt đường truyền dẫn MSN. &lt;BR&gt; Đường truyền dẫn này nối bạn với tài khoản MSN của bạn.&lt;BR&gt;Bạn cần có Microsoft Passport để sử dụng đường truyền dẫn này&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">Nhập địa chỉ MSN và mật khẩu MSN của bạn.&lt;BR&gt;Bạn cũng có thể nhập biệt danh bạn muốn người khác trông thấy.&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">Ví dụ: someone@msn.com, someone@hotmail.com</code>
+    <code id="msn_creating_busy">Tài khoản của bạn đang được đăng ký với đường truyền dẫn MSN.</code>
+    <code id="msn_removing_busy">Tài khoản MSN của bạn đang được xóa khỏi đường truyền dẫn.&lt;BR&gt;Bạn vẫn có thể sử dụng tài khoản MSN của bạn với các dịch vụ khác (vd. Hotmail, MSN Explorer, etc.).&lt;BR&gt;</code>
+    <code id="msn_creating_done">Tài khoản đã được đăng ký với đường truyền dẫn MSN.</code>
+    <code id="msn_removing_done">Tài khoản đã được xóa khỏi đường truyền dẫn MSN.</code>
+
+    <code id="icq_window_title">ICQ - Cài đặt Truyền dẫn</code>
+    <code id="icq_begin_intro">Thao tác sau đây sẽ giúp bạn cài đặt đường truyền dẫn ICQ.&lt;BR&gt; Đường truyền dẫn này nối bạn với tài khoản ICQ của bạnt.&lt;BR&gt;Bạn cần có Mã Số Người Dùng (ICQ &lt;BR&gt;number) để sử dụng đường truyền dẫn này.&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Nhập mã số ICQ và mật khẩu ICQ của bạn.&lt;BR&gt;Bạn cũng có thể nhập biệt danh bạn muốn người khác trông thấy.&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">Ví dụ: 39230793, 158525087</code>
+    <code id="icq_creating_busy">Tài khoản của bạn đang được đăng ký với đường truyền dẫn ICQ.</code>
+    <code id="icq_removing_busy">Tài khoản của bạn đang được xóa khỏi đường truyền dẫn.&lt;BR&gt;</code>
+    <code id="icq_creating_done">Tài khoản đã được đăng ký với đường truyền dẫn ICQ.</code>
+    <code id="icq_removing_done">Tài khoản đã được xóa khỏi đường truyền dẫn ICQ.</code>
+
+    <code id="yahoo_window_title">Yahoo! Messenger - Cài đặt Truyền dẫn</code>
+    <code id="yahoo_begin_intro">Thao tác sau đây sẽ giúp bạn cài đặt đường truyền dẫn Yahoo!&lt;BR&gt;Đường truyền dẫn này kết nối bạn và tài khoản Yahoo! của bạn. &lt;BR&gt; Bạn cần tài khoản Yahoo! sẵn có của bạn để sử dụng đường truyền dẫn này.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions"> Nhập tài khoản Yahoo! và mật khẩu Yahoo! của bạn.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">Tài khoản của bạn đang được đăng ký với đường truyền dẫn Yahoo!</code>
+    <code id="yahoo_removing_busy">Tài khoản Yahoo! của bạn đang được xóa khỏi đường truyền dẫn.&lt;BR&gt;Bạn vẫn có thể dùng tài khoản Yahoo! của bạn với các dịch vụ khác (vd Yahoo! mail, Yahoo! Messenger, etc.).&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">Tài khoản đã được đăng ký với đường truyền dẫn Yahoo!.</code>
+    <code id="yahoo_removing_done">Tài khoản đã được xóa khỏi đường truyền dẫn Yahoo!.</code>
+
+    <code id="aim_window_title">AOL Instant Messenger - Cài đặt Truyền dẫn</code>
+    <code id="aim_begin_intro">Thao tác sau đây sẽ giúp bạn cài đặt đường truyền dẫn  AOL IM.&lt;BR&gt;Đường truyền dẫn này kết nối bạn và tài khoản AOL IM của bạn.&lt;BR&gt;Bạn cần có tài khoản AOL IM để sử dụng đường truyền dẫn này.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">Nhập tài khoản AOL IM và mật khẩu AOL IM của bạn.&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">Tài khoản của bạn đang được đăng ký với đường truyền dẫn AOL IM.</code>
+    <code id="aim_removing_busy">Tài khoản AOL IM của bạn đang được xóa khỏi đường truyền dẫn.&lt;BR&gt;Bạn vẫn có thể sử dụng tài khoản AOL IM của bạn với các phần mềm khác.&lt;BR&gt;</code>
+    <code id="aim_creating_done">Tài khoản đã được đăng ký với đường truyền dẫn AOL IM.</code>
+    <code id="aim_removing_done">Tài khoản đã được xóa khỏi đường truyền dẫn AOL IM.</code>
+
+    <code id="gadu_window_title">Gadu-Gadu - Cài đặt Truyền dẫn</code>
+    <code id="gadu_begin_intro">Thao tác sau đây sẽ giúp bạn cài đặt đường truyền dẫn Gadu-Gadu.&lt;BR&gt;Đường truyền dẫn nối bạn với tài khoản Gadu-Gadu của bạn.&lt;BR&gt; Bạn cần có số Gadu-Gadu để sử dụng đường truyền dẫn này.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_instructions">Nhập số Gadu-Gadu và mật khẩu của bạn. &lt;BR&gt;Bạn cũng có thể nhập biệt danh mà bạn muốn người khác nhìn thấy.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_examples">&amp;nbsp;</code>
+    <code id="gadu_creating_busy">Số Gadu-Gadu của bạn đang được đăng ký với đường truyền dẫn.</code>
+    <code id="gadu_removing_busy">Số Gadu-Gadu của bạn đang được xóa khỏi đường truyền dẫn.&lt;BR&gt;</code>
+    <code id="gadu_creating_done">Số Gadu-Gadu đã được đăng ký với đường truyền dẫn.</code>
+    <code id="gadu_removing_done">Số Gadu-Gadu đã được xóa khỏi đường truyền dẫn.</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>Đồng ý</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>Lưu</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>In</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>Xóa</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>Lịch sử Tin nhắn</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>Tìm kiếm:</innerText>
+    </item>
+    <code id="loading">Đang tải về lịch sử tin nhắn..</code>
+    <code id="empty">Lịch sử tin nhắn rỗng không.</code>
+    <code id="error_load">Không tải về được lịch sử tin nhắn:&#13;${0}</code>
+    <code id="one_message">1 tin nhắn</code>
+    <code id="many_messages">${0} tin nhắn</code>
+    <code id="tooltip_save">Lưu lại lịch sử tin nhắn của ngày hôm nay</code>
+    <code id="tooltip_print">In lịch sử tin nhắn của ngày hôm nay</code>
+    <code id="error_open">Lỗi: Không mở được lịch sử tin nhắn.</code>
+    <code id="error_read">Lỗi: Không đọc được lịch sử tin nhắn.</code>
+    <code id="delete_confirm"> Bạn có chắc bạn muốn xóa toàn bộ lịch sử tin nhắn của ${0}?</code>
+    <code id="delete_cannot">Không xóa được file Lịch sử tin nhắn: ${0}&#13;&#13; Chưa có tin nhắn nào bị xóa.</code>
+    <code id="error_print">Không in được.&#13;Lịch sử tin nhắn rỗng không.</code>
+    <code id="error_save">Không thể lưu lịch sử tin nhắn.&#13;${0}</code>
+  </window>
+  <window name="chat-messages">
+    <code id="copy">Copy</code>
+    <code id="copyall">Copy Tất cả</code>
+    <code id="clear">Xóa</code>
+    <code id="selectall">Chọn Tất cả</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>Hiển thị suy nghĩ hoặc hành động của bạn</title>
+      <accessKey>H</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Thay đổi màu hoặc kiểu chữ</title>
+      <accessKey>T</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Chọn phông nền khác</title>
+      <accessKey>C</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Biểu tượng cảm xúc</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Phông chữ</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Phông nền</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>Thay đổi kích cỡ của ô gõ tin nhắn gửi đi</title>
+    </item>
+    <item id="mode-bar">
+      <title>Người nhận được tin nhắn của bạn</title>
+    </item>
+    <item id="send-text">
+      <title>Gõ tin nhắn vào đây</title>
+    </item>
+    <item id="btn-send">
+      <value>Gửi</value>
+      <title>Gửi tin nhắn</title>
+    </item>
+
+    <code id="tt-avatar">Hiện hình đại diện với kích cỡ đầy đủ</code>
+    <code id="tt-messages">Tin nhắn đã gửi đi và nhận được</code>
+    <code id="tt-close">Kết thúc hội thoại này</code>
+    <code id="msg_typing">${0} đang viết tin nhắn</code>
+    <code id="unknown">${0} có thể không trả lời vì trạng thái của anh/cô ấy không xác định</code>
+    <code id="lastonline">Lần cuối online: ${0}</code>
+    <code id="windowtitle">${0} - Hội thoại</code>
+    <code id="background_no">Không có phông nền</code>
+    <code id="background_list">Các phông nền có sẵn...</code>
+    <code id="close_many_tabs">Bạn có muốn đóng tất cả các hội thoại?</code>
+    <code id="close_recent_message">Bạn vừa nhân được tin nhắn.&#13;&#13;Bạn có muốn đóng hội thoại này không?</code>
+	<code id="palette_compact">Thu nhỏ kích cỡ của bảng các biểu tượng cảm xúc</code>
+	<code id="palette_expand">Hiện tất cả các biểu tượng cảm xúc kiểu này</code>
+	<code id="palette_browse">Các Kiểu Biểu tượng Cảm xúc Khác...</code>
+
+    <code id="menu_file">&amp;Tệp tin</code>
+    <code id="menu_file_received">&amp;Mở các file vừa nhận được</code>
+    <code id="menu_file_history">Lịch sử &amp;Tin nhắn</code>
+    <code id="menu_file_close">&amp;Đóng hội thoại</code>
+
+    <code id="menu_axn_contact">&amp;Liên lạc</code>
+    <code id="menu_axn_add">Thêm vào Danh bạ</code>
+    <code id="menu_axn_block">&amp;Bỏ qua</code>
+    <code id="menu_axn_rename">&amp;Đặt lại Tên</code>
+    <code id="menu_axn_panel">Hiện &amp;Bảng Thao Tác</code>
+    <code id="menu_axn_profile">Xem &amp;Hồ sơ</code>
+    <code id="menu_axn_file">Gửi &amp;Tệp tin</code>
+
+    <code id="menu_tool_emo_style">Chọn &amp;Biểu tượng Cảm xúc...</code>
+    <code id="menu_tool_font">Đổi &amp;Phông chữ...</code>
+    <code id="menu_tool_background">Đổi &amp;Phông nền..</code>
+    <code id="menu_tool_aot">&amp;Luôn hiện trên các ứng dụng khác</code>
+    <code id="menu_tool_popup">&amp;Cho Tin nhắn Mới Bật lên</code>
+    <code id="menu_tool_tabbed">&amp; Các Hội thoại trong các Tab</code>
+    <code id="menu_tool_emoticons">&amp;Hiện các Biểu tường Cảm xúc</code>
+    <code id="menu_tool_settings">&amp; Cài đặt</code>
+  </window>
+  <window name="conference-bookmarks-add">
+    <item id="txt_address">
+      <innerText>Địa chỉ Phòng họp:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Ví dụ: my_room@conference.example.net</innerText>
+    </item>
+    <item id="lbl_autojoin">
+      <innerText>Tham gia phòng họp này khi đăng nhập</innerText>
+    </item>
+    <item id="lbl_password">
+      <innerText>Vào phòng họp với mật khẩu sau:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Hủy</value>
+    </item>
+    <code id="error_invalid_address">Địa chỉ phòng họp không hợp lệ.</code>
+  </window>
+  <window name="conference-bookmarks-manage">
+    <item id="txt_head">
+      <innerText>Sửa, xóa, hoặc thêm các đánh dấu phòng họp:</innerText>
+    </item>
+    <item id="btn_edit">
+      <value>Sửa</value>
+    </item>
+    <item id="btn_delete">
+      <value>Xóa</value>
+    </item>
+    <item id="btn_add">
+      <value>Thêm</value>
+    </item>
+    <item id="btn_close">
+      <value>Đóng</value>
+    </item>
+    <code id="confirm_delete">Bạn có muốn xóa đánh dấu phòng họp này?</code>
+  </window>
+  <window name="conference-configuration">
+    <item id="btn_cancel">
+      <value>Hủy</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_form_loading">
+      <innerText>Đang tải...</innerText>
+    </item>
+    <item id="txt_form_empty">
+      <innerText>Phòng họp này không có chế độ Tùy chỉnh</innerText>
+    </item>
+    <item id="txt_form_invalid">
+      <innerText>Lỗi: Không tải về được Cài đặt của phòng họp</innerText>
+    </item>
+    <code id="form_title">Các cài đặt cho phòng họp này</code>
+    <code id="form_subtitle">Điền vào mẫu dưới đây để cài đặt phòng họp</code>
+
+    <code id="muc#roomconfig_allowinvites">Cho phép các thành viên mời người khác</code>
+    <code id="muc#roomconfig_changesubject">Cho phép các thành viên đổi chủ đề của phòng họp</code>
+    <code id="muc#roomconfig_enablelogging">Giữ lại các tin nhắn của phòng họp</code>
+    <code id="muc#roomconfig_lang">Ngôn ngữ sử dụng trong phòng họp</code>
+    <code id="muc#roomconfig_maxusers">Số thành viên tối đa ở trong phòng họp</code>
+    <code id="muc#roomconfig_membersonly">Chỉ có thành viên mới được phép tham gia phòng họp</code>
+    <code id="muc#roomconfig_moderatedroom">Cần được chủ tịch phòng họp chấp nhận trước khi gửi tin nhắn</code>
+    <code id="muc#roomconfig_passwordprotectedroom">Cần có mật khẩu để tham gia phòng họp</code>
+    <code id="muc#roomconfig_persistentroom">Phòng họp vẫn tồn tại sau khi mọi thành viên rời phòng họp</code>
+    <code id="muc#roomconfig_presencebroadcast">Những người được nhận thông tin về trạng thái</code>
+    <code id="muc#roomconfig_publicroom">Hiện phòng họp trong danh sách các phòng họp chung</code>
+    <code id="muc#roomconfig_roomadmins">Admin phòng họp</code>
+    <code id="muc#roomconfig_roomdesc">Miêu tả phòng họp</code>
+    <code id="muc#roomconfig_roomname">Tên phòng họp</code>
+    <code id="muc#roomconfig_roomowners">Chủ phòng họp</code>
+    <code id="muc#roomconfig_roomsecret">Mật khẩu để tham gia phòng họp</code>
+    <code id="muc#roomconfig_whois">Những người có trách nhiệm có thể biết địa chỉ của các thành viên tham gia</code>
+  </window>
+  <window name="conference-password">
+    <item id="txt_password">
+      <innerText>Mật khẩu:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-name">
+    <item id="txt_name">
+      <innerText>Tên:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-subject">
+    <item id="txt_subject">
+      <innerText>Chủ đề:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-invite">
+    <item id="btn_cancel">
+      <value>Hủy</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Chọn tên của những người bạn muốn mời.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Không có ai online trong danh bạ.</innerText>
+    </item>
+  </window>
+  <window name="conference-accesslevel">
+    <item id="txt-name">
+      <innerText>Tên:</innerText>
+    </item>
+    <item id="txt-room">
+      <innerText>Phòng:</innerText>
+    </item>
+
+	<item id="txt-role">
+      <innerText>Vai trò</innerText>
+    </item>
+	<item id="txt-visitor">
+      <innerText>Khách truy cập</innerText>
+    </item>
+    <item id="txt-visitor-desc">
+      <innerText>Có thể đọc tin nhắn</innerText>
+    </item>
+	<item id="txt-participant">
+      <innerText>Thành viên</innerText>
+    </item>
+    <item id="txt-participant-desc">
+      <innerText>Cũng có thể gửi tin nhắn</innerText>
+    </item>
+	<item id="txt-moderator">
+      <innerText>Chủ tịch</innerText>
+    </item>
+    <item id="txt-moderator-desc">
+      <innerText>Cũng có thể xóa thành viên hoặc khách truy cập</innerText>
+    </item>
+
+	<item id="txt-affiliation">
+      <innerText>Người có trách nhiệm</innerText>
+    </item>
+	<item id="txt-none">
+      <innerText>Khách/Thành viên</innerText>
+    </item>
+    <item id="txt-none-desc">
+      <innerText>Có thể vào phòng họp</innerText>
+    </item>
+	<item id="txt-admin">
+      <innerText>Admin</innerText>
+    </item>
+    <item id="txt-admin-desc">
+      <innerText>Cũng có thể thêm chủ tịch hoặc đình chỉ hoạt động của thành viên</innerText>
+    </item>
+	<item id="txt-owner">
+      <innerText>Chủ phòng họp</innerText>
+    </item>
+    <item id="txt-owner-desc">
+      <innerText>Cũng có thể thêm admin</innerText>
+    </item>
+
+    <item id="btn-default">
+      <value>Mặc định</value>
+      <accessKey>M</accessKey>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-cancel">
+      <value>Hủy</value>
+      <accessKey>H</accessKey>
+    </item>
+    <item id="btn-close">
+      <value>Đóng</value>
+      <accessKey>d</accessKey>
+    </item>
+  </window>
+  <window name="conference-container">
+    <item id="btn-emoticons">
+      <title>Hiện suy nghĩ hoặc hành động của bạn</title>
+      <accessKey>H</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Đổi màu hoặc kiểu chữ</title>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Chọn phông nền khác</title>
+      <accessKey>C</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Biểu tượng Cảm xúc</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Phông chữ</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Phông nền</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>Thay đổi kích cỡ của ô gõ tin nhắn gửi đi</title>
+    </item>
+    <item id="mode-bar">
+      <title>Tên, địa chỉ, và chủ đề của phòng họp này</title>
+    </item>
+    <item id="send-text">
+      <title>Gõ tin nhắn của bạn ở đây</title>
+    </item>
+    <item id="btn-send">
+      <value>Gửi</value>
+      <title>Gửi tin nhắn</title>
+    </item>
+
+    <item id="occupants-panel">
+      <title>Thành viên tham gia phòng họp này</title>
+    </item>
+    <item id="txt-visitors">
+      <innerText>Khách truy cập</innerText>
+      <title>Khách truy cập có thể đọc nhưng không thể gửi tin nhắn</title>
+    </item>
+    <item id="txt-moderators">
+      <innerText>Chủ phòng họp</innerText>
+      <title>Chủ phòng họp có thể gửi và đọc tin nhắn, và có thể xóa thành viên khỏi phòng họp</title>
+    </item>
+    <item id="txt-participants">
+      <innerText>Thành viên tham gia</innerText>
+      <title>Thành viên tham gia có thể gửi và đọc tin nhắn</title>
+    </item>
+
+    <code id="wnd_conference_password">Kết nối với Mật khẩu</code>
+    <code id="wnd_conference_change_name">Đổi Tên</code>
+    <code id="wnd_conference_subject">Chủ đề Phòng họp</code>
+    <code id="wnd_conference_configuration">Các Cài đặt cho Phòng họp</code>
+    <code id="wnd_conference_accesslevel">${0} - Mức độ truy cập</code>
+
+    <code id="tt-messages">Các tin nhắn đã gửi đi và nhận được</code>
+    <code id="tt-close">Rời phòng họp này</code>
+    <code id="default_subject">Phòng họp này không có chủ đề.</code>
+    <code id="windowtitle">${0} - Họp</code>
+    <code id="destroy">Xóa hoàn toàn phòng họp này nghĩa là xóa toàn bộ thành viên khỏi phòng họp và xóa phòng họp khỏi máy chủ.&#13;&#13;Bạn có chắc bạn muốn xóa hoàn toàn phòng họp này?</code>
+    <code id="connecting">Đang kết nối...</code>
+    <code id="connected">Kết nối</code>
+    <code id="disconnected">Ngừng kết nối</code>
+    <code id="confirm-kick">Bạn có chắc bạn muốn xóa "${0}" khỏi phòng họp này?</code>
+    <code id="kick-error">Không thể xóa thành viên: ${0}</code>
+    <code id="kicked">${0} bị xóa khỏi phòng họp</code>
+    <code id="kicked-by">${0} bị ${1} xóa khỏi phòng họp</code>
+    <code id="confirm-ban">Bạn có chắc bạn muốn xóa "${0}" khỏi phòng họp này?</code>
+    <code id="ban-error">Không thẻ xóa thành viên: ${0}</code>
+    <code id="banned">${0} bị xóa khỏi phòng họp</code>
+    <code id="banned-by">${0} bị ${1} xóa khỏi phòng họp</code>
+    <code id="leaving">${0} rời phòng họp</code>
+    <code id="joining">${0} tham gia phòng họp</code>
+    <code id="renaming">${0} được biết đến với tên ${1}</code>
+
+    <code id="menu_file">&amp;Tệp tin</code>
+    <code id="menu_file_close">&amp;Kết thúc cuộc họp</code>
+
+    <code id="menu_axn_invite">&amp;Mời mọi người tham gia cuộc họp</code>
+    <code id="menu_axn_change_name">Đổi Tên &amp;Của Tôi...</code>
+    <code id="menu_axn_password">Kết nối bằng &amp;Mật khẩu...</code>
+    <code id="menu_axn_subject">&amp;Thay đổi Chủ đề Phòng họp</code>
+    <code id="menu_axn_configuration">&amp;Tùy chỉnh Phòng họp này</code>
+    <code id="menu_axn_destroy">&amp;Xóa hoàn toàn Phòng họp này</code>
+
+    <code id="menu_bookmarks">&amp;Đánh dấu</code>
+
+    <code id="menu_bmrk_add">&amp;Thêm Đánh dấu...</code>
+
+    <code id="menu_occupant_private">Tin nhắn &amp;Cá nhân</code>
+    <code id="menu_occupant_kick">&amp;Xóa khỏi Phòng họp</code>
+    <code id="menu_occupant_ban">&amp;Đình chỉ</code>
+    <code id="menu_occupant_access">&amp;Mức độ Truy cập...</code>
+    <code id="menu_occupant_add">&amp;Thêm vào danh bạ</code>
+    <code id="menu_occupant_profile">&amp;Hồ sơ</code>
+
+    <code id="unrecognized-error">Không nhận dạng được lỗi này</code>
+    <code id="error-service-unavailable">Dịch vụ hiện đang không hoạt động</code>
+    <code id="error-not-allowed">Không được phép</code>
+    <code id="error-conflict">Lỗi: Biệt danh đã được sử dụng</code>
+    <code id="error-registration-required">Yều cầu đăng ký: Chỉ dành cho thành viên</code>
+    <code id="error-forbidden">Bị cấm: Đình chỉ</code>
+    <code id="error-not-authorized">Lỗi: Cần có mật khẩu</code>
+    <code id="error-item-not-found">Không tìm thấy:Phòng đã bị khóa</code>
+  </window>
+  <window name="preferences">
+    <item id="txt_blocking">
+      <innerText>Danh sách bỏ qua bao gồm địa chỉ của những người bạn không muốn nhận tin nhắn từ họ.</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>Hiện các tin nhắn từ những người không trong danh bạ của tôi</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>Danh sách Bỏ qua</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>Xóa khỏi danh sách bỏ qua</value>
+    </item>
+    <item id="block_btn_view">
+      <value>Xem hồ sơ</value>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Tùy chỉnh kết nối</innerText>
+    </item>
+    <item id="txt_connection_desc">
+      <innerText>Thay đổi phương thức kết nối với máy chủ IM.</innerText>
+    </item>
+    <item id="btn_connection_settings">
+      <value>Tủy chỉnh kết nối</value>
+    </item>
+    <item id="txt_portmap">
+      <innerText>Filetransfer portmap (NAT, firewall)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>Địa chỉ:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>Cổng:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>Giữ tất cả tin nhắn trong Tin nhắn lưu trữ</innerText>
+    </item>
+    <item id="txt_startup">
+      <innerText>Tự động khởi động khi bật máy</innerText>
+    </item>
+    <item id="txt_updates">
+      <innerText>Tự động kiểm tra các cập nhật cho phần mềm</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>Khi một ai đó yêu cầu sự ủy quyền của tôi</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>Hỏi tôi</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>Chấp nhận mọi yêu cầu</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>Chấp nhận yêu cầu từ những người trong danh bạ, hỏi tôi với những trường hợp khác</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>Từ chối mọi yêu cầu</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>Bật âm thanh thông báo khi nhận được tin nhắn</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>Bật âm thanh thông báo khi có người trở về trạng thái online</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>Bật âm thanh thong báo khi co người ofline</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>Duyệt xem</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>Duyệt xem</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>Xem qua</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Hủy</value>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>Bỏ qua</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>Kết nốin</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>Riêng tư</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>Âm thanh</innerText>
+    </item>
+    <code id="blocking">Danh sách bỏ qua</code>
+    <code id="connection">Tùy chọn kết nối</code>
+    <code id="privacy">Riêng tư</code>
+    <code id="sound">Âm thanh thông báo</code>
+    <code id="reconnect">Bạn phải kết nối lại để những thay đổi có hiệu lực.&#13;&#13;Bạn có muốn kết nối lại ngay bây giờ?</code>
+    <code id="shortcut">Gửi và nhận tinh nhắn</code>
+    <code id="choose_sound">Chọn âm thanh thông báo</code>
+    <code id="file_audio">Tệp tin tiếng</code>
+    <code id="file_any">Bất kỳ file nào</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>Tìm hoặc thêm tên</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>Bạn có thể tìm tên dựa trên thông tin chung của người đó hoặc bạn có thể nhập tên tài khoản của người đó..</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>Bạn muốn thêm tên như thê nào?</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>Tôi muốn &lt;U&gt;s&lt;/U&gt;tìm tên.</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>Dịch &lt;U&gt;V&lt;/U&gt;ụ:</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>v</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML>Tôi &lt;U&gt;đ&lt;/U&gt;ã biết địa chỉ IM của người này.</innerHTML>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>&lt;U&gt;M&lt;/U&gt;ạng:</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>M</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>&lt;U&gt;T&lt;/U&gt;ài khoản:</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>t</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>Để nói chuyện được với người từ mạng IM khác, bạn phải đăng ký với đường truyền dẫn.</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>Cài đặt Truyền dẫn</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>Tiếp theo &gt;</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_p1_close">
+      <value>Đóng</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>Đang kiểm tra tài khoản</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>Đường truyền dẫn đang kiểm tra lại tài khoản.</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; Quay lại</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>Tiếp theo &gt;</value>
+    </item>
+    <item id="page1b_btn_close">
+      <value>Đóng</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>Yêu cầu bản mẫu tìm kiếm</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>Bản mẫu tìm kiếm bao gồm hướng dẫn và mọi yếu tố có thể tìm kiếm được.</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; Quay lại</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>Tiếp theo &gt;</value>
+    </item>
+    <item id="page1c_btn_close">
+      <value>Đóng</value>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; Quay lại</value>
+      <accessKey>Q</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>Tìm kiếm</value>
+      <accessKey>T</accessKey>
+    </item>
+    <item id="page3_btn_close">
+      <value>Đóng</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText>Tìm kiếm Kết quả</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>Bạn có thể xem hoặc thêm thông tin cá nhân của người sử dụng trong danh bạ của bạn</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; Quay lại</value>
+      <accessKey>Q</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>Tiếp theo &gt;</value>
+    </item>
+    <item id="page4_btn_close">
+      <value>Đóng</value>
+    </item>
+
+    <item id="txt_p5_title">
+      <innerText>Thêm Tên</innerText>
+    </item>
+    <item id="txt_p5_tagline">
+      <innerText>Danh bạ được lưu giữ tại máy chủ.</innerText>
+    </item>
+    <item id="txt_p5_desc">
+      <innerText>Yêu cầu ủy quyền được gửi đến:</innerText>
+    </item>
+    <item id="txt_p5_user">
+      <innerText>Tên truy nhập:</innerText>
+    </item>
+    <item id="txt_p5_network">
+      <innerText>Mạng lưới:</innerText>
+    </item>
+    <item id="page5_btn_back">
+      <value>&lt; Quay lại</value>
+    </item>
+    <item id="page5_btn_next">
+      <value>Tiếp theo &gt;</value>
+    </item>
+    <item id="page5_btn_close">
+      <value>Đóng</value>
+    </item>
+
+    <item id="txt_p6_title">
+      <innerText>Hoàn thành Thao tác Tìm hoặc Thêm Tên</innerText>
+    </item>
+    <item id="txt_p6_tagline">
+      <innerText>Bạn đã hoàn thành Thao tác Tìm hoặc Thêm Tên.</innerText>
+    </item>
+    <item id="txt_p6_desc">
+      <innerText>Tên này đã được thêm vào Danh bạ của bạn:</innerText>
+    </item>
+    <item id="txt_p6_user">
+      <innerText>Tên truy nhập:</innerText>
+    </item>
+    <item id="txt_p6_network">
+      <innerText>Mạng lưới:</innerText>
+    </item>
+    <item id="txt_p6_again">
+      <innerHTML>Để bắt đầu lại thao tác này, chọn &lt;B&gt;Thêm Tên Khác&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_again">
+      <value>Thêm Tên Khác</value>
+    </item>
+    <item id="txt_p6_finish">
+      <innerHTML>Để đóng thao tác này, chọn &lt;B&gt;Kết thúc&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_back">
+      <value>&lt; Quay lại</value>
+    </item>
+    <item id="page6_btn_finish">
+      <value>Kết thúc</value>
+    </item>
+    <item id="page6_btn_close">
+      <value>Đóng</value>
+    </item>
+
+	<code id="correct">Nhập chính xác tên truy nhập.&#13;&#13;Ví dụ: someone123@${0}</code>
+    <code id="example_address">Ví dụ: someone123@${0}</code>
+    <code id="contacting_adding">&lt;B&gt;Đang liên hệ với máy chủ&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Thao tác này có thể cần đến một phút để hoàn thành. &lt;BR&gt;Xin bạn hãy kiên nhẫn..&lt;BR&gt;</code>
+    <code id="contacting_transport">&lt;B&gt;Đang liên hệ với Đường truyền dẫn&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Thao tác này có thể cần đến một phút để hoàn thành. &lt;BR&gt;Xin bạn hãy kiên nhẫn..&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Đang liên hệ với Dịch vụ Tìm kiếm&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Thao tác này có thể cần đến một phút để hoàn thành. &lt;BR&gt;Xin bạn hãy kiên nhẫn..&lt;BR&gt;</code>
+    <code id="error_adding">&lt;B&gt;Lỗi Máy chủ:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Không thể thêm tên này vào danh bạ của bạn.&lt;BR&gt;Liên hệ với admin để biết thêm chi tiết.</code>
+    <code id="error_transport">&lt;B&gt;Lỗi Máy chủ:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Không thể thêm tên này vào danh bạ của bạn.&lt;BR&gt;Hãy chắc chắn rằng bạn nhập chính xác tên tài khoản.</code>
+    <code id="error_search">&lt;B&gt;Lỗi Máy chủ:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt; Không tải về được mẫu tìm kiếm.&lt;BR&gt;Xin vui lòng thử lại trong giây lát hoặc chọn dịch vụ khác.</code>
+    <code id="error_invalid">Thông tin nhận được không hợp lệ.</code>
+    <code id="search_title">Tìm tên</code>
+    <code id="search_tagline">Điền vào ô này để tìm tên.</code>
+    <code id="firstname">Tên:</code>
+    <code id="lastname">Họ:</code>
+    <code id="nick">Biệt danh:</code>
+    <code id="email">Địa chỉ email:</code>
+    <code id="searching">Đang tìm kiếm...</code>
+    <code id="add">Thêm vào Danh bạ</code>
+    <code id="view">Xem hồ sơ</code>
+    <code id="foundone">1 kết quả</code>
+    <code id="foundmany">${0} kết quả</code>
+  </window>
+  <window name="connection-settings">
+    <code id="logout">Bạn phải thoát khỏi ứng dụng để những thay đổi có hiệu lực.&#13;&#13;Bạn có muốn thoát ngay bây giờ?</code>
+    <code id="automatic">Tự động</code>
+    <item id="txt_connection">
+      <innerText>Kết nối với Máy chủ</innerText>
+    </item>
+    <item id="lbl_server_address">
+      <innerHTML>&lt;U&gt;Đ&lt;/U&gt;ịa chỉ:</innerHTML>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="lbl_server_port">
+      <innerHTML>&lt;U&gt;C&lt;/U&gt;ổng:</innerHTML>
+      <accessKey>c</accessKey>
+    </item>
+    <item id="txt_encryption">
+      <innerText>Liên lạc An toàn</innerText>
+    </item>
+    <item id="lbl_encryption_optional">
+      <innerHTML>&lt;U&gt;D&lt;/U&gt;ùng chế độ mã hóa TLS trên máy chủ nếu có</innerHTML>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="lbl_encryption_tls">
+      <innerHTML>Cần chế độ mã hóa &lt;U&gt;T&lt;/U&gt;LS </innerHTML>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="lbl_encryption_ssl">
+      <innerHTML>Cần chế độ mã hóa &lt;U&gt;S&lt;/U&gt;SL</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="lbl_encryption_none">
+      <innerHTML>&lt;U&gt;K&lt;/U&gt;hông dùng chế độ mã hóa</innerHTML>
+      <accessKey>K</accessKey>
+    </item>
+    <item id="txt_authentication">
+      <innerText>Xác nhận Đăng nhập</innerText>
+    </item>
+    <item id="lbl_authentication_normal">
+      <innerHTML>&lt;U&gt;Đ&lt;/U&gt;ịa chỉ và Mật khẩu</innerHTML>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="lbl_authentication_ntlm">
+      <innerHTML>Xác nhận &lt;U&gt;C&lt;/U&gt; ửa sổ Tích hợp</innerHTML>
+      <accessKey>c</accessKey>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Hủy</value>
+    </item>
+  </window>
+  <window name="sign_up">
+    <code id="close_confirm">Địa chỉ mới không hoàn thiện.&#13;&#13;Bạn có chắc bạn muốn đóng thao tác này?</code>
+    <code id="incomplete">Điền tất cả các mục...</code>
+    <code id="pass_match">Mật khẩu bạn nhập vào không khớp nhau.&#13;&#13; Hãy nhập mật khẩu mới ở cả hai ô.</code>
+
+    <code id="contacting">Đang liên lạc với máy chủ...</code>
+    <code id="registered">Tài khoản của bạn đang được đăng ký. Thao tác này có thể cần một phút để hoàn thành. &lt;BR&gt;Xin bạn hãy kiên nhẫn.&lt;BR&gt;</code>
+    <code id="requesting">Đang yêu cầu thêm thông tin...</code>
+    <code id="sending">Đang gửi đi bản đăng ký...</code>
+    <code id="failure">Kết nối không thành công</code>
+    <code id="completed">Đăng ký đã hoàn thành</code>
+
+    <code id="address">Địa chỉ:</code>
+    <code id="nickname">Tên:</code>
+    <code id="userdir">Thư mục người sử dụng:</code>
+    <item id="txt_page_welcome_title">
+      <innerText>Xin chào mừng bạn đến với Chương trình Đăng ký</innerText>
+    </item>
+    <item id="txt_page_welcome_intro">
+      <innerText>Thao tác sau đây sẽ giúp bạn đăng ký địa chỉ trên mạng lưới IM.</innerText>
+    </item>
+    <item id="txt_page_welcome_next">
+      <innerHTML>Để tiếp tục, chọn &lt;B&gt;Tiếp theo&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_welcome_next">
+      <value>Tiếp theo &gt;</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_welcome_cancel">
+      <value>Hủy</value>
+      <accessKey>H</accessKey>
+    </item>
+
+    <item id="txt_page_nickname_title">
+      <innerText>Thông tin Cá nhân</innerText>
+    </item>
+    <item id="txt_page_nickname_tagline">
+      <innerText>Thông tin này sẽ giúp những người khác tìm thấy bạn trong mạng lưới.</innerText>
+    </item>
+    <item id="txt_page_nickname_desc">
+      <innerText>Nhập tên của bạn để các bạn hoặc đồng nghiệp có thể liên lạc thấy bạn dễ dàng hơn.</innerText>
+    </item>
+    <item id="txt_page_nickname_name">
+      <innerHTML>&lt;U&gt;T&lt;/U&gt;ên:</innerHTML>
+    </item>
+    <item id="data_name">
+      <accessKey>T</accessKey>
+    </item>
+    <item id="btn_page_nickname_back">
+      <value>&lt; Quay lại</value>
+      <accessKey>Q</accessKey>
+    </item>
+    <item id="btn_page_nickname_next">
+      <value>Tiếp theo &gt;</value>
+      <accessKey>T</accessKey>
+    </item>
+    <item id="btn_page_nickname_cancel">
+      <value>Hủy</value>
+      <accessKey>H</accessKey>
+    </item>
+
+    <item id="txt_page_account_title">
+      <innerText>Thông tin về Địa chỉ</innerText>
+    </item>
+    <item id="txt_page_account_tagline">
+      <innerText>Bạn có thể dùng máy chủ công cộng trong mạng Internet hoặc máy chủ cá nhân trong mạng nội bộ công ty của bạn.</innerText>
+    </item>
+    <item id="txt_page_account_server">
+      <innerHTML>&lt;U&gt;M&lt;/U&gt;áy chủ:</innerHTML>
+    </item>
+    <item id="txt_page_account_username">
+      <innerHTML>&lt;U&gt;T&lt;/U&gt;ên truy nhập:</innerHTML>
+    </item>
+    <item id="txt_page_account_password">
+      <innerHTML>&lt;U&gt;M&lt;/U&gt; ật khẩu:</innerHTML>
+    </item>
+    <item id="txt_page_account_confirm">
+      <innerHTML>&lt;U&gt;X&lt;/U&gt;ác nhận mật khẩu:</innerHTML>
+    </item>
+    <item id="txt_page_account_email">
+      <innerHTML>&lt;U&gt;Đ&lt;/U&gt;ịa chỉ email:</innerHTML>
+    </item>
+    <item id="data_server">
+      <accessKey>m</accessKey>
+    </item>
+    <item id="data_username">
+      <accessKey>t</accessKey>
+    </item>
+    <item id="data_password">
+      <accessKey>m</accessKey>
+    </item>
+    <item id="data_password_confirm">
+      <accessKey>x</accessKey>
+    </item>
+    <item id="data_email">
+      <accessKey>đ</accessKey>
+    </item>
+    <item id="txt_page_account_remember">
+      <innerHTML>&lt;U&gt;N&lt;/U&gt;hớ mật khẩu của tôi</innerHTML>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="txt_page_account_preview">
+      <innerText>Địa chỉ IM của bạn:</innerText>
+    </item>
+    <item id="btn_page_account_settings">
+      <value>Cài đặt kết nối</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_account_back">
+      <value>&lt; Quay lại</value>
+      <accessKey>Q</accessKey>
+    </item>
+    <item id="btn_page_account_next">
+      <value>Tiếp theo &gt;</value>
+      <accessKey>T</accessKey>
+    </item>
+    <item id="btn_page_account_cancel">
+      <value>Hủy</value>
+      <accessKey>H</accessKey>
+    </item>
+
+    <item id="txt_page_creating_title">
+      <innerText>Đăng ký Địa chỉ</innerText>
+    </item>
+    <item id="txt_page_creating_autherr">
+      <innerHTML>Không đăng ký được địa chỉ này. Tên truy nhập không tồn tại.&lt;BR&gt;&lt;BR&gt;Nhấn &lt;B&gt;Quay lại&lt;/B&gt;, chọn tên truy nhập khác và thử lại.</innerHTML>
+    </item>
+    <item id="txt_page_creating_forbidden">
+      <innerHTML>Không đăng ký được địa chỉ này. Máy chủ này không cho phép tạo địa chỉ mới.&lt;BR&gt;&lt;BR&gt;Nhấn &lt;B&gt;Quay lại&lt;/B&gt;, chọn máy chủ khác và thử lại.</innerHTML>
+    </item>
+    <item id="txt_page_creating_commerr">
+      <innerHTML>Không liên lạc được với máy chủ. Hãy chắc chắn địa chỉ máy chủ là chính xác.&lt;BR&gt;Kiểm tra kết nối mạng và thử lại. Nếu bạn có tường lửa, &lt;BR&gt; hãy cài đặt lại các tùy chỉnh kết nối</innerHTML>
+    </item>
+    <item id="btn_page_creating_retry">
+      <value>Thử lại</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_creating_settings">
+      <value>Tùy chỉnh kết nối</value>
+      <accessKey>T</accessKey>
+    </item>
+    <item id="btn_page_creating_back">
+      <value>&lt; Quay lại</value>
+      <accessKey>q</accessKey>
+    </item>
+    <item id="btn_page_creating_next">
+      <value>Tiếp theo &gt;</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_creating_cancel">
+      <value>Hủy</value>
+      <accessKey>H</accessKey>
+    </item>
+
+    <item id="txt_page_finished_title">
+      <innerText>Đang hoàn thành Thao tác Thêm Hồ sơ</innerText>
+    </item>
+    <item id="txt_page_finished_intro">
+      <innerText>Bạn đã hoàn thành Thao tác Thêm Hồ sơ.</innerText>
+    </item>
+    <item id="txt_page_finished_details">
+      <innerText>Chi tiết hồ sơ:</innerText>
+    </item>
+    <item id="txt_page_finished_finish">
+      <innerHTML>Để đóng thao tác này, chọn &lt;B&gt;Kết thúc&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_finished_back">
+      <value>&lt; Quay lại</value>
+      <accessKey>Q</accessKey>
+    </item>
+    <item id="btn_page_finished_finish">
+      <value>Kết thúc</value>
+      <accessKey>K</accessKey>
+    </item>
+    <item id="btn_page_finished_cancel">
+      <value>Hủy</value>
+      <accessKey>H</accessKey>
+    </item>
+  </window>
+</translation>

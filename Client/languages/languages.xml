@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--
 	This file is part of Pandion instant messenger
-	Copyright (c) 2009 Sebastiaan Deckers
+	Copyright (c) 2009-2010 Sebastiaan Deckers
 	License: GNU General Public License version 3 or later
 -->
 <languages>
@@ -30,5 +30,6 @@
 <language name="Português" code="pt"/>
 <language name="Русский" code="ru"/>
 <language name="Srpski" code="sr"/>
+<language name="Tiếng Việt" code="vn"/>
 <language name="Türkçe" code="tr"/>
 </languages>
