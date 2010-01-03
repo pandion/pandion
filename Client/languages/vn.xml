@@ -283,10 +283,10 @@
   </window>
   <window name="about">
     <item id="txt-copyright">
-      <innerHTML>Bản quyền &amp;copy; ${copyrightyear} thuộc về ${copyrightholder}. Mọi quyền lợi đã được pháp luật quy định. Ứng dụng này được xuất bản dưới các điều khoản &lt;a href="${licenseurl}"&gt;${licensename}&lt;/a&gt;. &lt;a href="${termsandcontitionsurl}"&gt;Các điều khoản và điều kiện&lt;/a&gt; khác có thể được áp dụng trên các ràng buộc đã được bao hàm.</innerHTML>
+      <innerHTML>Bản quyền &amp;copy; ${copyrightyear} thuộc về ${copyrightholder}. Giữ toàn quyền. Ứng dụng này được xuất bản dưới các điều khoản &lt;a href="${licenseurl}"&gt;${licensename}&lt;/a&gt;. &lt;a href="${termsandcontitionsurl}"&gt;Các điều khoản và điều kiện&lt;/a&gt; khác có thể được áp dụng trên các ràng buộc đã được bao hàm.</innerHTML>
     </item>
     <item id="txt-trademark">
-      <innerText>Tên ${softwarename} và các logo là thương hiệu thuộc về ${trademarkholder}. Mọi quyền lợi đã được pháp luật quy định.</innerText>
+      <innerText>Tên ${softwarename} và các logo là thương hiệu thuộc về ${trademarkholder}. Giữ toàn quyền.</innerText>
     </item>
     <item id="btn-ok">
       <value>OK</value>
