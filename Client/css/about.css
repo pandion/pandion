@@ -63,7 +63,6 @@ a:hover {
 #legal-notice {
 	position: absolute;
 	top: 120px;
-	left: 0;
 	height: 146px;
 	padding: 20px;
 	background-color: buttonface;
@@ -74,12 +73,26 @@ a:hover {
 }
 
 /* Close the dialog */
-#btn-ok {
-	float: right;
+#footer {
 	position: absolute;
 	bottom: 15px;
-	right: 15px;
-	height: 40px;
+	text-align: right;
+	width: 100%;
+}
+#btn-ok {
 	width: 90px;
 	height: 24px;
+	margin: 0 15px;
+}
+
+/* RTL */
+html.rtl #header {
+	margin-right: 320px;
+}
+html.rtl #software-link {
+	direction: ltr;
+	unicode-bidi: bidi-override;
+}
+html.rtl #footer {
+	text-align: left;
 }
