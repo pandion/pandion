@@ -9,12 +9,15 @@
 	color: #57a6d3;
 	border-bottom: 1px solid #d3d5d6;
 }
-.roster-group-show-all-toggle {
+.roster-group-toggle-expand, .roster-group-toggle-compact {
 	float: right;
 	cursor: hand;
 	height: 14px;
 	width: 16px;
 	background: transparent url(../images/misc/expand.gif) no-repeat center left;
+}
+.roster-group-toggle-compact {
+	background: transparent url(../images/misc/compact.gif) no-repeat center left;
 }
 .roster-group-empty {
 	display: block;

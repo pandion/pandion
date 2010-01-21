@@ -1302,7 +1302,8 @@ function ClientRosterGroup ( roster, name )
 
 		/* ShowAll
 		 */
-		this.HTMLShowAll.className = 'roster-group-show-all-toggle';
+		this.HTMLShowAll.src = '..\\images\\misc\\alpha-1x1.gif';
+		this.HTMLShowAll.className = 'roster-group-toggle-expand';
 		this.HTMLShowAll.title = external.globals( 'Translator' ).Translate( 'main', 'cl_group_expand' );
 		this.HTMLShowAll.GroupName = this.Name;
 		this.HTMLShowAll.style.display = this.Items.Count ? 'inline' : 'none';
@@ -1420,7 +1421,7 @@ function ClientRosterGroup ( roster, name )
 			for ( var i = 0; i < jids.length; ++i )
 				if ( ! this.Roster.Items( jids[i] ).Resources.Count )
 					this.Roster.Items( jids[i] ).Hide( this );
-			this.HTMLShowAll.src = '..\\images\\misc\\expand.gif';
+			this.HTMLShowAll.className = 'roster-group-toggle-expand';
 			this.HTMLShowAll.title = external.globals( 'Translator' ).Translate( 'main', 'cl_group_expand' );
 		}
 		else
@@ -1429,7 +1430,7 @@ function ClientRosterGroup ( roster, name )
 			for ( var i = 0; i < jids.length; ++i )
 				if ( ! this.Roster.Items( jids[i] ).Resources.Count )
 					this.Roster.Items( jids[i] ).Draw( this );
-			this.HTMLShowAll.src = '..\\images\\misc\\compact.gif';
+			this.HTMLShowAll.className = 'roster-group-toggle-compact';
 			this.HTMLShowAll.title = external.globals( 'Translator' ).Translate( 'main', 'cl_group_compact' );
 		}
 		this.ShowOffline = ! this.ShowOffline;
