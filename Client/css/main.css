@@ -23,7 +23,7 @@ TD {
 #rosterfield {
 	height: 100%;
 	overflow: auto;
-	padding-left: 6px;
+	padding: 0 0 0 6px;
 }
 #content-area {
 	height: 100%;
@@ -75,10 +75,11 @@ TD {
 	background: url(../images/main/mode-frame-right.png) no-repeat right top;
 }
 #mode-avatar {
-	margin: 7px 5px 0 3px;
+	float: left;
+	margin: 5px 3px 0 1px;
 	background-repeat: no-repeat;
 	background-position: center center;
-	border: 0px solid #0570ad;
+	border: 2px solid transparent;
 	height: 32px;
 	width: 32px;
 }
@@ -199,7 +200,7 @@ TD {
 }
 #tab-bar-row td {
 	font-size: 1px;
-	padding-left: 6px;
+	padding: 0 0 0 6px;
 }
 .tab-bar-button {
 	background: transparent url(../images/main/tab-add-button-faded.png) no-repeat top left;
@@ -220,6 +221,25 @@ TD {
 	height: 16px;
 	margin: 4px 0 0 10px;
 	width: 16px;
+}
+
+/* RTL Contact List */
+html.rtl #rosterfield {
+	padding: 0 6px 0 0;
+}
+html.rtl #mode-avatar {
+	float: right;
+	margin: 5px 1px 0 3px;
+}
+html.rtl #tab-bar-row td {
+	padding: 0 6px 0 0;
+}
+html.rtl .tab-bar-button, html.rtl .tab-bar-button-active {
+	float: right;
+}
+html.rtl .tab-bar-icon {
+	float: right;
+	margin: 4px 10px 0 0;
 }
 
 /* Sign In
@@ -336,7 +356,7 @@ TD {
 	margin: 0 0 8px 0;
 }
 
-/* RTL */
+/* RTL Sign In */
 html.rtl #signin-area form, html.rtl #signin-area ul {
 	text-align: right;
 }

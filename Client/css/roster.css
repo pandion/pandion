@@ -9,6 +9,13 @@
 	color: #57a6d3;
 	border-bottom: 1px solid #d3d5d6;
 }
+.roster-group-show-all-toggle {
+	float: right;
+	cursor: hand;
+	height: 14px;
+	width: 16px;
+	background: transparent url(../images/misc/expand.gif) no-repeat center left;
+}
 .roster-group-empty {
 	display: block;
 	font-style: italic;
@@ -19,7 +26,7 @@
 }
 .roster-item-offline {
 	display: block;
-	margin-left: 29px;
+	margin: 0 0 0 29px;
 }
 .roster-item-offline-name-blocked {
 	font-style: italic;
@@ -49,6 +56,11 @@
 }
 .roster-resource {
 	display: block;
+}
+.roster-resource-avatar {
+	float: left;
+	margin: 0 5px 0 0;
+	border-width: 0;
 }
 .roster-resource-name-blocked {
 	font-style: italic;
@@ -81,4 +93,16 @@
 	font-family: "Segoe UI", Tahoma;
 	font-size: 10px;
 	color: #427fd1;
+}
+
+/* RTL */
+html.rtl .roster-item-offline {
+	margin: 0 29px 0 0;
+}
+html.rtl .roster-resource-avatar {
+	float: right;
+	margin: 0 0 0 5px;
+}
+html.rtl .roster-group-show-all-toggle {
+	float: left;
 }

@@ -1302,11 +1302,7 @@ function ClientRosterGroup ( roster, name )
 
 		/* ShowAll
 		 */
-		this.HTMLShowAll.align = 'right';
-		this.HTMLShowAll.style.cursor = 'hand';
-		this.HTMLShowAll.src = '..\\images\\misc\\expand.gif';
-		this.HTMLShowAll.height = 14;
-		this.HTMLShowAll.width = 16;
+		this.HTMLShowAll.className = 'roster-group-show-all-toggle';
 		this.HTMLShowAll.title = external.globals( 'Translator' ).Translate( 'main', 'cl_group_expand' );
 		this.HTMLShowAll.GroupName = this.Name;
 		this.HTMLShowAll.style.display = this.Items.Count ? 'inline' : 'none';
@@ -1813,7 +1809,7 @@ function ClientRosterItem ( roster, jid )
 	function Update ( group )
 	{
 		this.HTMLElements( group.Name ).style.paddingBottom = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? '' : '5px';
-		this.HTMLElements( group.Name ).style.marginLeft = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? '29px' : '21px';
+		this.HTMLElements( group.Name ).style[ external.globals( 'Translator' ).Direction ? 'marginRight' : 'marginLeft' ] = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? '29px' : '21px';
 		this.HTMLElements( group.Name ).title = external.globals( 'Translator' ).Translate( 'main', 'cl_tooltip_offline', [ this.Address.CleanAddress() ] );
 		if ( this.Status.length )
 			this.HTMLElements( group.Name ).title += '\n' + this.Status;
@@ -1860,7 +1856,7 @@ function ClientRosterItem ( roster, jid )
 		var elem = document.createElement( 'NOBR' );
 		elem.className = 'roster-item-offline';
 		elem.style.paddingBottom = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? '' : '5px';
-		elem.style.marginLeft = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? '29px' : '21px';
+		elem.style[ external.globals( 'Translator' ).Direction ? 'marginRight' : 'marginLeft' ] = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? '29px' : '21px';
 		elem.JID = this.JID;
 		elem.GroupName = group.Name;
 		elem.attachEvent(
@@ -2095,11 +2091,8 @@ function ClientRosterResource ( item, name )
 			this.HTMLElements( group.Name ).title += '\n' + this.Status;
 		with ( this.HTMLElements( group.Name ).children )
 		{
-			this.HTMLElements( group.Name ).style.marginLeft = '0px';
 			var img = item(0).tagName == 'IMG' ? item(0) : this.HTMLElements( group.Name ).insertAdjacentElement( 'afterBegin', document.createElement( 'IMG' ) );
-			img.align = 'left';
-			img.style.marginRight = '5px';
-			img.border = 0;
+			img.className = 'roster-resource-avatar';
 			if ( this.Avatar.length == 0 )
 				img.src = '..\\images\\clients\\unknown-soldier.gif';
 			else if ( this.Avatar.length == 40 )
@@ -2284,9 +2277,7 @@ function ClientRosterResource ( item, name )
 		);
 
 		var img = document.createElement( 'IMG' );
-		img.align = 'left';
-		img.style.marginRight = '5px';
-		img.border = 0;
+		img.className = 'roster-resource-avatar';
 		if ( this.Avatar.length == 0 )
 			img.src = '..\\images\\clients\\unknown-soldier.gif';
 		else if ( this.Avatar.length == 40 )

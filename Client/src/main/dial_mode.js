@@ -14,7 +14,9 @@ function dial_mode ()
 	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_change' ), 1 );
 	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_avatar' ), 9 );
 	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_profile' ), 10 );
-	Menu.Show( window.screenLeft + 50, window.screenTop + 48, external.globals( 'Translator' ).Direction );
+	var posx = external.globals( 'Translator' ).Direction ? (window.screenLeft + external.wnd.width - 50) : (window.screenLeft + 50);
+	var posy = window.screenTop + 48;
+	Menu.Show( posx, posy, external.globals( 'Translator' ).Direction );
 
 	var msg = external.globals( 'cfg' )( 'lastmsg' );
 	switch ( Menu.Choice )
