@@ -118,7 +118,7 @@ function End ()
 
 function Cancel ()
 {
-	if ( external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'sign_up', 'close_confirm' ), external.globals( 'softwarename' ), 4 | 48 ) == 6 )
+	if ( external.wnd.messageBox( false, external.globals( 'Translator' ).Translate( 'sign_up', 'close_confirm' ), external.globals( 'softwarename' ), 4 | 48 ) == 6 )
 		external.wnd.close();
 }
 
