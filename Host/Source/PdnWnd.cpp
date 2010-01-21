@@ -1100,8 +1100,12 @@ STDMETHODIMP CPdnWnd::get_menuBar(VARIANT* pMenu)
 STDMETHODIMP CPdnWnd::messageBox(BOOL modal, BSTR text, BSTR caption,
 	DWORD type, DWORD* retval)
 {
+	bool isWindowRTL = 
+		::GetWindowLong(m_hWnd, GWL_EXSTYLE) & WS_EX_LAYOUTRTL;
+
 	HasModalDialog(modal);
-	*retval = ::MessageBoxW(modal ? m_hWnd : 0, text, caption, type);
+	*retval = ::MessageBoxW(modal ? m_hWnd : 0, text, caption,
+		type | (isWindowRTL ? MB_RTLREADING : 0) );
 	HasModalDialog(modal);
 	return S_OK;
 }
