@@ -280,6 +280,9 @@ TD {
 	text-align: left;
 	width: 250px;
 }
+#signin-area ul {
+	list-style-type: none;
+}
 #signin-address {
 	color: #333;
 	font-family: "Segoe UI", Tahoma;
@@ -331,4 +334,15 @@ TD {
 }
 #signin-area li {
 	margin: 0 0 8px 0;
+}
+
+/* RTL */
+html.rtl #signin-area form, html.rtl #signin-area ul {
+	text-align: right;
+}
+html.rtl #signin-recently-used {
+	clip: rect(0 20px 100% 0);
+}
+html.rtl #signin-connect {
+	margin: 15px 65px 0 0;
 }
