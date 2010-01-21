@@ -30,7 +30,7 @@ CNotifyIcon::~CNotifyIcon()
 {
 	if(m_hIcon != 0)
 	{
-		DeleteObject(m_hIcon);
+		::DestroyIcon(m_hIcon);
 	}
 }
 
@@ -73,7 +73,7 @@ STDMETHODIMP CNotifyIcon::shellNotify(DWORD dwMessage)
 
 	if(m_text.length())
 	{
-		StringCchCopy(NotifyIconData.szTip, 64, m_text.c_str());
+		::StringCchCopy(NotifyIconData.szTip, 64, m_text.c_str());
 		NotifyIconData.uFlags |= NIF_TIP;
 	}
 
@@ -89,7 +89,7 @@ STDMETHODIMP CNotifyIcon::setIcon(BSTR strIcon, int nIndex)
 {
 	if(m_hIcon != 0)
 	{
-		DeleteObject(m_hIcon);
+		::DestroyIcon(m_hIcon);
 	}
 	m_hIcon = ::ExtractIcon(GetModuleHandle(NULL), strIcon, nIndex);
 	return S_OK;
