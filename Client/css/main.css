@@ -311,7 +311,7 @@ TD {
 	display: inline;
 	float: left;
 	height: 2.5em;
-	margin-right: 8px;
+	margin: 0 8px 0 0;
 }
 #signin-area DD {
 	display: inline;
@@ -342,6 +342,13 @@ html.rtl #signin-area form, html.rtl #signin-area ul {
 }
 html.rtl #signin-recently-used {
 	clip: rect(0 20px 100% 0);
+}
+html.rtl #signin-area DT {
+	float: right;
+	margin: 0 0 0 8px;
+}
+html.rtl #signin-area DD {
+	float: right;
 }
 html.rtl #signin-connect {
 	margin: 15px 65px 0 0;
