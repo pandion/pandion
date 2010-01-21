@@ -259,12 +259,12 @@ LRESULT CPdnWnd::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	}
 	else if(uMsg == WM_ENTERMENULOOP)
 	{
-		m_hasModalDialog = true;
+		HasModalDialog(true);
 		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
 	}
 	else if(uMsg == WM_EXITMENULOOP)
 	{
-		m_hasModalDialog = false;
+		HasModalDialog(false);
 		return ::DefWindowProc(m_hWnd, uMsg, wParam, lParam);
 	}
 	else
@@ -1106,7 +1106,7 @@ STDMETHODIMP CPdnWnd::messageBox(BOOL modal, BSTR text, BSTR caption,
 	HasModalDialog(modal);
 	*retval = ::MessageBoxW(modal ? m_hWnd : 0, text, caption,
 		type | (isWindowRTL ? MB_RTLREADING : 0) );
-	HasModalDialog(modal);
+	HasModalDialog(false);
 	return S_OK;
 }
 STDMETHODIMP CPdnWnd::get_Handle(DWORD *pHandle)
