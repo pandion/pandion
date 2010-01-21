@@ -74,11 +74,6 @@ void CPdnWnd::OnFinalRelease()
 
 void CPdnWnd::HasModalDialog(bool hasModal)
 {
-	if(hasModal)
-		::OutputDebugString(L"Window has modal dialog.\n");
-	else
-		::OutputDebugString(L"Window no longer has modal dialog.\n");
-
 	m_hasModalDialog = hasModal;
 }
 
