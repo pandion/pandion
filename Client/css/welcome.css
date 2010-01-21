@@ -55,7 +55,7 @@ a:hover {
 	margin-bottom: 0.8em;
 }
 #txt-team {
-	margin-right: 2em;
+	margin: 0 2em 0 0;
 	text-align: right;
 	font-style: italic;
 }
@@ -67,7 +67,7 @@ a:hover {
 #shortcuts {
 	color: #333;
 	background: transparent url(../images/welcome/translucent.png) repeat top left;
-	margin-left: 10px;
+	margin: 0 0 0 10px;
 	padding: 0 0 8px 0;
 	width: 346px;
 	border: 2px solid #ddd;
@@ -107,7 +107,7 @@ a:hover {
 #settings {
 	color: #333;
 	background: transparent url(../images/welcome/translucent.png) repeat top left;
-	margin-left: 10px;
+	margin: 0 0 0 10px;
 	padding: 0 8px 8px 8px;
 	width: 330px;
 	border: 2px solid #ddd;
@@ -199,7 +199,7 @@ a:hover {
 	color: #888;
 	font-size: 0.85em;
 	display: inline;
-	margin-left: 4px;
+	margin: 0 0 0 4px;
 	white-space: nowrap;
 }
 #getsatisfaction a {
@@ -207,9 +207,8 @@ a:hover {
 	text-decoration: none;
 	background: transparent url(../images/welcome/getsatisfaction.gif) no-repeat center left;
 	margin: 10px 0;
-	padding-left: 24px;
+	padding: 10px 0 0 24px;
 	height: 2em;
-	padding-top: 10px;
 	float: right;
 }
 
@@ -224,11 +223,55 @@ a:hover {
 	padding-top: 15px;
 }
 #show-welcome {
-	margin-left: 15px;
+	margin: 0 0 0 15px;
 }
 #btn-ok {
 	float: right;
 	width: 90px;
 	height: 24px;
-	margin-right: 15px;
+	margin: 0 15px 0 0;
+}
+
+/* RTL */
+html.rtl #introduction {
+	margin: 20px 10px 0 0;
+	padding: 33px 18px 25px 8px;
+}
+html.rtl #txt-team {
+	margin: 0 0 0 2em;
+	text-align: left;
+}
+html.rtl #shortcuts, html.rtl #settings {
+	margin: 0 10px 0 0;
+}
+html.rtl #settings-close {
+	float: left;
+	margin: 8px 0 0 8px;
+}
+html.rtl #community {
+	left: 0;
+	right: auto;
+	margin: 20px 0 0 10px;
+}
+html.rtl #community h1 {
+	background-position: top left;
+}
+html.rtl #search-box {
+	background-position: center right;
+	padding: 4px 24px 0 0;
+}
+html.rtl #feed .timestamp {
+	margin: 0 4px;
+}
+html.rtl #getsatisfaction a {
+	background-position: center right;
+	padding: 10px 24px 0 0;
+	float: left;
+}
+html.rtl #show-welcome {
+	margin: 0 15px 0 0;
+}
+html.rtl #btn-ok {
+	float: left;
+	margin: 0 0 0 15px;
 }
