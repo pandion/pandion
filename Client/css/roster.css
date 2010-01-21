@@ -106,6 +106,6 @@ html.rtl .roster-resource-avatar {
 	float: right;
 	margin: 0 0 0 5px;
 }
-html.rtl .roster-group-show-all-toggle {
+html.rtl .roster-group-toggle-expand, html.rtl .roster-group-toggle-compact {
 	float: left;
 }
