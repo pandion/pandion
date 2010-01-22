@@ -18,6 +18,8 @@ var gLastAddress = '';
  */
 function Begin ()
 {
+	if (external.globals( 'Translator' ).Direction)
+		document.dir = document.documentElement.dir = document.documentElement.className = "rtl";
 	SessionTracker.Container.TrackerCreated( SessionTracker );
 	window.onresize = Resize;
 }

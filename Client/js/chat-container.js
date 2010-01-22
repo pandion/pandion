@@ -1418,7 +1418,9 @@ function MouseMenu ()
 	Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_history' ), 6 );
 	Menu.AddItem( Connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_profile' ), 7 );
 
-	Menu.Show( window.screenLeft + 42, window.screenTop + 48, external.globals( 'Translator' ).Direction );
+	var posx = external.globals( 'Translator' ).Direction ? (window.screenLeft + external.wnd.width - 50) : (window.screenLeft + 42);
+	var posy = window.screenTop + 48;
+	Menu.Show( posx, posy, external.globals( 'Translator' ).Direction );
 
 	switch ( Menu.Choice )
 	{

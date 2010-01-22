@@ -1343,6 +1343,7 @@
     <item id="btn-send">
       <value>Send</value>
       <title>Send the message</title>
+      <accessKey>s</accessKey>
     </item>
 
     <code id="tt-avatar">Show the full size avatar</code>

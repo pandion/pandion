@@ -1,5 +1,5 @@
 BODY {
-	margin: 4px 0px 0px 4px;
+	margin: 4px 0 0 4px;
 	cursor: text;
 }
 A {
@@ -31,7 +31,7 @@ A:hover {
 	overflow: hidden;
 }
 .body-recv {
-	padding: 0px 0px 4px 4px;
+	padding: 0 0 4px 4px;
 	font-family: Arial;
 	font-size: 9pt;
 	color: #00396d;
@@ -39,7 +39,7 @@ A:hover {
 	text-overflow: ellipsis;
 }
 .body-send {
-	padding: 0px 0px 4px 4px;
+	padding: 0 0 4px 4px;
 	font-family: Arial;
 	font-size: 9pt;
 	color: #004200;
@@ -48,8 +48,8 @@ A:hover {
 }
 .date {
 	width: 100%;
-	padding: 0px 0px 0px 0px;
-	margin: 8px 0px 6px 0px;
+	padding: 0;
+	margin: 8px 0 6px 0;
 	font-family: Arial;
 	font-size: 14px;
 	font-weight: bold;
@@ -59,14 +59,14 @@ A:hover {
 	overflow: hidden;
 }
 .time {
-	padding: 0px 2px 0px 0px;
+	padding: 0 2px 0 0;
 	text-align: right;
 	font-family: Tahoma;
 	font-size: 10px;
 	color: #b7babb;
 }
 .me-time {
-	padding: 0px 2px 0px 0px;
+	padding: 0 2px 0 0;
 	text-align: right;
 	font-family: Tahoma;
 	font-size: 10px;
@@ -76,25 +76,25 @@ A:hover {
 	font-family: Tahoma;
 	font-size: 12px;
 	color: purple;
-	margin: 0px 4px 4px 0px;
+	margin: 0 4px 4px 0;
 }
 .system {
 	font-family: Tahoma;
 	font-size: 12px;
 	color: green;
-	margin: 0px 4px 4px 0px;
+	margin: 0 4px 4px 0;
 }
 .private-send, .private-recv {
 	font-family: Tahoma;
 	font-size: 12px;
 	color: darkblue;
-	margin: 0px 4px 4px 0px;
+	margin: 0 4px 4px 0;
 }
 .error {
 	font-family: Tahoma;
 	font-size: 12px;
 	color: #df2929;
-	margin: 0px 4px 4px 0px;
+	margin: 0 4px 4px 0;
 }
 .sound-label {
 	margin-top: 2px;
@@ -113,13 +113,12 @@ A:hover {
 .sound-button {
 	height: 20px;
 	width: 22px;
-	margin-left: 2px;
-	margin-bottom: 2px;
+	margin: 0 0 2px 2px;
 }
 .history-date {
 	width: 100%;
-	padding: 0px 0px 0px 0px;
-	margin: 8px 0px 6px 0px;
+	padding: 0;
+	margin: 8px 0 6px 0;
 	font-family: Arial;
 	font-size: 14px;
 	font-weight: bold;
@@ -129,14 +128,14 @@ A:hover {
 	overflow: hidden;
 }
 .history-time {
-	padding: 0px 2px 0px 0px;
+	padding: 0 2px 0 0;
 	text-align: right;
 	font-family: Tahoma;
 	font-size: 10px;
 	color: #DBDCDC;
 }
 .history-me-time {
-	padding: 0px 2px 0px 0px;
+	padding: 0 2px 0 0;
 	text-align: right;
 	font-family: Tahoma;
 	font-size: 10px;
@@ -146,7 +145,7 @@ A:hover {
 	font-family: Tahoma;
 	font-size: 12px;
 	color: #C8BAD6;
-	margin: 0px 4px 4px 0px;
+	margin: 0 4px 4px 0;
 }
 .history-name-recv {
 	width: 100%;
@@ -169,7 +168,7 @@ A:hover {
 	overflow: hidden;
 }
 .history-body-recv, .history-body-send {
-	padding: 0px 0px 4px 4px;
+	padding: 0 0 4px 4px;
 	font-family: Arial;
 	font-size: 9pt;
 	color: #5B7389;
@@ -186,4 +185,25 @@ A:hover {
 }
 .history-body-recv IMG, .history-body-send IMG {
 	filter: progid:DXImageTransform.Microsoft.Alpha( opacity = 50 );
+}
+
+/* RTL */
+html.rtl body {
+	margin: 4px 4px 0 0;
+	cursor: text;
+}
+html.rtl .body-recv, html.rtl .body-send, html.rtl .history-body-recv, html.rtl .history-body-send {
+	padding: 0 4px 4px 0;
+}
+html.rtl .time, html.rtl .me-time {
+	padding: 0 2px 0 0;
+}
+html.rtl .me, html.rtl .system, html.rtl .private-send, html.rtl .private-recv, html.rtl .error, html.rtl .history-me {
+	margin: 0 0 4px 4px;
+}
+html.rtl .sound-button {
+	margin: 0 2px 2px 0;
+}
+html.rtl .history-time, html.rtl .history-me-time {
+	padding: 0 0 0 2px;
 }

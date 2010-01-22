@@ -306,9 +306,10 @@ function ChooseEmoticons ()
 		Popup.document.body.style.border = '1px solid threeddarkshadow';
 		Popup.document.body.style.backgroundColor = 'lavender';
 		Popup.document.Popup = Popup;
+		var LTR = !external.globals("Translator").Direction;
 		var PopupWidth  = W * ( w + 1 ) + 1 + ExpandWidth + 1;
 		var PopupHeight = H * ( h + 1 ) + 1 + BrowseHeight + 1;
-		var PopupX = event.x - event.offsetX - 2;
+		var PopupX = LTR ? (event.x - event.offsetX - 2) : (external.wnd.width - PopupWidth - 10);
 		var PopupY = event.y - event.offsetY - PopupHeight - 3;
 		var EdgeRight = external.wnd.left + event.x + PopupWidth;
 		var EdgeTop = external.wnd.top + event.y - PopupHeight;

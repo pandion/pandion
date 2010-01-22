@@ -992,9 +992,7 @@ function ConferenceParticipant ( Tracker, Presence )
 	);
 
 	var Avatar = document.createElement( 'IMG' );
-	Avatar.align = 'left';
-	Avatar.style.marginRight = '5px';
-	Avatar.border = 0;
+	Avatar.className = 'roster-resource-avatar';
 	this.HTMLElement.insertAdjacentElement( 'beforeEnd', Avatar );
 
 	var Name = document.createElement( 'SPAN' );
@@ -1866,7 +1864,10 @@ function MouseMenu ()
 	menu.AddSeparator();
 	menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'conference-container', 'menu_bmrk_add' ), 4 );
 	menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks_manage' ), 5 );
-	menu.Show( window.screenLeft + 42, window.screenTop + 48, external.globals( 'Translator' ).Direction );
+
+	var posx = external.globals( 'Translator' ).Direction ? (window.screenLeft + external.wnd.width - 50) : (window.screenLeft + 42);
+	var posy = window.screenTop + 48;
+	menu.Show( posx, posy, external.globals( 'Translator' ).Direction );
 
 	switch ( menu.Choice )
 	{
