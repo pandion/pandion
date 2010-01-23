@@ -2094,6 +2094,7 @@ function ClientRosterResource ( item, name )
 		{
 			var img = item(0).tagName == 'IMG' ? item(0) : this.HTMLElements( group.Name ).insertAdjacentElement( 'afterBegin', document.createElement( 'IMG' ) );
 			img.className = 'roster-resource-avatar';
+			img.align = external.globals( 'Translator' ).Direction ? 'right' : 'left';
 			if ( this.Avatar.length == 0 )
 				img.src = '..\\images\\clients\\unknown-soldier.gif';
 			else if ( this.Avatar.length == 40 )
@@ -2279,6 +2280,7 @@ function ClientRosterResource ( item, name )
 
 		var img = document.createElement( 'IMG' );
 		img.className = 'roster-resource-avatar';
+		img.align = external.globals( 'Translator' ).Direction ? 'right' : 'left';
 		if ( this.Avatar.length == 0 )
 			img.src = '..\\images\\clients\\unknown-soldier.gif';
 		else if ( this.Avatar.length == 40 )

@@ -61,7 +61,6 @@
 	display: block;
 }
 .roster-resource-avatar {
-	float: left;
 	margin: 0 5px 0 0;
 	border-width: 0;
 }
@@ -103,7 +102,6 @@ html.rtl .roster-item-offline {
 	margin: 0 29px 0 0;
 }
 html.rtl .roster-resource-avatar {
-	float: right;
 	margin: 0 0 0 5px;
 }
 html.rtl .roster-group-toggle-expand, html.rtl .roster-group-toggle-compact {
