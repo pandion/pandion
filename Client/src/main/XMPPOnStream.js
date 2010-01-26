@@ -118,7 +118,9 @@ function XMPPOnStream ( ReceivedXML )
 		 */
 		else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/auth[@xmlns="http://jabber.org/features/iq-auth"]' )
 			|| ( ReceivedXML.documentElement.selectSingleNode( '/stream:features' )
-				&& ! ReceivedXML.documentElement.childNodes.length
+				&& ( ! ReceivedXML.documentElement.childNodes.length /* Desperate attempt if no mechanisms are reported */
+					|| ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "GSSAPI" ]' ) /* iChat Server bug workaround */
+				)
 			)
 		)
 		{
