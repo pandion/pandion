@@ -443,8 +443,16 @@ library PandionLib
 			[in] BSTR nc,
 			[in] BSTR qop,
 			[out,retval] BSTR* strDigest);
+		[propget] HRESULT SCRAM([out, retval] VARIANT* pDispatch);
 		[propget] HRESULT SSPI([out, retval] VARIANT* pDispatch);
 		[propget] HRESULT GSSAPI([out, retval] VARIANT* pDispatch);
+	}
+	[uuid(D589A536-0A43-11DF-97E6-DDC756D89593)]
+	interface ISCRAM : IDispatch
+	{
+		HRESULT GenerateResponse(
+			[in] BSTR Challenge,
+			[out, retval] BSTR* Response);
 	}
 	[uuid(D4C00020-E57A-434e-9289-937C53CC07ED)]
 	interface ISSPI : IDispatch
@@ -453,7 +461,7 @@ library PandionLib
 		HRESULT GenerateResponse(
 			[in] BSTR Challenge,
 			[out] BOOL* Continue,
-			[out,retval] BSTR* Response);
+			[out, retval] BSTR* Response);
 	}
 	[uuid(5FA5AC97-F9E0-4ea0-A1BD-2957A331FF47)]
 	interface IGSSAPI : IDispatch
@@ -462,7 +470,7 @@ library PandionLib
 		HRESULT GenerateResponse(
 			[in] BSTR ServerName,
 			[in] BSTR Challenge,
-			[out,retval] BSTR* Response);
+			[out, retval] BSTR* Response);
 	}
 	[uuid(3AA4A7CE-829F-4b24-BB86-D96A23084F51)]
 	interface IShortcut : IDispatch

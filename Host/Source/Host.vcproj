@@ -167,7 +167,7 @@
 				FavorSizeOrSpeed="1"
 				OmitFramePointers="true"
 				EnableFiberSafeOptimizations="true"
-				AdditionalIncludeDirectories="$(IntDir);../kfw-3.2.2-final/inc/krb5/"
+				AdditionalIncludeDirectories="$(IntDir)"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_MT;i386"
 				StringPooling="true"
 				ExceptionHandling="1"
@@ -463,6 +463,14 @@
 				</File>
 				<File
 					RelativePath=".\SASL.h"
+					>
+				</File>
+				<File
+					RelativePath=".\SCRAM.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\SCRAM.h"
 					>
 				</File>
 				<File

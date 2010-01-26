@@ -107,6 +107,11 @@ STDMETHODIMP SASL::DigestGenerateResponse(BSTR username, BSTR realm,
 
 	return S_OK;
 }
+STDMETHODIMP SASL::get_SCRAM(VARIANT* pDispatch)
+{
+	pDispatch->vt = VT_DISPATCH;
+	return m_SCRAM.QueryInterface(IID_IDispatch, (void**)&pDispatch->pdispVal);
+}
 STDMETHODIMP SASL::get_SSPI(VARIANT* pDispatch)
 {
 	pDispatch->vt = VT_DISPATCH;
