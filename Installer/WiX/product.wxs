@@ -73,7 +73,7 @@
 						Value="1"
 						KeyPath="yes"
 					/>
-					<Condition>NOT AUTOUPDATE</Condition>
+					<Condition>(NOT AUTOUPDATE) OR HASDESKTOPSHORTCUT</Condition>
 				</Component>
 			</Directory>
 
@@ -97,7 +97,7 @@
 						Value="1"
 						KeyPath="yes"
 					/>
-					<Condition>NOT AUTOUPDATE</Condition>
+					<Condition>(NOT AUTOUPDATE) OR HASPROGRAMMENUSHORTCUT</Condition>
 				</Component>
 			</Directory>
 
@@ -121,7 +121,7 @@
 						Value="1"
 						KeyPath="yes"
 					/>
-					<Condition>NOT AUTOUPDATE</Condition>
+					<Condition>(NOT AUTOUPDATE) OR HASSTARTUPSHORTCUT</Condition>
 				</Component>
 			</Directory>
 
@@ -217,7 +217,27 @@
 		<Property Id="ARPHELPLINK" Value="$(var.AppHelpLink)"/>
 		<Property Id="ARPURLINFOABOUT" Value="$(var.AppUrlInfoAbout)"/>
 		<Property Id="ARPPRODUCTICON" Value="default.ico"/>
-		<Icon Id="default.ico" SourceFile="./Temp/images/brand/default.ico" />
+		<Icon Id="default.ico" SourceFile="./Temp/images/brand/default.ico"/>
+
+		<!--
+			Check if application shortcuts already exist from a previous installation.
+			This ensures the presence of desktop/programs/startup shortcuts (or lack thereof) is not changed by an auto-update.
+		-->
+		<Property Id="HASDESKTOPSHORTCUT">
+			<DirectorySearch Id="DesktopFolder" Path="[DesktopFolder]">
+				<FileSearch Id="DesktopShortcut" Name="$(var.SafeName).lnk"/>
+			</DirectorySearch>
+		</Property>
+		<Property Id="HASPROGRAMMENUSHORTCUT">
+			<DirectorySearch Id="ProgramMenuFolder" Path="[ProgramMenuFolder]">
+				<FileSearch Id="ProgramMenuShortcut" Name="$(var.SafeName).lnk"/>
+			</DirectorySearch>
+		</Property>
+		<Property Id="HASSTARTUPSHORTCUT">
+			<DirectorySearch Id="StartupFolder" Path="[StartupFolder]">
+				<FileSearch Id="StartupShortcut" Name="$(var.SafeName).lnk"/>
+			</DirectorySearch>
+		</Property>
 
 		<!--
 			Launch the application after normal installation or in silent auto-update mode.
