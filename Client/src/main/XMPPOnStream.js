@@ -204,7 +204,7 @@ function XMPPOnStream ( ReceivedXML )
 					"nonce": dataset["nonce"],
 					"nc": "00000001",
 					"password": external.globals("cfg")("password"),
-					"qop": dataset["qop"],
+					"qop": "auth",
 					"realm": "realm" in dataset ? dataset["realm"] : "",
 					"serv-type": "xmpp",
 					"username": external.globals("cfg")("username")
