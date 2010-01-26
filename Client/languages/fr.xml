@@ -660,7 +660,7 @@ background: (image d') arrière-plan
     </item>
 	<code id="up-to-date">A jour</code>
 	 <code id="previous-version">Version précédente</code>
-    <code id="recommended">Recommendé</code>
+    <code id="recommended">Recommandé</code>
     <code id="description-stable">Les versions stables ont été testées depuis le plus longtemps.</code>
     <code id="description-beta">Contient des corrections de bug et des fonctionnalités qui sont en test.</code>
     <code id="description-development">Certaines fonctionnalités peuvent être absentes pendant le développement.</code>
