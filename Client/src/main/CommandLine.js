@@ -124,8 +124,53 @@ function CommandLineShift ()
 	 */
 	else if ( argument.substr( 0, 5 ) == 'xmpp:' )
 	{
-		var Address = new XMPPAddress( argument.substring( 5, argument.indexOf( '?' ) == -1 ? argument.length : argument.indexOf( '?' ) ) );
-		dial_chat( Address );
+		var address = new XMPPAddress(argument.substring(5, argument.indexOf("?") == -1 ? argument.length : argument.indexOf("?")));
+		var queryType = argument.indexOf("?") == -1 ? "" : argument.substring(argument.indexOf("?") + 1, argument.length);
+		if (queryType.indexOf(";") != -1)
+			queryType = queryType.substring(0, queryType.indexOf(";"));
+		if (queryType.indexOf("#") != -1)
+			queryType = queryType.substring(0, queryType.indexOf("#"));
+		switch (queryType) {
+			case "":
+			case "message":
+				/* Open a conversation */
+				dial_chat(address);
+				break;
+			case "roster":
+			case "subscribe":
+				/* Add to contact list */
+				var dom = new ActiveXObject("Msxml2.DOMDocument");
+				dom.loadXML('<iq type="set"><query xmlns="jabber:iq:roster"><item/></query></iq>');
+				dom.documentElement.firstChild.firstChild.setAttribute("jid", address.ShortAddress());
+				dom.documentElement.setAttribute("to", address.ShortAddress());
+				warn("SENT: " + dom.xml);
+				external.XMPP.SendXML(dom);
+
+				/* Request a subscription */
+				dom.loadXML('<presence type="subscribe"/>');
+				dom.documentElement.setAttribute("to", address.ShortAddress());
+				warn("SENT: " + dom.xml);
+				external.XMPP.SendXML(dom);
+
+				external.wnd.messageBox( false, external.globals( 'Translator' ).Translate( 'main', 'msg_cl_adding', [ address.ShortAddress() ] ), external.globals( 'softwarename' ), 0 | 64 );
+				break;
+			case "remove":
+			case "unsubscribe":
+				/* Delete from roster */
+				if (external.globals("ClientRoster").Items.Exists(address.ShortAddress()))
+					external.globals("ClientRoster").Items(address.ShortAddress()).Purge();
+				break;
+			case "invite":
+			case "join":
+				dial_conference(address.ShortAddress());
+				break;
+			case "register":
+				dial_service_register(address.ShortAddress());
+				break;
+			case "vcard":
+				dial_userinfo(address.ShortAddress(), address.Resource);
+				break;
+		}
 	}
 
 	/* Load file
@@ -141,71 +186,6 @@ function CommandLineShift ()
 		 */
 		if ( dom.documentElement )
 		{
-			var node;
-
-			/* Open a chat or message window
-			 */
-			with ( dom.selectNodes( '/jabber/message[@jid]' ) )
-				for ( var i = 0; i < length; ++i )
-				{
-					var Address = new XMPPAddress( item( i ).getAttribute( 'jid' ) );
-					dial_chat( Address );
-				}
-
-			/* Open a chat or message window
-			 */
-			with ( dom.selectNodes( '/jabber/chat[@jid]' ) )
-				for ( var i = 0; i < length; ++i )
-				{
-					var Address = new XMPPAddress( item( i ).getAttribute( 'jid' ) );
-					dial_chat( Address );
-				}
-
-			/* Join the conference
-			 */
-			with ( dom.selectNodes( '/jabber/groupchat[@jid]' ) )
-				for ( var i = 0; i < length; ++i )
-				{
-					var Address = new XMPPAddress( item( i ).getAttribute( 'jid' ) );
-					dial_conference( Address.ShortAddress() );
-				}
-
-			/* Add the Address to the Contact List
-			 */
-			with ( dom.selectNodes( '/jabber/subscribe[@jid]' ) )
-				for ( var i = 0; i < length; ++i )
-				{
-					var Address = new XMPPAddress( item( i ).getAttribute( 'jid' ) );
-
-					/* Request a subscription
-					 */
-					dom = new ActiveXObject( 'Msxml2.DOMDocument' );
-					dom.loadXML( '<presence type="subscribe"/>' );
-					dom.documentElement.setAttribute( 'to', Address.ShortAddress() );
-					warn( 'SENT: ' + dom.xml );
-					external.XMPP.SendXML( dom );
-
-					external.wnd.messageBox( false, external.globals( 'Translator' ).Translate( 'main', 'msg_cl_adding', [ Address.ShortAddress() ] ), external.globals( 'softwarename' ), 0 | 64 );
-				}
-
-			/* Display the profile
-			 */
-			with ( dom.selectNodes( '/jabber/vcard[@jid]' ) )
-				for ( var i = 0; i < length; ++i )
-				{
-					var Address = new XMPPAddress( item( i ).getAttribute( 'jid' ) );
-					dial_userinfo( Address.ShortAddress(), Address.Resource );
-				}
-
-			/* Show the Transport Registration Wizard
-			 */
-			with ( dom.selectNodes( '/jabber/register[@jid]' ) )
-				for ( var i = 0; i < length; ++i )
-				{
-					var Address = new XMPPAddress( item( i ).getAttribute( 'jid' ) );
-					dial_service_register( Address.ShortAddress() );
-				}
-
 			/* Install and load the plugin
 			 */
 			if ( dom.selectSingleNode( '/plugin[@type and name and description and version]' ) )
