@@ -993,6 +993,7 @@ function ConferenceParticipant ( Tracker, Presence )
 
 	var Avatar = document.createElement( 'IMG' );
 	Avatar.className = 'roster-resource-avatar';
+	Avatar.align = external.globals( 'Translator' ).Direction ? 'right' : 'left';
 	this.HTMLElement.insertAdjacentElement( 'beforeEnd', Avatar );
 
 	var Name = document.createElement( 'SPAN' );
