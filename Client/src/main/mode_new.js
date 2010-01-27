@@ -94,7 +94,8 @@ function mode_new ( mode, msg )
 				case 5: priority = 8; break;
 				case 1: priority = 10; show = 'chat'; break;
 				case 2: priority = 4; show = 'away'; break;
-				case 3: priority = 2; show = 'xa'; break;
+				case 3:
+				case 6: priority = 2; show = 'xa'; break;
 				case 4: priority = 6; show = 'dnd'; break;
 			}
 
