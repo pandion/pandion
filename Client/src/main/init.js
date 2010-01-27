@@ -247,11 +247,15 @@ function init ()
 		],
 		events: {
 			enteringIdle: function () {
-				modeBeforeIdle = external.globals("cfg")("lastmode");
-				mode_new(6, external.globals("cfg")("lastmsg"));
+				switch (external.globals("cfg")("lastmode")) {
+					case 0: case 1: case 4:
+						modeBeforeIdle = external.globals("cfg")("lastmode");
+						mode_new(6, external.globals("cfg")("lastmsg"));
+				}
 			},
 			leavingIdle: function () {
-				mode_new(modeBeforeIdle, external.globals("cfg")("lastmsg"));
+				if (external.globals("cfg")("lastmode") === 6)
+					mode_new(modeBeforeIdle, external.globals("cfg")("lastmsg"));
 			}
 		}
 	});
