@@ -124,53 +124,7 @@ function CommandLineShift ()
 	 */
 	else if ( argument.substr( 0, 5 ) == 'xmpp:' )
 	{
-		var address = new XMPPAddress(argument.substring(5, argument.indexOf("?") == -1 ? argument.length : argument.indexOf("?")));
-		var queryType = argument.indexOf("?") == -1 ? "" : argument.substring(argument.indexOf("?") + 1, argument.length);
-		if (queryType.indexOf(";") != -1)
-			queryType = queryType.substring(0, queryType.indexOf(";"));
-		if (queryType.indexOf("#") != -1)
-			queryType = queryType.substring(0, queryType.indexOf("#"));
-		switch (queryType) {
-			case "":
-			case "message":
-				/* Open a conversation */
-				dial_chat(address);
-				break;
-			case "roster":
-			case "subscribe":
-				/* Add to contact list */
-				var dom = new ActiveXObject("Msxml2.DOMDocument");
-				dom.loadXML('<iq type="set"><query xmlns="jabber:iq:roster"><item/></query></iq>');
-				dom.documentElement.firstChild.firstChild.setAttribute("jid", address.ShortAddress());
-				dom.documentElement.setAttribute("to", address.ShortAddress());
-				warn("SENT: " + dom.xml);
-				external.XMPP.SendXML(dom);
-
-				/* Request a subscription */
-				dom.loadXML('<presence type="subscribe"/>');
-				dom.documentElement.setAttribute("to", address.ShortAddress());
-				warn("SENT: " + dom.xml);
-				external.XMPP.SendXML(dom);
-
-				external.wnd.messageBox( false, external.globals( 'Translator' ).Translate( 'main', 'msg_cl_adding', [ address.ShortAddress() ] ), external.globals( 'softwarename' ), 0 | 64 );
-				break;
-			case "remove":
-			case "unsubscribe":
-				/* Delete from roster */
-				if (external.globals("ClientRoster").Items.Exists(address.ShortAddress()))
-					external.globals("ClientRoster").Items(address.ShortAddress()).Purge();
-				break;
-			case "invite":
-			case "join":
-				dial_conference(address.ShortAddress());
-				break;
-			case "register":
-				dial_service_register(address.ShortAddress());
-				break;
-			case "vcard":
-				dial_userinfo(address.ShortAddress(), address.Resource);
-				break;
-		}
+		dial_webbrowser( argument );
 	}
 
 	/* Load file

@@ -3,8 +3,8 @@
 	if ( ! external.globals( 'debug' ) )
 		return true;
 
-	if ( typeof string == 'object' )
-		string = toString( string );
+	if ( typeof string !== 'string' )
+		string = JSON.stringify( string );
 
 	if ( string.charAt( string.length - 1 ) == '\n' )
 		external.globals( 'stderr' ).push( string );
