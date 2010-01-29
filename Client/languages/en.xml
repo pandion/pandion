@@ -227,8 +227,6 @@
     <code id="menu_history">History</code>
     <code id="menu_profile">Profile</code>
 
-    <code id="cl_waiting_one">You have 1 unread message</code>
-    <code id="cl_waiting_multiple">You have ${0} unread messages</code>
     <code id="cl_error_notexist">The address does not exist.</code>
     <code id="cl_error_cannotadd">Cannot add ${0} to the contact list.&#13;${1}</code>
     <code id="cl_default_group">Contacts</code>
@@ -246,8 +244,6 @@
     <code id="cl_status_offline">Offline</code>
     <code id="cl_status_awaiting">Awaiting authorization</code>
     <code id="cl_status_unknown">Unknown status</code>
-    <code id="cl_status_waiting_one">1 unread message</code>
-    <code id="cl_status_waiting_multiple">${0} unread messages</code>
     <code id="cl_tooltip_offline">Address: ${0}</code>
     <code id="cl_contact_remove_group">Are you sure you want to remove the user from this group?</code>
     <code id="cl_contact_remove_list">Are you sure you want to remove this user from your contact list?</code>
@@ -1128,9 +1124,6 @@
     <item id="transport_unsupported">
       <innerHTML>&lt;B&gt;Note:&lt;/B&gt; The server you are connected to has no transports installed. Contact the administrator for more information.</innerHTML>
     </item>
-    <item id="msnworkaroundlabel">
-      <innerText>Allow MSN contacts to change their nickname</innerText>
-    </item>
     <code id="status_active">Active</code>
     <code id="status_noreg">Not registered</code>
     <code id="status_disconnected">Disconnected</code>
@@ -1602,6 +1595,7 @@
     <item id="btn-send">
       <value>Send</value>
       <title>Send the message</title>
+      <accessKey>s</accessKey>
     </item>
 
     <item id="occupants-panel">

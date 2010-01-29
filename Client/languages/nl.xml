@@ -223,8 +223,6 @@
     <code id="menu_history">Archief</code>
     <code id="menu_profile">Profiel</code>
 
-    <code id="cl_waiting_one">U hebt 1 ongelezen bericht</code>
-    <code id="cl_waiting_multiple">U hebt ${0} ongelezen berichten</code>
     <code id="cl_error_notexist">Het adres bestaat niet</code>
     <code id="cl_error_cannotadd">Kan ${0} niet toevoegen aan de lijst.&#13;${1}</code>
     <code id="cl_default_group">Contactpersonen</code>
@@ -242,8 +240,6 @@
     <code id="cl_status_offline">Offline</code>
     <code id="cl_status_awaiting">Wachtend op toelating</code>
     <code id="cl_status_unknown">Onbekende status</code>
-    <code id="cl_status_waiting_one">1 ongelezen bericht</code>
-    <code id="cl_status_waiting_multiple">${0} ongelezen berichten</code>
     <code id="cl_tooltip_offline">Adres: ${0}</code>
     <code id="cl_contact_remove_group">Wilt u deze gebruiker uit de groep verwijderen?</code>
     <code id="cl_contact_remove_list">Wilt u deze gebruiker uit de lijst verwijderen?</code>
@@ -1125,9 +1121,6 @@
     <item id="transport_unsupported">
       <innerHTML>&lt;B&gt;Opmerking:&lt;/B&gt; De server ondersteunt geen transporten.  Contacteer de beheerder voor meer informatie.</innerHTML>
     </item>
-    <item id="msnworkaroundlabel">
-      <innerText>De huidige naam van MSN gebruikers tonen</innerText>
-    </item>
     <code id="status_active">Actief</code>
     <code id="status_noreg">Niet geregistreerd</code>
     <code id="status_disconnected">Verbinding verbroken</code>
@@ -1340,6 +1333,7 @@
     <item id="btn-send">
       <value>Zenden</value>
       <title>Het bericht verzenden</title>
+      <accessKey>z</accessKey>
     </item>
 
     <code id="tt-avatar">De avatar op volledige grootte weergeven</code>
@@ -1598,6 +1592,7 @@
     <item id="btn-send">
       <value>Zenden</value>
       <title>Het bericht verzenden</title>
+      <accessKey>z</accessKey>
     </item>
 
     <item id="occupants-panel">

@@ -277,10 +277,7 @@ function ClientRoster ()
 	this.GetAvatar			= GetAvatar;
 	this.AllOffline			= AllOffline;
 	this.RefreshAll			= RefreshAll;
-	this.ShowUnread			= ShowUnread;
 	this.CreateGroup		= CreateGroup;
-	this.UnreadFlash		= UnreadFlash;
-	this.UnreadMessages		= UnreadMessages;
 	this.ReloadFromIQ		= ReloadFromIQ;
 	this.ReceivePresence	= ReceivePresence;
 	this.ReceiveSetFromIQ	= ReceiveSetFromIQ;
@@ -367,87 +364,6 @@ function ClientRoster ()
 	AvatarMap.Add( 'wxskabber',			'skabber'		);
 	AvatarMap.Add( 'xmppimcom',			'console'		);
 	AvatarMap.Add( 'yabber',			'yabber'		);
-
-	/* Open the unread messages in a single window or show a popup of who has sent us messages and select one.
-	 */
-	function ShowUnread ( x, y )
-	{
-		var QueuedEvents = external.globals( 'ChatSessionPool' ).Events;
-		if ( QueuedEvents.Count == 1 )
-			dial_chat( ( ( new VBArray( QueuedEvents.Keys() ) ).toArray() )[0] );
-		else if ( QueuedEvents.Count > 1 )
-		{
-			var Addresses = ( new VBArray( QueuedEvents.Keys() ) ).toArray();
-			var Menu = external.newPopupMenu;
-			for ( var i = 0; i < Addresses.length; ++i )
-			{
-				var Name = this.Items.Exists( Addresses[i] ) ? this.Items( Addresses[i] ).Name.substr( 0, 30 ) : Addresses[i];
-				Menu.AddItem( true, false, false, false, 0, Name, i + 1 );
-			}
-			Menu.Show( x, y, external.globals( 'Translator' ).Direction );
-			if ( ! Menu.Choice )
-				return;
-			dial_chat( Addresses[ Menu.Choice - 1 ] );
-		}
-	}
-
-	/* Update the unread messages warning message at the top of the roster
-	 */
-	function UnreadMessages ( jid, count )
-	{
-		var QueuedEvents = external.globals( 'ChatSessionPool' ).Events;
-		if ( QueuedEvents.Count )
-		{
-			var Counter = 0;
-			var QueueAddresses = ( new VBArray( QueuedEvents.Keys() ) ).toArray();
-			for ( var i = 0; i < QueueAddresses.length; ++i )
-				Counter += QueuedEvents( QueueAddresses[i] ).length;
-			document.getElementById( 'unread-messages-counter' ).innerText = Counter == 1 ? external.globals( 'Translator' ).Translate( 'main', 'cl_waiting_one' ) : external.globals( 'Translator' ).Translate( 'main', 'cl_waiting_multiple', [ Counter ] );
-			document.getElementById( 'unread-messages-area' ).style.display = 'block';
-			external.notifyIcon.setIcon( external.globals( 'cwd' ) + '..\\images\\chat-container\\bubble.ico', 0 );
-			external.notifyIcon.setText( external.globals( 'softwarename' ) + '\n' + ( Counter == 1 ? external.globals( 'Translator' ).Translate( 'main', 'cl_waiting_one' ) : external.globals( 'Translator' ).Translate( 'main', 'cl_waiting_multiple', [ Counter ] ) ) );
-			external.notifyIcon.update();
-		}
-		else
-		{
-			document.getElementById( 'unread-messages-area' ).style.display = 'none';
-			external.notifyIcon.setText( external.globals( 'softwarename' ) );
-			if ( external.FileExists( external.globals( 'cwd' ) + '..\\images\\brand\\tray.ico' ) )
-				external.notifyIcon.setIcon( external.globals( 'cwd' ) + '..\\images\\brand\\tray.ico', 0 );
-			else
-				external.notifyIcon.setIcon( external.globals( 'cwd' ) + '..\\images\\brand\\default.ico', 0 );
-			external.notifyIcon.update();
-		}
-	}
-
-	/* Flash the system tray icon for unread messages
-	 */
-	function UnreadFlash ( Times )
-	{
-		var QueuedEvents = external.globals( 'ChatSessionPool' ).Events;
-		if ( QueuedEvents.Count && Times != 0 )
-		{
-			this.IsFlashing = true;
-			Times--;
-			if ( Times % 2 )
-			{
-				external.notifyIcon.setIcon( external.globals( 'cwd' ) + '..\\images\\chat-container\\bubble.ico', 0 );
-			}
-			else
-			{
-				if ( external.FileExists( external.globals( 'cwd' ) + '..\\images\\brand\\tray.ico' ) )
-					external.notifyIcon.setIcon( external.globals( 'cwd' ) + '..\\images\\brand\\tray.ico', 0 );
-				else
-					external.notifyIcon.setIcon( external.globals( 'cwd' ) + '..\\images\\brand\\default.ico', 0 );
-			}
-			external.notifyIcon.update();
-			setTimeout( 'external.globals( \'ClientRoster\' ).UnreadFlash( ' + Times + ' )', 400 );
-		}
-		else
-		{
-			this.IsFlashing = false;
-		}
-	}
 
 	/* Redraw all contacts
 	 */
@@ -559,7 +475,6 @@ function ClientRoster ()
 	 */
 	function Clear ()
 	{
-		document.getElementById( 'unread-messages-area' ).style.display = 'none';
 		var itemnames = ( new VBArray( this.Items.Keys() ) ).toArray();
 		for ( var i = 0; i < itemnames.length; ++i )
 			this.Items( itemnames[i] ).Clear();
@@ -1557,7 +1472,7 @@ function ClientRosterItem ( roster, jid )
 			external.globals( 'ChatSessionPool' ).GetTracker( this.Address ).DrawContainerInfo();
 	}
 
-	/* Shows/hides the unread messages notification
+	/* Redraws the item/resources in all groups
 	 */
 	function RefreshAll ()
 	{
@@ -1818,28 +1733,18 @@ function ClientRosterItem ( roster, jid )
 		{
 			item(0).className = external.globals( 'block' ).Exists( this.JID ) ? 'roster-item-offline-name-blocked' : 'roster-item-offline-name';
 			item(0).innerText = this.Name + '\n';
-			if ( external.globals( 'ChatSessionPool' ).Events.Exists( this.JID ) )
+			item(1).className = 'roster-item-offline-msg';
+			item(1).style.display = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? '' : 'none';
+			if ( this.Subscription == 'to' || this.Subscription == 'both' )
 			{
-				var MessageCount = external.globals( 'ChatSessionPool' ).Events( this.JID ).length;
-				item(1).className = 'roster-item-offline-unread';
-				item(1).style.display = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? '' : 'none';
-				item(1).innerText = MessageCount == 1 ? external.globals( 'Translator' ).Translate( 'main', 'cl_status_waiting_one' ) : external.globals( 'Translator' ).Translate( 'main', 'cl_status_waiting_multiple', [ MessageCount ] );
+				item(1).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' );
+				if ( this.Status.length )
+					item(1).innerText += ' - ' + this.Status;
 			}
+			else if ( ( this.Subscription == 'none' || this.Subscription == 'from' ) && this.Ask == 'subscribe' )
+				item(1).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_awaiting' );
 			else
-			{
-				item(1).className = 'roster-item-offline-msg';
-				item(1).style.display = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? '' : 'none';
-				if ( this.Subscription == 'to' || this.Subscription == 'both' )
-				{
-					item(1).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' );
-					if ( this.Status.length )
-						item(1).innerText += ' - ' + this.Status;
-				}
-				else if ( ( this.Subscription == 'none' || this.Subscription == 'from' ) && this.Ask == 'subscribe' )
-					item(1).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_awaiting' );
-				else
-					item(1).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_unknown' );
-			}
+				item(1).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_unknown' );
 		}
 	}
 
@@ -1849,7 +1754,7 @@ function ClientRosterItem ( roster, jid )
 	{
 		/* <NOBR>
 		 *   <SPAN class="roster-item-offline-name|blocked">Nickname</SPAN>
-		 *   <SPAN class="roster-item-offline-msg|unread">Offline|Awaiting|Unknown|Unread</SPAN>
+		 *   <SPAN class="roster-item-offline-msg">Offline|Awaiting|Unknown</SPAN>
 		 * </NOBR>
 		 */
 		if ( this.HTMLElements.Exists( group.Name ) )
@@ -1910,26 +1815,17 @@ function ClientRosterItem ( roster, jid )
 		name.innerText = this.Name + '\n';
 		elem.insertAdjacentElement( 'beforeEnd', name );
 		var msg = document.createElement( 'SPAN' );
-		if ( external.globals( 'ChatSessionPool' ).Events.Exists( this.JID ) )
+		msg.className = 'roster-item-offline-msg';
+		if ( this.Subscription == 'to' || this.Subscription == 'both' )
 		{
-			var MessageCount = external.globals( 'ChatSessionPool' ).Events( this.JID ).length;
-			msg.className = 'roster-item-offline-unread';
-			msg.innerText = MessageCount == 1 ? external.globals( 'Translator' ).Translate( 'main', 'cl_status_waiting_one' ) : external.globals( 'Translator' ).Translate( 'main', 'cl_status_waiting_multiple', [ MessageCount ] );
+			msg.innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' );
+			if ( this.Status.length )
+				msg.innerText += ' - ' + this.Status;
 		}
+		else if ( ( this.Subscription == 'none' || this.Subscription == 'from' ) && this.Ask == 'subscribe' )
+			msg.innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_awaiting' );
 		else
-		{
-			msg.className = 'roster-item-offline-msg';
-			if ( this.Subscription == 'to' || this.Subscription == 'both' )
-			{
-				msg.innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' );
-				if ( this.Status.length )
-					msg.innerText += ' - ' + this.Status;
-			}
-			else if ( ( this.Subscription == 'none' || this.Subscription == 'from' ) && this.Ask == 'subscribe' )
-				msg.innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_awaiting' );
-			else
-				msg.innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_unknown' );
-		}
+			msg.innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_unknown' );
 		msg.style.display = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? '' : 'none';
 		elem.insertAdjacentElement( 'beforeEnd', msg );
 		elem.title = external.globals( 'Translator' ).Translate( 'main', 'cl_tooltip_offline', [ this.Address.CleanAddress() ] );
@@ -2115,69 +2011,62 @@ function ClientRosterResource ( item, name )
 			item(1).className = external.globals( 'block' ).Exists( this.RosterItem.JID ) ? 'roster-resource-name-blocked' : 'roster-resource-name';
 			item(1).innerText = this.RosterItem.Name + ( this.RosterItem.Resources.Count > 1 ? ' - ' + this.ResourceName : '' );
 			item(1).style.fontWeight = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? '' : 'normal';
-			if ( external.globals( 'ChatSessionPool' ).Events.Exists( this.RosterItem.JID ) )
+
+			item(3).className = 'roster-resource-msg';
+			item(3).innerText = '';
+			if ( this.Status.indexOf( 'http://' ) > -1 )
 			{
-				var MessageCount = external.globals( 'ChatSessionPool' ).Events( this.RosterItem.JID ).length;
-				item(3).className = 'roster-resource-unread';
-				item(3).innerText = MessageCount == 1 ? external.globals( 'Translator' ).Translate( 'main', 'cl_status_waiting_one' ) : external.globals( 'Translator' ).Translate( 'main', 'cl_status_waiting_multiple', [ MessageCount ] );
+				var offset = 0;
+				var foundAt = 0;
+				while ( ( foundAt = this.Status.indexOf( 'http://', offset ) ) > -1 )
+				{
+					if ( offset < foundAt )
+						item(3).insertAdjacentText( 'beforeEnd', this.Status.substring( offset, foundAt ) );
+					offset = this.Status.indexOf( ' ', foundAt + 7 );
+					if ( offset < 0 )
+						offset = this.Status.length;
+					var link = document.createElement( 'A' );
+					link.className = 'roster-resource-link';
+					link.href = link.innerText = this.Status.substring( foundAt, offset );
+					link.attachEvent(
+						'onclick',
+						function ()
+						{
+							dial_webbrowser( event.srcElement.href );
+							event.returnValue = false;
+							event.cancelBubble = true;
+						}
+					);
+					link.attachEvent(
+						'oncontextmenu',
+						function ()
+						{
+							event.returnValue = false;
+							event.cancelBubble = true;
+							var Menu = external.newPopupMenu;
+							Menu.AddItem( true, false, false, true, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_open' ), 1 );
+							Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_copy' ), 2 );
+							Menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
+							switch ( Menu.Choice )
+							{
+								case 1:
+									dial_webbrowser( event.srcElement.href );
+								break;
+								case 2:
+									window.clipboardData.setData( 'Text', event.srcElement.href );
+								break;
+							}
+						}
+					);
+					item(3).insertAdjacentElement( 'beforeEnd', link );
+				}
+				if ( offset < this.Status.length - 1 )
+					item(3).insertAdjacentText( 'beforeEnd', this.Status.substr( offset ) );
+				item(3).insertAdjacentText( 'beforeEnd', '\n' );
 			}
 			else
-			{
-				item(3).className = 'roster-resource-msg';
-				item(3).innerText = '';
-				if ( this.Status.indexOf( 'http://' ) > -1 )
-				{
-					var offset = 0;
-					var foundAt = 0;
-					while ( ( foundAt = this.Status.indexOf( 'http://', offset ) ) > -1 )
-					{
-						if ( offset < foundAt )
-							item(3).insertAdjacentText( 'beforeEnd', this.Status.substring( offset, foundAt ) );
-						offset = this.Status.indexOf( ' ', foundAt + 7 );
-						if ( offset < 0 )
-							offset = this.Status.length;
-						var link = document.createElement( 'A' );
-						link.className = 'roster-resource-link';
-						link.href = link.innerText = this.Status.substring( foundAt, offset );
-						link.attachEvent(
-							'onclick',
-							function ()
-							{
-								dial_webbrowser( event.srcElement.href );
-								event.returnValue = false;
-								event.cancelBubble = true;
-							}
-						);
-						link.attachEvent(
-							'oncontextmenu',
-							function ()
-							{
-								event.returnValue = false;
-								event.cancelBubble = true;
-								var Menu = external.newPopupMenu;
-								Menu.AddItem( true, false, false, true, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_open' ), 1 );
-								Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_copy' ), 2 );
-								Menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
-								switch ( Menu.Choice )
-								{
-									case 1:
-										dial_webbrowser( event.srcElement.href );
-									break;
-									case 2:
-										window.clipboardData.setData( 'Text', event.srcElement.href );
-									break;
-								}
-							}
-						);
-						item(3).insertAdjacentElement( 'beforeEnd', link );
-					}
-					if ( offset < this.Status.length - 1 )
-						item(3).insertAdjacentText( 'beforeEnd', this.Status.substr( offset ) );
-					item(3).insertAdjacentText( 'beforeEnd', '\n' );
-				}
-				else
-					item(3).innerText = this.Status + '\n';
-			}
+				item(3).innerText = this.Status + '\n';
+
 			item(3).style.display = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? '' : 'none';
 		}
 		if ( this.HTMLElements( group.Name ).UserName != this.RosterItem.Name )
@@ -2212,7 +2101,7 @@ function ClientRosterResource ( item, name )
 	{
 		/* <NOBR>
 		 *   <IMG/>  <SPAN>Nickname</SPAN>  <SPAN>Away|Busy</SPAN>
-		 *           <SPAN>Status|Unread</SPAN>
+		 *           <SPAN>Status</SPAN>
 		 * </NOBR>
 		 */
 		var elem = document.createElement( 'NOBR' );
@@ -2305,68 +2194,60 @@ function ClientRosterResource ( item, name )
 			default: elem.insertAdjacentHTML( 'beforeEnd', '<SPAN class=roster-resource-away><BR></SPAN>' );
 		}
 		var msg = document.createElement( 'SPAN' );
-		if ( external.globals( 'ChatSessionPool' ).Events.Exists( this.RosterItem.JID ) )
+		msg.className = 'roster-resource-msg';
+		if ( this.Status.indexOf( 'http://' ) > -1 )
 		{
-			var MessageCount = external.globals( 'ChatSessionPool' ).Events( this.RosterItem.JID ).length;
-			msg.className = 'roster-resource-unread';
-			msg.innerText = MessageCount == 1 ? external.globals( 'Translator' ).Translate( 'main', 'cl_status_waiting_one' ) : external.globals( 'Translator' ).Translate( 'main', 'cl_status_waiting_multiple', [ MessageCount ] );
+			var offset = 0;
+			var foundAt = 0;
+			while ( ( foundAt = this.Status.indexOf( 'http://', offset ) ) > -1 )
+			{
+				if ( offset < foundAt )
+					msg.insertAdjacentText( 'beforeEnd', this.Status.substring( offset, foundAt ) );
+				offset = this.Status.indexOf( ' ', foundAt + 7 );
+				if ( offset < 0 )
+					offset = this.Status.length;
+				var link = document.createElement( 'A' );
+				link.className = 'roster-resource-link';
+				link.href = link.innerText = this.Status.substring( foundAt, offset );
+				link.attachEvent(
+					'onclick',
+					function ()
+					{
+						dial_webbrowser( event.srcElement.href );
+						event.returnValue = false;
+						event.cancelBubble = true;
+					}
+				);
+				link.attachEvent(
+					'oncontextmenu',
+					function ()
+					{
+						event.returnValue = false;
+						event.cancelBubble = true;
+						var Menu = external.newPopupMenu;
+						Menu.AddItem( true, false, false, true, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_open' ), 1 );
+						Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_copy' ), 2 );
+						Menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
+						switch ( Menu.Choice )
+						{
+							case 1:
+								dial_webbrowser( event.srcElement.href );
+							break;
+							case 2:
+								window.clipboardData.setData( 'Text', event.srcElement.href );
+							break;
+						}
+					}
+				);
+				msg.insertAdjacentElement( 'beforeEnd', link );
+			}
+			if ( offset < this.Status.length - 1 )
+				msg.insertAdjacentText( 'beforeEnd', this.Status.substr( offset ) );
+			msg.insertAdjacentText( 'beforeEnd', '\n' );
 		}
 		else
-		{
-			msg.className = 'roster-resource-msg';
-			if ( this.Status.indexOf( 'http://' ) > -1 )
-			{
-				var offset = 0;
-				var foundAt = 0;
-				while ( ( foundAt = this.Status.indexOf( 'http://', offset ) ) > -1 )
-				{
-					if ( offset < foundAt )
-						msg.insertAdjacentText( 'beforeEnd', this.Status.substring( offset, foundAt ) );
-					offset = this.Status.indexOf( ' ', foundAt + 7 );
-					if ( offset < 0 )
-						offset = this.Status.length;
-					var link = document.createElement( 'A' );
-					link.className = 'roster-resource-link';
-					link.href = link.innerText = this.Status.substring( foundAt, offset );
-					link.attachEvent(
-						'onclick',
-						function ()
-						{
-							dial_webbrowser( event.srcElement.href );
-							event.returnValue = false;
-							event.cancelBubble = true;
-						}
-					);
-					link.attachEvent(
-						'oncontextmenu',
-						function ()
-						{
-							event.returnValue = false;
-							event.cancelBubble = true;
-							var Menu = external.newPopupMenu;
-							Menu.AddItem( true, false, false, true, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_open' ), 1 );
-							Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_copy' ), 2 );
-							Menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
-							switch ( Menu.Choice )
-							{
-								case 1:
-									dial_webbrowser( event.srcElement.href );
-								break;
-								case 2:
-									window.clipboardData.setData( 'Text', event.srcElement.href );
-								break;
-							}
-						}
-					);
-					msg.insertAdjacentElement( 'beforeEnd', link );
-				}
-				if ( offset < this.Status.length - 1 )
-					msg.insertAdjacentText( 'beforeEnd', this.Status.substr( offset ) );
-				msg.insertAdjacentText( 'beforeEnd', '\n' );
-			}
-			else
-				msg.innerText = this.Status + '\n';
-		}
+			msg.innerText = this.Status + '\n';
+
 		msg.style.display = external.globals( 'cfg' )( 'contactlistdisplay' ) == 'detailed' ? '' : 'none';
 		elem.title = this.ResourceName.length ? external.globals( 'Translator' ).Translate( 'main', 'cl_tooltip_online', [ this.RosterItem.Address.CleanAddress(), this.ResourceName ] ) : external.globals( 'Translator' ).Translate( 'main', 'cl_tooltip_offline', [ this.RosterItem.Address.CleanAddress() ] );
 		if ( this.Status.length )

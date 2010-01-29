@@ -35,11 +35,12 @@ function TrayCommotion ( id )
 	else if ( id == 515 )
 	// left double click
 	{
-		if ( external.globals( 'ChatSessionPool' ).Events.Count )
+		if ( external.windows.Exists( 'signup' ) )
 		{
-			setTimeout( 'external.globals( \'ClientRoster\' ).ShowUnread( external.cursorX, external.cursorY )', 100 );
+			external.windows( 'signup' ).restore();
+			external.windows( 'signup' ).focus();
 		}
-		else if ( ! external.windows.Exists( 'signup' ) )
+		else
 		{
 			external.wnd.hide( false );
 			external.wnd.restore();

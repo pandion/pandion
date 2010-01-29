@@ -86,12 +86,6 @@ function ConferenceSessionPool ()
 				Tracker.DispatchEvent( this.Events( ShortAddress )[i] );
 			this.Events.Remove( ShortAddress );
 
-			/* Update the contact list counters
-			 */
-			external.globals( 'ClientRoster' ).UnreadMessages();
-			if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) )
-				external.globals( 'ClientRoster' ).Items( ShortAddress ).RefreshAll();
-
 			/* Reset the sound notification
 			 */
 			external.globals( 'cfg' )( 'soundmessage' ) = PlaySounds;

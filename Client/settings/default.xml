@@ -7,7 +7,6 @@
 <alertonline>true</alertonline>
 <aotchat>false</aotchat>
 <authorization>2</authorization>
-<autopopupmsg>true</autopopupmsg>
 <avatar/>
 <background/>
 <blocklist/>
@@ -34,7 +33,6 @@
 <lastmsg/>
 <lastopened/>
 <msgnotinlist>true</msgnotinlist>
-<msnworkaround>true</msnworkaround>
 <nick/>
 <password/>
 <preferencessection>blocking</preferencessection>

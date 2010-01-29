@@ -66,7 +66,6 @@ function Begin ()
 	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
 	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
 	document.getElementById( 'transport_area' ).parentElement.focus();
-	document.getElementById( 'msnworkaround' ).checked = external.globals( 'cfg' )( 'msnworkaround' ).toString() == 'true';
 	transport_refresh();
 	external.wnd.hide( false );
 }
@@ -79,42 +78,6 @@ function End ()
 	for ( var i = 0; i < HookAddresses.length; ++i )
 		gHooks( HookAddresses[i] ).Destroy();
 	gHooks.RemoveAll();
-	if ( external.globals( 'cfg' )( 'msnworkaround' ).toString() != 'true' && document.getElementById( 'msnworkaround' ).checked )
-	{
-		var Itemnames = ( new VBArray( external.globals( 'ClientRoster' ).Items.Keys() ) ).toArray();
-		for ( var i = 0; i < Itemnames.length; ++i )
-			if ( external.globals( 'ClientRoster' ).Items( Itemnames[i] ).Resources.Count )
-			{
-				var RosterItem = external.globals( 'ClientRoster' ).Items( Itemnames[i] );
-				var AddressHost = ( new XMPPAddress( RosterItem.JID ) ).Host;
-				if ( external.globals( 'ClientServices' ).Services.Exists( AddressHost ) && external.globals( 'ClientServices' ).Services( AddressHost ).Options & 0x0002 )
-				{
-					var RedrawContact = false;
-					var Resources = ( new VBArray( RosterItem.Resources.Keys() ) ).toArray();
-					for ( var j = 0; j < Resources.length; ++j )
-					{
-						var Resource = RosterItem.Resources( Resources[j] );
-						if ( Resource.Status.length && Resource.Status != external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' ) )
-						{
-							RedrawContact = true;
-							if ( ( /^([^\(]+) \((.+)\)$/ ).test( Resource.Status ) )
-							{
-								RosterItem.Name	= RegExp.$1;
-								Resource.Status	= RegExp.$2;
-							}
-							else
-							{
-								RosterItem.Name	= Resource.Status;
-								Resource.Status	= external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' );
-							}
-						}
-					}
-					if ( RedrawContact )
-						RosterItem.RefreshAll();
-				}
-			}
-	}
-	external.globals( 'cfg' )( 'msnworkaround' ) = document.getElementById( 'msnworkaround' ).checked;
 }
 
 function transport_refresh ( jid )
@@ -174,9 +137,8 @@ function transport_refresh ( jid )
 			area.children.item(0).removeNode( true );
 		var transports = external.globals( 'ClientServices' ).FindByOptions( 0x0001 ).sort( function(a,b){var c=a.Name.toLowerCase();var d=b.Name.toLowerCase();return c==d?0:c<d?-1:1} );
 
-		document.getElementById( 'msnworkaroundarea' ).style.display		= 'none';
-		document.getElementById( 'transport_connected' ).style.display		= 'none';
-		document.getElementById( 'transport_unsupported' ).style.display	= 'none';
+		document.getElementById( 'transport_connected' ).style.display = 'none';
+		document.getElementById( 'transport_unsupported' ).style.display = 'none';
 		if ( ! transports.length && ! document.getElementById( 'transport_contacting' ).children.length )
 		{
 			if ( external.globals( 'XMPPConnected' ) )
@@ -267,9 +229,6 @@ function transport_refresh ( jid )
 				break;
 			}
 			elem.insertAdjacentElement( 'beforeEnd', mode );
-
-			if ( transports[i].Options & 0x0002 )
-				document.getElementById( 'msnworkaroundarea' ).style.display = 'block';
 
 			area.insertAdjacentElement( 'beforeEnd', elem );
 		}
@@ -565,11 +524,6 @@ function ReceiveAgents ( iq )
 			<SPAN id=transport_area></SPAN>
 			<SPAN id=transport_contacting></SPAN>
 		</DIV>
-	</TD>
-</TR>
-<TR height=1 id=msnworkaroundarea>
-	<TD colspan=2 style="padding-left: 16px; padding-bottom: 4px;">
-		<INPUT id=msnworkaround type=checkbox checked>&nbsp;<LABEL for=msnworkaround id=msnworkaroundlabel></LABEL>
 	</TD>
 </TR>
 <TR height=8><TD colspan=2></TD></TR>

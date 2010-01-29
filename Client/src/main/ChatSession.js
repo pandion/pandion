@@ -59,31 +59,13 @@ function ChatSessionPool ()
 			else
 				this.Events.Add( ShortAddress, new Array( Event ) );
 
-			/* Should a new tracker be created?
-			 * 1. No messages may already be queued.
-			 * 2. Auto-popup must be enabled.
-			 * 3. Must be Available, Free For Chat, or Invisible.
+			/* Create a new tracker
 			 */
-			if (
-					this.Events( ShortAddress ).length == 1
-				&&	external.globals( 'cfg' )( 'autopopupmsg' ).toString() == 'true'
-				&&	( external.globals( 'cfg' )( 'lastmode' ) < 2 || external.globals( 'cfg' )( 'lastmode' ) == 5 )
-			)
-				dial_chat( Event.Address );
+			dial_chat( Event.Address );
 
-			/* Update contact list unread messages counters
-			 * Let user know an unread message has been received by using visual and auditive alerts
+			/* Play a sound notification for the incoming message.
 			 */
-			else
-			{
-				external.globals( 'ClientRoster' ).UnreadMessages();
-				if ( ! external.globals( 'ClientRoster' ).IsFlashing )
-					external.globals( 'ClientRoster' ).UnreadFlash( -1 * 2 );
-				if ( external.globals( 'ClientRoster' ).Items.Exists( Event.Address.ShortAddress() ) )
-					external.globals( 'ClientRoster' ).Items( Event.Address.ShortAddress() ).RefreshAll();
-				external.wnd.flash( 4 );
-			}
-			if ( external.globals( 'cfg' )( 'soundmessage' ).toString() == 'true' && ( external.globals( 'cfg' )( 'lastmode' ) < 2 || external.globals( 'cfg' )( 'lastmode' ) == 5 ) )
+			if ( external.globals( 'cfg' )( 'soundmessage' ).toString() == 'true' )
 				sound_play( external.globals( 'cfg' )( 'soundmessagefile' ), false );
 		}
 	}
@@ -224,12 +206,6 @@ function ChatSessionPool ()
 			for ( var i = 0; i < this.Events( ShortAddress ).length; ++i )
 				Tracker.DispatchEvent( this.Events( ShortAddress )[i] );
 			this.Events.Remove( ShortAddress );
-
-			/* Update the contact list counters
-			 */
-			external.globals( 'ClientRoster' ).UnreadMessages();
-			if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) )
-				external.globals( 'ClientRoster' ).Items( ShortAddress ).RefreshAll();
 
 			/* Reset the sound notification
 			 */
