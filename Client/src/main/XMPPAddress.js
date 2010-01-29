@@ -40,15 +40,15 @@ function XMPPAddress (address) {
 		}
 
 		if (address.indexOf("/") !== -1) {
-			this.Resource = decodeURIComponent(address.substr(address.indexOf("/") + 1));
+			this.Resource = address.substr(address.indexOf("/") + 1);
 			address = address.substr(0, address.indexOf("/"));
 		}
 
 		if (address.indexOf("@") !== -1) {
-			this.User = decodeURIComponent(address.substr(0, address.indexOf("@"))).toLowerCase();
-			this.Host = decodeURIComponent(address.substr(address.indexOf("@") + 1)).toLowerCase();
+			this.User = address.substr(0, address.indexOf("@")).toLowerCase();
+			this.Host = address.substr(address.indexOf("@") + 1).toLowerCase();
 		} else
-			this.Host = decodeURIComponent(address).toLowerCase();
+			this.Host = address.toLowerCase();
 	}
 
 	/* Returns the address without the resource
