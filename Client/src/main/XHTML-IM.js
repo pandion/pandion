@@ -404,33 +404,25 @@ function FilterEmoticons ( Message, HTMLElement, MessageText )
 
 /* Apply basic text markup: *bold* _underline_ /italic/ -strikethrough-
  */
-function FilterMarkup ( HTMLElement, MessageText )
+function FilterMarkup (HTMLElement, messageText)
 {
-	var Expression = /[\/\*\_\-][^\s]{2,}/m;
-	var Result = null;
-	while ( Result = Expression.exec( MessageText ) )
-		if ( Result[0].charAt( 0 ) == Result[0].charAt( Result[0].length - 1 ) )
+	var expression = /(\s|^)([\/\*\_\-])([^\s_-](?:.*[^\s])?)\2(\s|$)/m;
+	var result = null;
+	while (result = expression.exec(messageText)) {
+		FilterNothing(HTMLElement, messageText.substr(0, result.index) + result[1]);
+		messageText = result[4] + messageText.substr(result.lastIndex);
+		var markup = document.createElement("span");
+		markup.innerText = result[3];
+		switch (result[2])
 		{
-			FilterNothing( HTMLElement, MessageText.substr( 0, Result.index ) );
-			MessageText = MessageText.substr( Result.lastIndex );
-
-			var Markup = document.createElement( 'SPAN' );
-			Markup.innerText = Result[0].substr( 1, Result[0].length - 2 );
-			switch ( Result[0].charAt( 0 ) )
-			{
-				case '/': Markup.style.fontStyle = 'italic'; break;
-				case '*': Markup.style.fontWeight = 'bold'; break;
-				case '_': Markup.style.textDecorationUnderline = true; break;
-				case '-': Markup.style.textDecorationLineThrough = true; break;
-			}
-			HTMLElement.insertAdjacentElement( 'beforeEnd', Markup );
+			case "/": markup.style.fontStyle = "italic"; break;
+			case "*": markup.style.fontWeight = "bold"; break;
+			case "_": markup.style.textDecorationUnderline = true; break;
+			case "-": markup.style.textDecorationLineThrough = true; break;
 		}
-		else
-		{
-			FilterNothing( HTMLElement, MessageText.substr( 0, Result.lastIndex ) );
-			MessageText = MessageText.substr( Result.lastIndex );
-		}
-	FilterNothing( HTMLElement, MessageText );
+		HTMLElement.insertAdjacentElement("beforeEnd", markup);
+	}
+	FilterNothing(HTMLElement, messageText);
 }
 
 /* Output as text
