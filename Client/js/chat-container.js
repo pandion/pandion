@@ -35,20 +35,24 @@ function Begin ()
 	 */
 	var cfg = external.globals( 'cfg' );
 	var TabbedWindows = cfg( 'tabbedchat' ).toString() == 'true';
-	cfg( 'user_dialog_width' ) = parseInt( cfg( 'user_dialog_width' ), 10 );
-	cfg( 'user_dialog_height' ) = parseInt( cfg( 'user_dialog_height' ), 10 );
+	cfg( 'user_dialog_width' ) = Math.max( 180, parseInt( cfg( 'user_dialog_width' ), 10 ) );
+	cfg( 'user_dialog_height' ) = Math.max( 210, parseInt( cfg( 'user_dialog_height' ), 10 ) );
 	cfg( 'user_dialog_left' ) = parseInt( cfg( 'user_dialog_left' ), 10 ) + ( TabbedWindows ? 0 : 20 );
 	cfg( 'user_dialog_top' ) = parseInt( cfg( 'user_dialog_top' ), 10 ) + ( TabbedWindows ? 0 : 20 );
 
 	external.wnd.setPos( cfg( 'user_dialog_left' ), cfg( 'user_dialog_top' ) );
+	external.wnd.setSize( cfg( 'user_dialog_width' ), cfg( 'user_dialog_height' ) );
+
+	if ( ! external.IsRectOnMonitor(
+		cfg( 'user_dialog_top' ),
+		cfg( 'user_dialog_left' ) + cfg( 'user_dialog_width' ),
+		cfg( 'user_dialog_top' ) + cfg( 'user_dialog_height' ),
+		cfg( 'user_dialog_left' )
+	) )
+		external.wnd.setPos( 200, 150 );
+
 	if ( cfg( 'user_dialog_maximized' ).toString() == 'true' )
 		external.wnd.Maximize();
-	else
-	{
-		cfg( 'user_dialog_width' ) = Math.max( 250, cfg( 'user_dialog_width' ) );
-		cfg( 'user_dialog_height' ) = Math.max( 210, cfg( 'user_dialog_height' ) );
-		external.wnd.setSize( cfg( 'user_dialog_width' ), cfg( 'user_dialog_height' ) );
-	}
 
 	/* Restore the size of the input area
 	 */
@@ -79,12 +83,12 @@ function End ()
 	/* Remember window size and position
 	 */
 	var cfg = external.globals( 'cfg' );
-	cfg( 'user_dialog_maximized' ) = external.wnd.isMaximized ? 'true' : 'false';
+	cfg( 'user_dialog_maximized' ) = !!external.wnd.isMaximized;
 	cfg( 'user_dialog_left' ) = Math.max( 0, external.wnd.left );
 	cfg( 'user_dialog_top' ) = Math.max( 0, external.wnd.top );
-	if ( external.wnd.width > 100 )
+	if ( external.wnd.width > 100 && ! external.wnd.isMaximized )
 		cfg( 'user_dialog_width' ) = external.wnd.width;
-	if ( external.wnd.height > 100 )
+	if ( external.wnd.height > 100 && ! external.wnd.isMaximized )
 		cfg( 'user_dialog_height' ) = external.wnd.height;
 	external.wnd.params[0].SettingsSave();
 }
@@ -1142,7 +1146,6 @@ function MenuBarUpdate ( section )
 
 		var cfg = external.globals( 'cfg' );
 		var aot = cfg( 'aotchat' ).toString() == 'true';
-		var popup = cfg( 'autopopupmsg' ).toString() == 'true';
 		var tabs = cfg( 'tabbedchat' ).toString() == 'true';
 		var emo = cfg( 'emoticon' ).toString() == 'true';
 
@@ -1152,7 +1155,6 @@ function MenuBarUpdate ( section )
 		tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_background' ),37 );
 		tools.AddSeparator();
 		tools.AddItem( true, aot, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_aot' ), 31 );
-		tools.AddItem( true, popup, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_popup' ), 32 );
 		tools.AddItem( true, tabs, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_tabbed' ), 33 );
 		tools.AddItem( true, emo, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_emoticons' ), 34 );
 		tools.AddSeparator();
@@ -1235,15 +1237,6 @@ function MenuBarSelect ( id )
 			var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
 			for ( var i = 0; i < ContainerNames.length; ++i )
 				external.globals( 'ChatSessionPool' ).Containers( ContainerNames[i] ).MenuBarUpdate( 'tools' );
-			break;
-		case 32: // popup new messages
-			cfg( 'autopopupmsg' ) = ! ( cfg( 'autopopupmsg' ).toString() == 'true' );
-			var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
-			for ( var i = 0; i < ContainerNames.length; ++i )
-				external.globals( 'ChatSessionPool' ).Containers( ContainerNames[i] ).MenuBarUpdate( 'tools' );
-			ContainerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Containers.Keys() ) ).toArray();
-			for ( var i = 0; i < ContainerNames.length; ++i )
-				external.globals( 'ConferenceSessionPool' ).Containers( ContainerNames[i] ).MenuBarUpdate( 'tools' );
 			break;
 		case 33: // multiple tabs
 			cfg( 'tabbedchat' ) = ! ( cfg( 'tabbedchat' ).toString() == 'true' );

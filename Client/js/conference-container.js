@@ -34,20 +34,24 @@ function Begin ()
 	 */
 	var cfg = external.globals( 'cfg' );
 	var TabbedWindows = cfg( 'tabbedchat' ).toString() == 'true';
-	cfg( 'conference_width' ) = parseInt( cfg( 'conference_width' ), 10 );
-	cfg( 'conference_height' ) = parseInt( cfg( 'conference_height' ), 10 );
+	cfg( 'conference_width' ) = Math.max( 180, parseInt( cfg( 'conference_width' ), 10 ) );
+	cfg( 'conference_height' ) = Math.max( 210, parseInt( cfg( 'conference_height' ), 10 ) );
 	cfg( 'conference_left' ) = parseInt( cfg( 'conference_left' ), 10 ) + ( TabbedWindows ? 0 : 20 );
 	cfg( 'conference_top' ) = parseInt( cfg( 'conference_top' ), 10 ) + ( TabbedWindows ? 0 : 20 );
 
 	external.wnd.setPos( cfg( 'conference_left' ), cfg( 'conference_top' ) );
+	external.wnd.setSize( cfg( 'conference_width' ), cfg( 'conference_height' ) );
+
+	if ( ! external.IsRectOnMonitor(
+		cfg( 'conference_top' ),
+		cfg( 'conference_left' ) + cfg( 'conference_width' ),
+		cfg( 'conference_top' ) + cfg( 'conference_height' ),
+		cfg( 'conference_left' )
+	) )
+		external.wnd.setPos( 200, 150 );
+
 	if ( cfg( 'conference_maximized' ).toString() == 'true' )
 		external.wnd.Maximize();
-	else
-	{
-		cfg( 'conference_width' ) = Math.max( 250, cfg( 'conference_width' ) );
-		cfg( 'conference_height' ) = Math.max( 210, cfg( 'conference_height' ) );
-		external.wnd.setSize( cfg( 'conference_width' ), cfg( 'conference_height' ) );
-	}
 
 	/* Restore the size of the input area
 	 */
@@ -69,12 +73,12 @@ function End ()
 	/* Remember window size and position
 	 */
 	var cfg = external.globals( 'cfg' );
-	cfg( 'conference_maximized' ) = external.wnd.isMaximized ? 'true' : 'false';
+	cfg( 'conference_maximized' ) = !!external.wnd.isMaximized;
 	cfg( 'conference_left' ) = Math.max( 0, external.wnd.left );
 	cfg( 'conference_top' ) = Math.max( 0, external.wnd.top );
-	if ( external.wnd.width > 100 )
+	if ( external.wnd.width > 100 && ! external.wnd.isMaximized )
 		cfg( 'conference_width' ) = external.wnd.width;
-	if ( external.wnd.height > 100 )
+	if ( external.wnd.height > 100 && ! external.wnd.isMaximized )
 		cfg( 'conference_height' ) = external.wnd.height;
 	external.wnd.params[0].SettingsSave();
 }

@@ -43,8 +43,6 @@ function ChatSessionPool ()
 	{
 		var ShortAddress = Event.Address.ShortAddress();
 
-		var PopupMessages = external.globals( 'cfg' )( 'autopopupmsg' ).toString() == 'true';
-
 		/* Parse the event right now
 		 */
 		if ( this.Trackers.Exists( ShortAddress ) )
