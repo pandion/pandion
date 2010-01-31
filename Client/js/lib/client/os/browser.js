@@ -122,7 +122,7 @@ client.os.browser.setSearchbox = function (platforms, arg) {
 			try {
 				/* IE8 */
 				var guid = external.InstallMSIESearchProvider(arg.osd);
-				var foo = external.SetDefaultMSIESearchProvider(guid);
+				external.SetDefaultMSIESearchProvider(guid);
 			} catch (error) {
 				if (0 === (error.number ^ OpenServiceErrors.OS_E_CANCELLED)) {
 					/* Also cancel setting of search box in other browsers. */
