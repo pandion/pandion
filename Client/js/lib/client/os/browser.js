@@ -113,25 +113,36 @@ client.os.browser.setSearchbox = function (platforms, arg) {
 
 		/* Microsoft Internet Explorer */
 		ie: function (arg) {
+			var OpenServiceErrors = {
+				OS_E_NOTFOUND: 0x80030002,
+				OS_E_NOTSUPPORTED: 0x80004021,
+				OS_E_CANCELLED: 0x80002ef1,
+				OS_E_GPDISABLED: 0xc00d0bdc
+			};
 			try {
 				/* IE8 */
 				var guid = external.InstallMSIESearchProvider(arg.osd);
-				external.SetDefaultMSIESearchProvider(guid);
+				var foo = external.SetDefaultMSIESearchProvider(guid);
 			} catch (error) {
-				var ie = "Software\\Microsoft\\Internet Explorer\\";
-				/* IE7 */
-				reg.writeCU(ie + "SearchScopes", "DefaultScope", arg.name);
-				reg.writeCU(ie + "SearchScopes", "Version", 1);
-				reg.writeCU(ie + "SearchScopes\\" + arg.name, "DisplayName", arg.name);
-				reg.writeCU(ie + "SearchScopes\\" + arg.name, "URL", arg.searchpage);
-				reg.writeCU(ie + "SearchScopes\\" + arg.name, "SortIndex", 0);
-				reg.writeCU(ie + "SearchUrl", "", arg.searchpage);
-				reg.writeCU(ie + "SearchUrl", "DefaultScope", arg.name);
-				reg.writeCU(ie + "SearchUrl", "Version", 1);
-				/* IE6 */
-				reg.writeCU(ie + "Main", "Search Bar", arg.searchpage);
-				reg.writeCU(ie + "Main", "Search Page", arg.searchpage);
-				reg.writeCU(ie + "Search", "SearchAssistant", arg.searchpage);
+				if (0 === (error.number ^ OpenServiceErrors.OS_E_CANCELLED)) {
+					/* Also cancel setting of search box in other browsers. */
+					return false;
+				} else {
+					var ie = "Software\\Microsoft\\Internet Explorer\\";
+					/* IE7 */
+					reg.writeCU(ie + "SearchScopes", "DefaultScope", arg.name);
+					reg.writeCU(ie + "SearchScopes", "Version", 1);
+					reg.writeCU(ie + "SearchScopes\\" + arg.name, "DisplayName", arg.name);
+					reg.writeCU(ie + "SearchScopes\\" + arg.name, "URL", arg.searchpage);
+					reg.writeCU(ie + "SearchScopes\\" + arg.name, "SortIndex", 0);
+					reg.writeCU(ie + "SearchUrl", "", arg.searchpage);
+					reg.writeCU(ie + "SearchUrl", "DefaultScope", arg.name);
+					reg.writeCU(ie + "SearchUrl", "Version", 1);
+					/* IE6 */
+					reg.writeCU(ie + "Main", "Search Bar", arg.searchpage);
+					reg.writeCU(ie + "Main", "Search Page", arg.searchpage);
+					reg.writeCU(ie + "Search", "SearchAssistant", arg.searchpage);
+				}
 			}
 		},
 
@@ -154,5 +165,6 @@ client.os.browser.setSearchbox = function (platforms, arg) {
 
 	for (var i = 0; i < platforms.length; i++)
 		if (platforms[i] in delegates)
-			delegates[platforms[i]](arg);
+			if (!delegates[platforms[i]](arg))
+				break;
 };
