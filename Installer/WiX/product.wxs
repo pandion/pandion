@@ -111,6 +111,7 @@
 						Name="$(var.SafeName)"
 						Description="Instant messenger for XMPP networks"
 						Target="[DESTINATION]$(var.SafeName).exe"
+						Arguments="/minimized"
 						WorkingDirectory="DESTINATION"
 					/>
 					<RegistryValue
