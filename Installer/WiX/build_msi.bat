@@ -1,3 +1,7 @@
+:: This file is part of Pandion instant messenger
+:: Copyright (c) 2009-2010 Sebastiaan Deckers
+:: License: GNU General Public License version 3 or later
+
 @ECHO OFF
 SETLOCAL
 
@@ -7,13 +11,13 @@ SETLOCAL
 :: Default location:
 :: C:\Program Files (x86)\Windows Installer XML v3.5\bin
 
+:: Hudson sets its environment variables but defaults are provided for manual builds.
 :: TODO: This information should be centralized and automated. Perhaps using Ant or Maven2?
 SET VERSION_MAJOR=2
 SET VERSION_MINOR=6
-
-:: Hudson sets its environment variables but defaults are provided for manual builds.
 IF NOT DEFINED BUILD_NUMBER SET BUILD_NUMBER=0
-SET PACKAGE=Pandion_%VERSION_MAJOR%.%VERSION_MINOR%.%BUILD_NUMBER%.msi
+IF NOT DEFINED JOB_NAME SET JOB_NAME=Pandion
+SET PACKAGE=%JOB_NAME%_%VERSION_MAJOR%.%VERSION_MINOR%.%BUILD_NUMBER%.msi
 
 ECHO Creating temporary copy...
 :: The XCOPY command is deprecated since Vista and replaced by ROBOCOPY.

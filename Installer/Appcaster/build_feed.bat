@@ -1,11 +1,14 @@
+:: This file is part of Pandion instant messenger
+:: Copyright (c) 2009-2010 Sebastiaan Deckers
+:: License: GNU General Public License version 3 or later
+
 @ECHO OFF
 SETLOCAL
 
+:: Hudson sets its environment variables but defaults are provided for manual builds.
 :: TODO: This information should be centralized and automated. Perhaps using Ant or Maven2?
 SET VERSION_MAJOR=2
 SET VERSION_MINOR=6
-
-:: Hudson sets its environment variables but defaults are provided for manual builds.
 IF NOT DEFINED BUILD_NUMBER SET BUILD_NUMBER=0
 IF NOT DEFINED HUDSON_URL SET HUDSON_URL=http://build.pandion.im/
 IF NOT DEFINED JOB_NAME SET JOB_NAME=Pandion
