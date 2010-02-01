@@ -44,13 +44,14 @@ function dial_webbrowser (address) {
 		}
 	} else if (address.substr(0, 7).toLowerCase() === "http://"
 		|| address.substr(0, 8).toLowerCase() === "https://") {
+		var HTTPHandler = "";
 		try {
-			var HTTPHandler = external.RegRead("HKEY_CLASSES_ROOT", "HTTP\\shell\\open\\command", "");
-			if (HTTPHandler.toLowerCase().indexOf("iexplore.exe") != -1)
-				window.open(address, "_blank");
-		} catch (e) {
+			HTTPHandler = external.RegRead("HKEY_CLASSES_ROOT", "HTTP\\shell\\open\\command", "");
+		} catch (e) {}
+		if (HTTPHandler.toLowerCase().indexOf("iexplore.exe") !== -1)
+			window.open(address, "_blank");
+		else
 			external.shellExec("open", address, "", "", 0);
-		}
 	} else
 		external.shellExec("open", address, "", "", 0);
 }
