@@ -73,7 +73,7 @@ public:
 		return base64data;
 	}
 
-	static std::vector<BYTE> Decode(const std::string base64Data)
+	static std::vector<unsigned char> Decode(const std::string base64Data)
 	{
 		static const unsigned char d[] = {
 			-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
@@ -94,46 +94,47 @@ public:
 			-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
 		};
 
-		std::vector<BYTE> decodedData(base64Data.length() / 4 * 3 + 3);
-		unsigned int i = 0, j = 0;
-
-		while(i+1 < base64Data.length() &&
-			base64Data[i] != '=' &&
-			base64Data[i+1] != '=')
+		unsigned char s[4];
+		std::vector<unsigned char> decodedData;
+		
+		for(unsigned i = 0, j = 0, padding = 0; i < base64Data.length(); i++)
 		{
-			decodedData[j] = (unsigned char)
-				(d[base64Data[i]] << 2 | d[base64Data[i+1]] >> 4);
-
-			if(i+2 < base64Data.length() && base64Data[i+2] != '=')
+			if(d[base64Data[i]] != 0xFF)
 			{
-				decodedData[j+1] = (unsigned char)
-					(d[base64Data[i+1]] << 4 | d[base64Data[i+2]] >> 2);
-				if(i+3 < base64Data.length() && base64Data[i+3] != '=')
+				s[j] = d[base64Data[i]];
+				j++;
+			}
+			else if(base64Data[i] == '=')
+			{
+				padding++;
+				j++;
+			}
+			if(j == 4)
+			{
+				if(padding == 0)
 				{
-					decodedData[j+2] = (unsigned char)
-						(((d[base64Data[i+2]] << 6) & 0xC0) | d[base64Data[i+3]]);
-					j += 3;
+					decodedData.push_back(s[0] << 2 | s[1] >> 4);
+					decodedData.push_back(s[1] << 4 | s[2] >> 2);
+					decodedData.push_back(s[2] << 6 | s[3]);
+					j = 0;
+				}
+				else if(padding == 1)
+				{
+					decodedData.push_back(s[0] << 2 | s[1] >> 4);
+					decodedData.push_back(s[1] << 4 | s[2] >> 2);
+					break;
+				}
+				else if(padding == 2)
+				{
+					decodedData.push_back(s[0] << 2 | s[1] >> 4);
+					break;
 				}
 				else
 				{
-					j += 2;
+					break;
 				}
 			}
-			else
-			{
-				j += 1;
-			}
-
-			if(i+6 < base64Data.length() &&
-				base64Data[i+4] == '\r' && base64Data[i+5] == '\n')
-				i += 6;
-			else if(i+5 < base64Data.length() && base64Data[i+4] == '\n')
-				i += 5;
-			else
-				i += 4;
 		}
-
-		decodedData.resize(j);
 		return decodedData;
 	}
 };
