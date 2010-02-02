@@ -41,10 +41,9 @@ a:hover {
 	background: transparent url(../images/about/logo.png) no-repeat top right;
 }
 #software-name {
-	margin: 20px 0 0 20px;
+	margin: 20px 0 0.25em 20px;
 	font-weight: normal;
 	font-size: 3em;
-	margin-bottom: 0.25em;
 }
 #software-version {
 	margin: 10px 0 0 20px;
@@ -53,6 +52,7 @@ a:hover {
 	color: #333;
 }
 #software-track {
+	=margin: 0 0 0 0.25em; /* ie6/ie7 */
 	text-transform: lowercase;
 }
 #header p {
