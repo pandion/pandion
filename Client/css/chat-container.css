@@ -250,6 +250,7 @@ textarea, input, button {
 	width: 18px;
 }
 #tab-add-button {
+	display: none;
 	float: left;
 	vertical-align: top;
 	height: 28px;
