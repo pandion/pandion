@@ -66,8 +66,7 @@ a:hover {
 	padding: 12px 0 0 16px;
 }
 .btn {
-	margin-right: 10px;
-	margin-bottom: 10px;
+	margin: 0 10px 10px 0;
 	float: right;
 	width: 90px;
 	height: 24px;
@@ -133,10 +132,10 @@ a:hover {
 	text-transform: lowercase;
 }
 .update-button div {
+	float: right;
 	color: highlight;
 	font-style: italic;
 	display: inline;
-	float: right;
 	font-weight: bold;
 }
 .update-button p {
@@ -152,10 +151,10 @@ a:hover {
 	margin-bottom: 4px;
 }
 #txt-continue, #txt-restart, #txt-browser {
+	left: 20px;
+	margin: 0 20px 0 0;
 	position: absolute;
 	bottom: 75px;
-	left: 20px;
-	margin-right: 20px;
 }
 .progress-bar-total, .progress-bar-completed, .progress-bar-counter {
 	height: 20px;
@@ -172,9 +171,9 @@ a:hover {
 .progress-bar-completed {
 }
 .progress-bar-counter {
+	left: 0;
 	_display: none; /* box model bug in ie6 */
     color: #000;
-	left: 0;
     padding-top: 5px;
     position: absolute;
     text-align: center;
@@ -191,4 +190,41 @@ a:hover {
 	width: 0%;
 }
 #progress-counter {
+}
+
+/* RTL */
+html.rtl .header h1 {
+	margin: 0 15px 0 10px;
+}
+html.rtl .header h2 {
+	margin: 4px 25px 0 10px;
+}
+html.rtl .panel-content {
+	padding: 12px 16px 0 0;
+}
+html.rtl .btn {
+	margin: 0 0 10px 10px;
+	float: left;
+}
+html.rtl #tracks-version, html.rtl #progress-version {
+	margin: 7px 10px 0 0;
+}
+html.rtl .update-button {
+	text-align: right;
+}
+html.rtl .update-button .name, html.rtl .update-button .number {
+	=margin-left: 4px; /* ie6/ie7 */
+}
+html.rtl .update-button div {
+	float: left;
+}
+html.rtl #txt-continue, html.rtl #txt-restart, html.rtl #txt-browser {
+	right: 20px;
+	margin: 0 0 0 20px;
+}
+html.rtl .progress-bar-counter {
+	right: 0;
+}
+html.rtl #progress-total {
+	right: 10%;
 }
