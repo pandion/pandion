@@ -255,9 +255,6 @@ background: (image d') arrière-plan
     <code id="menu_request">Redemander l'autorisation</code>
     <code id="menu_history">Historique</code>
     <code id="menu_profile">Profil</code>
-
-    <code id="cl_waiting_one">Vous avez 1 message non lu</code>
-    <code id="cl_waiting_multiple">Vous avez ${0} messages non lus</code>
     <code id="cl_error_notexist">Cette adresse n'existe pas.</code>
     <code id="cl_error_cannotadd">Impossible d'ajouter ${0} aux contacts.&#13;${1}</code>
     <code id="cl_default_group">Contacts</code>
@@ -272,8 +269,6 @@ background: (image d') arrière-plan
     <code id="cl_status_offline">Déconnecté</code>
     <code id="cl_status_awaiting">En attente d'autorisation</code>
     <code id="cl_status_unknown">État inconnu</code>
-    <code id="cl_status_waiting_one">1 message non lu</code>
-    <code id="cl_status_waiting_multiple">${0} messages non lus</code>
     <code id="cl_tooltip_offline">Adresse: ${0}</code>
     <code id="cl_contact_remove_group">Êtes-vous sûr(e) de vouloir supprimer le contact de ce groupe?</code>
     <code id="cl_contact_remove_list">Êtes-vous sûr(e) de vouloir supprimer le contact de votre liste de contacts?</code>
@@ -1154,9 +1149,6 @@ background: (image d') arrière-plan
     <item id="transport_unsupported">
       <innerHTML>&lt;B&gt;Note:&lt;/B&gt; Le serveur auquel vous êtes connecté ne gère pas de transport. Contactez les administrateurs pour plus d'informations.</innerHTML>
     </item>
-    <item id="msnworkaroundlabel">
-      <innerText>Voir les noms modifiés des contacts MSN</innerText>
-    </item>
     <code id="status_active">Actif</code>
     <code id="status_noreg">Non enregistré</code>
     <code id="status_disconnected">Déconnecté</code>
@@ -1369,6 +1361,7 @@ background: (image d') arrière-plan
     <item id="btn-send">
       <value>Envoyer</value>
       <title>Envoie le message</title>
+      <accessKey>e</accessKey>
     </item>
 
     <code id="tt-avatar">Afficher l'avatar en taille réelle</code>
@@ -1403,7 +1396,6 @@ background: (image d') arrière-plan
     <code id="menu_tool_font">Changer la &amp;police...</code>
     <code id="menu_tool_background">Changer &amp;l'arrière-plan...</code>
     <code id="menu_tool_aot">Re&amp;ster au premier-plan</code>
-    <code id="menu_tool_popup">&amp;Ouvrir les nouveaux messages</code>
     <code id="menu_tool_tabbed">&amp;Conversations en onglets</code>
     <code id="menu_tool_emoticons">&amp;Afficher les émoticones</code>
     <code id="menu_tool_settings">&amp;Préférences</code>
@@ -1629,6 +1621,7 @@ background: (image d') arrière-plan
     <item id="btn-send">
       <value>Envoyer</value>
       <title>Envoie le message</title>
+	  <accessKey>e</accessKey>
     </item>
 
     <item id="occupants-panel">
