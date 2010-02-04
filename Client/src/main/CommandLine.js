@@ -1,14 +1,16 @@
-/* Fire the event in a seperate "thread".
+/* Handle the event in a seperate "thread".
  */
-function CommandLine ( command )
-{
-	external.globals( 'CommandLineQueue' ).push( command );
-	setTimeout( CommandLineShift, 0 );
-	if ( external.windows.Exists( 'signup' ) )
-	{
-		external.wnd.hide( true );
-		external.windows( 'signup' ).restore();
-		external.windows( 'signup' ).focus();
+function CommandLine (command) {
+	var match = command.match(/^\s*("{0,1})[^"]+\1\s+("{0,1})(.+)\2/);
+	if (match && match[3] && match[3].length > 0) {
+		external.globals("CommandLineQueue").push(match[3]);
+		setTimeout(CommandLineShift, 0);
+		if (external.windows.Exists("signup"))
+		{
+			external.wnd.hide(true);
+			external.windows("signup").restore();
+			external.windows("signup").focus();
+		}
 	}
 }
 
@@ -16,19 +18,7 @@ function CommandLine ( command )
  */
 function CommandLineShift ()
 {
-	var command = external.globals( 'CommandLineQueue' ).shift();
-	var argument = command;
-	if ( argument.charAt( 0 ) == '"' )
-		argument = argument.substr( argument.indexOf( '"', 1 ) + 2 );
-	else
-		argument = argument.substr( argument.indexOf( ' ', 1 ) + 1 );
-
-	if ( argument.charAt( 0 ) == '"' && argument.indexOf( '"', 1 ) != -1 )
-		argument = argument.substr( 1, argument.indexOf( '"', 1 ) - 1 );
-
-	while ( argument.charAt( 0 ) == ' ' )
-		argument = argument.substr( 1 );
-
+	var argument = external.globals( 'CommandLineQueue' ).shift();
 	warn( 'EVNT: CommandLine ' + argument );
 
 	/* Shut down the client immediatly
@@ -72,7 +62,7 @@ function CommandLineShift ()
 			external.RegWriteDWORD("HKEY_LOCAL_MACHINE", "Software\\Clients\\IM\\" + external.globals("softwarenamesafe") + "\\InstallInfo", "IconsVisible", 0);
 		} catch (error) {
 		}
-		if (external.CmdLine == command)
+		if (external.CmdLine.indexOf(argument) !== -1)
 			setTimeout( 'external.wnd.close()', 0 );
 	}
 
@@ -109,7 +99,7 @@ function CommandLineShift ()
 			external.RegWriteDWORD("HKEY_LOCAL_MACHINE", "Software\\Clients\\IM\\" + external.globals("softwarenamesafe") + "\\InstallInfo", "IconsVisible", 1);
 		} catch (error) {
 		}
-		if (external.CmdLine == command)
+		if (external.CmdLine.indexOf(argument) !== -1)
 			setTimeout( 'external.wnd.close()', 0 );
 	}
 
@@ -117,7 +107,7 @@ function CommandLineShift ()
 	 */
 	else if ( ! external.globals( 'XMPPConnected' ) )
 	{
-		external.globals( 'CommandLineQueue' ).push( command );
+		external.globals( 'CommandLineQueue' ).push( argument );
 	}
 
 	/* "xmpp:" hyperlink
