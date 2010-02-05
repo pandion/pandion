@@ -23,6 +23,7 @@
 #include "GSSAPI.h"
 #include "Base64.h"
 #include "UTF8.h"
+#include "SRVLookup.h"
 
 #include <dsgetdc.h>
 #include <lm.h>
@@ -34,6 +35,8 @@ GSSAPI::GSSAPI() :
 	m_fNewConversation = TRUE;
 	m_fHaveCredHandle  = FALSE;
 	m_fHaveCtxtHandle  = FALSE;
+	m_fInitComplete    = FALSE;
+
 	Reset();
 }
 GSSAPI::~GSSAPI()
@@ -57,14 +60,17 @@ STDMETHODIMP GSSAPI::Reset()
 	if(m_fHaveCredHandle)
 	{
 		::FreeCredentialsHandle(&m_hCred);
+		m_hCred.dwLower = m_hCred.dwUpper = 0;
 		m_fHaveCredHandle  = FALSE;
 	}
 	if(m_fHaveCtxtHandle)
 	{
 		::DeleteSecurityContext(&m_hCtxt);
+		m_hCtxt.dwLower = m_hCtxt.dwUpper = 0;
 		m_fHaveCtxtHandle  = FALSE;
 	}
 	m_fNewConversation = TRUE;
+	m_fInitComplete = FALSE;
 	return S_OK;
 }
 STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServerName, BSTR Challenge,
@@ -80,12 +86,31 @@ STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServerName, BSTR Challenge,
 		}
 	}
 
-	/* Decode the Challenge */
-	std::vector<BYTE> DecodedChallenge =
-		Base64::Decode(CW2UTF8(Challenge));
+	/* Decode the challenge from BASE64 */
+	std::vector<BYTE> DecodedChallenge = Base64::Decode(CW2UTF8(Challenge));
+	std::vector<BYTE> DecodedResponse;
 
+	if(m_fInitComplete == FALSE)
+	{
+		DecodedResponse = Initialize(DecodedChallenge, ServerName);
+	}
+	else
+	{
+		DecodedResponse = PostInitialize(DecodedChallenge);
+	}
+
+	/* Encode the response in BASE64 */
+	*Response = ::SysAllocString(Base64::Encode(
+		DecodedResponse.size() ? &DecodedResponse[0] : 0,
+		DecodedResponse.size(), false).c_str());
+
+	return S_OK;
+}
+std::vector<BYTE> GSSAPI::Initialize(std::vector<BYTE> decodedChalenge, BSTR ServerName)
+{
 	/* Prepare input buffer */
-	SecBuffer InSecBuff = {DecodedChallenge.size(), SECBUFFER_TOKEN, &DecodedChallenge[0]};
+	SecBuffer InSecBuff = {decodedChalenge.size(), SECBUFFER_TOKEN, 
+		decodedChalenge.size() ? &decodedChalenge[0]: 0};
 	SecBufferDesc InBuffDesc = {SECBUFFER_VERSION, 1, &InSecBuff};
 
 	/* Prepare output buffer */
@@ -100,50 +125,129 @@ STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServerName, BSTR Challenge,
 
 	SECURITY_STATUS	ss = ::InitializeSecurityContext(&m_hCred,
 		m_fNewConversation ? NULL : &m_hCtxt, (SEC_WCHAR*) Spn.c_str(),
-		ISC_REQ_MUTUAL_AUTH |  ISC_REQ_STREAM, 0, SECURITY_NATIVE_DREP, 
+		ISC_REQ_STREAM | ISC_REQ_MUTUAL_AUTH, 0, SECURITY_NATIVE_DREP, 
 		m_fNewConversation ? NULL : &InBuffDesc, 0, &m_hCtxt, &OutBuffDesc,
 		&ContextAttributes, &Expiry);
 	if(ss != SEC_E_OK && ss != SEC_I_CONTINUE_NEEDED &&
 		ss != SEC_I_COMPLETE_NEEDED && ss != SEC_I_COMPLETE_AND_CONTINUE)
 	{
 		Error(L"GenerateResponse()", L"InitializeSecurityContext()", ss);
-		return HRESULT_FROM_WIN32(ss);
+		return std::vector<BYTE>();
 	}
 	m_fHaveCtxtHandle = TRUE;
-	
+
+	/* Flag the security context as initialized when init completes */
+	if(SEC_E_OK == ss)
+	{
+		m_fInitComplete = true;
+	}
+
 	/* Complete the token when needed */
-	if((SEC_I_COMPLETE_NEEDED == ss) || (SEC_I_COMPLETE_AND_CONTINUE == ss))  
+	else if((SEC_I_COMPLETE_NEEDED == ss) || (SEC_I_COMPLETE_AND_CONTINUE == ss))  
 	{
 		ss = ::CompleteAuthToken(&m_hCtxt, &OutBuffDesc);
 		if(ss != SEC_E_OK)
 		{
 			Error(L"GenerateResponse()", L"CompleteAuthToken()", ss);
-			return HRESULT_FROM_WIN32(ss);
+			return std::vector<BYTE>();
 		}
 	}
 	m_fNewConversation = FALSE;
 
-	/* Encode the response in Base64 */
-	*Response = ::SysAllocString(Base64::Encode(
-		(BYTE*)OutBuffDesc.pBuffers->pvBuffer,
-		OutBuffDesc.pBuffers->cbBuffer, false).c_str());
-
-	return S_OK;
+	return std::vector<BYTE>((BYTE*) OutBuffDesc.pBuffers->pvBuffer,
+		(BYTE*) OutBuffDesc.pBuffers->pvBuffer + OutBuffDesc.pBuffers->cbBuffer);
 }
-void GSSAPI::Error(LPWSTR Where, LPWSTR WhenCalling, DWORD ErrorCode)
+std::vector<BYTE> GSSAPI::PostInitialize(std::vector<BYTE> decodedChallenge)
 {
-	LPTSTR ErrorMessage;
-	::FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | 
-		FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_MAX_WIDTH_MASK,
-		NULL, ErrorCode, 0, (LPTSTR)&ErrorMessage, 0, NULL);
-	std::wostringstream dbgMsg;
-	dbgMsg << L"GSSAPI error in " << Where <<
-		L" when calling " << WhenCalling <<
-		std::hex <<	std::setw(8) <<	std::setfill(L'0') << 
-		L": (ERROR 0x" << ErrorCode << L") " <<
-		ErrorMessage <<	std::endl;
-	OutputDebugString(dbgMsg.str().c_str());
-	::LocalFree(ErrorMessage);
+	unsigned long qop = 0;
+	unsigned char inDataBuffer[1024];
+	SecBuffer inBuffers[2] = {{1024, SECBUFFER_DATA, inDataBuffer},
+		{decodedChallenge.size(), SECBUFFER_STREAM, &decodedChallenge[0]}};
+	SecBufferDesc inBuffersDesc = {SECBUFFER_VERSION, 2, inBuffers};
+
+	SECURITY_STATUS ss = ::DecryptMessage(&m_hCtxt, &inBuffersDesc, 0, &qop);
+	if(ss != SEC_E_OK)
+	{
+		Error(L"GenerateResponse()", L"DecryptMessage()", ss);
+		return std::vector<BYTE>();
+	}
+
+	unsigned char LayerMask = inDataBuffer[0];
+	unsigned int MaxMessageSize = 0;
+	MaxMessageSize += inDataBuffer[1];
+	MaxMessageSize <<= 8;
+	MaxMessageSize += inDataBuffer[2];
+	MaxMessageSize <<= 8;
+	MaxMessageSize += inDataBuffer[3];
+
+	SecPkgContext_Sizes sizes;
+	::QueryContextAttributes(&m_hCtxt, SECPKG_ATTR_SIZES, &sizes);
+
+	std::vector<BYTE> tokenBuffer(sizes.cbSecurityTrailer);
+	std::vector<BYTE> paddingBuffer(sizes.cbBlockSize);
+	unsigned char outDataBuffer[4];
+	outDataBuffer[0] = 1;
+	outDataBuffer[1] = 0;
+	outDataBuffer[2] = 16;
+	outDataBuffer[3] = 0;
+	SecBuffer outBuffers[3] = {{tokenBuffer.size(), SECBUFFER_TOKEN, &tokenBuffer[0]},
+		{4, SECBUFFER_DATA, outDataBuffer},
+		{paddingBuffer.size(), SECBUFFER_PADDING, &paddingBuffer[0]}};
+	SecBufferDesc outBuffersDesc = {SECBUFFER_VERSION, 3, outBuffers};
+
+	ss = ::EncryptMessage(&m_hCtxt, SECQOP_WRAP_NO_ENCRYPT, &outBuffersDesc, 0);
+	if(ss != SEC_E_OK)
+	{
+		Error(L"GenerateResponse()", L"EncryptMessage()", ss);
+		return std::vector<BYTE>();
+	}
+
+	std::vector<BYTE> response;
+	for(unsigned i = 0; i < outBuffersDesc.cBuffers; i++)
+	{
+		response.insert(response.end(), (char*) outBuffersDesc.pBuffers[i].pvBuffer,
+			(char*) outBuffersDesc.pBuffers[i].pvBuffer +
+			outBuffersDesc.pBuffers[i].cbBuffer);
+	}
+
+	return response;
+}
+std::wstring GSSAPI::GenerateServicePrincipalName(std::wstring ServerName)
+{
+	std::wstring Spn(L"xmpp/");
+
+	PDOMAIN_CONTROLLER_INFO dci;
+	DWORD error = ::DsGetDcName(NULL, NULL, NULL, NULL, DS_RETURN_DNS_NAME, &dci);
+	if(ERROR_SUCCESS == error)
+	{
+		std::wstring DomainName(dci->DomainName);
+		std::transform(DomainName.begin(), DomainName.end(),
+			DomainName.begin(), ::toupper);
+		::NetApiBufferFree(dci);
+
+		Spn += GetServerFQDN(ServerName);
+		Spn += L"@";
+		Spn += DomainName;
+
+		return Spn;
+	}
+	else
+	{
+		return std::wstring();
+	}
+}
+std::wstring GSSAPI::GetServerFQDN(std::wstring ServerName)
+{
+	SRVLookup fqdnLookup = SRVLookup(L"xmpp-client", L"tcp", ServerName);
+	if(SUCCEEDED(fqdnLookup.DoLookup()))
+	{
+		std::vector<SRVRecord> records = fqdnLookup.getRecords();
+		return records.begin()->getTargetName();
+	}
+	else
+	{
+		return ServerName;
+	}
 }
 HRESULT GSSAPI::AcquireCredentials()
 {
@@ -160,20 +264,19 @@ HRESULT GSSAPI::AcquireCredentials()
 	}
 	return HRESULT_FROM_WIN32(ss);
 }
-std::wstring GSSAPI::GenerateServicePrincipalName(std::wstring ServerName)
+void GSSAPI::Error(LPWSTR Where, LPWSTR WhenCalling, DWORD ErrorCode)
 {
-	std::wstring Spn(L"xmpp/");
-
-	PDOMAIN_CONTROLLER_INFO dci;
-	::DsGetDcName(NULL, NULL, NULL, NULL, DS_RETURN_DNS_NAME, &dci);
-	std::wstring DomainName(dci->DomainName);
-	std::transform(DomainName.begin(), DomainName.end(),
-		DomainName.begin(), ::toupper);
-	::NetApiBufferFree(dci);
-
-	Spn += ServerName;
-	Spn += L"@";
-	Spn += DomainName;
-
-	return Spn;
+	LPTSTR ErrorMessage;
+	::FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+		FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_MAX_WIDTH_MASK,
+		NULL, ErrorCode, 0, (LPTSTR)&ErrorMessage, 0, NULL);
+	std::wostringstream dbgMsg;
+	dbgMsg << L"GSSAPI error in " << Where <<
+		L" when calling " << WhenCalling <<
+		std::hex <<	std::setw(8) <<	std::setfill(L'0') << 
+		L": (ERROR 0x" << ErrorCode << L") " <<
+		ErrorMessage <<	std::endl;
+	OutputDebugString(dbgMsg.str().c_str());
+	::MessageBox(NULL, dbgMsg.str().c_str(), L"GSSAPI error", MB_OK);
+	::LocalFree(ErrorMessage);
 }

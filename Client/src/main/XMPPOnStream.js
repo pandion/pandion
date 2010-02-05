@@ -163,7 +163,6 @@ function XMPPOnStream ( ReceivedXML )
 			dom.loadXML("<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>");
 			if (external.globals( 'XMPPSASLMechanism' ) == 'GSSAPI') {
 				try {
-					external.SASL.GSSAPI.Reset();
 					dom.documentElement.text = external.SASL.GSSAPI.GenerateResponse(external.globals( 'cfg' )( 'server' ), ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text);
 				} catch(e) {
 					warn( 'GSSAPI: ERROR: ' + e.number );

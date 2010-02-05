@@ -30,6 +30,7 @@ private:
 	DWORD			m_dwMaxTokenSize;
 
 	BOOL			m_fNewConversation;
+	BOOL			m_fInitComplete;
 
 	CredHandle		m_hCred;
 	BOOL			m_fHaveCredHandle;
@@ -45,7 +46,11 @@ public:
 		BSTR *Response);
 
 private:
-	void Error(LPWSTR Where, LPWSTR WhenCalling, DWORD ErrorCode);
-	HRESULT AcquireCredentials();
+	std::vector<BYTE> Initialize(std::vector<BYTE> decodedChalenge, BSTR ServerName);
+	std::vector<BYTE> PostInitialize(std::vector<BYTE> decodedChalenge);
 	std::wstring GenerateServicePrincipalName(std::wstring ServerName);
+	std::wstring GetServerFQDN(std::wstring ServerName);
+	HRESULT AcquireCredentials();
+
+	void Error(LPWSTR Where, LPWSTR WhenCalling, DWORD ErrorCode);
 };

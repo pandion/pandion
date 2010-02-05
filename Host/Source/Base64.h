@@ -43,11 +43,11 @@ public:
 			base64data += alphabet[(((data[i] & 3) << 4) | (data[i+1] >> 4) & 15) & 63];
 			base64data += alphabet[(((data[i+1] & 15) << 2) | (data[i+2] >> 6) & 3) & 63];
 			base64data += alphabet[data[i+2] & 63];
-			if(addCRLF && (i / 3 * 4) % 72 == 0)
+			i += 3;
+			if(addCRLF && ((i / 3 * 4) % 72 == 0))
 			{
 				base64data += L"\r\n";
 			}
-			i += 3;
 		}
 		if(dataLength - i == 2)
 		{
@@ -65,7 +65,7 @@ public:
 			base64data += L'=';
 			i += 3;
 		}
-		if(addCRLF && (i / 3 * 4) % 72 == 0)
+		if(addCRLF && ((i / 3 * 4) % 72 == 0))
 		{
 			base64data += L"\r\n";
 		}
