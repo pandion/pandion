@@ -32,7 +32,17 @@ public:
 	SCRAM();
 	~SCRAM();
 
-	STDMETHOD(GenerateResponse)(BSTR Challenge, BSTR *Response);
+	STDMETHOD(GenerateResponse)(
+		BSTR Challenge,
+		BSTR *Response);
+
 private:
-	void Error(LPWSTR Where, LPWSTR WhenCalling, DWORD ErrorCode);
+	std::vector<unsigned char> SCRAM::HMAC_SHA1(
+		const std::string key,
+		const std::string text);
+
+	void Error(
+		std::wstring location,
+		std::wstring whenCalling,
+		unsigned errorCode);
 };

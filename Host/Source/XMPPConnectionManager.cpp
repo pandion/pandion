@@ -59,7 +59,7 @@ void XMPPConnectionManager::Connect(const std::wstring& server,
 	::WaitForSingleObject(m_CanStartNewThread, INFINITE);
 	::ResetEvent(m_CanStartNewThread);
 
-	m_Server = server;
+	m_ServerName = server;
 	m_Port   = port;
 	m_UseSSL = useSSL;
 
@@ -115,6 +115,14 @@ std::wstring XMPPConnectionManager::GetConnectionIP()
 }
 
 /*
+ * Get the fully qualified domain name of the remote server.
+ */
+std::wstring XMPPConnectionManager::GetServerFQDN()
+{
+	return m_ServerName;
+}
+
+/*
  *
  */
 DWORD __stdcall XMPPConnectionManager::ConnectionMainProc(void *pThis)
@@ -152,6 +160,7 @@ DWORD XMPPConnectionManager::ConnectionMain()
 		}
 	}
 
+	m_ServerName = L"";
 	m_SendQueue.SetDisconnected();
 	m_XMLParser.SetDisconnected();
 	m_Socket.Disconnect();
@@ -169,7 +178,7 @@ DWORD XMPPConnectionManager::ConnectionMain()
 bool XMPPConnectionManager::DoConnect()
 {
 	bool useSRV = false;
-	SRVLookup theLookup = SRVLookup(L"xmpp-client", L"tcp", m_Server);
+	SRVLookup theLookup = SRVLookup(L"xmpp-client", L"tcp", m_ServerName);
 
 	if(SUCCEEDED(theLookup.DoLookup()))
 	{
@@ -192,7 +201,7 @@ bool XMPPConnectionManager::DoConnectWithSRV(SRVLookup& srvLookup)
 	
 	while(!success && it != vec.end())
 	{
-		m_Server = it->getTargetName();
+		m_ServerName = it->getTargetName();
 		if(!m_UseSSL && it->getPort())
 		{
 			m_Port = it->getPort();
@@ -209,7 +218,7 @@ bool XMPPConnectionManager::DoConnectWithSRV(SRVLookup& srvLookup)
  */
 bool XMPPConnectionManager::DoConnectWithoutSRV()
 {
-	bool success = m_Socket.Connect((BSTR) m_Server.c_str(), m_Port) == 0;
+	bool success = m_Socket.Connect((BSTR) m_ServerName.c_str(), m_Port) == 0;
 
 	if(success && !m_DoDisconnect)
 	{

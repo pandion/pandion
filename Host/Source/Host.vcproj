@@ -311,6 +311,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\UTF32.h"
+				>
+			</File>
+			<File
 				RelativePath=".\UTF8.h"
 				>
 			</File>
@@ -479,6 +483,18 @@
 				</File>
 				<File
 					RelativePath=".\SSPI.h"
+					>
+				</File>
+				<File
+					RelativePath=".\StringPrep.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\StringPrep.h"
+					>
+				</File>
+				<File
+					RelativePath=".\StringPrepProfiles.h"
 					>
 				</File>
 			</Filter>

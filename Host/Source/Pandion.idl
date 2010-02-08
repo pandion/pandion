@@ -424,6 +424,8 @@ library PandionLib
 		[propput] HRESULT StartTLSFailedHandler([in] BSTR handler);
 		[propput] HRESULT StartSCSucceededHandler([in] BSTR handler);
 		[propput] HRESULT StartSCFailedHandler([in] BSTR handler);
+
+		[propget] HRESULT ServerFQDN([out] LPBSTR serverFQDN);
 	}
 	[uuid(AE04DA67-F008-4365-A4E6-8A5094B2B774)]
 	interface ISASL : IDispatch
@@ -471,6 +473,9 @@ library PandionLib
 			[in] BSTR ServerName,
 			[in] BSTR Challenge,
 			[out, retval] BSTR* Response);
+		HRESULT ErrorMessage(
+			[in] UINT ErrorCode,
+			[out, retval] BSTR* ErrorMessage);
 	}
 	[uuid(3AA4A7CE-829F-4b24-BB86-D96A23084F51)]
 	interface IShortcut : IDispatch

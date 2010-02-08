@@ -35,7 +35,7 @@ private:
 	XMPPHandlers&	m_Handlers;
 	XMPPLogger&		m_Logger;
 
-	std::wstring	m_Server;
+	std::wstring	m_ServerName;
 	unsigned short	m_Port;
 	bool			m_UseSSL;
 
@@ -58,6 +58,7 @@ public:
 	void SendText(const std::wstring& utf16Text);
 
 	std::wstring GetConnectionIP();
+	std::wstring GetServerFQDN();
 private:
 	static DWORD __stdcall ConnectionMainProc(void *pThis);
 	DWORD ConnectionMain();

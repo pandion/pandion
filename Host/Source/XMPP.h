@@ -72,6 +72,8 @@ public:
 	STDMETHOD(put_StartSCSucceededHandler)(BSTR handler);
 	STDMETHOD(put_StartSCFailedHandler)(BSTR handler);
 
+	STDMETHOD(get_ServerFQDN)(LPBSTR serverFQDN);
+
 	/* Other methods */
 	virtual void SetMainWnd(MainWnd* pMainWnd);
 };

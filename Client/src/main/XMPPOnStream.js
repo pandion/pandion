@@ -48,10 +48,10 @@ function XMPPOnStream ( ReceivedXML )
 				dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="GSSAPI"/>' );
 				try {
 					external.SASL.GSSAPI.Reset();
-					dom.documentElement.text = external.SASL.GSSAPI.GenerateResponse( external.globals( 'cfg' )( 'server' ), '' );
+					dom.documentElement.text = external.SASL.GSSAPI.GenerateResponse( external.XMPP.ServerFQDN, '' );
 				}
 				catch(e) {
-					warn( 'GSSAPI: ERROR: ' + e.number );
+					warn( 'GSSAPI: ERROR: ' + e.number + ' ' + external.SASL.GSSAPI.ErrorMessage( e.number ) );
 				}
 				warn( 'SENT: ' + dom.xml );
 				external.XMPP.SendXML( dom );
@@ -163,9 +163,9 @@ function XMPPOnStream ( ReceivedXML )
 			dom.loadXML("<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>");
 			if (external.globals( 'XMPPSASLMechanism' ) == 'GSSAPI') {
 				try {
-					dom.documentElement.text = external.SASL.GSSAPI.GenerateResponse(external.globals( 'cfg' )( 'server' ), ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text);
+					dom.documentElement.text = external.SASL.GSSAPI.GenerateResponse(external.XMPP.ServerFQDN, ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text);
 				} catch(e) {
-					warn( 'GSSAPI: ERROR: ' + e.number );
+					warn( 'GSSAPI: ERROR: ' + e.number + ' ' + external.SASL.GSSAPI.ErrorMessage( e.number ) );
 				}
 			} else {
 				dom.documentElement.text = external.SASL.SSPI.GenerateResponse(ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text, true);

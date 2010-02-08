@@ -106,6 +106,20 @@ STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServerName, BSTR Challenge,
 
 	return S_OK;
 }
+
+STDMETHODIMP GSSAPI::ErrorMessage(UINT ErrorCode, BSTR* ErrorMessage)
+{
+	LPTSTR msg;
+	::FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+		FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_MAX_WIDTH_MASK,
+		NULL, ErrorCode, 0, (LPTSTR)&msg, 0, NULL);
+
+	*ErrorMessage = ::SysAllocString(msg);
+
+	::LocalFree(msg);
+	return S_OK;
+}
+
 std::vector<BYTE> GSSAPI::Initialize(std::vector<BYTE> decodedChalenge, BSTR ServerName)
 {
 	/* Prepare input buffer */
@@ -225,7 +239,7 @@ std::wstring GSSAPI::GenerateServicePrincipalName(std::wstring ServerName)
 			DomainName.begin(), ::toupper);
 		::NetApiBufferFree(dci);
 
-		Spn += GetServerFQDN(ServerName);
+		Spn += ServerName;
 		Spn += L"@";
 		Spn += DomainName;
 
@@ -234,19 +248,6 @@ std::wstring GSSAPI::GenerateServicePrincipalName(std::wstring ServerName)
 	else
 	{
 		return std::wstring();
-	}
-}
-std::wstring GSSAPI::GetServerFQDN(std::wstring ServerName)
-{
-	SRVLookup fqdnLookup = SRVLookup(L"xmpp-client", L"tcp", ServerName);
-	if(SUCCEEDED(fqdnLookup.DoLookup()))
-	{
-		std::vector<SRVRecord> records = fqdnLookup.getRecords();
-		return records.begin()->getTargetName();
-	}
-	else
-	{
-		return ServerName;
 	}
 }
 HRESULT GSSAPI::AcquireCredentials()
@@ -266,17 +267,15 @@ HRESULT GSSAPI::AcquireCredentials()
 }
 void GSSAPI::Error(LPWSTR Where, LPWSTR WhenCalling, DWORD ErrorCode)
 {
-	LPTSTR ErrorMessage;
-	::FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | 
-		FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_MAX_WIDTH_MASK,
-		NULL, ErrorCode, 0, (LPTSTR)&ErrorMessage, 0, NULL);
+	BSTR BstrErrorMessage;
+	ErrorMessage(ErrorCode, &BstrErrorMessage);
+
 	std::wostringstream dbgMsg;
 	dbgMsg << L"GSSAPI error in " << Where <<
 		L" when calling " << WhenCalling <<
 		std::hex <<	std::setw(8) <<	std::setfill(L'0') << 
 		L": (ERROR 0x" << ErrorCode << L") " <<
-		ErrorMessage <<	std::endl;
+		BstrErrorMessage << std::endl;
 	OutputDebugString(dbgMsg.str().c_str());
-	::MessageBox(NULL, dbgMsg.str().c_str(), L"GSSAPI error", MB_OK);
-	::LocalFree(ErrorMessage);
+	::SysFreeString(BstrErrorMessage);
 }
