@@ -1,6 +1,6 @@
 /*
 	This file is part of Pandion instant messenger
-	Copyright (c) 2009 Sebastiaan Deckers
+	Copyright (c) 2009-2010 Sebastiaan Deckers
 	License: GNU General Public License version 3 or later
 */
 var gContainer = null;
@@ -839,7 +839,7 @@ function SessionTracker ( Address )
 				external.XMPP.SendXML( dom );
 			}
 
-			if ( this.WantsComposing )
+			else if ( this.WantsComposing )
 			{
 				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 				dom.loadXML( '<message><x xmlns="jabber:x:event"><id/></x></message>' );
@@ -954,7 +954,7 @@ function SendMessage ()
 	var Tracker = gContainer.Trackers( gContainer.ActiveTrackerAddress );
 
 	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
-	if ( Tracker.WantsComposing )
+	if ( Tracker.WantsComposing && ! Tracker.ChatState )
 		dom.loadXML( '<message type="chat"><body/><html><body/></html><x xmlns="jisp:x:jep-0038"><name/></x><x xmlns="jabber:x:event"><composing/></x></message>' );
 	else
 		dom.loadXML( '<message type="chat"><body/><html><body/></html><x xmlns="jisp:x:jep-0038"><name/></x><active xmlns="http://jabber.org/protocol/chatstates"/></message>' );
@@ -1040,7 +1040,7 @@ function Typing ()
 			external.XMPP.SendXML( dom );
 		}
 
-		if ( Tracker.WantsComposing )
+		else if ( Tracker.WantsComposing )
 		{
 			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 			dom.loadXML( '<message><x xmlns="jabber:x:event"><composing/><id/></x></message>' );
@@ -1079,7 +1079,7 @@ function StopTyping ()
 		external.XMPP.SendXML( dom );
 	}
 
-	if ( Tracker.WantsComposing )
+	else if ( Tracker.WantsComposing )
 	{
 		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 		dom.loadXML( '<message><x xmlns="jabber:x:event"><id/></x></message>' );
