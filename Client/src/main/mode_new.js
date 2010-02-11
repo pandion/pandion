@@ -17,10 +17,10 @@ function mode_new ( mode, msg )
 		{
 			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 			dom.loadXML( '<presence type="unavailable"/>' );
-			if ( msg.length )
+			if ( cfg( 'lastmsg' ).length )
 			{
 				var Status = dom.createElement( 'status' );
-				Status.text = msg;
+				Status.text = cfg( 'lastmsg' );
 				dom.documentElement.appendChild( Status );
 			}
 			warn( 'SENT: ' + dom.xml );
