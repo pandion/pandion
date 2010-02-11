@@ -137,7 +137,7 @@ void XMPPLogger::LogLoadXMLError(MSXML2::IXMLDOMDocument* xmlDoc,
 void XMPPLogger::Log(const std::wstring& logEntry)
 {
 #ifdef CANLOG
-	::OutputDebugString(logEntry.c_str());
+	::OutputDebugStringW(logEntry.c_str());
 #endif
 }
 

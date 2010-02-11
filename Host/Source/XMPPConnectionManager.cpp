@@ -253,7 +253,7 @@ bool XMPPConnectionManager::DoRecvData()
 	int select = m_Socket.Select(true, false, 0, 10000);
 	if(select == 1)
 	{
-		std::vector<unsigned char> recvBuffer(0x4);
+		std::vector<unsigned char> recvBuffer(0x1000);
 		int bytesReceived = m_Socket.Recv(recvBuffer);
 		if(bytesReceived > 0 && recvBuffer.size() > 0)
 		{
