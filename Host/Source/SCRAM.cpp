@@ -24,7 +24,7 @@
 #include "stdafx.h"
 #include "SCRAM.h"
 #include "Hash.h"
-#include "UTF8.h"
+#include "UTF.h"
 
 SCRAM::SCRAM()
 {

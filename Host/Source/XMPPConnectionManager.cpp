@@ -22,7 +22,7 @@
 
 #include "stdafx.h"
 #include "XMPPConnectionManager.h"
-#include "UTF8.h"
+#include "UTF.h"
 
 /*
  * Constructor
@@ -101,7 +101,7 @@ void XMPPConnectionManager::StartSC()
  */
 void XMPPConnectionManager::SendText(const std::wstring& utf16Text)
 {
-	std::string utf8Text = std::string(CW2UTF8(utf16Text.c_str()));
+	std::string utf8Text = UTF::utf16to8(utf16Text);
 	AsyncSend((LPBYTE) utf8Text.c_str(), utf8Text.length());
 	m_Logger.LogSent(utf16Text);
 }
@@ -157,6 +157,15 @@ DWORD XMPPConnectionManager::ConnectionMain()
 		else
 		{
 			canContinue = DoRecvData();
+			if(canContinue)
+			{
+				unsigned nextChar = PopNextCharFromBuffer();
+				while(nextChar != -1)
+				{
+					canContinue = m_XMLParser.ParseChar(nextChar);
+					nextChar = PopNextCharFromBuffer();
+				}
+			}
 		}
 	}
 
@@ -240,20 +249,18 @@ bool XMPPConnectionManager::DoConnectWithoutSRV()
  */
 bool XMPPConnectionManager::DoRecvData()
 {
-	m_RecvBuffer.resize(0x10000);
 	bool canContinue = false;
 	int select = m_Socket.Select(true, false, 0, 10000);
 	if(select == 1)
 	{
-		int bytesReceived = m_Socket.Recv(m_RecvBuffer);
-		if(bytesReceived > 0 && m_RecvBuffer.size() > 0)
+		std::vector<unsigned char> recvBuffer(0x4);
+		int bytesReceived = m_Socket.Recv(recvBuffer);
+		if(bytesReceived > 0 && recvBuffer.size() > 0)
 		{
-			m_RecvBuffer.push_back(L'\0');
-			std::wstring recvString(
-				CUTF82W((char*)&m_RecvBuffer[0]));
-
-			m_Logger.LogReceived(recvString);
-			canContinue = m_XMLParser.ParseChunk(recvString);
+			m_DataBuffer.insert(m_DataBuffer.end(),
+				recvBuffer.begin(), recvBuffer.end());
+			m_Logger.LogReceived(UTF::utf8to16(std::string((char*)&recvBuffer[0], recvBuffer.size())));
+			canContinue = true;
 		}
 		else if(bytesReceived == 0) /* server disconnected */
 		{
@@ -316,4 +323,35 @@ void XMPPConnectionManager::DoStartSC()
 void XMPPConnectionManager::AsyncSend(BYTE *data, DWORD len)
 {
 	m_SendQueue.AddData(data, len);
+}
+
+/*
+ *
+ */
+unsigned XMPPConnectionManager::PopNextCharFromBuffer()
+{
+	std::vector<unsigned char>::iterator it = m_DataBuffer.begin();
+	std::string utf8;
+	unsigned codepoint, byteCounter = 0;
+	while(it != m_DataBuffer.end())
+	{
+		byteCounter++;
+		utf8.push_back((char)*it);
+		codepoint = UTF::getNextUTF8Codepoint(utf8.begin(), utf8.end());
+		if(codepoint != INVALID_CODEPOINT)
+		{
+			for(unsigned i = 0; i < byteCounter; i++)
+			{
+				m_DataBuffer.erase(m_DataBuffer.begin());
+			}
+			return codepoint;
+		}
+		if(byteCounter == 4)
+		{
+			m_DataBuffer.erase(m_DataBuffer.begin());
+			return PopNextCharFromBuffer();
+		}
+		it++;
+	}
+	return -1;
 }

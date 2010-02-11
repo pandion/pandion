@@ -21,6 +21,7 @@
  *              generating appropriate events.
  */
 #include "stdafx.h"
+#include "UTF.h"
 #include "XMPPXMLParser.h"
 
 /*
@@ -72,48 +73,45 @@ void XMPPXMLParser::SetDisconnected()
 
 /*
  * This method parses a chunk of data on a per-character basis. The parameter
- * should be an UTF-16 std::wstring holding a chunk of received data.
+ * should be a UTF-32 character value.
  */
-bool XMPPXMLParser::ParseChunk(std::wstring& data)
+bool XMPPXMLParser::ParseChar(unsigned c)
 {
 	bool continueParsing = true;
-	for(std::wstring::const_iterator it = data.begin();
-		it != data.end() && continueParsing;
-		it++)
+
+	m_ParsedData += c;
+	if(m_ParsingState == ParsingProlog)
 	{
-		m_ParsedData += *it;
-		if(m_ParsingState == ParsingProlog)
-		{
-			continueParsing = ParseProlog(*it);
-		}
-		else if(m_ParsingState == ParsingRootElement)
-		{
-			continueParsing = ParseRootElement(*it);
-		}
-		else if(m_ParsingState == ParsingXMPPStanzaBegin)
-		{
-			continueParsing = ParseXMPPStanzaBegin(*it);
-		}
-		else if(m_ParsingState == ParsingXMPPStanza)
-		{
-			continueParsing = ParseXMPPStanza(*it);
-		}
-		else if(m_ParsingState == ParsingXMPPStanzaEnd)
-		{
-			continueParsing = ParseXMPPStanzaEnd(*it);
-		}
-		else
-		{
-			continueParsing = false;
-		}
+		continueParsing = ParseProlog(c);
 	}
+	else if(m_ParsingState == ParsingRootElement)
+	{
+		continueParsing = ParseRootElement(c);
+	}
+	else if(m_ParsingState == ParsingXMPPStanzaBegin)
+	{
+		continueParsing = ParseXMPPStanzaBegin(c);
+	}
+	else if(m_ParsingState == ParsingXMPPStanza)
+	{
+		continueParsing = ParseXMPPStanza(c);
+	}
+	else if(m_ParsingState == ParsingXMPPStanzaEnd)
+	{
+		continueParsing = ParseXMPPStanzaEnd(c);
+	}
+	else
+	{
+		continueParsing = false;
+	}
+
 	return continueParsing;
 }
 
 /*
  * Private helper that returns true if the character is XML whitespace.
  */
-bool inline XMPPXMLParser::IsXMLWhitespace(wchar_t xmlCharacter)
+bool inline XMPPXMLParser::IsXMLWhitespace(unsigned xmlCharacter)
 {
 	return xmlCharacter == L' ' ||
 		xmlCharacter == L'\t' ||
@@ -123,10 +121,14 @@ bool inline XMPPXMLParser::IsXMLWhitespace(wchar_t xmlCharacter)
 
 void XMPPXMLParser::BuildNamespaceCache()
 {
-	for(std::map<std::wstring, std::wstring>::iterator it =
+	const unsigned xmlnsLiteral[] = { L'x', L'm', L'l', L'n', L's', 0 };
+	const unsigned xmlnsLiteral2[] = { L'x', L'm', L'l', L'n', L's', L':', 0 };
+
+	for(std::map<UTF32String, UTF32String>::iterator it =
 		m_ElementAttributes.begin();it != m_ElementAttributes.end();it++)
 	{
-		if(it->first.compare(L"xmlns") == 0 || it->first.find(L"xmlns:") == 0)
+		if( it->first.compare(xmlnsLiteral) == 0 ||
+			it->first.find(xmlnsLiteral2) == 0)
 		{
 			m_NamespaceCache[it->first] = it->second;
 		}
@@ -139,7 +141,7 @@ void XMPPXMLParser::BuildNamespaceCache()
  * state for expecting the root element. When the prolog ends it also starts
  * expecting the root element.
  */
-bool XMPPXMLParser::ParseProlog(wchar_t xmlCharacter)
+bool XMPPXMLParser::ParseProlog(unsigned xmlCharacter)
 {
 	if(xmlCharacter != L'?' && m_ParsedData.size() == 2)
 	{
@@ -164,7 +166,7 @@ bool XMPPXMLParser::ParseProlog(wchar_t xmlCharacter)
  * to the event handler and the parser is put in the state for expecting XMPP
  * stanzas.
  */
-bool XMPPXMLParser::ParseRootElement(wchar_t xmlCharacter)
+bool XMPPXMLParser::ParseRootElement(unsigned xmlCharacter)
 {
 	bool continueParsing = true;
 	if(m_ElementParsingState == ParsingBeforeElement)
@@ -196,7 +198,7 @@ bool XMPPXMLParser::ParseRootElement(wchar_t xmlCharacter)
  * If "/>", the XML element is self-closing and is sent to the event handler
  * by calling ParseXMPPStanzaEnd.
  */
-bool XMPPXMLParser::ParseXMPPStanzaBegin(wchar_t xmlCharacter)
+bool XMPPXMLParser::ParseXMPPStanzaBegin(unsigned xmlCharacter)
 {
 	bool continueParsing = true;
 	m_ElementLevel = 0;
@@ -240,7 +242,7 @@ bool XMPPXMLParser::ParseXMPPStanzaBegin(wchar_t xmlCharacter)
  * the body of the root element of the XMPP stanza. It maintains the nesting
  * level of the XML element for determining the end of the body.
  */
-bool XMPPXMLParser::ParseXMPPStanza(wchar_t xmlCharacter)
+bool XMPPXMLParser::ParseXMPPStanza(unsigned xmlCharacter)
 {
 	static bool parsingCDATA = false;
 	bool continueParsing = true;
@@ -297,7 +299,7 @@ bool XMPPXMLParser::ParseXMPPStanza(wchar_t xmlCharacter)
  * Private method that is called when we are expecting the end of the closing
  * tag of the root element of the current stanza.
  */
-bool XMPPXMLParser::ParseXMPPStanzaEnd(wchar_t xmlCharacter)
+bool XMPPXMLParser::ParseXMPPStanzaEnd(unsigned xmlCharacter)
 {
 	bool continueParsing = true;
 	if(xmlCharacter == L'>')
@@ -317,7 +319,7 @@ bool XMPPXMLParser::ParseXMPPStanzaEnd(wchar_t xmlCharacter)
 /*
  * Private method that is called when the parser is expecting a new element.
  */
-bool XMPPXMLParser::ParseElementBegin(wchar_t xmlCharacter)
+bool XMPPXMLParser::ParseElementBegin(unsigned xmlCharacter)
 {
 	bool continueParsing = true;
 	if(IsXMLWhitespace(xmlCharacter))
@@ -338,7 +340,7 @@ bool XMPPXMLParser::ParseElementBegin(wchar_t xmlCharacter)
 /*
  * Private method that is called when the parser is excpecing an element name.
  */
-bool XMPPXMLParser::ParseElementName(wchar_t xmlCharacter)
+bool XMPPXMLParser::ParseElementName(unsigned xmlCharacter)
 {
 	bool continueParsing = true;;
 	
@@ -364,14 +366,14 @@ bool XMPPXMLParser::ParseElementName(wchar_t xmlCharacter)
  * Private method that is called when the parser assumes to be between
  * elements.
  */
-bool XMPPXMLParser::ParseBetweenAttributes(wchar_t xmlCharacter)
+bool XMPPXMLParser::ParseBetweenAttributes(unsigned xmlCharacter)
 {
 	bool continueParsing = true;
 
 	if(xmlCharacter == L'>')
 	{
 		BuildNamespaceCache();
-		m_Handlers.OnDocumentStart(_bstr_t(m_ParsedData.c_str()));
+		m_Handlers.OnDocumentStart(_bstr_t(UTF::utf32to16(m_ParsedData).c_str()));
 		m_ParsedData.clear();
 		m_ElementAttributes.clear();
 		m_ElementName.clear();
@@ -400,7 +402,7 @@ bool XMPPXMLParser::ParseBetweenAttributes(wchar_t xmlCharacter)
  * Private method that is called when the parser expects the name of an
  * attribute.
  */
-bool XMPPXMLParser::ParseAttributeName(wchar_t xmlCharacter)
+bool XMPPXMLParser::ParseAttributeName(unsigned xmlCharacter)
 {
 	bool continueParsing = true;
 
@@ -429,7 +431,7 @@ bool XMPPXMLParser::ParseAttributeName(wchar_t xmlCharacter)
  * Private method that is called when the parser expects the value of an
  * attribute.
  */
-bool XMPPXMLParser::ParseAttributeValue(wchar_t xmlCharacter)
+bool XMPPXMLParser::ParseAttributeValue(unsigned xmlCharacter)
 {
 	bool continueParsing = true;
 
@@ -455,11 +457,18 @@ bool XMPPXMLParser::HandleXMPPStanza()
 {
 	bool continueParsing = true;
 
+	const unsigned proceedLiteral[] =
+		{ L'p', L'r', L'o', L'c', L'e', L'e', L'd', 0 };
+	const unsigned successLiteral[] =
+		{ L's', L'u', L'c', L'c', L'e', L's', 0 };
+	const unsigned compressedLiteral[] =
+		{ L'c', L'o', L'm', L'p', L'r', L'e', L's', L's', L'e', L'd', 0 };
+
 	continueParsing = NotifyHandler(m_ElementName);
 
-	if(m_ElementName.find(L"proceed") != std::wstring::npos ||
-		m_ElementName.find(L"success") != std::wstring::npos ||
-		m_ElementName.find(L"compressed") != std::wstring::npos)
+	if(m_ElementName.find(proceedLiteral) != UTF32String::npos ||
+		m_ElementName.find(successLiteral) != UTF32String::npos ||
+		m_ElementName.find(compressedLiteral) != UTF32String::npos)
 	{
 		RestartParser();
 	}
@@ -477,19 +486,20 @@ bool XMPPXMLParser::HandleXMPPStanza()
  */
 void XMPPXMLParser::FixXMLNS()
 {
-	std::wstring::size_type stanzaEnd = GetStanzaEnd();
-	std::wstring xmlns;
+	UTF32String::size_type stanzaEnd = GetStanzaEnd();
+	UTF32String xmlns;
 
-	for(std::map<std::wstring, std::wstring>::iterator it = 
+	for(std::map<UTF32String, UTF32String>::iterator it = 
 		m_NamespaceCache.begin(); it != m_NamespaceCache.end(); it++)
 	{
 		if(m_ElementAttributes.find(it->first) == m_ElementAttributes.end())
 		{
-			xmlns += L" ";
+			xmlns += (unsigned) L' ';
 			xmlns += it->first;
-			xmlns += L"=\"";
+			xmlns += (unsigned) L'=';
+			xmlns += (unsigned) L'\"';
 			xmlns += it->second;
-			xmlns += L"\"";
+			xmlns += (unsigned) L'\"';
 		}
 	}
 
@@ -500,7 +510,7 @@ void XMPPXMLParser::FixXMLNS()
  * Private method that loads XML into an MSXML DomDocument object and passes
  * this object to the event handler.
  */
-bool XMPPXMLParser::NotifyHandler(const std::wstring& stanzaName)
+bool XMPPXMLParser::NotifyHandler(const UTF32String& stanzaName)
 {
 	bool continueParsing;
 
@@ -508,16 +518,18 @@ bool XMPPXMLParser::NotifyHandler(const std::wstring& stanzaName)
 
 	MSXML2::IXMLDOMDocumentPtr xmlDoc;
 	xmlDoc.CreateInstance(CLSID_DOMDocument);
-	BOOL bSuccess = xmlDoc->loadXML(_bstr_t(m_ParsedData.c_str()));
+	BOOL bSuccess = xmlDoc->loadXML(
+		_bstr_t(UTF::utf32to16(m_ParsedData).c_str()));
 
 	if(bSuccess)
 	{
-		m_Handlers.OnStanza(xmlDoc,_bstr_t(stanzaName.c_str()));
+		m_Handlers.OnStanza(
+			xmlDoc, _bstr_t(UTF::utf32to16(stanzaName).c_str()));
 		continueParsing = true;
 	}
 	else
 	{
-		m_Logger.LogLoadXMLError(xmlDoc, m_ParsedData);
+		m_Logger.LogLoadXMLError(xmlDoc, UTF::utf32to16(m_ParsedData));
 		continueParsing = false;
 	}
 
@@ -528,12 +540,18 @@ bool XMPPXMLParser::NotifyHandler(const std::wstring& stanzaName)
  * Private helper that determines the position of last character of the name
  * of the root element in the buffer.
  */
-std::wstring::size_type XMPPXMLParser::GetStanzaEnd()
+UTF32String::size_type XMPPXMLParser::GetStanzaEnd()
 {
-	std::wstring::size_type stanzaBegin = 
-		m_ParsedData.find_first_of(L"<");
-	std::wstring::size_type stanzaEnd =
-		m_ParsedData.find_first_of(L"/>\t\n\r ",stanzaBegin);
+	const unsigned stanzaBeginChars[] = 
+		{ L'<', 0 };
+	const unsigned stanzaEndChars[] =
+		{ L'/', L'>', L'\t', L'\n', L'\r', L' ', 0 };
+
+	UTF32String::size_type stanzaBegin = 
+		m_ParsedData.find_first_of(stanzaBeginChars);
+	UTF32String::size_type stanzaEnd =
+		m_ParsedData.find_first_of(stanzaEndChars, stanzaBegin);
+
 	return stanzaEnd;
 }
 

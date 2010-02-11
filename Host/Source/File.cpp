@@ -21,7 +21,7 @@
  */
 #include "stdafx.h"
 #include "File.h"
-#include "UTF8.h"
+#include "UTF.h"
 #include "Directory.h"
 #include "Hash.h"
 #include "Base64.h"
@@ -255,13 +255,15 @@ STDMETHODIMP CFile::ReadLine(BSTR* strLine)
 		{
 			*(tokenPosition - 1) = '\0';
 		}
-		*strLine = SysAllocString(CUTF82WEX<1024>(m_CurrentPosition));
+		*strLine = ::SysAllocString(
+			UTF::utf8to16((char*)m_CurrentPosition).c_str());
 		m_CurrentPosition = tokenPosition + 1;
 	}
 	else
 	{
 		m_AtEnd = true;
-		*strLine = SysAllocString(CUTF82WEX<1024>(m_CurrentPosition));
+		*strLine = SysAllocString(
+			UTF::utf8to16((char*)m_CurrentPosition).c_str());
 	}
 	
 	SetFilePointer(m_FileHandle, (long)(m_CurrentPosition - m_DataBuffer),
@@ -278,7 +280,7 @@ STDMETHODIMP CFile::WriteLine(BSTR strLine)
 	{
 		BYTE* newLine = (BYTE*) "\r\n";
 
-		std::string strUTF8 = std::string(CW2UTF8(strLine));
+		std::string strUTF8 = UTF::utf16to8(strLine);
 
 		Seek(0, 0, FILE_END);
 		Write((BYTE*) strUTF8.c_str(), strUTF8.length());
@@ -327,7 +329,7 @@ STDMETHODIMP CFile::WriteBase64(BSTR strBase64)
 {
 	if(SUCCEEDED(GetWriteAccess()))
 	{
-		std::vector<BYTE> fileBuffer = Base64::Decode(CW2UTF8(strBase64));
+		std::vector<BYTE> fileBuffer = Base64::Decode(UTF::utf16to8(strBase64));
 		Write(&fileBuffer[0], fileBuffer.size());
 
 		return S_OK;

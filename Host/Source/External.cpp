@@ -28,7 +28,7 @@
 #include "File.h"
 #include "Directory.h"
 #include "XMPP.h"
-#include "UTF8.h"
+#include "UTF.h"
 #include "shortcut.h"
 #include "comctrlwrapper.h"
 #include "module.h"
@@ -221,10 +221,10 @@ STDMETHODIMP External::get_Directory(VARIANT *pDisp)
 }
 STDMETHODIMP External::StringToSHA1(BSTR str, BSTR *strSHA1)
 {
-	LPSTR szUTF8Buf = CW2UTF8(str);
 	unsigned char digest[20];
 	
-	Hash::SHA1((unsigned char*)szUTF8Buf, strlen(szUTF8Buf), digest);
+	Hash::SHA1((const unsigned char*) UTF::utf16to8(str).c_str(),
+		UTF::utf16to8(str).length(), digest);
 
 	wchar_t hexHash[20*2+1];
 	hexHash[20*2] = 0;
@@ -333,7 +333,7 @@ STDMETHODIMP External::get_Shortcut(VARIANT *pDisp)
 STDMETHODIMP External::UnZip(BSTR path, BSTR targetDir, int *nSuccess)
 {
 	*nSuccess = 0;
-	unzFile pZipFile = unzOpen(CW2UTF8(path));
+	unzFile pZipFile = unzOpen(UTF::utf16to8(path).c_str());
 
 	if(!pZipFile)
 	{
@@ -362,13 +362,14 @@ STDMETHODIMP External::UnZip(BSTR path, BSTR targetDir, int *nSuccess)
 		unzGetCurrentFileInfo(pZipFile, &file_info,
 			file_name, MAX_PATH, 0, 0, 0, 0);
 
-		::StringCchCopyA(file_path, MAX_PATH, CW2UTF8(targetDir));
+		::StringCchCopyA(file_path, MAX_PATH,
+			UTF::utf16to8(targetDir).c_str());
 		::PathAppendA(file_path, file_name);
 
 		IPdnFile *target_file;
 		(new CFile)->QueryInterface(__uuidof(IPdnFile),
 			(LPVOID*) &target_file);
-		if(target_file->Create(_bstr_t(CUTF82W(file_path)),
+		if(target_file->Create(_bstr_t(UTF::utf8to16(file_path).c_str()),
 			GENERIC_WRITE, FILE_SHARE_READ,	OPEN_ALWAYS) == S_OK)
 		{
 			int nRead = 0;
@@ -397,15 +398,15 @@ STDMETHODIMP External::UnZip(BSTR path, BSTR targetDir, int *nSuccess)
 }
 STDMETHODIMP External::Base64ToString(BSTR b64String, BSTR *UTF16String)
 {
-	std::vector<BYTE> decodedData = Base64::Decode(CW2UTF8(b64String));
+	std::vector<BYTE> decodedData = Base64::Decode(UTF::utf16to8(b64String));
 	std::string decodedString(decodedData.begin(), decodedData.end());
-	*UTF16String = ::SysAllocString(CUTF82W(decodedString.c_str()));
+	*UTF16String = ::SysAllocString(UTF::utf8to16(decodedString).c_str());
 
 	return S_OK;
 }
 STDMETHODIMP External::StringToBase64(BSTR UTF16String, BSTR *b64String)
 {
-	std::string UTF8String = CW2UTF8(UTF16String);
+	std::string UTF8String = UTF::utf16to8(UTF16String);
 	*b64String = ::SysAllocString(
 		Base64::Encode(UTF8String.c_str(),
 		UTF8String.length(), false).c_str());

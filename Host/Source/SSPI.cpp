@@ -22,7 +22,7 @@
 #include "stdafx.h"
 #include "SSPI.h"
 #include "base64.h"
-#include "utf8.h"
+#include "UTF.h"
 
 SSPI::SSPI()
 {
@@ -128,8 +128,8 @@ STDMETHODIMP SSPI::GenerateResponse(BSTR Challenge, BOOL *Continue, BSTR *Respon
 	}
 
 	/* Decode the Challenge */
-	std::vector<BYTE> DecodedChallenge =
-		Base64::Decode(std::string(CW2UTF8(Challenge)));
+	std::vector<BYTE> DecodedChallenge = 
+		Base64::Decode(UTF::utf16to8(Challenge));
 
 	/* prepare input buffer */
 	SecBuffer		InSecBuff;

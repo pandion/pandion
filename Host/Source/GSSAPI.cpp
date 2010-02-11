@@ -22,7 +22,7 @@
 #include "stdafx.h"
 #include "GSSAPI.h"
 #include "Base64.h"
-#include "UTF8.h"
+#include "UTF.h"
 #include "SRVLookup.h"
 
 #include <dsgetdc.h>
@@ -87,7 +87,8 @@ STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServerName, BSTR Challenge,
 	}
 
 	/* Decode the challenge from BASE64 */
-	std::vector<BYTE> DecodedChallenge = Base64::Decode(CW2UTF8(Challenge));
+	std::vector<BYTE> DecodedChallenge = 
+		Base64::Decode(UTF::utf16to8(Challenge));
 	std::vector<BYTE> DecodedResponse;
 
 	if(m_fInitComplete == FALSE)

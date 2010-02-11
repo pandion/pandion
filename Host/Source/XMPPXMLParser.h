@@ -24,6 +24,7 @@
 #pragma once
 #include "XMPPLogger.h"
 #include "XMPPHandlers.h"
+#include "UTF.h"
 
 /*
  * Enumeration containing all the possible parser states.
@@ -74,32 +75,32 @@ class XMPPXMLParser
 	 * This string acts as a buffer that stores the information already
 	 * processed by the parser.
 	 */
-	std::wstring							m_ParsedData;
+	UTF32String								m_ParsedData;
 	/*
 	 * This map holds a cache of corresponding namespaces for each element.
 	 * This is not correctly implemented yet.
 	 */
-	std::map<std::wstring, std::wstring>	m_NamespaceCache;
+	std::map<UTF32String, UTF32String>		m_NamespaceCache;
 	/*
 	 * This map holds the attributes of the an element.
 	 */
-	std::map<std::wstring, std::wstring>	m_ElementAttributes;
+	std::map<UTF32String, UTF32String>		m_ElementAttributes;
 	/*
 	 * The element name curently being parsed.
 	 */
-	std::wstring							m_ElementName;
+	UTF32String								m_ElementName;
 	/*
 	 * The attribute name currently being parsed.
 	 */
-	std::wstring							m_AttributeName;
+	UTF32String								m_AttributeName;
 	/*
 	 *  The attribute value currently being parsed.
 	 */
-	std::wstring							m_AttributeValue;
+	UTF32String								m_AttributeValue;
 	/*
 	 * The delimiter used by the attribute.
 	 */
-	wchar_t									m_AttributeDelimiter;
+	unsigned								m_AttributeDelimiter;
 	/*
 	 * This holds the nesting level of the XMMP stanza being processed.
 	 */
@@ -115,7 +116,7 @@ public:
 	void SetConnected();
 	void SetDisconnected();
 
-	bool ParseChunk(std::wstring& data);
+	bool ParseChar(unsigned c);
 
 	/*
 	 * Private methods used for parsing the XMPP XML data.
@@ -123,24 +124,24 @@ public:
 private:
 	void RestartParser();
 
-	bool inline IsXMLWhitespace(wchar_t xmlCharacter);
+	bool inline IsXMLWhitespace(unsigned xmlCharacter);
 	void BuildNamespaceCache();
 
-	bool ParseProlog(wchar_t xmlCharacter);
-	bool ParseRootElement(wchar_t xmlCharacter);
-	bool ParseXMPPStanzaBegin(wchar_t xmlCharacter);
-	bool ParseXMPPStanza(wchar_t xmlCharacter);
-	bool ParseXMPPStanzaEnd(wchar_t xmlCharacter);
+	bool ParseProlog(unsigned xmlCharacter);
+	bool ParseRootElement(unsigned xmlCharacter);
+	bool ParseXMPPStanzaBegin(unsigned xmlCharacter);
+	bool ParseXMPPStanza(unsigned xmlCharacter);
+	bool ParseXMPPStanzaEnd(unsigned xmlCharacter);
 
-	bool ParseElementBegin(wchar_t xmlCharacter);
-	bool ParseElementName(wchar_t xmlCharacter);
-	bool ParseBetweenAttributes(wchar_t xmlCharacter);
-	bool ParseAttributeName(wchar_t xmlCharacter);
-	bool ParseAttributeValue(wchar_t xmlCharacter);
+	bool ParseElementBegin(unsigned xmlCharacter);
+	bool ParseElementName(unsigned xmlCharacter);
+	bool ParseBetweenAttributes(unsigned xmlCharacter);
+	bool ParseAttributeName(unsigned xmlCharacter);
+	bool ParseAttributeValue(unsigned xmlCharacter);
 
 	bool HandleXMPPStanza();
 	void FixXMLNS();
-	bool NotifyHandler(const std::wstring& stanzaName);
+	bool NotifyHandler(const UTF32String& stanzaName);
 
-	std::wstring::size_type GetStanzaEnd();
+	UTF32String::size_type GetStanzaEnd();
 };

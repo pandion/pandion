@@ -45,7 +45,7 @@ private:
 
 	HANDLE          m_CanStartNewThread;
 
-	std::vector<BYTE> m_RecvBuffer;
+	std::vector<BYTE> m_DataBuffer;
 public:
 	XMPPConnectionManager(XMPPHandlers& handlers, XMPPLogger& logger);
 	~XMPPConnectionManager();
@@ -70,4 +70,6 @@ private:
 	void DoStartSC();
 
 	void AsyncSend(BYTE *data, DWORD len);
+	
+	unsigned PopNextCharFromBuffer();
 };

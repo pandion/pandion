@@ -311,11 +311,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\UTF32.h"
+				RelativePath=".\UTF.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\UTF8.h"
+				RelativePath=".\UTF.h"
 				>
 			</File>
 		</Filter>
