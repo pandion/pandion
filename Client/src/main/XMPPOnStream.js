@@ -41,22 +41,7 @@ function XMPPOnStream ( ReceivedXML )
 		 */
 		if ( external.globals( 'sspiserver' ).length || external.globals( 'authentication' ) == 'ntlm' )
 		{
-			if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "GSSAPI" ]' ) )
-			{
-				external.globals( 'XMPPSASLMechanism' ) = 'GSSAPI';
-				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
-				dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="GSSAPI"/>' );
-				try {
-					external.SASL.GSSAPI.Reset();
-					dom.documentElement.text = external.SASL.GSSAPI.GenerateResponse( external.XMPP.ServerFQDN, '' );
-				}
-				catch(e) {
-					warn( 'GSSAPI: ERROR: ' + e.number + ' ' + external.SASL.GSSAPI.ErrorMessage( e.number ) );
-				}
-				warn( 'SENT: ' + dom.xml );
-				external.XMPP.SendXML( dom );
-			}
-			else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "GSS-SPNEGO" ]' ) )
+			if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "GSS-SPNEGO" ]' ) )
 			{
 				external.globals( 'XMPPSASLMechanism' ) = 'GSS-SPNEGO';
 				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
@@ -74,7 +59,22 @@ function XMPPOnStream ( ReceivedXML )
 				warn( 'SENT: ' + dom.xml );
 				external.XMPP.SendXML( dom );
 			}
-			else
+			else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "GSSAPI" ]' ) )
+			{
+				external.globals( 'XMPPSASLMechanism' ) = 'GSSAPI';
+				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+				dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="GSSAPI"/>' );
+				try {
+					external.SASL.GSSAPI.Reset();
+					dom.documentElement.text = external.SASL.GSSAPI.GenerateResponse( external.XMPP.ServerFQDN, '' );
+				}
+				catch(e) {
+					warn( 'GSSAPI: ERROR: ' + e.number + ' ' + external.SASL.GSSAPI.ErrorMessage( e.number ) );
+				}
+				warn( 'SENT: ' + dom.xml );
+				external.XMPP.SendXML( dom );
+			}
+			else 
 			{
 				var Str = '<abort xmlns="urn:ietf:params:xml:ns:xmpp-sasl"/>';
 				warn( 'SENT: ' + Str );
