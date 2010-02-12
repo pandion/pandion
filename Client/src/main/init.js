@@ -254,7 +254,7 @@ function init ()
 				}
 			},
 			leavingIdle: function () {
-				if (external.globals("cfg")("lastmode") === 6)
+				if (external.globals("cfg")("lastmode") === 6 && modeBeforeIdle !== undefined)
 					mode_new(modeBeforeIdle, external.globals("cfg")("lastmsg"));
 			}
 		}

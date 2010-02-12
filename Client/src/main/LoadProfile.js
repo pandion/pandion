@@ -51,7 +51,7 @@ function LoadProfile ( Address )
 
 	/* Don't restore as idle, use available instead
 	 */
-	if ( ! cfg( 'lastmode' ) == 6 )
+	if ( parseInt( cfg( 'lastmode' ), 10 ) === 6 )
 		cfg( 'lastmode' ) = 0;
 
 	/* Restore the user's preferred window dimensions and location
