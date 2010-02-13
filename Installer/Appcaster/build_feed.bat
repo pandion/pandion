@@ -19,4 +19,4 @@ SET DOWNLOAD_URL=http://downloads.sourceforge.net/project/pandion/builds/%PACKAG
 SET INFO_URL=%HUDSON_URL%job/%JOB_NAME%/%BUILD_NUMBER%/changes
 SET FEED_URL=http://feeds.feedburner.com/pandionupdates
 
-CScript.exe //NoLogo appcaster.wsf /maxcount:25 /source:"%FEED_URL%" /path:index.xml /overwrite:false /application:"%JOB_NAME%" /author:"%JOB_NAME% Team" /description:"%JOB_NAME% software updates feed" /location:"%FEED_URL%" /history:"%HUDSON_URL%" /arguments:"/passive LAUNCHAPP=yes AUTOUPDATE=yes" /changes:"Development build" /info:"%INFO_URL%" /mime:application/x-msi /size:"%LOCAL_FILE%" /track:development /version:"%VERSION%" /url:"%DOWNLOAD_URL%"
+CScript.exe //NoLogo appcaster.wsf /maxcount:25 /source:"%FEED_URL%" /path:index.xml /overwrite:false /application:"%JOB_NAME%" /author:"%JOB_NAME% Team" /description:"%JOB_NAME% software updates feed" /location:"%FEED_URL%" /history:"%HUDSON_URL%" /arguments:"/passive LAUNCHAPP=yes" /changes:"Development build" /info:"%INFO_URL%" /mime:application/x-msi /size:"%LOCAL_FILE%" /track:development /version:"%VERSION%" /url:"%DOWNLOAD_URL%"

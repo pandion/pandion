@@ -36,8 +36,10 @@
 			<ComponentRef Id="StartMenuShortcut"/>
 			<ComponentRef Id="StartupShortcut"/>
 			<ComponentRef Id="WriteInstallPathToRegistry"/>
+			<!-- See below.
 			<ComponentRef Id="RegistryCleanupHKCU"/>
 			<ComponentRef Id="RegistryCleanupHKLM"/>
+			-->
 		</Feature>
 
 		<Directory Id="TARGETDIR" Name="SourceDir">
@@ -73,7 +75,7 @@
 						Value="1"
 						KeyPath="yes"
 					/>
-					<Condition>(NOT AUTOUPDATE) OR HASDESKTOPSHORTCUT</Condition>
+					<Condition>(NOT UPGRADINGPRODUCTCODE) OR HASDESKTOPSHORTCUT</Condition>
 				</Component>
 			</Directory>
 
@@ -97,7 +99,7 @@
 						Value="1"
 						KeyPath="yes"
 					/>
-					<Condition>(NOT AUTOUPDATE) OR HASPROGRAMMENUSHORTCUT</Condition>
+					<Condition>(NOT UPGRADINGPRODUCTCODE) OR HASPROGRAMMENUSHORTCUT</Condition>
 				</Component>
 			</Directory>
 
@@ -122,7 +124,7 @@
 						Value="1"
 						KeyPath="yes"
 					/>
-					<Condition>(NOT AUTOUPDATE) OR HASSTARTUPSHORTCUT</Condition>
+					<Condition>(NOT UPGRADINGPRODUCTCODE) OR HASSTARTUPSHORTCUT</Condition>
 				</Component>
 			</Directory>
 
@@ -255,23 +257,27 @@
 
 		<!--
 			Remove file/mime/uri registry associations that may have been created at runtime.
+
+			Disabled due to problems with upgrades. Removing the previous version always removes these components.
+			Impact: Left over registry entries after manual uninstallation.
 		-->
+		<!--
 		<Component Id="RegistryCleanupHKCU" Directory="LocalAppDataFolder" Guid="{58642a78-00a3-4ba8-8335-7f299aa94db5}">
 			<CreateFolder Directory="LocalAppDataFolder"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKCU" Key="Software\Classes\Applications\$(var.SafeName).exe"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKCU" Key="Software\Classes\$(var.SafeName).File.JISP"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKCU" Key="Software\Classes\$(var.SafeName).File.PDN"/>
-			<RemoveRegistryKey Action="removeOnUninstall" Root="HKCU" Key="Software\Classes\$(var.SafeName).File.XMPP"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKCU" Key="Software\Classes\$(var.SafeName).Url.xmpp"/>
-			<Condition>NOT AUTOUPDATE</Condition>
+			<Condition>NOT UPGRADINGPRODUCTCODE</Condition>
 		</Component>
 		<Component Id="RegistryCleanupHKLM" Directory="TARGETDIR" Guid="{dcd110c8-a3b5-4df0-9dbb-64ea3cc2bedb}">
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\Applications\$(var.SafeName).exe"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\$(var.SafeName).File.JISP"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\$(var.SafeName).File.PDN"/>
-			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\$(var.SafeName).File.XMPP"/>
 			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Classes\$(var.SafeName).Url.xmpp"/>
-			<Condition>Privileged and (NOT AUTOUPDATE)</Condition>
+			<RemoveRegistryKey Action="removeOnUninstall" Root="HKLM" Key="Software\Clients\IM\$(var.SafeName)"/>
+			<Condition>Privileged and (NOT UPGRADINGPRODUCTCODE)</Condition>
 		</Component>
+		-->
 	</Product>
 </Wix>
