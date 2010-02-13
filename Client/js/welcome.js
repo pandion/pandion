@@ -54,14 +54,6 @@ window.attachEvent("onload", function () {
 						extension: [".pdn"],
 						mime: ["application/x-pdn+xml"]
 					},
-					"XMPP": {
-						command: open + " \"%1\"",
-						icon: logo,
-						name: external.globals("Translator").Translate("main", "extension-xmpp"),
-						extension: [".xmpp"],
-						mime: ["application/jabber+xml"],
-						shortcut: true
-					},
 					"xmpp": {
 						command: open + " \"%1\"",
 						icon: logo,
