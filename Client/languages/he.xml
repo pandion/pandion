@@ -1,0 +1,2203 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file is part of Pandion instant messenger
+	Copyright (c) 2003-2009 Sebastiaan Deckers
+	License: GNU General Public License version 3 or later
+-->
+<!--
+	Instructions:
+	http://pandion.pbworks.com/Translating
+-->
+<translation xml:lang="he" dir="rtl">
+  <about>
+    <language>עברית</language>
+    <history>
+      <revision>
+        <author>
+          <name>Gil k. and Ofir y.</name>
+          <email>ofirsmail@gmail.com</email>
+          <xmpp></xmpp>
+        </author>
+        <date>2010-01-22</date>
+        <description>
+          First edit.
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_disconnected">
+      <innerText>התנתק מהשרת</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>התחבר מחדש</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>או</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>שינוי הגדרות התחברות</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>להוספת חבר לרשימת החברים</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>או</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>הגדרת תקשרות העברות</innerText>
+    </item>
+
+    <item id="mode-avatar">
+      <title>לבחור אייקון/צלמית אחרת</title>
+    </item>
+    <item id="mode-bar">
+      <title>שינוי זמינות סטטוס והגדרות אישיות</title>
+    </item>
+    <item id="mode-secure">
+      <title>SSL/TLS קישור מאובטח ע"י</title>
+    </item>
+    <item id="rosterfield">
+      <title>חברים  וקבוצות ברשימת חברים</title>
+    </item>
+
+    <item id="signin-instructions">
+      <innerText>הכנס כתובת להתחברות</innerText>
+    </item>
+    <item id="txt-signin-address">
+      <innerText>כתובת:</innerText>
+    </item>
+    <item id="txt-signin-examples">
+      <innerText>דוגמאות:</innerText>
+    </item>
+    <item id="txt-signin-password">
+      <innerText>סיסמא:</innerText>
+    </item>
+    <item id="txt-signin-remember">
+      <innerText>זכור סיסמא</innerText>
+    </item>
+    <item id="txt-signin-autoconnect">
+      <innerText>התחברות אוטומטית</innerText>
+    </item>
+    <item id="signin-connect">
+      <innerText>התחבר</innerText>
+    </item>
+    <item id="signin-register">
+      <innerText>הירשם לכתובת שרת חדש</innerText>
+    </item>
+    <item id="signin-settings">
+      <innerText>הגדרות התחברות</innerText>
+    </item>
+
+    <code id="tt-group-hide">הסתר את רשימת החברים בקבוצה&#13;קליק ימני לאפשרויות נוספות</code>
+    <code id="tt-group-show">הצג את רשימת החברים בקבוצה&#13;קליק ימני לאפשרויות נוספות</code>
+    <code id="emoticon_unknown">לא ידוע</code>
+    <code id="txt_welcome">שלום ל ${0}!</code>
+    <code id="user_online">${0} עכשיו מקוון</code>
+    <code id="cl_tooltip">${0} רשימת חברים</code>
+    <code id="import_files">רשימת חברים</code>
+    <code id="import_invalid">הקובץ אינו מכיל נתונים תקניים</code>
+    <code id="import_no_new">כל רשימת החברים כבר נמצאים ברשימת החברים.</code>
+    <code id="import_confirm">רשימת החברים הזו תתווסף לרשימת החברים&#13;&#13;${0}&#13;&#13;האם הינך בטוח שברצונך להוסיף את הרשימה לרשימת החברים?</code>
+    <code id="import_aim_not_registered">לצורך יבוא רשימת חבריי AIM, ה- התקשרות AIM צריכה להיות מוגדרת.  ההתקשרות צריכה להיום גם פעילה.&#13;בחר בתפריט כלים ולחץ על טרנספורטבכדי לראות את הסטטוס של ה- AIM.</code>
+    <code id="import_msn_not_registered">לצורך יבוא רשימת חבריי MSN, ה- התקשרות MSN צריכה להיות מוגדרת.  ההתקשרות צריכה להיום גם פעילה.&#13;בחר בתפריט כלים ולחץ על טרנספורטבכדי לראות את הסטטוס של ה- MSN.</code>
+    <code id="import_gadu_not_registered">לצורך יבוא רשימת חבריי Gadu-Gadu, ה- התקשרות Gadu-Gadu צריכה להיות מוגדרת.  ההתקשרות צריכה להיום גם פעילה.&#13;בחר בתפריט כלים ולחץ על טרנספורטבכדי לראות את הסטטוס של ה- Gadu-Gadu.</code>
+    <code id="conference_invitation">${0} מזמין אותך לחדר ועידה: ${1}&#13;&#13;האם ברצונך להצטרף לרשימת ועידה זו?</code>
+    <code id="search_info">חפש חבר...</code>
+    <code id="invalid-user-address">הכנס את הכתובת מסרים המידיים שלך.&#13;&#13;אם אין לך כתובת, בחר "הירשם לכתובת שרת מסרים מידיים חדש" למטה.</code>
+    <code id="invalid-sso-server">הכנס את הכתובת של שרת המסרים מידיים החדש.</code>
+    <code id="program-description">${softwarename} is an instant messaging client for XMPP networks.</code>
+    <code id="extension-jisp">Jabber Icon Style Package</code>
+    <code id="extension-pdn">${softwarename} Plug-In</code>
+    <code id="extension-xmpp">Extensible Messaging and Presence Protocol (XMPP) Meta Data</code>
+    <code id="uri-xmpp">Extensible Messaging and Presence Protocol (XMPP) Address</code>
+
+    <code id="menu_status">&amp;סטטוס</code>
+    <code id="menu_status_received">&amp;פתיחת קבצים שנפתחו</code>
+    <code id="menu_status_export">&amp;יצוא רשימת חברים...</code>
+    <code id="menu_status_import">&amp;יבוא רשימת חברים...</code>
+    <code id="menu_status_change">שינוי סטטוס &amp;הודעה...</code>
+    <code id="menu_status_ffc">&amp;פנוי לצ'ט</code>
+    <code id="menu_status_available">&amp;פנוי</code>
+    <code id="menu_status_busy">&amp;עסוק</code>
+    <code id="menu_status_away">לא &amp;נוכח</code>
+    <code id="menu_status_xaway">&amp;מחוץ למשרד</code>
+    <code id="menu_status_invisible">&amp;בלתי נראה</code>
+    <code id="menu_status_offline">&amp;כבוי</code>
+    <code id="menu_status_status">הסטטוס &amp;שלי</code>
+    <code id="menu_status_out">התנתק &amp;</code>
+    <code id="menu_status_exit">י&amp;ציאה</code>
+
+    <code id="menu_axn">&amp;פעולות</code>
+    <code id="menu_axn_add">&amp;הוספת חבר...</code>
+    <code id="menu_axn_addgroup">הוספת &amp;קבוצה...</code>
+    <code id="menu_axn_bookmarks">&amp;רשימת חדרי ועידה שלי</code>
+    <code id="menu_axn_bookmarks_add">&amp;הוספת חדר...</code>
+    <code id="menu_axn_bookmarks_manage">&amp;ניהול חדרים...</code>
+    <code id="menu_axn_join">&amp;התחבר לחדר ועידה...</code>
+    <code id="menu_axn_create">&amp;צור חדר ועידה...</code>
+    <code id="menu_axn_password">שנה &amp;סיסמא...</code>
+    <code id="menu_axn_profile">&amp;עדכן פרופיל...</code>
+    <code id="menu_axn_avatar">שנה &amp;צלמית/איקון...</code>
+
+    <code id="menu_tool">&amp;כלים</code>
+    <code id="menu_tool_transport">&amp;טרנספורט</code>
+    <code id="menu_tool_head">&amp;כותרות</code>
+    <code id="menu_tool_plugin">&amp;תוספים</code>
+    <code id="menu_tool_traffic">&amp;תעבורות רשת</code>
+    <code id="menu_tool_view">&amp;תצוגה</code>
+    <code id="menu_tool_detailed">&amp;מורחבת</code>
+    <code id="menu_tool_compact">&amp;קומפקטית</code>
+    <code id="menu_tool_language">&amp;שפות</code>
+    <code id="menu_tool_aot">&amp;תמיד עליון</code>
+    <code id="menu_tool_settings">&amp;הגדרות</code>
+
+    <code id="menu_help">&amp;עזרה</code>
+    <code id="menu_help_welcome">&amp;הודעת פתיחה</code>
+    <code id="menu_help_manual">&amp;עזרה מקוונת</code>
+    <code id="menu_help_forum">&amp;פורום תמיכה</code>
+    <code id="menu_help_contact">&amp;צור קשר</code>
+    <code id="menu_help_update">&amp;בדוק עדכונים</code>
+    <code id="menu_help_about">&amp;אודות</code>
+
+    <code id="menu_tray_about">&amp;אודות ${0}</code>
+    <code id="menu_tray_settings">&amp;הגדרות</code>
+
+    <code id="wnd_autoupdate">מעדכן ${0}</code>
+    <code id="wnd_vcard_edit">מידע על המשתמש</code>
+    <code id="wnd_about">אודות ${0}</code>
+    <code id="wnd_signup">רישום - ${0}</code>
+    <code id="wnd_adduser">חפש או הוסף חבר</code>
+    <code id="wnd_avatar">שנה איקון/צלמית</code>
+    <code id="wnd_room_browse">חדרי ועידה</code>
+    <code id="wnd_room_create">צור חדר ועידה</code>
+    <code id="wnd_conference_invite">הזמן חברים</code>
+    <code id="wnd_conference_other">שירותי ועידה נוספים</code>
+    <code id="wnd_console">קונסול</code>
+    <code id="wnd_emoticon_download">הורד </code>
+    <code id="wnd_emoticon_list">סמיילי</code>
+    <code id="wnd_emoticon_view">פרטי סמיילי</code>
+    <code id="wnd_file_send">שלח קובץ ל ${0}</code>
+    <code id="wnd_file_recv">קבלת קובץ מ ${0}</code>
+    <code id="wnd_group_message">הודעה קבוצתית</code>
+    <code id="wnd_transport_list">טרנספורט</code>
+    <code id="wnd_transport_other">טרנספורט אחרים</code>
+    <code id="wnd_headlines">צפיה בכותרות</code>
+    <code id="wnd_history">${0} - היסטורית הודעות</code>
+    <code id="wnd_plugin_list">תוספים</code>
+    <code id="wnd_plugins">תוספים</code>
+    <code id="wnd_password">שנה סיסמא</code>
+    <code id="wnd_settings">הגדרות</code>
+    <code id="wnd_status">סטטוס הודעה</code>
+    <code id="wnd_vcard_view">מידע על משתמש</code>
+    <code id="wnd_group_create">צור קבוצה</code>
+    <code id="wnd_group_rename">שנה קבוצה</code>
+    <code id="wnd_contact_rename">שנה חבר</code>
+    <code id="wnd_authrequest">בקשת אישור</code>
+    <code id="wnd_extension_download">מתקין ${0}</code>
+    <code id="wnd_background_list">רקעים</code>
+    <code id="wnd_background_download">הורדת רקעים</code>
+    <code id="wnd_bookmarks_add">הוסף סימניה לחדר ועידה</code>
+    <code id="wnd_bookmarks_edit">ערוך סימניה לחדר ועידה</code>
+    <code id="wnd_bookmarks_manage">סימניות חדרי ועידה</code>
+    <code id="wnd_connection_settings">הגדרות התחברות</code>
+    <code id="wnd_welcome">שלום ל ${0}</code>
+
+    <code id="msg_emoticon_install">סגנון סמיילי כבר הוגדר.</code>
+    <code id="msg_received_files">תקיית קבלת הקבצים השתנתה.</code>
+    <code id="msg_plugin_install">האם הינך מעוניין להוסיף את התוסף?&#13;&#13;שם: ${0}&#13;תיאור: ${1}</code>
+    <code id="msg_plugin_exists">תוסף מותקן כבר במערכת.</code>
+    <code id="msg_cl_adding">${0} התווסף לרשימת החברים.</code>
+    <code id="msg_cl_added">${0}הוסף לרשימת החברים.</code>
+    <code id="msg_blocked">הינך ברשימת החברים החסומים.</code>
+    <code id="msg_autherror">לא מתחבר. בעיות אפשריות:&#13;&#13;- הכנסת סיסמא שגויה&#13;- חשבון חבר אינו קיים במערכת&#13;&#13;בבקשה נסה שנית.</code>
+
+    <code id="menu_message">הודעה</code>
+    <code id="menu_filetransfer">העברת קובץ</code>
+    <code id="menu_room_create">צור חדר חדש</code>
+    <code id="menu_room_invite">הזמן לשיחת ועידה</code>
+    <code id="menu_rename">שנה</code>
+    <code id="menu_block">חסום</code>
+    <code id="menu_delete">מחק</code>
+    <code id="menu_group_create">צור קבוצה חדשה</code>
+    <code id="menu_group_merge">אחד עם</code>
+    <code id="menu_group_move">העבר ל</code>
+    <code id="menu_group_copy">העתק ל</code>
+    <code id="menu_request">בקש אישור מחדש</code>
+    <code id="menu_history">היסטוריה</code>
+    <code id="menu_profile">פרופיל</code>
+
+    <code id="cl_waiting_one">יש לך הודעה אחת שלא נקראה</code>
+    <code id="cl_waiting_multiple">יש לך ${0} הודעות שלא נקראו</code>
+    <code id="cl_error_notexist">כתובות לא קיימת.</code>
+    <code id="cl_error_cannotadd">לא יכול להוסיף ${0} לרשימת החברים.&#13;${1}</code>
+    <code id="cl_default_group">חברים</code>
+	<code id="cl_group_display_none">אין חברים</code>
+    <code id="cl_group_display_online">חברים זמינים בלבד</code>
+    <code id="cl_group_display_all">כל החברים</code>
+	<code id="cl_group_expand">הצג חברים שאינם זמינים</code>
+    <code id="cl_group_compact">הסתר חברים שאינם זמינים</code>
+    <code id="cl_group_rename">שנה את הקבוצה הזו</code>
+    <code id="cl_group_message">שלח הודעה תפוצה לכולם</code>
+    <code id="cl_room_create">צור חדר חדש</code>
+    <code id="cl_room_invite">הזמן לחדר ועידה</code>
+    <code id="cl_group_empty">אין חברים זמינים בקבוצה זו.</code>
+    <code id="cl_status_empty">אין הודעת סטטוס</code>
+    <code id="cl_status_offline">לא זמין</code>
+    <code id="cl_status_awaiting">ממתין לאישור</code>
+    <code id="cl_status_unknown">סטטוס לא ברור</code>
+    <code id="cl_status_waiting_one">1 הודעה שלא נקראה</code>
+    <code id="cl_status_waiting_multiple">${0} הודעות שלא נקראו</code>
+    <code id="cl_tooltip_offline">כתובת: ${0}</code>
+    <code id="cl_contact_remove_group">האם ברצונך להסיר את החבר מהקבוצה?</code>
+    <code id="cl_contact_remove_list">האם אתה בטוח שברצונך להסיר את החבר מרשימת החברים?</code>
+    <code id="cl_link_open">פתח באמצעות הדפדפן</code>
+    <code id="cl_link_copy">העתק קישור</code>
+    <code id="cl_link_favorite">הוסף למועדפים</code>
+    <code id="cl_ffc">פנוי לצ'ט</code>
+    <code id="cl_available">פנוי</code>
+    <code id="cl_busy">עסוק</code>
+    <code id="cl_away">לא נוכח</code>
+    <code id="cl_xaway">לא נוכח</code>
+    <code id="cl_invisible">בלתי נראה</code>
+    <code id="cl_idle">Idle</code>
+    <code id="cl_tooltip_online">כתובת: ${0}&#13;משאב: ${1}</code>
+
+    <code id="time-now">הרגע</code>
+    <code id="time-second">לפני שניה</code>
+    <code id="time-seconds">לפני ${0} שניות</code>
+    <code id="time-minute">לפני דקה</code>
+    <code id="time-minutes">לפני ${0} דקה</code>
+    <code id="time-hour">לפני שעה</code>
+    <code id="time-hours">לפני ${0} שעות</code>
+    <code id="time-day">לפני יום</code>
+    <code id="time-days">לפני ${0} ימים</code>
+    <code id="time-week">לפני שבוע</code>
+    <code id="time-weeks">לפני ${0} שבועות</code>
+    <code id="time-month">לפני חודש</code>
+    <code id="time-months">לפני ${0} חודשים</code>
+    <code id="time-year">1 שנה</code>
+    <code id="time-years">לפני ${0} שנים</code>
+
+    <code id="track-stable">Stable</code>
+    <code id="track-beta">Beta</code>
+    <code id="track-development">Development</code>
+  </window>
+  <window name="about">
+    <item id="txt-copyright">
+      <innerHTML>Copyright &amp;copy; ${copyrightyear} ${copyrightholder}. All rights reserved. This application is published under the terms of the &lt;a href="${licenseurl}"&gt;${licensename}&lt;/a&gt;. Additional &lt;a href="${termsandcontitionsurl}"&gt;terms and conditions&lt;/a&gt; may apply to included dependencies.</innerHTML>
+    </item>
+    <item id="txt-trademark">
+      <innerText>The ${softwarename} name and logos are trademarks of ${trademarkholder}. All rights reserved.</innerText>
+    </item>
+    <item id="btn-ok">
+      <value>אשר</value>
+    </item>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>הצג מידע על הפרופיל</value>
+    </item>
+    <item id="btn_deny">
+      <value>בטל</value>
+    </item>
+    <item id="btn_accept">
+      <value>אשר</value>
+    </item>
+    <item id="txt_from">
+      <innerText>קיבלת בקשת אישור מ:</innerText>
+    </item>
+    <item id="txt_question">
+      <innerText>האם ברצונך לאשר או לבטל הצטרפות של חבר לרשימת החברים?</innerText>
+    </item>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>מחק פלט</value>
+    </item>
+    <item id="btn_send">
+      <value>שלח</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>נוכח</value>
+    </item>
+    <item id="btn_message">
+      <value>הודעה</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>תעבוקת רשת:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>מעבר שורות</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>קלט XML:</innerText>
+    </item>
+    <code id="toggle_on">Debug is on</code>
+    <code id="toggle_off">Debug is off</code>
+    <code id="valid_xml">Input must be valid XML. Not just whitespace or plain text.</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>Close</value>
+    </item>
+    <item id="txt_title">
+      <innerText>התראות וכותרות</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>איתותים מיוחדים מופיעים בקבלת הודעות חדשות או מידע חדש.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>לא התקבלו איתותים או הודעות.</innerText>
+    </item>
+    <item id="alertonlinelabel">
+      <innerText>הצג התראה כאשר חבר מתחבר במצב מקוון</innerText>
+    </item>
+    <code id="read_more">עוד...</code>
+    <code id="replay">מענה</code>
+  </window>
+  <window name="headline-toaster">
+    <item id="options">
+      <innerText>הגדרות...</innerText>
+    </item>
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>בטל</value>
+    </item>
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="btn_custom">
+      <value>תמונה מותאמת אישית...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>בחר תמונה אישית ליצוג הפרופיל.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>בטעינה...</innerText>
+    </item>
+    <code id="error_size">לא מצליח להעלות תמונה. גודל קובץ גדול מ 8 קילובייטס.</code>
+    <code id="error_empty">לא מצליח להעלות תמונה. קובץ ריק.</code>
+    <code id="error_load">הזהרה: לא יכול להציג איקון/צלמית.&#13;&#13;${0}</code>
+    <code id="menu_use">השתמש בצלמית/איקון הזו</code>
+    <code id="menu_saveas">שמור בשם...</code>
+    <code id="menu_delete">מחק</code>
+    <code id="wnd_select">בחר בצלמית/אייקון</code>
+    <code id="saveas_files">קבצי תמונות</code>
+    <code id="image_files">קבצי תמונות פחות מ 8kB</code>
+    <code id="all_files">כל הקבצים</code>
+  </window>
+  <window name="mode_select">
+    <item id="txt_message">
+      <innerText>מצב ההודעה מראה את המצב רוח , הפעילות או כל דבר אחר:</innerText>
+    </item>
+    <code id="btn_ok">אשר</code>
+    <code id="btn_ok_empty">אשר (ללא הודעה)</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="btn_cancel">
+      <value>בטל</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>שם חדש:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="btn_cancel">
+      <value>בטל</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>שם חדש:</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="btn_cancel">
+      <value>בטל</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>שם חדש:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="btn_cancel">
+      <value>בטל</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>אשר סיסמא חדשה:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>סיסמא חדשה:</innerText>
+    </item>
+    <code id="no_match">סיסמא לא תואמת.&#13;&#13;הכנס סיסמא חדשה בשתי השדות.</code>
+    <code id="no_pass">הכנס סיסמא חדשה.</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="set_version">
+      <innerText>בטעינה...</innerText>
+    </item>
+    <item id="header-images">
+      <innerText>תמונות</innerText>
+    </item>
+    <item id="header-sounds">
+      <innerText>שמע</innerText>
+    </item>
+    <item id="header-markup">
+      <innerText>סימון טקסט</innerText>
+    </item>
+    <code id="empty">סמיילי סטייל ריק.</code>
+    <code id="file_error">קובץ שגוי</code>
+    <code id="cannot_load">לא מעלה סמיילים.</code>
+    <code id="count_one">1 סמיילי</code>
+    <code id="count_multiple">${0} סמיילים</code>
+  </window>
+  <window name="emoticon_download">
+    <item id="btn_close">
+      <value>סגור</value>
+    </item>
+    <item id="txt_title">
+      <innerText>הורד סמיילים</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>יש צורך בגישה לאינטרנט לצפיה בסמיילים.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>בטעינה...</innerText>
+    </item>
+    <code id="install">התקן</code>
+    <code id="cannot_download">שגיאה: לא מצליח להוריד סמיילים.&#13;${0}</code>
+    <code id="invalid_xml">קובץ המקור אינו מכיל נתונים.</code>
+    <code id="no_new_styles">אין סמיילים חדשים.</code>
+  </window>
+  <window name="emoticon_list">
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="txt_title">
+      <innerText>סמיילים זמינים</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>בחר סמיילי סטייל מהרשימה.</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>בטעינה...</innerText>
+    </item>
+    <item id="btn_emoticon_download">
+      <value>עוד סמיילים</value>
+    </item>
+    <code id="emoticon_details">הצג פרטים</code>
+    <code id="emoticon_remove">מחק</code>
+    <code id="emoticon_confirm">האם הינך בטוח שברצונך למחוק את הסמיילי סטייל?</code>
+    <code id="no_emoticons">לא נמצאו סמיילים.</code>
+  </window>
+  <window name="background_download">
+    <item id="btn_close">
+      <value>סגור</value>
+    </item>
+    <item id="txt_title">
+      <innerText>הורד רקעים</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>חיבור אינטרנט הכרחי לסריקת קטלוג.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>בטעינה...</innerText>
+    </item>
+    <code id="install">התקן</code>
+    <code id="cannot_download">שגיאה: לא מצליח להוריד רקעים.&#13;${0}</code>
+    <code id="invalid_xml">קובץ המקור אינו מכיל רקעים.</code>
+    <code id="no_new_styles">אין רקעים זמינים.</code>
+  </window>
+  <window name="background_list">
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="txt_title">
+      <innerText>רקעים זמינים</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>הוסף או הסר רקע.</innerText>
+    </item>
+    <item id="btn_background_download">
+      <value>עוד רקעים</value>
+    </item>
+    <item id="txt_background_empty">
+      <innerText>אין רקעים מותקנים.</innerText>
+    </item>
+    <code id="background_uninstall">מחק</code>
+    <code id="background_confirm">האם הינך בטוח שברצונך למחוק רקע?</code>
+  </window>
+  <window name="plugin_list">
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="txt_title">
+      <innerText>תוסף הותקן</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>הוסף או הסר תוספים.</innerText>
+    </item>
+    <item id="btn_plugin_download">
+      <value>תוספים נוספים</value>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>אין תוספים מותקנים.</innerText>
+    </item>
+    <code id="plugin_uninstall">הסר</code>
+    <code id="plugin_confirm">האם הינך בטוח שברצונך להסיר תוספים?</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>סגור</value>
+    </item>
+    <item id="txt_title">
+      <innerText>הורד תוסף</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>חיבור אינטרנט נדרש להורדת תוספים.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>בטעינה...</innerText>
+    </item>
+    <code id="install">התקן</code>
+    <code id="cannot_download">שגיאה: לא מצליח להוריד תוספים.&#13;${0}</code>
+    <code id="invalid_xml">חוסר תקינות בפורמט XML.</code>
+    <code id="no_new_plugins">אין תוספים זמינים.</code>
+  </window>
+  <window name="autoupdate">
+    <item id="txt-unavailable">
+      <innerText>אין עדכונים זמינים.</innerText>
+    </item>
+    <item id="txt-no-feed">
+      <innerText>אין גישה לעדכון. נסה מאוחר.</innerText>
+    </item>
+    <item id="txt-available-updates">
+      <innerText>עדכונים זמינים</innerText>
+    </item>
+    <item id="txt-tracks-info">
+      <innerText>גרסאות חדשות מספקות יציבות.</innerText>
+    </item>
+    <item id="txt-latest">
+      <innerText>גרסא אחרונה בטראק הנוכחי:</innerText>
+    </item>
+    <item id="txt-alternatives">
+      <innerText>גרסאות אחרות:</innerText>
+    </item>
+    <item id="btn-close">
+      <value>סגור</value>
+    </item>
+
+    <item id="txt-new-version">
+      <innerText>קיימת גרסא חדשה.</innerText>
+    </item>
+    <item id="txt-whats-new">
+      <innerText>מה חדש?</innerText>
+    </item>
+    <item id="txt-learn-more">
+      <innerText>למד על חידושים של עדכון זה.</innerText>
+    </item>
+    <item id="txt-continue">
+      <innerText>You can continue to use ${softwarename} while the update is being downloaded.</innerText>
+    </item>
+    <item id="txt-restart">
+      <innerText>The update will be installed when ${softwarename} is restarted. You can continue using ${softwarename} without restarting. Do you want to restart and update now?</innerText>
+    </item>
+    <item id="txt-browser">
+      <innerText>ההורדה תחל בדפדפן.</innerText>
+    </item>
+    <item id="btn-update">
+      <value>מעדכן עכשיו</value>
+    </item>
+    <item id="btn-download">
+      <value>מוריד עכשיו</value>
+    </item>
+    <item id="btn-later">
+      <value>אחרכך</value>
+    </item>
+    <code id="up-to-date">מעודכן</code>
+    <code id="previous-version">גרסא קודמת</code>
+    <code id="recommended">מומלץ</code>
+    <code id="description-stable">גרסאות יציבות נבחנו למשך זמן ארוך.</code>
+    <code id="description-beta">כולל בעיות שתוקנו ונבחנות בגרסא זו.</code>
+    <code id="description-development">חלק מהתכונות אינן תקינות.</code>
+    <code id="title">עדכון תוכנה: ${0} ${1}</code>
+  </window>
+  <window name="welcome">
+    <item id="txt-hello">
+      <innerText>שלום וברוך הבא ל ${softwarename}</innerText>
+    </item>
+    <item id="txt-free-software">
+      <innerText>This application is free and open source software. All development, translation and support is done by our wonderful community members.</innerText>
+    </item>
+    <item id="txt-more-information">
+      <innerHTML>For more information follow @&lt;a href="http://twitter.com/${twittername}"&gt;${twittername}&lt;/a&gt; on Twitter or become a fan at &lt;a href="http://www.facebook.com/${facebookpage}"&gt;Facebook.com/${facebookpage}&lt;/a&gt;.</innerHTML>
+    </item>
+    <item id="txt-enjoy">
+      <innerText>אנו מקווים שנהנת להשתמש באפליקציה זו.</innerText>
+    </item>
+    <item id="txt-team">
+      <innerText>The ${softwarename} Team</innerText>
+    </item>
+    <item id="settings-close">
+      <title>אשר וסגור</title>
+    </item>
+    <item id="btn-add-contact">
+      <innerText>הוסף חבר</innerText>
+    </item>
+    <item id="btn-edit-profile">
+      <innerText>ערוך את הפרופיל שלי</innerText>
+    </item>
+    <item id="btn-transports">
+      <innerText>טרנספורט</innerText>
+    </item>
+    <item id="btn-settings">
+      <innerText>הגדרות</innerText>
+    </item>
+    <item id="txt-confirm">
+      <innerText>בבקשה אשר הגדרות אלו:</innerText>
+    </item>
+    <item id="txt-default-xmpp">
+      <innerText>Use ${softwarename} as my default XMPP client</innerText>
+    </item>
+    <item id="txt-homepage">
+      <innerText>קבע את דף הבית ל ${browsersearchboxname}</innerText>
+    </item>
+    <item id="txt-search-engine">
+      <innerText>הוסף ${browsersearchboxname} לרשימת מנועי החיפוש שלי</innerText>
+    </item>
+    <item id="txt-feed-title">
+      <innerText>תמיכה ופידבק</innerText>
+    </item>
+    <item id="txt-ask-question">
+      <innerText>שאל שאלה</innerText>
+    </item>
+    <item id="txt-powered-by">
+      <innerText>powered by GetSatisfaction</innerText>
+    </item>
+    <item id="txt-show-welcome">
+      <innerText>הצג את מסך הפתיחה בכניסה</innerText>
+    </item>
+    <item id="btn-ok">
+      <value>אשר</value>
+    </item>
+    <code id="search-topics">חפש את כל הנושאים...</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="btn_cancel">
+      <value>בטל</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>לכל חדר ועידה יש כתובת יחודית. הכנס את הכתובת השירות והשם היחודי של החדר.</innerText>
+    </item>
+    <item id="txt_service">
+      <innerText>כתובת שירות:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>לדוגמא: conference.example.net</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>שם חדר:</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>כתובת חדר ועידה:</innerText>
+    </item>
+    <code id="incomplete">השלם את כל השדות...</code>
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>שלח</value>
+    </item>
+    <item id="btn_cancel">
+      <value>בטל</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>שלח לאנשים האלו:</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>הודעה רגילה</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>הודעת התראה</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>סוג ההודעה</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>הוסף קישור</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>הודעה</innerText>
+    </item>
+  </window>
+  <window name="extension_download">
+    <item id="btn_cancel">
+      <value>בטל</value>
+    </item>
+    <item id="txt_status">
+      <innerText>מתחבר...</innerText>
+    </item>
+    <code id="downloading">מוריד...</code>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>סגור</value>
+    </item>
+    <item id="btn_accept">
+      <value>אשר</value>
+    </item>
+    <item id="btn_abort">
+      <value>בטל</value>
+    </item>
+    <item id="btn_open">
+      <value>פתח</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>זמן שנשאר:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>שולח:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>קובץ:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>מיקום:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>התקדמות:</innerText>
+    </item>
+    <code id="resume">הקובץ קיים. האם ברצונך להמשיך את השליחה?&#13;&#13;לחץ כן להמשך.&#13;לחץ לא לדריסת הקובץ.</code>
+    <code id="cannot_overwrite">לא יכול לדרוס את הקובץ:&#13;${0}&#13;&#13;${1}</code>
+    <code id="incorrect">לא יכול להתחיל שליחת קובץ.  נתונים שגויים.</code>
+    <code id="title_saving">${0}% of ${1} Saved</code>
+    <code id="lessthanminute">Less than 1 minute at ${0}/s</code>
+    <code id="onehour">1 hour and</code>
+    <code id="hours">${0} hours and</code>
+    <code id="oneminute">1 minute at</code>
+    <code id="minutes">${0} minutes at</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Do you want to abort the transfer?</code>
+    <code id="aborted">Aborted</code>
+    <code id="finished">Finished</code>
+    <code id="error_timeout">Timeout occurred.</code>
+    <code id="error_code">Error code: ${0}</code>
+    <code id="error_file">File error code: ${0}</code>
+    <code id="title_completed">Transfer Completed - ${0}</code>
+    <code id="title_failed">Transfer Failed - ${0}</code>
+    <code id="error_move">Cannot move completed file:&#13;${0}&#13;&#13;${1}</code>
+    <code id="error_failed">Transfer failed.</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>סגור</value>
+    </item>
+    <item id="btn_abort">
+      <value>בטל</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>זמן שנשאר:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>שולח:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>קובץ:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>מיקום:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>התקדמות:</innerText>
+    </item>
+    <code id="socket">לא מצליח לשלוח את הקובץ.&#13;לא מצליח לפתוח התקשרות.</code>
+    <code id="file">לא מצליח לקרוא את הקובץ:&#13;${0}</code>
+    <code id="filetransfer">שליחת קובץ:</code>
+    <code id="title_saving">${0}% of ${1} Sent</code>
+    <code id="lessthanminute">Less than 1 minute at ${0}/s</code>
+    <code id="onehour">1 hour and</code>
+    <code id="hours">${0} hours and</code>
+    <code id="oneminute">1 minute at</code>
+    <code id="minutes">${0} minutes at</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">האם ברצונך לבטל שליחה?</code>
+    <code id="finished">הסתיים</code>
+    <code id="aborted">בוטל</code>
+    <code id="error_denied">קובץ נדחה.</code>
+    <code id="error_timeout">התרחשות timeout.</code>
+    <code id="error_code">קוד שגיאה: ${0}</code>
+    <code id="title_completed">שליחה בוצעה בהצלחה - ${0}</code>
+    <code id="title_failed">שליחה נכשלה - ${0}</code>
+    <code id="error_failed">שליחה נכשלה.</code>
+  </window>
+  <window name="conference_browse">
+    <item id="btn_close">
+      <value>סגור</value>
+    </item>
+    <item id="btn_other_service">
+      <value>שירות אחר...</value>
+    </item>
+    <item id="btn_create">
+      <value>צור חדר ועידה</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>חדרים פנויים:</innerText>
+    </item>
+    <item id="lbl_empty">
+      <innerText>הצג חדרים ריקים</innerText>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="lbl_full">
+      <innerText>הצג חדרים מלאים</innerText>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="lbl_filter">
+      <innerText>פילטר:</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>אין שירותי ועידה זמינים בשרת.&#13;&#13;לחץ על כפתור "שירותים אחרים..." להוסיף שירות ועידה לשרת אחר.</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>בכדי להתחבר לחדר ועידה עליך להתחבר לשרת המסרים מידיים.</innerText>
+    </item>
+    <code id="bookmarks">סימניות</code>
+    <code id="menu_join">התחבר</code>
+    <code id="menu_add">הוסף לסימניה...</code>
+    <code id="empty_filter">אין חדרים מתאימים לסינון</code>
+    <code id="empty_no_rooms">אין חדרים פנויים לשירות זהe</code>
+    <code id="status_connecting">מתחבר...</code>
+    <code id="status_downloading">מאחזר רשימת חדרי ועידה...</code>
+    <code id="error_unknown">השירות "${0}" לא פעיל. בדוק כי הכנסת את הכתובת הנכונה. נסה שוב מאוחר או הכנס כתובת אחרת.</code>
+    <code id="error_no_services">השירות "${0}" אינו מכיל שירותי ועידה מותקנים. צור קשר עם אופיר לסיוע.</code>
+    <code id="error_no_new">כל שירותי הועידה שבשרת "${0}" כבר מצוייינים.</code>
+  </window>
+  <window name="conference_other">
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="btn_cancel">
+      <value>בטל</value>
+    </item>
+    <item id="txt_address">
+      <innerText>כתובת:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>לדוגמא: conference.example.net</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>הכנס את הכתובת של שירותי הועידה או השרת.</innerText>
+    </item>
+    <code id="error_already_exists">השירות "${0}" הינו. הכנס את הכתובת לשירותי ועידה.</code>
+  </window>
+  <window name="vcard">
+    <code id="save">הזהרה: לא שומר vCard קבציי.&#13;&#13;${0}</code>
+    <code id="personal">פרטי משתמש</code>
+    <code id="system">פרטי מערכת</code>
+
+    <item id="txt_requesting1">
+      <innerText>מבקש מידע מהשרת</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>זמן עדכון עד דקה.&lt;BR&gt;בבקשה  סבלנות.</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>שמור כ vCard</value>
+    </item>
+    <item id="btn_refresh">
+      <value>רענון</value>
+    </item>
+    <item id="btn_close">
+      <value>סגור</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>שחזר שינויים</value>
+    </item>
+    <item id="btn_cancel">
+      <value>בטל</value>
+    </item>
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>מידע אישי</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>פרטים נוספים</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>כתובת בית</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>עסק</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>כתובת עסק</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>מערכת</innerText>
+    </item>
+
+    <item id="txt_name">
+      <innerText>שם</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>שם פרטי:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>שם אמצעי:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>שם משפחה:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>כינוי:</innerText>
+    </item>
+
+    <item id="txt_contact">
+      <innerText>חבר</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>E-Mail:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>טלפון:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>נייד:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>פקס:</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>פרטים נוספים</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>גיל:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>תאריך לידה:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>מין:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>מצב משפחתי:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>אתר:</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>כתובת בית</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>כתובת 1:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>כתובת 2:</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>עיר:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>מיקוד:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>מדינה:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>עיר:</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>ארגון</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>שם:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>מחלקה:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>תפקיד:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>עיסוק:</innerText>
+    </item>
+
+    <item id="txt_workcontact">
+      <innerText>חבר</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>אימייל:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>טלפון:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>נייד:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>פקס:</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>כתובת עסק</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText> כתובת1:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>כתובת2:</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>עיר:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>מיקוד:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>ארץ:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>עיר:</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>מידע על קליינט</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>כתובת:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>משאב:</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>זמן מקומי:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>תוכנה:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>גירסא:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>מערכת הפעלה:</innerText>
+    </item>
+  </window>
+  <window name="transport_list">
+    <item id="btn_other">
+      <value>טרנספורט אחר...</value>
+    </item>
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="txt_title">
+      <innerText>טרנספורט זמין</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>טרנספורט מאפשר קישורים לרשתות מסרים מיידיים אחרים.</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;Note:&lt;/B&gt; בכדי להמשיך בהגדרות הטרנספורט עלייך להיות מחובר לשרת.</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;Note:&lt;/B&gt; בשרת שאתה מחובר לא מותקן טרנספורט. צור קשר עם מנהל הרשת למידע נוסף.</innerHTML>
+    </item>
+    <item id="msnworkaroundlabel">
+      <innerText>אפשר לשנות למשתמשי MSN את הכינוי</innerText>
+    </item>
+    <code id="status_active">פעיל</code>
+    <code id="status_noreg">לא רשום</code>
+    <code id="status_disconnected">מנותק</code>
+    <code id="status_connecting">מתחבר...</code>
+    <code id="name_unknown">שירות לא ידוע</code>
+    <code id="error_unknown">השירות "${0}" לא זמין. תבדוק שהכנסת כתובת נכונה. נסה מאוחר או הכנס כתובת אחרת.</code>
+    <code id="error_no_transports">השרת "${0}" לא מכיל התקנת טרנספורט. צור קשר עם מנהל הרשת.</code>
+    <code id="error_no_new_transport">כל הטרנספורט על השרת "${0}" כבר רשומות.</code>
+  </window>
+  <window name="transport_other">
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="btn_cancel">
+      <value>בטל</value>
+    </item>
+    <item id="txt_address">
+      <innerText>כתובת:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>לדוגמא: sms.example.net</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>הכנס כתובת של שרת טרנספורט.</innerText>
+    </item>
+    <code id="error_already_exists">השירות "${0}" רשום. הכנס כתובת לשרת שאיננו רשום.</code>
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; חזור</value>
+    </item>
+    <item id="btn_next">
+      <value>הבא &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>סיום</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>בטל</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>כתובת:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>כינוי:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>כתובת:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>סיסמא:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>כינוי:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>הינך כבר רשום לטרנספורט הזה.&lt;BR&gt;החשבון שנרשמת הינו:</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>בטל טרנספורט</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText>מתקשר עם השרת</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>יכול לקחת עד דקה.&lt;BR&gt;בבקשה היה סבלני.</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>לסגור את האשף, לחץ &lt;B&gt;סיום&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>להמשך, לחץ &lt;B&gt;הבא&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <code id="error_invalid">Invalid data received</code>
+    <code id="error_server">&lt;B&gt;Server error:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Cannot continue.</code>
+    <code id="error_unknown">&lt;B&gt;Unknown error:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Cannot continue.</code>
+    <code id="error_auth">&lt;B&gt;Authorisation error:&lt;/B&gt;&lt;BR&gt;Incorrect address or password.&lt;BR&gt;&lt;BR&gt;Cannot continue.</code>
+    <code id="wait">&lt;B&gt;Contacting server&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;This can take up to one minute.&lt;BR&gt;Please be patient.&lt;BR&gt;</code>
+
+    <code id="default_window_title">Transport Configuration</code>
+    <code id="default_begin_intro">This wizard helps you configure the transport.&lt;BR&gt;This transport is a link between you and another network.&lt;BR&gt;You need an account on the other network to use this transport.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">Enter your account and your password.&lt;BR&gt;You can also enter a nickname which others will see.&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">Your account is being registered with the transport.</code>
+    <code id="default_removing_busy">Your account is being removed from the transport.&lt;BR&gt;</code>
+    <code id="default_creating_done">The account was successfully registered with the transport.</code>
+    <code id="default_removing_done">The account was successfully unregistered from the transport.</code>
+
+    <code id="msn_window_title">MSN Messenger - Transport Configuration</code>
+    <code id="msn_begin_intro">This wizard helps you configure the MSN transport.&lt;BR&gt;This transport is a link between you and your MSN account.&lt;BR&gt;You need a Microsoft Passport to use this transport.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">Enter your MSN address and your MSN password.&lt;BR&gt;You can also enter a nickname which users will see.&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">Examples: someone@msn.com, someone@hotmail.com</code>
+    <code id="msn_creating_busy">Your account is being registered with the MSN transport.</code>
+    <code id="msn_removing_busy">Your MSN account is being removed from the transport.&lt;BR&gt;You will still be able to use your MSN account with other services (eg. Hotmail, MSN Explorer, etc.).&lt;BR&gt;</code>
+    <code id="msn_creating_done">The account was successfully registered with the MSN transport.</code>
+    <code id="msn_removing_done">The account was successfully unregistered from the MSN transport.</code>
+
+    <code id="icq_window_title">ICQ - Transport Configuration</code>
+    <code id="icq_begin_intro">This wizard helps you configure the ICQ transport.&lt;BR&gt;This transport is a link between you and your ICQ account.&lt;BR&gt;You must have an existing User Identification Number (ICQ &lt;BR&gt;number) to use this transport.&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Enter your ICQ number and your ICQ password.&lt;BR&gt;You can also enter a nickname which users will see.&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">Examples: 39230793, 158525087</code>
+    <code id="icq_creating_busy">Your account is being registered with the ICQ transport.</code>
+    <code id="icq_removing_busy">Your ICQ account is being removed from the transport.&lt;BR&gt;</code>
+    <code id="icq_creating_done">The account was successfully registered with the ICQ transport.</code>
+    <code id="icq_removing_done">The account was successfully unregistered from the ICQ transport.</code>
+
+    <code id="yahoo_window_title">Yahoo! Messenger - Transport Configuration</code>
+    <code id="yahoo_begin_intro">This wizard helps you configure the Yahoo! transport.&lt;BR&gt;This transport is a link between you and your Yahoo! account.&lt;BR&gt;You need an existing Yahoo! account to use this transport.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Enter your Yahoo! username and your Yahoo! password.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">Your account is being registered with the Yahoo! transport.</code>
+    <code id="yahoo_removing_busy">Your Yahoo! account is being removed from the transport.&lt;BR&gt;You will still be able to use your Yahoo! account with other services (eg. Yahoo! mail, Yahoo! Messenger, etc.).&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">The account was successfully registered with the Yahoo! transport.</code>
+    <code id="yahoo_removing_done">The account was successfully unregistered from the Yahoo! transport.</code>
+
+    <code id="aim_window_title">AOL Instant Messenger - Transport Configuration</code>
+    <code id="aim_begin_intro">This wizard helps you configure the AOL IM transport.&lt;BR&gt;This transport is a link between you and your AOL IM account.&lt;BR&gt;You need an AOL IM account to use this transport.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">Enter your AOL IM screenname and password.&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">Your account is being registered with the AOL IM transport.</code>
+    <code id="aim_removing_busy">Your AOL IM account is being removed from the transport.&lt;BR&gt;You will still be able to use your AOL IM account with other software.&lt;BR&gt;</code>
+    <code id="aim_creating_done">The account was successfully registered with the AOL IM transport.</code>
+    <code id="aim_removing_done">The account was successfully unregistered from the AOL IM transport.</code>
+
+    <code id="gadu_window_title">Gadu-Gadu - Transport Configuration</code>
+    <code id="gadu_begin_intro">This wizard helps you configure the Gadu-Gadu transport.&lt;BR&gt;This transport is a link between you and your Gadu-Gadu account.&lt;BR&gt;You need a Gadu-Gadu number to use this transport.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_instructions">Enter your Gadu-Gadu number and your password.&lt;BR&gt;You can also enter a nickname which others will see.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_examples">&amp;nbsp;</code>
+    <code id="gadu_creating_busy">Your Gadu-Gadu number is being registered with the transport.</code>
+    <code id="gadu_removing_busy">Your Gadu-Gadu number is being removed from the transport.&lt;BR&gt;</code>
+    <code id="gadu_creating_done">The Gadu-Gadu number was successfully registered with the transport.</code>
+    <code id="gadu_removing_done">The Gadu-Gadu number was successfully unregistered from the transport.</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>המשך</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>שמור</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>הדפס</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>מחק</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>הודעות שנשמרו</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>חיפוש:</innerText>
+    </item>
+    <code id="loading">Loading the message history...</code>
+    <code id="empty">The message history is empty.</code>
+    <code id="error_load">Cannot load the message history:&#13;${0}</code>
+    <code id="one_message">1 message</code>
+    <code id="many_messages">${0} messages</code>
+    <code id="tooltip_save">Save the message history of this day</code>
+    <code id="tooltip_print">Print the message history of this day</code>
+    <code id="error_open">Error: Cannot open the message history.</code>
+    <code id="error_read">Error: Cannot read the message history.</code>
+    <code id="delete_confirm">Are you sure you want to delete the entire message history for ${0}?</code>
+    <code id="delete_cannot">Cannot remove history file: ${0}&#13;&#13;No messages have been deleted.</code>
+    <code id="error_print">Cannot print anything.&#13;The message history is empty.</code>
+    <code id="error_save">Cannot save the message history.&#13;${0}</code>
+  </window>
+  <window name="chat-messages">
+    <code id="copy">Copy</code>
+    <code id="copyall">Copy All</code>
+    <code id="clear">Clear</code>
+    <code id="selectall">Select All</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>Show what you are thinking or doing</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Change the text color or type</title>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Choose a different background</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Emoticons</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Font</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Background</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>Change the size of the message input field</title>
+    </item>
+    <item id="mode-bar">
+      <title>The person who receives your messages</title>
+    </item>
+    <item id="send-text">
+      <title>Type your message here</title>
+    </item>
+    <item id="btn-send">
+      <value>Send</value>
+      <title>Send the message</title>
+    </item>
+
+    <code id="tt-avatar">Show the full size avatar</code>
+    <code id="tt-messages">Messages that have been sent and received</code>
+    <code id="tt-close">End this conversation</code>
+    <code id="msg_typing">${0} is typing a message</code>
+    <code id="unknown">${0} might not reply because his or her status is unknown</code>
+    <code id="lastonline">Last time online: ${0}</code>
+    <code id="windowtitle">${0} - Conversation</code>
+    <code id="background_no">No background</code>
+    <code id="background_list">Available backgrounds...</code>
+    <code id="close_many_tabs">Do you want to close all conversations?</code>
+    <code id="close_recent_message">You have just received a message.&#13;&#13;Do you want to close this conversation?</code>
+	<code id="palette_compact">Reduce the size of the emoticon list</code>
+	<code id="palette_expand">Show all emoticons in this style</code>
+	<code id="palette_browse">Other Emoticon Styles...</code>
+
+    <code id="menu_file">&amp;File</code>
+    <code id="menu_file_received">&amp;Open my Received Files</code>
+    <code id="menu_file_history">Message &amp;History</code>
+    <code id="menu_file_close">&amp;Close Conversation</code>
+
+    <code id="menu_axn_contact">&amp;Contact</code>
+    <code id="menu_axn_add">Add to Contact List</code>
+    <code id="menu_axn_block">&amp;Block</code>
+    <code id="menu_axn_rename">&amp;Rename</code>
+    <code id="menu_axn_panel">Show &amp;Actions Panel</code>
+    <code id="menu_axn_profile">View &amp;Profile</code>
+    <code id="menu_axn_file">Send a &amp;File</code>
+
+    <code id="menu_tool_emo_style">Choose &amp;Emoticons...</code>
+    <code id="menu_tool_font">Change &amp;Font...</code>
+    <code id="menu_tool_background">Change &amp;Background...</code>
+    <code id="menu_tool_aot">&amp;Always on top</code>
+    <code id="menu_tool_popup">&amp;Popup New Messages</code>
+    <code id="menu_tool_tabbed">&amp;Tabbed Conversations</code>
+    <code id="menu_tool_emoticons">&amp;Display Emoticons</code>
+    <code id="menu_tool_settings">&amp;Settings</code>
+  </window>
+  <window name="conference-bookmarks-add">
+    <item id="txt_address">
+      <innerText>Conference Room כתובת:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Example: my_room@conference.example.net</innerText>
+    </item>
+    <item id="lbl_autojoin">
+      <innerText>Join this conference room when logging in</innerText>
+    </item>
+    <item id="lbl_password">
+      <innerText>Enter the room with this סיסמא:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="btn_cancel">
+      <value>בטל</value>
+    </item>
+    <code id="error_invalid_address">The conference room address is invalid.</code>
+  </window>
+  <window name="conference-bookmarks-manage">
+    <item id="txt_head">
+      <innerText>Edit, delete, or add conference room bookmarks:</innerText>
+    </item>
+    <item id="btn_edit">
+      <value>Edit</value>
+    </item>
+    <item id="btn_delete">
+      <value>Delete</value>
+    </item>
+    <item id="btn_add">
+      <value>Add</value>
+    </item>
+    <item id="btn_close">
+      <value>Close</value>
+    </item>
+    <code id="confirm_delete">Do you want to remove this conference room bookmark?</code>
+  </window>
+  <window name="conference-configuration">
+    <item id="btn_cancel">
+      <value>בטל</value>
+    </item>
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="txt_form_loading">
+      <innerText>Loading...</innerText>
+    </item>
+    <item id="txt_form_empty">
+      <innerText>This conference room has no configurable settings</innerText>
+    </item>
+    <item id="txt_form_invalid">
+      <innerText>Error: Cannot retrieve the conference room configuration</innerText>
+    </item>
+    <code id="form_title">Settings for this conference room</code>
+    <code id="form_subtitle">Fill out this form to configure the conference room</code>
+
+    <code id="muc#roomconfig_allowinvites">Allow occupants to invite other users</code>
+    <code id="muc#roomconfig_changesubject">Allow occupants to change the conference room subject</code>
+    <code id="muc#roomconfig_enablelogging">Log all conference room messages</code>
+    <code id="muc#roomconfig_lang">Language used in the conference room</code>
+    <code id="muc#roomconfig_maxusers">Maximum number of occupants in the conference room</code>
+    <code id="muc#roomconfig_membersonly">Only members are allowed to enter the conference room</code>
+    <code id="muc#roomconfig_moderatedroom">Approval from moderators is required to send messages</code>
+    <code id="muc#roomconfig_passwordprotectedroom">A password is required to enter the conference room</code>
+    <code id="muc#roomconfig_persistentroom">Conference room persists when everyone has left</code>
+    <code id="muc#roomconfig_presencebroadcast">Roles for which status information is broadcast</code>
+    <code id="muc#roomconfig_publicroom">Show the conference room in the list of public conference rooms</code>
+    <code id="muc#roomconfig_roomadmins">Administrators of the conference room</code>
+    <code id="muc#roomconfig_roomdesc">Description of conference room</code>
+    <code id="muc#roomconfig_roomname">Name of the conference room</code>
+    <code id="muc#roomconfig_roomowners">Owners of the conference room</code>
+    <code id="muc#roomconfig_roomsecret">Password to enter the conference room</code>
+    <code id="muc#roomconfig_whois">Affiliations that can discover the real addresses of all occupants</code>
+  </window>
+  <window name="conference-password">
+    <item id="txt_password">
+      <innerText>סיסמא:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+  </window>
+  <window name="conference-name">
+    <item id="txt_name">
+      <innerText>Name:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+  </window>
+  <window name="conference-subject">
+    <item id="txt_subject">
+      <innerText>Subject:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+  </window>
+  <window name="conference-invite">
+    <item id="btn_cancel">
+      <value>בטל</value>
+    </item>
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Select the contacts that you want to invite.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>There are no online contacts in the contact list.</innerText>
+    </item>
+  </window>
+  <window name="conference-accesslevel">
+    <item id="txt-name">
+      <innerText>Name:</innerText>
+    </item>
+    <item id="txt-room">
+      <innerText>Room:</innerText>
+    </item>
+
+	<item id="txt-role">
+      <innerText>Role</innerText>
+    </item>
+	<item id="txt-visitor">
+      <innerText>Visitor</innerText>
+    </item>
+    <item id="txt-visitor-desc">
+      <innerText>Can read messages</innerText>
+    </item>
+	<item id="txt-participant">
+      <innerText>Participant</innerText>
+    </item>
+    <item id="txt-participant-desc">
+      <innerText>Can also send messages</innerText>
+    </item>
+	<item id="txt-moderator">
+      <innerText>Moderator</innerText>
+    </item>
+    <item id="txt-moderator-desc">
+      <innerText>Can also kick participants and visitors</innerText>
+    </item>
+
+	<item id="txt-affiliation">
+      <innerText>Affiliation</innerText>
+    </item>
+	<item id="txt-none">
+      <innerText>None/Member</innerText>
+    </item>
+    <item id="txt-none-desc">
+      <innerText>Can enter the conference room</innerText>
+    </item>
+	<item id="txt-admin">
+      <innerText>Administrator</innerText>
+    </item>
+    <item id="txt-admin-desc">
+      <innerText>Can also add moderators and ban occupants</innerText>
+    </item>
+	<item id="txt-owner">
+      <innerText>Owner</innerText>
+    </item>
+    <item id="txt-owner-desc">
+      <innerText>Can also add administrators</innerText>
+    </item>
+
+    <item id="btn-default">
+      <value>Default</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn-ok">
+      <value>אשר</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-cancel">
+      <value>בטל</value>
+      <accessKey>c</accessKey>
+    </item>
+    <item id="btn-close">
+      <value>Close</value>
+      <accessKey>c</accessKey>
+    </item>
+  </window>
+  <window name="conference-container">
+    <item id="btn-emoticons">
+      <title>Show what you are thinking or doing</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Change the text color or type</title>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Choose a different background</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Emoticons</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Font</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Background</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>Change the size of the message input field</title>
+    </item>
+    <item id="mode-bar">
+      <title>Name, address, and subject of this conference room</title>
+    </item>
+    <item id="send-text">
+      <title>Type your message here</title>
+    </item>
+    <item id="btn-send">
+      <value>Send</value>
+      <title>Send the message</title>
+    </item>
+
+    <item id="occupants-panel">
+      <title>Occupants of this conference room</title>
+    </item>
+    <item id="txt-visitors">
+      <innerText>Visitors</innerText>
+      <title>Visitors can read messages but cannot send messages</title>
+    </item>
+    <item id="txt-moderators">
+      <innerText>Moderators</innerText>
+      <title>Moderators can send and read messages and can kick other occupants from the conference room</title>
+    </item>
+    <item id="txt-participants">
+      <innerText>Participants</innerText>
+      <title>Participants can send and read messages</title>
+    </item>
+
+    <code id="wnd_conference_password">Connect with a Password</code>
+    <code id="wnd_conference_change_name">Change my Name</code>
+    <code id="wnd_conference_subject">Conference Room Subject</code>
+    <code id="wnd_conference_configuration">Conference Room Configuration</code>
+    <code id="wnd_conference_accesslevel">${0} - Access Level</code>
+
+    <code id="tt-messages">Messages that have been sent and received</code>
+    <code id="tt-close">Leave this conference room</code>
+    <code id="default_subject">This conference room has no subject.</code>
+    <code id="windowtitle">${0} - Conference</code>
+    <code id="destroy">Destroying this conference room will remove all participants from the room and remove the room from the server.&#13;&#13;Are you sure you want to destroy this conference room?</code>
+    <code id="connecting">Connecting...</code>
+    <code id="connected">Connected</code>
+    <code id="disconnected">Disconnected</code>
+    <code id="confirm-kick">Are you sure you want to kick "${0}" from this conference room?</code>
+    <code id="kick-error">Cannot kick the occupant: ${0}</code>
+    <code id="kicked">${0} is kicked from the conference room</code>
+    <code id="kicked-by">${0} is kicked from the conference room by ${1}</code>
+    <code id="confirm-ban">Are you sure you want to ban "${0}" from this conference room?</code>
+    <code id="ban-error">Cannot ban the occupant: ${0}</code>
+    <code id="banned">${0} is banned from the conference room</code>
+    <code id="banned-by">${0} is banned from the conference room by ${1}</code>
+    <code id="leaving">${0} leaves the conference room</code>
+    <code id="joining">${0} joins the conference room</code>
+    <code id="renaming">${0} is now known as ${1}</code>
+
+    <code id="menu_file">&amp;File</code>
+    <code id="menu_file_close">&amp;Close Conference</code>
+
+    <code id="menu_axn_invite">&amp;Invite Contacts</code>
+    <code id="menu_axn_change_name">Change my &amp;Name...</code>
+    <code id="menu_axn_password">Connect with a &amp;Password...</code>
+    <code id="menu_axn_subject">&amp;Change the Conference Room Subject</code>
+    <code id="menu_axn_configuration">&amp;Configure this Conference Room</code>
+    <code id="menu_axn_destroy">&amp;Destroy this Conference Room</code>
+
+    <code id="menu_bookmarks">&amp;Bookmarks</code>
+
+    <code id="menu_bmrk_add">&amp;Add to Bookmarks...</code>
+
+    <code id="menu_occupant_private">Private &amp;Message</code>
+    <code id="menu_occupant_kick">&amp;Kick</code>
+    <code id="menu_occupant_ban">&amp;Ban</code>
+    <code id="menu_occupant_access">&amp;Access Level...</code>
+    <code id="menu_occupant_add">&amp;Add to Contact List</code>
+    <code id="menu_occupant_profile">&amp;Profile</code>
+
+    <code id="unrecognized-error">Unrecognized Error</code>
+    <code id="error-service-unavailable">Service Unavailable</code>
+    <code id="error-not-allowed">Not Allowed</code>
+    <code id="error-conflict">Conflict: Nickname already in use</code>
+    <code id="error-registration-required">Registration required: Members only</code>
+    <code id="error-forbidden">Forbidden: Banned</code>
+    <code id="error-not-authorized">Not Authorized: Password required</code>
+    <code id="error-item-not-found">Item Not Found: Room is locked</code>
+  </window>
+  <window name="preferences">
+    <item id="txt_blocking">
+      <innerText>The blocking list contains addresses of people you do not want to receive messages from.</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>Display messages from people not in my contact list</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>Blocking List</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>Lift block</value>
+    </item>
+    <item id="block_btn_view">
+      <value>View profile</value>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Connection Settings</innerText>
+    </item>
+    <item id="txt_connection_desc">
+      <innerText>Change how to connect to the instant messaging server.</innerText>
+    </item>
+    <item id="btn_connection_settings">
+      <value>הגדרות חיבור</value>
+    </item>
+    <item id="txt_portmap">
+      <innerText>Filetransfer portmap (NAT, firewall)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>Host:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>Store all messages in the history archive</innerText>
+    </item>
+    <item id="txt_startup">
+      <innerText>Launch automatically at startup</innerText>
+    </item>
+    <item id="txt_updates">
+      <innerText>Automatically check for software updates</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>When someone requests my authorization</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>Ask me</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>Accept all requests</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>Accept users that are in my contact list, ask others</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>Deny all requests</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>Play a sound when a message arrives</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>Play a sound when someone returns to online status</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>Play a sound when someone goes offline</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>Browse</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>Browse</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>Browse</value>
+    </item>
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="btn_cancel">
+      <value>בטל</value>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>Blocking</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>Connection</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>Privacy</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>Sound</innerText>
+    </item>
+    <code id="blocking">Blocking List</code>
+    <code id="connection">Connection Settings</code>
+    <code id="privacy">Privacy</code>
+    <code id="sound">Notification Sounds</code>
+    <code id="reconnect">You must reconnect to apply the changes.&#13;&#13;Do you want to reconnect now?</code>
+    <code id="shortcut">Send and receive instant messages</code>
+    <code id="choose_sound">Select a notification sound</code>
+    <code id="file_audio">Audio files</code>
+    <code id="file_any">Any file</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>חפש או הוסף חבר</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>הזנת נתונים ציבורים של אותו אדם או באמצעות הזנת שם המשתמש. ניתן לחפש מישהו באמצעות</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>כיצד ברצונך להוסיף חבר:</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>אני מעוניין ל&lt;U&gt;ח&lt;/U&gt;פש מישהו</innerHTML>
+      <accessKey>ח</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>שירות:</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>ש</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML>&lt;U&gt;א&lt;/U&gt;ני יודע את הכתובת של החבר</innerHTML>
+      <accessKey>א</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>רשת:</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>שם חב&lt;U&gt;ר&lt;/U&gt;:</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>ר</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>לצורך התקשרות עם חבר מרשת אחרת הינך צריך להירשם לרשת החדשה באמצעות הגדרת התקשרות לאותה רשת</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>הגדר התקשרות</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>הבא &gt;</value>
+      <accessKey>ה</accessKey>
+    </item>
+    <item id="btn_p1_close">
+      <value>סגור</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>בתהליך</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>אימות שם משתמש</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; אחורה</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>הבא &gt;</value>
+    </item>
+    <item id="page1b_btn_close">
+      <value>סגור</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>בקשת טופס חיפוש</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>טופס חיפוש מכיל הוראות ושדות לחיפוש</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt;אחורה</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>הבא &gt;</value>
+    </item>
+    <item id="page1c_btn_close">
+      <value>סגור</value>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; אחורה</value>
+      <accessKey>א</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>חיפוש</value>
+      <accessKey>ש</accessKey>
+    </item>
+    <item id="page3_btn_close">
+      <value>סגור</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText>תוצאות חיפוש</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>ניתן לצפות בפרטים של החבר או להוסיפו לרשימת התפוצה</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; אחורה</value>
+      <accessKey>א</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>קדימה &gt;</value>
+    </item>
+    <item id="page4_btn_close">
+      <value>סגור</value>
+    </item>
+
+    <item id="txt_p5_title">
+      <innerText>הוספת חבר</innerText>
+    </item>
+    <item id="txt_p5_tagline">
+      <innerText>רשימת החברים נשמרה בשרת</innerText>
+    </item>
+    <item id="txt_p5_desc">
+      <innerText>בקשת אישור נשלחה ל:</innerText>
+    </item>
+    <item id="txt_p5_user">
+      <innerText>שם שמתמש:</innerText>
+    </item>
+    <item id="txt_p5_network">
+      <innerText>רשת:</innerText>
+    </item>
+    <item id="page5_btn_back">
+      <value>&lt; אחורה</value>
+    </item>
+    <item id="page5_btn_next">
+      <value>הבא &gt;</value>
+    </item>
+    <item id="page5_btn_close">
+      <value>סגור</value>
+    </item>
+
+    <item id="txt_p6_title">
+      <innerText>משלים את החיפוש או מוסיף חבר באמצעות האשף</innerText>
+    </item>
+    <item id="txt_p6_tagline">
+      <innerText>השלמת בהצלחה את החיפוש או הוספת החבר</innerText>
+    </item>
+    <item id="txt_p6_desc">
+      <innerText>החבר הזה התווסף בהצלחה לרשימת החברים:</innerText>
+    </item>
+    <item id="txt_p6_user">
+      <innerText>שם משתמש:</innerText>
+    </item>
+    <item id="txt_p6_network">
+      <innerText>רשת:</innerText>
+    </item>
+    <item id="txt_p6_again">
+      <innerHTML>בכדי להתחל את האשף מחדש, לחץ &lt;B&gt;הוסף חבר נוסף&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_again">
+      <value>הוסף חבר חדש</value>
+    </item>
+    <item id="txt_p6_finish">
+      <innerHTML>לסגירת האשף, לחץ &lt;B&gt;סיום&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_back">
+      <value>&lt; אחורה</value>
+    </item>
+    <item id="page6_btn_finish">
+      <value>סיום</value>
+    </item>
+    <item id="page6_btn_close">
+      <value>סגור</value>
+    </item>
+
+	<code id="correct">Enter a correct username.&#13;&#13;Example: someone123@${0}</code>
+    <code id="example_address">Example: someone123@${0}</code>
+    <code id="contacting_adding">&lt;B&gt;Contacting Server&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;This can take up to one minute.&lt;BR&gt;Please be patient.&lt;BR&gt;</code>
+    <code id="contacting_transport">&lt;B&gt;Contacting Transport&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;This can take up to one minute.&lt;BR&gt;Please be patient.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Contacting Search Service&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;This can take up to one minute.&lt;BR&gt;Please be patient.&lt;BR&gt;</code>
+    <code id="error_adding">&lt;B&gt;Server Error:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;The user cannot be added to your contact list.&lt;BR&gt;Contact the administrator for more information.</code>
+    <code id="error_transport">&lt;B&gt;Server Error:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;The user cannot be added to your contact list.&lt;BR&gt;Make sure you have entered the correct username.</code>
+    <code id="error_search">&lt;B&gt;Server Error:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;The search form cannot be downloaded.&lt;BR&gt;Try again later or select a different service.</code>
+    <code id="error_invalid">Invalid data received.</code>
+    <code id="search_title">User Search</code>
+    <code id="search_tagline">Fill in a field to search for any matching users.</code>
+    <code id="firstname">First name:</code>
+    <code id="lastname">Last name:</code>
+    <code id="nick">כינוי:</code>
+    <code id="email">Email כתובת:</code>
+    <code id="searching">Searching...</code>
+    <code id="add">Add to contact list</code>
+    <code id="view">View profile</code>
+    <code id="foundone">1 result</code>
+    <code id="foundmany">${0} results</code>
+  </window>
+  <window name="connection-settings">
+    <code id="logout">עליך להתחבר מחדש בכדי שההגדרות יכנסו לתוקף.&#13;&#13;האם ברצונך להתנתק עכשיו?</code>
+    <code id="automatic">אוטומטי</code>
+    <item id="txt_connection">
+      <innerText>חיבור לשרת</innerText>
+    </item>
+    <item id="lbl_server_address">
+      <innerHTML>&lt;U&gt;כ&lt;/U&gt;תובת:</innerHTML>
+      <accessKey>כ</accessKey>
+    </item>
+    <item id="lbl_server_port">
+      <innerHTML>&lt;U&gt;פ&lt;/U&gt;ורט:</innerHTML>
+      <accessKey>פ</accessKey>
+    </item>
+    <item id="txt_encryption">
+      <innerText>תקשרות מאובטחת</innerText>
+    </item>
+    <item id="lbl_encryption_optional">
+      <innerHTML>&lt;U&gt;ה&lt;/U&gt;שתמש בהצפנת TLS אם זמינה באתר</innerHTML>
+      <accessKey>ה</accessKey>
+    </item>
+    <item id="lbl_encryption_tls">
+      <innerHTML>נדרשת הצפנת &lt;U&gt;T&lt;/U&gt;LS</innerHTML>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="lbl_encryption_ssl">
+      <innerHTML>נדרשת הצפנת &lt;U&gt;S&lt;/U&gt;SL</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="lbl_encryption_none">
+      <innerHTML>&lt;U&gt;ל&lt;/U&gt;לא הצפנה</innerHTML>
+      <accessKey>ל</accessKey>
+    </item>
+    <item id="txt_authentication">
+      <innerText>אימות התחברות</innerText>
+    </item>
+    <item id="lbl_authentication_normal">
+      <innerHTML>כ&lt;U&gt;ת&lt;/U&gt;ובת וסיסמא</innerHTML>
+      <accessKey>כ</accessKey>
+    </item>
+    <item id="lbl_authentication_ntlm">
+      <innerHTML>הזדהות &lt;U&gt;W&lt;/U&gt;indows מובנית</innerHTML>
+      <accessKey>w</accessKey>
+    </item>
+    <item id="btn_ok">
+      <value>אשר</value>
+    </item>
+    <item id="btn_cancel">
+      <value>בטל</value>
+    </item>
+  </window>
+  <window name="sign_up">
+    <code id="close_confirm">הכתובת אינה מושלמת.&#13;&#13;האם הינך בטוח שברצונך לסגור את השרת?</code>
+    <code id="incomplete">השלם את כל השדות...</code>
+    <code id="pass_match">סיסמאות לא תואמות.&#13;&#13;הכנס את הסיסמא החדשה שבתי השדות.</code>
+
+    <code id="contacting">יוצר קשר עם השרת...</code>
+    <code id="registered">החשבון שלך נרשם. התהליך לקוח מספר דקות.&lt;BR&gt;בבקשה סבלנות.&lt;BR&gt;</code>
+    <code id="requesting">בקשת אינפורמציה...</code>
+    <code id="sending">שליחת רישום...</code>
+    <code id="failure">התחברות נכשלה</code>
+    <code id="completed">רישום הושלם</code>
+
+    <code id="address">כתובת:</code>
+    <code id="nickname">שם:</code>
+    <code id="userdir">תקיית חבר:</code>
+    <item id="txt_page_welcome_title">
+      <innerText>אשף הרישום</innerText>
+    </item>
+    <item id="txt_page_welcome_intro">
+      <innerText>האשף מאפשר לך רישום  לכתובת רשת.</innerText>
+    </item>
+    <item id="txt_page_welcome_next">
+      <innerHTML>להמשך, לחץ &lt;B&gt;הבא&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_welcome_next">
+      <value>הבא &gt;</value>
+      <accessKey>ה</accessKey>
+    </item>
+    <item id="btn_page_welcome_cancel">
+      <value>בטל</value>
+      <accessKey>ב</accessKey>
+    </item>
+
+    <item id="txt_page_nickname_title">
+      <innerText>מידע אישי</innerText>
+    </item>
+    <item id="txt_page_nickname_tagline">
+      <innerText>מידע זה יאפשר לחברים אחרים למצוא אותך ברשת.</innerText>
+    </item>
+    <item id="txt_page_nickname_desc">
+      <innerText>הכנס את שימך בכדי לאפשר לחבריך לאתר אותך בקלות.</innerText>
+    </item>
+    <item id="txt_page_nickname_name">
+      <innerHTML>&lt;U&gt;ש&lt;/U&gt;ם:</innerHTML>
+    </item>
+    <item id="data_name">
+      <accessKey>ש</accessKey>
+    </item>
+    <item id="btn_page_nickname_back">
+      <value>&lt; חזור</value>
+      <accessKey>ח</accessKey>
+    </item>
+    <item id="btn_page_nickname_next">
+      <value>הבא &gt;</value>
+      <accessKey>ה</accessKey>
+    </item>
+    <item id="btn_page_nickname_cancel">
+      <value>בטל</value>
+      <accessKey>ב</accessKey>
+    </item>
+
+    <item id="txt_page_account_title">
+      <innerText>מידע על כתובת</innerText>
+    </item>
+    <item id="txt_page_account_tagline">
+      <innerText>הינך יכול להשתמש בכתובות אתר מקומית בארגונך או בחיצונית באינטרנט.</innerText>
+    </item>
+    <item id="txt_page_account_server">
+      <innerHTML>&lt;U&gt;ש&lt;/U&gt;רת:</innerHTML>
+    </item>
+    <item id="txt_page_account_username">
+      <innerHTML>&lt;U&gt;ש&lt;/U&gt;ם חבר:</innerHTML>
+    </item>
+    <item id="txt_page_account_password">
+      <innerHTML>&lt;U&gt;ס&lt;/U&gt;יסמא:</innerHTML>
+    </item>
+    <item id="txt_page_account_confirm">
+      <innerHTML>&lt;U&gt;א&lt;/U&gt;שר סיסמא:</innerHTML>
+    </item>
+    <item id="txt_page_account_email">
+      <innerHTML>&lt;U&gt;כ&lt;/U&gt;תובת אימייל:</innerHTML>
+    </item>
+    <item id="data_server">
+      <accessKey>s</accessKey>
+    </item>
+    <item id="data_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="data_password">
+      <accessKey>p</accessKey>
+    </item>
+    <item id="data_password_confirm">
+      <accessKey>c</accessKey>
+    </item>
+    <item id="data_email">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_page_account_remember">
+      <innerHTML>&lt;U&gt;ז&lt;/U&gt;כור סיסמא</innerHTML>
+      <accessKey>ז</accessKey>
+    </item>
+    <item id="txt_page_account_preview">
+      <innerText>כתובת שרת ה- IM:</innerText>
+    </item>
+    <item id="btn_page_account_settings">
+      <value>הגדרות חיבור</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_account_back">
+      <value>&lt; חזור</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_account_next">
+      <value>הבא &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_account_cancel">
+      <value>בטל</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_creating_title">
+      <innerText>Address Registration</innerText>
+    </item>
+    <item id="txt_page_creating_autherr">
+      <innerHTML>The address cannot be registered. The username is not available.&lt;BR&gt;&lt;BR&gt;Press &lt;B&gt;Back&lt;/B&gt;, type a different username and try again.</innerHTML>
+    </item>
+    <item id="txt_page_creating_forbidden">
+      <innerHTML>The address cannot be registered. This server does not allow creation of new addresses.&lt;BR&gt;&lt;BR&gt;Press &lt;B&gt;Back&lt;/B&gt;, choose a different server and try again.</innerHTML>
+    </item>
+    <item id="txt_page_creating_commerr">
+      <innerHTML>Cannot contact the server. Make sure the server address is correct.&lt;BR&gt;Check your network connection and try again. If you are behind a firewall,&lt;BR&gt;configure the connection settings.</innerHTML>
+    </item>
+    <item id="btn_page_creating_retry">
+      <value>נסה שנית</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_creating_settings">
+      <value>הגדרות חיבור</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_creating_back">
+      <value>&lt; חזור</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_creating_next">
+      <value>הבא &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_creating_cancel">
+      <value>בטל</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_finished_title">
+      <innerText>Completing the Add Profile Wizard</innerText>
+    </item>
+    <item id="txt_page_finished_intro">
+      <innerText>You have successfully completed the Add Profile Wizard.</innerText>
+    </item>
+    <item id="txt_page_finished_details">
+      <innerText>Profile details:</innerText>
+    </item>
+    <item id="txt_page_finished_finish">
+      <innerHTML>To close this wizard, press &lt;B&gt;Finish&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_finished_back">
+      <value>&lt; חזור</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_finished_finish">
+      <value>סיום</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn_page_finished_cancel">
+      <value>בטל</value>
+      <accessKey>c</accessKey>
+    </item>
+  </window>
+</translation>
