@@ -1073,7 +1073,7 @@ function StopTyping ()
 	if ( Tracker.ChatState )
 	{
 		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
-		dom.loadXML( '<message type="chat"><active xmlns="http://jabber.org/protocol/chatstates"/></message>' );
+		dom.loadXML( '<message type="chat"><paused xmlns="http://jabber.org/protocol/chatstates"/></message>' );
 		dom.documentElement.setAttribute( 'to', Tracker.Address.LongAddress() );
 		external.wnd.params[0].warn( 'SENT: ' + dom.xml );
 		external.XMPP.SendXML( dom );
