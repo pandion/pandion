@@ -102,7 +102,8 @@ function dial_login_loadAccounts ( ValidAccount )
 function dial_login_changeAddressList ()
 {
 	document.getElementById("signin-address").value = document.getElementById("signin-recently-used").value;
-	document.getElementById("signin-password").focus();
+	if (document.getElementById("signin-password").style.display !== "none")
+		document.getElementById("signin-password").focus();
 	document.getElementById("signin-password").value = document.getElementById("signin-recently-used").value == external.globals( 'last_address' ) ? pass_code( false, external.globals( 'last_password' ) ) : "";
 }
 
