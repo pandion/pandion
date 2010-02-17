@@ -23,20 +23,41 @@
 #pragma once
 #include "DispInterfaceImpl.h"
 
+class GSSAPIException
+{
+private:
+	std::wstring m_Caller;
+	std::wstring m_Callee;
+	std::wstring m_DebugInfo;
+	unsigned m_ErrorCode;
+public:
+	GSSAPIException(
+		std::wstring caller,
+		std::wstring callee,
+		std::wstring debuginfo,
+		unsigned errorCode);
+	std::wstring ToString();
+	unsigned GetErrorCode();
+};
+
 class GSSAPI :
 	public DispInterfaceImpl<IGSSAPI>
 {
 private:
-	DWORD			m_dwMaxTokenSize;
+	unsigned		m_MaxTokenSize;
 
-	BOOL			m_fNewConversation;
-	BOOL			m_fInitComplete;
+	bool			m_NewConversation;
+	bool			m_InitComplete;
 
-	CredHandle		m_hCred;
-	BOOL			m_fHaveCredHandle;
+	CredHandle		m_CredHandle;
+	bool			m_CredHandleValid;
 
-	SecHandle		m_hCtxt;
-	BOOL			m_fHaveCtxtHandle;
+	SecHandle		m_CtxtHandle;
+	bool			m_CtxtHandleValid;
+
+	std::wstring	m_ServerName;
+	std::wstring    m_ServicePrincipalName;
+	std::wstring    m_LastErrorMessage;
 public:
 	GSSAPI();
 	~GSSAPI();
@@ -44,14 +65,15 @@ public:
 	STDMETHOD(Reset)();
 	STDMETHOD(GenerateResponse)(BSTR ServerName, BSTR Challenge,
 		BSTR *Response);
-	STDMETHOD(ErrorMessage)(UINT ErrorCode, BSTR* ErrorMessage);
+	STDMETHOD(GetLastErrorMessage)(BSTR* ErrorMessage);
 
 private:
+	void SetLastErrorMessage(std::wstring ErrorMessage);
+	std::wstring GenerateDebugInfo();
+
+	void AcquireCredentials();
 	std::vector<BYTE> Initialize(std::vector<BYTE> decodedChalenge,
 		BSTR ServerName);
 	std::vector<BYTE> PostInitialize(std::vector<BYTE> decodedChalenge);
 	std::wstring GenerateServicePrincipalName(std::wstring ServerName);
-	HRESULT AcquireCredentials();
-
-	void Error(LPWSTR Where, LPWSTR WhenCalling, DWORD ErrorCode);
 };

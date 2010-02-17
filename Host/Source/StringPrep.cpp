@@ -31,18 +31,16 @@ StringPrepException::StringPrepException(std::wstring text)
 	this->text = text;
 }
 
-std::wstring StringPrep::PrepareString(const std::wstring UTF16String)
+UTF16String StringPrep::PrepareString(const UTF16String str)
 {
-/*	std::vector<unsigned> UTF32String = UTF16ToUTF32(UTF16String);
-	return CheckBiDi(Prohibit(Normalize(Map(UTF32String))));
-*/
-	return UTF16String;
+	return UTF::utf32to16(
+		CheckBiDi(Prohibit(Normalize(Map(UTF::utf16to32(str))))));
 }
 
-std::map<unsigned, std::vector<unsigned>> StringPrep::GetStringPrepMap()
+std::map<unsigned, UTF32String> StringPrep::GetStringPrepMap()
 {
-	typedef std::pair<unsigned, std::vector<unsigned>> pair;
-	std::map<unsigned, std::vector<unsigned>> m;
+	typedef std::pair<unsigned, UTF32String> pair;
+	std::map<unsigned, UTF32String> m;
 	unsigned i = 0;
 
 	while(i < sizeof(RFC3454AppendixB))
@@ -50,8 +48,8 @@ std::map<unsigned, std::vector<unsigned>> StringPrep::GetStringPrepMap()
 		unsigned key = RFC3454AppendixB[i];
 		i += 2;
 
-		std::vector<unsigned> value;
-		for(;RFC3454AppendixB[i] != 0; i++)
+		UTF32String value;
+		for(;RFC3454AppendixB[i] != 0 && i < sizeof(RFC3454AppendixB); i++)
 			value.push_back(RFC3454AppendixB[i]);
 
 		m.insert(pair(key, value));
@@ -59,38 +57,37 @@ std::map<unsigned, std::vector<unsigned>> StringPrep::GetStringPrepMap()
 	return m;
 }
 
-std::vector<unsigned> StringPrep::Map(const std::vector<unsigned> str)
+UTF32String StringPrep::Map(const UTF32String str)
 {
-	std::vector<unsigned> mappedString;
+	UTF32String mappedString;
 
-	std::map<unsigned, std::vector<unsigned>> stringPrepMap =
-		GetStringPrepMap();
+	std::map<unsigned, UTF32String> stringPrepMap = GetStringPrepMap();
 
 	for(unsigned i = 0; i != str.size(); i++)
 	{
 		if(stringPrepMap.find(str[i]) != stringPrepMap.end())
 		{
-//			mappedString += stringPrepMap[str[i]];
+			mappedString += stringPrepMap[str[i]];
 		}
 		else
 		{
-//			mappedString += str[i];
+			mappedString += str[i];
 		}
 	}
 	return mappedString;
 }
 
-std::vector<unsigned> StringPrep::Normalize(const std::vector<unsigned> str)
+UTF32String StringPrep::Normalize(const UTF32String str)
 {
-	return std::vector<unsigned>();
+	return UTF32String();
 }
 
-std::vector<unsigned> StringPrep::Prohibit(const std::vector<unsigned> str)
+UTF32String StringPrep::Prohibit(const UTF32String str)
 {
-	return std::vector<unsigned>();
+	return UTF32String();
 }
 
-std::vector<unsigned> StringPrep::CheckBiDi(const std::vector<unsigned> str)
+UTF32String StringPrep::CheckBiDi(const UTF32String str)
 {
-	return std::vector<unsigned>();
+	return UTF32String();
 }

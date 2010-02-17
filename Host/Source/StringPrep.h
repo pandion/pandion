@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include "UTF.h"
+
 class StringPrepException
 {
 	std::wstring text;
@@ -37,20 +39,18 @@ public:
 	StringPrep();
 	~StringPrep();
 
-	static std::wstring PrepareString(
-		const std::wstring str) throw(StringPrepException);
+	static UTF16String PrepareString(
+		const UTF16String str) throw(StringPrepException);
 
 private:
-	static std::vector<unsigned> StringPrep::UTF16toUTF32(
-		const std::wstring UTF16String);
-	static std::map<unsigned,std::vector<unsigned>> GetStringPrepMap();
+	static std::map<unsigned,UTF32String> GetStringPrepMap();
 
-	static std::vector<unsigned> Map(const std::vector<unsigned> str)
+	static UTF32String Map(const UTF32String str)
 		throw(StringPrepException);
-	static std::vector<unsigned> Normalize(const std::vector<unsigned> str)
+	static UTF32String Normalize(const UTF32String str)
 		throw(StringPrepException);
-	static std::vector<unsigned> Prohibit(const std::vector<unsigned> str)
+	static UTF32String Prohibit(const UTF32String str)
 		throw(StringPrepException);
-	static std::vector<unsigned> CheckBiDi(const std::vector<unsigned> str)
+	static UTF32String CheckBiDi(const UTF32String str)
 		throw(StringPrepException);
 };

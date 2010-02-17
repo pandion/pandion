@@ -28,14 +28,46 @@
 #include <dsgetdc.h>
 #include <lm.h>
 
-GSSAPI::GSSAPI() :
-	m_fNewConversation(TRUE), m_fHaveCredHandle(FALSE), m_fHaveCtxtHandle(FALSE)
+GSSAPIException::GSSAPIException(
+	std::wstring caller,
+	std::wstring callee,
+	std::wstring debuginfo,
+	unsigned errorCode)
+{
+	m_Caller = caller;
+	m_Callee = callee;
+	m_DebugInfo = debuginfo;
+	m_ErrorCode = errorCode;
+}
+
+std::wstring GSSAPIException::ToString()
+{
+	LPWSTR msg;
+	::FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+		FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_MAX_WIDTH_MASK,
+		NULL, m_ErrorCode, 0, (LPTSTR)&msg, 0, NULL);
+
+	std::wostringstream dbgMsg;
+	dbgMsg << L"GSSAPI error in " << m_Caller <<
+		L" when calling " << m_Callee <<
+		std::hex <<	std::setw(8) <<	std::setfill(L'0') << 
+		L": (ERROR 0x" << m_ErrorCode << L") " <<
+		msg << std::endl;
+	::LocalFree(msg);
+	return dbgMsg.str() + m_DebugInfo;
+}
+unsigned GSSAPIException::GetErrorCode()
+{
+	return m_ErrorCode;
+}
+
+GSSAPI::GSSAPI()
 {
 	m_CannotSelfDelete = true;
-	m_fNewConversation = TRUE;
-	m_fHaveCredHandle  = FALSE;
-	m_fHaveCtxtHandle  = FALSE;
-	m_fInitComplete    = FALSE;
+	m_NewConversation  = true;
+	m_CredHandleValid  = false;
+	m_CtxtHandleValid  = false;
+	m_InitComplete     = false;
 
 	Reset();
 }
@@ -50,78 +82,126 @@ STDMETHODIMP GSSAPI::Reset()
 		::QuerySecurityPackageInfo(TEXT("Kerberos"), &SecurityPackage);
 	if (ss != SEC_E_OK)
 	{
-		Error(L"Reset()", L"QuerySecurityPackageInfo()", ss);
-		return HRESULT_FROM_WIN32(ss);
+		GSSAPIException e = GSSAPIException(L"Reset()",
+			L"QuerySecurityPackageInfo()", GenerateDebugInfo(), ss);
+		SetLastErrorMessage(e.ToString());
+		return HRESULT_FROM_WIN32(e.GetErrorCode());
 	}
-	m_dwMaxTokenSize = SecurityPackage->cbMaxToken;
+	m_MaxTokenSize = SecurityPackage->cbMaxToken;
 	::FreeContextBuffer(SecurityPackage);
 
 	/* Clean up existing handles */
-	if(m_fHaveCredHandle)
+	if(m_CredHandleValid)
 	{
-		::FreeCredentialsHandle(&m_hCred);
-		m_hCred.dwLower = m_hCred.dwUpper = 0;
-		m_fHaveCredHandle  = FALSE;
+		::FreeCredentialsHandle(&m_CredHandle);
+		m_CredHandle.dwLower = m_CredHandle.dwUpper = 0;
+		m_CredHandleValid = false;
 	}
-	if(m_fHaveCtxtHandle)
+	if(m_CtxtHandleValid)
 	{
-		::DeleteSecurityContext(&m_hCtxt);
-		m_hCtxt.dwLower = m_hCtxt.dwUpper = 0;
-		m_fHaveCtxtHandle  = FALSE;
+		::DeleteSecurityContext(&m_CtxtHandle);
+		m_CtxtHandle.dwLower = m_CtxtHandle.dwUpper = 0;
+		m_CtxtHandleValid = false;;
 	}
-	m_fNewConversation = TRUE;
-	m_fInitComplete = FALSE;
+	m_NewConversation = true;
+	m_InitComplete = false;
+	m_ServicePrincipalName.clear();
+	m_ServerName.clear();
+	m_LastErrorMessage.clear();
 	return S_OK;
 }
-STDMETHODIMP GSSAPI::GenerateResponse(BSTR ServerName, BSTR Challenge,
-									  BSTR *Response)
+STDMETHODIMP GSSAPI::GenerateResponse(
+	BSTR ServerName,
+	BSTR Challenge,
+	BSTR *Response)
 {
-	/* Acquire a credentials handle if this is the initial response */
-	if(m_fNewConversation == TRUE)
+	try
 	{
-		HRESULT hr = AcquireCredentials();
-		if(FAILED(hr))
+		m_ServerName = ServerName;
+
+		/* Acquire a credentials handle if this is the initial response */
+		if(m_NewConversation == true)
 		{
-			return hr;
+			AcquireCredentials();
 		}
+
+		/* Decode the challenge from BASE64 */
+		std::vector<BYTE> DecodedChallenge = 
+			Base64::Decode(UTF::utf16to8(Challenge));
+
+		/* Generate the appropriate response */
+		std::vector<BYTE> DecodedResponse;
+		if(m_InitComplete == false)
+		{
+			DecodedResponse = Initialize(DecodedChallenge, ServerName);
+		}
+		else
+		{
+			DecodedResponse = PostInitialize(DecodedChallenge);
+		}
+
+		/* Encode the response in BASE64 */
+		*Response = ::SysAllocString(Base64::Encode(
+			DecodedResponse.size() ? &DecodedResponse[0] : 0,
+			DecodedResponse.size(), false).c_str());
+
+		return S_OK;
 	}
-
-	/* Decode the challenge from BASE64 */
-	std::vector<BYTE> DecodedChallenge = 
-		Base64::Decode(UTF::utf16to8(Challenge));
-	std::vector<BYTE> DecodedResponse;
-
-	if(m_fInitComplete == FALSE)
+	catch(GSSAPIException e)
 	{
-		DecodedResponse = Initialize(DecodedChallenge, ServerName);
+		SetLastErrorMessage(e.ToString());
+		return HRESULT_FROM_WIN32(e.GetErrorCode());
+	}
+}
+
+STDMETHODIMP GSSAPI::GetLastErrorMessage(BSTR* ErrorMessage)
+{
+	*ErrorMessage = ::SysAllocString(m_LastErrorMessage.c_str());
+	return S_OK;
+}
+void GSSAPI::SetLastErrorMessage(std::wstring ErrorMessage)
+{
+	m_LastErrorMessage = ErrorMessage;
+}
+std::wstring GSSAPI::GenerateDebugInfo()
+{
+	std::wostringstream debugInfo;
+	debugInfo << std::endl << 
+		std::hex << std::setw(8) << std::setfill(L'0') << 
+		L"GSSAPI DEBUG INFORMATION" << std::endl <<
+		L"========================" << std::endl << std::endl <<
+		L"m_MaxTokenSize: " << m_MaxTokenSize << std::endl <<
+		L"m_CredHandleValid: " << m_CredHandleValid << std::endl <<
+		L"m_CredHandle.dwLower: " << m_CredHandle.dwLower << std::endl <<
+		L"m_CredHandle.dwUpper: " << m_CredHandle.dwUpper << std::endl <<
+		L"m_CtxtHandleValid: " << m_CtxtHandleValid << std::endl <<
+		L"m_CtxtHandle.dwLower: " << m_CtxtHandle.dwLower << std::endl <<
+		L"m_CtxtHandle.dwUpper: " << m_CtxtHandle.dwUpper << std::endl <<
+		L"m_NewConversation: " << m_NewConversation << std::endl <<
+		L"m_InitComplete: " << m_InitComplete << std::endl <<
+		L"m_ServerName: " << m_ServerName << std::endl <<
+		L"m_ServicePrincipalName: " << m_ServicePrincipalName << std::endl <<
+		std::endl;
+	return debugInfo.str();
+}
+void GSSAPI::AcquireCredentials()
+{
+	TimeStamp Expiry;
+	SECURITY_STATUS	ss = ::AcquireCredentialsHandle(NULL, TEXT("Kerberos"),
+		SECPKG_CRED_OUTBOUND, NULL, NULL, NULL, NULL, &m_CredHandle, &Expiry);
+	if(ss != SEC_E_OK)
+	{
+		throw GSSAPIException(L"GenerateResponse()",
+			L"AcquireCredentialsHandle()", GenerateDebugInfo(), ss);
 	}
 	else
 	{
-		DecodedResponse = PostInitialize(DecodedChallenge);
+		m_CredHandleValid = true;
 	}
-
-	/* Encode the response in BASE64 */
-	*Response = ::SysAllocString(Base64::Encode(
-		DecodedResponse.size() ? &DecodedResponse[0] : 0,
-		DecodedResponse.size(), false).c_str());
-
-	return S_OK;
 }
-
-STDMETHODIMP GSSAPI::ErrorMessage(UINT ErrorCode, BSTR* ErrorMessage)
-{
-	LPTSTR msg;
-	::FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | 
-		FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_MAX_WIDTH_MASK,
-		NULL, ErrorCode, 0, (LPTSTR)&msg, 0, NULL);
-
-	*ErrorMessage = ::SysAllocString(msg);
-
-	::LocalFree(msg);
-	return S_OK;
-}
-
-std::vector<BYTE> GSSAPI::Initialize(std::vector<BYTE> decodedChalenge, BSTR ServerName)
+std::vector<BYTE> GSSAPI::Initialize(
+	std::vector<BYTE> decodedChalenge,
+	BSTR ServerName)
 {
 	/* Prepare input buffer */
 	SecBuffer InSecBuff = {decodedChalenge.size(), SECBUFFER_TOKEN, 
@@ -129,8 +209,8 @@ std::vector<BYTE> GSSAPI::Initialize(std::vector<BYTE> decodedChalenge, BSTR Ser
 	SecBufferDesc InBuffDesc = {SECBUFFER_VERSION, 1, &InSecBuff};
 
 	/* Prepare output buffer */
-	std::vector<BYTE> OutputBuffer(m_dwMaxTokenSize);
-	SecBuffer OutSecBuff = {m_dwMaxTokenSize, SECBUFFER_TOKEN, &OutputBuffer[0]};
+	std::vector<BYTE> OutputBuffer(m_MaxTokenSize);
+	SecBuffer OutSecBuff = {m_MaxTokenSize, SECBUFFER_TOKEN, &OutputBuffer[0]};
 	SecBufferDesc OutBuffDesc = {SECBUFFER_VERSION, 1, &OutSecBuff};
 
 	/* Process the input, generate new output */
@@ -138,39 +218,47 @@ std::vector<BYTE> GSSAPI::Initialize(std::vector<BYTE> decodedChalenge, BSTR Ser
 	TimeStamp		Expiry;
 	std::wstring    Spn = GenerateServicePrincipalName(ServerName);
 
-	SECURITY_STATUS	ss = ::InitializeSecurityContext(&m_hCred,
-		m_fNewConversation ? NULL : &m_hCtxt, (SEC_WCHAR*) Spn.c_str(),
+	SECURITY_STATUS	ss = ::InitializeSecurityContext(&m_CredHandle,
+		m_NewConversation ? NULL : &m_CtxtHandle, (SEC_WCHAR*) Spn.c_str(),
 		ISC_REQ_STREAM | ISC_REQ_MUTUAL_AUTH, 0, SECURITY_NATIVE_DREP, 
-		m_fNewConversation ? NULL : &InBuffDesc, 0, &m_hCtxt, &OutBuffDesc,
-		&ContextAttributes, &Expiry);
-	if(ss != SEC_E_OK && ss != SEC_I_CONTINUE_NEEDED &&
-		ss != SEC_I_COMPLETE_NEEDED && ss != SEC_I_COMPLETE_AND_CONTINUE)
-	{
-		Error(L"GenerateResponse()", L"InitializeSecurityContext()", ss);
-		return std::vector<BYTE>();
-	}
-	m_fHaveCtxtHandle = TRUE;
+		m_NewConversation ? NULL : &InBuffDesc, 0, &m_CtxtHandle,
+		&OutBuffDesc, &ContextAttributes, &Expiry);
 
-	/* Flag the security context as initialized when init completes */
-	if(SEC_E_OK == ss)
-	{
-		m_fInitComplete = true;
-	}
+	m_NewConversation = false;
 
-	/* Complete the token when needed */
-	else if((SEC_I_COMPLETE_NEEDED == ss) || (SEC_I_COMPLETE_AND_CONTINUE == ss))  
+	if( ss != SEC_E_OK &&
+		ss != SEC_I_CONTINUE_NEEDED &&
+		ss != SEC_I_COMPLETE_NEEDED &&
+		ss != SEC_I_COMPLETE_AND_CONTINUE)
 	{
-		ss = ::CompleteAuthToken(&m_hCtxt, &OutBuffDesc);
+		throw GSSAPIException(L"GenerateResponse()",
+			L"InitializeSecurityContext()", GenerateDebugInfo(), ss);
+	}
+	else if(SEC_E_OK == ss)
+	{
+		m_CtxtHandleValid = true;
+		m_InitComplete = true;
+	}
+	else if((SEC_I_COMPLETE_NEEDED == ss) ||
+		(SEC_I_COMPLETE_AND_CONTINUE == ss))  
+	{
+		/* Complete the token when needed */
+		m_CtxtHandleValid = true;
+		ss = ::CompleteAuthToken(&m_CtxtHandle, &OutBuffDesc);
 		if(ss != SEC_E_OK)
 		{
-			Error(L"GenerateResponse()", L"CompleteAuthToken()", ss);
-			return std::vector<BYTE>();
+			throw GSSAPIException(L"GenerateResponse()",
+				L"CompleteAuthToken()", GenerateDebugInfo(), ss);
 		}
 	}
-	m_fNewConversation = FALSE;
+	else
+	{
+		m_CtxtHandleValid = true;
+	}
 
 	return std::vector<BYTE>((BYTE*) OutBuffDesc.pBuffers->pvBuffer,
-		(BYTE*) OutBuffDesc.pBuffers->pvBuffer + OutBuffDesc.pBuffers->cbBuffer);
+		(BYTE*) OutBuffDesc.pBuffers->pvBuffer +
+		OutBuffDesc.pBuffers->cbBuffer);
 }
 std::vector<BYTE> GSSAPI::PostInitialize(std::vector<BYTE> decodedChallenge)
 {
@@ -180,11 +268,12 @@ std::vector<BYTE> GSSAPI::PostInitialize(std::vector<BYTE> decodedChallenge)
 		{decodedChallenge.size(), SECBUFFER_STREAM, &decodedChallenge[0]}};
 	SecBufferDesc inBuffersDesc = {SECBUFFER_VERSION, 2, inBuffers};
 
-	SECURITY_STATUS ss = ::DecryptMessage(&m_hCtxt, &inBuffersDesc, 0, &qop);
+	SECURITY_STATUS ss = 
+		::DecryptMessage(&m_CtxtHandle, &inBuffersDesc, 0, &qop);
 	if(ss != SEC_E_OK)
 	{
-		Error(L"GenerateResponse()", L"DecryptMessage()", ss);
-		return std::vector<BYTE>();
+		throw GSSAPIException(L"GenerateResponse()",
+			L"DecryptMessage()", GenerateDebugInfo(), ss);
 	}
 
 	unsigned char LayerMask = inDataBuffer[0];
@@ -196,7 +285,7 @@ std::vector<BYTE> GSSAPI::PostInitialize(std::vector<BYTE> decodedChallenge)
 	MaxMessageSize += inDataBuffer[3];
 
 	SecPkgContext_Sizes sizes;
-	::QueryContextAttributes(&m_hCtxt, SECPKG_ATTR_SIZES, &sizes);
+	::QueryContextAttributes(&m_CtxtHandle, SECPKG_ATTR_SIZES, &sizes);
 
 	std::vector<BYTE> tokenBuffer(sizes.cbSecurityTrailer);
 	std::vector<BYTE> paddingBuffer(sizes.cbBlockSize);
@@ -205,22 +294,25 @@ std::vector<BYTE> GSSAPI::PostInitialize(std::vector<BYTE> decodedChallenge)
 	outDataBuffer[1] = 0;
 	outDataBuffer[2] = 16;
 	outDataBuffer[3] = 0;
-	SecBuffer outBuffers[3] = {{tokenBuffer.size(), SECBUFFER_TOKEN, &tokenBuffer[0]},
+	SecBuffer outBuffers[3] = {
+		{tokenBuffer.size(), SECBUFFER_TOKEN, &tokenBuffer[0]},
 		{4, SECBUFFER_DATA, outDataBuffer},
 		{paddingBuffer.size(), SECBUFFER_PADDING, &paddingBuffer[0]}};
 	SecBufferDesc outBuffersDesc = {SECBUFFER_VERSION, 3, outBuffers};
 
-	ss = ::EncryptMessage(&m_hCtxt, SECQOP_WRAP_NO_ENCRYPT, &outBuffersDesc, 0);
+	ss = ::EncryptMessage(
+		&m_CtxtHandle, SECQOP_WRAP_NO_ENCRYPT, &outBuffersDesc, 0);
 	if(ss != SEC_E_OK)
 	{
-		Error(L"GenerateResponse()", L"EncryptMessage()", ss);
-		return std::vector<BYTE>();
+		throw GSSAPIException(L"GenerateResponse()",
+			L"EncryptMessage()", GenerateDebugInfo(), ss);
 	}
 
 	std::vector<BYTE> response;
 	for(unsigned i = 0; i < outBuffersDesc.cBuffers; i++)
 	{
-		response.insert(response.end(), (char*) outBuffersDesc.pBuffers[i].pvBuffer,
+		response.insert(response.end(),
+			(char*) outBuffersDesc.pBuffers[i].pvBuffer,
 			(char*) outBuffersDesc.pBuffers[i].pvBuffer +
 			outBuffersDesc.pBuffers[i].cbBuffer);
 	}
@@ -232,7 +324,8 @@ std::wstring GSSAPI::GenerateServicePrincipalName(std::wstring ServerName)
 	std::wstring Spn(L"xmpp/");
 
 	PDOMAIN_CONTROLLER_INFO dci;
-	DWORD error = ::DsGetDcName(NULL, NULL, NULL, NULL, DS_RETURN_DNS_NAME, &dci);
+	DWORD error = ::DsGetDcName(
+		NULL, NULL, NULL, NULL, DS_RETURN_DNS_NAME, &dci);
 	if(ERROR_SUCCESS == error)
 	{
 		std::wstring DomainName(dci->DomainName);
@@ -244,39 +337,13 @@ std::wstring GSSAPI::GenerateServicePrincipalName(std::wstring ServerName)
 		Spn += L"@";
 		Spn += DomainName;
 
+		m_ServicePrincipalName = Spn;
+
 		return Spn;
 	}
 	else
 	{
-		return std::wstring();
+		throw GSSAPIException(L"GenerateServicePrincipalName()",
+			L"DsGetDcName()", GenerateDebugInfo(), error);
 	}
-}
-HRESULT GSSAPI::AcquireCredentials()
-{
-	TimeStamp Expiry;
-	SECURITY_STATUS	ss = ::AcquireCredentialsHandle(NULL, TEXT("Kerberos"),
-		SECPKG_CRED_BOTH, NULL, NULL, NULL, NULL, &m_hCred, &Expiry);
-	if(ss != SEC_E_OK)
-	{
-		Error(L"GenerateResponse()", L"AcquireCredentialsHandle()", ss);
-	}
-	else
-	{
-		m_fHaveCredHandle = TRUE;
-	}
-	return HRESULT_FROM_WIN32(ss);
-}
-void GSSAPI::Error(LPWSTR Where, LPWSTR WhenCalling, DWORD ErrorCode)
-{
-	BSTR BstrErrorMessage;
-	ErrorMessage(ErrorCode, &BstrErrorMessage);
-
-	std::wostringstream dbgMsg;
-	dbgMsg << L"GSSAPI error in " << Where <<
-		L" when calling " << WhenCalling <<
-		std::hex <<	std::setw(8) <<	std::setfill(L'0') << 
-		L": (ERROR 0x" << ErrorCode << L") " <<
-		BstrErrorMessage << std::endl;
-	OutputDebugString(dbgMsg.str().c_str());
-	::SysFreeString(BstrErrorMessage);
 }

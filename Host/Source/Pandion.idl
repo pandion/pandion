@@ -473,8 +473,7 @@ library PandionLib
 			[in] BSTR ServerName,
 			[in] BSTR Challenge,
 			[out, retval] BSTR* Response);
-		HRESULT ErrorMessage(
-			[in] UINT ErrorCode,
+		HRESULT GetLastErrorMessage(
 			[out, retval] BSTR* ErrorMessage);
 	}
 	[uuid(3AA4A7CE-829F-4b24-BB86-D96A23084F51)]
