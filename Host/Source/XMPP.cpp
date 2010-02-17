@@ -121,6 +121,15 @@ STDMETHODIMP XMPP::get_ConnectionIP(BSTR *strIP)
 }
 
 /*
+ * Returns the Fully Qualified Domain name of the XMPP server.
+ */
+STDMETHODIMP XMPP::get_ConnectionFQDN(BSTR *serverFQDN)
+{
+	*serverFQDN = ::SysAllocString(m_ConnectionManager.GetServerFQDN().c_str());
+	return S_OK;
+}
+
+/*
  * Sets the handler for the event generated when connection is set up.
  */
 STDMETHODIMP XMPP::put_ConnectedHandler(BSTR handler)

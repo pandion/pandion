@@ -412,6 +412,7 @@ library PandionLib
 		HRESULT SendText(
 			[in] BSTR strText);
 		[propget] HRESULT ConnectionIP([out, retval] BSTR* connIP);
+		[propget] HRESULT ConnectionFQDN([out, retval] BSTR* fqdn);
 		[propput] HRESULT ConnectedHandler([in] BSTR handler);
 		[propput] HRESULT DisconnectedHandler([in] BSTR handler);
 		[propput] HRESULT IQHandler([in] BSTR handler);

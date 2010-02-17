@@ -66,10 +66,10 @@ function XMPPOnStream ( ReceivedXML )
 				dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="GSSAPI"/>' );
 				try {
 					external.SASL.GSSAPI.Reset();
-					dom.documentElement.text = external.SASL.GSSAPI.GenerateResponse( external.XMPP.ServerFQDN, '' );
+					dom.documentElement.text = external.SASL.GSSAPI.GenerateResponse( external.XMPP.ConnectionFQDN, '' );
 				}
 				catch(e) {
-					warn( 'GSSAPI: ERROR: ' + e.number + ' ' + external.SASL.GSSAPI.GetLastErrorMessage() );
+					warn( 'GSSAPI: ERROR: ' + e.number + "\n" + external.SASL.GSSAPI.GetLastErrorMessage() );
 				}
 				warn( 'SENT: ' + dom.xml );
 				external.XMPP.SendXML( dom );

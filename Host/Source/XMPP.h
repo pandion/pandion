@@ -59,6 +59,8 @@ public:
 	STDMETHOD(SendText)(BSTR strText);
 
 	STDMETHOD(get_ConnectionIP)(BSTR *strIP);
+	STDMETHOD(get_ConnectionFQDN)(BSTR *fqdn);
+
 	STDMETHOD(put_ConnectedHandler)(BSTR handler);
 	STDMETHOD(put_DisconnectedHandler)(BSTR handler);
 	STDMETHOD(put_IQHandler)(BSTR handler);

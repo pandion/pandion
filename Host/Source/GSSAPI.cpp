@@ -101,7 +101,7 @@ STDMETHODIMP GSSAPI::Reset()
 	{
 		::DeleteSecurityContext(&m_CtxtHandle);
 		m_CtxtHandle.dwLower = m_CtxtHandle.dwUpper = 0;
-		m_CtxtHandleValid = false;;
+		m_CtxtHandleValid = false;
 	}
 	m_NewConversation = true;
 	m_InitComplete = false;
@@ -170,13 +170,13 @@ std::wstring GSSAPI::GenerateDebugInfo()
 		std::hex << std::setw(8) << std::setfill(L'0') << 
 		L"GSSAPI DEBUG INFORMATION" << std::endl <<
 		L"========================" << std::endl << std::endl <<
-		L"m_MaxTokenSize: " << m_MaxTokenSize << std::endl <<
+		L"m_MaxTokenSize: 0x" << m_MaxTokenSize << std::endl <<
 		L"m_CredHandleValid: " << m_CredHandleValid << std::endl <<
-		L"m_CredHandle.dwLower: " << m_CredHandle.dwLower << std::endl <<
-		L"m_CredHandle.dwUpper: " << m_CredHandle.dwUpper << std::endl <<
+		L"m_CredHandle.dwLower: 0x" << m_CredHandle.dwLower << std::endl <<
+		L"m_CredHandle.dwUpper: 0x" << m_CredHandle.dwUpper << std::endl <<
 		L"m_CtxtHandleValid: " << m_CtxtHandleValid << std::endl <<
-		L"m_CtxtHandle.dwLower: " << m_CtxtHandle.dwLower << std::endl <<
-		L"m_CtxtHandle.dwUpper: " << m_CtxtHandle.dwUpper << std::endl <<
+		L"m_CtxtHandle.dwLower: 0x" << m_CtxtHandle.dwLower << std::endl <<
+		L"m_CtxtHandle.dwUpper: 0x" << m_CtxtHandle.dwUpper << std::endl <<
 		L"m_NewConversation: " << m_NewConversation << std::endl <<
 		L"m_InitComplete: " << m_InitComplete << std::endl <<
 		L"m_ServerName: " << m_ServerName << std::endl <<
