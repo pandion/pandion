@@ -121,8 +121,9 @@ HWND MainWnd::GetMainWindow()
 }
 LPCWSTR MainWnd::GetMainWindowClassname()
 {
-	static WCHAR strClass[MAX_PATH+20];
-	GetModuleFileName(NULL, strClass, MAX_PATH);
-	StringCchCat(strClass, MAX_PATH+20, L" Main Window Class");
-	return strClass;
+	static WCHAR moduleName[MAX_PATH], classname[MAX_PATH + 20];
+	::GetModuleFileName(NULL, moduleName, MAX_PATH);
+	::PathCanonicalize(classname, moduleName);
+	::StringCchCat(classname, MAX_PATH + 20, L" Main Window Class");
+	return classname;
 }
