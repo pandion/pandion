@@ -1,0 +1,23 @@
+h1. Pandion
+
+??An easy to use instant messenger based on the open standard XMPP.??
+
+h2. Development Resources
+
+Visit the following web pages to learn more.
+
+* "Pandion website":http://pandion.im/
+* "Source code repository":http://github.com/pandion/pandion
+* "Issue tracker":http://code.google.com/p/pandion/issues/list
+* "Developer documentation":http://pandion.pbworks.com/Deployment-Overview
+
+h2. Source Code License
+
+Pandion instant messenger software is published under the "GNU General Public License version 3.0 or later":http://www.gnu.org/licenses/gpl-3.0.html.
+
+h2. Contact
+
+* "Discussion forum":http://getsatisfaction.com/pandion
+* "@pandion on Twitter":http://twitter.com/pandion
+* "Facebook.com/pandion.im":http://www.facebook.com/pandion.im
+* "Team members and contact addresses":http://pandion.im/about
