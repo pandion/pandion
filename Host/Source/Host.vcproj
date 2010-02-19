@@ -494,7 +494,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\StringPrepProfiles.h"
+					RelativePath=".\StringPrepTables.h"
 					>
 				</File>
 			</Filter>

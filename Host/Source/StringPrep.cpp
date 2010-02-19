@@ -24,7 +24,7 @@
 
 #include "stdafx.h"
 #include "StringPrep.h"
-#include "StringPrepProfiles.h"
+#include "StringPrepTables.h"
 
 StringPrepException::StringPrepException(std::wstring text)
 {
@@ -34,7 +34,35 @@ StringPrepException::StringPrepException(std::wstring text)
 UTF16String StringPrep::PrepareString(const UTF16String str)
 {
 	return UTF::utf32to16(
-		CheckBiDi(Prohibit(Normalize(Map(UTF::utf16to32(str))))));
+		CheckBiDi(
+		Prohibit(
+		Normalize(
+		Map(
+		Unicode3_2Filter(
+		UTF::utf16to32(str)))))));
+}
+
+UTF32String StringPrep::Unicode3_2Filter(const UTF32String str)
+{
+	UTF32String filteredString;
+
+	for(UTF32String::const_iterator i = str.begin(); i != str.end(); i++)
+	{
+		bool filter = false;
+		for(unsigned j = 0; j < sizeof(RFC3454TableA1); j += 2)
+		{
+			if(*i >= RFC3454TableA1[j] && *i <= RFC3454TableA1[j+1])
+			{
+				filter = true;
+			}
+		}
+		if(filter == false)
+		{
+			filteredString.push_back(*i);
+		}
+	}
+
+	return filteredString;
 }
 
 std::map<unsigned, UTF32String> StringPrep::GetStringPrepMap()
@@ -43,14 +71,14 @@ std::map<unsigned, UTF32String> StringPrep::GetStringPrepMap()
 	std::map<unsigned, UTF32String> m;
 	unsigned i = 0;
 
-	while(i < sizeof(RFC3454AppendixB))
+	while(i < sizeof(RFC3454TableB2))
 	{
-		unsigned key = RFC3454AppendixB[i];
+		unsigned key = RFC3454TableB2[i];
 		i += 2;
 
 		UTF32String value;
-		for(;RFC3454AppendixB[i] != 0 && i < sizeof(RFC3454AppendixB); i++)
-			value.push_back(RFC3454AppendixB[i]);
+		for(;RFC3454TableB2[i] != 0 && i < sizeof(RFC3454TableB2); i++)
+			value.push_back(RFC3454TableB2[i]);
 
 		m.insert(pair(key, value));
 	}

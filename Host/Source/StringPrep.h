@@ -43,6 +43,8 @@ public:
 		const UTF16String str) throw(StringPrepException);
 
 private:
+	static UTF32String Unicode3_2Filter(const UTF32String str);
+
 	static std::map<unsigned,UTF32String> GetStringPrepMap();
 
 	static UTF32String Map(const UTF32String str)
