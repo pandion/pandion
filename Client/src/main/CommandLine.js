@@ -1,7 +1,7 @@
 /* Handle the event in a seperate "thread".
  */
 function CommandLine (command) {
-	var match = command.match(/^\s*("{0,1})[^"]+\1\s+("{0,1})(.+)\2/);
+	var match = command.match(/^\s*("?)[^\1]*\1\s+(")?([^\2]+)\2\s*$/);
 	if (match && match[3] && match[3].length > 0) {
 		external.globals("CommandLineQueue").push(match[3]);
 		setTimeout(CommandLineShift, 0);
