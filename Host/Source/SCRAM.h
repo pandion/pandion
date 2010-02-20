@@ -24,10 +24,12 @@
 
 #pragma once
 #include "DispInterfaceImpl.h"
+#include "StringPrep.h"
 
 class SCRAM :
 	public DispInterfaceImpl<ISCRAM>
 {
+	StringPrep sprep;
 public:
 	SCRAM();
 	~SCRAM();
