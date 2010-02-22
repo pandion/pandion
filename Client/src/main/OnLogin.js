@@ -509,7 +509,11 @@ function OnLoginRoster ( iq )
 	 */
 	var TrackerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Trackers.Keys() ) ).toArray();
 	for ( var i = 0; i < TrackerNames.length; ++i )
-		external.globals( 'ConferenceSessionPool' ).Trackers( TrackerNames[i] ).Connect();
+		with ( external.globals( 'ConferenceSessionPool' ).Trackers( TrackerNames[i] ) )
+		{
+			Autoconnect = true;
+			SendPresence( external.globals( 'cfg' )( 'lastmode' ), external.globals( 'cfg' )( 'lastmsg' ) );
+		}
 
 	/* Automatically open bookmarked conference rooms
 	 */
