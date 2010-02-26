@@ -81,9 +81,12 @@ class HMAC_SHA1
 	static const unsigned int B = 64, L = 20;
 	unsigned char keyXORipad[B];
 	unsigned char keyXORopad[B];
-public:
-	HMAC_SHA1(const ByteVector key);
 
-	ByteVector Calculate(const UTF8String text);
-	ByteVector Calculate(const ByteVector text);
+	HCRYPTPROV cP;
+public:
+	HMAC_SHA1(const ByteVector& key);
+	~HMAC_SHA1();
+
+	ByteVector Calculate(const UTF8String& text);
+	ByteVector Calculate(const ByteVector& text);
 };

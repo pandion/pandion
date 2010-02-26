@@ -16,7 +16,7 @@
  *
  * Filename:    SCRAM.cpp
  * Author(s):   Dries Staelens
- * Copyright:   Copyright (c) 2009 Dries Staelens
+ * Copyright:   Copyright (c) 2010 Dries Staelens
  * Description: This file implements some helper methods for authenticating
  *              using the Salted Challenge Response (SCRAM) SASL mechanism.
  *              See http://tools.ietf.org/html/draft-ietf-sasl-scram-10
@@ -178,10 +178,12 @@ ByteVector SCRAM::Hi(
 	for(unsigned j = 0; j < i; j++)
 	{
 		u = hmac.Calculate(u);
-		for(unsigned k = 0; k < u.size(); k += 4)
-		{
-			*(unsigned*)(&result[0] + k) ^= *(unsigned*)(&u[0] + k);
-		}
+
+		*(unsigned*)(&result[0]) ^= *(unsigned*)(&u[0]);
+		*(unsigned*)(&result[4]) ^= *(unsigned*)(&u[4]);
+		*(unsigned*)(&result[8]) ^= *(unsigned*)(&u[8]);
+		*(unsigned*)(&result[12]) ^= *(unsigned*)(&u[12]);
+		*(unsigned*)(&result[16]) ^= *(unsigned*)(&u[16]);
 	}
 
 	return result;
@@ -322,7 +324,7 @@ void SCRAM::Error(std::wstring location,
 	::LocalFree(errorMessage);
 }
 
-HMAC_SHA1::HMAC_SHA1(const ByteVector key)
+HMAC_SHA1::HMAC_SHA1(const ByteVector& key)
 {
 	const static unsigned char ipad[] = 
 		"\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36"
@@ -360,24 +362,40 @@ HMAC_SHA1::HMAC_SHA1(const ByteVector key)
 		*(unsigned *)(keyXORopad + i) =
 			*(unsigned *)(internalKey + i) ^ *(unsigned *)(opad + i);
 	}
+
+	::CryptAcquireContext(&cP, NULL, NULL,
+		PROV_RSA_FULL, CRYPT_VERIFYCONTEXT);
 }
 
-ByteVector HMAC_SHA1::Calculate(const UTF8String text)
+HMAC_SHA1::~HMAC_SHA1()
+{
+	::CryptReleaseContext(cP, 0);
+}
+
+ByteVector HMAC_SHA1::Calculate(const UTF8String& text)
 {
 	return Calculate(ByteVector(text.begin(), text.end()));
 }
 
-ByteVector HMAC_SHA1::Calculate(const ByteVector text)
+ByteVector HMAC_SHA1::Calculate(const ByteVector& text)
 {
-	unsigned char innerDigest[L];
-	ByteVector innerMessage(keyXORipad, keyXORipad + B);
-	innerMessage.insert(innerMessage.end(), text.begin(), text.end());
-	Hash::SHA1(&innerMessage[0], innerMessage.size(), innerDigest);
+	DWORD hashSize = L;
 
+	HCRYPTHASH innerHash = NULL;
+	unsigned char innerDigest[L];
+	::CryptCreateHash(cP, CALG_SHA1, 0, 0, &innerHash);
+	::CryptHashData(innerHash, keyXORipad, B, 0);
+	::CryptHashData(innerHash, &text[0], text.size(), 0);
+	::CryptGetHashParam(innerHash, HP_HASHVAL, innerDigest, &hashSize, 0);
+	::CryptDestroyHash(innerHash);
+
+	HCRYPTHASH outerHash = NULL;
 	unsigned char outerDigest[L];
-	ByteVector outerMessage(keyXORopad, keyXORopad + B);
-	outerMessage.insert(outerMessage.end(), innerDigest, innerDigest + L);
-	Hash::SHA1(&outerMessage[0], outerMessage.size(), outerDigest);
+	::CryptCreateHash(cP, CALG_SHA1, 0, 0, &outerHash);
+	::CryptHashData(outerHash, keyXORopad, B, 0);
+	::CryptHashData(outerHash, innerDigest, L, 0);
+	::CryptGetHashParam(outerHash, HP_HASHVAL, outerDigest, &hashSize, 0);
+	::CryptDestroyHash(outerHash);
 
 	return ByteVector(outerDigest, outerDigest + L);
 }
