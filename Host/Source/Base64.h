@@ -26,6 +26,17 @@
 class Base64
 {
 public:
+	static std::wstring Encode(std::string data, bool addCRLF = true)
+	{
+		return Encode(data.c_str(), data.length(), addCRLF);
+	}
+
+	static std::wstring Encode(
+		std::vector<unsigned char> data, bool addCRLF = true)
+	{
+		return Encode(&data[0], data.size(), addCRLF);
+	}
+
 	template<class T>
 	static std::wstring Encode(
 		const T* data, unsigned int dataLength, bool addCRLF = true)

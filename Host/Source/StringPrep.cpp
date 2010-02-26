@@ -34,36 +34,53 @@ StringPrepException::StringPrepException(std::wstring text)
 StringPrep::StringPrep()
 {
 	/* Load raw RFC3454 data into data structures */
-	m_Aranges = GenerateRangeTable(RFC3454TableA1, sizeof(RFC3454TableA1));
+	m_Aranges = GenerateRangeTable(RFC3454TableA1,
+		sizeof(RFC3454TableA1) / sizeof(unsigned));
 
 	m_B1map =
-		GenerateMappingTable(RFC3454TableB1, sizeof(RFC3454TableB1), 0xFFFFF);
+		GenerateMappingTable(RFC3454TableB1,
+		sizeof(RFC3454TableB1) / sizeof(unsigned), 0xFFFFF);
 	m_B2map =
-		GenerateMappingTable(RFC3454TableB2, sizeof(RFC3454TableB2), 0xFFFFF);
+		GenerateMappingTable(RFC3454TableB2,
+		sizeof(RFC3454TableB2) / sizeof(unsigned), 0xFFFFF);
 	m_B3map =
-		GenerateMappingTable(RFC3454TableB3, sizeof(RFC3454TableB3), 0xFFFFF);
+		GenerateMappingTable(RFC3454TableB3,
+		sizeof(RFC3454TableB3) / sizeof(unsigned), 0xFFFFF);
 
-	m_C11ranges = GenerateRangeTable(RFC3454TableC11, sizeof(RFC3454TableC11));
-	m_C12ranges = GenerateRangeTable(RFC3454TableC12, sizeof(RFC3454TableC12));
-	m_C21ranges = GenerateRangeTable(RFC3454TableC21, sizeof(RFC3454TableC21));
-	m_C22ranges = GenerateRangeTable(RFC3454TableC22, sizeof(RFC3454TableC22));
-	m_C3ranges  = GenerateRangeTable(RFC3454TableC3, sizeof(RFC3454TableC3));
-	m_C4ranges  = GenerateRangeTable(RFC3454TableC4, sizeof(RFC3454TableC4));
-	m_C5ranges  = GenerateRangeTable(RFC3454TableC5, sizeof(RFC3454TableC5));
-	m_C6ranges  = GenerateRangeTable(RFC3454TableC6, sizeof(RFC3454TableC6));
-	m_C7ranges  = GenerateRangeTable(RFC3454TableC7, sizeof(RFC3454TableC7));
-	m_C8ranges  = GenerateRangeTable(RFC3454TableC8, sizeof(RFC3454TableC8));
-	m_C9ranges  = GenerateRangeTable(RFC3454TableC9, sizeof(RFC3454TableC9));
+	m_C11ranges = GenerateRangeTable(RFC3454TableC11,
+		sizeof(RFC3454TableC11) / sizeof(unsigned));
+	m_C12ranges = GenerateRangeTable(RFC3454TableC12,
+		sizeof(RFC3454TableC12) / sizeof(unsigned));
+	m_C21ranges = GenerateRangeTable(RFC3454TableC21,
+		sizeof(RFC3454TableC21) / sizeof(unsigned));
+	m_C22ranges = GenerateRangeTable(RFC3454TableC22,
+		sizeof(RFC3454TableC22) / sizeof(unsigned));
+	m_C3ranges  = GenerateRangeTable(RFC3454TableC3,
+		sizeof(RFC3454TableC3) / sizeof(unsigned));
+	m_C4ranges  = GenerateRangeTable(RFC3454TableC4,
+		sizeof(RFC3454TableC4) / sizeof(unsigned));
+	m_C5ranges  = GenerateRangeTable(RFC3454TableC5,
+		sizeof(RFC3454TableC5) / sizeof(unsigned));
+	m_C6ranges  = GenerateRangeTable(RFC3454TableC6,
+		sizeof(RFC3454TableC6) / sizeof(unsigned));
+	m_C7ranges  = GenerateRangeTable(RFC3454TableC7,
+		sizeof(RFC3454TableC7) / sizeof(unsigned));
+	m_C8ranges  = GenerateRangeTable(RFC3454TableC8,
+		sizeof(RFC3454TableC8) / sizeof(unsigned));
+	m_C9ranges  = GenerateRangeTable(RFC3454TableC9,
+		sizeof(RFC3454TableC9) / sizeof(unsigned));
 
-	m_D1ranges  = GenerateRangeTable(RFC3454TableD1, sizeof(RFC3454TableD1));
-	m_D2ranges  = GenerateRangeTable(RFC3454TableD2, sizeof(RFC3454TableD2));
+	m_D1ranges  = GenerateRangeTable(RFC3454TableD1, 
+		sizeof(RFC3454TableD1) / sizeof(unsigned));
+	m_D2ranges  = GenerateRangeTable(RFC3454TableD2,
+		sizeof(RFC3454TableD2) / sizeof(unsigned));
 }
 
 StringPrep::~StringPrep()
 {
 }
 
-UTF8String StringPrep::SASLPrep(UTF8String str)
+UTF8String StringPrep::SASLPrep(UTF8String str, bool checkUnassigned)
 {
 	UTF32String str32 = UTF::utf8to32(str);
 
@@ -85,7 +102,7 @@ UTF8String StringPrep::SASLPrep(UTF8String str)
 	prohibitRanges.push_back(m_C9ranges);
 
 	UTF32String preparedString = 
-		PrepareString(str32, true, true, true, maps, prohibitRanges);
+		PrepareString(str32, checkUnassigned, true, true, maps, prohibitRanges);
 
 	return UTF::utf32to8(preparedString);
 }

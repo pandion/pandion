@@ -50,7 +50,7 @@ public:
 	StringPrep();
 	~StringPrep();
 
-	UTF8String SASLPrep(UTF8String str)
+	UTF8String SASLPrep(UTF8String str, bool checkUnassigned = true)
 		throw(StringPrepException);
 
 private:

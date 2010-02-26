@@ -26,22 +26,61 @@
 #include "DispInterfaceImpl.h"
 #include "StringPrep.h"
 
+typedef std::vector<unsigned char> ByteVector;
+
 class SCRAM :
 	public DispInterfaceImpl<ISCRAM>
 {
-	StringPrep sprep;
+	StringPrep m_sprep;
+
+	unsigned m_IterationCount;
+
+	UTF8String m_AuthMessage;
+	UTF8String m_ClientNonce, m_ServerNonce;
+	UTF8String m_ClientUsername, m_ClientPassword;
+	UTF8String m_ClientFirstMessage, m_ClientFinalMessage;
+	UTF8String m_ServerFirstMessage, m_ServerFinalMessage;
+
+	ByteVector m_ClientSignature, m_ServerSignature;
+	ByteVector m_ClientProof;
+	ByteVector m_Salt;
 public:
 	SCRAM();
 	~SCRAM();
 
-	STDMETHOD(GenerateResponse)(
-		BSTR Challenge,
-		BSTR *Response);
+	STDMETHOD(Initialize)(BSTR ClientUsername, BSTR ClientPassword);
+
+	STDMETHOD(GenerateClientFirstMessage)(BSTR* ClientFirstMessage);
+	STDMETHOD(GenerateClientFinalMessage)(BSTR *ClientFinalMessage);
+	STDMETHOD(ValidateServerFirstMessage)(BSTR ServerFirstMessage);
+	STDMETHOD(ValidateServerFinalMessage)(BSTR ServerFinalMessage);
 
 private:
-	std::vector<unsigned char> SCRAM::HMAC_SHA1(
+	ByteVector Hi(
+		const std::string str,
+		const ByteVector salt,
+		const unsigned i);
+
+	ByteVector HMAC_SHA1(
 		const std::string key,
 		const std::string text);
+
+	ByteVector HMAC_SHA1(
+		const ByteVector key,
+		const std::string text);
+
+	ByteVector HMAC_SHA1(
+		const ByteVector key,
+		const ByteVector text);
+
+	void GenerateNewClientNonce();
+	void GenerateClientProof();
+
+	UTF8String EscapeString(UTF8String str);
+	UTF8String UnescapeString(UTF8String str);
+
+	std::map<char, UTF8String> ParseSCRAMMessage(UTF8String message);
+	std::pair<char, UTF8String> ParseSCRAMField(UTF8String message);
 
 	void Error(
 		std::wstring location,

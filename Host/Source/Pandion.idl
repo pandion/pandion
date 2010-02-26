@@ -453,9 +453,17 @@ library PandionLib
 	[uuid(D589A536-0A43-11DF-97E6-DDC756D89593)]
 	interface ISCRAM : IDispatch
 	{
-		HRESULT GenerateResponse(
-			[in] BSTR Challenge,
-			[out, retval] BSTR* Response);
+		HRESULT Initialize(
+			[in] BSTR ClientUsername,
+			[in] BSTR ClientPassword);
+		HRESULT GenerateClientFirstMessage(
+			[out, retval] BSTR* ClientFirstMessage);
+		HRESULT GenerateClientFinalMessage(
+			[out, retval] BSTR* ClientFinalMessage);
+		HRESULT ValidateServerFirstMessage(
+			[in] BSTR ServerFirstMessage);
+		HRESULT ValidateServerFinalMessage(
+			[in] BSTR ServerFinalMessage);
 	}
 	[uuid(D4C00020-E57A-434e-9289-937C53CC07ED)]
 	interface ISSPI : IDispatch

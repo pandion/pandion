@@ -83,6 +83,26 @@ function XMPPOnStream ( ReceivedXML )
 			}
 		}
 
+		/* Request SCRAM-SHA-1 challenge
+		 */
+		else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "SCRAM-SHA-1" ]' ) )
+		{
+			external.globals( 'XMPPSASLMechanism' ) = 'SCRAM-SHA-1';
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1"/>' );
+			try
+			{
+				external.SASL.SCRAM.Reset(external.globals( 'cfg' )( 'username' ), external.globals( 'cfg' )( 'password' ));
+				dom.documentElement.text = external.SASL.SCRAM.GenerateClientFirstMessage();
+			}
+			catch(e)
+			{
+				warn( 'SCRAM-SHA-1: ERROR: Unacceptable username or password.' );
+			}
+			warn( 'SENT: ' + Str );
+			external.XMPP.SendText( Str );
+		}
+
 		/* Request MD5 challenge
 		 */
 		else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "DIGEST-MD5" ]' ) )
@@ -169,6 +189,17 @@ function XMPPOnStream ( ReceivedXML )
 				}
 			} else {
 				dom.documentElement.text = external.SASL.SSPI.GenerateResponse(ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text, true);
+			}
+			warn("SENT: " + dom.xml);
+			external.XMPP.SendXML(dom);
+		} else if( external.globals( 'XMPPSASLMechanism' ) == 'SCRAM-SHA-1' ) {
+			var dom = new ActiveXObject("Msxml2.DOMDocument");
+			dom.loadXML("<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>" );
+			try {
+				external.SASL.SCRAM.ValidateServerFirstMessage( ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text );
+				dom.documentElement.text = external.SASL.SCRAM.GenerateClientFinalMessage();
+			} catch(e) {
+				warn( 'SCRAM-SHA-1: ERROR: Server replied with invalid nonce.' );
 			}
 			warn("SENT: " + dom.xml);
 			external.XMPP.SendXML(dom);
