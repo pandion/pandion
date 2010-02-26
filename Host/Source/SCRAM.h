@@ -61,18 +61,6 @@ private:
 		const ByteVector salt,
 		const unsigned i);
 
-	ByteVector HMAC_SHA1(
-		const std::string key,
-		const std::string text);
-
-	ByteVector HMAC_SHA1(
-		const ByteVector key,
-		const std::string text);
-
-	ByteVector HMAC_SHA1(
-		const ByteVector key,
-		const ByteVector text);
-
 	void GenerateNewClientNonce();
 	void GenerateClientProof();
 
@@ -86,4 +74,16 @@ private:
 		std::wstring location,
 		std::wstring whenCalling,
 		unsigned errorCode);
+};
+
+class HMAC_SHA1
+{
+	static const unsigned int B = 64, L = 20;
+	unsigned char keyXORipad[B];
+	unsigned char keyXORopad[B];
+public:
+	HMAC_SHA1(const ByteVector key);
+
+	ByteVector Calculate(const UTF8String text);
+	ByteVector Calculate(const ByteVector text);
 };

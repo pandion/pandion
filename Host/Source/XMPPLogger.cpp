@@ -60,10 +60,9 @@ void XMPPLogger::LogReceived(const std::wstring& dataReceived)
 void XMPPLogger::LogSent(const std::wstring& dataSent)
 {
 #ifdef CANLOG
-	bool hasEndline = (*(dataSent.end() - 1) == L'\n');
 	std::wostringstream dbgmsg;
 	dbgmsg << L"SENT (" << dataSent.size() << L" bytes): \t" << dataSent;
-	if(!hasEndline)
+	if(dataSent.length() != 0 && !(*(dataSent.end() - 1) == L'\n'))
 	{
 		dbgmsg << std::endl;
 	}

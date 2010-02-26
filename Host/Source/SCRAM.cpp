@@ -29,10 +29,7 @@
 
 SCRAM::SCRAM()
 {
-	ParseSCRAMMessage("p=tls-server-end-point,,n=Chris Newman,r=ClientNonce");
-    ParseSCRAMMessage("r=ClientNonceServerNonce,s=PxR/wv+epq,i=128");
-    ParseSCRAMMessage("c=cD10bHMtc2VydmVyLWVuZC1wb2ludCwsy1hFtXOnZ+ySrQM6srFpl/77uqvtxrg7nBY1BetEr/g=,r=ClientNonceServerNonce,p=WxPv/siO5l+qxN4");
-    ParseSCRAMMessage("v=WxPv/siO5l+qxN4");
+	m_CannotSelfDelete = true;
 }
 SCRAM::~SCRAM()
 {
@@ -63,8 +60,9 @@ STDMETHODIMP SCRAM::Initialize(BSTR ClientUsername, BSTR ClientPassword)
 
 STDMETHODIMP SCRAM::GenerateClientFirstMessage(BSTR* ClientFirstMessage)
 {
+	m_ClientFirstMessage.clear();
 	/* Channel bindings unsupported */
-	m_ClientFirstMessage += "n,";
+	m_ClientFirstMessage += "n,,";
 
 	/* Client username */
 	m_ClientFirstMessage += "n=";
@@ -83,6 +81,7 @@ STDMETHODIMP SCRAM::GenerateClientFirstMessage(BSTR* ClientFirstMessage)
 
 STDMETHODIMP SCRAM::GenerateClientFinalMessage(BSTR* ClientFinalMessage)
 {
+	m_ClientFinalMessage.clear();
 	/* GS2 Header */
 	m_ClientFinalMessage += "c=biwsCg==,";
 
@@ -92,17 +91,17 @@ STDMETHODIMP SCRAM::GenerateClientFinalMessage(BSTR* ClientFinalMessage)
 	m_ClientFinalMessage += m_ServerNonce;
 
 	/* Auth Message */
-	m_AuthMessage += m_ClientFirstMessage;
+	m_AuthMessage.clear();
+	m_AuthMessage += m_ClientFirstMessage.substr(3);
 	m_AuthMessage += ",";
 	m_AuthMessage += m_ServerFirstMessage;
 	m_AuthMessage += ",";
 	m_AuthMessage += m_ClientFinalMessage;
-	m_AuthMessage += ",";
 
 	/* Client Proof */
 	GenerateClientProof();
 
-	m_ClientFinalMessage += "p=";
+	m_ClientFinalMessage += ",p=";
 	m_ClientFinalMessage += 
 		UTF::utf16to8(Base64::Encode(m_ClientProof, false));
 
@@ -166,21 +165,22 @@ ByteVector SCRAM::Hi(
 	const ByteVector salt,
 	const unsigned i)
 {
-	ByteVector firstSalt(salt.begin(), salt.end());
-	firstSalt.push_back(0);
-	firstSalt.push_back(0);
-	firstSalt.push_back(0);
-	firstSalt.push_back(1);
-	ByteVector u = HMAC_SHA1(
-		ByteVector(str.begin(), str.end()), firstSalt);
-	ByteVector result = u;
+	const ByteVector key(str.begin(), str.end());
+	ByteVector result(20, 0x00);
+	ByteVector u(salt.begin(), salt.end());
+	u.push_back(0);
+	u.push_back(0);
+	u.push_back(0);
+	u.push_back(1);
+
+	HMAC_SHA1 hmac(key);
 	
-	for(unsigned j = 1; j < i; j++)
+	for(unsigned j = 0; j < i; j++)
 	{
-		u = HMAC_SHA1(ByteVector(str.begin(), str.end()), u);
-		for(unsigned k = 0; k < u.size(); k++)
+		u = hmac.Calculate(u);
+		for(unsigned k = 0; k < u.size(); k += 4)
 		{
-			result[k] ^= u[k];
+			*(unsigned*)(&result[0] + k) ^= *(unsigned*)(&u[0] + k);
 		}
 	}
 
@@ -202,12 +202,10 @@ void SCRAM::GenerateClientProof()
 	/* Proof of identity */
 	ByteVector saltedPassword =
 		Hi(m_ClientPassword, m_Salt, m_IterationCount);
-	ByteVector clientKey =
-		HMAC_SHA1(saltedPassword, "Client Key");
+	ByteVector clientKey = HMAC_SHA1(saltedPassword).Calculate("Client Key");
 	ByteVector storedKey(20);
 	Hash::SHA1(&clientKey[0], clientKey.size(), &storedKey[0]);
-	ByteVector clientSignature = 
-		HMAC_SHA1(storedKey, m_AuthMessage);
+	ByteVector clientSignature = HMAC_SHA1(storedKey).Calculate(m_AuthMessage);
 
 	m_ClientProof.clear();
 	for(unsigned j = 0; j < storedKey.size(); ++j)
@@ -216,79 +214,8 @@ void SCRAM::GenerateClientProof()
 	}
 
 	/* Calculate the server signature */
-	ByteVector serverKey = 
-		HMAC_SHA1(saltedPassword, "Server Key");
-	m_ServerSignature = HMAC_SHA1(serverKey, m_AuthMessage);
-}
-
-ByteVector SCRAM::HMAC_SHA1(
-	const std::string key,
-	const std::string text)
-{
-	return SCRAM::HMAC_SHA1(
-		ByteVector(key.begin(), key.end()),
-		ByteVector(text.begin(), text.end()));
-}
-
-ByteVector SCRAM::HMAC_SHA1(
-	const ByteVector key,
-	const std::string text)
-{
-	return SCRAM::HMAC_SHA1(
-		key,
-		ByteVector(text.begin(), text.end()));
-}
-
-ByteVector SCRAM::HMAC_SHA1(
-	const ByteVector key,
-	const ByteVector text)
-{
-	const unsigned int B = 64, L = 20;
-	const ByteVector ipad(B, 0x36);
-	const ByteVector opad(B, 0x5C);
-	ByteVector internalKey(key.begin(), key.end());
-
-	if(internalKey.size() > B)
-	{
-		unsigned char digest[L];
-		Hash::SHA1(reinterpret_cast<const unsigned char*>(&internalKey[0]),
-			internalKey.size(), digest); 
-		internalKey.assign(digest,
-			digest + sizeof(digest) / sizeof(unsigned char));
-	}
-
-	for(unsigned int i = internalKey.size(); i < B; i++)
-	{
-		internalKey.push_back(0x00);
-	}
-
-	ByteVector keyXORipad, keyXORopad;
-	for(unsigned int i = 0; i < B; i++)
-	{
-		keyXORipad.push_back(internalKey[i] ^ ipad[i]);
-		keyXORopad.push_back(internalKey[i] ^ opad[i]);
-	}
-
-	ByteVector innerMessage(keyXORipad);
-	for(unsigned int i = 0; i < text.size(); i++)
-	{
-		innerMessage.push_back(text[i]);
-	}
-
-	unsigned char innerDigest[L];
-	Hash::SHA1(&innerMessage[0], innerMessage.size(), innerDigest);
-
-	ByteVector outerMessage(keyXORopad);
-	for(unsigned int i = 0; i < sizeof(innerDigest); i++)
-	{
-		outerMessage.push_back(innerDigest[i]);
-	}
-
-	unsigned char outerDigest[L];
-	Hash::SHA1(&outerMessage[0], outerMessage.size(), outerDigest);
-
-	return ByteVector(outerDigest,
-		outerDigest + sizeof(outerDigest) / sizeof(unsigned char));
+	ByteVector serverKey = HMAC_SHA1(saltedPassword).Calculate("Server Key");
+	m_ServerSignature = HMAC_SHA1(serverKey).Calculate(m_AuthMessage);
 }
 
 UTF8String SCRAM::EscapeString(UTF8String str)
@@ -393,4 +320,64 @@ void SCRAM::Error(std::wstring location,
 		errorMessage <<	std::endl;
 	OutputDebugString(dbgMsg.str().c_str());
 	::LocalFree(errorMessage);
+}
+
+HMAC_SHA1::HMAC_SHA1(const ByteVector key)
+{
+	const static unsigned char ipad[] = 
+		"\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36"
+		"\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36"
+		"\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36"
+		"\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36\x36";
+	const static unsigned char opad[] =
+		"\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C"
+		"\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C"
+		"\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C"
+		"\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C\x5C";
+	unsigned char internalKey[] =
+		"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+		"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+		"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+		"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+
+	if(key.size() > B)
+	{
+		Hash::SHA1(reinterpret_cast<const unsigned char*>(&key[0]),
+			key.size(), internalKey);
+	}
+	else
+	{
+		for(unsigned int i = 0; i < key.size(); i++)
+		{
+			internalKey[i] = key[i];
+		}
+	}
+
+	for(unsigned int i = 0; i < B; i += 4)
+	{
+		*(unsigned *)(keyXORipad + i) =
+			*(unsigned *)(internalKey + i) ^ *(unsigned *)(ipad + i);
+		*(unsigned *)(keyXORopad + i) =
+			*(unsigned *)(internalKey + i) ^ *(unsigned *)(opad + i);
+	}
+}
+
+ByteVector HMAC_SHA1::Calculate(const UTF8String text)
+{
+	return Calculate(ByteVector(text.begin(), text.end()));
+}
+
+ByteVector HMAC_SHA1::Calculate(const ByteVector text)
+{
+	unsigned char innerDigest[L];
+	ByteVector innerMessage(keyXORipad, keyXORipad + B);
+	innerMessage.insert(innerMessage.end(), text.begin(), text.end());
+	Hash::SHA1(&innerMessage[0], innerMessage.size(), innerDigest);
+
+	unsigned char outerDigest[L];
+	ByteVector outerMessage(keyXORopad, keyXORopad + B);
+	outerMessage.insert(outerMessage.end(), innerDigest, innerDigest + L);
+	Hash::SHA1(&outerMessage[0], outerMessage.size(), outerDigest);
+
+	return ByteVector(outerDigest, outerDigest + L);
 }

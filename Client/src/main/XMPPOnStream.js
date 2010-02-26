@@ -92,15 +92,15 @@ function XMPPOnStream ( ReceivedXML )
 			dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1"/>' );
 			try
 			{
-				external.SASL.SCRAM.Reset(external.globals( 'cfg' )( 'username' ), external.globals( 'cfg' )( 'password' ));
+				external.SASL.SCRAM.Initialize(external.globals( 'cfg' )( 'username' ), external.globals( 'cfg' )( 'password' ));
 				dom.documentElement.text = external.SASL.SCRAM.GenerateClientFirstMessage();
 			}
 			catch(e)
 			{
 				warn( 'SCRAM-SHA-1: ERROR: Unacceptable username or password.' );
 			}
-			warn( 'SENT: ' + Str );
-			external.XMPP.SendText( Str );
+			warn( 'SENT: ' + dom.xml );
+			external.XMPP.SendXML( dom );
 		}
 
 		/* Request MD5 challenge
@@ -286,7 +286,17 @@ function XMPPOnStream ( ReceivedXML )
 	 */
 	else if ( ReceivedXML.documentElement.selectSingleNode( '/success[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]' ) )
 	{
-		XMPPOnConnected();
+		if( external.globals( 'XMPPSASLMechanism' ) == 'SCRAM-SHA-1' )
+		{
+			try {
+				external.SASL.SCRAM.ValidateServerFinalMessage( ReceivedXML.documentElement.selectSingleNode("/success[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text );
+				XMPPOnConnected();
+			} catch(e) {
+				warn( 'SCRAM-SHA-1: ERROR: Server authentication failed.' );
+			}
+		} else {
+			XMPPOnConnected();
+		}
 	}
 
 	/* Error during authentication
