@@ -166,8 +166,8 @@ window.attachEvent("onload", function () {
 			for (var i = 0; i < entries.length; ++i) {
 				var listItem = document.createElement("li");
 				var anchor = document.createElement("a");
-				anchor.innerText = getPlainText(entries[i], "title");
 				anchor.href = entries[i].selectSingleNode("link[@rel='alternate' and @type='text/html' and @href]").getAttribute("href");
+				anchor.innerText = getPlainText(entries[i], "title");
 				client.html.anchorToBrowser(anchor);
 				listItem.appendChild(anchor);
 				var timestamp = document.createElement("div");
