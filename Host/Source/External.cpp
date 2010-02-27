@@ -330,10 +330,51 @@ STDMETHODIMP External::get_Shortcut(VARIANT *pDisp)
 	return (new Shortcut)->QueryInterface(IID_IDispatch,
 		(LPVOID*) &pDisp->pdispVal);
 }
+
+voidpf zlibCustomOpen(voidpf opaque, const char* filename, int mode)
+{
+	std::wstring modeString = L"rb";
+	return (voidpf) _wfopen(
+		UTF::utf8to16(filename).c_str(), modeString.c_str());
+}
+uLong zlibCustomRead(voidpf opaque, voidpf stream, void* buf, uLong size)
+{
+	return fread(buf, 1, size, (FILE*) stream);
+}
+uLong zlibCustomWrite(voidpf opaque, voidpf stream, const void* buf, uLong size)
+{
+	return fwrite(buf, 1, size, (FILE*) stream);
+}
+long zlibCustomTell(voidpf opaque, voidpf stream)
+{
+	return ftell((FILE*) stream);
+}
+long zlibCustomSeek(voidpf opaque, voidpf stream, uLong offset, int origin)
+{
+	return fseek((FILE*) stream, offset, origin);
+}
+int zlibCustomClose(voidpf opaque, voidpf stream)
+{
+	return fclose((FILE*) stream);
+}
+int zlibCustomTestError(voidpf opaque, voidpf stream)
+{
+	return ferror((FILE*) stream);
+}
+
 STDMETHODIMP External::UnZip(BSTR path, BSTR targetDir, int *nSuccess)
 {
+	zlib_filefunc_def ff;
+	ff.zopen_file = zlibCustomOpen;
+	ff.zread_file = zlibCustomRead;
+	ff.zwrite_file = zlibCustomWrite;
+	ff.ztell_file = zlibCustomTell;
+	ff.zseek_file = zlibCustomSeek;
+	ff.zclose_file = zlibCustomClose;
+	ff.zerror_file = zlibCustomTestError;
+
 	*nSuccess = 0;
-	unzFile pZipFile = unzOpen(UTF::utf16to8(path).c_str());
+	unzFile pZipFile = unzOpen2(UTF::utf16to8(path).c_str(), &ff);
 
 	if(!pZipFile)
 	{
@@ -357,19 +398,18 @@ STDMETHODIMP External::UnZip(BSTR path, BSTR targetDir, int *nSuccess)
 		}
 		unz_file_info_s file_info;
 		char file_name[MAX_PATH] = "";
-		char file_path[MAX_PATH] = "";
+		wchar_t file_path[MAX_PATH] = L"";
 
 		unzGetCurrentFileInfo(pZipFile, &file_info,
 			file_name, MAX_PATH, 0, 0, 0, 0);
 
-		::StringCchCopyA(file_path, MAX_PATH,
-			UTF::utf16to8(targetDir).c_str());
-		::PathAppendA(file_path, file_name);
+		::StringCchCopy(file_path, MAX_PATH, targetDir);
+		::PathAppend(file_path, UTF::utf8to16(file_name).c_str());
 
 		IPdnFile *target_file;
 		(new CFile)->QueryInterface(__uuidof(IPdnFile),
 			(LPVOID*) &target_file);
-		if(target_file->Create(_bstr_t(UTF::utf8to16(file_path).c_str()),
+		if(target_file->Create(_bstr_t(file_path),
 			GENERIC_WRITE, FILE_SHARE_READ,	OPEN_ALWAYS) == S_OK)
 		{
 			int nRead = 0;
@@ -378,7 +418,7 @@ STDMETHODIMP External::UnZip(BSTR path, BSTR targetDir, int *nSuccess)
 			target_file->Seek(0, 0, FILE_BEGIN);
 			do
 			{	
-				BYTE buf[4096];
+				BYTE buf[0x1000];
 				nRead =	unzReadCurrentFile(pZipFile, buf, sizeof(buf));
 				target_file->Write(buf, nRead);
 			}
