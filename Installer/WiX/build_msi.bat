@@ -31,7 +31,7 @@ ECHO %BUILD_NUMBER% > "./Temp/settings/build.txt"
 
 :: Generate a list of files as a component group.
 ECHO Harvesting components...
-heat.exe dir "./Temp" -nologo -cg "CoreFiles" -dr "DESTINATION" -srd -template:fragment -ke -gg -out "./components.wxs"
+heat.exe dir "./Temp" -nologo -cg "CoreFiles" -dr "DESTINATION" -srd -template fragment -ke -gg -out "./components.wxs"
 
 :: Transform the XML.
 ECHO Compiling installer...
