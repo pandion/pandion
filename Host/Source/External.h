@@ -54,7 +54,7 @@ public:
 	STDMETHOD(get_HTTPEngine)(VARIANT *pDisp);
 	STDMETHOD(get_SASL)(VARIANT *pDisp);
 	STDMETHOD(createWindow)(BSTR name, BSTR file, VARIANT *params,
-		BOOL bPopUnder = TRUE, VARIANT *pDisp = NULL);
+		BOOL popup = FALSE, VARIANT *pDisp = NULL);
 	STDMETHOD(shellExec)(BSTR verb, BSTR file, BSTR params, BSTR dir,
 		DWORD nShowCmd);
 

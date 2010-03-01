@@ -73,10 +73,10 @@ public:
 	void HasModalDialog(bool hasModal);
 
 	HRESULT Create(RECT& rect, std::wstring Name, std::wstring URL,
-		_variant_t& windowParams, PdnModule* Module, BOOL popUnder = FALSE);
+		_variant_t& windowParams, PdnModule* Module, bool popup = true);
 
 private:
-	HRESULT ContainerCreate(BOOL popUnder);
+	HRESULT ContainerCreate(bool popup);
 	void ChangeIcon(int icon);
 	void PopUnder(BOOL b);
 

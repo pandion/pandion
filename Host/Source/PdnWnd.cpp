@@ -78,7 +78,7 @@ void CPdnWnd::HasModalDialog(bool hasModal)
 }
 
 HRESULT CPdnWnd::Create(RECT& rect, std::wstring Name, std::wstring URL,
-	_variant_t& windowParams, PdnModule* Module, BOOL popUnder)
+	_variant_t& windowParams, PdnModule* Module, bool popup)
 {
 	m_Name          = Name;
 	m_URL           = URL;
@@ -115,14 +115,14 @@ HRESULT CPdnWnd::Create(RECT& rect, std::wstring Name, std::wstring URL,
 		&_variant_t(dynamic_cast<IDispatch*>(this)));
 
 	/* Create the Internet Explorer control */
-	return ContainerCreate(popUnder);
+	return ContainerCreate(popup);
 }
 
-HRESULT CPdnWnd::ContainerCreate(BOOL popUnder)
+HRESULT CPdnWnd::ContainerCreate(bool popup)
 {
 	/* Create the control */
 	IOleObject* activeXControl = 
-		m_ActiveXHost.Create(m_hWnd, L"Shell.Explorer.2", popUnder);
+		m_ActiveXHost.Create(m_hWnd, L"Shell.Explorer.2", popup);
 	if(activeXControl == NULL)
 	{
 		return E_FAIL;

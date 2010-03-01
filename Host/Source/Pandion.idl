@@ -46,7 +46,7 @@ library PandionLib
 			[in] BSTR name, 
 			[in] BSTR file, 
 			[in] VARIANT* params, 
-			[in, defaultvalue(FALSE)] BOOL bPopUnder, 
+			[in, defaultvalue(FALSE)] BOOL popup, 
 			[out, retval] VARIANT* pDisp);
 		HRESULT shellExec(
 			[in] BSTR verb, 

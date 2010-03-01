@@ -105,11 +105,11 @@ STDMETHODIMP External::get_HTTPEngine(VARIANT* pDisp)
 	return S_OK;
 }
 STDMETHODIMP External::createWindow(BSTR name, BSTR file, VARIANT* params,
-									BOOL bPopUnder, VARIANT* pDisp)
+									BOOL popup, VARIANT* pDisp)
 {
 	RECT rc = { 300, 300, rc.left + 500, rc.top + 300 };
 	CPdnWnd* newWindow = new CPdnWnd;
-    newWindow->Create(rc, name, file, _variant_t(params), m_pModule, bPopUnder);
+    newWindow->Create(rc, name, file, _variant_t(params), m_pModule, popup);
 
 	newWindow->QueryInterface(IID_IDispatch, (void**)&pDisp->pdispVal);
 	pDisp->vt = VT_DISPATCH;

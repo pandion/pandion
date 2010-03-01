@@ -43,7 +43,7 @@ AxHostWnd::~AxHostWnd()
 }
 
 IOleObject* AxHostWnd::Create(HWND hWndParent, std::wstring controlName, 
-							  BOOL popUnder)
+							  bool popup)
 {
 	m_hWndParent = hWndParent;
 
@@ -67,7 +67,7 @@ IOleObject* AxHostWnd::Create(HWND hWndParent, std::wstring controlName,
 	hr = ::OleSetContainedObject(m_ActiveXControl, TRUE);
 	hr = ::OleRun(m_ActiveXControl);
 
-	if(popUnder)
+	if(!popup)
 	{
 		HWND hForeground = ::GetForegroundWindow();
 		::LockSetForegroundWindow(LSFW_LOCK);
