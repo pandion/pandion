@@ -495,6 +495,13 @@ STDMETHODIMP External::InstallMSIESearchProvider(BSTR url, BSTR* serviceID)
 
 		if(CreateUriProc != NULL)
 		{
+			IID IID_IOpenServiceManager;
+			hr = ::IIDFromString(L"{5664125f-4e10-4e90-98e4-e4513d955a14}",
+				&IID_IOpenServiceManager);
+			CLSID CLSID_OpenServiceManager;
+			hr = ::CLSIDFromString(L"{098870b6-39ea-480b-b8b5-dd0167c4db59}",
+				&CLSID_OpenServiceManager);
+
 			IOpenServiceManager* osm;
 			hr = ::CoCreateInstance(CLSID_OpenServiceManager, NULL,
 				CLSCTX_INPROC_SERVER, IID_IOpenServiceManager, (void**) &osm);
@@ -527,6 +534,13 @@ STDMETHODIMP External::InstallMSIESearchProvider(BSTR url, BSTR* serviceID)
 
 STDMETHODIMP External::SetDefaultMSIESearchProvider(BSTR serviceID)
 {
+	IID IID_IOpenServiceManager;
+	::IIDFromString(L"{5664125f-4e10-4e90-98e4-e4513d955a14}",
+		&IID_IOpenServiceManager);
+	CLSID CLSID_OpenServiceManager;
+	::CLSIDFromString(L"{098870b6-39ea-480b-b8b5-dd0167c4db59}",
+		&CLSID_OpenServiceManager);
+	
 	IOpenServiceManager* osm;
 	HRESULT hr = ::CoCreateInstance(CLSID_OpenServiceManager, NULL,
 		CLSCTX_INPROC_SERVER, IID_IOpenServiceManager, (void**) &osm);
