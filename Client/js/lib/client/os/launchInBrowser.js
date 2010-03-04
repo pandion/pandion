@@ -15,5 +15,5 @@ client.os.launchInBrowser = function (address) {
 		catch (e) {
 		}
 	}
-	external.shellExec("open", address, "", "", 0);
+	external.shellExec("open", address, "", "", 5);
 };

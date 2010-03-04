@@ -51,7 +51,7 @@ function dial_webbrowser (address) {
 		if (HTTPHandler.toLowerCase().indexOf("iexplore.exe") !== -1)
 			window.open(address, "_blank");
 		else
-			external.shellExec("open", address, "", "", 0);
+			external.shellExec("open", address, "", "", 5);
 	} else
-		external.shellExec("open", address, "", "", 0);
+		external.shellExec("open", address, "", "", 5);
 }
