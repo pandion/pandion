@@ -33,6 +33,7 @@ typedef enum
 { 
 	ParsingProlog,
 	ParsingRootElement,
+	ParsingRootElementEnd,
 	ParsingXMPPStanzaBegin,
 	ParsingXMPPStanza,
 	ParsingXMPPStanzaEnd
@@ -129,6 +130,7 @@ private:
 
 	bool ParseProlog(unsigned xmlCharacter);
 	bool ParseRootElement(unsigned xmlCharacter);
+	bool ParseRootElementEnd(unsigned xmlCharacter);
 	bool ParseXMPPStanzaBegin(unsigned xmlCharacter);
 	bool ParseXMPPStanza(unsigned xmlCharacter);
 	bool ParseXMPPStanzaEnd(unsigned xmlCharacter);

@@ -88,6 +88,10 @@ bool XMPPXMLParser::ParseChar(unsigned c)
 	{
 		continueParsing = ParseRootElement(c);
 	}
+	else if(m_ParsingState == ParsingRootElementEnd)
+	{
+		continueParsing = ParseRootElementEnd(c);
+	}
 	else if(m_ParsingState == ParsingXMPPStanzaBegin)
 	{
 		continueParsing = ParseXMPPStanzaBegin(c);
@@ -193,6 +197,21 @@ bool XMPPXMLParser::ParseRootElement(unsigned xmlCharacter)
 }
 
 /*
+ * Private method that is called when the parser is expecting the end of the
+ * root element (e.g. </stream:stream>).
+ */
+bool XMPPXMLParser::ParseRootElementEnd(unsigned xmlCharacter)
+{
+	bool continueParsing = true;
+	if(xmlCharacter == L'>')
+	{
+		m_Handlers.OnDocumentEnd(UTF::utf32to16(m_ParsedData).c_str());
+		continueParsing = false;
+	}
+	return continueParsing;
+}
+
+/*
  * Private method that is called when the parser is expecting the root element
  * of an XMPP stanza. The state transitions when ">" is encountered.
  * If "/>", the XML element is self-closing and is sent to the event handler
@@ -208,6 +227,12 @@ bool XMPPXMLParser::ParseXMPPStanzaBegin(unsigned xmlCharacter)
 		*(m_ParsedData.end()-2) == L'/')
 	{
 		ParseXMPPStanzaEnd(xmlCharacter);
+	}
+	else if(xmlCharacter == L'/' &&
+		m_ParsedData.size() == 2 &&
+		*(m_ParsedData.begin()) == L'<')
+	{
+		m_ParsingState = ParsingRootElementEnd;
 	}
 	else if(xmlCharacter == L'>')
 	{

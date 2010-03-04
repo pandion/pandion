@@ -154,17 +154,15 @@ DWORD XMPPConnectionManager::ConnectionMain()
 			m_DoStartSC = false;
 			DoStartSC();
 		}
-		else
+		else if(canContinue)
 		{
 			canContinue = DoRecvData();
-			if(canContinue)
+			
+			unsigned nextChar = PopNextCharFromBuffer();
+			while(nextChar != -1)
 			{
-				unsigned nextChar = PopNextCharFromBuffer();
-				while(nextChar != -1)
-				{
-					canContinue = m_XMLParser.ParseChar(nextChar);
-					nextChar = PopNextCharFromBuffer();
-				}
+				canContinue = m_XMLParser.ParseChar(nextChar);
+				nextChar = PopNextCharFromBuffer();
 			}
 		}
 	}
