@@ -583,20 +583,6 @@ function SessionTracker ( Address )
 			this.HTMLButton = document.createElement( 'SPAN' );
 			this.HTMLButton.className = this.IsActive ? 'tab-bar-button-active' : 'tab-bar-button';
 			this.HTMLButton.SessionTracker = this;
-			this.HTMLButton.attachEvent(
-				'onmouseup',
-				function ()
-				{
-					if ( event.button == 4 )
-					{
-						event.cancelBubble = true;
-						if ( event.srcElement.tagName == 'SPAN' )
-							event.srcElement.SessionTracker.Close();
-						else
-							event.srcElement.parentNode.SessionTracker.Close();
-					}
-				}
-			);
 
 			var Picture = document.createElement( 'IMG' );
 			Picture.className = 'tab-avatar';
@@ -654,28 +640,28 @@ function SessionTracker ( Address )
 			);
 			this.HTMLButton.insertAdjacentElement( 'beforeEnd', Close );
 
-			this.HTMLButton.attachEvent(
-				'onmousedown',
-				function ()
-				{
-					if ( event.button != 1 )
-						return;
-					else if ( event.srcElement.tagName == 'SPAN' )
-						event.srcElement.SessionTracker.Activate( true );
+			this.HTMLButton.attachEvent("onmousedown", function () {
+				if (event.button !== 1)
+					return;
+				else if (event.srcElement.tagName === "SPAN")
+					event.srcElement.SessionTracker.Activate(true);
+				else
+					event.srcElement.parentNode.SessionTracker.Activate(true);
+			});
+			this.HTMLButton.attachEvent("onmouseup", function () {
+				if (event.button === 1) {
+					if (!document.getElementById("send-text").disabled) {
+						document.getElementById("send-text").blur();
+						document.getElementById("send-text").focus();
+					}
+				} else if (event.button === 4) {
+					if (event.srcElement.tagName === "SPAN")
+						event.srcElement.SessionTracker.Close();
 					else
-						event.srcElement.parentNode.SessionTracker.Activate( true );
+						event.srcElement.parentNode.SessionTracker.Close();
 				}
-			);
-			this.HTMLButton.attachEvent(
-				'onmouseup',
-				function ()
-				{
-					if ( event.button != 1 || event.srcElement.tagName == 'IMG' )
-						return;
-					else if ( ! document.getElementById( 'send-text' ).disabled )
-						document.getElementById( 'send-text' ).focus();
-				}
-			);
+			});
+
 			this.Container.HTMLTabBar.insertAdjacentElement( 'beforeEnd', this.HTMLButton );
 			if ( external.globals( 'cfg' )( 'tabbedchat' ).toString() != 'true' )
 				this.Container.HTMLTabBar.style.display = this.Container.HTMLTabBar.childNodes.length ? 'inline' : 'none';
@@ -1899,6 +1885,10 @@ function MouseMenu ()
  */
 function OnWindowActivate ()
 {
-	if ( ! document.getElementById( 'send-text' ).disabled )
-		setTimeout( "if ( ! document.getElementById( 'send-text' ).disabled ) document.getElementById( 'send-text' ).focus();", 0 );
+	setTimeout(function () {
+		if (!document.getElementById("send-text").disabled) {
+			document.getElementById("send-text").blur();
+			document.getElementById("send-text").focus();
+		}
+	}, 0);
 }
