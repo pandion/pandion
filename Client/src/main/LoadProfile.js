@@ -57,7 +57,7 @@ function LoadProfile ( Address )
 	/* Restore the user's preferred window dimensions and location
 	 */
 	MenuBarUpdate();
-	if ( external.wnd.isMinimized )
+	if ( external.wnd.isMinimized && external.CmdLine.substr( external.CmdLine.length - 10 ) !== '/minimized' )
 		external.wnd.restore();
 
 	/* Display the window
