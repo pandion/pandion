@@ -666,7 +666,7 @@ background: (image d') arrière-plan
       <innerText>Bonjour et bienvenue sur ${softwarename}</innerText>
     </item>
     <item id="txt-free-software">
-      <innerText>Cette application est libre et gratuite. Tous les développements, traductions et assistance est fournit par nos merveilleux membres de la communauté.</innerText>
+      <innerText>Cette application est libre et gratuite. Tous les développements, traductions et assistance sont fournis par nos merveilleux membres de la communauté.</innerText>
     </item>
     <item id="txt-more-information">
       <innerHTML>pour plus d'informations suivre @&lt;a href="http://twitter.com/${twittername}"&gt;${twittername}&lt;/a&gt; sur Twitter ou devenez un fan à  &lt;a href="http://www.facebook.com/${facebookpage}"&gt;Facebook.com/${facebookpage}&lt;/a&gt;.</innerHTML>
