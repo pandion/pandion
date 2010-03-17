@@ -47,6 +47,51 @@
       <innerText>トランスポートの設定</innerText>
     </item>
 
+    <item id="mode-avatar">
+      <title>別のアバターを選択してください</title>
+    </item>
+    <item id="mode-bar">
+      <title>あなたのステータスやプロファイルを変更します</title>
+    </item>
+    <item id="mode-secure">
+      <title>コネクションはSSL/TLS暗号化により安全です</title>
+    </item>
+    <item id="rosterfield">
+      <title>あなたのコンタクトリストに登録されているユーザとグループ</title>
+    </item>
+
+
+    <item id="signin-instructions">
+      <innerText>あなたのアドレスでサインインしてください</innerText>
+    </item>
+    <item id="txt-signin-address">
+      <innerText>アドレス:</innerText>
+    </item>
+    <item id="txt-signin-examples">
+      <innerText>例:</innerText>
+    </item>
+    <item id="txt-signin-password">
+      <innerText>パスワード:</innerText>
+    </item>
+    <item id="txt-signin-remember">
+      <innerText>パスワードを記憶</innerText>
+    </item>
+    <item id="txt-signin-autoconnect">
+      <innerText>自動でサインイン</innerText>
+    </item>
+    <item id="signin-connect">
+      <innerText>サインイン</innerText>
+    </item>
+    <item id="signin-register">
+      <innerText>新しいアドレスを登録</innerText>
+    </item>
+    <item id="signin-settings">
+      <innerText>接続設定</innerText>
+    </item>
+
+    <code id="tt-group-hide">このグループのコンタクトを隠す&#13;右クリックでオプション表示</code>
+    <code id="tt-group-show">このグループのコンタクトを表示する&#13;右クリックでオプション表示</code>
+
     <code id="emoticon_unknown">不明</code>
     <code id="txt_welcome">ようこそ ${0}!</code>
     <code id="user_online">${0} がサインインしました</code>
@@ -58,27 +103,36 @@
     <code id="import_no_new">ファイルの中の全てのコンタクトは、すでにコンタクトリストにあります</code>
     <code id="import_confirm">これらのコンタクトアドレスは、コンタクトリストに加えられます:&#13;&#13;${0}&#13;&#13;これらのアドレスをコンタクトリストに加えてよろしいですか？</code>
     <code id="import_aim_not_registered">AIMコンタクトリストをインポートするためにはAIMトランスポートを登録しなければいけません  トランスポートがアクティブでなければなりません&#13;ツールメニューのトランスポートでAIMトランスポートの状態を確認してください</code>
-    <code id="conference_invitation">${0} はあなたを会議室に招待しています: ${1}&#13;&#13;会議室に参加しますか？</code>
+    <code id="import_msn_not_registered">MSNコンタクトリストをインポートするためにはMSNトランスポートが登録されており、かつそのトランスポートがアクティブでなければなりません&#13;ツールメニューのトランスポートでMSNトランスポートの状態を確認してください</code>
+    <code id="import_gadu_not_registered">Gadu-GaduコンタクトリストをインポートするためにはGadu-Gaduトランスポートが登録されており、かつそのトランスポートがアクティブでなければなりません&#13;ツールメニューのトランスポートでGadu-Gaduトランスポートの状態を確認してください</code>
+    <code id="search_info">コンタクトを検索する...</code>
+    <code id="conference_invitation">${0} はあなたをチャットルームに招待しています: ${1}&#13;&#13;チャットルームに参加しますか？</code>
+    <code id="invalid-user-address">あなたのアドレスを入力して下さい&#13;&#13;もしアドレスを持っていなければ、下の"新たなアドレスを登録"をクリックしてください</code>
+    <code id="invalid-sso-server">あなたのサーバのアドレスを入力してください</code>
+    <code id="program-description">${softwarename}はXMPPネットワークのインスタントメッセージングクライアントです</code>
 
-    <code id="menu_file">ファイル(&amp;F)</code>
-    <code id="menu_file_received">受信ファイルを開く(&amp;O)</code>
-    <code id="menu_file_export">コンタクトリストエキスポート(&amp;E)</code>
-    <code id="menu_file_import">コンタクトリストインポート(&amp;I)</code>
-    <code id="menu_file_change">ステータスメッセージの変更(&amp;m)...</code>
-    <code id="menu_file_ffc">チャットしたい(&amp;F)</code>
-    <code id="menu_file_available">オンライン(&amp;A)</code>
-    <code id="menu_file_busy">忙しい(&amp;B)</code>
-    <code id="menu_file_away">離席(&amp;w)</code>
-    <code id="menu_file_xaway">拡張離席(&amp;E)</code>
-    <code id="menu_file_invisible">不可視(&amp;I)</code>
-    <code id="menu_file_offline">オフライン(&amp;O)</code>
-    <code id="menu_file_status">マイステータス(&amp;s)</code>
-    <code id="menu_file_out">サインアウト(&amp;o)</code>
-    <code id="menu_file_exit">終了(&amp;E)</code>
+    <code id="menu_status">ステータス(&amp;S)</code>
+    <code id="menu_status_received">受信ファイルを開く(&amp;O)</code>
+    <code id="menu_status_export">コンタクトリストのエクスポート(&amp;E)...</code>
+    <code id="menu_status_import">コンタクトリストのインポート(&amp;I)...</code>
+    <code id="menu_status_change">ステータスメッセージの変更(&amp;M)...</code>
+    <code id="menu_status_ffc">チャットしたい(&amp;F)</code>
+    <code id="menu_status_available">オンライン(&amp;A)</code>
+    <code id="menu_status_busy">忙しい(&amp;B)</code>
+    <code id="menu_status_away">離席(&amp;w)</code>
+    <code id="menu_status_xaway">ずっと離席(&amp;E)</code>
+    <code id="menu_status_invisible">不可視(&amp;I)</code>
+    <code id="menu_status_offline">オフライン(&amp;O)</code>
+    <code id="menu_status_status">マイステータス(&amp;S)</code>
+    <code id="menu_status_out">サインアウト(&amp;o)</code>
+    <code id="menu_status_exit">終了(&amp;x)</code>
 
     <code id="menu_axn">アクション(&amp;A)</code>
     <code id="menu_axn_add">コンタクトリスト追加...(&amp;A)</code>
     <code id="menu_axn_addgroup">グループ追加...(&amp;g)</code>
+    <code id="menu_axn_bookmarks">ブックマーク済みチャットルーム(&amp;B)</code>
+    <code id="menu_axn_bookmarks_add">ブックマークに追加(&amp;A)...</code>
+    <code id="menu_axn_bookmarks_manage">ブックマークを管理(&amp;O)...</code>
     <code id="menu_axn_join">チャットルーム参加...(&amp;J)</code>
     <code id="menu_axn_create">チャットルーム作成(&amp;C)...</code>
     <code id="menu_axn_password">パスワード変更...(&amp;p)</code>
@@ -99,9 +153,11 @@
     <code id="menu_tool_settings">設定(&amp;S)</code>
 
     <code id="menu_help">ヘルプ(&amp;H)</code>
+    <code id="menu_help_welcome">ウェルカムスクリーン(&amp;W)</code>
     <code id="menu_help_manual">オンラインマニュアル(&amp;O)</code>
     <code id="menu_help_forum">サポートフォーラム(&amp;S)</code>
     <code id="menu_help_contact">コンタクト(&amp;C)</code>
+    <code id="menu_help_update">アップデートを確認(&amp;U)</code>
     <code id="menu_help_about">Pandionについて(&amp;A)</code>
 
     <code id="menu_tray_about">${0}について(&amp;A)</code>
@@ -143,6 +199,11 @@
     <code id="wnd_extension_download">${0} インストール中</code>
     <code id="wnd_background_list">背景</code>
     <code id="wnd_background_download">背景ダウンロード</code>
+    <code id="wnd_bookmarks_add">チャットルームのブックマークを追加</code>
+    <code id="wnd_bookmarks_edit">チャットルームのブックマークを編集</code>
+    <code id="wnd_bookmarks_manage">チャットルームのブックマーク</code>
+    <code id="wnd_connection_settings">接続設定</code>
+    <code id="wnd_welcome">${0}へようこそ</code>
 
     <code id="msg_emoticon_install">このエモーティコンはインストールされました</code>
     <code id="msg_received_files">受信ファイル用のディレクトリーは削除されました</code>
@@ -175,7 +236,10 @@
     <code id="cl_error_notexist">アドレスは存在しません</code>
     <code id="cl_error_cannotadd">コンタクトリストに ${0} を登録できません&#13;${1}</code>
     <code id="cl_default_group">コンタクト</code>
-    <code id="cl_group_expand">オフラインを表示</code>
+    <code id="cl_group_display_none">コンタクトなし</code>
+    <code id="cl_group_display_online">オンラインのコンタクトのみ</code>
+    <code id="cl_group_display_all">全てのコンタクト</code>
+	  <code id="cl_group_expand">オフラインを表示</code>
     <code id="cl_group_compact">オフラインを隠す</code>
     <code id="cl_group_rename">グループ名変更</code>
     <code id="cl_group_message">ブロードキャストメッセージ送信</code>
@@ -200,7 +264,28 @@
     <code id="cl_away">離席</code>
     <code id="cl_xaway">拡張離席</code>
     <code id="cl_invisible">不可視</code>
+    <code id="cl_idle">待機</code>
     <code id="cl_tooltip_online">アドレス: ${0}&#13;リソース: ${1}</code>
+
+    <code id="time-now">いま</code>
+    <code id="time-second">1秒前</code>
+    <code id="time-seconds">${0}秒前</code>
+    <code id="time-minute">1 minute ago</code>
+    <code id="time-minutes">${0} minutes ago</code>
+    <code id="time-hour">1 hour ago</code>
+    <code id="time-hours">${0} hours ago</code>
+    <code id="time-day">1 day ago</code>
+    <code id="time-days">${0} days ago</code>
+    <code id="time-week">1 week ago</code>
+    <code id="time-weeks">${0} weeks ago</code>
+    <code id="time-month">1 month ago</code>
+    <code id="time-months">${0} months ago</code>
+    <code id="time-year">1 year ago</code>
+    <code id="time-years">${0} years ago</code>
+
+    <code id="track-stable">Stable</code>
+    <code id="track-beta">Beta</code>
+    <code id="track-development">Development</code>
   </window>
   <window name="about">
     <item id="btn_credits">
@@ -245,7 +330,10 @@
     <item id="txt_add">
       <innerText>コンタクトリストにユーザを登録しました</innerText>
     </item>
-  </window>
+    <item id="txt_question">
+      <innerText>このユーザをあなたのコンタクトリストに追加しますか？または拒否しますか？</innerText>
+    </item>
+   </window>
   <window name="admin_users">
     <item id="btn_refresh">
       <value>更新</value>
@@ -348,6 +436,12 @@
       <innerText>誰かがログオンした時に、アラートで知らせる</innerText>
     </item>
     <code id="read_more">もっと...</code>
+    <code id="replay">再生</code>
+  </window>
+  <window name="headline-toaster">
+    <item id="options">
+      <innerText>オプション...</innerText>
+    </item>
   </window>
   <window name="avatar">
     <item id="btn_cancel">
@@ -377,6 +471,9 @@
     <code id="all_files">全ファイル</code>
   </window>
   <window name="mode_select">
+    <item id="txt_message">
+      <innerText>ステータスメッセージはあなたの気持ち、状況、その他を表します:</innerText>
+    </item>
     <item id="ok">
       <value>OK</value>
     </item>
@@ -603,8 +700,117 @@
     <item id="txt_status">
       <innerText>接続中...</innerText>
     </item>
+
+    <item id="txt-unavailable">
+      <innerText>更新はありません</innerText>
+    </item>
+    <item id="txt-no-feed">
+      <innerText>更新フィードにアクセスできませんでした。しばらく後に再度試してください。</innerText>
+    </item>
+    <item id="txt-available-updates">
+      <innerText>更新があります</innerText>
+    </item>
+    <item id="txt-tracks-info">
+      <innerText>他のバージョンではさらなる安定性や最新機能を提供しています</innerText>
+    </item>
+    <item id="txt-latest">
+      <innerText>現在のトラックでの最新バージョン:</innerText>
+    </item>
+    <item id="txt-alternatives">
+      <innerText>その他のバージョン:</innerText>
+    </item>
+    <item id="btn-close">
+      <value>閉じる</value>
+    </item>
+
+    <item id="txt-new-version">
+      <innerText>新しいバージョンがあります</innerText>
+    </item>
+    <item id="txt-learn-more">
+      <innerText>このアップデートでの変更点を確認します。このリンクはウェブブラウザでで開かれます。</innerText>
+    </item>
+    <item id="txt-continue">
+      <innerText>ダウンロードの間 ${softwarename} の使用を継続することができます。</innerText>
+    </item>
+    <item id="txt-restart">
+      <innerText>${softwarename} を再起動するとアップデートがインストールされます。再起動せず、${softwarename}の使用をそのまま継続することも可能です。再起動しますか？</innerText>
+    </item>
+    <item id="txt-browser">
+      <innerText>ウェブブラウザでダウンロードが開始されます</innerText>
+    </item>
+    <item id="btn-update">
+      <value>今すぐアップデート</value>
+    </item>
+    <item id="btn-download">
+      <value>今すぐダウンロード</value>
+    </item>
+    <item id="btn-later">
+      <value>あとで</value>
+    </item>
+
     <code id="downloading">ダウンロード中...</code>
     <code id="complete">ダウンロード完了 インストールを押して続けてください</code>
+    <code id="up-to-date">最新</code>
+    <code id="previous-version">以前のバージョン</code>
+    <code id="recommended">推奨</code>
+    <code id="description-stable">安定版は長い期間に渡ってテストされています</code>
+    <code id="description-beta">直近のバグ修正とテスト中の機能が含まれます</code>
+    <code id="description-development">開発中のためいくつかの機能は動作しないかもしれません</code>
+    <code id="title">ソフトウェアアップデート: ${0} ${1}</code>
+  </window>
+  <window name="welcome">
+    <item id="txt-hello">
+      <innerText>ようこそ${softwarename}へ</innerText>
+    </item>
+    <item id="txt-free-software">
+      <innerText>このアプリケーションはオープンソースソフトウェアです。全ての開発，翻訳，サポートは私たちの素晴しいコミュニティーメンバーによって行われています。</innerText>
+    </item>
+    <item id="txt-more-information">
+      <innerHTML>さらなる情報については @&lt;a href="http://twitter.com/${twittername}"&gt;${twittername}&lt;/a&gt; をツィッターでフォローするか、Facebookで &lt;a href="http://www.facebook.com/${facebookpage}"&gt;Facebook.com/${facebookpage}&lt;/a&gt;のファンになってください。</innerHTML>
+    </item>
+    <item id="txt-enjoy">
+      <innerText>どうか、あなたがこのアプリケーションを楽しんでくれますように</innerText>
+    </item>
+    <item id="txt-team">
+      <innerText>${softwarename}チーム</innerText>
+    </item>
+    <item id="settings-close">
+      <title>確認して閉じる</title>
+    </item>
+    <item id="btn-add-contact">
+      <innerText>コンタクトを追加する</innerText>
+    </item>
+    <item id="btn-edit-profile">
+      <innerText>プロフィールを編集する</innerText>
+    </item>
+    <item id="btn-transports">
+      <innerText>トランスポート</innerText>
+    </item>
+    <item id="btn-settings">
+      <innerText>設定</innerText>
+    </item>
+    <item id="txt-confirm">
+      <innerText>これらの設定を確認してください:</innerText>
+    </item>
+    <item id="txt-default-xmpp">
+      <innerText>${softwarename}をデフォルトのXMPPクライアントとする</innerText>
+    </item>
+    <item id="txt-homepage">
+      <innerText>ホームページを${browsersearchboxname}に設定する</innerText>
+    </item>
+    <item id="txt-search-engine">
+      <innerText>${browsersearchboxname}をサーチエンジンに追加する</innerText>
+    </item>
+    <item id="txt-feed-title">
+      <innerText>サポート及びFacebook</innerText>
+    </item>
+    <item id="txt-ask-question">
+      <innerText>質問する</innerText>
+    </item>
+    <item id="txt-show-welcome">
+      <innerText>開始時にこのウェルカムスクリーンを表示する</innerText>
+    </item>
+    <code id="search-topics">全てのトピックを検索する...</code>
   </window>
   <window name="conference_create">
     <item id="btn_ok">
@@ -786,6 +992,9 @@
     <item id="txt_disconnected">
       <innerText>ルームに加わるために、サーバーに接続していなければなりません</innerText>
     </item>
+    <code id="bookmarks">ブックマーク</code>
+    <code id="menu_join">参加</code>
+    <code id="menu_add">ブックマークに追加...</code>
     <code id="empty_filter">フィルターにマッチするルームがありません</code>
     <code id="empty_no_rooms">このサービスでルームは利用できません</code>
     <code id="status_connecting">接続中...</code>
@@ -1151,7 +1360,7 @@
     <code id="yahoo_creating_busy">アカウントはYahoo!トランスポートに登録されています</code>
     <code id="yahoo_removing_busy">Yahoo!アカウントはトランスポートから削除されています&lt;BR&gt;他のサービス(例えば、Yahoo!メール、Yahoo!メッセンジャーなど)のYahoo!アカウントを使用することができるでしょう&lt;BR&gt;</code>
     <code id="yahoo_creating_done">アカウントはYahoo!トランスポートに登録されました</code>
-    <code id="yahoo_removing_done">アカウントはYahoo!トランスポートに削除されました</code>
+    <code id="yahoo_removing_done">アカウントはYahoo!トランスポートから削除されました</code>
 
     <code id="aim_window_title">AOL インスタントメッセンジャー - トランスポートウィザード</code>
     <code id="aim_begin_intro">このウィザードはAOL IMトランスポートの設定を行います&lt;BR&gt;このトランスポートはあなたとAOL IMアカウント間のリンクです&lt;BR&gt;トランスポートを使用するためにはAOL IMのアカウントが必要です&lt;BR&gt;</code>
@@ -1160,7 +1369,15 @@
     <code id="aim_creating_busy">アカウントはAOL IMトランスポートに登録されています</code>
     <code id="aim_removing_busy">AOL IMアカウントはトランスポートから削除されています&lt;BR&gt;</code>
     <code id="aim_creating_done">アカウントはAOL IMトランスポートに登録されました</code>
-    <code id="aim_removing_done">アカウントはAOL IMトランスポートに削除されました</code>
+    <code id="aim_removing_done">アカウントはAOL IMトランスポートから削除されました</code>
+    <code id="gadu_window_title">Gadu-Gadu - トランスポートウィザード</code>
+    <code id="gadu_begin_intro">このウィザードはGadu-Gaduトランスポートの設定を行います&lt;BR&gt;このトランスポートはあなたとGadu-Gaduアカウント間のリンクです&lt;BR&gt;トランスポートを使用するためにはGadu-gGaduナンバーが必要です&lt;BR&gt;</code>
+    <code id="gadu_newaccount_instructions">Gadu-Gaduナンバーとパスワードを入力してください&lt;</code>
+    <code id="gadu_newaccount_examples">&amp;nbsp;</code>
+    <code id="gadu_creating_busy">Gadu-Gaduナンバーは登録されています</code>
+    <code id="gadu_removing_busy">Gadu-Gaduナンバーは削除されています&lt;BR&gt;</code>
+    <code id="gadu_creating_done">Gadu-Gaduナンバーはトランスポートに登録されました</code>
+    <code id="gadu_removing_done">Gadu-Gaduナンバーはトランスポートから削除されました</code>
   </window>
   <window name="history">
     <item id="btn_go">
@@ -1235,6 +1452,24 @@
       <value>送信</value>
     </item>
 
+    <item id="resize-grip">
+      <title>メッセージ入力領域のサイズを変更する</title>
+    </item>
+    <item id="mode-bar">
+      <title>あなたのメッセージを受診したユーザ</title>
+    </item>
+    <item id="send-text">
+      <title>ここにメッセージを入力して下さい</title>
+    </item>
+    <item id="btn-send">
+      <value>送信</value>
+      <title>メッセージ送信</title>
+      <accessKey>s</accessKey>
+    </item>
+
+    <code id="tt-avatar">フルサイズのアバターを表示する</code>
+    <code id="tt-messages">送信済みのメッセージ</code>
+    <code id="tt-close">会話を閉じる</code>
     <code id="msg_typing">${0} がメッセージを入力中です</code>
     <code id="unknown">ステータスが不明なので、${0}は返答しないかもしれません</code>
     <code id="lastonline">最終オンライン時間: ${0}</code>
@@ -1244,7 +1479,11 @@
     <code id="background_list">利用できる背景...</code>
     <code id="close_many_tabs">全ての会話を閉じてよろしいですか？</code>
     <code id="close_recent_message">現在メッセージを受信しました&#13;&#13;この会話を閉じてよろしいですか？</code>
+    <code id="palette_compact">エモーティコンリストのサイズを削減する</code>
+    <code id="palette_expand">このスタイルの全てのエモーティコンを表示する</code>
+    <code id="palette_browse">その他のエモーティコンスタイル...</code>
 
+    <code id="menu_file">ファイル(&amp;F)</code>
     <code id="menu_file_received">受信ファイルを開く(&amp;O)</code>
     <code id="menu_file_history">メッセージ履歴(&amp;H)</code>
     <code id="menu_file_close">閉じる(&amp;C)</code>
@@ -1265,6 +1504,45 @@
     <code id="menu_tool_tabbed">会話タブ(&amp;T)</code>
     <code id="menu_tool_emoticons">エモーティコン表示(&amp;D)</code>
     <code id="menu_tool_settings">設定(&amp;S)</code>
+  </window>
+  <window name="conference-bookmarks-add">
+    <item id="txt_address">
+      <innerText>チャットルームアドレス:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>例: my_room@conference.example.net</innerText>
+    </item>
+    <item id="lbl_autojoin">
+      <innerText>ログイン時にこのチャットルームに参加する</innerText>
+    </item>
+    <item id="lbl_password">
+      <innerText>チャットルームとそのパスワードを入力:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+    <code id="error_invalid_address">チャットルームのアドレスが間違ってます</code>
+  </window>
+  <window name="conference-bookmarks-manage">
+    <item id="txt_head">
+      <innerText>チャットルームのブックマークを編集,削除または追加する:</innerText>
+    </item>
+    <item id="btn_edit">
+      <value>編集</value>
+    </item>
+    <item id="btn_delete">
+      <value>削除</value>
+    </item>
+    <item id="btn_add">
+      <value>追加</value>
+    </item>
+    <item id="btn_close">
+      <value>閉じる</value>
+    </item>
+    <code id="confirm_delete">このチャットルームのブックマークを削除してもいいですか？</code>
   </window>
   <window name="conference-configuration">
     <item id="btn_cancel">
@@ -1360,7 +1638,7 @@
     <code id="wnd_conference_subject">カンファレンスルームサブジェクト</code>
     <code id="wnd_conference_configuration">カンファレンスルーム設定</code>
 
-    <code id="default_subject">この会議室はサブジェクトを持っていません</code>
+    <code id="default_subject">このチャットルームはサブジェクトを持っていません</code>
     <code id="windowtitle">${0} - 会議</code>
     <code id="destroy">ルームから全ての参加者を追い出して、サーバからルームを削除します&#13;&#13;本当にこのルームを破壊してよろしいですか？</code>
 
@@ -1376,6 +1654,9 @@
   <window name="preferences">
     <item id="txt_startup">
       <innerText>ウィンドウズ起動時、自動的に開始</innerText>
+    </item>
+    <item id="txt_updates">
+      <innerText>自動的にソフトウェアのアップデートを確認する</innerText>
     </item>
     <item id="txt_autoaway">
       <innerText>数分間このコンピュータを使用しない場合、ステータスは"離席(Away)"になります</innerText>
@@ -1406,6 +1687,15 @@
     </item>
     <item id="block_btn_view">
       <value>プロフィールを見る</value>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>接続設定</innerText>
+    </item>
+    <item id="txt_connection_desc">
+      <innerText>サーバへの接続方法を変更</innerText>
+    </item>
+    <item id="btn_connection_settings">
+      <value>接続設定</value>
     </item>
     <item id="txt_ssl">
       <innerText>暗号化された接続(SSL)を使用</innerText>
@@ -1563,6 +1853,9 @@
     <item id="btn_p1_cancel">
       <value>キャンセル</value>
     </item>
+    <item id="btn_p1_close">
+      <value>閉じる</value>
+    </item>
 
     <item id="txt_p1b_title">
       <innerText>処理ユーザ名</innerText>
@@ -1579,6 +1872,9 @@
     <item id="page1b_btn_cancel">
       <value>キャンセル</value>
     </item>
+    <item id="page1b_btn_close">
+      <value>閉じる</value>
+    </item>
 
     <item id="txt_p1c_title">
       <innerText>検索形式のリクエスト</innerText>
@@ -1594,6 +1890,9 @@
     </item>
     <item id="page1c_btn_cancel">
       <value>キャンセル</value>
+    </item>
+    <item id="page1c_btn_close">
+      <value>閉じる</value>
     </item>
 
     <item id="txt_p2_title">
@@ -1643,6 +1942,9 @@
     <item id="page3_btn_cancel">
       <value>キャンセル</value>
     </item>
+    <item id="page3_btn_close">
+      <value>閉じる</value>
+    </item>
 
     <item id="txt_p4_title">
       <innerText>検索結果</innerText>
@@ -1660,11 +1962,76 @@
     <item id="page4_btn_cancel">
       <value>キャンセル</value>
     </item>
+    <item id="page4_btn_close">
+      <value>閉じる</value>
+    </item>
+
+    <item id="txt_p5_title">
+      <innerText>ユーザの追加</innerText>
+    </item>
+    <item id="txt_p5_tagline">
+      <innerText>コンタクトリストはサーバに格納されます</innerText>
+    </item>
+    <item id="txt_p5_desc">
+      <innerText>認可リクエストを次のユーザに送信:</innerText>
+    </item>
+    <item id="txt_p5_user">
+      <innerText>ユーザ名:</innerText>
+    </item>
+    <item id="txt_p5_network">
+      <innerText>ネットワーク:</innerText>
+    </item>
+    <item id="page5_btn_back">
+      <value>&lt; 戻る</value>
+    </item>
+    <item id="page5_btn_next">
+      <value>次へ &gt;</value>
+    </item>
+    <item id="page5_btn_close">
+      <value>閉じる</value>
+    </item>
+
+    <item id="txt_p6_title">
+      <innerText>ユーザの検索・追加ウィザードの完了</innerText>
+    </item>
+    <item id="txt_p6_tagline">
+      <innerText>ユーザの検索・追加ウィザードが完了しました</innerText>
+    </item>
+    <item id="txt_p6_desc">
+      <innerText>このユーザがコンタクトリストに追加されました:</innerText>
+    </item>
+    <item id="txt_p6_user">
+      <innerText>ユーザ名:</innerText>
+    </item>
+    <item id="txt_p6_network">
+      <innerText>ネットワーク:</innerText>
+    </item>
+    <item id="txt_p6_again">
+      <innerHTML>ウィザードを再実行するには &lt;B&gt;その他のユーザを追加&lt;/B&gt; を押してください</innerHTML>
+    </item>
+    <item id="page6_btn_again">
+      <value>その他のユーザを追加</value>
+    </item>
+    <item id="txt_p6_finish">
+      <innerHTML>ウィザードを終了するには &lt;B&gt;完了&lt;/B&gt; を押してください</innerHTML>
+    </item>
+    <item id="page6_btn_back">
+      <value>&lt; 戻る</value>
+    </item>
+    <item id="page6_btn_finish">
+      <value>完了</value>
+    </item>
+    <item id="page6_btn_close">
+      <value>閉じる</value>
+    </item>
+
     <code id="correct">正確なユーザー名を入力してください&#13;&#13;例: someone123@${0}</code>
     <code id="example_address">例: someone123@${0}</code>
     <code id="enter_username">コンタクトしたいユーザのユーザー名を入力してください</code>
+    <code id="contacting_adding">&lt;B&gt;サーバに問い合わせ&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;約１分程度かかります&lt;BR&gt;しばらくお待ちください&lt;BR&gt;</code>
     <code id="contacting_transport">&lt;B&gt;トランスポートに接続しています&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;1分ほどかかる事があります&lt;BR&gt;お待ちください&lt;BR&gt;</code>
     <code id="contacting_search">&lt;B&gt;検索サービスに接続中&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;1分ほどかかる事があります&lt;BR&gt;お待ちください&lt;BR&gt;</code>
+    <code id="error_adding">&lt;B&gt;サーバエラー:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;このユーザをコンタクトリストに追加できませんでした&lt;BR&gt;Contact the administrator for more information.</code>
     <code id="error_transport">&lt;B&gt;サーバエラー:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;ユーザはコンタクトリストに追加できません&lt;BR&gt;正確なユーザー名を入力したことを確認してください</code>
     <code id="error_search">&lt;B&gt;サーバエラー:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;検索形式をダウンロードできません&lt;BR&gt;再試行するか、異なるサービスを選択してください</code>
     <code id="error_invalid">受信データは無効です</code>
@@ -1710,7 +2077,54 @@
       <value>閉じる</value>
     </item>
   </window>
-	<window name="sign_up">
+  <window name="connection-settings">
+    <code id="logout">変更を反映するにはログアウトする必要があります&#13;&#13;ログアウトしますか？</code>
+    <code id="automatic">自動</code>
+    <item id="txt_connection">
+      <innerText>サーバ接続</innerText>
+    </item>
+    <item id="lbl_server_address">
+      <innerHTML>アドレス(&lt;U&gt;A&lt;/U&gt;):</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="txt_encryption">
+      <innerText>安全な接続</innerText>
+    </item>
+    <item id="lbl_encryption_optional">
+      <innerHTML>サーバが対応しているならTLS暗号化を使用する(&lt;U&gt;U&lt;/U&gt;)</innerHTML>
+      <accessKey>u</accessKey>
+    </item>
+    <item id="lbl_encryption_tls">
+      <innerHTML>TLS暗号化が必要(&lt;U&gt;T&lt;/U&gt;)</innerHTML>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="lbl_encryption_ssl">
+      <innerHTML>SSL暗号化が必要(&lt;U&gt;S&lt;/U&gt;)</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="lbl_encryption_none">
+      <innerHTML>暗号化しない(&lt;U&gt;n&lt;/U&gt;)</innerHTML>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="txt_authentication">
+      <innerText>認証方法</innerText>
+    </item>
+    <item id="lbl_authentication_normal">
+      <innerHTML>アドレスとパスワード(&lt;U&gt;d&lt;/U&gt;)</innerHTML>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="lbl_authentication_ntlm">
+      <innerHTML>Windows認証と統合(&lt;U&gt;W&lt;/U&gt;)</innerHTML>
+      <accessKey>w</accessKey>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>キャンセル</value>
+    </item>
+  </window>
+ 	<window name="sign_up">
     <code id="close_confirm">新しいアドレスは完全ではありません。&#13;&#13;ウィザードを閉じてよろしいですか？</code>
     <code id="incomplete">フィールドをすべて完成します...</code>
     <code id="pass_match">入力したパスワードは一致しません。&#13;&#13;両方のフィールドに新しいパスワードを入力します。</code>
