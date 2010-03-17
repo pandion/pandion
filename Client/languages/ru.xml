@@ -1317,7 +1317,7 @@
   </window>
   <window name="chat-container">
     <item id="btn-emoticons">
-      <title>Уведомлять собеседника, когда вы набираете сообщение</title>
+      <title>Показать о чем ты думаешь или что делаешь</title>
       <accessKey>e</accessKey>
     </item>
     <item id="btn-font">
