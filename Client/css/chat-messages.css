@@ -63,14 +63,14 @@ A:hover {
 	text-align: right;
 	font-family: Tahoma;
 	font-size: 10px;
-	color: #b7babb;
+	color: #848A8B;
 }
 .me-time {
 	padding: 0 2px 0 0;
 	text-align: right;
 	font-family: Tahoma;
 	font-size: 10px;
-	color: #b7babb;
+	color: #848A8B;
 }
 .me {
 	font-family: Tahoma;
@@ -122,7 +122,7 @@ A:hover {
 	font-family: Arial;
 	font-size: 14px;
 	font-weight: bold;
-	color: #DBDCDC;
+	color: #B4B6B6;
 	border-top: 1px solid #E9EAEA;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -132,14 +132,14 @@ A:hover {
 	text-align: right;
 	font-family: Tahoma;
 	font-size: 10px;
-	color: #DBDCDC;
+	color: #B4B6B6;
 }
 .history-me-time {
 	padding: 0 2px 0 0;
 	text-align: right;
 	font-family: Tahoma;
 	font-size: 10px;
-	color: #DBDCDC;
+	color: #B4B6B6;
 }
 .history-me {
 	font-family: Tahoma;
