@@ -400,6 +400,13 @@ library PandionLib
 	[uuid(E9B8AA03-69C6-4ce6-96E9-1A3E38DF880C)]
 	interface IXMPP : IDispatch
 	{
+		HRESULT SetProxySettings(
+			[in] BSTR method,
+			[in] BSTR server,
+			[in] USHORT port,
+			[in] BSTR username,
+			[in] BSTR password,
+			[in,defaultvalue(FALSE)] BOOL useSSL);
 		HRESULT Connect(
 			[in] BSTR server,
 			[in] USHORT port,

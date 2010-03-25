@@ -51,7 +51,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/EHsc"
+				AdditionalOptions="/EHsc /MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="$(IntDir)"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;_MT;i386"
@@ -160,7 +160,6 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/MP"
 				Optimization="3"
 				InlineFunctionExpansion="2"
 				EnableIntrinsicFunctions="true"
@@ -260,22 +259,6 @@
 			</File>
 			<File
 				RelativePath=".\Hash.h"
-				>
-			</File>
-			<File
-				RelativePath="Socket.cpp"
-				>
-			</File>
-			<File
-				RelativePath="Socket.h"
-				>
-			</File>
-			<File
-				RelativePath=".\SocketCompressor.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\SocketCompressor.h"
 				>
 			</File>
 			<File
@@ -411,6 +394,30 @@
 				</File>
 				<File
 					RelativePath=".\XMPPSendQueue.h"
+					>
+				</File>
+				<File
+					RelativePath=".\XMPPSocket.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\XMPPSocket.h"
+					>
+				</File>
+				<File
+					RelativePath=".\XMPPSocketCompressor.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\XMPPSocketCompressor.h"
+					>
+				</File>
+				<File
+					RelativePath=".\XMPPSocketCrypto.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\XMPPSocketCrypto.h"
 					>
 				</File>
 				<File

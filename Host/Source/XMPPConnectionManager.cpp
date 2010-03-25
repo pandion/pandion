@@ -50,6 +50,22 @@ XMPPConnectionManager::~XMPPConnectionManager()
 	::CloseHandle(m_CanStartNewThread);
 }
 
+void XMPPConnectionManager::SetProxySettings(
+	ProxyMethod method,
+	std::wstring server,
+	unsigned short port,
+	std::wstring username,
+	std::wstring password,
+	bool useSSL)
+{
+	m_ProxyMethod = method;
+	m_ProxyServer = server;
+	m_ProxyPort = port;
+	m_ProxyUsername = username;
+	m_ProxyPassword = password;
+	m_ProxyUseSSL = useSSL;
+}
+
 /*
  * Creates a new thread that attempts to connect to the XMPP server.
  */
@@ -268,7 +284,7 @@ bool XMPPConnectionManager::DoRecvData()
 		{
 			canContinue = true;
 		}
-		else /* if(bytesRead < 0) *//* socket read error */
+		else /* if(bytesRead < 0) *//* XMPPSocket read error */
 		{
 			m_Logger.LogReadError();
 		}

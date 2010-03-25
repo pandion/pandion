@@ -41,6 +41,43 @@ XMPP::~XMPP()
 }
 
 /*
+ * Sets the proxy settings used for connecting to the XMPP server.
+ */
+STDMETHODIMP XMPP::SetProxySettings(
+	BSTR method,
+	BSTR server,
+	USHORT port,
+	BSTR username,
+	BSTR password,
+	BOOL useSSL)
+{
+	if(_wcsicmp(method, L"none") == 0)
+	{
+		m_ConnectionManager.SetProxySettings(PROXYMETHOD_NONE,
+			L"", 0, L"", L"", false);
+	}
+	else if(_wcsicmp(method, L"connect") == 0)
+	{
+		m_ConnectionManager.SetProxySettings(PROXYMETHOD_CONNECT,
+			server, port, username, password, useSSL);
+	}
+	else if(_wcsicmp(method, L"socks4") == 0)
+	{
+	}
+	else if(_wcsicmp(method, L"socks5") == 0)
+	{
+	}
+	else if(_wcsicmp(method, L"bosh") == 0)
+	{
+	}
+	else
+	{
+		return E_NOTIMPL;
+	}
+	return S_OK;
+}
+
+/*
  * Attempts to connect to the given XMPP server.
  */
 STDMETHODIMP XMPP::Connect(BSTR server, USHORT port, BOOL useSSL)

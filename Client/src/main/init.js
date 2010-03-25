@@ -61,6 +61,7 @@ function init ()
 	external.globals.Add( 'XMPPReconnect', false ); // reconnect flag
 	external.globals.Add( 'XMPPStreamVersion', null ); // server protocol version
 	external.globals.Add( 'XMPPSASLMechanism', '' ); // selected authentication method
+	external.globals.Add( 'XMPPChallengesReceived', '' ); // number of SCRAM challenge received
 	external.globals.Add( 'XMPPKeepalive', null ); // Whitespace keepalive
 
 	/* Load branding data from XML files

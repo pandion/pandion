@@ -22,8 +22,6 @@
 
 #pragma once
 
-#include "Socket.h"
-
 class HTTPEventRouter;
 
 class HTTPListener

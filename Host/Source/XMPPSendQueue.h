@@ -24,20 +24,20 @@
 
 #pragma once
 
-class Socket; // forward declaration
+class XMPPSocket; // forward declaration
 
 class XMPPSendQueue
 {
 	std::queue<std::vector<BYTE>>	m_Buffers;
 	bool							m_bConnected;
-	Socket*							m_Socket;
+	XMPPSocket*						m_Socket;
 	HANDLE							m_hDataAvailable;
 	HANDLE							m_hThread;
 public:
 	XMPPSendQueue();
 	~XMPPSendQueue();
 
-	void SetConnected(Socket* socket);
+	void SetConnected(XMPPSocket* socket);
 	void SetDisconnected();
 	void AddData(BYTE *dataBuffer, DWORD dataBufferSize);
 private:

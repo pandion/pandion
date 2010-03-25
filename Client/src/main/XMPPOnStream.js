@@ -101,6 +101,7 @@ function XMPPOnStream ( ReceivedXML )
 			}
 			warn( 'SENT: ' + dom.xml );
 			external.XMPP.SendXML( dom );
+			external.globals( 'XMPPChallengesReceived' ) = 0;
 		}
 
 		/* Request MD5 challenge
@@ -192,7 +193,7 @@ function XMPPOnStream ( ReceivedXML )
 			}
 			warn("SENT: " + dom.xml);
 			external.XMPP.SendXML(dom);
-		} else if( external.globals( 'XMPPSASLMechanism' ) == 'SCRAM-SHA-1' ) {
+		} else if( external.globals( 'XMPPSASLMechanism' ) == 'SCRAM-SHA-1' && external.globals( 'XMPPChallengesReceived' ) == 0 ) {
 			var dom = new ActiveXObject("Msxml2.DOMDocument");
 			dom.loadXML("<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>" );
 			try {
@@ -203,6 +204,18 @@ function XMPPOnStream ( ReceivedXML )
 			}
 			warn("SENT: " + dom.xml);
 			external.XMPP.SendXML(dom);
+			external.globals( 'XMPPChallengesReceived' ) = 1;
+		} else if( external.globals( 'XMPPSASLMechanism' ) == 'SCRAM-SHA-1' && external.globals( 'XMPPChallengesReceived' ) == 1 ) {
+			var dom = new ActiveXObject("Msxml2.DOMDocument");
+			dom.loadXML("<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>" );
+			try {
+				external.SASL.SCRAM.ValidateServerFinalMessage( ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text );
+			} catch(e) {
+				warn( 'SCRAM-SHA-1: ERROR: Server authentication failed.' );
+			}
+			warn("SENT: " + dom.xml);
+			external.XMPP.SendXML(dom);
+			external.globals( 'XMPPChallengesReceived' ) = 2;
 		} else {
 			var encoded = ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text;
 			var decoded = external.Base64ToString(encoded);
@@ -286,7 +299,7 @@ function XMPPOnStream ( ReceivedXML )
 	 */
 	else if ( ReceivedXML.documentElement.selectSingleNode( '/success[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]' ) )
 	{
-		if( external.globals( 'XMPPSASLMechanism' ) == 'SCRAM-SHA-1' )
+		if( external.globals( 'XMPPSASLMechanism' ) == 'SCRAM-SHA-1' && external.globals( 'XMPPChallengesReceived' ) == 1 )
 		{
 			try {
 				external.SASL.SCRAM.ValidateServerFinalMessage( ReceivedXML.documentElement.selectSingleNode("/success[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text );

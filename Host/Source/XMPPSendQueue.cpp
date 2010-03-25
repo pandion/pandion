@@ -24,7 +24,7 @@
 
 #include "stdafx.h"
 #include "XMPPSendQueue.h"
-#include "Socket.h"
+#include "XMPPSocket.h"
 
 /*
  * This constructor initializes the XMPPSendQueue as disconnected with an empty
@@ -54,7 +54,7 @@ XMPPSendQueue::~XMPPSendQueue()
  * This method connects the queue to a given socket. All data added to the
  * queue after calling this method will be sent over the specified socket.
  */
-void XMPPSendQueue::SetConnected(Socket* socket)
+void XMPPSendQueue::SetConnected(XMPPSocket* socket)
 {
 	while(!m_Buffers.empty())
 	{

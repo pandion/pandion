@@ -21,19 +21,34 @@
  */
 
 #pragma once
-#include "Socket.h"
+#include "XMPPSocket.h"
 #include "XMPPSendQueue.h"
 #include "XMPPXMLParser.h"
 #include "SRVLookup.h"
 
+enum ProxyMethod {
+	PROXYMETHOD_NONE,
+	PROXYMETHOD_CONNECT,
+	PROXYMETHOD_SOCKS4,
+	PROXYMETHOD_SOCKS5,
+	PROXYMETHOD_BOSH
+};
+
 class XMPPConnectionManager
 {
 private:
-	Socket			m_Socket;
+	XMPPSocket			m_Socket;
 	XMPPSendQueue	m_SendQueue;
 	XMPPXMLParser	m_XMLParser;
 	XMPPHandlers&	m_Handlers;
 	XMPPLogger&		m_Logger;
+
+	ProxyMethod     m_ProxyMethod;
+	std::wstring    m_ProxyServer;
+	unsigned short  m_ProxyPort;
+	std::wstring    m_ProxyUsername;
+	std::wstring    m_ProxyPassword;
+	bool            m_ProxyUseSSL;
 
 	std::wstring	m_ServerName;
 	unsigned short	m_Port;
@@ -49,6 +64,11 @@ private:
 public:
 	XMPPConnectionManager(XMPPHandlers& handlers, XMPPLogger& logger);
 	~XMPPConnectionManager();
+
+	void SetProxySettings(ProxyMethod method,
+		std::wstring server, unsigned short port,
+		std::wstring username, std::wstring password,
+		bool useSSL);
 
 	void Connect(const std::wstring& server,
 		unsigned short port, bool useSSL);
