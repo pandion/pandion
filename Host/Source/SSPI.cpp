@@ -143,7 +143,7 @@ STDMETHODIMP SSPI::GenerateResponse(BSTR Challenge, BOOL *Continue, BSTR *Respon
 
 		InSecBuff.cbBuffer   = DecodedChallenge.size();
 		InSecBuff.BufferType = SECBUFFER_TOKEN;
-		InSecBuff.pvBuffer   = &DecodedChallenge[0];
+		InSecBuff.pvBuffer   = DecodedChallenge.size() ? &DecodedChallenge[0] : 0;
 	}
 
 	/* prepare output buffer */
@@ -157,7 +157,7 @@ STDMETHODIMP SSPI::GenerateResponse(BSTR Challenge, BOOL *Continue, BSTR *Respon
 
 	OutSecBuff.cbBuffer   = m_dwMaxTokenSize;
 	OutSecBuff.BufferType = SECBUFFER_TOKEN;
-	OutSecBuff.pvBuffer   = &outputBuffer[0];
+	OutSecBuff.pvBuffer   = outputBuffer.size() ? &outputBuffer[0] : 0;
 
 	ULONG			ContextAttributes;
 	TimeStamp		Lifetime;

@@ -76,6 +76,11 @@ void XMPPSocketCompressor::OnDisconnected()
  */
 std::vector<BYTE> XMPPSocketCompressor::Compress(std::vector<BYTE>& data)
 {
+	if(data.size() == 0)
+	{
+		return std::vector<BYTE>();
+	}
+
 	std::vector<BYTE> compressedData(data.size() + data.size() / 1000 + 12);
 
 	m_CompressionStream.next_in = &data[0];

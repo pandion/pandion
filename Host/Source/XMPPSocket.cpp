@@ -206,6 +206,11 @@ int XMPPSocket::Send(std::vector<BYTE>& data)
  */
 int XMPPSocket::Recv(std::vector<BYTE>& data)
 {
+	if(data.size() == 0)
+	{
+		return -1;
+	}
+
 	EnterCriticalSection(&m_ReadingSection);
 
 	int bytesReceived = recv(m_Socket, (char*) &data[0], data.size(), 0);

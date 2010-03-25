@@ -273,7 +273,8 @@ bool XMPPConnectionManager::DoRecvData()
 		{
 			m_DataBuffer.insert(m_DataBuffer.end(),
 				recvBuffer.begin(), recvBuffer.end());
-			m_Logger.LogReceived(UTF::utf8to16(std::string((char*)&recvBuffer[0], recvBuffer.size())));
+			m_Logger.LogReceived(UTF::utf8to16(std::string(
+				(char*)&recvBuffer[0], recvBuffer.size())));
 			canContinue = true;
 		}
 		else if(bytesReceived == 0) /* server disconnected */

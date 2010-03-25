@@ -205,12 +205,13 @@ std::vector<BYTE> GSSAPI::Initialize(
 {
 	/* Prepare input buffer */
 	SecBuffer InSecBuff = {decodedChalenge.size(), SECBUFFER_TOKEN, 
-		decodedChalenge.size() ? &decodedChalenge[0]: 0};
+		decodedChalenge.size() ? &decodedChalenge[0] : 0};
 	SecBufferDesc InBuffDesc = {SECBUFFER_VERSION, 1, &InSecBuff};
 
 	/* Prepare output buffer */
 	std::vector<BYTE> OutputBuffer(m_MaxTokenSize);
-	SecBuffer OutSecBuff = {m_MaxTokenSize, SECBUFFER_TOKEN, &OutputBuffer[0]};
+	SecBuffer OutSecBuff = {m_MaxTokenSize, SECBUFFER_TOKEN, 
+		OutputBuffer.size() ? &OutputBuffer[0] : 0};
 	SecBufferDesc OutBuffDesc = {SECBUFFER_VERSION, 1, &OutSecBuff};
 
 	/* Process the input, generate new output */
@@ -262,10 +263,15 @@ std::vector<BYTE> GSSAPI::Initialize(
 }
 std::vector<BYTE> GSSAPI::PostInitialize(std::vector<BYTE> decodedChallenge)
 {
+	if(decodedChallenge.size() == 0)
+	{
+		return std::vector<BYTE>();
+	}
 	unsigned long qop = 0;
 	unsigned char inDataBuffer[1024];
 	SecBuffer inBuffers[2] = {{1024, SECBUFFER_DATA, inDataBuffer},
-		{decodedChallenge.size(), SECBUFFER_STREAM, &decodedChallenge[0]}};
+		{decodedChallenge.size(), SECBUFFER_STREAM, 
+		decodedChallenge.size() ? &decodedChallenge[0] : 0}};
 	SecBufferDesc inBuffersDesc = {SECBUFFER_VERSION, 2, inBuffers};
 
 	SECURITY_STATUS ss = 
@@ -295,9 +301,11 @@ std::vector<BYTE> GSSAPI::PostInitialize(std::vector<BYTE> decodedChallenge)
 	outDataBuffer[2] = 16;
 	outDataBuffer[3] = 0;
 	SecBuffer outBuffers[3] = {
-		{tokenBuffer.size(), SECBUFFER_TOKEN, &tokenBuffer[0]},
+		{tokenBuffer.size(), SECBUFFER_TOKEN, 
+		tokenBuffer.size() ? &tokenBuffer[0] : 0},
 		{4, SECBUFFER_DATA, outDataBuffer},
-		{paddingBuffer.size(), SECBUFFER_PADDING, &paddingBuffer[0]}};
+		{paddingBuffer.size(), SECBUFFER_PADDING, 
+		paddingBuffer.size() ? &paddingBuffer[0] : 0}};
 	SecBufferDesc outBuffersDesc = {SECBUFFER_VERSION, 3, outBuffers};
 
 	ss = ::EncryptMessage(

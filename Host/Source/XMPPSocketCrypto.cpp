@@ -335,6 +335,12 @@ std::vector<BYTE> XMPPSocketCrypto::TLSEncryptSingleMessage(
 
 	DWORD ioBufferSize = streamSizes.cbHeader + 
 		streamSizes.cbMaximumMessage + streamSizes.cbTrailer;
+
+	if(ioBufferSize == 0)
+	{
+		return std::vector<BYTE>(0);
+	}
+
 	std::vector<BYTE> ioBuffer(ioBufferSize);
 	std::copy(data.begin(), data.end(), &ioBuffer[streamSizes.cbHeader]);
 

@@ -165,6 +165,11 @@ ByteVector SCRAM::Hi(
 	const ByteVector salt,
 	const unsigned i)
 {
+	if(salt.size() < 20)
+	{
+		return ByteVector();
+	}
+
 	const ByteVector key(str.begin(), str.end());
 	ByteVector result(20, 0x00);
 	ByteVector u(salt.begin(), salt.end());
@@ -206,6 +211,12 @@ void SCRAM::GenerateClientProof()
 		Hi(m_ClientPassword, m_Salt, m_IterationCount);
 	ByteVector clientKey = HMAC_SHA1(saltedPassword).Calculate("Client Key");
 	ByteVector storedKey(20);
+
+	if(clientKey.size() == 0)
+	{
+		return;
+	}
+
 	Hash::SHA1(&clientKey[0], clientKey.size(), &storedKey[0]);
 	ByteVector clientSignature = HMAC_SHA1(storedKey).Calculate(m_AuthMessage);
 
@@ -379,6 +390,10 @@ ByteVector HMAC_SHA1::Calculate(const UTF8String& text)
 
 ByteVector HMAC_SHA1::Calculate(const ByteVector& text)
 {
+	if(text.size() == 0)
+	{
+		return ByteVector();
+	}
 	DWORD hashSize = L;
 
 	HCRYPTHASH innerHash = NULL;

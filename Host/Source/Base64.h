@@ -34,7 +34,14 @@ public:
 	static std::wstring Encode(
 		std::vector<unsigned char> data, bool addCRLF = true)
 	{
-		return Encode(&data[0], data.size(), addCRLF);
+		if(data.size() >= 0)
+		{
+			return Encode(&data[0], data.size(), addCRLF);
+		}
+		else
+		{
+			return std::wstring();
+		}
 	}
 
 	template<class T>

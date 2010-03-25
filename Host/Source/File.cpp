@@ -302,6 +302,13 @@ STDMETHODIMP CFile::ReadBase64(BSTR* strBase64)
 	if(m_FileHandle != INVALID_HANDLE_VALUE)
 	{
 		DWORD fileSize = ::GetFileSize(m_FileHandle, 0);
+
+		if(fileSize == 0)
+		{
+			*strBase64 = ::SysAllocString(L"");
+			return S_OK;
+		}
+
 		std::vector<BYTE> fileBuffer(fileSize);
 
 		if(SUCCEEDED(Read(fileSize, &fileBuffer[0])))
@@ -330,7 +337,11 @@ STDMETHODIMP CFile::WriteBase64(BSTR strBase64)
 	if(SUCCEEDED(GetWriteAccess()))
 	{
 		std::vector<BYTE> fileBuffer = Base64::Decode(UTF::utf16to8(strBase64));
-		Write(&fileBuffer[0], fileBuffer.size());
+
+		if(fileBuffer.size() != 0)
+		{
+			Write(&fileBuffer[0], fileBuffer.size());
+		}
 
 		return S_OK;
 	}
@@ -405,7 +416,12 @@ STDMETHODIMP CFile::get_SHA1(BSTR* strSHA1)
 	if(m_FileHandle != INVALID_HANDLE_VALUE && SUCCEEDED(get_Size(&fileSize)))
 	{
 		std::vector<BYTE> fileBuffer(fileSize);
-		if(SUCCEEDED(Read(fileSize, &fileBuffer[0])))
+		if(fileSize == 0)
+		{
+			*strSHA1 = ::SysAllocString(L"");
+			return S_OK;
+		}
+		else if(SUCCEEDED(Read(fileSize, &fileBuffer[0])))
 		{
 			unsigned char digest[20];
 			Hash::SHA1(&fileBuffer[0], fileSize, digest);
