@@ -85,7 +85,7 @@ function XMPPOnStream ( ReceivedXML )
 
 		/* Request SCRAM-SHA-1 challenge
 		 */
-		else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "SCRAM-SHA-1" ]' ) )
+		else if ( false && ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "SCRAM-SHA-1" ]' ) )
 		{
 			external.globals( 'XMPPSASLMechanism' ) = 'SCRAM-SHA-1';
 			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
@@ -106,7 +106,7 @@ function XMPPOnStream ( ReceivedXML )
 
 		/* Request MD5 challenge
 		 */
-		else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "DIGEST-MD5" ]' ) )
+		else if ( false && ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "DIGEST-MD5" ]' ) )
 		{
 			external.globals( 'XMPPSASLMechanism' ) = 'DIGEST-MD5';
 			var Str = '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="DIGEST-MD5"/>';
@@ -120,7 +120,7 @@ function XMPPOnStream ( ReceivedXML )
 		{
 			external.globals( 'XMPPSASLMechanism' ) = 'PLAIN';
 			var User = external.globals( 'cfg' )( 'username' );
-			var Addr = User + '@' + external.globals( 'cfg' )( 'server' );
+			var Addr = ""; // User + '@' + external.globals( 'cfg' )( 'server' ); /* Only to be used if authzid is different from authcid */
 			var Pass = external.globals( 'cfg' )( 'password' );
 
 			/* Plaintext algorithm:
