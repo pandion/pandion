@@ -27,7 +27,7 @@ function Headline ()
 
 		for ( var i = 1; i <= 8 && external.windows.Exists( 'headline' + i ); ++i );
 		if ( i <= 8 )
-			with ( external.createWindow( 'headline' + i, external.globals( 'cwd' ) + 'toaster.html', [ window, this ], true ) )
+			with ( external.createWindow( 'headline' + i, external.globals( 'cwd' ) + 'toaster.html', [ window, this ] ) )
 			{
 				showTitlebar( false );
 				MinHeight = MinWidth = 0;
