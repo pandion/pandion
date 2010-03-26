@@ -628,11 +628,14 @@ function Keyboard ( EventData )
 	 */
 	else if ( k == 27 || ( k == 115 && Function == 0x02 ) || ( k == 87 && Function == 0x02 ) )
 	{
-		EventData.returnValue = false;
-		if ( gContainer.Trackers( gContainer.ActiveTrackerAddress ).IsActive )
-			gContainer.Trackers( gContainer.ActiveTrackerAddress ).Close();
-		else
-			gContainer.Trackers( gContainer.ActiveTrackerAddress ).Activate();
+		if ( gContainer.Trackers.Exists( gContainer.ActiveTrackerAddress ) )
+		{
+			EventData.returnValue = false;
+			if ( gContainer.Trackers( gContainer.ActiveTrackerAddress ).IsActive )
+				gContainer.Trackers( gContainer.ActiveTrackerAddress ).Close();
+			else
+				gContainer.Trackers( gContainer.ActiveTrackerAddress ).Activate();
+		}
 	}
 
 	/* Undo closing of last tab
