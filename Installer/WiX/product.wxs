@@ -45,9 +45,12 @@
 		<Directory Id="TARGETDIR" Name="SourceDir">
 
 			<!--
-				Install the application in the current user's application data directory.
-				This allows installation without administrative permissions which would
-				otherwise be required to write in Program Files.
+				When installing with administrative permissions the application is installed in
+				Program Files by default. Otherwise it is installed in Local Application Data.
+				Shortcuts are also created accordingly for either all users or just for the
+				current user.
+				This allows installation with or without administrative permissions for better
+				compatibility.
 			-->
 			<Directory Id="LocalAppDataFolder" Name="PFiles">
 				<Directory Id="PandionLocalFiles" Name="$(var.SafeName)">
@@ -131,11 +134,16 @@
 		</Directory>
 
 		<!--
-			Allow administrative install to a common location for all users.
+			Set the system wide or per user location of shortcuts and application files.
+			To install system wide either run the installation with administrative rights
+			or supply the "ALLUSERS=1" command line argument.
 			Example: msiexec.exe /i $(var.SafeName).msi ALLUSERS=1
 		-->
+		<SetProperty Id="ALLUSERS" After="AppSearch" Value="1">
+			Privileged
+		</SetProperty>
 		<SetDirectory Id="LocalAppDataFolder" Sequence="both" Value="[ProgramFilesFolder]">
-			ALLUSERS = 1
+			Privileged or (ALLUSERS = 1)
 		</SetDirectory>
 
 		<!--
