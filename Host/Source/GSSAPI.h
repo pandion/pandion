@@ -76,4 +76,5 @@ private:
 		BSTR ServerName);
 	std::vector<BYTE> PostInitialize(std::vector<BYTE> decodedChalenge);
 	std::wstring GenerateServicePrincipalName(std::wstring ServerName);
+	std::wstring GetDomainName();
 };

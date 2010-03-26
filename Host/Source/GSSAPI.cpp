@@ -331,27 +331,45 @@ std::wstring GSSAPI::GenerateServicePrincipalName(std::wstring ServerName)
 {
 	std::wstring Spn(L"xmpp/");
 
-	PDOMAIN_CONTROLLER_INFO dci;
-	DWORD error = ::DsGetDcName(
-		NULL, NULL, NULL, NULL, DS_RETURN_DNS_NAME, &dci);
-	if(ERROR_SUCCESS == error)
+
+
+	Spn += ServerName;
+	Spn += L"@";
+	Spn += GetDomainName();
+
+	m_ServicePrincipalName = Spn;
+
+	return Spn;
+}
+std::wstring GSSAPI::GetDomainName()
+{
+	std::wstring domainName;
+
+	unsigned long userNameSize = 32767;
+	std::wstring userName(userNameSize, '\0');
+	::GetUserNameEx(NameSamCompatible, &userName[0], &userNameSize);
+	if(userNameSize >= 0 && userName.find('\\') != std::wstring::npos)
 	{
-		std::wstring DomainName(dci->DomainName);
-		std::transform(DomainName.begin(), DomainName.end(),
-			DomainName.begin(), ::toupper);
-		::NetApiBufferFree(dci);
-
-		Spn += ServerName;
-		Spn += L"@";
-		Spn += DomainName;
-
-		m_ServicePrincipalName = Spn;
-
-		return Spn;
+		domainName = userName.substr(0, userName.find('\\'));
 	}
 	else
 	{
-		throw GSSAPIException(L"GenerateServicePrincipalName()",
-			L"DsGetDcName()", GenerateDebugInfo(), error);
+		PDOMAIN_CONTROLLER_INFO dci;
+		DWORD error = ::DsGetDcName(
+			NULL, NULL, NULL, NULL, DS_RETURN_DNS_NAME, &dci);
+		if(ERROR_SUCCESS == error)
+		{
+			domainName = dci->DomainName;
+			std::transform(domainName.begin(), domainName.end(),
+				domainName.begin(), ::toupper);
+			::NetApiBufferFree(dci);
+		}
+		else
+		{
+			throw GSSAPIException(L"GetDomainName()",
+				L"DsGetDcName()", GenerateDebugInfo(), error);
+		}
 	}
+
+	return domainName.c_str();
 }
