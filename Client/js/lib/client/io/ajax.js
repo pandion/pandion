@@ -23,7 +23,7 @@ client.io.ajax = function (request) {
 			+ " (" + external.globals("language") + ")";
 
 	var xhrFactories = [
-		function () {return new XMLHttpRequest()}, /* ie7/ie8 */
+		//function () {return new XMLHttpRequest()}, /* ie7/ie8 -- causes fatal crash on some systems (see issue 74) */
 		//function () {return new ActiveXObject("Msxml2.XMLHTTP.6.0")}, /* xpsp3/vista/7 -- causes fatal crash on some systems */
 		//function () {return new ActiveXObject("Msxml2.XMLHTTP.3.0")}, /* 2ksp4 -- causes fatal crash on some systems */
 		//function () {return new ActiveXObject("Msxml2.XMLHTTP")}, /* ie6 -- as used by Dojo */
