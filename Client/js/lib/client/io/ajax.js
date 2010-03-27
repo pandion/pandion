@@ -45,11 +45,15 @@ client.io.ajax = function (request) {
 	for (var fieldName in request.headers)
 		xhr.setRequestHeader(fieldName, request.headers[fieldName]);
 	xhr.onreadystatechange = function () {
-		if (xhr.readyState == 4) {
-			if (xhr.responseText.length > 0 && xhr.responseXML !== null && xhr.responseXML.documentElement === null && xhr.responseXML.parseError.errorCode == 0)
+		if (xhr.readyState === 4) {
+			if (xhr.responseText.length > 0 && xhr.responseXML !== null && xhr.responseXML.documentElement === null && xhr.responseXML.parseError.errorCode === 0)
 				xhr.responseXML.loadXML(xhr.responseText);
 			var dom = new ActiveXObject("Msxml2.DOMDocument");
-			dom.loadXML(xhr.responseText);
+			dom.resolveExternals = false;
+			try {
+				dom.loadXML(xhr.responseText);
+			} catch (error) {
+			}
 			request.callback(dom, xhr);
 		}
 	};
