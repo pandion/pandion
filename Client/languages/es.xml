@@ -94,7 +94,7 @@
 		<code id="user_online">${0} ahora está en línea</code>
 		<code id="cl_tooltip">${0} Lista de Contacto</code>
 		<code id="import_files">Lista de Contactos</code>
-		<code id="import_invalid">El archivo no contiene datos vádos.</code>
+		<code id="import_invalid">El archivo no contiene datos válidos.</code>
 		<code id="import_no_new">Todos los contactos en el archivo ya están en su lista de contacto.</code>
 		<code id="import_confirm">Estas direcciones de contactos se añadirán a su lista de contacto:&#13;&#13;${0}&#13;&#13;Está seguro que desea añadir estas direcciones a su lista de contacto?</code>
 		<code id="import_aim_not_registered">Para importar su lista AIM buddy, el transporte AIM debe estar creado.	Además el transporte debe estar activo.&#13;Vaya al menu Herramientas y seleccione Transportes para ver el estado del transporte AIM.</code>
