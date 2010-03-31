@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 	This file is part of Pandion instant messenger
-	Copyright (c) 2009 Sebastiaan Deckers
+	Copyright (c) 2009-2010 Sebastiaan Deckers
 	License: GNU General Public License version 3 or later
 -->
 <Include>
@@ -10,7 +10,7 @@
 	-->
 	<?define AppHelpLink="http://pandion.im/support" ?>
 	<?define AppUrlInfoAbout="http://pandion.im/about" ?>
-	<?define Manufacturer="Pandion Project" ?>
+	<?define Manufacturer="Pandion Team" ?>
 	<?define Name="Pandion" ?>
 
 	<!--

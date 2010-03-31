@@ -53,10 +53,10 @@ BEGIN
     BEGIN
         BLOCK "040904e3"
         BEGIN
-            VALUE "Comments", "http://www.pandion.be"
+            VALUE "Comments", "http://pandion.im/"
             VALUE "CompanyName", "Pandion"
             VALUE "FileDescription", "Pandion Instant Messenger"
-            VALUE "LegalCopyright", "Created by Sebastiaan Deckers and Dries Staelens."
+            VALUE "LegalCopyright", "Created by the Pandion Team"
 #if defined(MAJOR_VERSION) && defined(MINOR_VERSION) && defined(BUILD_NUMBER)
 			VALUE "FileVersion", ""
 			VALUE "ProductVersion", ""
