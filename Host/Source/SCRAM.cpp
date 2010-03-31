@@ -39,8 +39,8 @@ STDMETHODIMP SCRAM::Initialize(BSTR ClientUsername, BSTR ClientPassword)
 {
 	try
 	{
-		m_ClientUsername = 
-			m_sprep.SASLPrep(UTF::utf16to8(ClientUsername), false);
+		m_ClientUsername = EscapeString(
+			m_sprep.SASLPrep(UTF::utf16to8(ClientUsername), false));
 		m_ClientPassword = 
 			m_sprep.SASLPrep(UTF::utf16to8(ClientPassword), false);
 
@@ -83,7 +83,7 @@ STDMETHODIMP SCRAM::GenerateClientFinalMessage(BSTR* ClientFinalMessage)
 {
 	m_ClientFinalMessage.clear();
 	/* GS2 Header */
-	m_ClientFinalMessage += "c=biwsCg==,";
+	m_ClientFinalMessage += "c=biws,";
 
 	/* Client/Server nonce */
 	m_ClientFinalMessage += "r=";
@@ -165,7 +165,7 @@ ByteVector SCRAM::Hi(
 	const ByteVector salt,
 	const unsigned i)
 {
-	if(salt.size() < 20)
+	if(salt.size() < 16)
 	{
 		return ByteVector();
 	}
