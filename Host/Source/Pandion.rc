@@ -20,6 +20,7 @@
 // Description: The resource file for Pandion.
 
 #include <winresrc.h>
+#include <VersionNo.h>
 
 /////////////////////////////////////////////////////////////////////////////
 // English (U.S.) resources
@@ -36,8 +37,8 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // Version
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,6,0,0
- PRODUCTVERSION 2,6,0,0
+ FILEVERSION FILEVER
+ PRODUCTVERSION PRODUCTVER
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -55,10 +56,15 @@ BEGIN
             VALUE "Comments", "http://www.pandion.be"
             VALUE "CompanyName", "Pandion"
             VALUE "FileDescription", "Pandion Instant Messenger"
-            VALUE "FileVersion", "2.6"
             VALUE "LegalCopyright", "Created by Sebastiaan Deckers and Dries Staelens."
-            VALUE "ProductVersion", "2.6"
-        END
+#if defined(MAJOR_VERSION) && defined(MINOR_VERSION) && defined(BUILD_NUMBER)
+			VALUE "FileVersion", ""
+			VALUE "ProductVersion", ""
+#else
+			VALUE "FileVersion", FILEVERSTR
+			VALUE "ProductVersion", PRODUCTVERSTR
+#endif
+			END
     END
     BLOCK "VarFileInfo"
     BEGIN
