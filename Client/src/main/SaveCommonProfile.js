@@ -22,8 +22,8 @@ function SaveCommonProfile ()
 			external.wnd.left + external.globals( 'lastwidth' ),
 			external.wnd.top + external.globals( 'lastheight' ),
 			external.wnd.left )
-		&& external.wnd.left !== -32000
-		&& external.wnd.top !== -32000
+		&& Math.abs( external.wnd.left ) !== 32000
+		&& Math.abs( external.wnd.top ) !== 32000
 	)
 	{
 		Data.Add( 'lastposx', external.wnd.left );
