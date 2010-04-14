@@ -18,10 +18,12 @@ function SaveCommonProfile ()
 	Data.Add( 'welcomesettings', external.globals( 'welcomesettings' ) );
 
 	if ( external.IsRectOnMonitor(
-		external.wnd.top,
-		external.wnd.left + external.globals( 'lastwidth' ),
-		external.wnd.top + external.globals( 'lastheight' ),
-		external.wnd.left )
+			external.wnd.top,
+			external.wnd.left + external.globals( 'lastwidth' ),
+			external.wnd.top + external.globals( 'lastheight' ),
+			external.wnd.left )
+		&& external.wnd.left !== -32000
+		&& external.wnd.top !== -32000
 	)
 	{
 		Data.Add( 'lastposx', external.wnd.left );
