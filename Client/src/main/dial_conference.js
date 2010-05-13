@@ -16,7 +16,7 @@ function dial_conference ( Address, Password, InviteJid, InviteGroup )
 			Tracker.Password = Password;
 			Tracker.SendPresence( external.globals( 'cfg' )( 'lastmode' ), external.globals( 'cfg' )( 'lastmsg' ) );
 		}
-		if ( Tracker.Address.Resource.length && Tracker.Address.Resource != Address.Resource )
+		if ( Address.Resource.length && Tracker.Address.Resource != Address.Resource )
 		{
 			Tracker.Address = Address;
 			Tracker.DrawContainerInfo();

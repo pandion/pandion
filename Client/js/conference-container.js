@@ -266,7 +266,7 @@ function SessionTracker ( Address )
 		{
 			/* Error
 			 */
-			if ( Event.Type == 'message' && Event.Payload.Type == 'error' )
+			if ( Event.Payload.Type == 'error' )
 			{
 				if ( Event.Payload.ErrorMessage.length )
 				{
@@ -412,7 +412,9 @@ function SessionTracker ( Address )
 			/* Update
 			 */
 			else if ( this.Occupants.Exists( Event.Payload.FromAddress.Resource ) )
+			{
 				this.Occupants( Event.Payload.FromAddress.Resource ).Update( Event.Payload );
+			}
 			/* Add
 			 */
 			else if ( Event.Payload.FromAddress.Resource.length )
