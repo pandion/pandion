@@ -529,7 +529,8 @@ function OnLoginRoster ( iq )
 			{
 				var Address		= BookmarkNodes.item( i ).getAttribute( 'address' );
 				var Password	= BookmarkNodes.item( i ).getAttribute( 'password' );
-				dial_conference( Address, Password );
+				if ( ! external.globals( 'ConferenceSessionPool' ).Trackers.Exists( Address ) )
+					dial_conference( Address, Password );
 			}
 	}
 }
