@@ -201,10 +201,11 @@ function FilterNode ( Message, HTMLElement, XMLTag )
 			 */
 			if ( AttributeName == 'style' )
 			{
-				var Style = Attributes( i ).value;
-				Style.replace( '\\', '' );
-				Style.replace( '&amp;', '&' );
-				Style.replace( '&', '&amp;' );
+				var Style = Attributes( i ).value
+					.replace( /\/\*.*?(?:(?:\*\/)|$)/g, '' )
+					.replace( '\\', '' )
+					.replace( '&amp;', '&' )
+					.replace( '&', '&amp;' );
 				if ( ! BlackProtocolsRegEx.test( Style ) && ! BlackStylesRegEx.test( Style ) )
 					NodeHTMLElement.style.cssText = Style;
 			}
