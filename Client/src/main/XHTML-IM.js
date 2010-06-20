@@ -202,10 +202,12 @@ function FilterNode ( Message, HTMLElement, XMLTag )
 			if ( AttributeName == 'style' )
 			{
 				var Style = Attributes( i ).value
-					.replace( /\/\*.*?(?:(?:\*\/)|$)/g, '' )
-					.replace( '\\', '' )
-					.replace( '&amp;', '&' )
-					.replace( '&', '&amp;' );
+					// Unescape characters
+					.replace(/\\([0-9a-f]{6}|(?:[0-9a-f]{1,5}\s?))/gi, function (fullMatch, hexCodeMatch) {
+						return String.fromCharCode(parseInt(hexCodeMatch, 16))
+					})
+					// Strip comments
+					.replace(/\/\*.*?(?:(?:\*\/)|$)/g, "");
 				if ( ! BlackProtocolsRegEx.test( Style ) && ! BlackStylesRegEx.test( Style ) )
 					NodeHTMLElement.style.cssText = Style;
 			}
