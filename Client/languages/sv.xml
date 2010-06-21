@@ -1,0 +1,2193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file is part of Pandion instant messenger
+	Copyright (c) 2010 Johan Carlsson
+	License: GNU General Public License version 3 or later
+-->
+<translation xml:lang="sv" dir="ltr">
+  <about>
+    <language>Svenska</language>
+    <history>
+      <revision>
+        <author>
+          <name>Johan Carlsson</name>
+          <email>johan@substance.se</email>
+          <xmpp>johan@substance.se</xmpp>
+        </author>
+        <date>2010-06-21</date>
+        <description>
+          First edit.
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_disconnected">
+      <innerText>Frånkopplad från servern</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>Återanslut</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>eller</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Ändra anslutningsinställningar</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>Lägg till någon i din kontaktlista</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>eller</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>Konfigurera nätverksbryggor</innerText>
+    </item>
+
+    <item id="mode-avatar">
+      <title>Välj en annan avatar</title>
+    </item>
+    <item id="mode-bar">
+      <title>Ändra din tillgänglighet, statusmeddelanden eller personliga profil</title>
+    </item>
+    <item id="mode-secure">
+      <title>Förbindelsen är skyddad med SSL / TLS-kryptering</title>
+    </item>
+    <item id="rosterfield">
+      <title>Personer och grupper i din kontaktlista</title>
+    </item>
+
+    <item id="signin-instructions">
+      <innerText>Logga in med din snabbmeddelandeadress</innerText>
+    </item>
+    <item id="txt-signin-address">
+      <innerText>Adress:</innerText>
+    </item>
+    <item id="txt-signin-examples">
+      <innerText>Exempel:</innerText>
+    </item>
+    <item id="txt-signin-password">
+      <innerText>Lösenord:</innerText>
+    </item>
+    <item id="txt-signin-remember">
+      <innerText>Kom ihåg mitt lösenord</innerText>
+    </item>
+    <item id="txt-signin-autoconnect">
+      <innerText>Logga in automatiskt</innerText>
+    </item>
+    <item id="signin-connect">
+      <innerText>Logga in</innerText>
+    </item>
+    <item id="signin-register">
+      <innerText>Registrera en ny snabbmeddelandeadress</innerText>
+    </item>
+    <item id="signin-settings">
+      <innerText>Inställningar för anslutning</innerText>
+    </item>
+
+    <code id="tt-group-hide">Dölj kontakterna i den här gruppen&#13;Högerklicka för fler alternativ</code>
+    <code id="tt-group-show">Visa kontakterna i den här gruppen&#13;Högerklicka för fler alternativ</code>
+    <code id="emoticon_unknown">Okänd</code>
+    <code id="txt_welcome">Välkommen till ${0}!</code>
+    <code id="user_online">${0} är nu online</code>
+    <code id="cl_tooltip">${0} Kontaktlista</code>
+    <code id="import_files">Kontaktlistor</code>
+    <code id="import_invalid">Filen innehåller inte giltiga data.</code>
+    <code id="import_no_new">Alla kontakter i filen finns redan i din kontaktlista.</code>
+    <code id="import_confirm">Dessa adresser kommer att läggas till din kontaktlista:&#13;&#13;${0}&#13;&#13;Är du säker på att du vill lägga till dessa adresser i kontaktlistan?</code>
+    <code id="import_aim_not_registered">För att importera din AIM-kontaktlista måste AIM-bryggan vara registrerad.  Bryggan måste även vara aktiv.&#13;Gå till menyn Verktyg och välj Bryggor för att visa status på AIM-bryggan.</code>
+    <code id="import_msn_not_registered">För att importera din MSN-kontaktlista måste MSN-bryggan vara registrerad.  Bryggan måste även vara aktiv.&#13;Gå till menyn Verktyg och välj Bryggor för att visa status på MSN-bryggan.</code>
+    <code id="import_gadu_not_registered">För att importera din Gadu-Gadu kontaktlista måste Gadu-Gadu bryggan vara registrerad.  Bryggan måste även vara aktiv.&#13;Gå till menyn Verktyg och välj Bryggor för att visa status på Gadu-Gadu bryggan.</code>
+    <code id="conference_invitation">${0} bjuder in dig till konferensrum: ${1}&#13;&#13;Vill du delta i det här konferensrummet?</code>
+    <code id="search_info">Hitta en kontakt...</code>
+    <code id="invalid-user-address">Ange din snabbmeddelandenadress.&#13;&#13;Om du inte har en adress, klicka på "Registrera en ny snabbmeddelandeadress" nedan.</code>
+    <code id="invalid-sso-server">Ange adressen till din snabbmeddelandeserver.</code>
+    <code id="program-description">${softwarename} är en snabbmeddelande-klient för XMPP nätverk.</code>
+    <code id="extension-jisp">Jabber Icon Style Paket</code>
+    <code id="extension-pdn">${softwarename} Plug-In</code>
+    <code id="extension-xmpp">Extensible Messaging och Presence Protocol (XMPP) Meta Data</code>
+    <code id="uri-xmpp">Extensible Messaging och Presence Protocol (XMPP) Adress</code>
+
+    <code id="menu_status">&amp;Status</code>
+    <code id="menu_status_received">&amp;Öppna mina mottagna filer</code>
+    <code id="menu_status_export">&amp;Exportera Kontaktlista...</code>
+    <code id="menu_status_import">&amp;Importera Kontaktlista...</code>
+    <code id="menu_status_change">Ändra mitt &amp;Statusmeddelande...</code>
+    <code id="menu_status_ffc">&amp;Tillgänglig för chat</code>
+    <code id="menu_status_available">&amp;Tillgänglig</code>
+    <code id="menu_status_busy">&amp;Upptagen</code>
+    <code id="menu_status_away">I&amp;nte vid datorn</code>
+    <code id="menu_status_xaway">&amp;Utökad Inte vid datorn</code>
+    <code id="menu_status_invisible">&amp;Osynlig</code>
+    <code id="menu_status_offline">&amp;Offline</code>
+    <code id="menu_status_status">Min &amp;Status</code>
+    <code id="menu_status_out">Logga &amp;ut</code>
+    <code id="menu_status_exit">A&amp;vsluta</code>
+
+    <code id="menu_axn">&amp;Åtgärder</code>
+    <code id="menu_axn_add">&amp;Lägg till en Kontakt...</code>
+    <code id="menu_axn_addgroup">Lägg till en &amp;Grupp...</code>
+    <code id="menu_axn_bookmarks">&amp;Bokmärkta konferensrum</code>
+    <code id="menu_axn_bookmarks_add">&amp;Lägg till ett bokmärke...</code>
+    <code id="menu_axn_bookmarks_manage">&amp;Ordna bokmärken...</code>
+    <code id="menu_axn_join">&amp;Delta i ett konferensrum...</code>
+    <code id="menu_axn_create">&amp;Skapa ett Konferensrum...</code>
+    <code id="menu_axn_password">Ändra mitt &amp;Lösenord...</code>
+    <code id="menu_axn_profile">&amp;Redigera min profil...</code>
+    <code id="menu_axn_avatar">Ändra min A&amp;vatar...</code>
+
+    <code id="menu_tool">&amp;Verktyg</code>
+    <code id="menu_tool_transport">&amp;Bryggor</code>
+    <code id="menu_tool_head">&amp;Rubriker och Varningar</code>
+    <code id="menu_tool_plugin">&amp;Plug-ins</code>
+    <code id="menu_tool_traffic">&amp;Nätverkstrafik</code>
+    <code id="menu_tool_view">&amp;Vy</code>
+    <code id="menu_tool_detailed">&amp;Detaljerad</code>
+    <code id="menu_tool_compact">&amp;Kompakt</code>
+    <code id="menu_tool_language">&amp;Språk</code>
+    <code id="menu_tool_aot">&amp;Alltid överst</code>
+    <code id="menu_tool_settings">&amp;Inställningar</code>
+
+    <code id="menu_help">&amp;Hjälp</code>
+    <code id="menu_help_welcome">&amp;Välkomstskärm</code>
+    <code id="menu_help_manual">&amp;Online Manual</code>
+    <code id="menu_help_forum">&amp;Support Forum</code>
+    <code id="menu_help_contact">&amp;Kontakta oss</code>
+    <code id="menu_help_update">Sök efter &amp;Uppdateringar</code>
+    <code id="menu_help_about">&amp;Om</code>
+
+    <code id="menu_tray_about">&amp;Om ${0}</code>
+    <code id="menu_tray_settings">&amp;Inställningar</code>
+
+    <code id="wnd_autoupdate">Uppdaterar ${0}</code>
+    <code id="wnd_vcard_edit">Användarinformation</code>
+    <code id="wnd_about">Om ${0}</code>
+    <code id="wnd_signup">Registrera dig - ${0}</code>
+    <code id="wnd_adduser">Hitta eller Lägg till en kontakt</code>
+    <code id="wnd_avatar">Ändra din Avatar</code>
+    <code id="wnd_room_browse">Konferensrum</code>
+    <code id="wnd_room_create">Skapa ett Konferensrum</code>
+    <code id="wnd_conference_invite">Bjud in Kontakter</code>
+    <code id="wnd_conference_other">Andra Konferenstjänster</code>
+    <code id="wnd_console">Konsol</code>
+    <code id="wnd_emoticon_download">Ladda hem Emoticons</code>
+    <code id="wnd_emoticon_list">Emoticons</code>
+    <code id="wnd_emoticon_view">Emoticon Detaljer</code>
+    <code id="wnd_file_send">Skickar fil till ${0}</code>
+    <code id="wnd_file_recv">Inkommande fil från ${0}</code>
+    <code id="wnd_group_message">Gruppmeddelande</code>
+    <code id="wnd_transport_list">Bryggor</code>
+    <code id="wnd_transport_other">Övriga Bryggor</code>
+    <code id="wnd_headlines">Rubriksläsare</code>
+    <code id="wnd_history">${0} - Meddelande Historik</code>
+    <code id="wnd_plugin_list">Plug-ins</code>
+    <code id="wnd_plugins">Plug-ins</code>
+    <code id="wnd_password">Ändra Lösenord</code>
+    <code id="wnd_settings">Inställningar</code>
+    <code id="wnd_status">Statusmeddelande</code>
+    <code id="wnd_vcard_view">Användarinformation</code>
+    <code id="wnd_group_create">Skapa Grupp</code>
+    <code id="wnd_group_rename">Byt namn på Grupp</code>
+    <code id="wnd_contact_rename">Byt namn på Kontakt</code>
+    <code id="wnd_authrequest">Auktoriseringsförfrågan</code>
+    <code id="wnd_extension_download">Installerar ${0}</code>
+    <code id="wnd_background_list">Bakgrunder</code>
+    <code id="wnd_background_download">Ladda hem Bakgrunder</code>
+    <code id="wnd_bookmarks_add">Lägg till Bokmärke för Konferensrum</code>
+    <code id="wnd_bookmarks_edit">Redigera Bokmärke för Konferensrum</code>
+    <code id="wnd_bookmarks_manage">Bokmärken för Konferensrum</code>
+    <code id="wnd_connection_settings">Anslutningsinställningar</code>
+    <code id="wnd_welcome">Välkommen till ${0}</code>
+
+    <code id="msg_emoticon_install">Denna emoticon stil har redan installerats.</code>
+    <code id="msg_received_files">Katalogen för mottagna filer har tagits bort.</code>
+    <code id="msg_plugin_install">Vill du installera detta plug-in?&#13;&#13;Namn: ${0}&#13;Beskrivning: ${1}</code>
+    <code id="msg_plugin_exists">Detta plug-in är redan installerat.</code>
+    <code id="msg_cl_adding">${0} har lagts till i din kontaktlista.</code>
+    <code id="msg_cl_added">${0} har lagt till dig i sin kontaktlista.</code>
+    <code id="msg_blocked">Du är på denna persons blockeringslista.</code>
+    <code id="msg_autherror">Kan inte logga in. Detta kan ha en av följande orsaker:&#13;&#13;- Du har angett ett felaktigt lösenord&#13;- Kontot finns inte på servern&#13;&#13;Försök igen.</code>
+
+    <code id="menu_message">Meddelande</code>
+    <code id="menu_filetransfer">Filöverföring</code>
+    <code id="menu_room_create">Skapa ett nytt rum</code>
+    <code id="menu_room_invite">Bjud in till konferensrum</code>
+    <code id="menu_rename">Byt namn</code>
+    <code id="menu_block">Blockera</code>
+    <code id="menu_delete">Ta bort</code>
+    <code id="menu_group_create">Skapa ny grupp</code>
+    <code id="menu_group_merge">Slå samman med</code>
+    <code id="menu_group_move">Flytta till</code>
+    <code id="menu_group_copy">Kopiera till</code>
+    <code id="menu_request">Skicka Auktoriseringsförfrågan igen</code>
+    <code id="menu_history">Historil</code>
+    <code id="menu_profile">Profil</code>
+
+    <code id="cl_error_notexist">Adressen finns inte.</code>
+    <code id="cl_error_cannotadd">Kan inte lägga till ${0} i kontaktlistan.&#13;${1}</code>
+    <code id="cl_default_group">Kontakter</code>
+	<code id="cl_group_display_none">Inga kontakter</code>
+    <code id="cl_group_display_online">Endast tillgänliga kontakter</code>
+    <code id="cl_group_display_all">Alla kontakter</code>
+	<code id="cl_group_expand">Visa kontakter som inte är tillgänliga</code>
+    <code id="cl_group_compact">Dölj kontakter som inte är tillgänliga</code>
+    <code id="cl_group_rename">Byt namn på gruppen</code>
+    <code id="cl_group_message">Skicka ett broadcast-meddelande</code>
+    <code id="cl_room_create">Skapa ett nytt rum</code>
+    <code id="cl_room_invite">Bjud in till konferensrum</code>
+    <code id="cl_group_empty">Det finns inga tillgänliga personer i denna grupp.</code>
+    <code id="cl_status_empty">Inget statusmeddelande</code>
+    <code id="cl_status_offline">Inte Tillgänlig</code>
+    <code id="cl_status_awaiting">Inväntar Godkännande</code>
+    <code id="cl_status_unknown">Okänd status</code>
+    <code id="cl_tooltip_offline">Adress: ${0}</code>
+    <code id="cl_contact_remove_group">Är du säker på att du vill ta bort användaren från den här gruppen?</code>
+    <code id="cl_contact_remove_list">Är du säker på att du vill ta bort denna användare från din kontaktlista?</code>
+    <code id="cl_link_open">Öppna i en webbläsare</code>
+    <code id="cl_link_copy">Kopiera hyperlänksadress</code>
+    <code id="cl_link_favorite">Lägg till i favoriter</code>
+    <code id="cl_ffc">Tillgänglig för chat</code>
+    <code id="cl_available">Tillgänglig</code>
+    <code id="cl_busy">Upptagen</code>
+    <code id="cl_away">Iväg</code>
+    <code id="cl_xaway">Utökad Iväg</code>
+    <code id="cl_invisible">Osynlig</code>
+    <code id="cl_idle">Inaktiv</code>
+    <code id="cl_tooltip_online">Adress: ${0}&#13;Resurs: ${1}</code>
+
+    <code id="time-now">just nu</code>
+    <code id="time-second">1 sekund sedan</code>
+    <code id="time-seconds">${0} sekunder sedan</code>
+    <code id="time-minute">1 minut sedan</code>
+    <code id="time-minutes">${0} minuter sedan</code>
+    <code id="time-hour">1 timma sedan</code>
+    <code id="time-hours">${0} timmar sedan</code>
+    <code id="time-day">1 dag sedan</code>
+    <code id="time-days">${0} dagar sedan</code>
+    <code id="time-week">1 vecka sedan</code>
+    <code id="time-weeks">${0} veckor sedan</code>
+    <code id="time-month">1 månad sedan</code>
+    <code id="time-months">${0} månader sedan</code>
+    <code id="time-year">1 år sedan</code>
+    <code id="time-years">${0} år sedan</code>
+
+    <code id="track-stable">Stabil</code>
+    <code id="track-beta">Beta</code>
+    <code id="track-development">Utveckling</code>
+  </window>
+  <window name="about">
+    <item id="txt-copyright">
+      <innerHTML>Copyright &amp;copy; ${copyrightyear} ${copyrightholder}. All rights reserved. This application is published under the terms of the &lt;a href="${licenseurl}"&gt;${licensename}&lt;/a&gt;. Additional &lt;a href="${termsandcontitionsurl}"&gt;terms and conditions&lt;/a&gt; may apply to included dependencies.</innerHTML>
+    </item>
+    <item id="txt-trademark">
+      <innerText>The ${softwarename} name and logos are trademarks of ${trademarkholder}. All rights reserved.</innerText>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>Visa Profilinformation</value>
+    </item>
+    <item id="btn_deny">
+      <value>Neka</value>
+    </item>
+    <item id="btn_accept">
+      <value>Acceptera</value>
+    </item>
+    <item id="txt_from">
+      <innerText>Du har fått en auktoriseringsförfrågan från:</innerText>
+    </item>
+    <item id="txt_question">
+      <innerText>Vill du godkänna eller avvisa denna person i din kontaktlista?</innerText>
+    </item>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>Rensa output</value>
+    </item>
+    <item id="btn_send">
+      <value>Skicka</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>Närvaro</value>
+    </item>
+    <item id="btn_message">
+      <value>Meddelande</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>Nätverkstrafik:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>Radbrytningar</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>XML input:</innerText>
+    </item>
+    <code id="toggle_on">Debuggning är aktiverad</code>
+    <code id="toggle_off">Debuggning är inaktiverad</code>
+    <code id="valid_xml">Input måste vara giltig XML. Inte bara mellanslag eller oformaterad text.</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>Stäng</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Varningar och Rubriker</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Särskilda varningar visas när du får en nyhetsrubrik eller annan kort information.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Inga varningar eller rubriker har mottagits.</innerText>
+    </item>
+    <item id="alertonlinelabel">
+      <innerText>Visa en varning när någon blir tillgänlig</innerText>
+    </item>
+    <code id="read_more">Mer...</code>
+    <code id="replay">Spela igen</code>
+  </window>
+  <window name="headline-toaster">
+    <item id="options">
+      <innerText>Alternativ...</innerText>
+    </item>
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_custom">
+      <value>Egen Bild...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Välj en personlig bild som identifierar din profil.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Laddar...</innerText>
+    </item>
+    <code id="error_size">Kan inte ladda bild. Filstorleken överstuger 8 kilobyte.</code>
+    <code id="error_empty">Kan inte ladda bild. Filen är tom.</code>
+    <code id="error_load">Varning: Kan inte läsa avatarbilder.&#13;&#13;${0}</code>
+    <code id="menu_use">Använd denna avatar</code>
+    <code id="menu_saveas">Spara som...</code>
+    <code id="menu_delete">Ta bort</code>
+    <code id="wnd_select">Välj en avatar</code>
+    <code id="saveas_files">Bildfiler</code>
+    <code id="image_files">Bildfiler mindre än 8kB</code>
+    <code id="all_files">All filer</code>
+  </window>
+  <window name="mode_select">
+    <item id="txt_message">
+      <innerText>Ditt statusmeddelande visar ditt humör, aktivitet eller något annat:</innerText>
+    </item>
+    <code id="btn_ok">OK</code>
+    <code id="btn_ok_empty">OK (inget meddelande)</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nytt namn:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nytt namn:</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Nytt namn:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>Bekräfta det nya lösenordet:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Nytt lösenord:</innerText>
+    </item>
+    <code id="no_match">Lösenorden du angav överensstämmer inte.&#13;&#13;Ange det nya lösenordet i båda fälten.</code>
+    <code id="no_pass">Ange det nya lösenordet.</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="set_version">
+      <innerText>Laddar...</innerText>
+    </item>
+    <item id="header-images">
+      <innerText>Bilder</innerText>
+    </item>
+    <item id="header-sounds">
+      <innerText>Ljud</innerText>
+    </item>
+    <item id="header-markup">
+      <innerText>Textmarkering</innerText>
+    </item>
+    <code id="empty">Denna emoticon stil är tom.</code>
+    <code id="file_error">Filfel</code>
+    <code id="cannot_load">Kan inte ladda emoticons.</code>
+    <code id="count_one">1 emoticon</code>
+    <code id="count_multiple">${0} emoticons</code>
+  </window>
+  <window name="emoticon_download">
+    <item id="btn_close">
+      <value>Stäng</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Ladda hem Emoticons</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>En Internetanslutning krävs för att bläddra i katalogen med Emoticons.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Laddar...</innerText>
+    </item>
+    <code id="install">Installera</code>
+    <code id="cannot_download">Fel: Kan inte ladda hem emoticons.&#13;${0}</code>
+    <code id="invalid_xml">Datakällan innehåller ogiltiga data.</code>
+    <code id="no_new_styles">Det finns inga nya uttryckssymbolsstilar tillgängliga.</code>
+  </window>
+  <window name="emoticon_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Tillgängliga Uttryckssymboler</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Välj en uttryckssymbolsstil från listan.</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>Laddar...</innerText>
+    </item>
+    <item id="btn_emoticon_download">
+      <value>Fler uttryckssymboler</value>
+    </item>
+    <code id="emoticon_details">Visa detaljer</code>
+    <code id="emoticon_remove">Ta bort</code>
+    <code id="emoticon_confirm">Är du säker på att du vill ta bort denna uttryckssymbolsstil?</code>
+    <code id="no_emoticons">Inga uttryckssymboler hittades.</code>
+  </window>
+  <window name="background_download">
+    <item id="btn_close">
+      <value>Stäng</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Ladda hem Bakgrunder</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>En Internetanslutning krävs för att bläddra i katalogen med Bakgrunder.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Laddar...</innerText>
+    </item>
+    <code id="install">Installera</code>
+    <code id="cannot_download">Fel: Kan inte ladda hem Bakgrunder.&#13;${0}</code>
+    <code id="invalid_xml">Datakällan innehåller ogiltiga data.</code>
+    <code id="no_new_styles">Det finns inga nya bakgrunder tillgängliga.</code>
+  </window>
+  <window name="background_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Tillgängliga Bakgrunder</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Lägg till eller ta bort bakgrunder.</innerText>
+    </item>
+    <item id="btn_background_download">
+      <value>Fler bakgrunder</value>
+    </item>
+    <item id="txt_background_empty">
+      <innerText>Inga bakgrunder har installerats.</innerText>
+    </item>
+    <code id="background_uninstall">Ta bort</code>
+    <code id="background_confirm">Är du säker på att du vill ta bort denna bakgrund?</code>
+  </window>
+  <window name="plugin_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Installerade insticksprogram</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Lägg till eller ta bort insticksprogram.</innerText>
+    </item>
+    <item id="btn_plugin_download">
+      <value>Fler insticksprogram</value>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>Inga insticksprogram är installerade.</innerText>
+    </item>
+    <code id="plugin_uninstall">Avinstallera</code>
+    <code id="plugin_confirm">Är du säker på att du vill ta bort det här insticksprogrammet?</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>Stäng</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Ladda hem Insticksprogram</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>En Internetanslutning krävs för att bläddra i katalogen med Insticksprogram.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Laddar...</innerText>
+    </item>
+    <code id="install">Installera</code>
+    <code id="cannot_download">Fel: Kan inte ladda hem Insticksprogram.&#13;${0}</code>
+    <code id="invalid_xml">Datakällan innehåller ingen giltig XML.</code>
+    <code id="no_new_plugins">Det finns inga nya insticksprogram tillgängliga.</code>
+  </window>
+  <window name="autoupdate">
+    <item id="txt-unavailable">
+      <innerText>Inga uppdateringar finns tillgängliga.</innerText>
+    </item>
+    <item id="txt-no-feed">
+      <innerText>Kan inte komma åt uppdateringsströmmen. Försök igen senare.</innerText>
+    </item>
+    <item id="txt-available-updates">
+      <innerText>Tillgängliga Uppdateringar</innerText>
+    </item>
+    <item id="txt-tracks-info">
+      <innerText>Olika versioner ger mer stabilitet eller de senaste förbättringarna.</innerText>
+    </item>
+    <item id="txt-latest">
+      <innerText>Senaste versionen i det aktuella spåret:</innerText>
+    </item>
+    <item id="txt-alternatives">
+      <innerText>Alternativa versioner:</innerText>
+    </item>
+    <item id="btn-close">
+      <value>Stäng</value>
+    </item>
+
+    <item id="txt-new-version">
+      <innerText>En ny version finns tillgänglig.</innerText>
+    </item>
+    <item id="txt-whats-new">
+      <innerText>Vad är nytt?</innerText>
+    </item>
+    <item id="txt-learn-more">
+      <innerText>Läs om de förbättringar den här uppdateringen medför. Denna länk öppnas i din webbläsare.</innerText>
+    </item>
+    <item id="txt-continue">
+      <innerText>Du kan fortsätta att använda ${softwarename} medan uppdateringen hämtas.</innerText>
+    </item>
+    <item id="txt-restart">
+      <innerText>Uppdateringen kommer att installeras när ${softwarename} startas om. Du kan fortsätta använda ${softwarename} utan omstart. Vill du starta och uppdatera nu?</innerText>
+    </item>
+    <item id="txt-browser">
+      <innerText>Nedladdningen kommer att starta i din webbläsare.</innerText>
+    </item>
+    <item id="btn-update">
+      <value>Uppdatera nu</value>
+    </item>
+    <item id="btn-download">
+      <value>Hämta hem nu</value>
+    </item>
+    <item id="btn-later">
+      <value>Senare</value>
+    </item>
+    <code id="up-to-date">Aktuell</code>
+    <code id="previous-version">Tidigare version</code>
+    <code id="recommended">Rekommenderad</code>
+    <code id="description-stable">Stabila versioner har testats längst tid.</code>
+    <code id="description-beta">Innehåller buggfixar och funktioner som testas.</code>
+    <code id="description-development">Vissa funktioner kan krångla medan arbete pågår.</code>
+    <code id="title">Programuppdatering: ${0} ${1}</code>
+  </window>
+  <window name="welcome">
+    <item id="txt-hello">
+      <innerText>Hej och välkommen till ${softwarename}</innerText>
+    </item>
+    <item id="txt-free-software">
+      <innerText>Denna applikation är fri och öppen programvara. All utveckling, översättning och support görs av våra underbara communitymedlemmar.</innerText>
+    </item>
+    <item id="txt-more-information">
+      <innerHTML>För mer information följ @&lt;a href="http://twitter.com/${twittername}"&gt;${twittername}&lt;/a&gt; på Twitter eller bli ett fan på &lt;a href="http://www.facebook.com/${facebookpage}"&gt;Facebook.com/${facebookpage}&lt;/a&gt;.</innerHTML>
+    </item>
+    <item id="txt-enjoy">
+      <innerText>Vi hoppas att du tycker om att använda vår applikation.</innerText>
+    </item>
+    <item id="txt-team">
+      <innerText>${softwarename} Team</innerText>
+    </item>
+    <item id="settings-close">
+      <title>Bekräfta och stäng</title>
+    </item>
+    <item id="btn-add-contact">
+      <innerText>Lägg till en kontakt</innerText>
+    </item>
+    <item id="btn-edit-profile">
+      <innerText>Redigera min profil</innerText>
+    </item>
+    <item id="btn-transports">
+      <innerText>Bryggor</innerText>
+    </item>
+    <item id="btn-settings">
+      <innerText>Inställningar</innerText>
+    </item>
+    <item id="txt-confirm">
+      <innerText>Vänligen bekräfta dessa inställningar:</innerText>
+    </item>
+    <item id="txt-default-xmpp">
+      <innerText>Använd ${softwarename} som min standard XMPP klient</innerText>
+    </item>
+    <item id="txt-homepage">
+      <innerText>Ställ in min startsida till ${browsersearchboxname}</innerText>
+    </item>
+    <item id="txt-search-engine">
+      <innerText>Lägg till ${browsersearchboxname} bland mina sökmotorer</innerText>
+    </item>
+    <item id="txt-feed-title">
+      <innerText>Support and Återkoppling</innerText>
+    </item>
+    <item id="txt-ask-question">
+      <innerText>Ställ en fråga</innerText>
+    </item>
+    <item id="txt-powered-by">
+      <innerText>drivs av GetSatisfaction</innerText>
+    </item>
+    <item id="txt-show-welcome">
+      <innerText>Visa välkomstskärm vid start</innerText>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+    </item>
+    <code id="search-topics">Sök i alla ämnen...</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Alla konferensrum har en unik adress. Ange adressen till konferenstjänsten samt ett unikt namn på rummet.</innerText>
+    </item>
+    <item id="txt_service">
+      <innerText>Tjänstadress:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Exempel: konferens.exempel.se</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>Rumsnamn:</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>Konferensrumsadress:</innerText>
+    </item>
+    <code id="incomplete">Fyll i alla fält...</code>
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>Skicka</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>Skicka till dessa personer:</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>Normalt meddelande</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>Varningsnotifiering</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>Typ av meddelande</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>Bifoga hyperlänk</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>Meddelande</innerText>
+    </item>
+  </window>
+  <window name="extension_download">
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Ansluter...</innerText>
+    </item>
+    <code id="downloading">Hämta hem...</code>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>Stäng</value>
+    </item>
+    <item id="btn_accept">
+      <value>Acceptera</value>
+    </item>
+    <item id="btn_abort">
+      <value>Avbryt</value>
+    </item>
+    <item id="btn_open">
+      <value>Öppna</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Återstående tid:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>Avsändare:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Filname:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Plats:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Framsteg:</innerText>
+    </item>
+    <code id="resume">Filen finns. Vill du återuppta överföring?&#13;&#13;Klicka på Ja för att återuppta filen.&#13;Klicka nej om du vill skriva över filen.</code>
+    <code id="cannot_overwrite">Kan inte skriva över filen:&#13;${0}&#13;&#13;${1}</code>
+    <code id="incorrect">Kan inte initiera överföring.  Felaktiga data mottagen.</code>
+    <code id="title_saving">${0}% av ${1} Sparat</code>
+    <code id="lessthanminute">Mindre än 1 minut vid ${0}/s</code>
+    <code id="onehour">1 timma och</code>
+    <code id="hours">${0} timmar och</code>
+    <code id="oneminute">1 minut vid</code>
+    <code id="minutes">${0} minuter vid</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Vill du avbryta överföringen?</code>
+    <code id="aborted">Avbruten</code>
+    <code id="finished">Slutförd</code>
+    <code id="error_timeout">Timeout inträffade.</code>
+    <code id="error_code">Felkod: ${0}</code>
+    <code id="error_file">Filfelkod: ${0}</code>
+    <code id="title_completed">Överföring slutförd - ${0}</code>
+    <code id="title_failed">Överföringen misslyckades - ${0}</code>
+    <code id="error_move">Kan inte flytta slutförd fil:&#13;${0}&#13;&#13;${1}</code>
+    <code id="error_failed">Överföringen misslyckades.</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>Stäng</value>
+    </item>
+    <item id="btn_abort">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Återstående tid:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>Mottagare:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Filnamn:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Plats:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Framsteg:</innerText>
+    </item>
+    <code id="socket">Kan inte skicka filen.&#13;Kan inte öppna nätverks socket.</code>
+    <code id="file">Kan inte läsa filen:&#13;${0}</code>
+    <code id="filetransfer">Filöverföring:</code>
+    <code id="title_saving">${0}% av ${1} Skickat</code>
+    <code id="lessthanminute">Mindre än 1 minut vid ${0}/s</code>
+    <code id="onehour">1 timma och</code>
+    <code id="hours">${0} timmar och</code>
+    <code id="oneminute">1 minut vid</code>
+    <code id="minutes">${0} minuter vid</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Vill du avbryta överföringen?</code>
+    <code id="finished">Slutförd</code>
+    <code id="aborted">Avbruten</code>
+    <code id="error_denied">Fil nekad.</code>
+    <code id="error_timeout">Timeout inträffade.</code>
+    <code id="error_code">Felkod: ${0}</code>
+    <code id="title_completed">Överföring slutförd - ${0}</code>
+    <code id="title_failed">Överföringen misslyckades - ${0}</code>
+    <code id="error_failed">Överföringen misslyckades.</code>
+  </window>
+  <window name="conference_browse">
+    <item id="btn_close">
+      <value>Stäng</value>
+    </item>
+    <item id="btn_other_service">
+      <value>Andra Tjänster...</value>
+    </item>
+    <item id="btn_create">
+      <value>Skapa ett Konferensrum</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Tillgängliga rum:</innerText>
+    </item>
+    <item id="lbl_empty">
+      <innerText>Visa tomma rum</innerText>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="lbl_full">
+      <innerText>Visa fulla rum</innerText>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="lbl_filter">
+      <innerText>Filter:</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Det finns inga tillgängliga konferenstjänster på denna server.&#13;&#13;Klicka på knappen "Andra tjänster..." för att lägga till konferenstjänster från en annan server.</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>För att gå med i ett konferensrum måste du vara ansluten till snabbmeddelandeservern.</innerText>
+    </item>
+    <code id="bookmarks">Bokmärken</code>
+    <code id="menu_join">Gå med</code>
+    <code id="menu_add">Lägg till i Bokmärken...</code>
+    <code id="empty_filter">Inga rum matchar filtret</code>
+    <code id="empty_no_rooms">Inga rum finns tillgängliga på den här tjänsten</code>
+    <code id="status_connecting">Ansluter...</code>
+    <code id="status_downloading">Hämtar lista med konferensrum...</code>
+    <code id="error_unknown">Tjänsten "${0}" är inte tillgänglig. Kontrollera att du har angett rätt adress. Försök igen senare eller ange en annan adress.</code>
+    <code id="error_no_services">Server "${0}" har inte några konferenstjänster installerade. Kontakta administratören för mer information.</code>
+    <code id="error_no_new">Alla konferenstjänster på servern "${0}" är redan listade.</code>
+  </window>
+  <window name="conference_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Adress:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Exempel: konferens.exempel.se</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Ange adressen till en konferenstjänst eller server.</innerText>
+    </item>
+    <code id="error_already_exists">Tjänsten "${0}" är redan listad. Ange adressen till en konferenstjänst eller server som ännu inte är listad.</code>
+  </window>
+  <window name="vcard">
+    <code id="save">Varning: Kan inte spara vCard-fil.&#13;&#13;${0}</code>
+    <code id="personal">Användar Detaljer</code>
+    <code id="system">System Detaljer</code>
+
+    <item id="txt_requesting1">
+      <innerText>Begär information från servern</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Detta kan ta upp till en minut.&lt;BR&gt;Ha tålamod.</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>Spara som vCard</value>
+    </item>
+    <item id="btn_refresh">
+      <value>Uppdatera</value>
+    </item>
+    <item id="btn_close">
+      <value>Stäng</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>Ångra ändringar</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>Personuppgifter</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>Ytterligare information</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>Hemadress</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>Företag</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>Företagsadress</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>System</innerText>
+    </item>
+
+    <item id="txt_name">
+      <innerText>Namn</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>Förnamn:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>Mellannamn:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>Efternamn:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>Smeknamn:</innerText>
+    </item>
+
+    <item id="txt_contact">
+      <innerText>Kontakt</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>E-post:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>Telefon:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>Mobil:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>Fax:</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>Ytterligare information</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>Ålder:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>Födelsedag:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>Kön:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>Civilstånd:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>Hemsida:</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>Hemadress</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>Adress 1:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>Adress 2:</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>Stad:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>Postadress:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>Län:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>Land:</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>Organisation</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>Namn:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>Avdelning:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>Titel:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>Roll:</innerText>
+    </item>
+
+    <item id="txt_workcontact">
+      <innerText>Kontakt</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>E-post:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>Telefon:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>Mobil:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>Fax:</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>Företagsadress</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>Adress 1:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>Adress 2:</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>Stad:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>Postadress:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>Län:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>Land:</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>Kundinformation</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>Adress:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>Resurs:</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>Lokal tid:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>Mjukvara:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>Version:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>Operativsystem:</innerText>
+    </item>
+  </window>
+  <window name="transport_list">
+    <item id="btn_other">
+      <value>Övriga bryggor...</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Tillgängliga bryggor</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Bryggor tillhandahåller länkar till andra snabbmeddelandenätverk.</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;Notera:&lt;/B&gt; För att konfigurera bryggor måste du vara ansluten till snabbmeddelandeservern.</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;Notera:&lt;/B&gt; Den server du är ansluten till har inga bryggor installerade. Kontakta administratören för mer information.</innerHTML>
+    </item>
+    <code id="status_active">Aktiv</code>
+    <code id="status_noreg">Ej registrerad</code>
+    <code id="status_disconnected">Frånkopplad</code>
+    <code id="status_connecting">Ansluter...</code>
+    <code id="name_unknown">Okända Tjänster</code>
+    <code id="error_unknown">Tjänsten "${0}" är inte tillgänglig. Kontrollera att du har angett rätt adress. Försök igen senare eller ange en annan adress.</code>
+    <code id="error_no_transports">Server "${0}" har inte några bryggor installerade. Kontakta administratören för mer information.</code>
+    <code id="error_no_new_transport">Alla bryggor på servern "${0}" finns redan listade.</code>
+  </window>
+  <window name="transport_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Adress:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Exempel: sms.exempel.se</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Ange adressen till en brygga eller server.</innerText>
+    </item>
+    <code id="error_already_exists">Tjänsten "${0}" finns redan listad. Ange adressen till en brygga eller server som ännu inte är listad.</code>
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; Tillbaka</value>
+    </item>
+    <item id="btn_next">
+      <value>Nästa &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>Slutför</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>Avbryt</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>Adress:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>Smeknamn:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>Adress:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Lösenord:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>Smeknamn:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>Du är redan registrerade hos denna brygga.&lt;BR&gt;Det konto som du har registrerat är:</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>Inaktivera brygga</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText>Kontaktar server</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Detta kan ta upp till en minut.&lt;BR&gt;Ha tålamod.</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>För att avsluta guiden, klicka &lt;B&gt;Slutför&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>För att fortsätta, klicka &lt;B&gt;Nästa&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <code id="error_invalid">Ogiltig data mottagen</code>
+    <code id="error_server">&lt;B&gt;Serverfel:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Kan ej fortsätta.</code>
+    <code id="error_unknown">&lt;B&gt;Okänt fel:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Kan ej fortsätta.</code>
+    <code id="error_auth">&lt;B&gt;Auktoriseringsfel:&lt;/B&gt;&lt;BR&gt;Felaktig adress eller lösenord.&lt;BR&gt;&lt;BR&gt;Kan ej fortsätta.</code>
+    <code id="wait">&lt;B&gt;Kontaktar server&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Detta kan ta upp till en minut.&lt;BR&gt;Ha tålamod.&lt;BR&gt;</code>
+
+    <code id="default_window_title">Konfigurering av Brygga</code>
+    <code id="default_begin_intro">Den här guiden hjälper dig att konfigurera bryggan.&lt;BR&gt;Denna brygga är en länk mellan dig och ett annat nätverk.&lt;BR&gt;Du behöver ett konto på det andra nätverket för att använda denna brygga.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">Ange ditt användarnamn samt lösenord.&lt;BR&gt;Du kan även ange ett smeknamn som andra kommer att se.&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">Ditt konto registreras med bryggan.</code>
+    <code id="default_removing_busy">Ditt konto tas bort från bryggan.&lt;BR&gt;</code>
+    <code id="default_creating_done">Kontot registrerades framgångsrikt med bryggan.</code>
+    <code id="default_removing_done">Kontot avregistrerades framgångsrikt från bryggan.</code>
+
+    <code id="msn_window_title">MSN Messenger - Konfigurering av Brygga</code>
+    <code id="msn_begin_intro">Den här guiden hjälper dig att konfigurera bryggan för MSN.&lt;BR&gt;Denna brygga är en länk mellan dig och ditt MSN konto.&lt;BR&gt;Du behöver ett existerande Microsoft Passport för att använda denna brygga.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">Ange din MSN-adress och ditt MSN lösenord.&lt;BR&gt;Du kan även ange ett smeknamn som användare ser.&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">Exempel: person1@msn.com, person1@hotmail.com</code>
+    <code id="msn_creating_busy">Ditt konto är registrerat med MSN bryggan.</code>
+    <code id="msn_removing_busy">Ditt MSN konto tas bort från bryggan.&lt;BR&gt;Du kommer fortfarande att kunna använda ditt MSN-konto med andra tjänster (t.ex. Hotmail, MSN Explorer, etc.).&lt;BR&gt;</code>
+    <code id="msn_creating_done">Kontot registrerades framgångsrikt med MSN bryggan.</code>
+    <code id="msn_removing_done">Kontot avregistrerades framgångsrikt från MSN bryggan.</code>
+
+    <code id="icq_window_title">ICQ - Konfigurering av Brygga</code>
+    <code id="icq_begin_intro">Den här guiden hjälper dig att konfigurera bryggan för ICQ.&lt;BR&gt;Denna brygga är en länk mellan dig och ditt ICQ konto.&lt;BR&gt;Du måste ha ett existerabde User Identification Number (ICQ &lt;BR&gt;nummer) för att använda denna brygga.&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Ange ditt ICQ nummer samt ICQ lösenord.&lt;BR&gt;Du kan även ange ett smeknamn som användare ser.&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">Exempel: 39230793, 158525087</code>
+    <code id="icq_creating_busy">Ditt konto registreras med ICQ bryggan.</code>
+    <code id="icq_removing_busy">Ditt konto tas bort från ICQ bryggan.&lt;BR&gt;</code>
+    <code id="icq_creating_done">Kontot registrerades framgångsrikt med ICQ bryggan.</code>
+    <code id="icq_removing_done">Kontot avregistrerades framgångsrikt från ICQ bryggan.</code>
+
+    <code id="yahoo_window_title">Yahoo! Messenger - Konfigurering av Brygga</code>
+    <code id="yahoo_begin_intro">Den här guiden hjälper dig att konfigurera bryggan för Yahoo! Messenger.&lt;BR&gt;Denna brygga är en länk mellan dig och ditt Yahoo! konto.&lt;BR&gt;Du behöver ett existerande Yahoo! konto för att använda denna brygga.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Ange ditt Yahoo! användarnamn samt ditt Yahoo! lösenord.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">Ditt konto registreras med Yahoo! bryggan.</code>
+    <code id="yahoo_removing_busy">Ditt konto tas bort från Yahoo! bryggan.&lt;BR&gt;Du kommer fortfarande att kunna använda ditt Yahoo! Konto med andra tjänster (t.ex. Yahoo! Mail, Yahoo! Messenger, etc.).&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">Kontot registrerades framgångsrikt med Yahoo! bryggan.</code>
+    <code id="yahoo_removing_done">Kontot avregistrerades framgångsrikt från Yahoo! bryggan.</code>
+
+    <code id="aim_window_title">AOL Instant Messenger - Konfigurering av Brygga</code>
+    <code id="aim_begin_intro">Den här guiden hjälper dig att konfigurera bryggan för AOL IM.&lt;BR&gt;Denna brygga är en länk mellan dig och ditt AOL IM konto.&lt;BR&gt;;Du behöver ett existerande AOL IM konto för att använda denna brygga.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">Ange ditt AOL IM användarnamn samt lösenord.&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">Ditt konto registreras med AOL IM bryggan.</code>
+    <code id="aim_removing_busy">Ditt konto avregistreras från AOL IM bryggan.&lt;BR&gt;Du kommer fortfarande att kunna använda ditt AOL-konto med andra program.&lt;BR&gt;</code>
+    <code id="aim_creating_done">Kontot registrerades framgångsrikt med AOL IM bryggan.</code>
+    <code id="aim_removing_done">Kontot avregistrerades framgångsrikt från AOL IM bryggan.</code>
+
+    <code id="gadu_window_title">Gadu-Gadu - Konfigurering av Brygga</code>
+    <code id="gadu_begin_intro">Den här guiden hjälper dig att konfigurera bryggan för Gadu-Gadu.&lt;BR&gt;Denna brygga är en länk mellan dig och ditt Gadu-Gadu konto.&lt;BR&gt;Du behöver ett existerande Gadu-Gadu nummer för att använda denna brygga.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_instructions">Ange ditt Gadu-Gadu nummer samt lösenord.&lt;BR&gt;Du kan även ange ett smeknamn som användare ser.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_examples">&amp;nbsp;</code>
+    <code id="gadu_creating_busy">Ditt Gadu-Gadu nummer registreras med Gadu-Gadu bryggan.</code>
+    <code id="gadu_removing_busy">Ditt Gadu-Gadu nummer avregistreras från Gadu-Gadu bryggan.&lt;BR&gt;</code>
+    <code id="gadu_creating_done">Gadu-Gadu nummret registrerades framgångsrikt med bryggan.</code>
+    <code id="gadu_removing_done">Gadu-Gadu nummret avregistrerades framgångsrikt från bryggan.</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>Gå</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>Spara</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>Skriv ut</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>Radera</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>Meddelande Historik</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>Sök:</innerText>
+    </item>
+    <code id="loading">Laddar meddelandehistorik...</code>
+    <code id="empty">Meddelandehistoriken är tom.</code>
+    <code id="error_load">Kan inte läsa meddelandehistorik:&#13;${0}</code>
+    <code id="one_message">1 meddelande</code>
+    <code id="many_messages">${0} meddelanden</code>
+    <code id="tooltip_save">Spara meddelandehistorik för denna dag</code>
+    <code id="tooltip_print">Skriv ut meddelandehistorik för denna dag</code>
+    <code id="error_open">Fel: Kan inte öppna meddelandehistorik.</code>
+    <code id="error_read">Fel: Kan inte läsa meddelandehistorik.</code>
+    <code id="delete_confirm">Är du säker på att du vill radera hela meddelandehistoriken för ${0}?</code>
+    <code id="delete_cannot">Kan inte ta bort historikfil: ${0}&#13;&#13;Inga meddelanden har raderats.</code>
+    <code id="error_print">Kan inte skriva ut någonting.&#13;Meddelandehistoriken är tom.</code>
+    <code id="error_save">Kan inte spara meddelandehistorik.&#13;${0}</code>
+  </window>
+  <window name="chat-messages">
+    <code id="copy">Kopiera</code>
+    <code id="copyall">Kopiera Allt</code>
+    <code id="clear">Rensa</code>
+    <code id="selectall">Markera Allt</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>Visa vad du tänker eller gör</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Ändra textfärg eller typ</title>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Välj en annan bakgrund</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Uttryckssymboler</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Font</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Bakgrund</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>Ändra storlek på inmatningsfältet</title>
+    </item>
+    <item id="mode-bar">
+      <title>Den person som tar emot dina meddelanden</title>
+    </item>
+    <item id="send-text">
+      <title>Skriv ditt meddelande här</title>
+    </item>
+    <item id="btn-send">
+      <value>Skicka</value>
+      <title>Skicka meddelandet</title>
+      <accessKey>s</accessKey>
+    </item>
+
+    <code id="tt-avatar">Visa avatar i full storlek</code>
+    <code id="tt-messages">Meddelanden som har skickats och tagits emot</code>
+    <code id="tt-close">Avsluta detta samtal</code>
+    <code id="msg_typing">${0} skriver ett meddelande</code>
+    <code id="unknown">${0} kanske inte svarar, därför att hans eller hennes status är okänd</code>
+    <code id="lastonline">Senast online: ${0}</code>
+    <code id="windowtitle">${0} - Konversation</code>
+    <code id="background_no">Ingen bakgrund</code>
+    <code id="background_list">Tillgängliga bakgrunder...</code>
+    <code id="close_many_tabs">Vill du stänga alla konversationer?</code>
+    <code id="close_recent_message">Du har just fått ett meddelande.&#13;&#13;Vill du avsluta det här samtalet?</code>
+	<code id="palette_compact">Minska storleken på listan med uttryckssymboler</code>
+	<code id="palette_expand">Visa alla uttryckssymboler i denna stil</code>
+	<code id="palette_browse">Andra uttryckssymbols stilar...</code>
+
+    <code id="menu_file">&amp;Fil</code>
+    <code id="menu_file_received">&amp;Öppna mina mottagna filer</code>
+    <code id="menu_file_history">Meddelande &amp;Historik</code>
+    <code id="menu_file_close">&amp;Stäng konversation</code>
+
+    <code id="menu_axn_contact">&amp;Kontakt</code>
+    <code id="menu_axn_add">Lägg till kontaktlista</code>
+    <code id="menu_axn_block">&amp;Blockera</code>
+    <code id="menu_axn_rename">&amp;Byt namn</code>
+    <code id="menu_axn_panel">Visa &amp;Åtgärdspanel</code>
+    <code id="menu_axn_profile">Visa &amp;Profil</code>
+    <code id="menu_axn_file">Skicka en &amp;Fil</code>
+
+    <code id="menu_tool_emo_style">Välj &amp;Uttryckssymboler...</code>
+    <code id="menu_tool_font">Ändra &amp;Font...</code>
+    <code id="menu_tool_background">Ändra &amp;Bakgrund...</code>
+    <code id="menu_tool_aot">&amp;Alltid överst</code>
+    <code id="menu_tool_tabbed">&amp;Konversationer i Flikar</code>
+    <code id="menu_tool_emoticons">&amp;Visa Uttryckssymboler</code>
+    <code id="menu_tool_settings">&amp;Inställningar</code>
+  </window>
+  <window name="conference-bookmarks-add">
+    <item id="txt_address">
+      <innerText>Konferensrum Adress:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Exempek: mitt_rum@konferens.exempel.se</innerText>
+    </item>
+    <item id="lbl_autojoin">
+      <innerText>Delta i detta konferensrum när du loggar in</innerText>
+    </item>
+    <item id="lbl_password">
+      <innerText>Delta i konferensrummet med detta lösenord:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <code id="error_invalid_address">Konferensrummets adress är ogiltig.</code>
+  </window>
+  <window name="conference-bookmarks-manage">
+    <item id="txt_head">
+      <innerText>Redigera, ta bort eller lägg till konferensrumsbokmärken:</innerText>
+    </item>
+    <item id="btn_edit">
+      <value>Redigera</value>
+    </item>
+    <item id="btn_delete">
+      <value>Ta bort</value>
+    </item>
+    <item id="btn_add">
+      <value>Lägg till</value>
+    </item>
+    <item id="btn_close">
+      <value>Stäng</value>
+    </item>
+    <code id="confirm_delete">Vill du ta bort bokmärket för detta konferensrum?</code>
+  </window>
+  <window name="conference-configuration">
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_form_loading">
+      <innerText>Laddar...</innerText>
+    </item>
+    <item id="txt_form_empty">
+      <innerText>Detta konferensrum saknar anpassningsbara inställningar</innerText>
+    </item>
+    <item id="txt_form_invalid">
+      <innerText>Fel: Kan inte hämta konfigurationen för konferensrummet</innerText>
+    </item>
+    <code id="form_title">Inställningar för detta konferensrum</code>
+    <code id="form_subtitle">Fyll i detta formulär för att konfigurera konferensrummet</code>
+
+    <code id="muc#roomconfig_allowinvites">Tillåt deltagare att bjuda in andra deltagare</code>
+    <code id="muc#roomconfig_changesubject">Tillåt deltagare att ändra ämne för konferensrummet</code>
+    <code id="muc#roomconfig_enablelogging">Logga alla meddelande i konferensrummet</code>
+    <code id="muc#roomconfig_lang">Språk som används i konferensrummet</code>
+    <code id="muc#roomconfig_maxusers">Maximalt antal deltagare i konferensrummet</code>
+    <code id="muc#roomconfig_membersonly">Endast medlemmar har rätt att gå in i konferensrummet</code>
+    <code id="muc#roomconfig_moderatedroom">Godkännande från moderatorer krävs för att skicka meddelanden</code>
+    <code id="muc#roomconfig_passwordprotectedroom">Ett lösenord krävs för att komma in i konferensrummet</code>
+    <code id="muc#roomconfig_persistentroom">Konferensrum kvarstår när alla har lämnat</code>
+    <code id="muc#roomconfig_presencebroadcast">Roller för vilka statusinformation sänds</code>
+    <code id="muc#roomconfig_publicroom">Visa konferensrummet i förteckningen över offentliga konferensrum</code>
+    <code id="muc#roomconfig_roomadmins">Administratörer för konferensrummet</code>
+    <code id="muc#roomconfig_roomdesc">Beskrivning av konferensrummet</code>
+    <code id="muc#roomconfig_roomname">Namn på konferensrummet</code>
+    <code id="muc#roomconfig_roomowners">Ägare av konferensrummet</code>
+    <code id="muc#roomconfig_roomsecret">Lösenord för att komma in i konferensrummet</code>
+    <code id="muc#roomconfig_whois">Samarbetspartners som kan upptäcka den verkliga adressen till alla deltagare</code>
+  </window>
+  <window name="conference-password">
+    <item id="txt_password">
+      <innerText>Lösenord:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-name">
+    <item id="txt_name">
+      <innerText>Namn:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-subject">
+    <item id="txt_subject">
+      <innerText>Ämne:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-invite">
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Markera de kontakter som du vill bjuda in.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Det finns inga tillgängliga kontakter i kontaktlistan.</innerText>
+    </item>
+  </window>
+  <window name="conference-accesslevel">
+    <item id="txt-name">
+      <innerText>Namn:</innerText>
+    </item>
+    <item id="txt-room">
+      <innerText>Rum:</innerText>
+    </item>
+
+	<item id="txt-role">
+      <innerText>Roll</innerText>
+    </item>
+	<item id="txt-visitor">
+      <innerText>Besökare</innerText>
+    </item>
+    <item id="txt-visitor-desc">
+      <innerText>Kan läsa meddelanden</innerText>
+    </item>
+	<item id="txt-participant">
+      <innerText>Deltagare</innerText>
+    </item>
+    <item id="txt-participant-desc">
+      <innerText>Kan även skicka meddelanden</innerText>
+    </item>
+	<item id="txt-moderator">
+      <innerText>Moderator</innerText>
+    </item>
+    <item id="txt-moderator-desc">
+      <innerText>Kan även sparka deltagare och besökare</innerText>
+    </item>
+
+	<item id="txt-affiliation">
+      <innerText>Tillhörighet</innerText>
+    </item>
+	<item id="txt-none">
+      <innerText>Ingen/Medlem</innerText>
+    </item>
+    <item id="txt-none-desc">
+      <innerText>Kan komma in i konferensrummet</innerText>
+    </item>
+	<item id="txt-admin">
+      <innerText>Administratörr</innerText>
+    </item>
+    <item id="txt-admin-desc">
+      <innerText>Kan också lägga till moderatorer och blockera deltagare</innerText>
+    </item>
+	<item id="txt-owner">
+      <innerText>Ägare</innerText>
+    </item>
+    <item id="txt-owner-desc">
+      <innerText>Kan också lägga till administratörer</innerText>
+    </item>
+
+    <item id="btn-default">
+      <value>Standard</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-cancel">
+      <value>Avbryt</value>
+      <accessKey>c</accessKey>
+    </item>
+    <item id="btn-close">
+      <value>Stäng</value>
+      <accessKey>c</accessKey>
+    </item>
+  </window>
+  <window name="conference-container">
+    <item id="btn-emoticons">
+      <title>Visa vad du tänker eller gör</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Ändra textfärg eller typ</title>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Välj en annan bakgrund</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Uttryckssymboler</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Font</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Bakgrund</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>Ändra storlek på inmatningsfältet</title>
+    </item>
+    <item id="mode-bar">
+      <title>Namn, adress och ämnet för detta konferensrum</title>
+    </item>
+    <item id="send-text">
+      <title>Skriv ditt meddelande här</title>
+    </item>
+    <item id="btn-send">
+      <value>Skicka</value>
+      <title>Skicka meddelandet</title>
+      <accessKey>s</accessKey>
+    </item>
+
+    <item id="occupants-panel">
+      <title>Deltagare i detta konferensrum</title>
+    </item>
+    <item id="txt-visitors">
+      <innerText>Besökare</innerText>
+      <title>Besökare kan läsa meddelanden men kan inte skicka meddelanden</title>
+    </item>
+    <item id="txt-moderators">
+      <innerText>Moderatorer</innerText>
+      <title>Moderatorer kan skicka och läsa meddelanden och kan sparka andra deltagare från konferensrummet</title>
+    </item>
+    <item id="txt-participants">
+      <innerText>Deltagare</innerText>
+      <title>Deltagare kan skicka och läsa meddelanden</title>
+    </item>
+
+    <code id="wnd_conference_password">Anslut med ett lösenord</code>
+    <code id="wnd_conference_change_name">Ändra mitt Namn</code>
+    <code id="wnd_conference_subject">Konferensrums Ämne</code>
+    <code id="wnd_conference_configuration">Konferensrums Konfiguration</code>
+    <code id="wnd_conference_accesslevel">${0} - Åtkomstnivå</code>
+
+    <code id="tt-messages">Meddelanden som har skickats och tagits emot</code>
+    <code id="tt-close">Lämna detta konferensrum</code>
+    <code id="default_subject">Detta konferensrum har inget ämne.</code>
+    <code id="windowtitle">${0} - Konferens</code>
+    <code id="destroy">Genom att förstöra detta konferensrum kommer du avlägsna alla deltagare från rummet och ta bort rummet från servern.&#13;&#13;Är du säker på att du vill förstöra detta konferensrum?</code>
+    <code id="connecting">Ansluter...</code>
+    <code id="connected">Ansluten</code>
+    <code id="disconnected">Frånkopplad</code>
+    <code id="confirm-kick">Är du säker på att du vill sparka "${0}" från detta konferensrum?</code>
+    <code id="kick-error">Kan inte sparka deltagare: ${0}</code>
+    <code id="kicked">${0} är sparkad från konferensrummet</code>
+    <code id="kicked-by">${0} är sparkad från konferensrummet av ${1}</code>
+    <code id="confirm-ban">Är du säker på att du vill förbjuda "${0}" från detta konferensrum?</code>
+    <code id="ban-error">Det går inte att förbjuda deltagare: ${0}</code>
+    <code id="banned">${0} är förbjuden från konferensrummet</code>
+    <code id="banned-by">${0} är förbjuden från konferensrummet av ${1}</code>
+    <code id="leaving">${0} lämnar konferensrummet</code>
+    <code id="joining">${0} ansluter sig till konferensrummet</code>
+    <code id="renaming">${0} är nu känd som ${1}</code>
+
+    <code id="menu_file">&amp;Fil</code>
+    <code id="menu_file_close">&amp;Stäng Konferens</code>
+
+    <code id="menu_axn_invite">&amp;Bjud in kontakter</code>
+    <code id="menu_axn_change_name">Ändra mitt &amp;Namn...</code>
+    <code id="menu_axn_password">Anslut med ett &amp;Lösenord...</code>
+    <code id="menu_axn_subject">&amp;Ändra Ämnet i konferensrummet</code>
+    <code id="menu_axn_configuration">&amp;Konfigurera detta Konferensrum</code>
+    <code id="menu_axn_destroy">&amp;Förstör detta Konferensrum</code>
+
+    <code id="menu_bookmarks">&amp;Bokmärken</code>
+
+    <code id="menu_bmrk_add">&amp;Lägg till i Bokmärken...</code>
+
+    <code id="menu_occupant_private">Privata &amp;Meddelanden</code>
+    <code id="menu_occupant_kick">&amp;Sparka</code>
+    <code id="menu_occupant_ban">&amp;Förbjud</code>
+    <code id="menu_occupant_access">&amp;Åtkomstnivå...</code>
+    <code id="menu_occupant_add">&amp;Lägg till kontaktlista</code>
+    <code id="menu_occupant_profile">&amp;Profil</code>
+
+    <code id="unrecognized-error">Okänt fel</code>
+    <code id="error-service-unavailable">Tjänsten är inte tillgänglig</code>
+    <code id="error-not-allowed">Inte tillåtet</code>
+    <code id="error-conflict">Konflikt: Smeknamnet används redan</code>
+    <code id="error-registration-required">Registrering krävs: Endast medlemmar</code>
+    <code id="error-forbidden">Förbjuden: Du är förbjuden</code>
+    <code id="error-not-authorized">Inte godkännd: Lösenord krävs</code>
+    <code id="error-item-not-found">Kan inte hitta objekt: Rummet är låst</code>
+  </window>
+  <window name="preferences">
+    <item id="txt_blocking">
+      <innerText>Blockering listan innehåller adresser till personer du inte vill ta emot meddelanden från.</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>Visa meddelanden från personer som inte finns i min kontaktlista</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>Blockeringslista</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>Häv blockering</value>
+    </item>
+    <item id="block_btn_view">
+      <value>Visa profil</value>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Anslutningsinställningar</innerText>
+    </item>
+    <item id="txt_connection_desc">
+      <innerText>Ändra hur du ansluter till snabbmeddelandeservern.</innerText>
+    </item>
+    <item id="btn_connection_settings">
+      <value>Anslutningsinställningar</value>
+    </item>
+    <item id="txt_portmap">
+      <innerText>Filöverföringens portmappning (NAT, firewall)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>Värd:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>Port:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>Lagra alla meddelanden i historikarkivet</innerText>
+    </item>
+    <item id="txt_startup">
+      <innerText>Starta automatiskt vid start</innerText>
+    </item>
+    <item id="txt_updates">
+      <innerText>Sök automatiskt efter mjukvaruuppdateringar</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>När någon begär mitt tillstånd</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>Fråga mig</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>Acceptera alla förfrågningar</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>Acceptera användare som finns i min kontaktlista, be andra</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>Neka alla förfrågningar</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>Spela upp ett ljud när ett meddelande anländer</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>Spela upp ett ljud när någon återgår till tillgänglig-status</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>Spela ett ljud när någon blir otillgänlig</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>Bläddra</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>Bläddra</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>Bläddra</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>Blockering</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>Anslutning</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>Sekretess</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>Ljud</innerText>
+    </item>
+    <code id="blocking">Blockeringslista</code>
+    <code id="connection">Anslutningsinställningar</code>
+    <code id="privacy">Sekretess</code>
+    <code id="sound">Notifieringsljud</code>
+    <code id="reconnect">Du måste återansluta för att tillämpa ändringarna.&#13;&#13;Vill du återansluta nu?</code>
+    <code id="shortcut">Skicka och ta emot snabbmeddelanden</code>
+    <code id="choose_sound">Välj ett notifieringsljud</code>
+    <code id="file_audio">Ljudfiler</code>
+    <code id="file_any">Alla filer</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>Hitta eller lägg till en person</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>Du kan söka efter någon baserad på personens publika information eller så kan du skriva in personens användarnamn.</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>Hur vill du lägga till en kontakt?</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>Jag vill &lt;U&gt;s&lt;/U&gt;öka efter någon.</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>Se&lt;U&gt;r&lt;/U&gt;vice:</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML>I &lt;U&gt;a&lt;/U&gt;lready know the person's instant messaging address.</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>N&lt;U&gt;e&lt;/U&gt;twork:</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>&lt;U&gt;U&lt;/U&gt;sername:</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>För att kommunicera med någon på ett annat snabbmeddelande-nätverk måste du konfigurera bryggan för det nätverket.</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>Konfigurera bryggorna</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>Nästa &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_p1_close">
+      <value>Stäng</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>Bearbetar Användarnamn</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>Bryggan verifierar nu användarnamnet.</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; Tillbaka</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>Nästa &gt;</value>
+    </item>
+    <item id="page1b_btn_close">
+      <value>Stäng</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>Begära Sökformulär</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>Sökformuläret innehåller instruktioner och alla sökbara fält.</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; Tillbaka</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>Nästa &gt;</value>
+    </item>
+    <item id="page1c_btn_close">
+      <value>Stäng</value>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; Tillbaka</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>Sök</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="page3_btn_close">
+      <value>Stäng</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText>Sökresultat</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>Du kan visa personuppgifter om en användare eller lägga till användaren till din kontaktlista.</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; Tillbaka</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>Nästa &gt;</value>
+    </item>
+    <item id="page4_btn_close">
+      <value>Stäng</value>
+    </item>
+
+    <item id="txt_p5_title">
+      <innerText>Lägger till Person</innerText>
+    </item>
+    <item id="txt_p5_tagline">
+      <innerText>Kontaktlistan sparas på servern.</innerText>
+    </item>
+    <item id="txt_p5_desc">
+      <innerText>Auktoriseringsförfrågan skickas till:</innerText>
+    </item>
+    <item id="txt_p5_user">
+      <innerText>Användarnamn:</innerText>
+    </item>
+    <item id="txt_p5_network">
+      <innerText>Nätverk:</innerText>
+    </item>
+    <item id="page5_btn_back">
+      <value>&lt; Tillbaka</value>
+    </item>
+    <item id="page5_btn_next">
+      <value>Nästa &gt;</value>
+    </item>
+    <item id="page5_btn_close">
+      <value>Stäng</value>
+    </item>
+
+    <item id="txt_p6_title">
+      <innerText>Slutför guiden för att Söka eller Lägga till personer</innerText>
+    </item>
+    <item id="txt_p6_tagline">
+      <innerText>Du har nu slutfört guiden Sök eller Lägga till personer.</innerText>
+    </item>
+    <item id="txt_p6_desc">
+      <innerText>Denna person har lagts till i din kontaktlista:</innerText>
+    </item>
+    <item id="txt_p6_user">
+      <innerText>Användarnamn:</innerText>
+    </item>
+    <item id="txt_p6_network">
+      <innerText>Nätverk:</innerText>
+    </item>
+    <item id="txt_p6_again">
+      <innerHTML>För att starta om guiden, klicka &lt;B&gt;Lägg till ytterligare personer&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_again">
+      <value>Lägg till ytterligare personer</value>
+    </item>
+    <item id="txt_p6_finish">
+      <innerHTML>För att avsluta guiden, klicka &lt;B&gt;Slutför&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_back">
+      <value>&lt; Tillbaka</value>
+    </item>
+    <item id="page6_btn_finish">
+      <value>Slutför</value>
+    </item>
+    <item id="page6_btn_close">
+      <value>Stäng</value>
+    </item>
+
+	<code id="correct">Ange ett giltligt användarnamn.&#13;&#13;Exempel: person123@${0}</code>
+    <code id="example_address">Exempel: person123@${0}</code>
+    <code id="contacting_adding">&lt;B&gt;Kontaktar Server&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Detta kan ta upp till en minut.&lt;BR&gt;Ha tålamod.&lt;BR&gt;</code>
+    <code id="contacting_transport">&lt;B&gt;Kontaktar Brygga&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Detta kan ta upp till en minut.&lt;BR&gt;Ha tålamod.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Kontaktar Söktjänst&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Detta kan ta upp till en minut.&lt;BR&gt;Ha tålamod.&lt;BR&gt;</code>
+    <code id="error_adding">&lt;B&gt;Serverfel:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Användaren kan inte läggas till i din kontaktlista.&lt;BR&gt;Kontakta administratören för mer information.</code>
+    <code id="error_transport">&lt;B&gt;Serverfel:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Användaren kan inte läggas till i din kontaktlista.&lt;BR&gt;Kontrollera att du har angett rätt användarnamn.</code>
+    <code id="error_search">&lt;B&gt;Serverfel:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Sökformuläret kan inte hämtas.&lt;BR&gt;Försök igen senare eller välja en annan tjänst.</code>
+    <code id="error_invalid">Ogiltiga data togs emot.</code>
+    <code id="search_title">Sök Användare</code>
+    <code id="search_tagline">Fyll i ett fält för att söka efter matchande användare.</code>
+    <code id="firstname">Förnamn:</code>
+    <code id="lastname">Efternamn:</code>
+    <code id="nick">Smeknamn:</code>
+    <code id="email">E-post adress:</code>
+    <code id="searching">Söker...</code>
+    <code id="add">Lägg till kontaktlista</code>
+    <code id="view">Visa profil</code>
+    <code id="foundone">Ett resultat</code>
+    <code id="foundmany">${0} result</code>
+  </window>
+  <window name="connection-settings">
+    <code id="logout">Du måste logga ut för att verkställa ändringarna.&#13;&#13;Vill du logga ut nu?</code>
+    <code id="automatic">Automatisk</code>
+    <item id="txt_connection">
+      <innerText>Serveranslutning</innerText>
+    </item>
+    <item id="lbl_server_address">
+      <innerHTML>&lt;U&gt;A&lt;/U&gt;dress:</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="lbl_server_port">
+      <innerHTML>&lt;U&gt;P&lt;/U&gt;ort:</innerHTML>
+      <accessKey>p</accessKey>
+    </item>
+    <item id="txt_encryption">
+      <innerText>Säker kommunikation</innerText>
+    </item>
+    <item id="lbl_encryption_optional">
+      <innerHTML>&lt;U&gt;U&lt;/U&gt;se TLS kryptering om det finns på servern</innerHTML>
+      <accessKey>u</accessKey>
+    </item>
+    <item id="lbl_encryption_tls">
+      <innerHTML>Kräv &lt;U&gt;T&lt;/U&gt;LS kryptering</innerHTML>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="lbl_encryption_ssl">
+      <innerHTML>Kräv &lt;U&gt;S&lt;/U&gt;SL kryptering</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="lbl_encryption_none">
+      <innerHTML>Använd &lt;U&gt;i&lt;/U&gt;nte kryptering</innerHTML>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="txt_authentication">
+      <innerText>Logga in Autentisering</innerText>
+    </item>
+    <item id="lbl_authentication_normal">
+      <innerHTML>A&lt;U&gt;d&lt;/U&gt;ress och lösenord</innerHTML>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="lbl_authentication_ntlm">
+      <innerHTML>Integrerad &lt;U&gt;W&lt;/U&gt;indows Autentisering</innerHTML>
+      <accessKey>w</accessKey>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Avbryt</value>
+    </item>
+  </window>
+  <window name="sign_up">
+    <code id="close_confirm">Den nya adressen är inte komplett.&#13;&#13;Är du säker på att du vill stänga guiden?</code>
+    <code id="incomplete">Fylla i alla fält...</code>
+    <code id="pass_match">Lösenorden du angav överensstämmer inte.&#13;&#13;Ange det nya lösenordet i båda fälten.</code>
+
+    <code id="contacting">Kontaktar server...</code>
+    <code id="registered">Ditt konto registreras. Detta kan ta upp till en minut.&lt;BR&gt;Ha tålamod.&lt;BR&gt;</code>
+    <code id="requesting">Begär information...</code>
+    <code id="sending">Skickar registrering...</code>
+    <code id="failure">Anslutningsfel</code>
+    <code id="completed">Registrering slutförd</code>
+
+    <code id="address">Adress:</code>
+    <code id="nickname">Namn:</code>
+    <code id="userdir">Användarkatalog:</code>
+    <item id="txt_page_welcome_title">
+      <innerText>Välkommen till Registreringsguiden</innerText>
+    </item>
+    <item id="txt_page_welcome_intro">
+      <innerText>Den här guiden hjälper dig att registrera dig på snabbmeddelandenätverket.</innerText>
+    </item>
+    <item id="txt_page_welcome_next">
+      <innerHTML>För att fortsätta, klicka &lt;B&gt;Nästa&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_welcome_next">
+      <value>Nästa &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_welcome_cancel">
+      <value>Avbryt</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_nickname_title">
+      <innerText>Personuppgifter</innerText>
+    </item>
+    <item id="txt_page_nickname_tagline">
+      <innerText>Denna information kommer att hjälpa andra människor att hitta dig på nätverket.</innerText>
+    </item>
+    <item id="txt_page_nickname_desc">
+      <innerText>Ange ditt namn för att göra det lättare för dina vänner eller kollegor att kontakta dig.</innerText>
+    </item>
+    <item id="txt_page_nickname_name">
+      <innerHTML>&lt;U&gt;N&lt;/U&gt;amn:</innerHTML>
+    </item>
+    <item id="data_name">
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_back">
+      <value>&lt; Tillbaka</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_nickname_next">
+      <value>Nästa &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_cancel">
+      <value>Avbryt</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_account_title">
+      <innerText>Adressuppgifter</innerText>
+    </item>
+    <item id="txt_page_account_tagline">
+      <innerText>Du kan använda en allmän server på Internet eller använda en privat server på ditt företagsnätverk.</innerText>
+    </item>
+    <item id="txt_page_account_server">
+      <innerHTML>&lt;U&gt;S&lt;/U&gt;erver:</innerHTML>
+    </item>
+    <item id="txt_page_account_username">
+      <innerHTML>&lt;U&gt;A&lt;/U&gt;nvändarnamn:</innerHTML>
+    </item>
+    <item id="txt_page_account_password">
+      <innerHTML>&lt;U&gt;L&lt;/U&gt;ösenord:</innerHTML>
+    </item>
+    <item id="txt_page_account_confirm">
+      <innerHTML>&lt;U&gt;V&lt;/U&gt;erifiera lösenord:</innerHTML>
+    </item>
+    <item id="txt_page_account_email">
+      <innerHTML>&lt;U&gt;E&lt;/U&gt;post adress:</innerHTML>
+    </item>
+    <item id="data_server">
+      <accessKey>s</accessKey>
+    </item>
+    <item id="data_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="data_password">
+      <accessKey>p</accessKey>
+    </item>
+    <item id="data_password_confirm">
+      <accessKey>c</accessKey>
+    </item>
+    <item id="data_email">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_page_account_remember">
+      <innerHTML>&lt;U&gt;K&lt;/U&gt;om ihåg mitt lösenord</innerHTML>
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page_account_preview">
+      <innerText>Din IM adress:</innerText>
+    </item>
+    <item id="btn_page_account_settings">
+      <value>Anslutningsinställningar</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_account_back">
+      <value>&lt; Tillbaka</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_account_next">
+      <value>Nästa &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_account_cancel">
+      <value>Avbryt</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_creating_title">
+      <innerText>Adress Registrering</innerText>
+    </item>
+    <item id="txt_page_creating_autherr">
+      <innerHTML>Adressen kan inte registreras. Användarnamnet är inte tillgängligt.&lt;BR&gt;&lt;BR&gt;Klicka &lt;B&gt;Tillbaka&lt;/B&gt;, ange ett annat användarnamn och försök igen.</innerHTML>
+    </item>
+    <item id="txt_page_creating_forbidden">
+      <innerHTML>Adressen kan inte registreras. Denna server tillåter inte skapande av nya adresser.&lt;BR&gt;&lt;BR&gt;Klicka &lt;B&gt;tillbaka&lt;/B&gt;, ange en annan server och försök igen.</innerHTML>
+    </item>
+    <item id="txt_page_creating_commerr">
+      <innerHTML>Kan inte kontakta servern. Kontrollera att serveradressen är korrekt.&lt;BR&gt;Kontrollera din nätverksanslutning och försök igen. Om du sitter bakom en brandvägg,&lt;BR&gt;konfigurera anslutningsinställningarna.</innerHTML>
+    </item>
+    <item id="btn_page_creating_retry">
+      <value>Försök igen</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_creating_settings">
+      <value>Anslutningsinställningar</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_creating_back">
+      <value>&lt; Tillbaka</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_creating_next">
+      <value>Nästa &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_creating_cancel">
+      <value>Avbryt</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_finished_title">
+      <innerText>Slutför Lägg till profilguiden</innerText>
+    </item>
+    <item id="txt_page_finished_intro">
+      <innerText>Du har nu slutfört Lägg profilguiden.</innerText>
+    </item>
+    <item id="txt_page_finished_details">
+      <innerText>Profildetaljer:</innerText>
+    </item>
+    <item id="txt_page_finished_finish">
+      <innerHTML>För att stänga guiden, klicka &lt;B&gt;Slutför&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_finished_back">
+      <value>&lt; Tillbaka</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_finished_finish">
+      <value>Slutför</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn_page_finished_cancel">
+      <value>Avbryt</value>
+      <accessKey>c</accessKey>
+    </item>
+  </window>
+</translation>
