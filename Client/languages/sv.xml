@@ -4,10 +4,6 @@
 	Copyright (c) 2010 Johan Carlsson
 	License: GNU General Public License version 3 or later
 -->
-<!--
-	Instructions:
-	http://pandion.pbworks.com/Translating
--->
 <translation xml:lang="sv" dir="ltr">
   <about>
     <language>Svenska</language>
@@ -20,7 +16,7 @@
         </author>
         <date>2010-06-22</date>
         <description>
-          Second edit.
+          Third edit.
         </description>
       </revision>
     </history>
@@ -281,10 +277,10 @@
   </window>
   <window name="about">
     <item id="txt-copyright">
-      <innerHTML>Copyright &amp;copy; ${copyrightyear} ${copyrightholder}. All rights reserved. This application is published under the terms of the &lt;a href="${licenseurl}"&gt;${licensename}&lt;/a&gt;. Additional &lt;a href="${termsandcontitionsurl}"&gt;terms and conditions&lt;/a&gt; may apply to included dependencies.</innerHTML>
+      <innerHTML>Upphovsrätt &amp;copy; ${copyrightyear} ${copyrightholder}. Alla rättigheter reserverade. Denna applikation är publicerad under villkoren i &lt;a href="${licenseurl}"&gt;${licensename}&lt;/a&gt;. Ytterligare &lt;a href="${termsandcontitionsurl}"&gt;villkor&lt;/a&gt; kan gälla medföljande beroenden.</innerHTML>
     </item>
     <item id="txt-trademark">
-      <innerText>The ${softwarename} name and logos are trademarks of ${trademarkholder}. All rights reserved.</innerText>
+      <innerText>Namnet ${softwarename} och logotyper är varumärken som tillhör ${trademarkholder}. Alla rättigheter reserverade.</innerText>
     </item>
     <item id="btn-ok">
       <value>OK</value>
