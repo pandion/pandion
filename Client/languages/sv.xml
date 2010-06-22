@@ -4,6 +4,10 @@
 	Copyright (c) 2010 Johan Carlsson
 	License: GNU General Public License version 3 or later
 -->
+<!--
+	Instructions:
+	http://pandion.pbworks.com/Translating
+-->
 <translation xml:lang="sv" dir="ltr">
   <about>
     <language>Svenska</language>
@@ -14,9 +18,9 @@
           <email>johan@substance.se</email>
           <xmpp>johan@substance.se</xmpp>
         </author>
-        <date>2010-06-21</date>
+        <date>2010-06-22</date>
         <description>
-          First edit.
+          Second edit.
         </description>
       </revision>
     </history>
@@ -131,15 +135,15 @@
     <code id="menu_axn_bookmarks_add">&amp;Lägg till ett bokmärke...</code>
     <code id="menu_axn_bookmarks_manage">&amp;Ordna bokmärken...</code>
     <code id="menu_axn_join">&amp;Delta i ett konferensrum...</code>
-    <code id="menu_axn_create">&amp;Skapa ett Konferensrum...</code>
+    <code id="menu_axn_create">&amp;Skapa ett konferensrum...</code>
     <code id="menu_axn_password">Ändra mitt &amp;Lösenord...</code>
-    <code id="menu_axn_profile">&amp;Redigera min profil...</code>
+    <code id="menu_axn_profile">&amp;Redigera min Profil...</code>
     <code id="menu_axn_avatar">Ändra min A&amp;vatar...</code>
 
     <code id="menu_tool">&amp;Verktyg</code>
     <code id="menu_tool_transport">&amp;Bryggor</code>
     <code id="menu_tool_head">&amp;Rubriker och Varningar</code>
-    <code id="menu_tool_plugin">&amp;Plug-ins</code>
+    <code id="menu_tool_plugin">&amp;Insticksprogram</code>
     <code id="menu_tool_traffic">&amp;Nätverkstrafik</code>
     <code id="menu_tool_view">&amp;Vy</code>
     <code id="menu_tool_detailed">&amp;Detaljerad</code>
@@ -180,8 +184,8 @@
     <code id="wnd_transport_other">Övriga Bryggor</code>
     <code id="wnd_headlines">Rubriksläsare</code>
     <code id="wnd_history">${0} - Meddelande Historik</code>
-    <code id="wnd_plugin_list">Plug-ins</code>
-    <code id="wnd_plugins">Plug-ins</code>
+    <code id="wnd_plugin_list">Insticksprogram</code>
+    <code id="wnd_plugins">Insticksprogram</code>
     <code id="wnd_password">Ändra Lösenord</code>
     <code id="wnd_settings">Inställningar</code>
     <code id="wnd_status">Statusmeddelande</code>
@@ -220,7 +224,7 @@
     <code id="menu_group_move">Flytta till</code>
     <code id="menu_group_copy">Kopiera till</code>
     <code id="menu_request">Skicka Auktoriseringsförfrågan igen</code>
-    <code id="menu_history">Historil</code>
+    <code id="menu_history">Historik</code>
     <code id="menu_profile">Profil</code>
 
     <code id="cl_error_notexist">Adressen finns inte.</code>
@@ -850,7 +854,7 @@
       <value>Andra Tjänster...</value>
     </item>
     <item id="btn_create">
-      <value>Skapa ett Konferensrum</value>
+      <value>Skapa ett konferensrum</value>
     </item>
     <item id="txt_instructions">
       <innerText>Tillgängliga rum:</innerText>
@@ -1978,7 +1982,7 @@
       <innerText>Säker kommunikation</innerText>
     </item>
     <item id="lbl_encryption_optional">
-      <innerHTML>&lt;U&gt;U&lt;/U&gt;se TLS kryptering om det finns på servern</innerHTML>
+      <innerHTML>&lt;U&gt;A&lt;/U&gt;nvänd TLS kryptering om det finns på servern</innerHTML>
       <accessKey>u</accessKey>
     </item>
     <item id="lbl_encryption_tls">
