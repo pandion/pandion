@@ -54,15 +54,13 @@ function LoadProfile ( Address )
 	if ( parseInt( cfg( 'lastmode' ), 10 ) === 6 )
 		cfg( 'lastmode' ) = 0;
 
-	/* Restore the user's preferred window dimensions and location
-	 */
-	MenuBarUpdate();
-	if ( external.wnd.isMinimized && external.CmdLine.substr( external.CmdLine.length - 10 ) !== '/minimized' )
-		external.wnd.restore();
-
 	/* Display the window
 	 */
+	MenuBarUpdate();
 	external.wnd.setTitle( Address.ShortAddress() + ' - ' + external.globals( 'softwarename' ) );
-	external.wnd.hide( false );
+	if ( external.wnd.isMinimized )
+		external.wnd.restore();
+	if ( external.CmdLine.substr( external.CmdLine.length - 10 ) !== '/minimized' )
+		external.wnd.hide( false );
 	external.wnd.focus();
 }
