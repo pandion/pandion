@@ -58,9 +58,10 @@ function LoadProfile ( Address )
 	 */
 	MenuBarUpdate();
 	external.wnd.setTitle( Address.ShortAddress() + ' - ' + external.globals( 'softwarename' ) );
-	if ( external.wnd.isMinimized )
-		external.wnd.restore();
-	if ( external.CmdLine.substr( external.CmdLine.length - 10 ) !== '/minimized' )
+	if ( external.CmdLine.substr( external.CmdLine.length - 10 ) !== '/minimized' ) {
+		if ( external.wnd.isMinimized )
+			external.wnd.restore();
 		external.wnd.hide( false );
-	external.wnd.focus();
+		external.wnd.focus();
+	}
 }
