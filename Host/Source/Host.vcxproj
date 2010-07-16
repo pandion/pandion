@@ -85,13 +85,13 @@
     <Link>
       <RegisterOutput>false</RegisterOutput>
       <AdditionalDependencies>Winmm.lib;Secur32.lib;Crypt32.lib;dnsapi.lib;oldnames.lib;comsupp.lib;shlwapi.lib;version.lib;Ws2_32.lib;shfolder.lib;comctl32.lib;..\zlib-1.2.3.win32\lib\zlibstat.lib;comsuppw.lib;libcmtd.lib;libcpmtd.lib;WinInet.lib;Psapi.lib;ntdsapi.lib;Netapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)_debug$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName)_debug.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>
       </EnableCOMDATFolding>
