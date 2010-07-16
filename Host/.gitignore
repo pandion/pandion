@@ -1,6 +1,8 @@
-Intermediate
-Source/Host.vcproj.*
-Source/Pandion.aps
-Host.ncb
-Host.sln
-Host.suo
+*.ncb
+*.sdf
+*.sln.cache
+*.suo
+Intermediate/*
+Source/Host.vcxproj.*
+Source/*.aps
+Source/VersionNo.h

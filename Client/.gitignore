@@ -1,4 +1,2 @@
-pandion.exe
-pandion.pdb
-pandiond.exe
-pandiond.pdb
+*.exe
+*.pdb

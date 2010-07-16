@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0E87D951-FC33-4BA3-9ACA-44773D772640}</ProjectGuid>
+    <RootNamespace>Pandion.exe</RootNamespace>
+    <Keyword>AtlProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfAtl>false</UseOfAtl>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfAtl>false</UseOfAtl>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\Client\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\Intermediate\Debug\</IntDir>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\Client\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\Intermediate\Release\</IntDir>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <GenerateStublessProxies>true</GenerateStublessProxies>
+      <TypeLibraryName>$(IntDir)Pandion.tlb</TypeLibraryName>
+      <HeaderFileName>$(IntDir)Pandion.h</HeaderFileName>
+      <DllDataFileName>
+      </DllDataFileName>
+      <InterfaceIdentifierFileName>$(IntDir)Pandion_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>$(IntDir)Pandion_p.c</ProxyFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc /MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_MT;i386;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <RegisterOutput>false</RegisterOutput>
+      <AdditionalDependencies>Winmm.lib;Secur32.lib;Crypt32.lib;dnsapi.lib;oldnames.lib;comsupp.lib;shlwapi.lib;version.lib;Ws2_32.lib;shfolder.lib;comctl32.lib;..\zlib-1.2.3.win32\lib\zlibstat.lib;comsuppw.lib;libcmtd.lib;libcpmtd.lib;WinInet.lib;Psapi.lib;ntdsapi.lib;Netapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>
+      </EnableCOMDATFolding>
+      <RandomizedBaseAddress>
+      </RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>
+      </ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <Profile>true</Profile>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <GenerateStublessProxies>true</GenerateStublessProxies>
+      <TypeLibraryName>$(IntDir)Pandion.tlb</TypeLibraryName>
+      <HeaderFileName>$(IntDir)Pandion.h</HeaderFileName>
+      <DllDataFileName>
+      </DllDataFileName>
+      <InterfaceIdentifierFileName>$(IntDir)Pandion_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>$(IntDir)Pandion_p.c</ProxyFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_MT;i386;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <RegisterOutput>false</RegisterOutput>
+      <AdditionalDependencies>Winmm.lib;Secur32.lib;Crypt32.lib;dnsapi.lib;oldnames.lib;libcmt.lib;libcpmt.lib;comsupp.lib;shlwapi.lib;version.lib;Ws2_32.lib;shfolder.lib;comctl32.lib;..\zlib-1.2.3.win32\lib\zlibstat.lib;comsuppw.lib;WinInet.lib;Psapi.lib;ntdsapi.lib;Wtsapi32.lib;Netapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>false</GenerateMapFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <SetChecksum>true</SetChecksum>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>
+      </ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Base64.h" />
+    <ClInclude Include="DispInterfaceImpl.h" />
+    <ClInclude Include="Hash.h" />
+    <ClInclude Include="SRVLookup.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="UTF.h" />
+    <ClInclude Include="HTTP.h" />
+    <ClInclude Include="HTTPClient.h" />
+    <ClInclude Include="HTTPEventRouter.h" />
+    <ClInclude Include="HTTPListener.h" />
+    <ClInclude Include="HTTPServer.h" />
+    <ClInclude Include="HTTPSession.h" />
+    <ClInclude Include="XMPP.h" />
+    <ClInclude Include="XMPPConnectionManager.h" />
+    <ClInclude Include="XMPPHandlers.h" />
+    <ClInclude Include="XMPPLogger.h" />
+    <ClInclude Include="XMPPSendQueue.h" />
+    <ClInclude Include="XMPPSocket.h" />
+    <ClInclude Include="XMPPSocketCompressor.h" />
+    <ClInclude Include="XMPPSocketCrypto.h" />
+    <ClInclude Include="XMPPXMLParser.h" />
+    <ClInclude Include="Directory.h" />
+    <ClInclude Include="File.h" />
+    <ClInclude Include="Shortcut.h" />
+    <ClInclude Include="GSSAPI.h" />
+    <ClInclude Include="SASL.h" />
+    <ClInclude Include="SCRAM.h" />
+    <ClInclude Include="SSPI.h" />
+    <ClInclude Include="StringPrep.h" />
+    <ClInclude Include="StringPrepTables.h" />
+    <ClInclude Include="AxHostWnd.h" />
+    <ClInclude Include="ComCtrlWrapper.h" />
+    <ClInclude Include="External.h" />
+    <ClInclude Include="MainWnd.h" />
+    <ClInclude Include="MenuBar.h" />
+    <ClInclude Include="Module.h" />
+    <ClInclude Include="NotifyIcon.h" />
+    <ClInclude Include="PdnWnd.h" />
+    <ClInclude Include="PopupMenu.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Hash.cpp" />
+    <ClCompile Include="SRVLookup.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="UTF.cpp" />
+    <ClCompile Include="HTTP.cpp" />
+    <ClCompile Include="HTTPClient.cpp" />
+    <ClCompile Include="HTTPEventRouter.cpp" />
+    <ClCompile Include="HTTPListener.cpp" />
+    <ClCompile Include="HTTPServer.cpp" />
+    <ClCompile Include="XMPP.cpp" />
+    <ClCompile Include="XMPPConnectionManager.cpp" />
+    <ClCompile Include="XMPPHandlers.cpp" />
+    <ClCompile Include="XMPPLogger.cpp" />
+    <ClCompile Include="XMPPSendQueue.cpp" />
+    <ClCompile Include="XMPPSocket.cpp" />
+    <ClCompile Include="XMPPSocketCompressor.cpp" />
+    <ClCompile Include="XMPPSocketCrypto.cpp" />
+    <ClCompile Include="XMPPXMLParser.cpp" />
+    <ClCompile Include="Directory.cpp" />
+    <ClCompile Include="File.cpp" />
+    <ClCompile Include="Shortcut.cpp" />
+    <ClCompile Include="GSSAPI.cpp" />
+    <ClCompile Include="SASL.cpp" />
+    <ClCompile Include="SCRAM.cpp" />
+    <ClCompile Include="SSPI.cpp" />
+    <ClCompile Include="StringPrep.cpp" />
+    <ClCompile Include="AxHostWnd.cpp" />
+    <ClCompile Include="ComCtrlWrapper.cpp" />
+    <ClCompile Include="External.cpp" />
+    <ClCompile Include="MainWnd.cpp" />
+    <ClCompile Include="MenuBar.cpp" />
+    <ClCompile Include="Module.cpp" />
+    <ClCompile Include="NotifyIcon.cpp" />
+    <ClCompile Include="PdnWnd.cpp" />
+    <ClCompile Include="PopupMenu.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="Pandion.idl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="default.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Pandion.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

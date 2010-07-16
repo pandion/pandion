@@ -15,8 +15,9 @@
 // along with Pandion.  If not, see <http://www.gnu.org/licenses/>.
 //
 // Filename:    Pandion.rc
-// Author(s):   Dries Staelens
+// Author(s):   Dries Staelens, Sebastiaan Deckers
 // Copyright:   Copyright (c) 2009 Dries Staelens
+// Copyright:   Copyright (c) 2010 Sebastiaan Deckers
 // Description: The resource file for Pandion.
 
 #include <winresrc.h>
@@ -53,18 +54,13 @@ BEGIN
     BEGIN
         BLOCK "040904e3"
         BEGIN
-            VALUE "Comments", "http://pandion.im/"
-            VALUE "CompanyName", "Pandion"
-            VALUE "FileDescription", "Pandion Instant Messenger"
-            VALUE "LegalCopyright", "Created by the Pandion Team"
-#if defined(MAJOR_VERSION) && defined(MINOR_VERSION) && defined(BUILD_NUMBER)
-			VALUE "FileVersion", ""
-			VALUE "ProductVersion", ""
-#else
+            VALUE "Comments", COMMENTS
+            VALUE "CompanyName", COMPANY
+            VALUE "FileDescription", DESCRIPTION
+            VALUE "LegalCopyright", COPYRIGHT
 			VALUE "FileVersion", FILEVERSTR
 			VALUE "ProductVersion", PRODUCTVERSTR
-#endif
-			END
+        END
     END
     BLOCK "VarFileInfo"
     BEGIN
