@@ -222,6 +222,7 @@
 			User interface modifications and branding.
 		-->
 		<UIRef Id="WixUI_ZeroClick"/>
+		<WixVariable Id="WixUICostingPopupOptOut" Value="1" Overridable="yes"/>
 		<WixVariable Id="WixUIBannerBmp" Value="./banner.jpg"/>
 		<WixVariable Id="WixUIDialogBmp" Value="./dialog.jpg"/>
 		<WixVariable Id="WixUILicenseRtf" Value="./Temp/License.rtf"/>
