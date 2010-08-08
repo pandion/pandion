@@ -12,15 +12,15 @@ IF NOT DEFINED BUILD_CONFIG CALL "..\..\build_config.bat"
 :: C:\Program Files (x86)\Windows Installer XML v3.5\bin
 
 ECHO Creating temporary copy...
-:: The XCOPY command is deprecated since Vista and replaced by ROBOCOPY.
-:: MKDIR "Temp"
-:: XCOPY "../../Client" "./Temp" /E /EXCLUDE:filter.txt
-ROBOCOPY "../../Client" "./Temp" /MIR /XF ".gitignore" "pandion.pdb" "pandiond.exe" "pandiond.pdb" /NFL /NDL /NJH
-IF ERRORLEVEL 8 ECHO Error: Cannot create temporary copy && EXIT /B 1
+ROBOCOPY "../../Client" "./Temp" /MIR /XF ".gitignore" "*.pdb" "*_debug.exe" /E /NJH /NJS /NS /NC /NFL /NDL
+IF %ERRORLEVEL% GEQ 8 ECHO Error: Cannot create temporary copy && EXIT /B 1
+IF EXIST ".\Temp\%JOB_NAME_SAFE%.exe" DEL /F /Q ".\Temp\%JOB_NAME_SAFE%.exe"
+IF EXIST ".\Temp\Host.exe" RENAME ".\Temp\Host.exe" "%JOB_NAME_SAFE%.exe"
+IF NOT EXIST ".\Temp\%JOB_NAME_SAFE%.exe" ECHO Error: Cannot include Host.exe && EXIT /B 1
 
 :: Inject the build number into the installed files.
-ECHO Build number %BUILD_NUMBER%
-ECHO %BUILD_NUMBER% > "./Temp/settings/build.txt"
+ECHO Build number %VERSION_BUILD%
+ECHO %VERSION_BUILD% > "./Temp/settings/build.txt"
 
 :: Generate a list of files as a component group.
 ECHO Harvesting components...

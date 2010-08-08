@@ -1,4 +1,0 @@
-.gitignore
-pandion.pdb
-pandiond.exe
-pandiond.pdb

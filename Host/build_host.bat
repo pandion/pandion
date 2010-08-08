@@ -11,10 +11,10 @@ CALL "%VS100COMNTOOLS%\vsvars32.bat"
 IF %ERRORLEVEL% NEQ 0 ECHO Error: Cannot set environment build variables. && EXIT /B 1
 
 :: Set meta information
-ECHO #define FILEVER %VERSION_MAJOR%,%VERSION_MINOR%,%BUILD_NUMBER%,0 > ".\Source\VersionNo.h"
-ECHO #define PRODUCTVER %VERSION_MAJOR%,%VERSION_MINOR%,%BUILD_NUMBER%,0 >> ".\Source\VersionNo.h"
-ECHO #define FILEVERSTR "%VERSION_MAJOR%,%VERSION_MINOR%,%BUILD_NUMBER%,0\0" >> ".\Source\VersionNo.h"
-ECHO #define PRODUCTVERSTR "%VERSION_MAJOR%,%VERSION_MINOR%,%BUILD_NUMBER%,0\0" >> ".\Source\VersionNo.h"
+ECHO #define FILEVER %VERSION_MAJOR%,%VERSION_MINOR%,%VERSION_BUILD%,0 > ".\Source\VersionNo.h"
+ECHO #define PRODUCTVER %VERSION_MAJOR%,%VERSION_MINOR%,%VERSION_BUILD%,0 >> ".\Source\VersionNo.h"
+ECHO #define FILEVERSTR "%VERSION_MAJOR%,%VERSION_MINOR%,%VERSION_BUILD%,0\0" >> ".\Source\VersionNo.h"
+ECHO #define PRODUCTVERSTR "%VERSION_MAJOR%,%VERSION_MINOR%,%VERSION_BUILD%,0\0" >> ".\Source\VersionNo.h"
 
 ECHO #define COMMENTS "%HOST_COMMENTS%" >> ".\Source\VersionNo.h"
 ECHO #define COMPANY "%HOST_COMPANY%" >> ".\Source\VersionNo.h"

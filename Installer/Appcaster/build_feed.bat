@@ -17,11 +17,11 @@ CScript.exe appcaster.wsf ^
 	/location:"%APPCAST_FEED_URL%" ^
 	/history:"%HUDSON_URL%" ^
 	/arguments:"/passive LAUNCHAPP=yes" ^
-	/changes:"Development build" ^
+	/changes:"%APPCAST_TRACK% track" ^
 	/info:"%APPCAST_INFO_URL%" ^
 	/mime:application/x-msi ^
 	/size:"%APPCAST_LOCAL_FILE%" ^
-	/track:development ^
+	/track:%APPCAST_TRACK% ^
 	/version:"%VERSION%" ^
 	/url:"%APPCAST_DOWNLOAD_URL%"
 

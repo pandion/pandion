@@ -8,34 +8,24 @@
 	<!--
 		These properties are shown in the installer UI, add/remove programs, ...
 	-->
-	<?define AppHelpLink="http://pandion.im/support" ?>
-	<?define AppUrlInfoAbout="http://pandion.im/about" ?>
-	<?define Manufacturer="Pandion Team" ?>
-	<?define Name="Pandion" ?>
+	<?define AppHelpLink="$(env.MSI_HELP_URL)" ?>
+	<?define AppUrlInfoAbout="$(env.MSI_INFO_URL)" ?>
+	<?define Manufacturer="$(env.MSI_MANUFACTURER)" ?>
+	<?define Name="$(env.JOB_NAME)" ?>
 
 	<!--
 		Used for file and directory names. Cannot contain \ / : * ? " < > |
 	-->
-	<?define SafeName="Pandion" ?>
+	<?define SafeName="$(env.JOB_NAME_SAFE)" ?>
 
 	<!--
-		Must be two digits in the 0-255 range separated by a period.
+		Must be three digits in the 0-255 range separated by a period.
 		Windows Installer checks the first three numbers when comparing versions.
-		The third number is set below as the build number and must be in the 0-65535 range.
 	-->
-	<?define BaseVersion="$(env.VERSION_MAJOR).$(env.VERSION_MINOR)" ?>
-
-	<!--
-		Hudson continuous integration adds a sequence identifier to the version number.
-	-->
-	<?ifdef env.BUILD_NUMBER ?>
-		<?define Version="$(var.BaseVersion).$(env.BUILD_NUMBER)" ?>
-	<?else?>
-		<?define Version="$(var.BaseVersion).0" ?>
-	<?endif?>
+	<?define Version="$(env.VERSION)" ?>
 
 	<!--
 		Unique for each application to prevent update conflicts.
 	-->
-	<?define UpgradeCode="{9F661F94-F17F-4F5C-B1C8-2955C85C8FE9}" ?>
+	<?define UpgradeCode="$(env.MSI_GUID)" ?>
 </Include>
