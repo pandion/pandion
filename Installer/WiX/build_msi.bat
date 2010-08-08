@@ -6,9 +6,9 @@
 IF NOT DEFINED BUILD_CONFIG CALL "..\..\build_config.bat"
 
 IF NOT DEFINED WIX ECHO Error: WiX 3.5 is required. See: http://wix.sf.net/ && EXIT /B 1
-SET HEAT=%WIX%\bin\heat.exe
-SET CANDLE=%WIX%\bin\candle.exe
-SET LIGHT=%WIX%\bin\light.exe
+SET HEAT="%WIX%\bin\heat.exe"
+SET CANDLE="%WIX%\bin\candle.exe"
+SET LIGHT="%WIX%\bin\light.exe"
 
 ECHO Creating temporary copy...
 ROBOCOPY "../../Client" "./Temp" /MIR /XF ".gitignore" "*.pdb" "*_debug.exe" /E /NJH /NJS /NS /NC /NFL /NDL
