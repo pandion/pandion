@@ -27,5 +27,5 @@
 	<!--
 		Unique for each application to prevent update conflicts.
 	-->
-	<?define UpgradeCode="$(env.MSI_GUID)" ?>
+	<?define UpgradeCode="{$(env.MSI_GUID)}" ?>
 </Include>

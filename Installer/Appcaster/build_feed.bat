@@ -12,7 +12,7 @@ CScript.exe appcaster.wsf ^
 	/path:index.xml ^
 	/overwrite:false ^
 	/application:"%JOB_NAME%" ^
-	/author:"%JOB_NAME% Team" ^
+	/author:"%HOST_COPYRIGHT%" ^
 	/description:"%JOB_NAME% software updates feed" ^
 	/location:"%APPCAST_FEED_URL%" ^
 	/history:"%HUDSON_URL%" ^
