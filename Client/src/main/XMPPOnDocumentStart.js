@@ -1,5 +1,6 @@
 function XMPPOnDocumentStart ( ReceivedFragment )
 {
+try {
 	warn( 'RECV: ' + ReceivedFragment );
 
 	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
@@ -62,4 +63,8 @@ function XMPPOnDocumentStart ( ReceivedFragment )
 			external.XMPP.SendXML( dom );
 		}
 	}
+} catch (error) {
+	warn("ReceivedFragment: " + ReceivedFragment);
+	warn("XMPPOnDocumentStart error: " + error.description);
+}
 }
