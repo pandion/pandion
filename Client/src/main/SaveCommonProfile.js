@@ -17,6 +17,9 @@ function SaveCommonProfile ()
 	Data.Add( 'welcomescreen', external.globals( 'welcomescreen' ) );
 	Data.Add( 'welcomesettings', external.globals( 'welcomesettings' ) );
 
+	// Querying position/size requires the main dialog to be visible.
+	external.wnd.restore();
+
 	if ( external.IsRectOnMonitor(
 			external.wnd.top,
 			external.wnd.left + external.globals( 'lastwidth' ),
