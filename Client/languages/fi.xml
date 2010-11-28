@@ -1,0 +1,2192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file is part of Pandion instant messenger
+	Copyright (c) 2010 Sami Kuusisto
+	License: GNU General Public License version 3 or later
+-->
+<translation xml:lang="fi" dir="ltr">
+  <about>
+    <language>Suomi</language>
+    <history>
+      <revision>
+        <author>
+          <name>Sami Kuusisto</name>
+          <email>sami@6sto.com</email>
+          <xmpp></xmpp>
+        </author>
+        <date>2010-11-05</date>
+        <description>
+          Käännösversio 1.0.
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_disconnected">
+      <innerText>Palvelinyhteys katkaistu</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>Yhdistä uudelleen</innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>tai</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Muuta yhteysasetuksia</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText>Lisää henkilö kontaktilistaasi</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>tai</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>Määritä verkkokuljetukset</innerText>
+    </item>
+
+    <item id="mode-avatar">
+      <title>Valitse toinen profiilikuva</title>
+    </item>
+    <item id="mode-bar">
+      <title>Vaihda saatavuutesi, tilaviestisi tai henkilökohtainen profiilisi</title>
+    </item>
+    <item id="mode-secure">
+      <title>Yhteys on suojattu SSL-/TLS-salauksella</title>
+    </item>
+    <item id="rosterfield">
+      <title>Kontaktilistasi henkilöt ja ryhmät</title>
+    </item>
+    <item id="signin-instructions">
+      <innerText>Kirjaudu sisään pikaviestinosoitteellasi</innerText>
+    </item>
+    <item id="txt-signin-address">
+      <innerText>Osoite:</innerText>
+    </item>
+    <item id="txt-signin-examples">
+      <innerText>Esimerkit:</innerText>
+    </item>
+    <item id="txt-signin-password">
+      <innerText>Salasana:</innerText>
+    </item>
+    <item id="txt-signin-remember">
+      <innerText>Muista salasanani</innerText>
+    </item>
+    <item id="txt-signin-autoconnect">
+      <innerText>Kirjaudu sisään automaattisesti</innerText>
+    </item>
+    <item id="signin-connect">
+      <innerText>Kirjaudu</innerText>
+    </item>
+    <item id="signin-register">
+      <innerText>Rekisteröi uusi pikaviestinosoite</innerText>
+    </item>
+    <item id="signin-settings">
+      <innerText>Yhteysasetukset</innerText>
+    </item>
+
+    <code id="tt-group-hide">Piilota tämän ryhmän kontaktit&#13;Hiiren oikealla lisäasetuksia</code>
+    <code id="tt-group-show">Näytä tämän ryhmän kontaktit&#13;Hiiren oikealla lisäasetuksia</code>
+    <code id="emoticon_unknown">Tuntematon</code>
+    <code id="txt_welcome">Tervetuloa ${0}iin!</code>
+    <code id="user_online">${0} on online-tilassa</code>
+    <code id="cl_tooltip">${0} Kontaktilista</code>
+    <code id="import_files">Kontaktilistat</code>
+    <code id="import_invalid">Tämä tiedosto ei sisällä hyväksyttävää tietoa.</code>
+    <code id="import_no_new">Kaikki tiedostossa olevat kontaktit ovat jo kontaktilistassasi.</code>
+    <code id="import_confirm">Nämä kontaktiosoitteet lisätään kontaktilistaasi:&#13;&#13;${0}&#13;&#13;Haluatko varmasti lisätä nämä osoitteet kontaktilistaasi?</code>
+    <code id="import_aim_not_registered">Tuodaksesi AIM-kaverilistasi, pitää AIM-kuljetus rekisteröidä. Kuljetuksen pitää myös olla aktiivinen.&#13;Mene Työkalut-valikkoon ja valitse Kuljetukset nähdäksesi AIM-kuljetuksen tilan.</code>
+    <code id="import_msn_not_registered">Tuodaksesi MSN-kontaktilistasi, pitää MSN-kuljetus rekisteröidä. Kuljetuksen pitää myös olla aktiivinen.&#13;Mene Työkalut-valikkoon ja valitse Kuljetukset nähdäksesi MSN-kuljetuksen tilan.</code>
+    <code id="import_gadu_not_registered">Tuodaksesi Gadu-Gadu -kontaktilistasi, pitää Gadu-Gadu -kuljetus rekisteröidä. Kuljetuksen pitää myös olla aktiivinen.&#13;Mene Työkalut-valikkoon ja valitse Kuljetukset nähdäksesi Gadu-Gadu -kuljetuksen tilan.</code>
+    <code id="conference_invitation">${0} kutsuu sinut kokoushuoneeseen: ${1}&#13;&#13;Haluatko liittyä tähän kokoushuoneeseen?</code>
+    <code id="search_info">Etsi kontakti...</code>
+    <code id="invalid-user-address">Syötä pikaviestinosoitteesi.&#13;&#13;Jollei sinulla ole osoitetta, klikkaa "Rekisteröi uusi pikaviestinosoite" alta.</code>
+    <code id="invalid-sso-server">Syötä pikaviestinpalvelimesi osoite.</code>
+    <code id="program-description">${softwarename} on pikaviestinsovellus XMPP-verkoissa.</code>
+    <code id="extension-jisp">Jabber-ikonityylipaketti</code>
+    <code id="extension-pdn">${softwarename} Liitännäinen</code>
+    <code id="extension-xmpp">Laajennettavan viestinnän ja paikallaoloprotokollan (XMPP) metatiedot</code>
+    <code id="uri-xmpp">Laajennettavan viestinnän ja paikallaoloprotokollan (XMPP) osoite</code>
+
+    <code id="menu_status">&amp;Tila</code>
+    <code id="menu_status_received">&amp;Avaa vastaanotetut tiedostoni</code>
+    <code id="menu_status_export">&amp;Vie kontaktilista...</code>
+    <code id="menu_status_import">&amp;Tuo kontaktilista...</code>
+    <code id="menu_status_change">Vaihda t&amp;ilaviestini...</code>
+    <code id="menu_status_ffc">Vapaa k&amp;eskustelulle</code>
+    <code id="menu_status_available">V&amp;apaa</code>
+    <code id="menu_status_busy">&amp;Kiireinen</code>
+    <code id="menu_status_away">P&amp;oissa</code>
+    <code id="menu_status_xaway">Pi&amp;dennetty poissaolo</code>
+    <code id="menu_status_invisible">&amp;Näkymätön</code>
+    <code id="menu_status_offline">O&amp;ffline</code>
+    <code id="menu_status_status">O&amp;ma tilani</code>
+    <code id="menu_status_out">Kirjaudu &amp;ulos</code>
+    <code id="menu_status_exit">Poi&amp;stu</code>
+
+    <code id="menu_axn">&amp;Toimet</code>
+    <code id="menu_axn_add">&amp;Lisää kontakti...</code>
+    <code id="menu_axn_addgroup">Lisää &amp;ryhmä...</code>
+    <code id="menu_axn_bookmarks">&amp;Kirjanmerkityt kokoushuoneet</code>
+    <code id="menu_axn_bookmarks_add">&amp;Lisää kirjanmerkki...</code>
+    <code id="menu_axn_bookmarks_manage">&amp;Hallinnoi kirjanmerkkejä...</code>
+    <code id="menu_axn_join">&amp;Liity kokoushuoneeseen...</code>
+    <code id="menu_axn_create">&amp;Luo kokoushuone...</code>
+    <code id="menu_axn_password">Vaihda &amp;salasanani...</code>
+    <code id="menu_axn_profile">&amp;Muokkaa profiiliani...</code>
+    <code id="menu_axn_avatar">Vaihda pr&amp;ofiilikuvani...</code>
+
+    <code id="menu_tool">&amp;Työkalut</code>
+    <code id="menu_tool_transport">&amp;Kuljetukset</code>
+    <code id="menu_tool_head">&amp;Otsikot ja hälytykset</code>
+    <code id="menu_tool_plugin">&amp;Liitännäiset</code>
+    <code id="menu_tool_traffic">&amp;Verkkoliikenne</code>
+    <code id="menu_tool_view">&amp;Näytä</code>
+    <code id="menu_tool_detailed">&amp;Yksityiskohtainen</code>
+    <code id="menu_tool_compact">&amp;Tiivistetty</code>
+    <code id="menu_tool_language">&amp;Kieli</code>
+    <code id="menu_tool_aot">&amp;Aina päällimmäisenä</code>
+    <code id="menu_tool_settings">&amp;Asetukset</code>
+
+    <code id="menu_help">&amp;Apua</code>
+    <code id="menu_help_welcome">&amp;Tervetuloikkuna</code>
+    <code id="menu_help_manual">&amp;Online-ohjekirja</code>
+    <code id="menu_help_forum">&amp;Tukifoorumi</code>
+    <code id="menu_help_contact">&amp;Ota yhteyttä</code>
+    <code id="menu_help_update">Tarkista &amp;päivitykset</code>
+    <code id="menu_help_about">&amp;Tietoa</code>
+
+    <code id="menu_tray_about">&amp;Tietoa ${0}ista</code>
+    <code id="menu_tray_settings">&amp;Asetukset</code>
+
+    <code id="wnd_autoupdate">Päivittää ${0}</code>
+    <code id="wnd_vcard_edit">Käyttäjätiedot</code>
+    <code id="wnd_about">Tietoa ${0}ista</code>
+    <code id="wnd_signup">Kirjaudu - ${0}</code>
+    <code id="wnd_adduser">Etsi tai lisää kontakti</code>
+    <code id="wnd_avatar">Vaihda profiilikuvasi</code>
+    <code id="wnd_room_browse">Kokoushuoneet</code>
+    <code id="wnd_room_create">Luo kokoushuone</code>
+    <code id="wnd_conference_invite">Kutsu kontakteja</code>
+    <code id="wnd_conference_other">Toiset kokouspalvelut</code>
+    <code id="wnd_console">Konsoli</code>
+    <code id="wnd_emoticon_download">Lataa hymiöitä</code>
+    <code id="wnd_emoticon_list">Hymiöt</code>
+    <code id="wnd_emoticon_view">Hymiötiedot</code>
+    <code id="wnd_file_send">Lähettää tiedostoa - ${0}</code>
+    <code id="wnd_file_recv">Tuleva tiedosto - ${0}</code>
+    <code id="wnd_group_message">Ryhmäviesti</code>
+    <code id="wnd_transport_list">Kuljetukset</code>
+    <code id="wnd_transport_other">Muut kuljetukset</code>
+    <code id="wnd_headlines">Otsikonkatselija</code>
+    <code id="wnd_history">${0} - Viestihistoria</code>
+    <code id="wnd_plugin_list">Liitännäiset</code>
+    <code id="wnd_plugins">Liitännäiset</code>
+    <code id="wnd_password">Vaihda salasanasi</code>
+    <code id="wnd_settings">Asetukset</code>
+    <code id="wnd_status">Tilaviesti</code>
+    <code id="wnd_vcard_view">Käyttäjätiedot</code>
+    <code id="wnd_group_create">Luo ryhmä</code>
+    <code id="wnd_group_rename">Nimeä ryhmä uudelleen</code>
+    <code id="wnd_contact_rename">Nimeä kontakti uudelleen</code>
+    <code id="wnd_authrequest">Lupapyyntö</code>
+    <code id="wnd_extension_download">Asentaa ${0}</code>
+    <code id="wnd_background_list">Taustat</code>
+    <code id="wnd_background_download">Lataa taustoja</code>
+    <code id="wnd_bookmarks_add">Lisää kokoushuone kirjanmerkkeihin</code>
+    <code id="wnd_bookmarks_edit">Muokkaa kokoushuonekirjanmerkkejä</code>
+    <code id="wnd_bookmarks_manage">Kokoushuonekirjanmerkit</code>
+    <code id="wnd_connection_settings">Yhteysasetukset</code>
+    <code id="wnd_welcome">Tervetuloa ${0}iin</code>
+
+    <code id="msg_emoticon_Asenna">Tämä hymiötyyli on jo asennettu.</code>
+    <code id="msg_received_files">Vastaanotettavien tiedostojen hakemisto on poistettu.</code>
+    <code id="msg_plugin_Asenna">Haluatko asentaa tämän liitännäisen?&#13;&#13;Nimi: ${0}&#13;Kuvaus: ${1}</code>
+    <code id="msg_plugin_exists">Tämä liitännäinen on jo asennettu.</code>
+    <code id="msg_cl_adding">${0} on lisätty kontaktilistaasi.</code>
+    <code id="msg_cl_added">${0} on lisännyt sinut hänen kontaktilistaansa.</code>
+    <code id="msg_blocked">Olet tämän henkilön estolistalla.</code>
+    <code id="msg_autherror">Sisäänkirjautuminen epäonnistui. Syy voi olla seuraava:&#13;&#13;- Syötit väärän salasanan&#13;- Tiliä ei löydy palvelimelta&#13;&#13;Yritä uudelleen.</code>
+
+    <code id="menu_message">Viesti</code>
+    <code id="menu_filetransfer">Tiedostosiirto</code>
+    <code id="menu_room_create">Luo uusi huone</code>
+    <code id="menu_room_invite">kutsu kokoushuoneeseen</code>
+    <code id="menu_rename">Nimeä uudelleen</code>
+    <code id="menu_block">Estä</code>
+    <code id="menu_delete">Poista</code>
+    <code id="menu_group_create">Luo uusi ryhmä</code>
+    <code id="menu_group_merge">Yhdistä toisen kanssa</code>
+    <code id="menu_group_move">Siirrä</code>
+    <code id="menu_group_copy">Kopioi</code>
+    <code id="menu_request">Pyydä lupaa uudelleen</code>
+    <code id="menu_history">Historia</code>
+    <code id="menu_profile">Profiili</code>
+
+    <code id="cl_error_notexist">Osoitetta ei löydy.</code>
+    <code id="cl_error_cannotadd">${0} - ei voida lisätä kontaktilistaan.&#13;${1}</code>
+    <code id="cl_default_group">Kontaktit</code>
+	<code id="cl_group_display_none">Ei kontakteja</code>
+    <code id="cl_group_display_online">Ainoastaan online-kontaktit</code>
+    <code id="cl_group_display_all">Kaikki kontaktit</code>
+	<code id="cl_group_expand">Näytä offline-kontaktit</code>
+    <code id="cl_group_compact">Piilota offline-kontaktit</code>
+    <code id="cl_group_rename">Nimeä tämä ryhmä uudelleen</code>
+    <code id="cl_group_message">Lähetä broadcast-viesti</code>
+    <code id="cl_room_create">Luo uusi huone</code>
+    <code id="cl_room_invite">Kutsu kokoushuoneeseen</code>
+    <code id="cl_group_empty">Tämän ryhmän kontakteja ei ole online-tilassa.</code>
+    <code id="cl_status_empty">Ei tilaviestiä</code>
+    <code id="cl_status_offline">Offline</code>
+    <code id="cl_status_awaiting">Odottaa lupaa</code>
+    <code id="cl_status_unknown">Tuntematon tila</code>
+    <code id="cl_tooltip_offline">Osoite: ${0}</code>
+    <code id="cl_contact_remove_group">Haluatko varmasti poistaa tämän käyttäjän tästä ryhmästä?</code>
+    <code id="cl_contact_remove_list">Haluatko varmasti poistaa tämän käyttäjän kontaktilistastasi?</code>
+    <code id="cl_link_open">Avaa nettiselaimessa</code>
+    <code id="cl_link_copy">Kopioi linkin osoite</code>
+    <code id="cl_link_favorite">Lisää suosikkeihin</code>
+    <code id="cl_ffc">Vapaa keskusteluun</code>
+    <code id="cl_available">Vapaa</code>
+    <code id="cl_busy">Kiireinen</code>
+    <code id="cl_away">Poissa</code>
+    <code id="cl_xaway">Pidennetty poissaolo</code>
+    <code id="cl_invisible">Näkymätön</code>
+    <code id="cl_idle">Toimeton</code>
+    <code id="cl_tooltip_online">Osoite: ${0}&#13;Lähde: ${1}</code>
+
+    <code id="time-now">juuri nyt</code>
+    <code id="time-second">1 sekunti sitten</code>
+    <code id="time-seconds">${0} sekuntia sitten</code>
+    <code id="time-minute">1 minuutti sitten</code>
+    <code id="time-minutes">${0} minuuttia sitten</code>
+    <code id="time-hour">1 tunti sitten</code>
+    <code id="time-hours">${0} tuntia sitten</code>
+    <code id="time-day">1 päivä sitten</code>
+    <code id="time-days">${0} päivää sitten</code>
+    <code id="time-week">1 viikko sitten</code>
+    <code id="time-weeks">${0} viikkoa sitten</code>
+    <code id="time-month">1 kuukausi sitten</code>
+    <code id="time-months">${0} kuukautta sitten</code>
+    <code id="time-year">1 vuosi sitten</code>
+    <code id="time-years">${0} vuotta sitten</code>
+
+    <code id="track-stable">Vakaa</code>
+    <code id="track-beta">Beta</code>
+    <code id="track-development">Kehitys</code>
+  </window>
+  <window name="about">
+    <item id="txt-copyright">
+      <innerHTML>Copyright &amp;copy; ${copyrightyear} ${copyrightholder}. Kaikki oikeudet pidätetään. Tämä sovellus on julkaistu seuraavilla ehdoilla: &lt;a href="${licenseurl}"&gt;${licensename}&lt;/a&gt;. Lisäehtoja &lt;a href="${termsandcontitionsurl}"&gt;&lt;/a&gt; sovelletaan riippuvuuksien mukaan.</innerHTML>
+    </item>
+    <item id="txt-trademark">
+      <innerText>${softwarename} -nimi ja -logo ovat ${trademarkholder}in tavaramerkkejä. Kaikki oikeudet pidätetään.</innerText>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>Näytä profiilitiedot</value>
+    </item>
+    <item id="btn_deny">
+      <value>Estä</value>
+    </item>
+    <item id="btn_accept">
+      <value>Salli</value>
+    </item>
+    <item id="txt_from">
+      <innerText>Olet saanut lupapyynnön käyttäjältä:</innerText>
+    </item>
+    <item id="txt_question">
+      <innerText>Hyväksytkö tämän henkilön kontaktilistaasi?</innerText>
+    </item>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>Tyhjennä ulostulo</value>
+    </item>
+    <item id="btn_send">
+      <value>Lähetä</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>Läsnäolo</value>
+    </item>
+    <item id="btn_message">
+      <value>Viesti</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>Verkkoliikenne:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>Katkoviivat</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>XML-syöte:</innerText>
+    </item>
+    <code id="toggle_on">Debug on päällä</code>
+    <code id="toggle_off">Debug on pois päältä</code>
+    <code id="valid_xml">Syötteen pitää olla hyväksyttävää XML:ää, ei siis ainoastaan välilyönteja ja pelkkää tekstiä.</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>Sulje</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Hälytykset ja otsikot</innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>Erikoishälytyksiä näytetään, kun saat uutisotsikon tai muun lyhyen tiedotteen.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Ei vastaanotettuja hälytyksiä tai otsikoita.</innerText>
+    </item>
+    <item id="alertonlinelabel">
+      <innerText>Näytä hälytys, kun joku siirtyy online-tilaan</innerText>
+    </item>
+    <code id="read_more">Lisää...</code>
+    <code id="replay">Toista</code>
+  </window>
+  <window name="headline-toaster">
+    <item id="options">
+      <innerText>Asetukset...</innerText>
+    </item>
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>Peruuta</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_custom">
+      <value>Muu kuva...</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>Valitse kuva, josta profiilisi voidaan tunnistaa.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Lataa...</innerText>
+    </item>
+    <code id="error_size">Kuvaa ei voida ladata. Tiedostokoko ylitää 8 kilobitin maksimikoon.</code>
+    <code id="error_empty">Kuvaa ei voida ladata. Tiedosto on tyhjä.</code>
+    <code id="error_load">Varoitus: Profiilikuvia ei voida ladata.&#13;&#13;${0}</code>
+    <code id="menu_use">Käytä tätä profiilikuvaa</code>
+    <code id="menu_saveas">Tallenna nimellä...</code>
+    <code id="menu_delete">Poista</code>
+    <code id="wnd_select">Valitse profiilikuva</code>
+    <code id="saveas_files">Kuvatiedostot</code>
+    <code id="image_files">Kuvatietostot, joiden koko on alle 8 Kb</code>
+    <code id="all_files">Kaikki tiedostot</code>
+  </window>
+  <window name="mode_select">
+    <item id="txt_message">
+      <innerText>Tilaviestisi näyttää mielialasi, toimenkuvasi tai mitä tahansa:</innerText>
+    </item>
+    <code id="btn_ok">OK</code>
+    <code id="btn_ok_empty">OK (ei viestiä)</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Peruuta</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Uusi nimi:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Peruuta</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Uusi nimi:</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Peruuta</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>Uusi nimi:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Peruuta</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText>Vahvista uusi salasanasi:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Uusi salasana:</innerText>
+    </item>
+    <code id="no_match">Syöttämäsi salasanat eivät täsmää.&#13;&#13;Syötä uusi salasanasi molempiin kenttiin.</code>
+    <code id="no_pass">Syötä uusi salasana.</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="set_version">
+      <innerText>Lataa...</innerText>
+    </item>
+    <item id="header-images">
+      <innerText>Kuvat</innerText>
+    </item>
+    <item id="header-sounds">
+      <innerText>Äänet</innerText>
+    </item>
+    <item id="header-markup">
+      <innerText>Tekstin merkintäkieli</innerText>
+    </item>
+    <code id="empty">Tämä hymiötyyli on tyhjä.</code>
+    <code id="file_error">Tiedostovirhe</code>
+    <code id="cannot_load">Hymiöitä ei voi ladata.</code>
+    <code id="count_one">1 hymiö</code>
+    <code id="count_multiple">${0} hymiötä</code>
+  </window>
+  <window name="emoticon_download">
+    <item id="btn_close">
+      <value>Sulje</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Lataa hymiöitä</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Internet-yhteys vaaditaan hymiökatalogin selaamiseen.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Lataa...</innerText>
+    </item>
+    <code id="install">Asenna</code>
+    <code id="cannot_download">Virhe: Hymiöitä ei voi ladata.&#13;${0}</code>
+    <code id="invalid_xml">Tietolähde sisältää virheellistä tietoa.</code>
+    <code id="no_new_styles">Uusia hymiötyylejä ei ole saatavilla.</code>
+  </window>
+  <window name="emoticon_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Saatavilla olevat hymiöt</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Valitse hymiötyyli listalta.</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>Lataa...</innerText>
+    </item>
+    <item id="btn_emoticon_download">
+      <value>Lisää hymiöitä</value>
+    </item>
+    <code id="emoticon_details">Näytä tiedot</code>
+    <code id="emoticon_remove">Poista</code>
+    <code id="emoticon_confirm">Haluatko varmasti poistaa tämän hymiötyylin?</code>
+    <code id="no_emoticons">Hymiöitä ei löydy.</code>
+  </window>
+  <window name="background_download">
+    <item id="btn_close">
+      <value>Sulje</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Lataa taustoja</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Internet-yhteys vaaditaan taustakatalogin selaamiseen.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Lataa...</innerText>
+    </item>
+    <code id="install">Asenna</code>
+    <code id="cannot_download">Virhe: Taustoja ei voi ladata.&#13;${0}</code>
+    <code id="invalid_xml">Tietolähde sisältää virheellistä tietoa.</code>
+    <code id="no_new_styles">Uusia taustoja ei ole saatavilla.</code>
+  </window>
+  <window name="background_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Saatavilla olevat taustat</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Lisää tai poista taustoja.</innerText>
+    </item>
+    <item id="btn_background_download">
+      <value>Lisää taustoja</value>
+    </item>
+    <item id="txt_background_empty">
+      <innerText>Taustoja ei ole asennettuna.</innerText>
+    </item>
+    <code id="background_unistall">Poista</code>
+    <code id="background_confirm">Haluatko varmasti poistaa tämän taustan?</code>
+  </window>
+  <window name="plugin_list">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Asennetut liitännäiset</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Lisää tai poista liitännäisiä.</innerText>
+    </item>
+    <item id="btn_plugin_download">
+      <value>Lisää liitännäisiä</value>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>Liitännäisiä ei ole asennettuna.</innerText>
+    </item>
+    <code id="plugin_unistall">Poista</code>
+    <code id="plugin_confirm">Haluatko varmasti poistaa tämän liitännäisen?</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>Sulje</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Lataa liitännäisiä</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Internet-yhteys vaaditaan liitännäiskatalogin selaamiseen.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>Lataa...</innerText>
+    </item>
+    <code id="install">Asenna</code>
+    <code id="cannot_download">Virhe: Liitännäisiä ei voi ladata.&#13;${0}</code>
+    <code id="invalid_xml">Tietolähde ei sisällä hyväksyttävää XML:ää.</code>
+    <code id="no_new_plugins">Uusia liitännäisiä ei ole saatavilla.</code>
+  </window>
+  <window name="autoupdate">
+    <item id="txt-unavailable">
+      <innerText>Päivityksiä ei ole saavavilla.</innerText>
+    </item>
+    <item id="txt-no-feed">
+      <innerText>Päivityksen tarkistus epäonnistui. Yritä myöhemmin uudelleen.</innerText>
+    </item>
+    <item id="txt-available-updates">
+      <innerText>Saatavilla olevat päivitykset</innerText>
+    </item>
+    <item id="txt-tracks-info">
+      <innerText>Uudet versiot tuovat lisää vakautta ja uusimmat parannukset.</innerText>
+    </item>
+    <item id="txt-latest">
+      <innerText>Viimeisin versio:</innerText>
+    </item>
+    <item id="txt-alternatives">
+      <innerText>Vaihtoehtoiset versiot:</innerText>
+    </item>
+    <item id="btn-close">
+      <value>Sulje</value>
+    </item>
+
+    <item id="txt-new-version">
+      <innerText>Uusi versio on saatavilla.</innerText>
+    </item>
+    <item id="txt-whats-new">
+      <innerText>Mitä uutta?</innerText>
+    </item>
+    <item id="txt-learn-more">
+      <innerText>Katso, mitä uudistuksia päivitys tuo. Tämä linkki avautuu nettiselaimeesi.</innerText>
+    </item>
+    <item id="txt-continue">
+      <innerText>Voit käyttää ${softwarename}a latauksen aikana.</innerText>
+    </item>
+    <item id="txt-restart">
+      <innerText>Päivitys asennetaan, kun ${softwarename} käynnistään uudelleen. Voit käyttää ${softwarename}a ilman uudelleenkäynnistystä. Haluatko käynnistää uudelleen ja päivittää nyt?</innerText>
+    </item>
+    <item id="txt-browser">
+      <innerText>Lataus käynnistyy nettiselaimessasi.</innerText>
+    </item>
+    <item id="btn-update">
+      <value>Päivitä nyt</value>
+    </item>
+    <item id="btn-download">
+      <value>Lataa nyt</value>
+    </item>
+    <item id="btn-later">
+      <value>Myöhemmin</value>
+    </item>
+    <code id="up-to-date">Ajan tasalla</code>
+    <code id="previous-version">Edellinen versio</code>
+    <code id="recommended">Suositeltu</code>
+    <code id="description-stable">Vakaita versioita on testattu pisimpään.</code>
+    <code id="description-beta">Sisältää virheiden korjauksia ja testattuja ominaisuuksia.</code>
+    <code id="description-development">Jotkin ominaisuudet saattavat olla epävakaita, jos kehitystyö on kesken.</code>
+    <code id="title">Sovelluspäivitys: ${0} ${1}</code>
+  </window>
+  <window name="welcome">
+    <item id="txt-hello">
+      <innerText>Hei ja tervetuloa ${softwarename}iin</innerText>
+    </item>
+    <item id="txt-free-software">
+      <innerText>Tämä sovellus on ilmainen ja perustuu avoimeen lähdekoodiin. Kaikki kehitys, käännökset ja tuki tarjotaan mahtavien jäsentemme toimesta.</innerText>
+    </item>
+    <item id="txt-more-information">
+      <innerHTML>Lisätietoa saat seuraamalla meitä Twitterissä @&lt;a href="http://twitter.com/${twittername}"&gt;${twittername}&lt;/a&gt; tai tulemalla kaveriksemme Facebookissa &lt;a href="http://www.facebook.com/${facebookpage}"&gt;Facebook.com/${facebookpage}&lt;/a&gt;.</innerHTML>
+    </item>
+    <item id="txt-enjoy">
+      <innerText>Toivomme, että nautit sovelluksemme käytöstä.</innerText>
+    </item>
+    <item id="txt-team">
+      <innerText>${softwarename}-ryhmä</innerText>
+    </item>
+    <item id="settings-close">
+      <title>Vahvista ja sulje</title>
+    </item>
+    <item id="btn-add-contact">
+      <innerText>Lisää kontakti</innerText>
+    </item>
+    <item id="btn-edit-profile">
+      <innerText>Muokkaa profiiliani</innerText>
+    </item>
+    <item id="btn-transports">
+      <innerText>Kuljetukset</innerText>
+    </item>
+    <item id="btn-settings">
+      <innerText>Asetukset</innerText>
+    </item>
+    <item id="txt-confirm">
+      <innerText>Vahvista nämä asetukset:</innerText>
+    </item>
+    <item id="txt-default-xmpp">
+      <innerText>Käytä ${softwarename}ia oletussovelluksena XMPP-yhteyksissä</innerText>
+    </item>
+    <item id="txt-homepage">
+      <innerText>Aseta ${browsersearchboxname} selaimeni kotisivuksi</innerText>
+    </item>
+    <item id="txt-search-engine">
+      <innerText>Lisää ${browsersearchboxname} hakukoneitteni joukkoon</innerText>
+    </item>
+    <item id="txt-feed-title">
+      <innerText>Tuki ja palaute</innerText>
+    </item>
+    <item id="txt-ask-question">
+      <innerText>Lähetä kysymys</innerText>
+    </item>
+    <item id="txt-powered-by">
+      <innerText>palvelun tarjoaa GetSatisfaction</innerText>
+    </item>
+    <item id="txt-show-welcome">
+      <innerText>Näytä tämä ikkuna käynnistyksen yhteydessä</innerText>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+    </item>
+    <code id="search-topics">Etsi kaikkien aiheiden joukosta...</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Peruuta</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Kaikilla kokoushuoneilla on yksilöivä osoite. Syötä kokouspalvelun osoite ja yksilöivä nimi huoneelle.</innerText>
+    </item>
+    <item id="txt_service">
+      <innerText>Palvelun osoite:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Esimerkki: kokous.esimerkki.fi</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>Huoneen nimi:</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>Kokoushuoneen osoite:</innerText>
+    </item>
+    <code id="incomplete">Täytä kaikki kentät...</code>
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>Lähetä</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Peruuta</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>Lähetä näille ihmisille:</innerText>
+    </item>
+    <item id="txt_normal">
+      <innerText>Normaali viesti</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>Hälytyshuomautus</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>Viestityyppi</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>Liitä linkki</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>Viesti</innerText>
+    </item>
+  </window>
+  <window name="extension_download">
+    <item id="btn_cancel">
+      <value>Peruuta</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Yhdistää...</innerText>
+    </item>
+    <code id="downloading">Lataa...</code>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>Sulje</value>
+    </item>
+    <item id="btn_accept">
+      <value>Hyväksy</value>
+    </item>
+    <item id="btn_abort">
+      <value>Hylkää</value>
+    </item>
+    <item id="btn_open">
+      <value>Avaa</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Aikaa jäljellä:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>Lähettäjä:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Tiedostonimi:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Sijainti:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Edistyminen:</innerText>
+    </item>
+    <code id="resume">Tiedosto on jo olemassa. Haluatko jatkaa siirtoa?&#13;&#13;Klikkaa Kyllä jatkaaksesi tiedoston lataamista.&#13;Klikkaa Ei ylikirjoittaaksesi tiedoston.</code>
+    <code id="cannot_overwrite">Ei voi ylikirjoittaa tiedostoa:&#13;${0}&#13;&#13;${1}</code>
+    <code id="incorrect">Siirron aloitus epäonnistui. Virheellistä tietoa vastaanotettu.</code>
+    <code id="title_saving">${0}% / ${1} tallennettu</code>
+    <code id="lessthanminute">Alle 1 minuutti ${0}/s</code>
+    <code id="onehour">1 tunti ja</code>
+    <code id="hours">${0} tuntia ja</code>
+    <code id="oneminute">1 minuutti</code>
+    <code id="minutes">${0} minuuttia</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Haluatko keskeyttää siirron?</code>
+    <code id="aborted">Keskeytetty</code>
+    <code id="finished">Lopetettu</code>
+    <code id="error_timeout">Aikakatkaistu.</code>
+    <code id="error_code">Virhekoodi: ${0}</code>
+    <code id="error_file">Tiedoston virhekoodi: ${0}</code>
+    <code id="title_completed">Siirto valmis - ${0}</code>
+    <code id="title_failed">Siirto epäonnistui - ${0}</code>
+    <code id="error_move">Valmiin tiedoston siirto epäonnistui:&#13;${0}&#13;&#13;${1}</code>
+    <code id="error_failed">Siirto epäonnistui.</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>Sulje</value>
+    </item>
+    <item id="btn_abort">
+      <value>Hylkää</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>Aikaa jäljellä:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>Vastaanottaja:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>Tiedostonimi:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>Sijainti:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>Edistyminen:</innerText>
+    </item>
+    <code id="socket">Tiedoston lähetys ei onnistu.&#13;Verkkoyhteyden muodostus epäonnistui.</code>
+    <code id="file">Tiedoston luku epäonnistui:&#13;${0}</code>
+    <code id="filetransfer">Tiedostosiirto:</code>
+    <code id="title_saving">${0}% / ${1} lähetetty</code>
+    <code id="lessthanminute">Alle 1 minuutti ${0}/s</code>
+    <code id="onehour">1 tunti ja</code>
+    <code id="hours">${0} tuntia ja</code>
+    <code id="oneminute">1 minuutti ja</code>
+    <code id="minutes">${0} minuuttia ja</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">Haluatko keskeyttää siirron?</code>
+    <code id="finished">Valmis</code>
+    <code id="aborted">Keskeytetty</code>
+    <code id="error_denied">Tiedosto kielletty.</code>
+    <code id="error_timeout">Aikakatkaistu.</code>
+    <code id="error_code">Virhekoodi: ${0}</code>
+    <code id="title_completed">Siirto valmis - ${0}</code>
+    <code id="title_failed">Siirto epäonnistui - ${0}</code>
+    <code id="error_failed">Siirto epäonnistui.</code>
+  </window>
+  <window name="conference_browse">
+    <item id="btn_close">
+      <value>Sulje</value>
+    </item>
+    <item id="btn_other_service">
+      <value>Toinen palvelu...</value>
+    </item>
+    <item id="btn_create">
+      <value>Luo kokoushuone</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Saatavilla olevat huoneet:</innerText>
+    </item>
+    <item id="lbl_empty">
+      <innerText>Näytä tyhjät huoneet</innerText>
+      <accessKey>y</accessKey>
+    </item>
+    <item id="lbl_full">
+      <innerText>Näytä täydet huoneet</innerText>
+      <accessKey>ä</accessKey>
+    </item>
+    <item id="lbl_filter">
+      <innerText>Suodatin:</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Tällä palvelimella ei ole saatavilla kokouspalveluita.&#13;&#13;Paina Toinen palvelu -painiketta lisätäksesi kokouspalvelun toiselta palvelimelta.</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Liittyäksesi kokoushuoneeseen, pitää sinun olla yhtyedessä pikaviestinpalvelimeen.</innerText>
+    </item>
+    <code id="bookmarks">Kirjanmerkit</code>
+    <code id="menu_join">Liity</code>
+    <code id="menu_add">Lisää kirjanmerkkeihin...</code>
+    <code id="empty_filter">Yhtään huonetta ei vastaa suodatinta</code>
+    <code id="empty_no_rooms">Tässä palvelussa ei ole yhtään huonetta saatavilla</code>
+    <code id="status_connecting">Yhdistää...</code>
+    <code id="status_downloading">Kokoushuonelistaa pyydetään...</code>
+    <code id="error_unknown">Palvelua "${0}" ei ole saatavilla. Varmista, että olet syöttänyt oikean osoitteen. Yritä myöhemmin uudelleen tai syötä toinen osoite.</code>
+    <code id="error_no_services">Palvelimella "${0}" ei ole kokouspalveluita asennettuna. Ota yhteyttä ylläpitoon saadaksesi lisätietoa.</code>
+    <code id="error_no_new">Kaikki kokouspalvelut palvelimella "${0}", ovat jo listattuna.</code>
+  </window>
+  <window name="conference_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Peruuta</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Osoite:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Esimerkki: kokous.esimerkki.fi</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Syötä kokouspalvelimen tai -palvelun osoite.</innerText>
+    </item>
+    <code id="error_already_exists">Palvelu "${0}" on jo listattu. Syötä sen kokouspalvelimen tai -palvelun osoite, jota ei ole vielä listattu.</code>
+  </window>
+  <window name="vcard">
+    <code id="save">Varoitus: vCard-tiedoston tallennus ei onnistu.&#13;&#13;${0}</code>
+    <code id="personal">Käyttäjätiedot</code>
+    <code id="system">Järjestelmätiedot</code>
+
+    <item id="txt_requesting1">
+      <innerText>Pyytää tietoa palvelimelta</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Tämä voi kestää jopa minuutin.&lt;BR&gt;Ole kärsivällinen.</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>Tallenna vCard-tiedostoksi</value>
+    </item>
+    <item id="btn_refresh">
+      <value>Päivitä</value>
+    </item>
+    <item id="btn_close">
+      <value>Sulje</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>Kumoa muutokset</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Peruuta</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>Henkilökohtaiset tiedot</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>Lisätiedot</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>Kotiosoite</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>Työ</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>Työosoite</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>Järjestelmä</innerText>
+    </item>
+
+    <item id="txt_name">
+      <innerText>Nimi</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>Etunimi:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>Toiset nimet:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>Sukunimi:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>Lempinimi:</innerText>
+    </item>
+
+    <item id="txt_contact">
+      <innerText>Yhteys</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>Sähköposti:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>Puhelin:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>Matkapuhelin:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>Telefax:</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>Lisätiedot</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>Ikä:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>Syntymäpäivä:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>Sukupuoli:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>Siviilisääty:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>Kotisivu:</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>Kotiosoite</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>Katuosoite 1:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>Katuosoite 2:</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>Toimipaikka:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>Postinumero:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>Lääni:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>Maa:</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>Osganisaatio</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>Nimi:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>Osasto:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>Titteli:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>Rooli:</innerText>
+    </item>
+
+    <item id="txt_workcontact">
+      <innerText>Yhteys</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>Sähköposti:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>Puhelin:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>Matkapuhelin:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>Telefax:</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>Työosoite</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>Katuosoite 1:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>Katuosoite 2:</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>Toimipaikka:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>Postinumero:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>Lääni:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>Maa:</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>Asiakassovelluksen tiedot</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText>Osoite:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>Resurssi:</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>Paikallinen aika:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>Sovellus:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>Versio:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>Käyttöjärjestelmä:</innerText>
+    </item>
+  </window>
+  <window name="transport_list">
+    <item id="btn_other">
+      <value>Toinen kuljetus...</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_title">
+      <innerText>Saatavilla olevat kuljetukset</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>Kuljetukset tarjoavat linkkejä toisten pikaviestinverkkojen kanssa.</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;Huom:&lt;/B&gt; Määrittääksesi kuljetuksia, pitää sinun olla yhteydessä pikaviestinpalvelimeen.</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;Huom:&lt;/B&gt; Palvelimessa, johon olet yhteydessä, ei ole asennettuna kuljetuksia. Ota yhteyttä ylläpitoon saadaksesi lisätietoa.</innerHTML>
+    </item>
+    <code id="status_active">Aktiivinen</code>
+    <code id="status_noreg">Rekisteröimätön</code>
+    <code id="status_disconnected">Yhteys katkaistu</code>
+    <code id="status_connecting">Yhdistää...</code>
+    <code id="name_unknown">Tuntematon palvelu</code>
+    <code id="error_unknown">Palvelua "${0}" ei ole saatavilla. Varmista, että olet syöttänyt oikean osoitteen. Yritä myöhemmin uudelleen tai syötä toinen osoite.</code>
+    <code id="error_no_transports">Palvelimeen "${0}" ei ole asennettu kuljetuksia. Ota yhteyttä ylläpitoon saadaksesi lisätietoa.</code>
+    <code id="error_no_new_transport">Kaikki kuljetukset palvelimella "${0}" ovat jo listattu.</code>
+  </window>
+  <window name="transport_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Peruuta</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Osoite:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Esimerkki: sms.esimerkki.fi</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Syötä kuljetuksen tai palvelimen osoite.</innerText>
+    </item>
+    <code id="error_already_exists">Palvelu "${0}" on jo listattu. Syötä kuljetuksen tai palvelun osoite, jota ei ole vielä listattu.</code>
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; Takaisin</value>
+    </item>
+    <item id="btn_next">
+      <value>Seuraava &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>Valmis</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>Peruuta</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>Osoite:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>Lempinimi:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>Osoite:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>Salasana:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>Lempinimi:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>Olet jo rekisteröitynyt tähän kuljetukseen.&lt;BR&gt;Rekisteröimäsi tili on:</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>Ota kuljetus pois käytöstä</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText>Yhdistää palvelimeen</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>Tämä voi kestää jopa 1 minuutin.&lt;BR&gt;Ole kärsivällinen.</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>Sulkeaksesi tämän velhon, klikkaa &lt;B&gt;Valmis&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>Jatkaaksesi, klikkaa &lt;B&gt;Seuraava&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <code id="error_invalid">Virheellistä tietoa vastaanotettu</code>
+    <code id="error_server">&lt;B&gt;Palvelinvirhe:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Ei voida jatkaa.</code>
+    <code id="error_unknown">&lt;B&gt;Tuntematon virhe:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Ei voida jatkaa.</code>
+    <code id="error_auth">&lt;B&gt;Kirjautumisvirhe:&lt;/B&gt;&lt;BR&gt;Virheellinen osoite tai salasana.&lt;BR&gt;&lt;BR&gt;Ei voida jatkaa.</code>
+    <code id="wait">&lt;B&gt;Yhdistää palvelimeen&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;Tämä voi kestää jopa 1 minuutin.&lt;BR&gt;Ole kärsivällinen.&lt;BR&gt;</code>
+
+    <code id="default_window_title">Kuljetuksen määritys</code>
+    <code id="default_begin_intro">Tämä velho auttaa sinua kuljetuksen määrittelyssä.&lt;BR&gt;Tämä kuljetus on linkki sinun ja jonkun toisen verkon välillä.&lt;BR&gt;Tarvitset toisen verkon tilin käyttääksesi tätä kuljetusta.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">Syötä tilisi ja salasanasi.&lt;BR&gt;Voit myös syöttää lempinimesi, jonka muut näkevät.&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">Tilisi on rekisteröity kuljetuksen kanssa.</code>
+    <code id="default_removing_busy">Tilisi on poistettu kuljetuksesta.&lt;BR&gt;</code>
+    <code id="default_creating_done">Tili rekisteröitiin onnistuneesti kuljetuksen kanssa.</code>
+    <code id="default_removing_done">Tilin rekisteröinti poistettiin onnistuneesti kuljetuksesta.</code>
+
+    <code id="msn_window_title">MSN Messenger - Kuljetuksen määritys</code>
+    <code id="msn_begin_intro">Tämä velho auttaa sinua MSN-kuljetuksen määrittelyssä.&lt;BR&gt;Tämä kuljetus on linkki sinun ja MSN-tilin välillä.&lt;BR&gt;Tarvitset Microsoft Passport -tunnukset käyttääksesi tätä kuljetusta.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">Syötä MSN-osoitteesi ja -salasanasi.&lt;BR&gt;Voit myös syöttää lempinimesi, jonka muut näkevät.&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">Esimerkkejä: joku@msn.com, jokutoinen@hotmail.com</code>
+    <code id="msn_creating_busy">Tilisi on rekisteröity MSN-kuljetuksen kanssa.</code>
+    <code id="msn_removing_busy">MSN-tilisi on poistettu kuljetuksesta.&lt;BR&gt;Voit silti käyttää MSN-tiliäsi muiden palveluiden kanssa (esim. Hotmail, MSN Explorer, jne.).&lt;BR&gt;</code>
+    <code id="msn_creating_done">Tili rekisteröitiin onnistuneesti MSN-kuljetuksen kanssa.</code>
+    <code id="msn_removing_done">Tilin rekisteröinti poistettiin onnistuneesti MSN-kuljetuksesta.</code>
+
+    <code id="icq_window_title">ICQ - Kuljetuksen määritys</code>
+    <code id="icq_begin_intro">Tämä velho auttaa sinua ICQ-kuljetuksen määrittelyssä.&lt;BR&gt;Tämä kuljetus on linkki sinun ja ICQ-tilin välillä.&lt;BR&gt;Sinulla pitää olla voimassaoleva käyttäjäntunnistusnumero (ICQ &lt;BR&gt;numero) käyttääksesi tätä kuljetusta.&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">Syötä ICQ-numerosi ja -salasanasi.&lt;BR&gt;Voit myös syöttää lempinimesi, jonka muut näkevät.&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">Examples: 39230793, 158525087</code>
+    <code id="icq_creating_busy">Tilisi on rekisteröity ICQ-kuljetuksen kanssa.</code>
+    <code id="icq_removing_busy">ICQ-tilisi on poistettu kuljetuksesta.&lt;BR&gt;</code>
+    <code id="icq_creating_done">Tili rekisteröitiin onnistuneesti ICQ-kuljetuksen kanssa.</code>
+    <code id="icq_removing_done">Tilin rekisteröinti poistettiin onnistuneesti ICQ-kuljetuksesta.</code>
+
+    <code id="yahoo_window_title">Yahoo! Messenger - Kuljetuksen määritys</code>
+    <code id="yahoo_begin_intro">Tämä velho auttaa sinua Yahoo!-kuljetuksen määrittelyssä.&lt;BR&gt;Tämä kuljetus on linkki sinun ja Yahoo!-tilin välillä.&lt;BR&gt;Sinulla pitää olla voimassaoleva Yahoo!-tili käyttääksesi tätä kuljetusta.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">Syötä Yahoo!-osoitteesi ja -salasanasi.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">Tilisi on rekisteröity Yahoo!-kuljetuksen kanssa.</code>
+    <code id="yahoo_removing_busy">Yahoo!-tilisi on poistettu kuljetuksesta.&lt;BR&gt;Voit silti käyttää Yahoo!-tiliäsi muiden palveluiden kanssa (esim. Yahoo! mail, Yahoo! Messenger, jne.).&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">Tili rekisteröitiin onnistuneesti Yahoo!-kuljetuksen kanssa.</code>
+    <code id="yahoo_removing_done">Tilin rekisteröinti poistettiin onnistuneesti Yahoo!-kuljetuksesta.</code>
+
+    <code id="aim_window_title">AOL Instant Messenger - Kuljetuksen määritys</code>
+    <code id="aim_begin_intro">Tämä velho auttaa sinua AOL IM -kuljetuksen määrittelyssä.&lt;BR&gt;Tämä kuljetus on linkki sinun ja AOL IM -tilin välillä.&lt;BR&gt;Tarvitset AOL IM -tilin käyttääksesi tätä kuljetusta.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">Syötä AOL IM -näyttönimesi ja -salasanasi.&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">Tilisi on rekisteröity AOL IM -kuljetuksen kanssa.</code>
+    <code id="aim_removing_busy">AOL IM -tilisi on poistettu kuljetuksesta.&lt;BR&gt;Voit silti käyttää AOL IM -tiliäsi muiden sovellusten kanssa.&lt;BR&gt;</code>
+    <code id="aim_creating_done">Tili rekisteröitiin onnistuneesti AOL IM -kuljetuksen kanssa.</code>
+    <code id="aim_removing_done">Tilin rekisteröinti poistettiin onnistuneesti AOL IM -kuljetuksesta.</code>
+
+    <code id="gadu_window_title">Gadu-Gadu - Kuljetuksen määritys</code>
+    <code id="gadu_begin_intro">Tämä velho auttaa sinua Gadu-Gadu -kuljetuksen määrittelyssä.&lt;BR&gt;Tämä kuljetus on linkki sinun ja Gadu-Gadu -tilin välillä.&lt;BR&gt;Tarvitset Gadu-Gadu -numeron käyttääksesi tätä kuljetusta.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_instructions">Syötä Gadu-Gadu -numerosi ja -salasanasi.&lt;BR&gt;Voit myös syöttää lempinimesi, jonka muut näkevät.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_examples">&amp;nbsp;</code>
+    <code id="gadu_creating_busy">Gadu-Gadu -numerosi on rekisteröity kuljetuksen kanssa.</code>
+    <code id="gadu_removing_busy">Gadu-Gadu -numerosi on poistettu kuljetuksesta.&lt;BR&gt;</code>
+    <code id="gadu_creating_done">Gadu-Gadu -numerosi rekisteröitiin onnistuneesti kuljetuksen kanssa.</code>
+    <code id="gadu_removing_done">Gadu-Gadu -numerosi rekisteröinti poistettiin onnistuneesti kuljetuksesta.</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>Aja</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>Tallenna</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>Tulosta</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>Pyyhi</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>Viestihistoria</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>Haku:</innerText>
+    </item>
+    <code id="loading">Lataa viestihistoriaa...</code>
+    <code id="empty">Viestihistoria on tyhjä.</code>
+    <code id="error_load">Viestihistoriaa ei voi ladata:&#13;${0}</code>
+    <code id="one_message">1 viesti</code>
+    <code id="many_messages">${0} viestiä</code>
+    <code id="tooltip_save">Tallenna tämän päivän viestihistoria</code>
+    <code id="tooltip_print">Tulosta tämän päivän viestihistoria</code>
+    <code id="error_open">Virhe: Viestihistorian avaus epäonnistui.</code>
+    <code id="error_read">Virhe: Viestihistorian luku epäonnistui.</code>
+    <code id="delete_confirm">Haluatko varmasti poistaa koko viestihistorian - ${0}?</code>
+    <code id="delete_cannot">Viestihistoriatiedoston poisto epäonnistui: ${0}&#13;&#13;Viestejä ei ole poistettu.</code>
+    <code id="error_print">Tulostus epäonnistui.&#13;Viestihistoria on tyhjä.</code>
+    <code id="error_save">Viestihistorian tallennus epäonnistui.&#13;${0}</code>
+  </window>
+  <window name="chat-messages">
+    <code id="copy">Kopioi</code>
+    <code id="copyall">Kopioi kaikki</code>
+    <code id="clear">Tyhjennä</code>
+    <code id="selectall">Valitse kaikki</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>Näytä, että ajattelet tai teet</title>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Vaihda tekstin väriä tai tyyppiä</title>
+      <accessKey>v</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Valitse toinen tausta</title>
+      <accessKey>t</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Hymiöt</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Kirjasin</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Tausta</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>Muuta viestikentän kokoa</title>
+    </item>
+    <item id="mode-bar">
+      <title>Henkilö, joka vastaanottaa viestsi</title>
+    </item>
+    <item id="send-text">
+      <title>Kirjoita viestisi tähän</title>
+    </item>
+    <item id="btn-send">
+      <value>Lähetä</value>
+      <title>Lähetä viesti</title>
+      <accessKey>l</accessKey>
+    </item>
+
+    <code id="tt-avatar">Näytä täysikokoinen profiilikuva</code>
+    <code id="tt-messages">Lähetetyt ja vastaanotetut viestit</code>
+    <code id="tt-close">Lopeta tämä keskustelu</code>
+    <code id="msg_typing">${0} kirjoittaa viestiä</code>
+    <code id="unknown">${0} saattaa olla vastaamatta, koska hänen tilansa on tuntematon</code>
+    <code id="lastonline">Edellisen kerran online-tilassa: ${0}</code>
+    <code id="windowtitle">${0} - Keskustelu</code>
+    <code id="background_no">Ei taustaa</code>
+    <code id="background_list">Saatavilla olevat taustat...</code>
+    <code id="close_many_tabs">Haluatko sulkea kaikki keskustelut?</code>
+    <code id="close_recent_message">Olet saanut viestin.&#13;&#13;Haluatko sulkea tämän keskustelun?</code>
+	<code id="palette_compact">Pienennä hymiölistan kokoa</code>
+	<code id="palette_expand">Näytä kaikki tämän tyylin hymiöt</code>
+	<code id="palette_browse">Toiset hymiötyylit...</code>
+
+    <code id="menu_file">&amp;Tiedosto</code>
+    <code id="menu_file_received">&amp;Avaa vastaanotetut tiedostoni</code>
+    <code id="menu_file_history">Viesti&amp;historia</code>
+    <code id="menu_file_close">&amp;Sulje keskustelu</code>
+
+    <code id="menu_axn_contact">&amp;Kontakti</code>
+    <code id="menu_axn_add">Lisää kontaktilistaan</code>
+    <code id="menu_axn_block">&amp;Estä</code>
+    <code id="menu_axn_rename">&amp;Nimeä uudelleen</code>
+    <code id="menu_axn_panel">Näytä &amp;toimet-paneeli</code>
+    <code id="menu_axn_profile">Näytä &amp;profiili</code>
+    <code id="menu_axn_file">Lähetä &amp;tiedosto</code>
+
+    <code id="menu_tool_emo_style">Valitse &amp;hymiöt...</code>
+    <code id="menu_tool_font">Vaihda &amp;kirjasinta...</code>
+    <code id="menu_tool_background">Vaihda &amp;taustaa...</code>
+    <code id="menu_tool_aot">&amp;Aina päällimmäisenä</code>
+    <code id="menu_tool_tabbed">&amp;Keskustelut välilehdillä</code>
+    <code id="menu_tool_emoticons">&amp;Näytä hymiöt</code>
+    <code id="menu_tool_settings">&amp;Asetukset</code>
+  </window>
+  <window name="conference-bookmarks-add">
+    <item id="txt_address">
+      <innerText>Kokoushuoneen osoite:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Esimerkki: oma_huone@kokous.esimerkki.fi</innerText>
+    </item>
+    <item id="lbl_autojoin">
+      <innerText>Liity tähän kokoushuoneeseen kirjautumisen jälkeen</innerText>
+    </item>
+    <item id="lbl_password">
+      <innerText>Siirry huoneeseen tällä salasanalla:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Peruuta</value>
+    </item>
+    <code id="error_invalid_address">Kokoushuoneen osoite in virheellinen.</code>
+  </window>
+  <window name="conference-bookmarks-manage">
+    <item id="txt_head">
+      <innerText>Muokkaa, poista tai lisää kokoushuonekirjanmerkkejä:</innerText>
+    </item>
+    <item id="btn_edit">
+      <value>Muokkaa</value>
+    </item>
+    <item id="btn_delete">
+      <value>Poista</value>
+    </item>
+    <item id="btn_add">
+      <value>Lisää</value>
+    </item>
+    <item id="btn_close">
+      <value>Sulje</value>
+    </item>
+    <code id="confirm_delete">Haluatko poistaa tämän kokoushuonekirjanmerkin?</code>
+  </window>
+  <window name="conference-configuration">
+    <item id="btn_cancel">
+      <value>Peruuta</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_form_loading">
+      <innerText>Lataa...</innerText>
+    </item>
+    <item id="txt_form_empty">
+      <innerText>Tällä kokoushuoneella ei ole muokattavia asetuksia</innerText>
+    </item>
+    <item id="txt_form_invalid">
+      <innerText>Virhe: Kokoushuoneen määritysten nouto ei onnistu</innerText>
+    </item>
+    <code id="form_title">Tämän kokoushuoneen asetukset</code>
+    <code id="form_subtitle">Täytä tämä lomake määrittääksesi kokoushuoneen</code>
+
+    <code id="muc#roomconfig_allowinvites">Salli osallistujien kutsua toisia käyttäjiä</code>
+    <code id="muc#roomconfig_changesubject">Salli osallistujien muuttaa kokoushuoneen aihetta</code>
+    <code id="muc#roomconfig_enablelogging">Tallenna kaikkien kokoushuoneiden viestit lokiin</code>
+    <code id="muc#roomconfig_lang">Kokoushuoneissa käytettävä kieli</code>
+    <code id="muc#roomconfig_maxusers">Kokoushuoneen maksimiosallistujamäärä</code>
+    <code id="muc#roomconfig_membersonly">Ainoastaan jäsenillä on oikeus siirtyä kokoushuoneeseen</code>
+    <code id="muc#roomconfig_moderatedroom">Viestien lähetys vaatii moderaattorien hyväksynnän</code>
+    <code id="muc#roomconfig_passwordprotectedroom">Kokoushuoneeseen siirtyminen vaatii salasanan</code>
+    <code id="muc#roomconfig_persistentroom">Kokoushuone säilyy, vaikka kaikki osallistujat poistuvat huoneesta</code>
+    <code id="muc#roomconfig_presencebroadcast">Roolit, joille tilatiedot lähetetään</code>
+    <code id="muc#roomconfig_publicroom">Näytä kokoushuone julkisessa kokoushuonelistassa</code>
+    <code id="muc#roomconfig_roomadmins">Kokoushuoneen pääkäyttäjät</code>
+    <code id="muc#roomconfig_roomdesc">Kokoushuoneen kuvaus</code>
+    <code id="muc#roomconfig_roomname">Kokoushuoneen nimi</code>
+    <code id="muc#roomconfig_roomowners">Kokoushuoneen omistajat</code>
+    <code id="muc#roomconfig_roomsecret">Salasana kokoushuoneeseen pääsemiseksi</code>
+    <code id="muc#roomconfig_whois">Yhteistyökumppanit, jotka voivat nähdä osallistujien oikeat osoitteet</code>
+  </window>
+  <window name="conference-password">
+    <item id="txt_password">
+      <innerText>Salasana:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-name">
+    <item id="txt_name">
+      <innerText>Nimi:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-subject">
+    <item id="txt_subject">
+      <innerText>Aihe:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+  </window>
+  <window name="conference-invite">
+    <item id="btn_cancel">
+      <value>Peruuta</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Valitse kutsuttavat kontaktit.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Kontaktilistassa ei ole online-tilassa olevia kontakteja.</innerText>
+    </item>
+  </window>
+  <window name="conference-accesslevel">
+    <item id="txt-name">
+      <innerText>Nimi:</innerText>
+    </item>
+    <item id="txt-room">
+      <innerText>Huone:</innerText>
+    </item>
+
+	<item id="txt-role">
+      <innerText>Rooli</innerText>
+    </item>
+	<item id="txt-visitor">
+      <innerText>Vierailija</innerText>
+    </item>
+    <item id="txt-visitor-desc">
+      <innerText>Voi lukea viestejä</innerText>
+    </item>
+	<item id="txt-participant">
+      <innerText>Osallistuja</innerText>
+    </item>
+    <item id="txt-participant-desc">
+      <innerText>Voi myös lähettää viestejä</innerText>
+    </item>
+	<item id="txt-moderator">
+      <innerText>Moderaattori</innerText>
+    </item>
+    <item id="txt-moderator-desc">
+      <innerText>Voi myös poistaa osallistujia ja vierailijoita huoneesta</innerText>
+    </item>
+
+	<item id="txt-affiliation">
+      <innerText>Yhteistyökumppani</innerText>
+    </item>
+	<item id="txt-none">
+      <innerText>Ei mikään/jäsen</innerText>
+    </item>
+    <item id="txt-none-desc">
+      <innerText>Voi siirtyä kokoushuoneeseen</innerText>
+    </item>
+	<item id="txt-admin">
+      <innerText>Pääkäyttäjä</innerText>
+    </item>
+    <item id="txt-admin-desc">
+      <innerText>Voi myös lisätä moderaattoreita ja estää osaanottajia</innerText>
+    </item>
+	<item id="txt-owner">
+      <innerText>Omistaja</innerText>
+    </item>
+    <item id="txt-owner-desc">
+      <innerText>Voi myös lisätä pääkäyttäjiä</innerText>
+    </item>
+
+    <item id="btn-default">
+      <value>Oletus</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-cancel">
+      <value>Peruuta</value>
+      <accessKey>p</accessKey>
+    </item>
+    <item id="btn-close">
+      <value>Sulje</value>
+      <accessKey>s</accessKey>
+    </item>
+  </window>
+  <window name="conference-container">
+    <item id="btn-emoticons">
+      <title>Näytä, mitä mietit tai teet</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>Vaihda tekstin väriä tai tyyppiä</title>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>Valitse erilainen tausta</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>Hymiöt</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>Kirjasin</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>Tausta</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>Muuta viestin kirjoituskentän kokoa</title>
+    </item>
+    <item id="mode-bar">
+      <title>Tämä kokoushuoneen nimi, osoite ja aihe</title>
+    </item>
+    <item id="send-text">
+      <title>Kirjoita viestisi tähän</title>
+    </item>
+    <item id="btn-send">
+      <value>Lähetä</value>
+      <title>Lähetä viesti</title>
+      <accessKey>s</accessKey>
+    </item>
+
+    <item id="occupants-panel">
+      <title>Tämän kokoushuoneen osaanottajat</title>
+    </item>
+    <item id="txt-visitors">
+      <innerText>Vierailijat</innerText>
+      <title>Vierailijat voivat lukea viestejä, mutteivät lähettää niitä</title>
+    </item>
+    <item id="txt-moderators">
+      <innerText>Moderaattorit</innerText>
+      <title>Moderaattorit voivat lähettää ja lukea viestejä ja poistaa toisia osallistujia kokoushuoneesta</title>
+    </item>
+    <item id="txt-participants">
+      <innerText>Osaanottajat</innerText>
+      <title>Osaanottajat voivat lähettää ja lukea viestejä</title>
+    </item>
+
+    <code id="wnd_conference_password">Yhdistä salasanalla</code>
+    <code id="wnd_conference_change_name">Vaihda nimeni</code>
+    <code id="wnd_conference_subject">Kokoushuoneen aihe</code>
+    <code id="wnd_conference_configuration">Kokoushuoneen määritykset</code>
+    <code id="wnd_conference_accesslevel">${0} - Käyttöoikeustaso</code>
+
+    <code id="tt-messages">Lähetetyt ja vastaanotetut viestit</code>
+    <code id="tt-close">Poistu tästä kokoushuoneesta</code>
+    <code id="default_subject">Tällä kokoushuoneella ei ole aihetta.</code>
+    <code id="windowtitle">${0} - Kokous</code>
+    <code id="destroy">Tämän kokoushuoneen tuhoaminen poistaa huoneesta kaikki osallistujat sekä poistaa huoneen palvelimelta.&#13;&#13;Haluatko varmasti tuhota tämän kokoushuoneen?</code>
+    <code id="connecting">Yhdistää...</code>
+    <code id="connected">Yhdistetty</code>
+    <code id="disconnected">Yhteys katkaistu</code>
+    <code id="confirm-kick">Haluatko varmasti poistaa osallistujan "${0}" tästä kokoushuoneesta?</code>
+    <code id="kick-error">Osallistujaa ei voida poistaa: ${0}</code>
+    <code id="kicked">${0} on poistettu kokoushuoneesta</code>
+    <code id="kicked-by">${0} on poistettu kokoushuoneesta osallistujan ${1} toimesta</code>
+    <code id="confirm-ban">Haluatko varmasti estää osallistujan "${0}" pääsyn tähän kokoushuoneeseen?</code>
+    <code id="ban-error">Osallistujaa ei voida estää: ${0}</code>
+    <code id="banned">${0} ei pääse tähän huoneeseen estosta johtuen</code>
+    <code id="banned-by">${0} ei pääse tähän kokoushuoneeesen, koska ${1} on estänyt pääsyn</code>
+    <code id="leaving">${0} poistuu kokoushuoneesta</code>
+    <code id="joining">${0} liittyy kokoushuoneeseen</code>
+    <code id="renaming">${0} tunnetaan nyt nimellä ${1}</code>
+
+    <code id="menu_file">&amp;Tiedosto</code>
+    <code id="menu_file_close">&amp;Sulje kokous</code>
+
+    <code id="menu_axn_invite">&amp;Kutsu kontakteja</code>
+    <code id="menu_axn_change_name">Vaihda &amp;nimeni...</code>
+    <code id="menu_axn_password">Yhdistä &amp;salasanalla...</code>
+    <code id="menu_axn_subject">&amp;Vaihda kokoushuoneen aihetta</code>
+    <code id="menu_axn_configuration">&amp;Määritä tämä kokoushuone</code>
+    <code id="menu_axn_destroy">&amp;Tuhoa tämä kokoushuone</code>
+
+    <code id="menu_bookmarks">&amp;Kirjanmerkit</code>
+
+    <code id="menu_bmrk_add">&amp;Lisää kirjanmerkkeihin...</code>
+
+    <code id="menu_occupant_private">Yksityinen &amp;viesti</code>
+    <code id="menu_occupant_kick">&amp;Poista huoneesta</code>
+    <code id="menu_occupant_ban">&amp;Estä pääsy</code>
+    <code id="menu_occupant_access">&amp;Käyttöoikeustaso...</code>
+    <code id="menu_occupant_add">&amp;Lisää kontaktilistaan</code>
+    <code id="menu_occupant_profile">&amp;Profiili</code>
+
+    <code id="unrecognized-error">Tunnistamaton virhe</code>
+    <code id="error-service-unavailable">Palvelu ei ole käytettävissä</code>
+    <code id="error-not-allowed">Ei sallittu</code>
+    <code id="error-conflict">Ristiriita: Lempinimi on jo käytössä</code>
+    <code id="error-registration-required">Rekisteröinti vaaditaan: Vain jäsenille</code>
+    <code id="error-forbidden">Kielletty: Estetty</code>
+    <code id="error-not-authorized">Ei sallittu: Salasana vaaditaan</code>
+    <code id="error-item-not-found">Tietuetta ei löydy: Huone on lukittu</code>
+  </window>
+  <window name="preferences">
+    <item id="txt_blocking">
+      <innerText>Estolista sisältää niiden ihmisten osoitteet, joilta et halua saada viestejä.</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>Näytä viestit ihmisiltä, jotka eivät ole kontaktilistallani</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>Estolista</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>Nosta lohkoa</value>
+    </item>
+    <item id="block_btn_view">
+      <value>Näytä profiili</value>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>Yhteysasetukset</innerText>
+    </item>
+    <item id="txt_connection_desc">
+      <innerText>Muuta, miten pikaviestinpalvelimelle kirjaudutaan.</innerText>
+    </item>
+    <item id="btn_connection_settings">
+      <value>Yhteysasetukset</value>
+    </item>
+    <item id="txt_portmap">
+      <innerText>Tiedostosiirron porttikartta (NAT, palomuuri)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>Isäntä:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>Portti:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>Talleta kaikki viestit historia-arkistoon</innerText>
+    </item>
+    <item id="txt_startup">
+      <innerText>Käynnistä automaattisesti tietokoneen käynnistyksen yhteydessä</innerText>
+    </item>
+    <item id="txt_updates">
+      <innerText>Tarkista sovelluspäivitykset automaattisesti</innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>Kun joku pyytää lupaani</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>Kysy minulta</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>Hyväksy kaikki pyynnöt</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>Hyväksy kontaktilistallani olevat käyttäjät, kysy muista</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>Estä kaikki pyynnöt</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>Soita ääni viestin saapuessa</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>Soita ääni jonkun palatessa online-tilaan</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>Soita ääni jonkun mennessä offline-tilaan</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>Selaa</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>Selaa</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>Selaa</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Peruuta</value>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>Estäminen</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>Yhteys</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>Yksityisyys</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>Ääni</innerText>
+    </item>
+    <code id="blocking">Estolista</code>
+    <code id="connection">Yhteysasetukset</code>
+    <code id="privacy">Yksityisyys</code>
+    <code id="sound">Huomioäänet</code>
+    <code id="reconnect">Sinun pitää yhdistää uudelleen ottaaksesi muutokset käyttöön.&#13;&#13;Haluatko yhdistää uudelleen nyt?</code>
+    <code id="shortcut">Lähetä ja vastaanota pikaviestejä</code>
+    <code id="choose_sound">Valitse huomioääni</code>
+    <code id="file_audio">Äänitiedostot</code>
+    <code id="file_any">Kaikki tiedostot</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>Etsi tai lisää henkilö</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>Voit etsiä henkilöä hänen julkisten tietojensa perusteella tai voit syöttää hänen käyttäjänimensä.</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>Miten haluat lisätä kontaktin?</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>Haluan &lt;U&gt;e&lt;/U&gt;tsiä henkilöä.</innerHTML>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>Pa&lt;U&gt;l&lt;/U&gt;velu:</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>l</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML>Minä &lt;U&gt;t&lt;/U&gt;iedän henkilön pikaviestinosoitteen.</innerHTML>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>V&lt;U&gt;e&lt;/U&gt;rkko:</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>&lt;U&gt;K&lt;/U&gt;äyttäjänimi:</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>k</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>Kommunikoidaksesi toiseen pikaviestinverkkoon kuuluvan henkilön kanssa, pitää sinun rekisteröityä kyseisen verkon kuljetukseen.</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>Määritä kuljetukset</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>Seuraava &gt;</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_p1_close">
+      <value>Sulje</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>Käsittelen käyttäjänimeä</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>Kuljetus tarkistaa käyttäjänimeä.</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; Takaisin</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>Seuraava &gt;</value>
+    </item>
+    <item id="page1b_btn_close">
+      <value>Sulje</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>Hakulomake</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>Hakulomake sisältää ohjeita ja haku voidaan suorittaa kaikkien kenttien avulla.</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; Takaisin</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>Seuraava &gt;</value>
+    </item>
+    <item id="page1c_btn_close">
+      <value>Sulje</value>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; Takaisin</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>Etsi</value>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="page3_btn_close">
+      <value>Sulje</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText>Hakutulokset</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>Voit nähdä käyttäjän henkilökohtaiset tiedot tai lisätä käyttäjän kontaktilistaasi.</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; Takaisin</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>Seuraava &gt;</value>
+    </item>
+    <item id="page4_btn_close">
+      <value>Sulje</value>
+    </item>
+
+    <item id="txt_p5_title">
+      <innerText>Henkilön lisäys</innerText>
+    </item>
+    <item id="txt_p5_tagline">
+      <innerText>Kontaktilista talletetaan palvelimelle.</innerText>
+    </item>
+    <item id="txt_p5_desc">
+      <innerText>Lupapyyntö lähetettiin:</innerText>
+    </item>
+    <item id="txt_p5_user">
+      <innerText>Käyttäjänimi:</innerText>
+    </item>
+    <item id="txt_p5_network">
+      <innerText>Verkko:</innerText>
+    </item>
+    <item id="page5_btn_back">
+      <value>&lt; Takaisin</value>
+    </item>
+    <item id="page5_btn_next">
+      <value>Seuraava &gt;</value>
+    </item>
+    <item id="page5_btn_close">
+      <value>Sulje</value>
+    </item>
+
+    <item id="txt_p6_title">
+      <innerText>Etsi tai lisää henkilö -velhon lopetus</innerText>
+    </item>
+    <item id="txt_p6_tagline">
+      <innerText>Olet onnistuneesti suorittanut Etsi tai lisää henkilö -velhon.</innerText>
+    </item>
+    <item id="txt_p6_desc">
+      <innerText>Tämä henkilö lisättiin onnistuneest kontaktilistaasi:</innerText>
+    </item>
+    <item id="txt_p6_user">
+      <innerText>Käyttäjänimi:</innerText>
+    </item>
+    <item id="txt_p6_network">
+      <innerText>Verkko:</innerText>
+    </item>
+    <item id="txt_p6_again">
+      <innerHTML>Käynnistääksesi velhon uudelleen, paina &lt;B&gt;Lisää toinen henkilö&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_again">
+      <value>Lisää toinen henkilö</value>
+    </item>
+    <item id="txt_p6_finish">
+      <innerHTML>Sulkeaksesi tämän velhin, paina &lt;B&gt;Valmis&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_back">
+      <value>&lt; Takaisin</value>
+    </item>
+    <item id="page6_btn_finish">
+      <value>Valmis</value>
+    </item>
+    <item id="page6_btn_close">
+      <value>Sulje</value>
+    </item>
+
+	<code id="correct">Syötä oikea käyttäjänimi.&#13;&#13;Esimerkki: nimi@${0}</code>
+    <code id="example_address">Esimerkki: nimi@${0}</code>
+    <code id="contacting_adding">&lt;B&gt;Yhdistää palvelimeen&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Tämä voi viedä jopa 1 minuutin.&lt;BR&gt;Ole kärsivällinen.&lt;BR&gt;</code>
+    <code id="contacting_transport">&lt;B&gt;Yhdistää kuljetukseen&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Tämä voi viedä jopa 1 minuutin.&lt;BR&gt;Ole kärsivällinen.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Yhdistää hakupalveluun&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Tämä voi viedä jopa 1 minuutin.&lt;BR&gt;Ole kärsivällinen.&lt;BR&gt;</code>
+    <code id="error_adding">&lt;B&gt;Palvelinvirhe:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Käyttäjää ei voida lisätä kontaktilistaasi.&lt;BR&gt;Ota yhteyttä ylläpitoon saadaksesi lisätietoa.</code>
+    <code id="error_transport">&lt;B&gt;Palvelinvirhe:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Käyttäjää ei voida lisätä kontaktilistaasi.&lt;BR&gt;Varmista, että sinulla on oikea käyttäjänimi.</code>
+    <code id="error_search">&lt;B&gt;Palvelinvirhe:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Hakulomaketta ei voida ladata.&lt;BR&gt;Yritä uudelleen myöhemmin tai valitse toinen palvelu.</code>
+    <code id="error_invalid">Virheellistä tietoa vastaanotettu.</code>
+    <code id="search_title">Käyttäjähaku</code>
+    <code id="search_tagline">Täytä kenttä etsiäksesi käyttäjää.</code>
+    <code id="firstname">Etunimi:</code>
+    <code id="lastname">Sukunimi:</code>
+    <code id="nick">Lempinimi:</code>
+    <code id="email">Sähköpostiosoite:</code>
+    <code id="searching">Etsii...</code>
+    <code id="add">Lisää kontaktilistaan</code>
+    <code id="view">Näytä profiili</code>
+    <code id="foundone">1 tulos</code>
+    <code id="foundmany">${0} tulosta</code>
+  </window>
+  <window name="connection-settings">
+    <code id="logout">Sinun pitää kirjautua ulos ottaaksesi muutokset käyttöön.&#13;&#13;Haluatko kirjautua ulos nyt?</code>
+    <code id="automatic">Automaattinen</code>
+    <item id="txt_connection">
+      <innerText>Palvelinyhteys</innerText>
+    </item>
+    <item id="lbl_server_address">
+      <innerHTML>&lt;U&gt;O&lt;/U&gt;soite:</innerHTML>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="lbl_server_port">
+      <innerHTML>&lt;U&gt;P&lt;/U&gt;ortti:</innerHTML>
+      <accessKey>p</accessKey>
+    </item>
+    <item id="txt_encryption">
+      <innerText>Turvallinen yhteys</innerText>
+    </item>
+    <item id="lbl_encryption_optional">
+      <innerHTML>&lt;U&gt;K&lt;/U&gt;äytä TLS-salausta, jos palvelin tukee sitä</innerHTML>
+      <accessKey>k</accessKey>
+    </item>
+    <item id="lbl_encryption_tls">
+      <innerHTML>Vaadi &lt;U&gt;T&lt;/U&gt;LS-salausta</innerHTML>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="lbl_encryption_ssl">
+      <innerHTML>Vaadi &lt;U&gt;S&lt;/U&gt;SL-salausta</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="lbl_encryption_none">
+      <innerHTML>Älä käytä s&lt;U&gt;a&lt;/U&gt;lausta</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="txt_authentication">
+      <innerText>Kirjautumisen todennus</innerText>
+    </item>
+    <item id="lbl_authentication_normal">
+      <innerHTML>Oso&lt;U&gt;i&lt;/U&gt;te ja salasana</innerHTML>
+      <accessKey>i</accessKey>
+    </item>
+    <item id="lbl_authentication_ntlm">
+      <innerHTML>Integroitu &lt;U&gt;W&lt;/U&gt;indowsin todennus</innerHTML>
+      <accessKey>w</accessKey>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Peruuta</value>
+    </item>
+  </window>
+  <window name="sign_up">
+    <code id="close_confirm">Uusi osoite ei ole oikea.&#13;&#13;Haluatko varmasti sulkea velhon?</code>
+    <code id="incomplete">Täytä kaikki kentät...</code>
+    <code id="pass_match">Syöttämäsi salasana ei täsmää.&#13;&#13;Syötä uusi salasana molempiin kenttiin.</code>
+
+    <code id="contacting">Yhdistää palvelimeen...</code>
+    <code id="registered">Tilisi on rekisteröity. Tämä voi kestää jopa 1 minuutin.&lt;BR&gt;Ole kärsivällinen.&lt;BR&gt;</code>
+    <code id="requesting">Pyytää tietoa...</code>
+    <code id="sending">Lähettää rekisteröintiä...</code>
+    <code id="failure">Yhteysvirhe</code>
+    <code id="completed">Rekisteröinti valmis</code>
+
+    <code id="address">Osoite:</code>
+    <code id="nickname">Nimi:</code>
+    <code id="userdir">Käyttäjähakemisto:</code>
+    <item id="txt_page_welcome_title">
+      <innerText>Tervetuloa kirjautumisvelhoon</innerText>
+    </item>
+    <item id="txt_page_welcome_intro">
+      <innerText>Tämä velho auttaa sinua kirjautumaan pikaviestinverkkoon.</innerText>
+    </item>
+    <item id="txt_page_welcome_next">
+      <innerHTML>Paina &lt;B&gt;seuraava&lt;/B&gt; jatkaaksesi.</innerHTML>
+    </item>
+    <item id="btn_page_welcome_next">
+      <value>Seuraava &gt;</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_welcome_cancel">
+      <value>Peruuta</value>
+      <accessKey>p</accessKey>
+    </item>
+
+    <item id="txt_page_nickname_title">
+      <innerText>Henkilökohtaiset tiedot</innerText>
+    </item>
+    <item id="txt_page_nickname_tagline">
+      <innerText>Nämä tiedot helpottavat toisia käyttäjiä löytämään sinut verkossa.</innerText>
+    </item>
+    <item id="txt_page_nickname_desc">
+      <innerText>Syötä nimesi helpottaaksesi toisten ihmisten yhteydenottamista sinuun.</innerText>
+    </item>
+    <item id="txt_page_nickname_name">
+      <innerHTML>&lt;U&gt;N&lt;/U&gt;imi:</innerHTML>
+    </item>
+    <item id="data_name">
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_back">
+      <value>&lt; Takaisin</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_nickname_next">
+      <value>Seuraava &gt;</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_nickname_cancel">
+      <value>Peruuta</value>
+      <accessKey>p</accessKey>
+    </item>
+
+    <item id="txt_page_account_title">
+      <innerText>Osoitetiedot</innerText>
+    </item>
+    <item id="txt_page_account_tagline">
+      <innerText>Voit käyttää internetissä olevaa julkista palvelinta tai yksityistä palvelinta yritysverkossa.</innerText>
+    </item>
+    <item id="txt_page_account_server">
+      <innerHTML>&lt;U&gt;P&lt;/U&gt;alvelin:</innerHTML>
+    </item>
+    <item id="txt_page_account_username">
+      <innerHTML>&lt;U&gt;K&lt;/U&gt;äyttäjänimi:</innerHTML>
+    </item>
+    <item id="txt_page_account_password">
+      <innerHTML>&lt;U&gt;S&lt;/U&gt;alasana:</innerHTML>
+    </item>
+    <item id="txt_page_account_confirm">
+      <innerHTML>&lt;U&gt;V&lt;/U&gt;ahvista salasana:</innerHTML>
+    </item>
+    <item id="txt_page_account_email">
+      <innerHTML>Sähköposti&lt;U&gt;o&lt;/U&gt;soite:</innerHTML>
+    </item>
+    <item id="data_server">
+      <accessKey>p</accessKey>
+    </item>
+    <item id="data_username">
+      <accessKey>k</accessKey>
+    </item>
+    <item id="data_password">
+      <accessKey>s</accessKey>
+    </item>
+    <item id="data_password_confirm">
+      <accessKey>v</accessKey>
+    </item>
+    <item id="data_email">
+      <accessKey>o</accessKey>
+    </item>
+    <item id="txt_page_account_remember">
+      <innerHTML>&lt;U&gt;M&lt;/U&gt;uista salasanani</innerHTML>
+      <accessKey>m</accessKey>
+    </item>
+    <item id="txt_page_account_preview">
+      <innerText>Pikaviestinosoitteesi:</innerText>
+    </item>
+    <item id="btn_page_account_settings">
+      <value>Yhteysasetukset</value>
+      <accessKey>y</accessKey>
+    </item>
+    <item id="btn_page_account_back">
+      <value>&lt; Takaisin</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_account_next">
+      <value>Seuraava &gt;</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_account_cancel">
+      <value>Peruuta</value>
+      <accessKey>p</accessKey>
+    </item>
+
+    <item id="txt_page_creating_title">
+      <innerText>Osoitteen rekisteröinti</innerText>
+    </item>
+    <item id="txt_page_creating_autherr">
+      <innerHTML>Osoitetta ei voitu rekisteröidä. Käyttäjänimeä ei ole löydy.&lt;BR&gt;&lt;BR&gt;Paina &lt;B&gt;takaisin&lt;/B&gt; ja syötä toinen käyttäjänimi ja yritä uudelleen.</innerHTML>
+    </item>
+    <item id="txt_page_creating_forbidden">
+      <innerHTML>Osoitetta ei voitu rekisteröidä. Tämä palvelin ei salli uusien osoitteiden luomista.&lt;BR&gt;&lt;BR&gt;Paina &lt;B&gt;takaisin&lt;/B&gt; ja valitse toinen palvelin ja yritä uudelleen.</innerHTML>
+    </item>
+    <item id="txt_page_creating_commerr">
+      <innerHTML>Palvelimeen ei saatu yhteyttä. Varmista palvelimen osoite.&lt;BR&gt;Tarkista verkkoyhteytesi ja yritä uudelleen. Jos olet palomuurin takana,&lt;BR&gt;määritä yhteysasetukset.</innerHTML>
+    </item>
+    <item id="btn_page_creating_retry">
+      <value>Yritä uudelleen</value>
+      <accessKey>u</accessKey>
+    </item>
+    <item id="btn_page_creating_settings">
+      <value>Yhteysasetukset</value>
+      <accessKey>y</accessKey>
+    </item>
+    <item id="btn_page_creating_back">
+      <value>&lt; Takaisin</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_creating_next">
+      <value>Seuraava &gt;</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_creating_cancel">
+      <value>Peruuta</value>
+      <accessKey>p</accessKey>
+    </item>
+
+    <item id="txt_page_finished_title">
+      <innerText>Lisää profiili -velho on valmis</innerText>
+    </item>
+    <item id="txt_page_finished_intro">
+      <innerText>Olet suorittanut onnistuneesti lisää profiili -velhon.</innerText>
+    </item>
+    <item id="txt_page_finished_details">
+      <innerText>Profiilin tiedot:</innerText>
+    </item>
+    <item id="txt_page_finished_finish">
+      <innerHTML>Sulkeaksesi velhon, paina &lt;B&gt;Valmis&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_finished_back">
+      <value>&lt; Takaisin</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_finished_finish">
+      <value>Valmis</value>
+      <accessKey>v</accessKey>
+    </item>
+    <item id="btn_page_finished_cancel">
+      <value>Peruuta</value>
+      <accessKey>p</accessKey>
+    </item>
+  </window>
+</translation>
