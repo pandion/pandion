@@ -1,0 +1,2204 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file is part of Pandion instant messenger
+	Copyright (c) 2003-2009 Sebastiaan Deckers
+	License: GNU General Public License version 3 or later
+-->
+<!--
+	Instructions:
+	http://pandion.pbworks.com/Translating
+-->
+<translation xml:lang="si">
+  <about>
+    <language>සිංහල</language>
+    <history>
+      <revision>
+        <author>
+		<name>Sebastiaan Deckers</name>
+          <name>ලුමිණි සහබන්දු</name>
+          <name>අරුණි වැලිවිටිය</name>
+          <name>පියුමි කාරියවසම්</name>
+        <email>cbas@pandion.im</email>
+         <email>luminisahabandu@gmail.com</email>
+        <email>aruniwelivitiya@yahoo.com</email>
+        <email>piumianu@yahoo.com</email>	  
+          <xmpp>cbas@pandion.im</xmpp>
+        </author>
+        <date>2010-12-09</date>
+        <description>
+		සිංහල බසින් පළමු සංස්කරණය
+        </description>
+      </revision>
+    </history>
+  </about>
+  <window name="main">
+    <item id="txt_disconnected">
+      <innerText>සේවාදායකයාගෙන් විභේදනය වී ඇත</innerText>
+    </item>
+    <item id="txt_reconnect">
+      <innerText>නැවත සබඳින්න </innerText>
+    </item>
+    <item id="txt_discor">
+      <innerText>හෝ</innerText>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>සම්බන්ධතා සිටුවම් වෙනස් කරන්න</innerText>
+    </item>
+    <item id="txt_addtolist">
+      <innerText> ඔබගේ අඳුනන්නන්ගේ ලැයිස්තුවට යමෙකු එක් කරගන්න</innerText>
+    </item>
+    <item id="txt_welcor">
+      <innerText>හෝ</innerText>
+    </item>
+    <item id="txt_config_transport">
+      <innerText>ජාල ප්‍රවාහනය  වින්‍යාස කරන්න</innerText>
+    </item>
+
+    <item id="mode-avatar">
+      <title>වෙනත්   මූර්තියක් තෝරාගන්න</title>
+    </item>
+    <item id="mode-bar">
+      <title>ඔබ සිටියි ද නැද්ද යන වග, තත්ත්වය, හෝ පුද්ගලික පැතිකඩ වෙනස් කරන්න.</title>
+    </item>
+    <item id="mode-secure">
+      <title>සබැඳුම SSL/TLS ස්ංකේතනය මඟින් ආරක්ෂා කොට ඇත</title>
+    </item>
+    <item id="rosterfield">
+      <title>ඔබගේ අඳුනන්ගේ ලැයිස්තුවේ සිටින පුද්ගලයන් හා කණ්ඩායම්</title>
+    </item>
+
+    <item id="signin-instructions">
+      <innerText>ඔබේ ක්ෂණික පණිවුඩ ලිපිනයෙන් ඇතුළු වන්න.</innerText>
+    </item>
+    <item id="txt-signin-address">
+      <innerText> ලිපිනය:</innerText>
+    </item>
+    <item id="txt-signin-examples">
+      <innerText> උදාහරණ:</innerText>
+    </item>
+    <item id="txt-signin-password">
+      <innerText>මුරපදය:</innerText>
+    </item>
+    <item id="txt-signin-remember">
+      <innerText>මගේ  මුරපදය මතක තබාගන්න</innerText>
+    </item>
+    <item id="txt-signin-autoconnect">
+      <innerText> ස්වයංක්‍රීයව පුරන්න</innerText>
+    </item>
+    <item id="signin-connect">
+      <innerText>පුරන්න</innerText>
+    </item>
+    <item id="signin-register">
+      <innerText>නව ක්ෂණික පණිවුඩ ලිපිනයක් ලියපදිංචි කරන්න.</innerText>
+    </item>
+    <item id="signin-settings">
+      <innerText>සබැඳුම් සිටුවම්</innerText>
+    </item>
+
+    <code id="tt-group-hide">මෙම කණ්ඩායමේ සිටින අඳුනන්නන් සඟවන්න. &#13; වෙනත් විකල්ප සඳහා දක්ෂිණ මූසික බොත්තම ඔබන්න.</code>
+    <code id="tt-group-show">මෙම කණ්ඩායමේ සිටින අඳුනන්නන් පෙන්වන්න&#13;වෙනත් විකල්ප සඳහා දක්ෂිණ මූසික බොත්තම ඔබන්න.</code>
+    <code id="emoticon_unknown">නොදන්නා</code>
+    <code id="txt_welcome">${0} වෙත පිළිගනිමු!</code>
+    <code id="user_online">${0} දැන් සැබැඳිනි</code>
+    <code id="cl_tooltip">${0} අඳුනන්නන්ගේ ලැයිස්තුවේ</code>
+    <code id="import_files">අඳුනන්නන්ගේ ලැයිස්තු</code>
+    <code id="import_invalid">මෙම ගොනුවෙහි කිසිදු වලංගු දත්තයක් අන්තර්ගත නොවේ.</code>
+    <code id="import_no_new">ගොනුවෙහි  ඇති සියලුම අඳුනන්නන්  ඔබගේ අඳුනන්නන්ගේ ලැයිස්තුවේ දැනටමත් සිටී.</code>
+    <code id="import_confirm">මෙම අඳුනන්නන්ගේ  ලිපින අඳුනන්නන්ගේ ලැයිස්තුවට එකතු කෙරෙනු ඇත:&#13;${0}&#13;මෙම ලිපිනයන් ඔබේ අඳුනන්නන්ගේ ලැයිස්තුවට එක් කළ යුතු බව ඔබට විශ්වාස ද?</code>
+    <code id="import_aim_not_registered">ඔබේ AIM මිතුරන් ලැයිස්තුව එක් කරගැනීම සඳහා AIM ප්‍රවාහනය ලියාපදිංචි කළ යුතුය.  තවද එම ප්‍රවාහනය සක්‍රීය ව තිබිය යුතුය.&#13;AIM ප්‍රවාහනයේ තත්ත්වය බලා ගැනීමට මෙවලම් මෙනුවට ගොස් ප්‍රවාහනයන් තෝරන්න.</code>
+    <code id="import_msn_not_registered">ඔබේ MSN අඳුනන්නන්ගේ ලැයිස්තුව එක් කරගැනීම සඳහා MSN ප්‍රවාහනය ලියාපදිංචි කළ යුතුය.  තවද එම ප්‍රවාහනය සක්‍රීය ව තිබිය යුතුය.&#13;MSN ප්‍රවාහනයේ තත්ත්වය බලා ගැනීමට මෙවලම් මෙනුවට ගොස් ප්‍රවාහනයන් තෝරන්න.</code>
+    <code id="import_gadu_not_registered">ඔබේ Gadu-Gadu අඳුනන්නන්ගේ ලැයිස්තුව එක් කරගැනීම සඳහා Gadu-Gadu ප්‍රවාහනය ලියාපදිංචි කළ යුතුය.  තවද එම ප්‍රවාහනය සක්‍රීය ව තිබිය යුතුය.&#13;Gadu-Gadu ප්‍රවාහනයේ තත්ත්වය බලා ගැනීමට මෙවලම් මෙනුවට ගොස් ප්‍රවාහනයන් තෝරන්න.</code>
+    <code id="conference_invitation">සමුළු කාමරයට එන ලෙස ${0} ඔබට ආරාධනා කරයි: ${1}&#13;ඔබට මෙම සමුළු කාමරයට සම්බන්ධ වීමට අවශ්‍යද?</code>
+    <code id="search_info">අඳුනන අයෙක් සොයන්න...</code>
+    <code id="invalid-user-address">ඔබේ ක්ෂණික පණිවුඩ ලිපිනය ඇතුළු කරන්න.&#13;ඔබට ලිපිනයක් නැතිනම්, පහත "නව ක්ෂණික පණිවුඩ ලිපිනයක් ලියපදිංචි කරන්න" ඔබන්න.</code>
+    <code id="invalid-sso-server">ඔබගේ ක්ෂනික පණිවුඩ සේවදායක ලිපිනය ඇතුළු කරන්න.</code>
+    <code id="program-description">${softwarename} යනු XMPP ජාල සඳහා ක්ෂණික පණිවුඩ සේවලාභියෙකි.</code>
+    <code id="extension-jisp">Jabber Icon Style පැකේජය</code>
+    <code id="extension-pdn">${softwarename} පේනු මෘදුකාංගය</code>
+    <code id="extension-xmpp">Extensible Messaging and Presence Protocol (XMPP) පාර-දත්ත</code>
+    <code id="uri-xmpp">Extensible Messaging and Presence Protocol (XMPP) ලිපිනය</code>
+
+    <code id="menu_status">&amp;තත්වය</code>
+    <code id="menu_status_received">&amp;මට ලැබී ඇති ගොනු විවෘත කරන්න</code>
+    <code id="menu_status_export">&amp;අඳුනන්නන්ගේ ලැයිස්තුව ආයත කරන්න...</code>
+    <code id="menu_status_import">&amp;අඳුනන්නන්ගේ ලැයිස්තුව නිර්යාත කරන්න...</code>
+    <code id="menu_status_change">මගේ තත්වය වෙනස් කරන්න &amp;පණිවිඩය...</code>
+    <code id="menu_status_ffc">&amp;කතා බස් කරන්න නිදහස්ය</code>
+    <code id="menu_status_available">&amp; සිටී</code>
+    <code id="menu_status_busy">&amp;කාර්ය බහුලයි</code>
+    <code id="menu_status_away">&amp; බැහැරව සිටී</code>
+    <code id="menu_status_xaway">&amp;දිගු වේලාවක් බැහැර ව සිටියි</code>
+    <code id="menu_status_invisible">&amp;නොපෙනෙන ලෙස</code>
+    <code id="menu_status_offline">&amp;නොබැඳි</code>
+    <code id="menu_status_status">මගේ &amp;කාර්ය බහුලයි</code>
+    <code id="menu_status_out">වරන්න</code>
+    <code id="menu_status_exit">පිටවෙන්න</code>
+
+    <code id="menu_axn">&amp;ක්‍රියා</code>
+    <code id="menu_axn_add">&amp;අඳුනන්නන්නෙකු එකතු කරන්න...</code>
+    <code id="menu_axn_addgroup">&amp;කණ්ඩායමක් එකතු කරන්න...</code>
+    <code id="menu_axn_bookmarks">&amp;පිටුසන් කළ සමුළු කාමර</code>
+    <code id="menu_axn_bookmarks_add">&amp;පිටුසනක් එකතු කරන්න...</code>
+    <code id="menu_axn_bookmarks_manage">&amp;පිටුසන් සකස් කරන්න...</code>
+    <code id="menu_axn_join">&amp;සමුළු කාමරයකට සම්බන්ධ වෙන්න...</code>
+    <code id="menu_axn_create">&amp;සමුළු කාමරයක් සාදන්න...</code>
+    <code id="menu_axn_password">මගේ මුරපදය වෙනස් කරන්න</code>
+    <code id="menu_axn_profile">&amp;මගේ පැතිකඩ සකසන්න</code>
+    <code id="menu_axn_avatar">මගේ  මූර්තිය වෙනස් කරන්න.</code>
+
+    <code id="menu_tool">&amp;මෙවලම්</code>
+    <code id="menu_tool_transport">&amp;ප්‍රවාහන</code>
+    <code id="menu_tool_head">&amp; ශීෂය පාඨ සහ සවදාන</code>
+    <code id="menu_tool_plugin">&amp;පේනු මෘදුකාංග</code>
+    <code id="menu_tool_traffic">&amp;ජාල තදබදය</code>
+    <code id="menu_tool_view">&amp;දක්වන්න</code>
+    <code id="menu_tool_detailed">&amp;විස්තරාත්මක</code>
+    <code id="menu_tool_compact">&amp;සංගත</code>
+    <code id="menu_tool_language">&amp;භාෂාව</code>
+    <code id="menu_tool_aot">&amp;සැමවිටම ඉහළ පවතී</code>
+    <code id="menu_tool_settings">&amp;සිටුවම්</code>
+
+    <code id="menu_help">&amp;උදවු</code>
+    <code id="menu_help_welcome">පිළිගැනීමේ තිරය</code>
+    <code id="menu_help_manual">&amp;සබැඳි අත්පොත</code>
+    <code id="menu_help_forum">&amp;සහයෝගී සංසදය</code>
+    <code id="menu_help_contact">&amp;අප හා සම්බන්ධ වන්න</code>
+    <code id="menu_help_update">යාවත් කාලින කළ හැකිදැයි පිරික්සන්න</code>
+    <code id="menu_help_about">&amp;පිළිබඳව</code>
+
+    <code id="menu_tray_about">&amp;${0} පිළිබඳව</code>
+    <code id="menu_tray_settings">&amp;සිටුවම්</code>
+
+    <code id="wnd_autoupdate">යවත්කාලීන වෙමින් පවතී ${0}</code>
+    <code id="wnd_vcard_edit">පරිශීලක තොරතුරු</code>
+    <code id="wnd_about"> ${0} පිළිබඳව</code>
+    <code id="wnd_signup">වරන්න - ${0}</code>
+    <code id="wnd_adduser">අඳුනන්නෙකු සොයන්න හෝ එකතු කරන්න</code>
+    <code id="wnd_avatar">ඔබගේ මූර්තිය වෙනස් කරන්න </code>
+    <code id="wnd_room_browse">සමුළු කාමර</code>
+    <code id="wnd_room_create">සමුළු කාමරයක් සාදන්න</code>
+    <code id="wnd_conference_invite">අඳුනන්නන්ට ඇරයුම් කරන්න</code>
+    <code id="wnd_conference_other">වෙනත් සමුළු සේවාවක්</code>
+    <code id="wnd_console">කොන්සෝලය</code>
+    <code id="wnd_emoticon_download">භාවයන් බාගත කරන්න</code>
+    <code id="wnd_emoticon_list">භාවයන්</code>
+    <code id="wnd_emoticon_view">භාව තොරතුරු</code>
+    <code id="wnd_file_send">${0}  වෙත ගොනුවක් යවමින්</code>
+    <code id="wnd_file_recv"> ${0}ගෙන් ගොනුවක් ලැබෙමින් </code>
+    <code id="wnd_group_message">කණ්ඩායම් පණිවිඩය</code>
+    <code id="wnd_transport_list">ප්‍රවාහන</code>
+    <code id="wnd_transport_other">වෙනත් ප්‍රවාහනය</code>
+    <code id="wnd_headlines">ශීෂය පාඨ   දක්වන්නය</code>
+    <code id="wnd_history">${0} - පණිවිඩ ඉතිහාසය</code>
+    <code id="wnd_plugin_list">පේනු මෘදුකාංග</code>
+    <code id="wnd_plugins">පේනු මෘදුකාංග</code>
+    <code id="wnd_password">මුරපදය   වෙනස් කරන්න</code>
+    <code id="wnd_settings">සිටුවම්</code>
+    <code id="wnd_status">තත්ත්ව පණිවුඩය</code>
+    <code id="wnd_vcard_view">පරිශීලක තොරතුරු</code>
+    <code id="wnd_group_create">කණ්ඩායමක් සාදන්න</code>
+    <code id="wnd_group_rename">නැවත කණ්ඩායම නම් කරන්න</code>
+    <code id="wnd_contact_rename">අඳුනන්නා නැවත නම් කරන්න</code>
+    <code id="wnd_authrequest">අවසර ගැනීමේ ඉල්ලීම</code>
+    <code id="wnd_extension_download">ස්ථාපනය වෙමින් පවතී${0}</code>
+    <code id="wnd_background_list">පසුබිම්</code>
+    <code id="wnd_background_download">පසුබිම් බාගත කරන්න</code>
+    <code id="wnd_bookmarks_add">සමුළු කාමරයට පිටුසනක් එකතුකරන්න</code>
+    <code id="wnd_bookmarks_edit">සමුළු කාමරයේ පිටුසන සංස්කරණය කරන්න</code>
+    <code id="wnd_bookmarks_manage">සමුළු කාමරයේ පිටුසන්</code>
+    <code id="wnd_connection_settings">සම්බන්ධතා සිටුවම්</code>
+    <code id="wnd_welcome">${0} වෙත පිළිගනිමු</code>
+
+    <code id="msg_emoticon_install">මෙම භාව විලාසය දැනටමත් ස්ථාපනය කර ඇත.</code>
+    <code id="msg_received_files">ලැබී ඇති ගොනු සඳහා වූ ඩිරෙක්ටරිය ඉවත් කරඇත.</code>
+    <code id="msg_plugin_install">මෙම පේනු මෘදුකාංගය ස්ථාපනය කිරීමට අවශ්‍යද?&#13;නම: ${0}&#13;විස්තරය: ${1}</code>
+    <code id="msg_plugin_exists">මෙම පේනු මෘදුකාංගය දැනටමත් ස්ථාපනය කර ඇත.</code>
+    <code id="msg_cl_adding">${0} ඔබගේ අඳුනන්නන්ගේ ලැයිස්තුවට එකතුකරන ලදි.</code>
+    <code id="msg_cl_added">ඔබව ${0} ඔහුගේ හෝ ඇයගේ  අඳුනන්නන්ගේ ලැයිස්තුවට එකතුකර ගන්නා ලදි.</code>
+    <code id="msg_blocked">ඔබ මෙම  පුද්ගලයාගේ බාධිත ලැයිස්තුවේ සිටී.</code>
+    <code id="msg_autherror">පිරීමට නොහැක. එයට හේතුව පහත සඳහන් කරුනු වලින් එකක් වියහැක..:&#13;- ඔබ වැරදි මුර පදයක් ඇතුලත් කර ඇත&#13;-  ඔබගේ ගිණුම සේවාදායකයා ළඟ නොපවතින්නකි &#13;නැවත උත්සහ කරන්න.</code>
+
+    <code id="menu_message">පණිවිඩය</code>
+    <code id="menu_filetransfer">ගොනු මාරුව</code>
+    <code id="menu_room_create">නව  කාමරයක් සාදන්න </code>
+    <code id="menu_room_invite">සමුළු කාමරයට ඇරයුම් කරන්න</code>
+    <code id="menu_rename">නැවත නම් කරන්න</code>
+    <code id="menu_block">බාධා කරන්න</code>
+    <code id="menu_delete">මකන්න</code>
+    <code id="menu_group_create">නව ණ්ඩායමක් සාදන්න</code>
+    <code id="menu_group_merge">සමඟ මුසු කරන්න</code>
+    <code id="menu_group_move">වෙනත් තැනකට  </code>
+    <code id="menu_group_copy">මෙතැනට පිටපත් කරන්න </code>
+    <code id="menu_request">අවසර ගැනීමට නැවත ඉල්ලීමක් කරන්න </code>
+    <code id="menu_history">ඉතිහාසය</code>
+    <code id="menu_profile">පැතිකඩ</code>
+
+    <code id="cl_error_notexist">ලිපිනය නොපවතී.</code>
+    <code id="cl_error_cannotadd"> ${0} අඳුනන්නන්ගේ ලැයිස්තුවට එකතු කිරීමට නොහැක .&#13;${1}</code>
+    <code id="cl_default_group">අඳුනන්නන්</code>
+	<code id="cl_group_display_none">අඳුනන්නන්  නැත</code>
+    <code id="cl_group_display_online">සබැඳි අඳුනන්නන් පමණි</code>
+    <code id="cl_group_display_all"> සියලුම අඳුනන්නන්</code>
+	<code id="cl_group_expand">නොබැඳි අඳුනන්නන් පෙන්වන්න </code>
+    <code id="cl_group_compact">නොබැඳි අඳුනන්නන් සඟවන්න</code>
+    <code id="cl_group_rename">නැවත නම් කරන්න</code>
+    <code id="cl_group_message">සියල්ලන්ට ම එකවර පණිවිඩයක් යවන්න</code>
+    <code id="cl_room_create">නව  කාමරයක් සාදන්න </code>
+    <code id="cl_room_invite">සමුළු කාමරයට ඇරයුම් කරන්න</code>
+    <code id="cl_group_empty"> මෙම කණ්ඩායමේ කිසිවකුත් සබැඳුමේ නැත.</code>
+    <code id="cl_status_empty">කිසිදු තත්ව පණිවිඩයක් නැත </code>
+    <code id="cl_status_offline">නොබැඳි</code>
+    <code id="cl_status_awaiting">අවසරය සඳහා බළාපොරොත්තුවෙන්</code>
+    <code id="cl_status_unknown">නොදන්නා තත්වයක්</code>
+    <code id="cl_tooltip_offline">ලිපිනය: ${0}</code>
+    <code id="cl_contact_remove_group">මෙම පරිශීලක මෙම කණ්ඩායමෙන් ඉවත් කිරීමට අවශ්‍ය බව ඔබට විශිවාසද ?</code>
+    <code id="cl_contact_remove_list">මෙම පරිශීලක අඳුනන්නන්ගේ ලැයිස්තුවෙන්  ඉවත් කිරීමට අවශ්‍ය බව ඔබට විශිවාසද ?</code>
+    <code id="cl_link_open">වෙබ්  බ්‍රවුසරයක විවෘතවේ</code>
+    <code id="cl_link_copy">අදිබැඳි ලිපිනය පිටපත් කරන්න </code>
+    <code id="cl_link_favorite">ප්‍රියතම ඒවාට එකතු කරන්න</code>
+    <code id="cl_ffc">කතා බස් කරන්න නිදහස්ය</code>
+    <code id="cl_available">සිටී</code>
+    <code id="cl_busy">කාර්ය බහුලයි</code>
+    <code id="cl_away">බැහැරව ඇත</code>
+    <code id="cl_xaway">දිගු වේලාවක් බැහැරව ඇත</code>
+    <code id="cl_invisible">නොපෙනෙන ලෙස</code>
+    <code id="cl_idle">අකර්මණ්‍ය</code>
+    <code id="cl_tooltip_online">ලිපිනය: ${0}&#13;මූලාශ්‍රය: ${1}</code>
+
+    <code id="time-now">මේ දැන්</code>
+    <code id="time-second">තත්පරයකට පෙර</code>
+    <code id="time-seconds">තත්පර ${0}කට පෙර </code>
+    <code id="time-minute">මිනිත්තුවකට පෙර</code>
+    <code id="time-minutes"> මිනිත්තු ${0}කට පෙර</code>
+    <code id="time-hour">පැයකට පෙර</code>
+    <code id="time-hours">පැය ${0}කට  පෙර</code>
+    <code id="time-day">දවසකට පෙර</code>
+    <code id="time-days"> දවස්  ${0}කට පෙර</code>
+    <code id="time-week">සතියකට පෙර</code>
+    <code id="time-weeks">සති ${0}කට පෙර</code>
+    <code id="time-month">මසකට පෙර</code>
+    <code id="time-months"> මාස ${0}කට පෙර</code>
+    <code id="time-year">අවුරුද්දකට පෙර</code>
+    <code id="time-years">අවුරුදු ${0}කට  පෙර</code>
+
+    <code id="track-stable">ස්ථායි</code>
+    <code id="track-beta">බීටා </code>
+    <code id="track-development">වැඩි දියුණු කිරීම</code>
+  </window>
+  <window name="about">
+    <item id="txt-copyright">
+      <innerHTML>හිමිකම් &amp;copy; ${copyrightyear} ${copyrightholder}. සියලුම හිමිකම් ඇවිරිණි. මෙම මෘදුකාංග යෙදුම &lt;a href="${licenseurl}"&gt;${licensename}&lt;/a&gt; හි කොන්දේසි සහ යෙදුම් යටතේ ප්‍රසිද්ධ කර ඇත. අමතර කොන්දේසි සහ යෙදුම්&lt;a href="${termsandcontitionsurl}"&gt;&lt;/a&gt; පරායත්ත සඳහා යෙදෙනු ඇත.</innerHTML>
+    </item>
+    <item id="txt-trademark">
+      <innerText>${softwarename} නම සහ සංකේත ${trademarkholder} ට අයත් වෙළෙඳ සළකුණු වේ. සියලුම හිමිකම් ඇවිරිණි.</innerText>
+    </item>
+    <item id="btn-ok">
+      <value>හරි</value>
+    </item>
+  </window>
+  <window name="auth_invitation">
+    <item id="btn_view">
+      <value>පැතිකඩ තොරතුරු බලන්න</value>
+    </item>
+    <item id="btn_deny">
+      <value>ප්‍රතික්ෂේප කරන්න</value>
+    </item>
+    <item id="btn_accept">
+      <value>පිළිගන්න</value>
+    </item>
+    <item id="txt_from">
+      <innerText>ඔබෙන් අවසරයක් ඉල්ලයි. එවා ඇත්තේ:</innerText>
+    </item>
+    <item id="txt_question">
+      <innerText>මොහු ඔබේ අඳුනන්ගේ ලැයිස්තුවට එක් කර ගත යුතුද නැද්ද?</innerText>
+    </item>
+  </window>
+  <window name="console">
+    <item id="btn_clear">
+      <value>ප්‍රතිදාන හිස් කරන්න</value>
+    </item>
+    <item id="btn_send">
+      <value>යවන්න</value>
+    </item>
+    <item id="btn_iq">
+      <value>IQ</value>
+    </item>
+    <item id="btn_presence">
+      <value>පැවත්ම</value>
+    </item>
+    <item id="btn_message">
+      <value>පණිවිඩය</value>
+    </item>
+    <item id="txt_traffic">
+      <innerText>ජාල තදබදය:</innerText>
+    </item>
+    <item id="txt_break">
+      <innerText>පේළි කඩන්න</innerText>
+    </item>
+    <item id="txt_input">
+      <innerText>XML  ආදාන:</innerText>
+    </item>
+    <code id="toggle_on">නිදොසන්න ක්‍රියාත්මකර ඇත </code>
+    <code id="toggle_off">නිදොසන්න ක්‍රියා විරහිත කර ඇත</code>
+    <code id="valid_xml">ආදනය වලංගු XML විය යුතුය. හුදු හිස්තැන් හෝ සරළ පෙළක් නොවේ.</code>
+  </window>
+  <window name="headline_log">
+    <item id="btn_close">
+      <value>වසන්න</value>
+    </item>
+    <item id="txt_title">
+      <innerText>සිරස්තල හා සාවදාන </innerText>
+    </item>
+    <item id="txt_desc">
+      <innerText>ඔබට ප්‍රවෘත්ති සිරස්තලයක් හෝ වෙනත් කෙටි තොරතුරක් ලැබුන විට විශේෂ සාවදානයක් දර්ශනය වෙනු ඇත.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>කිසිදු සිරස්තලයක් හෝ සාවදානයක් ලැබී නැත.</innerText>
+    </item>
+    <item id="alertonlinelabel">
+      <innerText>යමෙකු සජීවිව පැමිණි විට සාවදානයක් පෙන්වන්න.</innerText>
+    </item>
+    <code id="read_more">තවත්...</code>
+    <code id="replay">නැවතත්</code>
+  </window>
+  <window name="headline-toaster">
+    <item id="options">
+      <innerText>විකල්ප...</innerText>
+    </item>
+  </window>
+  <window name="avatar">
+    <item id="btn_cancel">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+    <item id="btn_custom">
+      <value>රූපය ඔබට අවශ්‍ය ලෙස වෙනස් කරන්න</value>
+    </item>
+    <item id="txt_desc">
+      <innerText>ඔබගේ පැතිකඩ අඳුනගන්නා ආකාරයේ පෞද්ගලික රූපයක් තෝරාගන්න.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>ආරම්භ වෙමින් පවතී...</innerText>
+    </item>
+    <code id="error_size">රූපය ලෝඩ් කළ නොහැක. ගොනුවේ විශාලත්වය කිලෝ බයිට් අට ඉක්මවයි.</code>
+    <code id="error_empty">රූපය ලෝඩ් කළ නොහැක. ගොනුව හිස්ය.</code>
+    <code id="error_load">අවවාදයයි: මූර්ති රූප ලෝඩ් කළ නොහැක.&#13;${0}</code>
+    <code id="menu_use"> මෙම මූර්තිය භාවිතා කරන්න</code>
+    <code id="menu_saveas">ලෙස සුරකින්න...</code>
+    <code id="menu_delete">මකන්න </code>
+    <code id="wnd_select">මූර්ති රූපයක් තෝරාගන්න</code>
+    <code id="saveas_files">රූප ගොනු</code>
+    <code id="image_files"> කිලෝ බයිට් අටට අඩු රූප ගොනු </code>
+    <code id="all_files">සියලුම ගොනු</code>
+  </window>
+  <window name="mode_select">
+    <item id="txt_message">
+      <innerText>ඔබේ තත්ත්ව පණිවුඩය, ඔබගේ ගතිය, ක්‍රියාකරකම් හෝ වෙනත් දෙයක් පෙන්වයි :</innerText>
+    </item>
+    <code id="btn_ok">හරි</code>
+    <code id="btn_ok_empty">හරි ( කිසිදු පණිවිඩයක් නැත)</code>
+  </window>
+  <window name="rename_group">
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+    <item id="btn_cancel">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>නව නමක්:</innerText>
+    </item>
+  </window>
+  <window name="rename_user">
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+    <item id="btn_cancel">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>නව නමක්</innerText>
+    </item>
+  </window>
+  <window name="group_create">
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+    <item id="btn_cancel">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <item id="txt_newname">
+      <innerText>නව නමක්:</innerText>
+    </item>
+  </window>
+  <window name="pass_change">
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+    <item id="btn_cancel">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <item id="txt_confirm">
+      <innerText> නව මුරපදය තහවුරු කරන්න:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>නව මුරපදයක්:</innerText>
+    </item>
+    <code id="no_match">ඔබ ඇතුලත් කල මුරපද නොගැළපෙයි.&#13;ස්ථාන දෙකෙහිම නව මුරපද ඇතුලත් කරන්න.</code>
+    <code id="no_pass">නව මුරපදය ඇතුලත් කරන්න.</code>
+  </window>
+  <window name="emoset_view">
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+    <item id="set_version">
+      <innerText>ආරම්භ වෙමින් පවතී....</innerText>
+    </item>
+    <item id="header-images">
+      <innerText>රූප</innerText>
+    </item>
+    <item id="header-sounds">
+      <innerText>නාද</innerText>
+    </item>
+    <item id="header-markup">
+      <innerText>පෙළ සළකුණු</innerText>
+    </item>
+    <code id="empty">මෙම භාව විලාසය හිස්ය.</code>
+    <code id="file_error">ගොනුවෙහි දොශයක්</code>
+    <code id="cannot_load">භාව පටවා ගත නොහැක.</code>
+    <code id="count_one">1 භාවය</code>
+    <code id="count_multiple">${0} භාවය</code>
+  </window>
+  <window name="emoticon_download">
+    <item id="btn_close">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <item id="txt_title">
+      <innerText>භාව විලාස බාගත කරන්න</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>අන්තර්ජාල සබැඳුමට භාව නාමාවලිය  පිරික්සන්නට අවශ්‍යවී ඇත</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>ආරම්භ වෙමින් පවතී....</innerText>
+    </item>
+    <code id="install">ස්ථාපනය කරන්න</code>
+    <code id="cannot_download">දෝෂයක්: භාව විලාස බාගත කිරීමට නොහැකිය.&#13;${0}</code>
+    <code id="invalid_xml">දත්ත මූලයෙහි වලංගු දත්ත  කිසිවක් අඩංගු නොවේ.</code>
+    <code id="no_new_styles">කිසිදු නව භාව විලාසක්  නොපවතී.</code>
+  </window>
+  <window name="emoticon_list">
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+    <item id="txt_title">
+      <innerText> පවතින භාවයන්</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>භාව විලාසයක් ලැයිස්තුවෙන් තෝරන්න.</innerText>
+    </item>
+    <item id="txt_loadingemo">
+      <innerText>ආරම්භ වෙමින් පවතී....</innerText>
+    </item>
+    <item id="btn_emoticon_download">
+      <value>තවත් භාවයන්</value>
+    </item>
+    <code id="emoticon_details">විස්තර පෙන්වන්න</code>
+    <code id="emoticon_remove">මකන්න</code>
+    <code id="emoticon_confirm">ඔබට මෙම  භාව විලාසය ඉවත් කිරීමට අවශ්‍ය බව විශ්වාසද?</code>
+    <code id="no_emoticons">භාවයන් කිසිවක් හමු නොවිනි.</code>
+  </window>
+  <window name="background_download">
+    <item id="btn_close">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <item id="txt_title">
+      <innerText>පසුබිම් බාගත කරන්න</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>අන්තර්ජාල සබැඳුමට පසුබිම් නාමාවලිය  පිරික්සන්නට අවශ්‍යවී ඇත.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>ආරම්භ වෙමින් පවතී....</innerText>
+    </item>
+    <code id="install">ස්ථාපනය කරන්න</code>
+    <code id="cannot_download"> දෝෂයක්: පසුබිම්ක් බාගත නොහැක.&#13;${0}</code>
+    <code id="invalid_xml">දත්ත මූලයෙහි වලංගු දත්ත  කිසිවක් අඩංගු නොවේ.</code>
+    <code id="no_new_styles">කිසිදු නව පසුබිම්ක්  නොපවතී. </code>
+  </window>
+  <window name="background_list">
+    <item id="btn_ok">
+      <value>හරි </value>
+    </item>
+    <item id="txt_title">
+      <innerText>පසුබිම් පවතී </innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText> පසුබිම් එකතු කිරීම හෝ ඉවත්කිරීම කරන්න.</innerText>
+    </item>
+    <item id="btn_background_download">
+      <value>තවත් පසුබිම් </value>
+    </item>
+    <item id="txt_background_empty">
+      <innerText>කිසිදු පසුබිම්ක් ස්ථාපනය කර නැත.</innerText>
+    </item>
+    <code id="background_uninstall">මකන්න</code>
+    <code id="background_confirm">ඔබට මෙම පසුබිම් ඉවත් කිරීමට අවශ්‍ය බව විශ්වාසද?</code>
+  </window>
+  <window name="plugin_list">
+    <item id="btn_ok">
+      <value>හරි </value>
+    </item>
+    <item id="txt_title">
+      <innerText>පේනු මෘදුකාංග ස්ථාපනය කරන්න</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>පේනු මෘදුකාංග එකතු කිරීම හෝ ඉවත් කිරීම කරන්න.</innerText>
+    </item>
+    <item id="btn_plugin_download">
+      <value>තවත් පේනු මෘදුකාංග</value>
+    </item>
+    <item id="txt_plugin_empty">
+      <innerText>කිසිදු පේනු මෘදුකාංගක් ස්ථාපනයක කර නැත.</innerText>
+    </item>
+    <code id="plugin_uninstall">අස්ථාපනය කරන්න </code> 
+    <code id="plugin_confirm">ඔබට මෙම පේනු මෘදුකාංගය  ඉවත් කිරීමට  අවශ්‍ය බව විශ්වාසද?</code>
+  </window>
+  <window name="plugins">
+    <item id="btn_close">
+      <value>අවලංගු කරන්න </value>
+    </item>
+    <item id="txt_title">
+      <innerText>පේනු මෘදුකාංග බාගත කරන්න</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>අන්තර්ජාල සබැඳුමට පේනු මෘදුකාංග නාමාවලිය  පිරික්සන්නට අවශ්‍යවී ඇත.</innerText>
+    </item>
+    <item id="txt_loading">
+      <innerText>ආරම්භ වෙමින් පවතී....</innerText>
+    </item>
+    <code id="install">ස්ථාපනය  කරන්න </code>
+    <code id="cannot_download">වැරදුනි :පේනු මෘදුකාංග බාගත නොහැකිය.&#13;${0}</code>
+    <code id="invalid_xml">දත්ත මූලයෙහි වලංගු XML දත්ත  කිසිවක් අඩංගු නොවේ.</code>
+    <code id="no_new_plugins">කිසිදු  පේනු මෘදුකාංගක් නොපවතී.</code>
+  </window>
+  <window name="autoupdate">
+    <item id="txt-unavailable">
+      <innerText> කිසිදු  යාවත් කාලීන නොපවතී.</innerText>
+    </item>
+    <item id="txt-no-feed">
+      <innerText>යාවත් කාලීන සංග්‍රහයට සම්බන්ධ විය නොහැකිය. නැවත උත්සහ කරන්න.</innerText>
+    </item>
+    <item id="txt-available-updates">
+      <innerText>යාවත් කාලීන පවතී</innerText>
+    </item>
+    <item id="txt-tracks-info">
+      <innerText>විවිධ අනුවාදන වැඩි ස්ථායි බවක් හා නවතම දියුණු කිරීම් සපයයි.</innerText>
+    </item>
+    <item id="txt-latest">
+      <innerText>වර්තමාන පථයේ නවතම  අනුවාදන:</innerText>
+    </item>
+    <item id="txt-alternatives">
+      <innerText>විකල්ප අනුවාදන:</innerText>
+    </item>
+    <item id="btn-close">
+      <value>අවලංගු කරන්න </value>
+    </item>
+
+    <item id="txt-new-version">
+      <innerText>නව අනුවාදනයක්  පවතී.</innerText>
+    </item>
+    <item id="txt-whats-new">
+      <innerText>නවතම මොනවාද?</innerText>
+    </item>
+    <item id="txt-learn-more">
+      <innerText>මෙම යාවත් කාලීනය ගෙන එන දියුණු වීම් බලන්න.මෙම සබැඳිය ඔබගේ වෙබ් බ්‍රවුසරය තුල ආරම්භ වනු ඇත</innerText>
+    </item>
+    <item id="txt-continue">
+      <innerText> යාවත් කාලීන බාගැනෙනා තුර ඔබට තවදුරටත් ${softwarename}  භාවිතා කළ හැකිය.</innerText>
+    </item>
+    <item id="txt-restart">
+      <innerText>${softwarename} ප්‍රති පණ ගැන්වූ විට යාවත් කාලීන ස්ථාපනය වනු ඇත. ප්‍රති පණ ගැන්වීමකින් තොරව  ඔබට තවදුරටත් ${softwarename}  භාවිතා කළ හැකිය. ඔබට දැන් යලි අරඹා යාවත් කාලීන කිරීම අවශ්‍යද?</innerText>
+    </item>
+    <item id="txt-browser">
+      <innerText>බාගතවීම ඔබගේ වෙබ් බ්‍රවුසරය තුල ආරම්භ වනු ඇත.</innerText>
+    </item>
+    <item id="btn-update">
+      <value>දැන් යාවත්කාලීන කරන්න </value>
+    </item>
+    <item id="btn-download">
+      <value>දැන් බාගතකරන්න</value>
+    </item>
+    <item id="btn-later">
+      <value>පසුව </value>
+    </item>
+    <code id="up-to-date">දිනට</code>
+    <code id="previous-version">පෙර අනුවාදනය</code>
+    <code id="recommended">රෙකමදාරු කළ</code>
+    <code id="description-stable">ස්ථිර අනුවාදන දීර්ඝ කාලයක් තිස්සේ පරික්ෂා කරන ලදි.</code>
+    <code id="description-beta">පිරික්සමින් පවතින දෝෂ පිළියම් සහ අංග ඇතුළත් ය.</code>
+    <code id="description-development">මෙම කාර්යය තුර සමහර අංග නිසි පරිදි ක්‍රියා නොකරනු අත.</code>
+    <code id="title">මෘදුකාංගය යාවත් කාලීනය: ${0} ${1}</code>
+  </window>
+  <window name="welcome">
+    <item id="txt-hello">
+      <innerText>ආයුබෝවන්! ${softwarename} වෙත පිළිගනිමු!</innerText>
+    </item>
+    <item id="txt-free-software">
+      <innerText>මෙම යෙදුම නිදහස් සහ විවෘත මෘදුකාංගයකි. සියලුම දියුණු කිරීම්, පරිවර්තන සහ සහාය අපගේ සමාජයේ විශ්මිත සාමාජිකයන් විසිනි.</innerText>
+    </item>
+    <item id="txt-more-information">
+      <innerHTML>වැඩිදුර තොරතුරු සඳහා @&lt;a href="http://twitter.com/${twittername}"&gt;${twittername}&lt;/a&gt; Twitterහි  හෝ &lt;a href="http://www.facebook.com/${facebookpage}"&gt;Facebook.com/${facebookpage}&lt;/a&gt;හෝ හි රසිකයෙක් වන්න.</innerHTML>
+    </item>
+    <item id="txt-enjoy">
+      <innerText>ඔබ මෙම යෙදුම භාවිතා කිරීමෙන් සතුටුවේ යැ‍යි අප බලාපොරොතුවෙමු.</innerText>
+    </item>
+    <item id="txt-team">
+      <innerText>${softwarename} කණ්ඩායම</innerText>
+    </item>
+    <item id="settings-close">
+      <title>තහවුරු කර වසන්න</title>
+    </item>
+    <item id="btn-add-contact">
+      <innerText>අඳුනන අයෙකු එකතු කරගන්න</innerText>
+    </item>
+    <item id="btn-edit-profile">
+      <innerText>මගේ පැතිකඩ සංස්කරණය කරන්න</innerText>
+    </item>
+    <item id="btn-transports">
+      <innerText>ප්‍රවාහන</innerText>
+    </item>
+    <item id="btn-settings">
+      <innerText>සිටුවම්</innerText>
+    </item>
+    <item id="txt-confirm">
+      <innerText>මෙම සිටවුම් තහවුරු කරන්න:</innerText>
+    </item>
+    <item id="txt-default-xmpp">
+      <innerText>පෙරනිමි XMPP සේවාලාභියා ලෙස ${softwarename} භාවිත කරන්න.</innerText>
+    </item>
+    <item id="txt-homepage">
+      <innerText>මගේ මුල් පිටුව ලෙස ${browsersearchboxname} සකසන්න.</innerText>
+    </item>
+    <item id="txt-search-engine">
+      <innerText>සෙවුම් යන්ත්‍ර සඳහා ${browsersearchboxname} එකතු කරන්න</innerText>
+    </item>
+    <item id="txt-feed-title">
+      <innerText>සහයෝගය සහ ප්‍රතිචාර</innerText>
+    </item>
+    <item id="txt-ask-question">
+      <innerText>ප්‍රශ්නයක් අහන්න</innerText>
+    </item>
+    <item id="txt-powered-by">
+      <innerText>ජවය GetSatisfaction වෙතිනි</innerText>
+    </item>
+    <item id="txt-show-welcome">
+      <innerText>මෙම පිළිගැනීමේ තිරය ඇරඹුමේදී පෙන්වන්න</innerText>
+    </item>
+    <item id="btn-ok">
+      <value>හරි</value>
+    </item>
+    <code id="search-topics">සියලුම මාතෘකා සොයන්න...</code>
+  </window>
+  <window name="conference_create">
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+    <item id="btn_cancel">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>සියලුම සමුළු කාමරවලට අනන්‍ය ලිපිනයක්  පවතී. සමුළු සේවා ලිපිනය හා අනන්‍ය නම කාමරය සඳහා ඇතුලත් කරන්න .</innerText>
+    </item>
+    <item id="txt_service">
+      <innerText>සේවා ලිපිනය:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>උදාහරණයක් ලෙස: conference.example.net</innerText>
+    </item>
+    <item id="txt_room">
+      <innerText>සමුළු කාමරයේ නම:</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>සමුළු කාමරයේ ලිපිනය:</innerText>
+    </item>
+    <code id="incomplete">සියලු ක්ෂෙත්‍ර සම්පූර්ණ කරන්න...</code>
+  </window>
+  <window name="groupmessage">
+    <item id="btn_send">
+      <value>යවන්න</value>
+    </item>
+    <item id="btn_cancel">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <item id="txt_sendto">
+      <innerText>මේ අයට යවන්න :</innerText>
+    </item>
+     <item id="txt_normal">
+      <innerText>සාමාන්‍ය පණිවිඩ</innerText>
+    </item>
+    <item id="txt_alert">
+      <innerText>සාවදාන  දැනුම්දීම්</innerText>
+    </item>
+    <item id="txt_type">
+      <innerText>පණිවිඩ වර්ගය</innerText>
+    </item>
+    <item id="txt_attach">
+      <innerText>අදිබැඳියක් අමුණන්න</innerText>
+    </item>
+    <item id="txt_message">
+      <innerText>පණිවිඩ</innerText>
+    </item>
+  </window>
+  <window name="extension_download">
+    <item id="btn_cancel">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <item id="txt_status">
+      <innerText>සබඳිමින්...</innerText>
+    </item>
+    <code id="downloading">බාගත කෙරෙමින්...</code>
+  </window>
+  <window name="file_recv">
+    <item id="btn_close">
+      <value>වසන්න</value>
+    </item>
+    <item id="btn_accept">
+      <value>පිළිගන්න</value>
+    </item>
+    <item id="btn_abort">
+      <value>නවත්වන්න</value>
+    </item>
+    <item id="btn_open">
+      <value>විවෘත කරන්න</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>ඉතිරිව ඇති කාලය:</innerText>
+    </item>
+    <item id="txt_sender">
+      <innerText>යවන්නා:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>ගොනු නාමය:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>ස්ථානය:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>ප්‍රගතිය:</innerText>
+    </item>
+    <code id="resume">ගොනුව පවතී.ඔබට මාරුව නැවත සිදුකිරීමට අවශ්‍යද? ?&#13; නැවත සිදුකිරීමට ඔව් ක්ලික් කරන්න.&#13;ගොනුව මතම යළි ලිවීම සඳහා නැත ක්ලික් කරන්න.</code>
+    <code id="cannot_overwrite">ගොනුව මතම යළි ලිවීම සිදුකල නොහැක:&#13;${0}&#13;${1}</code>
+    <code id="incorrect">මාරුව ආරම්භ කල නොහැක.  ලැබී ඇති දත්ත නිරවද්‍ය නොවේ.</code>
+    <code id="title_saving">${0}% ගෙන් ${1} සුරැකිය</code>
+    <code id="lessthanminute">${0}/s සඳහා මිනිත්තුවකට වඩා අඩුවෙන්</code>
+    <code id="onehour">පැයක් සහ</code>
+    <code id="hours">${0} පැයක් සහ</code>
+    <code id="oneminute">මිනිත්තුවක් සඳහා</code>
+    <code id="minutes">${0} සඳහා මිනිත්තුවකි</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">ඔබට මාරුව නැවත්වීමට අවශ්‍යද?</code>
+    <code id="aborted">නැවතුනි</code>
+    <code id="finished">අවසානයි</code>
+    <code id="error_timeout">වේලාව ඉකුත් විය.</code>
+    <code id="error_code">දෝෂ කේතය: ${0}</code>
+    <code id="error_file">ගොනු දෝෂ කේතය: ${0}</code>
+    <code id="title_completed">මාරුව සම්පූර්ණයි - ${0}</code>
+    <code id="title_failed">මාරුව  බිඳ වැටුනි - ${0}</code>
+    <code id="error_move">සම්පූර්ණ කල ගොනුව ගෙන යා නොහැක:&#13;${0}&#13;${1}</code>
+    <code id="error_failed">මාරුව  බිඳවැටුනි.</code>
+  </window>
+  <window name="file_send">
+    <item id="btn_close">
+      <value>වසන්න</value>
+    </item>
+    <item id="btn_abort">
+      <value>නවත්වන්න</value>
+    </item>
+    <item id="txt_timeleft">
+      <innerText>ඉතිරිව ඇති කාලය:</innerText>
+    </item>
+    <item id="txt_recipient">
+      <innerText>ලබන්නා:</innerText>
+    </item>
+    <item id="txt_filename">
+      <innerText>ගොනු නාමය:</innerText>
+    </item>
+    <item id="txt_location">
+      <innerText>ස්ථානය:</innerText>
+    </item>
+    <item id="txt_progress">
+      <innerText>ප්‍රගතිය:</innerText>
+    </item>
+    <code id="socket">ගොනුව ‍යැවිය නොහැක.&#13;ජාල සොකට්ටුව විවෘත කළ නොහැක.</code>
+    <code id="file">ගොනුව කියවිය නොහැක:&#13;${0}</code>
+    <code id="filetransfer">ගොනු මාරුව:</code>
+    <code id="title_saving">${0}% ගෙන් ${1} යැවීය</code>
+    <code id="lessthanminute">${0}/s සඳහා මිනිත්තුවකට වඩා අඩුවෙන්</code>
+    <code id="onehour">පැයක් සහ</code>
+    <code id="hours">${0} පැයක් සහ</code>
+    <code id="oneminute">මිනිත්තුවක් සඳහා</code>
+    <code id="minutes">${0} සඳහා මිනිත්තුවකි</code>
+    <code id="speed">${0}/s</code>
+    <code id="abort">ඔබට මාරුව නැවත්වීමට අවශ්‍යද?</code>
+    <code id="finished">නැවතුනි</code>
+    <code id="aborted">අවසානයි</code>
+    <code id="error_denied">ගොනුව ප්‍රතික්ෂේප වී ඇත.</code>
+    <code id="error_timeout">වේලාව ඉකුත් විය.</code>
+    <code id="error_code">දෝෂ කේතය: ${0}</code>
+    <code id="title_completed">මාරුව සම්පූර්ණයි - ${0}</code>
+    <code id="title_failed">මාරුව  බිඳවැටුනි - ${0}</code>
+    <code id="error_failed">මාරුව  බිඳවැටුනි.</code>
+  </window>
+  <window name="conference_browse">
+    <item id="btn_close">
+      <value>වසන්න</value>
+    </item>
+    <item id="btn_other_service">
+      <value>අනෙකුත් සේවා...</value>
+    </item>
+    <item id="btn_create">
+      <value>සමුළු කාමරයක් සාදන්න</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>යෝජ්‍ය කාමර:</innerText>
+    </item>
+    <item id="lbl_empty">
+      <innerText>හිස් කාමර පෙන්වන්න</innerText>
+      <accessKey>එ</accessKey>
+    </item>
+    <item id="lbl_full">
+      <innerText>සම්පූර්ණ කාමර පෙන්වන්න</innerText>
+      <accessKey>ෆ්</accessKey>
+    </item>
+    <item id="lbl_filter">
+      <innerText>පෙරහන:</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>මෙම සේවාදායකය තුල සමුළු පහසුකම් යෝජිත නැත.&#13;බොත්තම ක්ලික් කරන්න "අනෙකුත් සේවාවන්..." අනෙකුත් සේවාදායකයකින් සමුළු පහසුකම ලබා ගැනීමට.</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>සමුළුව කාමරයට  පිවිසීම සඳහා ක්ෂණික පණිවිඩ සේවදායකයක් සමග සම්බන්ධ විය යුතුය.</innerText>
+    </item>
+    <code id="bookmarks">පොත් සළකුන</code>
+    <code id="menu_join">පිවිසෙන්න</code>
+    <code id="menu_add">පොත් සළකුනු සඳහා ඇතුලත් කරන්න...</code>
+    <code id="empty_filter">පෙරහන සඳහා ගැලපෙන කාමර නොමැත</code>
+    <code id="empty_no_rooms">මෙම සේවාදායකය තුල යෝජිත කාමර නොමැත</code>
+    <code id="status_connecting">සම්බන්ධ වෙමින්...</code>
+    <code id="status_downloading">සමුළුව කාමරලේඛනය නැවත ලබා දෙමින්...</code>
+    <code id="error_unknown">සේවාව  "${0}" යෝජිත නැත. නිවැරදි ලිපිනය ඇතුලත් කල බවට තහවුරු කර ගන්න. පසුව නැවත උත්සාහ කරන්න හෝ වෙනත් ලිපිනයක් ඇතුලත් කරන්න.</code>
+    <code id="error_no_services">සේවාදායකය "${0}" සමුළුව සේවාව ස්ථාපිත කොට නැත. තවත් තොරතුරු ලබා ගැනීම සඳහා පරිපාලක සමඟ සම්බන්ධ වන්න.</code>
+    <code id="error_no_new">සේවදායකයේ සියලු සංවාද සේවාවන්  "${0}" දැනටමත්  ලැයිස්තු ගත කොට ඇත.</code>
+  </window>
+  <window name="conference_other">
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+    <item id="btn_cancel">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <item id="txt_address">
+      <innerText>ලිපිනය:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>උදාහරණය: conference.example.net</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>සේවදායකයේ හෝ ස්ංවාද සේවාවෙහි ලිපිනය ඇතුලත් කරන්න.</innerText>
+    </item>
+    <code id="error_already_exists">සේවාව"${0}" ලැයිස්තු ගත කොට ඇත.ලැයිස්තු ගත කොට නැති සේවාවක හෝ සේවාදායක ලිපිනය ඇතුලත් කරන්න.</code>
+  </window>
+  <window name="vcard">
+    <code id="save">අනතුරු ඇඟවීම : ව්කාර්ඩ් ගොනුව සුරැකිය නොහැක.&#13;${0}</code>
+    <code id="personal">භාවිතා කරන්නන්ගේ තොරතුරු </code>
+    <code id="system">පද්ධති තොරතුරු</code>
+
+    <item id="txt_requesting1">
+      <innerText>සේවාදායකයාගෙන් තොරතුරු ඉල්ලීමක් සිදුකරමින්</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>මේ සඳහා මිනිත්තුවක් ගතවිය හැක .&lt;BR&gt;කරුණාකර රැඳී සිටින්න.</innerHTML>
+    </item>
+
+    <item id="btn_save">
+      <value>ව්කාර්ඩ්  ලෙස සුරකින්න</value>
+    </item>
+    <item id="btn_refresh">
+      <value>නැවුම් කරන්න</value>
+    </item>
+    <item id="btn_close">
+      <value>වසන්න</value>
+    </item>
+
+    <item id="btn_undo">
+      <value>වෙනස්කම් නැවත හරවන්න </value>
+    </item>
+    <item id="btn_cancel">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+
+    <item id="txt_s1">
+      <innerText>පුද්ගල තොරතුරු</innerText>
+    </item>
+    <item id="txt_s2">
+      <innerText>අතිරේක තොරතුරු</innerText>
+    </item>
+    <item id="txt_s3">
+      <innerText>නිවසෙහි ලිපිනය</innerText>
+    </item>
+    <item id="txt_s4">
+      <innerText>ව්‍යාපාර</innerText>
+    </item>
+    <item id="txt_s5">
+      <innerText>ව්‍යාපාරික ලිපිනය</innerText>
+    </item>
+    <item id="txt_s6">
+      <innerText>පද්ධතිය</innerText>
+    </item>
+
+    <item id="txt_name">
+      <innerText>නම</innerText>
+    </item>
+    <item id="txt_given">
+      <innerText>පළමු නම:</innerText>
+    </item>
+    <item id="txt_middle">
+      <innerText>මැද නම:</innerText>
+    </item>
+    <item id="txt_family">
+      <innerText>අවසාන නම:</innerText>
+    </item>
+    <item id="txt_nick">
+      <innerText>විකට නාම:</innerText>
+    </item>
+
+    <item id="txt_contact">
+      <innerText>සම්බන්ධතා</innerText>
+    </item>
+    <item id="txt_email1">
+      <innerText>විද්යුත් ලිපිනය:</innerText>
+    </item>
+    <item id="txt_homevoice">
+      <innerText>දුරකථන:</innerText>
+    </item>
+    <item id="txt_homecell">
+      <innerText>ජංගම දුරකථන:</innerText>
+    </item>
+    <item id="txt_homefax">
+      <innerText>ෆැක්ස්:</innerText>
+    </item>
+
+    <item id="txt_additional">
+      <innerText>අතිරේක තොරතුරු</innerText>
+    </item>
+    <item id="txt_age">
+      <innerText>වයස:</innerText>
+    </item>
+    <item id="txt_bday">
+      <innerText>උපන් දිනය:</innerText>
+    </item>
+    <item id="txt_gender">
+      <innerText>ස්ත්‍රී/පුරුෂ භාවය:</innerText>
+    </item>
+    <item id="txt_marital">
+      <innerText>විවාහක/ අවිවාහක බව:</innerText>
+    </item>
+    <item id="txt_url">
+      <innerText>වෙබ් අඩවිය:</innerText>
+    </item>
+
+    <item id="txt_homeaddress">
+      <innerText>නිවසෙහි ලිපිනය</innerText>
+    </item>
+    <item id="txt_homestreet">
+      <innerText>ලිපිනය 1:</innerText>
+    </item>
+    <item id="txt_homeextadd">
+      <innerText>ලිපිනය 2:</innerText>
+    </item>
+    <item id="txt_homelocality">
+      <innerText>නගරය:</innerText>
+    </item>
+    <item id="txt_homepcode">
+      <innerText>තැපැල් කේතය:</innerText>
+    </item>
+    <item id="txt_homeregion">
+      <innerText>තත්වය:</innerText>
+    </item>
+    <item id="txt_homecountry">
+      <innerText>රට:</innerText>
+    </item>
+
+    <item id="txt_organization">
+      <innerText>සංවිධානය</innerText>
+    </item>
+    <item id="txt_orgname">
+      <innerText>නම:</innerText>
+    </item>
+    <item id="txt_orgunit">
+      <innerText>ශාඛාව:</innerText>
+    </item>
+    <item id="txt_title">
+      <innerText>ශීර්ෂය:</innerText>
+    </item>
+    <item id="txt_role">
+      <innerText>භූමිකාව:</innerText>
+    </item>
+
+    <item id="txt_workcontact">
+      <innerText>සම්බන්ධතා</innerText>
+    </item>
+    <item id="txt_email2">
+      <innerText>විද්යුත් ලිපිනය:</innerText>
+    </item>
+    <item id="txt_workvoice">
+      <innerText>දුරකථන:</innerText>
+    </item>
+    <item id="txt_workcell">
+      <innerText>ජංගම දුරකථන:</innerText>
+    </item>
+    <item id="txt_workfax">
+      <innerText>ෆැක්ස්:</innerText>
+    </item>
+
+    <item id="txt_business_address">
+      <innerText>ව්‍යාපාරික ලිපිනය</innerText>
+    </item>
+    <item id="txt_workstreet">
+      <innerText>ලිපිනය 1:</innerText>
+    </item>
+    <item id="txt_workextadd">
+      <innerText>ලිපිනය 2:</innerText>
+    </item>
+    <item id="txt_worklocality">
+      <innerText>නගරය:</innerText>
+    </item>
+    <item id="txt_workpcode">
+      <innerText>තැපැල් කේතය:</innerText>
+    </item>
+    <item id="txt_workregion">
+      <innerText>තත්වය:</innerText>
+    </item>
+    <item id="txt_workcountry">
+      <innerText>රට:</innerText>
+    </item>
+
+    <item id="txt_client">
+      <innerText>සේවාලාභියාගේ තොරතුරු</innerText>
+    </item>
+    <item id="txt_jid">
+      <innerText> ලිපිනය:</innerText>
+    </item>
+    <item id="txt_res">
+      <innerText>සම්පත්:</innerText>
+    </item>
+    <item id="txt_time">
+      <innerText>පෙදෙසි වේලාව:</innerText>
+    </item>
+    <item id="txt_software">
+      <innerText>මෘදුකාංග:</innerText>
+    </item>
+    <item id="txt_version">
+      <innerText>අනුවාදය:</innerText>
+    </item>
+    <item id="txt_os">
+      <innerText>මෙහෙයුම් පද්ධතිය:</innerText>
+    </item>
+  </window>
+  <window name="transport_list">
+    <item id="btn_other">
+      <value>අනෙකුත් ප්‍රවාහන...</value>
+    </item>
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+    <item id="txt_title">
+      <innerText>යෝජිත ප්‍රවාහන</innerText>
+    </item>
+    <item id="txt_subtitle">
+      <innerText>ප්‍රවාහන අනෙකුත් ක්ෂණික ජාල සමඟ සබැඳියන් ලබාදෙයි..</innerText>
+    </item>
+    <item id="transport_connected">
+      <innerHTML>&lt;B&gt;සටහන:&lt;/B&gt; ප්‍රවාහන වින්‍යාස කිරීම සඳහා ඔබ ක්ෂණික පණිවිඩ සේවාදායකය සමග සම්බන්ධ විය යුතුය.</innerHTML>
+    </item>
+    <item id="transport_unsupported">
+      <innerHTML>&lt;B&gt;සටහන:&lt;/B&gt; ඔබ සම්බන්ධ වූ සේවාදායකයා සතුව ප්‍රවාහනය ස්ථාපනය කොට නැත.වැඩිදුර තොරතුරු ලබා ගැනීම සඳහා පරිපාලක සමඟ සම්බන්ධ වන්න.</innerHTML>
+    </item>
+    <code id="status_active">ක්‍රියාත්මකයි</code>
+    <code id="status_noreg">ලියාපදිංචිවී නැත</code>
+    <code id="status_disconnected">සම්බන්ධවී නැත</code>
+    <code id="status_connecting">සම්බන්ධ වෙමින්...</code>
+    <code id="name_unknown">නොහඳුනන සේවාදායකයකි</code>
+    <code id="error_unknown">සේවාව "${0}"  යෝජිත නැත. ඔබ නිවැරදි ලිපිනය ඇතුලත් කල බවට තහවුරු කරන්න. පසුව නැවත උත්සාහ කරන්න හෝ වෙනත් ලිපිනයක් ඇතුලත් කරන්න.</code>
+    <code id="error_no_transports">සේවාදායකය "${0}" සතුව ප්‍රවාහනය ස්ථාපනය කොට නැත. වැඩිදුර තොරතුරු ලබා ගැනීම සඳහා පරිපාලක සමඟ සම්බන්ධ වන්න.</code>
+    <code id="error_no_new_transport">සේවදායකය සතු සියළු ප්‍රවාහන "${0}" ලැයිස්තු ගත කොට ඇත.</code>
+  </window>
+  <window name="transport_other">
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+    <item id="btn_cancel">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <item id="txt_address">
+      <innerText>ලිපිනය:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>උදාහරණය: sms.example.net</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>සේවදායකයේ හෝ  ප්‍රවාහනයෙහි ලිපිනය ඇතුලත් කරන්න.</innerText>
+    </item>
+    <code id="error_already_exists">සේවාව "${0}" ලැයිස්තු ගත කොට ඇත. ලැයිස්තු ගත කොට නැති  ප්‍රවාහන හෝ සේවාදායක ලිපිනය ඇතුලත් කරන්න.</code>
+  </window>
+  <window name="transport_register">
+    <item id="btn_back">
+      <value>&lt; නැවත</value>
+    </item>
+    <item id="btn_next">
+      <value>ඊළඟ &gt;</value>
+    </item>
+    <item id="btn_finish">
+      <value>අවසානයි</value>
+    </item>
+    <item id="btn_cancel">
+      <innerText>අවලංගු කරන්න</innerText>
+    </item>
+
+    <item id="txt_old_addr">
+      <innerText>ලිපිනය:</innerText>
+    </item>
+    <item id="txt_old_nick">
+      <innerText>විකට නම:</innerText>
+    </item>
+    <item id="txt_new_addr">
+      <innerText>ලිපිනය:</innerText>
+    </item>
+    <item id="txt_password">
+      <innerText>මුර පදය:</innerText>
+    </item>
+    <item id="txt_new_nick">
+      <innerText>විකට නම:</innerText>
+    </item>
+    <item id="txt_registered">
+      <innerHTML>ඔබ දැනටමත් මෙම ප්‍රවාහනය සමඟ ලියාපදිංචිවී  ඇත.&lt;BR&gt;ඔබ ලියාපදිංචිවී ඇති ගිණුම නම් :</innerHTML>
+    </item>
+    <item id="btn_remove">
+      <value>ප්‍රවාහනය අක්‍රීය කරන්න</value>
+    </item>
+
+    <item id="txt_requesting1">
+      <innerText>සේවාදායකය සම්බන්ධ වෙමින්</innerText>
+    </item>
+    <item id="txt_requesting2">
+      <innerHTML>මේ සඳහා මිනිත්තු කිහිපයක් ගතවිය හැක.&lt;BR&gt;කරුණාකර  රැඳී සිටින්න.</innerHTML>
+    </item>
+
+    <item id="clickfinish">
+      <innerHTML>මෙම විශාරදය වසා දැමීම සඳහා, ක්ලික් කරන්න &lt;B&gt;අවසානයි&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="clicknext">
+      <innerHTML>පවත්වා ගෙන යාම සඳහා, ක්ලික් කරන්න &lt;B&gt;Next&lt;/B&gt;.</innerHTML>
+    </item>
+
+    <code id="error_invalid">ලැබුනු දත්ත නිවැරදි නැත</code>
+    <code id="error_server">&lt;B&gt;සේවාදායකයෙහි දෝශයකි:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;පවත්වා ගෙන යා නොහැක.</code>
+    <code id="error_unknown">&lt;B&gt;නොහඳුනන දෝශයකි:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;පවත්වා ගෙන යා නොහැක.</code>
+    <code id="error_auth">&lt;B&gt;අවසර ලබා දීමේ දෝශය:&lt;/B&gt;&lt;BR&gt;මුර පදය හෝ ලිපිනය නිවැරදි නැත.&lt;BR&gt;&lt;BR&gt;පවත්වා ගෙන යා නොහැක.</code>
+    <code id="wait">&lt;B&gt;සේවාදායකය සම්බන්ධ කරමින්&lt;/B&gt;&amp;nbsp;&lt;IMG src="../images/misc/ooo.gif"&gt;&lt;BR&gt;&lt;BR&gt;මේ සඳහා මිනිත්තු කිහිපයක් ගතවිය හැක.&lt;BR&gt;කරුණාකර  රැඳී සිටින්න.&lt;BR&gt;</code>
+
+    <code id="default_window_title">ප්‍රවාහන වින්‍යාස කිරීම</code>
+    <code id="default_begin_intro">මෙම විශාරදය ඔබට ප්‍රවාහනය වින්‍යාස කිරීම සඳහා උදව් සපයයි.&lt;BR&gt;මෙම ප්‍රවාහනය ඔබ සහ අනෙකුත් ජාලයක් සබැඳි කරවයි.&lt;BR&gt;මෙම ප්‍රවාහනය භාවිතා කිරීම සඳහා ඔබට වෙනත් ජාලයක ගිණුමක් පැවතීම අනිවාර්ය වෙයි.&lt;BR&gt;</code>
+    <code id="default_newaccount_instructions">ඔබගේ ගිණුම සහ මුර පදය ඇතුලත් කරන්න.&lt;BR&gt;ඔබට සියළුම පරිශීලකයන්ට දැක ගැනීම සඳහා විකට නමක් ඇතුලත් කල හැකිය.&lt;BR&gt;</code>
+    <code id="default_newaccount_examples">&amp;nbsp;</code>
+    <code id="default_creating_busy">ඔබගේ ගිණුම ප්‍රවාහනය සමග ලියාපදිංචි කර ඇත.</code>
+    <code id="default_removing_busy">ඔබගේ ගිණුම ප්‍රවාහනය තුලින් ඉවත් කර ඇත.&lt;BR&gt;</code>
+    <code id="default_creating_done">ඔබගේ ගිණුම ප්‍රවාහනය සමග සාර්ථක ලෙස ලියාපදිංචි කර ඇත.</code>
+    <code id="default_removing_done">ඔබගේ ගිණුම ප්‍රවාහනය සමග සාර්ථක ලෙස ලියාපදිංචි වී නොමැත.</code>
+
+    <code id="msn_window_title">MSN පණිවිඩකරු - ප්‍රවාහනය වින්‍යාස</code>
+    <code id="msn_begin_intro">මෙම විශාරදය ඔබට MNS ප්‍රවාහනය වින්‍යාස කිරීම සඳහා උදවු සපයනු ඇත.&lt;BR&gt;මෙම ප්‍රවාහනය ඔබ සහ  MNS ගිණුමක් සබැඳි කරවයි.&lt;BR&gt;මෙම ප්‍රවාහනය භාවිතා කිරීම සඳහා ඔබට මයික්‍රොසොෆ්ට් බලපත්‍රයක් පැවතිය යුතුය.&lt;BR&gt;</code>
+    <code id="msn_newaccount_instructions">ඔබගේ  MSN ලිපිනය සහ  MSN මුර පදය ඇතුලත් කරන්න.&lt;BR&gt;ඔබට සියළුම පරිශීලකයන්ට දැක ගැනීම සඳහා විකට නමක් ඇතුලත් කල හැකිය.&lt;BR&gt;</code>
+    <code id="msn_newaccount_examples">උදාහරණ: someone@msn.com, someone@hotmail.com</code>
+    <code id="msn_creating_busy">ඔබගේ   ගිණුම  MSN ප්‍රවාහනය සමග ලියාපදිංචි කර ඇත.</code>
+    <code id="msn_removing_busy">ඔබගේ  MSN ගිණුම ප්‍රවාහනය තුලින් ඉවත් කර ඇත.&lt;BR&gt;ඔබට තවමත් ඔබගේ  MSN ගිණුම අනෙකුත් සේවාවක් සමග භාවිතා කල හැක (eg. Hotmail, MSN Explorer, etc.).&lt;BR&gt;</code>
+    <code id="msn_creating_done">ඔබගේ ගිණුම  MSN ප්‍රවාහනය සමග සාර්ථක ලෙස ලියාපදිංචි කර ඇත.</code>
+    <code id="msn_removing_done">ඔබගේ ගිණුම MSN ප්‍රවාහනය සමග සාර්ථක ලෙස ලියාපදිංචි වී නොමැත.</code>
+
+    <code id="icq_window_title">ICQ - ප්‍රවාහන වින්‍යාස</code>
+    <code id="icq_begin_intro">මෙම විශාරදය ඔබට ICQ ප්‍රවාහනය වින්‍යාස කිරීම සඳහා උදවු සපයනු ඇත.&lt;BR&gt;මෙම ප්‍රවාහනය ඔබ සහ  ICQ ගිණුමක් සබැඳි කරවයි.&lt;BR&gt;මෙම ප්‍රවාහනය භාවිතා කිරීම සඳහා ඔබට පර්ශීලක හඳුනා ගැනීමේ අංකයක් පැවතීම අනිවාර්ය වෙයි (ICQ &lt;BR&gt;number) .&lt;BR&gt;</code>
+    <code id="icq_newaccount_instructions">ඔබගේ  ICQ අංකය සහ ICQ මුර පදය ඇතුලත් කරන්න.&lt;BR&gt;ඔබට සියළුම පරිශීලකයන්ට දැක ගැනීම සඳහා විකට නමක් ඇතුලත් කල හැකිය.&lt;BR&gt;</code>
+    <code id="icq_newaccount_examples">උදාහරණ: 39230793, 158525087</code>
+    <code id="icq_creating_busy">ඔබගේ   ගිණුම  ICQ ප්‍රවාහනය සමග ලියාපදිංචි කර ඇත.</code>
+    <code id="icq_removing_busy">ඔබගේ  ICQ ගිණුම ප්‍රවාහනය තුලින් ඉවත් කර ඇත.&lt;BR&gt;</code>
+    <code id="icq_creating_done">ඔබගේ ගිණුම  ICQ ප්‍රවාහනය සමග සාර්ථක ලෙස ලියාපදිංචි කර ඇත.</code>
+    <code id="icq_removing_done">ඔබගේ ගිණුම ICQ ප්‍රවාහනය සමග සාර්ථක ලෙස ලියාපදිංචි වී නොමැත.</code>
+
+    <code id="yahoo_window_title">Yahoo!පණිවිඩකරු - ්‍රවාහන වින්‍යාස</code>
+    <code id="yahoo_begin_intro">මෙම විශාරදය ඔබට  Yahoo!ප්‍රවාහනය වින්‍යාස කිරීම සඳහා උදවු සපයනු ඇත.&lt;BR&gt;මෙම ප්‍රවාහනය ඔබ සහ  Yahoo! ගිණුමක් සබැඳි කරවයි.&lt;BR&gt;මෙම ප්‍රවාහනය භාවිතා කිරීම සඳහා ඔබට  Yahoo! ගිණුමක් පැවතිය යුතුය .&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_instructions">ඔබගේ  Yahoo!පරිශීලක නමසහ Yahoo! මුර පදය ඇතුලත් කරන්න.&lt;BR&gt;</code>
+    <code id="yahoo_newaccount_examples">&amp;nbsp;</code>
+    <code id="yahoo_creating_busy">ඔබගේ   ගිණුම  Yahoo! ප්‍රවාහනය සමග ලියාපදිංචි කර ඇත.</code>
+    <code id="yahoo_removing_busy">ඔබගේ  Yahoo! ගිණුම ප්‍රවාහනය තුලින් ඉවත් කර ඇත.&lt;BR&gt;ඔබට තවමත් ඔබගේ  Yahoo! ගිණුම් අනෙකුත් සේවාවන් සමඟ භාවිතා කළ හැක.  (eg. Yahoo! mail, Yahoo! Messenger, etc.).&lt;BR&gt;</code>
+    <code id="yahoo_creating_done">ඔබගේ ගිණුම  Yahoo! ප්‍රවාහනය සමග සාර්ථක ලෙස ලියාපදිංචි කර ඇත.</code>
+    <code id="yahoo_removing_done">ඔබගේ ගිණුම Yahoo! ප්‍රවාහනය සමග සාර්ථක ලෙස ලියාපදිංචි වී නොමැත.</code>
+
+    <code id="aim_window_title">AOL ක්ෂණික පණිවිඩකරු - ප්‍රවාහන වින්‍යාස</code>
+    <code id="aim_begin_intro">මෙම විශාරදය ඔබට  AOL IM ප්‍රවාහනය වින්‍යාස කිරීම සඳහා උදවු සපයනු ඇත.&lt;BR&gt;මෙම ප්‍රවාහනය ඔබ සහ  AOL IM ගිණුමක් සබැඳි කරවයි.&lt;BR&gt;මෙම ප්‍රවාහනය භාවිතා කිරීම සඳහා ඔබට  AOL IM ගිණුමක් පැවතිය යුතුය.&lt;BR&gt;</code>
+    <code id="aim_newaccount_instructions">ඔබගේ   AOL IM තිර නමසහ මුර පදය ඇතුලත් කරන්න.&lt;BR&gt;</code>
+    <code id="aim_newaccount_examples">&amp;nbsp;</code>
+    <code id="aim_creating_busy">ඔබගේ   ගිණුම  AOL IM ප්‍රවාහනය සමග ලියාපදිංචි කර ඇත.</code>
+    <code id="aim_removing_busy">ඔබගේ AOL IM ගිණුම ප්‍රවාහනය තුලින් ඉවත් කර ඇත.&lt;BR&gt;ඔබට තවමත් ඔබගේ AOL IM ගිණුම අනෙකුත් මෘදුකාංග සමග භාවිතා කල හැක.&lt;BR&gt;</code>
+    <code id="aim_creating_done">ඔබගේ ගිණුම  AOL IM ප්‍රවාහනය සමග සාර්ථක ලෙස ලියාපදිංචි කර ඇත.</code>
+    <code id="aim_removing_done">ඔබගේ ගිණුම AOL IM  ප්‍රවාහනය සමග සාර්ථක ලෙස ලියාපදිංචි වී නොමැත.</code>
+
+    <code id="gadu_window_title">Gadu-Gadu - ප්‍රවාහන වින්‍යාස </code>
+    <code id="gadu_begin_intro">මෙම විශාරදය ඔබට Gadu-Gadu ප්‍රවාහනය වින්‍යාස කිරීම සඳහා උදවු සපයනු ඇත.&lt;BR&gt;මෙම ප්‍රවාහනය ඔබ සහ  Gadu-Gadu ගිණුමක් සබැඳි කරවයි.&lt;BR&gt;මෙම ප්‍රවාහනය භාවිතා කිරීම සඳහා ඔබට  Gadu-Gadu අංකය පැවතිය යුතුය.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_instructions">ඔබගේ Gadu-Gadu අංකය සහ මුර පදය ඇතුලත් කරන්න.&lt;BR&gt;ඔබට සියළුම පරිශීලකයන්ට දැක ගැනීම සඳහා විකට නමක් ඇතුලත් කල හැකිය.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_examples">&amp;nbsp;</code>
+    <code id="gadu_creating_busy">ඔබගේ  Gadu-Gadu අංකය  ගිණුම  ප්‍රවාහනය සමග ලියාපදිංචි කර ඇත.</code>
+    <code id="gadu_removing_busy">ඔබගේ  Gadu-Gadu අංකය  ගිණුම  ප්‍රවාහනය තුලින් ඉවත් කර ඇත.&lt;BR&gt;</code>
+    <code id="gadu_creating_done">ඔබගේ  Gadu-Gadu අංකය  ප්‍රවාහනය සමග සාර්ථක ලෙස ලියාපදිංචි කර ඇත.</code>
+    <code id="gadu_removing_done">Gadu-Gadu අංකය  ප්‍රවාහනය සමග සාර්ථක ලෙස ලියාපදිංචි වී නොමැත.</code>
+  </window>
+  <window name="history">
+    <item id="btn_go">
+      <innerText>යන්න</innerText>
+    </item>
+    <item id="txt_save">
+      <innerText>සුරකින්න</innerText>
+    </item>
+    <item id="txt_print">
+      <innerText>මුද්‍රණය කරන්න</innerText>
+    </item>
+    <item id="txt_erase">
+      <innerText>මකන්න</innerText>
+    </item>
+    <item id="txt_history">
+      <innerText>පණිවිඩ ඉතිහාසය</innerText>
+    </item>
+    <item id="txt_search">
+      <innerText>සොයන්න:</innerText>
+    </item>
+    <code id="loading">පණිවිඩ ඉතිහාසය ආරම්භ වෙමින් පවතී...</code>
+    <code id="empty">පණිවිඩ ඉතිහාසයක් නොමැත .</code>
+    <code id="error_load">පණිවිඩ ඉතිහාසය ආරම්භ කල නොහැක:&#13;${0}</code>
+    <code id="one_message">එක පණිවිඩක්</code>
+    <code id="many_messages">${0} පණිවිඩ</code>
+    <code id="tooltip_save">මෙම දිනය සඳහා පණිවිඩ ඉතිහාසය සුරකින්න</code>
+    <code id="tooltip_print">මෙම දිනයේ පණිවිඩ ඉතිහාසය මුද්‍රණය කරන්න</code>
+    <code id="error_open">දෝශයකි: පණිවිඩ ඉතිහාසය විවෘත කල නොහැක.</code>
+    <code id="error_read">දෝශයකි: පණිවිඩ ඉතිහාසය කියවිය නොහැක.</code>
+    <code id="delete_confirm">ඔබට ${0} දිනය  දක්වා සියළුම පණිවිඩ ඉතිහාසය මකා දැමිය යුතු බවට විශ්වාසද ?</code>
+    <code id="delete_cannot">ඉතිහාස ගොනුව විවෘත කළ නොහැක: ${0}&#13;කිසිදු පණිවිඩයක් මකා දැමිය නොහැක.</code>
+    <code id="error_print">කිසිවක් මුද්‍රණය කළ නොහැක.&#13;පණිවිඩ ඉතිහාසයක් නොමැත.</code>
+    <code id="error_save">පණිවිඩ ඉතිහාසය සුරැකිය නොහැක.&#13;${0}</code>
+  </window>
+  <window name="chat-messages">
+    <code id="copy">පිටපත</code>
+    <code id="copyall">සියළු පිටපත්</code>
+    <code id="clear">හිස් කරන්න</code>
+    <code id="selectall">සියල්ල තෝරන්න</code>
+  </window>
+  <window name="chat-container">
+    <item id="btn-emoticons">
+      <title>ඔබ සිතන දෙය හෝ කරන දෙය පෙන්වන්න</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>පෙළ වර්ණය හෝ වර්ගය වෙනස් කරන්න</title>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>වෙනස් පසුබිම්ක් තෝරන්න</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>භාව</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>ෆොන්ටය</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>පසුබිම</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>පණිවිඩය ඇතුලත් කරන ක්ෂේත්‍රයේ ප්‍රමාණය වෙනස් කරන්න</title>
+    </item>
+    <item id="mode-bar">
+      <title>ඔබගේ පණිවිඩ ලබා ගන්නා පුද්ගලයා</title>
+    </item>
+    <item id="send-text">
+      <title>ඔබගේ පණිවිඩය මෙහි ලියනය කරන්න </title>
+    </item>
+    <item id="btn-send">
+      <value>යවන්න</value>
+      <title>පණිවිඩය යවන්න</title>
+      <accessKey>s</accessKey>
+    </item>
+
+    <code id="tt-avatar">මූර්ති සම්පූර්ණ වශයෙන් පෙන්වන්න</code>
+    <code id="tt-messages">යැවුනු සහ ලැබුනු පණිවිඩ</code>
+    <code id="tt-close">මෙම සංවාදය අවසාන කරන්න</code>
+    <code id="msg_typing">${0} පණිවිඩයක් ලියනය කරමින්</code>
+    <code id="unknown">${0} ඔහුගේ හෝ ඇයගේ තත්වය නොදන්නා බැවින් ඇතැම් විට ප්‍රතිචාරයක් බලාපොරොත්තු විය හැක </code>
+    <code id="lastonline">අවසන් වරට සබැඳි: ${0}</code>
+    <code id="windowtitle">${0} - සංවාදය </code>
+    <code id="background_no"> පසුබිමක් නොමැත</code>
+    <code id="background_list">යෝජ්‍ය පසුතල...</code>
+    <code id="close_many_tabs">ඔබට සියළු සමුළු අවසන් කිරීමට අවශ්‍යද?</code>
+    <code id="close_recent_message">ඔබට පණිවිඩයක් ලැබී ඇත.&#13;ඔබට  මෙම සංවාදය අවසන් කිරීමට අවශ්‍යද?</code>
+	<code id="palette_compact">භාව ලැයිස්තුවේ ප්‍රමාණය අවම කරන්න</code>
+	<code id="palette_expand">මෙම විලාසයේ සියළු භාව පෙන්වන්න</code>
+	<code id="palette_browse">අනෙකුත් භාව විලාස...</code>
+
+    <code id="menu_file">&amp;ගොනුව</code>
+    <code id="menu_file_received">&amp;මට ලැබුනු ගොනු විවෘත කරන්න</code>
+    <code id="menu_file_history">පණිවිඩ &amp;ඉතිහාසය</code>
+    <code id="menu_file_close">&amp;සංවාදය අවසන් කරන්න</code>
+
+    <code id="menu_axn_contact">&amp;සබඳතා</code>
+    <code id="menu_axn_add">සබඳතා ලැයිස්තුවට ඇතුලත් කරන්න</code>
+    <code id="menu_axn_block">&amp;අවහිරතාවය</code>
+    <code id="menu_axn_rename">&amp;නැවත නම් කරන්න</code>
+    <code id="menu_axn_panel">&amp;ක්‍රියා පුවරුව පෙන්වන්න </code>
+    <code id="menu_axn_profile">&amp;පැතිකඩ දක්වන්න </code>
+    <code id="menu_axn_file">යවන්න a &amp;ගොනුව</code>
+
+    <code id="menu_tool_emo_style">&amp;භාව තෝරන්න ...</code>
+    <code id="menu_tool_font">&amp;ෆොන්ටය වෙනස් කරන්න ...</code>
+    <code id="menu_tool_background">&amp; පසුබිම වෙනස් කරන්න...</code>
+    <code id="menu_tool_aot">&amp;සැමවිටමඉහළ පවතී</code>
+    <code id="menu_tool_tabbed">&amp;පටිතිගත සමුළු</code>
+    <code id="menu_tool_emoticons">&amp;භාව පෙන්වන්න</code>
+    <code id="menu_tool_settings">&amp;සිටුවම්</code>
+  </window>
+  <window name="conference-bookmarks-add">
+    <item id="txt_address">
+      <innerText> සමුළු කාමරයේ ලිපිනය:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>උදාහරණ: my_room@conference.example.net</innerText>
+    </item>
+    <item id="lbl_autojoin">
+      <innerText>ලොග් වීමේදී මෙම සමුළු කාමරය සමඟ සම්බන්ධ වන්න</innerText>
+    </item>
+    <item id="lbl_password">
+      <innerText>මෙම මුර පදය සමඟ කාමරයට ඇතුලු වන්න:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+    <item id="btn_cancel">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <code id="error_invalid_address"> සමුළු කාමරයේ ලිපිනය නිවැරදි නැත.</code>
+  </window>
+  <window name="conference-bookmarks-manage">
+    <item id="txt_head">
+      <innerText>සමුළු කාමරයට පිටුසනක් එකතු කරන්න, වෙනස් කරන්න හෝ මකා දමන්න:</innerText>
+    </item>
+    <item id="btn_edit">
+      <value>වෙනස් කරන්න</value>
+    </item>
+    <item id="btn_delete">
+      <value>මකා දමන්න</value>
+    </item>
+    <item id="btn_add">
+      <value>එකතු කරන්න</value>
+    </item>
+    <item id="btn_close">
+      <value>වසන්න</value>
+    </item>
+    <code id="confirm_delete">ඔබට මෙම සමුළු කාමරයේ පිටුසන ඉවත් කිරීමට අවශ්‍යද?</code>
+  </window>
+  <window name="conference-configuration">
+    <item id="btn_cancel">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+    <item id="txt_form_loading">
+      <innerText>ආරම්භ වෙමින් පවතී...</innerText>
+    </item>
+    <item id="txt_form_empty">
+      <innerText>මෙම සමුළු කාමරය සතුව වින්‍යාස සිටවුම් නැත</innerText>
+    </item>
+    <item id="txt_form_invalid">
+      <innerText>දෝශයකි: සමුළු කාමර වින්‍යාස ලබා ගත නොහැක</innerText>
+    </item>
+    <code id="form_title">මෙම සමුළු කාමරයේ සිටවුම්</code>
+    <code id="form_subtitle"> සමුළු කාමරය වින්‍යාස කිරීම සඳහා මෙම පෝරමය සම්පූර්ණ කරන්න</code>
+
+    <code id="muc#roomconfig_allowinvites">පදිංච් කරුවන්ට අනෙකුත් පරිශීලකයන්ට ආරධනා කිරීමට ඉඩදීම </code>
+    <code id="muc#roomconfig_changesubject"> පදිංච් කරුවන්ට සමුළු කාමරයේ මාතෘකාව වෙනස් කිරීමට ඉඩදෙන්න</code>
+    <code id="muc#roomconfig_enablelogging">Log all conference room messages</code>
+    <code id="muc#roomconfig_lang">සමුළු කාමරයේ භාවිතා කරන භාෂාව</code>
+    <code id="muc#roomconfig_maxusers">සමුළු කාමරයේ පදිංච් විය හැකි උපරිම පදිංචි කරුවන් සංඛ්‍යාව </code>
+    <code id="muc#roomconfig_membersonly">සමුළු කාමරයට අතුලත් වීම සාමාජිකයන්ට පමණයි</code>
+    <code id="muc#roomconfig_moderatedroom">පණිවිඩය යැවීමට ප්‍රමාණකයන්ගේ අනුමැතිය  අවශ්‍යයි</code>
+    <code id="muc#roomconfig_passwordprotectedroom">සමුළු කාමරයට අතුලත් වීම සදහා මුර පදය අවශ්‍යයි </code>
+    <code id="muc#roomconfig_persistentroom"> සියල්ලෝම ගියපසු සමුළු කාමරය   නොනැසී පවතී</code>
+    <code id="muc#roomconfig_presencebroadcast">භූමිකාවන්ට අදාල තත්වයන් විකාශනය</code>
+    <code id="muc#roomconfig_publicroom">සමුළු කාමරය පොදු සමුළු කාමර ලයිස්තුවේ පෙන්වන්න </code>
+    <code id="muc#roomconfig_roomadmins">සමුළු කාමරයේ පාලක</code>
+    <code id="muc#roomconfig_roomdesc">සමුළු කාමරය පිළිබද විස්තරය නම</code>
+    <code id="muc#roomconfig_roomname">සමුළු කාමරයේ නම</code>
+    <code id="muc#roomconfig_roomowners">සමුළු කාමරයේ අයිතිකරු</code>
+    <code id="muc#roomconfig_roomsecret"> සමුළු කාමරයට අතුලත් වීම සදහා මුර පදය</code>
+    <code id="muc#roomconfig_whois">පදිංචිකරුවන්ගේ සත්‍ය ලිපිනයන් ගවේශණය කළ හැකි අනුබැඳිය</code>
+  </window>
+  <window name="conference-password">
+    <item id="txt_password">
+      <innerText>මුර පදය:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+  </window>
+  <window name="conference-name">
+    <item id="txt_name">
+      <innerText>නම:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+  </window>
+  <window name="conference-subject">
+    <item id="txt_subject">
+      <innerText>මාතෘකාව:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+  </window>
+  <window name="conference-invite">
+    <item id="btn_cancel">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>ඔබට ආරාධනය කිරීමට අවශ්‍ය අඳුනන්නන් තෝරන්න.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>අඳුනන්නන් ලයිස්තුවේ කිසිම මාර්ගගත  අඳුනන්නකු නොමැත.</innerText>
+    </item>
+  </window>
+  <window name="conference-accesslevel">
+    <item id="txt-name">
+      <innerText>නම:</innerText>
+    </item>
+    <item id="txt-room">
+      <innerText>කාමරය:</innerText>
+    </item>
+
+	<item id="txt-role">
+      <innerText>භූමිකාව</innerText>
+    </item>
+	<item id="txt-visitor">
+      <innerText>ආගන්තුකයා</innerText>
+    </item>
+    <item id="txt-visitor-desc">
+      <innerText>පණිවිඩ කියවීමට හැක</innerText>
+    </item>
+	<item id="txt-participant">
+      <innerText>සහභාගීකරු</innerText>
+    </item>
+    <item id="txt-participant-desc">
+      <innerText>පණිවිඩ කියවීමටද හැක</innerText>
+    </item>
+	<item id="txt-moderator">
+      <innerText>ප්‍රමාණකය</innerText>
+    </item>
+    <item id="txt-moderator-desc">
+      <innerText>සහභාගීකරුවන් හා ආගන්තුකයන් කාමරයෙන් නෙරපා දැමීමටද හැක</innerText>
+    </item>
+
+	<item id="txt-affiliation">
+      <innerText>අනුබැඳිය</innerText>
+    </item>
+	<item id="txt-none">
+      <innerText>None/Member</innerText>
+    </item>
+    <item id="txt-none-desc">
+      <innerText> සමුළු කාමරයට ඇතුලත් විය හැක</innerText>
+    </item>
+	<item id="txt-admin">
+      <innerText>පරිපාලක</innerText>
+    </item>
+    <item id="txt-admin-desc">
+      <innerText>ප්‍රමාණකයන් හා  තහනම් පදිංච්කරුවන් ද එක් කරන්න</innerText>
+    </item>
+	<item id="txt-owner">
+      <innerText>අයිතිකරු</innerText>
+    </item>
+    <item id="txt-owner-desc">
+      <innerText>පාලකයන් ද එක් කරන්න</innerText>
+    </item>
+
+    <item id="btn-default">
+      <value>පෙරනිමිය</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn-ok">
+      <value>හරි</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-cancel">
+      <value>අවලංගු කරන්න</value>
+      <accessKey>c</accessKey>
+    </item>
+    <item id="btn-close">
+      <value>වසන්න</value>
+      <accessKey>c</accessKey>
+    </item>
+  </window>
+  <window name="conference-container">
+    <item id="btn-emoticons">
+      <title>ඔබ කරන හා සිතනදෑ පෙන්නුම් කරන්න</title>
+      <accessKey>e</accessKey>
+    </item>
+    <item id="btn-font">
+      <title>වගන්තියේ පැහැය හා වර්ගය වෙනස් කරන්න</title>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn-background">
+      <title>වෙනස් පසුබිමක් තෝරන්න</title>
+      <accessKey>b</accessKey>
+    </item>
+
+    <item id="txt-emoticons">
+      <innerText>භාවයන්</innerText>
+    </item>
+    <item id="txt-font">
+      <innerText>මුද්‍රණ අකුරුවර්ගය</innerText>
+    </item>
+    <item id="txt-background">
+      <innerText>පසුබිම</innerText>
+    </item>
+
+    <item id="resize-grip">
+      <title>පණිවිඩ ආදායක ක්ෂේත්‍රයේ ප්‍රමාණය වෙනස් කරන්න</title>
+    </item>
+    <item id="mode-bar">
+      <title>මෙම සමුළු කාමරයේ නම,ලිපිනය හා මාතෘකාව</title>
+    </item>
+    <item id="send-text">
+      <title>ඔබගේ පණිවිඩය මෙහි ටයිප් කරන්න </title>
+    </item>
+    <item id="btn-send">
+      <value>යවන්න</value>
+      <title>පණිවිඩය යවන්න</title>
+      <accessKey>s</accessKey>
+    </item>
+
+    <item id="occupants-panel">
+      <title>මෙම සමුළු කාමරයේ පදිංචිකාරයන්</title>
+    </item>
+    <item id="txt-visitors">
+      <innerText>ආගන්තුකයන්</innerText>
+      <title>ආගන්තුකයන්ට පණිවිඩ කියවීමට හැක නමුත් පණිවිඩ යැවීමට නොහැක</title>
+    </item>
+    <item id="txt-moderators">
+      <innerText>ප්‍රමාණකයන්</innerText>
+      <title>ප්‍රමාණකයන්ට  පණිවිඩ යැවීමට හා කියවීමටත්  පදිංචිකරුවන් නෙරපා දැමීමටත් හැකියාව ඇත </title>
+    </item>
+    <item id="txt-participants">
+      <innerText>සහභාගීකරුවන්</innerText>
+      <title>සහභාගීකරුවන්ට පණිවිඩයැවීමට හා කියවීමට හැක</title>
+    </item>
+
+    <code id="wnd_conference_password">මුර පදයක් හා සම්බන්ධ වන්න</code>
+    <code id="wnd_conference_change_name">මගේ නම වෙනස් කරන්න</code>
+    <code id="wnd_conference_subject">සමුළු කාමරයේ මාතෘකාව</code>
+    <code id="wnd_conference_configuration"> සමුළුකාමර වින්‍යාසය</code>
+    <code id="wnd_conference_accesslevel">${0}  - ප්‍රවේශ මට්ටම</code>
+
+    <code id="tt-messages">යවන ලද හා ලැබෙන ලද පණිවිඩ</code>
+    <code id="tt-close">මෙම  සමුළු කාමරය අත්හැර යන්න</code>
+    <code id="default_subject">මෙම සමුළු කාමරයට මාතෘකාවක් නොමත.</code>
+    <code id="windowtitle">${0} - සමුළුව</code>
+    <code id="destroy">මෙම සමුළු  කාමරය විනාශකර දැමීමෙන්  සහභාගීකරුවන් සියල්ලන්ම සමුළු  කාමරයෙන් මැකීයාමට හේතු වන අතර කාමරයද මෙහෙකරුවාගෙන් මැකී යනු .&#13;&#13;මෙම සමුළු කාමරය විනාශ කළ යුතු බව ඔබට විශ්වාසද?</code>
+    <code id="connecting">සම්බන්ධවෙමින්...</code>
+    <code id="connected">සම්බන්ධයි</code>
+    <code id="disconnected">විබැඳුම</code>
+    <code id="confirm-kick">ඔබට විශ්වාසද "${0}" මෙම සමුළු කාමරයෙන් නෙරපා හරිය යුතුයි කියා?</code>
+    <code id="kick-error">පදිංචිකරු නෙරපා දැමිය නොහැක: ${0}</code>
+    <code id="kicked">${0} නෙරපා දමන ලදි</code>
+    <code id="kicked-by">${0} සමුළු කාමරයෙන් නෙරපා දමන ලද්දේ ${1}</code>
+    <code id="confirm-ban"> මෙම සමුළු  කාමරය "${0}" තහනම් කළ යුතුයි කියා ඔබට විශ්වාසද ?</code>
+    <code id="ban-error">පදිංචිකාරයා තහනම් කළ නොහැක: ${0}</code>
+    <code id="banned">${0} සදහා සමුළු  කාමරය තහනම් කරන ලදි  </code>
+    <code id="banned-by">${0} සදහා සමුළු කාමරය තහනම් දමන ලද්දේ ${1}</code>
+    <code id="leaving">${0} සමුළු කාමරය අත්හැර යන්න</code>
+    <code id="joining">${0} සමුළු කාමරය හා බද්ධ වන්න</code>
+    <code id="renaming">${0} දැන් ගම්‍ය වන්නේ ${1}</code>
+
+    <code id="menu_file">&amp;ගොනුව</code>
+    <code id="menu_file_close">&amp;සමුළුව වසන්න</code>
+
+    <code id="menu_axn_invite">&amp;ආරාධිත අඳුනන්නන්</code>
+    <code id="menu_axn_change_name">වෙනස් කරන්න මගේ &amp;නම...</code>
+    <code id="menu_axn_password">Connect with a &amp;මුර පදය...</code>
+    <code id="menu_axn_subject">&amp;සමුළු කාමරයේ මාතෘකාව වෙනස් කරන්න</code>
+    <code id="menu_axn_configuration">&amp;මෙම සමුළු කාමරය වින්‍යාස කරන්න</code>
+    <code id="menu_axn_destroy">&amp;මෙම සමුළු කාමරය විනාශ කරන්න</code>
+
+    <code id="menu_bookmarks">&amp;පිටුසන්</code>
+
+    <code id="menu_bmrk_add">&amp;පිටුසනට එක් කරන්න...</code>
+
+    <code id="menu_occupant_private">පෞද්ගලික &amp;පණිවිඩය</code>
+    <code id="menu_occupant_kick">&amp;Kick</code>
+    <code id="menu_occupant_ban">&amp;තහනම</code>
+    <code id="menu_occupant_access">&amp;ප්‍රවේශ මට්ටම...</code>
+    <code id="menu_occupant_add">&amp;අඳුනන්නන් ලයිස්තුවට එක් කරන්න</code>
+    <code id="menu_occupant_profile">&amp;පැතිකඩ</code>
+
+    <code id="unrecognized-error">හදුනානොගත් දොස</code>
+    <code id="error-service-unavailable">සත්කාරකය අනුපයෝජ්‍යයි</code>
+    <code id="error-not-allowed">අවසර දී නොමැත</code>
+    <code id="error-conflict">ගැටුම: පටබැඳි නමදැනටමත් භාවිතයේ ඇත</code>
+    <code id="error-registration-required">ලියාපදිංචිය අවශ්‍යයි : සාමාජිකයින්ට පමණයි</code>
+    <code id="error-forbidden">තහනම් කරන ලද: තහනම් කරන ලද</code>
+    <code id="error-not-authorized">අනුමැතිය ලබා දී නැත: මුර පදය අවශ්‍යයි </code>
+    <code id="error-item-not-found">අයිතමය සොයාගැනීමට අපොහොසත් වුනි: කාමරය අගුල්දමා ඇත</code>
+  </window>
+  <window name="preferences">
+    <item id="txt_blocking">
+      <innerText>බාධිත ලැයිස්තුව ඔබට  පණිවිඩ ලබාගනීමට උවමනා නැති පුද්ගලයන්ගේ ලිපිනයන්ගෙන් සමන්විතයි.</innerText>
+    </item>
+    <item id="txt_msgnotinlist">
+      <innerText>මාගේ අඳුනන්නන් ලැයිස්තුවේ නොමති පුද්ගලයන්ගේ පණිවිඩ සංදර්ශනය කරන්න</innerText>
+    </item>
+    <item id="txt_blockinglist">
+      <innerText>බාධිත ලැයිස්තුව</innerText>
+    </item>
+    <item id="block_btn_remove">
+      <value>ආරෝහක අවහිරය</value>
+    </item>
+    <item id="block_btn_view">
+      <value>පැතිකඩ දැකීම</value>
+    </item>
+    <item id="txt_connection_settings">
+      <innerText>සබැඳුම් සිටුවම</innerText>
+    </item>
+    <item id="txt_connection_desc">
+      <innerText>ක්ෂණික පණිවිඩ මෙහෙකරුවාට සම්බන්ධ විය යුතු  ආකාරය වෙනස් කරන්න .</innerText>
+    </item>
+    <item id="btn_connection_settings">
+      <value>සබැඳුම් සිටුවම</value>
+    </item>
+    <item id="txt_portmap">
+      <innerText>ගොනු ප්‍රවාහන දොරටු සිතියම (NAT, ෆයර් වෝල්)</innerText>
+    </item>
+    <item id="txt_filetransferhost">
+      <innerText>සත්කාරකය:</innerText>
+    </item>
+    <item id="txt_filetransferport">
+      <innerText>දොරටුව:</innerText>
+    </item>
+    <item id="txt_history_store">
+      <innerText>සියලුම පණිවිඩ ඉතිහාස සංරක්ෂිතයේ තැන්පත් කරන්න</innerText>
+    </item>
+    <item id="txt_startup">
+      <innerText>ඇරඹුමේදී ස්වයංක්‍රීයව දියත් කරන්න</innerText>
+    </item>
+    <item id="txt_updates">
+      <innerText> මෘදුකාංග යාවත්කාලීනයන් ස්වයංක්‍රීයව සොයන්න  </innerText>
+    </item>
+    <item id="txt_auth_request">
+      <innerText>යමෙක් මගේ අනුමැතිය ඉල්ලූවිට</innerText>
+    </item>
+    <item id="txt_authorization1">
+      <innerText>මගෙන් අසන්න</innerText>
+    </item>
+    <item id="txt_authorization2">
+      <innerText>සියලුම ඉල්ලුම් පිළිගන්න</innerText>
+    </item>
+    <item id="txt_authorization3">
+      <innerText>මගේ අඳුනන්නන් ලයිස්තුවේ පරිශීලකයන් පිළිගන්න, අනෙක් අයගෙන්  අහන්න</innerText>
+    </item>
+    <item id="txt_authorization4">
+      <innerText>ප්‍රතික්ෂේපිත සියලුම ඉල්ලුම් තහනම් කරන්න</innerText>
+    </item>
+    <item id="txt_soundmessage">
+      <innerText>පණිවිඩය ලඟාවුවිට නාදය වාදනය කරන්න</innerText>
+    </item>
+    <item id="txt_soundonline">
+      <innerText>යමෙක් යලි සබැදි තත්වයට පත්වුවිට  නාදය වාදනය කරන්න</innerText>
+    </item>
+    <item id="txt_soundoffline">
+      <innerText>යමෙක් නොබැදිවුවිට නාදය වාදනය කරන්න</innerText>
+    </item>
+    <item id="btn_sound_message">
+      <value>පිරික්සන්න</value>
+    </item>
+    <item id="btn_sound_online">
+      <value>පිරික්සන්න</value>
+    </item>
+    <item id="btn_sound_offline">
+      <value>පිරික්සන්න</value>
+    </item>
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+    <item id="btn_cancel">
+      <value>අවලංගු කරන්න</value>
+    </item>
+    <item id="lbl_blocking">
+      <innerText>අවහිර කරන්න</innerText>
+    </item>
+    <item id="lbl_connection">
+      <innerText>සබැඳුම</innerText>
+    </item>
+    <item id="lbl_privacy">
+      <innerText>පෞද්ගලිකත්වය</innerText>
+    </item>
+    <item id="lbl_sound">
+      <innerText>නාදය</innerText>
+    </item>
+    <code id="blocking">ලයිස්තුව අවහිර කිරීම</code>
+    <code id="connection">සබැඳුම් සිටුවම</code>
+    <code id="privacy">පෞද්ගලිකත්වය</code>
+    <code id="sound">දැනුම්දීමේ නාද</code>
+    <code id="reconnect">වෙනස්කම් යෙදවීමට ඔබ නැවත වතාවක් සම්බන්ධ විය යුතුය.&#13;&#13;ඔබට නැවත වතාවක් සම්බන්ධ වීමට උවමනාද?</code>
+    <code id="shortcut">ක්ෂණික පණිවිඩ යැවීම හා ලැබීම</code>
+    <code id="choose_sound">දැනුම්දීමේ නාදයක් තෝරන්න</code>
+    <code id="file_audio">ශ්‍රව්‍ය ගොනුව</code>
+    <code id="file_any">ඕනෑම ගොනුවක්</code>
+  </window>
+  <window name="adduser">
+    <item id="txt_p1_title">
+      <innerText>පුද්ගලයකු සොයන්න හෝ එකතු කරන්න</innerText>
+    </item>
+    <item id="txt_p1_tagline">
+      <innerText>ඔබට පුද්ගලයකුගේ පොදු තොරතුරු මත පදනම්ව යම් පුද්ගලයකු  සෙවීමට හෝ පුද්ගලයාගේ පරිශීලක නම ඇතුලත් කිරීමට හැක.</innerText>
+    </item>
+    <item id="txt_p1_how">
+      <innerText>ඔබට අඳුනන්නා එකතු කරගත යුත්තේ කෙසේද</innerText>
+    </item>
+    <item id="txt_page1_a">
+      <innerHTML>මට &lt;U&gt; කෙනෙකු සෙවීමට අවශ්‍යයි&lt;/U&gt;</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="txt_p1_service">
+      <innerHTML>සේවාව&lt;U&gt;r&lt;/U&gt;</innerHTML>
+    </item>
+    <item id="page1_services">
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page1_b">
+      <innerHTML>මම &lt;U&gt;පුද්ගලයාගේ ක්ෂණික පණිවිඩ ලිපිනය දැනටමත් දනී. &lt;/U&gt;</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="txt_p1_network">
+      <innerHTML>&lt;U&gt;ජාලය:&lt;/U&gt;</innerHTML>
+    </item>
+    <item id="page1_networks">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_p1_username">
+      <innerHTML>&lt;U&gt;භාවිත නම:&lt;/U&gt;</innerHTML>
+    </item>
+    <item id="page1_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="txt_p1_help">
+      <innerText>වෙනත් ක්ෂණික පණිවිඩ ජාලයක සිටින කෙනෙකු සමග සන්නිවේදනය කිරීමට,එම ජාලයේ ප්‍රවාහනය සමග ලියාපදිංචි විය යුතුය 
+.</innerText>
+    </item>
+    <item id="txt_p1_configure">
+      <innerText>ප්‍රවාහනය වින්‍යාස කරන්න</innerText>
+    </item>
+    <item id="btn_p1_next">
+      <value>අනතුරුව &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_p1_close">
+      <value>වසන්න</value>
+    </item>
+
+    <item id="txt_p1b_title">
+      <innerText>පරිශීලක නමසැකසෙමින් පවතී</innerText>
+    </item>
+    <item id="txt_p1b_tagline">
+      <innerText>ප්‍රවාහනය දැන් පරිශීලක නමසැබෑදැයි පරීක්ෂාකර බලමින් සිටී.</innerText>
+    </item>
+    <item id="page1b_btn_back">
+      <value>&lt; ආපසු</value>
+    </item>
+    <item id="page1b_btn_next">
+      <value>අනතුරුව &gt;</value>
+    </item>
+    <item id="page1b_btn_close">
+      <value>වසන්න</value>
+    </item>
+
+    <item id="txt_p1c_title">
+      <innerText>සෙවුම් පෝරමය ඉල්ලීම</innerText>
+    </item>
+    <item id="txt_p1c_tagline">
+      <innerText>සෙවිය හැකි සියලුම ක්ෂේත්‍ර හා උපදෙස්  සෙවුම් පෝරමයේ අන්තර්ගතව ඇත.</innerText>
+    </item>
+    <item id="page1c_btn_back">
+      <value>&lt; ආපසු</value>
+    </item>
+    <item id="page1c_btn_next">
+      <value>අනතුරුව &gt;</value>
+    </item>
+    <item id="page1c_btn_close">
+      <value>වසන්න</value>
+    </item>
+
+    <item id="page3_btn_back">
+      <value>&lt; ආපසු</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page3_btn_search">
+      <value>සොයන්න</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="page3_btn_close">
+      <value>වසන්න</value>
+    </item>
+
+    <item id="txt_p4_title">
+      <innerText> ප්‍රතිඵල සොයන්න</innerText>
+    </item>
+    <item id="txt_p4_tagline">
+      <innerText>ඔබට පරිශීලකයකුගේ තොරතුරු දැක ගැනීමට හෝ පරිශීලකයකු ඔබගේ ඇදුනුම් ලැයිස්තුවට එකතු කරගත හැක .</innerText>
+    </item>
+    <item id="page4_btn_back">
+      <value>&lt; ආපසු</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="page4_btn_next">
+      <value>අනතුරුව &gt;</value>
+    </item>
+    <item id="page4_btn_close">
+      <value>වසන්න</value>
+    </item>
+
+    <item id="txt_p5_title">
+      <innerText>පුද්ගලයකු එක්කිරීම  </innerText>
+    </item>
+    <item id="txt_p5_tagline">
+      <innerText>අඳුනන්නන් ලැයිස්තුව මෙහෙකරුවා තුල තැන්පත් කරන ලදි.</innerText>
+    </item>
+    <item id="txt_p5_desc">
+      <innerText>අනුමැතිය ඉල්ලුම යවන ලද්දේ :</innerText>
+    </item>
+    <item id="txt_p5_user">
+      <innerText>පරිශීලක නාම:</innerText>
+    </item>
+    <item id="txt_p5_network">
+      <innerText>ජාලය:</innerText>
+    </item>
+    <item id="page5_btn_back">
+      <value>&lt; ආපසු</value>
+    </item>
+    <item id="page5_btn_next">
+      <value>අනතුරුව &gt;</value>
+    </item>
+    <item id="page5_btn_close">
+      <value>වසන්න</value>
+    </item>
+
+    <item id="txt_p6_title">
+      <innerText>පුද්ගලයකු විශාරදයට එක් කිරීම හා සෙවීම සමාප්තිය </innerText>
+    </item>
+    <item id="txt_p6_tagline">
+      <innerText>පුද්ගලයකු සෙවීම හා එක් කිරීමේ විශාරදය ඔබ සාර්ථක ලෙස සමාප්ත කර ඇත.</innerText>
+    </item>
+    <item id="txt_p6_desc">
+      <innerText>මෙම  පුද්ගලයා ඔබගේ අඳුනන්නන් ලැයිස්තුවට සාර්ථක ලෙස  එකතු කරන ලදි:</innerText>
+    </item>
+    <item id="txt_p6_user">
+      <innerText>පරිශීලක නම:</innerText>
+    </item>
+    <item id="txt_p6_network">
+      <innerText>ජාලය:</innerText>
+    </item>
+    <item id="txt_p6_again">
+      <innerHTML>මෙම විශාරදය නැවත ඇරබීම සදහා, ඔබන්න &lt;B&gt;වෙනත් පුද්ගලයකු එක් කරන්න&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_again">
+      <value>වෙනත් පුද්ගලයකු එක් කරන්න</value>
+    </item>
+    <item id="txt_p6_finish">
+      <innerHTML>මෙම විශාරදය වැසීම සදහා, ඔබන්න &lt;B&gt;අවසාන කරනවා&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_back">
+      <value>&lt; ආපසු</value>
+    </item>
+    <item id="page6_btn_finish">
+      <value>අවසාන කරනවා</value>
+    </item>
+    <item id="page6_btn_close">
+      <value>වසන්න</value>
+    </item>
+
+	<code id="correct">නිවැරදි පරිශීලක නමක් ඇතුලත් කරන්න.&#13;&#13;උදාහරණය: යමෙක්123@${0}</code>
+    <code id="example_address">උදාහරණය: යමෙක්123@${0}</code>
+    <code id="contacting_adding">&lt;B&gt;මෙහෙකරුවා අඳුනාගනිමින් පවතී&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;මෙයට මිනිත්තුවක් පමණ ගතවනු ඇත.&lt;BR&gt;කරුණාකර ඉවසීමෙන් සිටින්න.&lt;BR&gt;</code>
+    <code id="contacting_transport">&lt;B&gt;ප්‍රවාහනය අඳුනාගනිමින් පවතී&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;මෙයට මිනිත්තුවක් පමණ ගතවනු ඇත.&lt;BR&gt;කරුණාකර ඉවසීමෙන් සිටින්න.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;සෙවුම් සේවාව අඳුනාගනිමින් පවතී&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;මෙයට මිනිත්තුවක් පමණ ගතවනු ඇත.&lt;BR&gt;කරුණාකර ඉවසීමෙන් සිටින්න. &lt;BR&gt;</code>
+    <code id="error_adding">&lt;B&gt;මෙහෙකරු දොස:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;පරිශීලකයා ඔබගේ අඳුනන්නන්ගේ ලැයිස්තුවට එකතුකල නොහැක.&lt;BR&gt;වැඩි විස්තර සදහා පරිපාලක හ සම්බන්ධ වන්න.</code>
+    <code id="error_transport">&lt;B&gt;මෙහෙකරු දොස:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;පරිශීලකයා ඔබගේ අඳුනන්නන්ගේ ලැයිස්තුවට එකතුකල නොහැක.&lt;BR&gt;ඔබ නිවැරදි පරිශීලක නම අතුලත් කර ඇත්දැයි සැක දුරු කර ගන්න.</code>
+    <code id="error_search">&lt;B&gt;මෙහෙකරු දොස:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;සෙවු පෝරමය බාගත කළ නොහැක.&lt;BR&gt;පසුව නැවත උත්සාහ කරන්න හෝ වෙනත් සේවාදායකයකු තෝරාගන්න.</code>
+    <code id="error_invalid">අවලංගු දත්ත ලැබුනි.</code>
+    <code id="search_title">පරිශීලක සෙවුම</code>
+    <code id="search_tagline">ගැලපෙන පරිශීලකයකු සොයා ගැනීම සදහා ක්ෂේත්‍රය පුරවන්න.</code>
+    <code id="firstname">මුල් නම:</code>
+    <code id="lastname">අවසන් නම:</code>
+    <code id="nick">පද බැඳි නම:</code>
+    <code id="email">විද්‍යුත් තැපෑල් ලිපිනය:</code>
+    <code id="searching">සොයමින් පවතී...</code>
+    <code id="add">අඳුනන්නන්ගේ ලැයිස්තුවට එක් කරන්න</code>
+    <code id="view">පැතිකඩ දකින්න</code>
+    <code id="foundone">1 ප්‍රතිඵලය</code>
+    <code id="foundmany">${0} ප්‍රතිඵල</code>
+  </window>
+  <window name="connection-settings">
+    <code id="logout">ඔබගේ වෙනස්කම් යෙදවීමට වැරිය යුතුයි .&#13;&#13;ඔබට දැන් වරන්න උවමනාද?</code>
+    <code id="automatic">ස්වයංක්‍රීය</code>
+    <item id="txt_connection">
+      <innerText>මෙහෙකරු සබැඳුම</innerText>
+    </item>
+    <item id="lbl_server_address">
+      <innerHTML>&lt;U&gt;ලිපිනය:&lt;/U&gt;</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="lbl_server_port">
+      <innerHTML>&lt;U&gt;තොට:&lt;/U&gt;</innerHTML>
+      <accessKey>p</accessKey>
+    </item>
+    <item id="txt_encryption">
+      <innerText>සුරක්ෂිත සන්නිවේදනය</innerText>
+    </item>
+    <item id="lbl_encryption_optional">
+      <innerHTML>&lt;U&gt;මෙහෙකරුවා &lt;/U&gt;සතුව TLS සංකේතනය තිබේනම් එය භාවිතා කරන්න</innerHTML>
+      <accessKey>u</accessKey>
+    </item>
+    <item id="lbl_encryption_tls">
+      <innerHTML>TLS &lt;U&gt;සංකේතනය අවශ්‍යයි&lt;/U&gt;</innerHTML>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="lbl_encryption_ssl">
+      <innerHTML>SSL &lt;U&gt;සංකේතනය අවශ්‍යයි&lt;/U&gt;</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="lbl_encryption_none">
+      <innerHTML>සංකේතනය&lt;U&gt; භාවිතා නොකරන්න &lt;/U&gt;</innerHTML>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="txt_authentication">
+      <innerText>පුරන්න අනුමැතිය</innerText>
+    </item>
+    <item id="lbl_authentication_normal">
+      <innerHTML>ලිපිනය &lt;U&gt;හා මුර පදය&lt;/U&gt;</innerHTML>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="lbl_authentication_ntlm">
+      <innerHTML>සංගෘහිත &lt;U&gt;කවුළු සත්‍යාපනය&lt;/U&gt;</innerHTML>
+      <accessKey>w</accessKey>
+    </item>
+    <item id="btn_ok">
+      <value>හරි</value>
+    </item>
+    <item id="btn_cancel">
+      <value>අවලංගු කරන්න</value>
+    </item>
+  </window>
+  <window name="sign_up">
+    <code id="close_confirm">අලුත් ලිපිනය සමාප්ත කර නොමැත.&#13;&#13;විශාරදය වැසිය යුතු බව ඔබට විශ්වාසද?</code>
+    <code id="incomplete">සියලු ක්ෂේත්‍ර සමාප්ත කරන්න...</code>
+    <code id="pass_match">ඔබ ඇතුලත් කළ මුරපදය නොගැලපේ.&#13;&#13;අලුත් මුරපදයක් ක්ෂේත්‍ර දෙකටම ඇතුලත් කරන්න.</code>
+
+    <code id="contacting">මෙහෙකරුවා අඳුනාගනිමින් පවතී...</code>
+    <code id="registered">ඔබගේ ගිණුම ලියාපදිංචි වෙමින් පවතී. මෙයට තවත් මිනිත්තු කිහිපයක් ගතවනු ඇත.&lt;BR&gt;කරුණාකර ඉවසීමෙන් සිටින්න.&lt;BR&gt;</code>
+    <code id="requesting">තොරතුරු ඉල්ලීම...</code>
+    <code id="sending">ලියාපදිංචිය යවමින් පවතී ...</code>
+    <code id="failure">සබැඳුම ඇනහිටීම</code>
+    <code id="completed">ලියාපදිංචිය සමාප්තයි</code>
+
+    <code id="address">ලිපිනය  ලියාපදිංචි කළ නොහැක:</code>
+    <code id="nickname">නම:</code>
+    <code id="userdir">පරිශීලක ඩිරෙක්ටරිය:</code>
+    <item id="txt_page_welcome_title">
+      <innerText>ඇතුල්කර ගැනීමේ විශාරදයට ඔබව සාදරයෙන් පිළිගනිමු</innerText>
+    </item>
+    <item id="txt_page_welcome_intro">
+      <innerText>ක්ෂණික පණිවිඩ ජාලය තුල ලිපිනයක් හා සම්බන්ධ වීමට මෙම විශාරදය ඔබට උදව් කරනු ඇත..</innerText>
+    </item>
+    <item id="txt_page_welcome_next">
+      <innerHTML>පෙර සේ ම පවත්වනවාගෙන යාමට, ඔබන්න &lt;B&gt;අනතුරුව&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_welcome_next">
+      <value>අනතුරුව &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_welcome_cancel">
+      <value>අවලංගු කරන්න</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_nickname_title">
+      <innerText>පෞද්ගලික තොරතුරු</innerText>
+    </item>
+    <item id="txt_page_nickname_tagline">
+      <innerText>අනෙකුත් ජනතාවට ජාලය තුළ ඔබ සොයාගැනීමට මෙම තොරතුරු උදවු වනු ඇත.</innerText>
+    </item>
+    <item id="txt_page_nickname_desc">
+      <innerText>ඔබගේ මිතුරන්ට හා හවුල්කරුවන්ට ඔබව සොයා ගැනීම  පහසු කිරීමට නම අතුලත් කරන්න .</innerText>
+    </item>
+    <item id="txt_page_nickname_name">
+      <innerHTML>&lt;U&gt; විකට නම:&lt;/U&gt;</innerHTML>
+    </item>
+    <item id="data_name">
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_back">
+      <value>&lt; ආපසු</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_nickname_next">
+      <value>අනතුරුව &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_nickname_cancel">
+      <value>අවලංගු කරන්න</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_account_title">
+      <innerText>ලිපින තොරතුරු</innerText>
+    </item>
+    <item id="txt_page_account_tagline">
+      <innerText>ඔබට අන්තර්ජාලය තුල පොදු මෙහෙකරුවකු හෝ ඔබගේ ඒකාබද්ධ ජාලය තුළ පුද්ගලික මෙහෙකරුවකු භාවිතා කළ හැක. .</innerText>
+    </item>
+    <item id="txt_page_account_server">
+      <innerHTML>&lt;U&gt;මෙහෙකරු:&lt;/U&gt;</innerHTML>
+    </item>'-0
+    <item id="txt_page_account_username">
+      <innerHTML>&lt;U&gt;නම:&lt;/U&gt;</innerHTML>
+    </item>
+    <item id="txt_page_account_password">
+      <innerHTML>&lt;U&gt;මුර පදය:&lt;/U&gt;</innerHTML>
+    </item>
+    <item id="txt_page_account_confirm">
+      <innerHTML>&lt;U&gt;මුර පදය&lt;/U&gt;තහවුරු කරන්න :</innerHTML>
+    </item>
+    <item id="txt_page_account_email">
+      <innerHTML>&lt;U&gt;විද්‍යුත් ලිපිනය &lt;/U&gt; ලියාපදිංචි කළ නොහැක:</innerHTML>
+    </item>
+    <item id="data_server">
+      <accessKey>s</accessKey>
+    </item>
+    <item id="data_username">
+      <accessKey>u</accessKey>
+    </item>
+    <item id="data_password">
+      <accessKey>p</accessKey>
+    </item>
+    <item id="data_password_confirm">
+      <accessKey>c</accessKey>
+    </item>
+    <item id="data_email">
+      <accessKey>e</accessKey>
+    </item>
+    <item id="txt_page_account_remember">
+      <innerHTML>&lt;U&gt;මුර පදය&lt;/U&gt; මතක තියාගන්න</innerHTML>
+      <accessKey>r</accessKey>
+    </item>
+    <item id="txt_page_account_preview">
+      <innerText>ඔබගේ  IM ලිපිනය  ලියාපදිංචි කළ නොහැක:</innerText>
+    </item>
+    <item id="btn_page_account_settings">
+      <value>සබැඳුම් සිටුවම</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_account_back">
+      <value>&lt; ආපසු</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_account_next">
+      <value>අනතුරුව &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_account_cancel">
+      <value>අවලංගු කරන්න</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_creating_title">
+      <innerText>ලිපින ලියාපදිංචිය</innerText>
+    </item>
+    <item id="txt_page_creating_autherr">
+      <innerHTML>ලිපිනය  ලියාපදිංචි කළ නොහැක. පරිශීලක නමප්‍රයෝජනයට ගත නොහැක.&lt;BR&gt;&lt;BR&gt;ඔබන්න &lt;B&gt;ආපසු&lt;/B&gt;, වෙනත් පරිශීලක නමක් ටයිප් කර නැවත උත්සාහ කරන්න.</innerHTML>
+    </item>
+    <item id="txt_page_creating_forbidden">
+      <innerHTML>ලිපිනය  ලියාපදිංචි කළ නොහැක. මෙම මෙහෙකරුව අලුත් ලිපිනයක් සෑදීමට අවසර නොදේ.&lt;BR&gt;&lt;BR&gt;ඔබන්න &lt;B&gt;ආපසු&lt;/B&gt;, වෙනත් මෙහෙකරුවකු සොයා නැවත උත්සාහ කරන්න.</innerHTML>
+    </item>
+    <item id="txt_page_creating_commerr">
+      <innerHTML>මෙහෙකරුවා සම්බන්ධ කල නොහැක. මෙහෙකරුවාගේ ලිපිනය නිවරදිදැයි සැක දුරු කරගන්න.&lt;BR&gt;ඔබගේ ජාල සබැඳුම නැවත පරීක්ෂා කර බලා නැවත උත්සාහ කරන්න. If you are behind a firewall,&lt;BR&gt;සබැඳුම් සිටුවම වින්‍යාස කරන්න.</innerHTML>
+    </item>
+    <item id="btn_page_creating_retry">
+      <value>නැවත උත්සාහ කරන්න</value>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="btn_page_creating_settings">
+      <value>සබැඳුම් සිටුවම</value>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="btn_page_creating_back">
+      <value>&lt; ආපසු</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_creating_next">
+      <value>අනතුරුව &gt;</value>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="btn_page_creating_cancel">
+      <value>අවලංගු කරන්න</value>
+      <accessKey>c</accessKey>
+    </item>
+
+    <item id="txt_page_finished_title">
+      <innerText>පැතිකඩ එක්කිරීමේ විශාරදය සමාප්ත වෙමින් පවතී.</innerText>
+    </item>
+    <item id="txt_page_finished_intro">
+      <innerText>ඔබ සාර්ථක ලෙස පැතිකඩ එක්කිරීමේ විශාරදය සමාප්ත කර ඇත..</innerText>
+    </item>
+    <item id="txt_page_finished_details">
+      <innerText>පැතිකඩ දත්ත:</innerText>
+    </item>
+    <item id="txt_page_finished_finish">
+      <innerHTML>මෙම විශාරදය වැසීම සදහා, ඔබන්න &lt;B&gt;අවසාන කරනවා&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="btn_page_finished_back">
+      <value>&lt; ආපසු</value>
+      <accessKey>b</accessKey>
+    </item>
+    <item id="btn_page_finished_finish">
+      <value>අවසාන කරනවා</value>
+      <accessKey>f</accessKey>
+    </item>
+    <item id="btn_page_finished_cancel">
+      <value>අවලංගු කරන්න</value>
+      <accessKey>c</accessKey>
+    </item>
+  </window>
+</translation>
