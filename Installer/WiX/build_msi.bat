@@ -19,6 +19,7 @@ IF NOT EXIST ".\Temp\%JOB_NAME_SAFE%.exe" ECHO Error: Cannot include Host.exe &&
 
 :: Inject the build number into the installed files.
 ECHO Build number %VERSION_BUILD%
+ECHO Version number %VERSION%
 ECHO %VERSION_BUILD% > "./Temp/settings/build.txt"
 
 :: Generate a list of files as a component group.
