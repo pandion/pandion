@@ -220,7 +220,7 @@ window.attachEvent("onload", function () {
 				};
 				for (var name in tracks)
 					if (tracks[name]) {
-						var button = document.createElement("<button type='button' />");
+						var button = document.createElement("button");
 						button.className = "update-button";
 						var title = insertSimpleElement(button, "h4", "");
 						client.css.addClass(insertSimpleElement(title, "span", tracks[name].name), "name");
