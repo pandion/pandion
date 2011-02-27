@@ -167,7 +167,7 @@ function CommandLineShift ()
 				for ( var i = 0; i < Directories.length; ++i )
 					if ( ! Styles.Exists( Directories[i].Name ) )
 					{
-						external.globals( 'cfg' )( 'emoticonset' ) = Directories[i].Name;
+						external.globals( 'cfg' ).Item( 'emoticonset' ) = Directories[i].Name;
 						if ( external.windows.Exists( 'emoticon_list' ) )
 							external.windows( 'emoticon_list' ).Do( 'emoticon_refresh', null );
 						if ( external.windows.Exists( 'emoticon_download' ) )

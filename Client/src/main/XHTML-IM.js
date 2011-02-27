@@ -35,14 +35,14 @@ AllowedTags.Add( 'img', new ActiveXObject( 'Scripting.Dictionary' ) );
 
 /* Allowed attributes for A
  */
-with ( AllowedTags( 'a' ) )
+with ( AllowedTags.Item( 'a' ) )
 {
 	Add( 'href', null );
 }
 
 /* Allowed attributes for IMG
  */
-with ( AllowedTags( 'img' ) )
+with ( AllowedTags.Item( 'img' ) )
 {
 	Add( 'align', null );
 	Add( 'alt', null );
@@ -58,7 +58,7 @@ AllowedTags.Add( 'i', null );
 AllowedTags.Add( 'u', null );
 AllowedTags.Add( 'font', new ActiveXObject( 'Scripting.Dictionary' ) );
 
-with ( AllowedTags( 'font' ) )
+with ( AllowedTags.Item( 'font' ) )
 {
 	Add( 'face', null );
 	Add( 'color', null );
@@ -132,8 +132,8 @@ WhiteProtocolsRegEx.compile( '^(' + WhiteProtocols.join( '|' ) + '):', 'i' );
  */
 function MessageToHTMLElement ( Message, HTMLElement )
 {
-	if ( external.globals( 'ClientServices' ).Services.Exists( Message.ToAddress.Host ) && ( external.globals( 'ClientServices' ).Services( Message.ToAddress.Host ).Options & 0x0001 ) )
-		switch ( external.globals( 'ClientServices' ).Services( Message.ToAddress.Host ).Options & 0x881E )
+	if ( external.globals( 'ClientServices' ).Services.Exists( Message.ToAddress.Host ) && ( external.globals( 'ClientServices' ).Services.Item( Message.ToAddress.Host ).Options & 0x0001 ) )
+		switch ( external.globals( 'ClientServices' ).Services.Item( Message.ToAddress.Host ).Options & 0x881E )
 		{
 			case 0x0002: Message.EmoticonSet = 'msn_messenger'; break;
 			case 0x0004: Message.EmoticonSet = 'icq'; break;
@@ -145,8 +145,8 @@ function MessageToHTMLElement ( Message, HTMLElement )
 	else if ( Message.ToAddress.Host == 'jabber.wp.pl' )
 		Message.EmoticonSet = 'wpkontakt';
 
-	if ( external.globals( 'ClientServices' ).Services.Exists( Message.FromAddress.Host ) && ( external.globals( 'ClientServices' ).Services( Message.FromAddress.Host ).Options & 0x0001 ) )
-		switch ( external.globals( 'ClientServices' ).Services( Message.FromAddress.Host ).Options & 0x881E )
+	if ( external.globals( 'ClientServices' ).Services.Exists( Message.FromAddress.Host ) && ( external.globals( 'ClientServices' ).Services.Item( Message.FromAddress.Host ).Options & 0x0001 ) )
+		switch ( external.globals( 'ClientServices' ).Services.Item( Message.FromAddress.Host ).Options & 0x881E )
 		{
 			case 0x0002: Message.EmoticonSet = 'msn_messenger'; break;
 			case 0x0004: Message.EmoticonSet = 'icq'; break;
@@ -162,7 +162,7 @@ function MessageToHTMLElement ( Message, HTMLElement )
 	{
 		if ( Message.EmoticonSet.length )
 			external.globals( 'EmoticonCache' ).InstallStyle( Message.EmoticonSet );
-		Message.EmoticonSet = external.globals( 'cfg' )( 'emoticonset' );
+		Message.EmoticonSet = external.globals( 'cfg' ).Item( 'emoticonset' );
 	}
 
 	if ( Message.XHTMLBody )
@@ -219,7 +219,7 @@ function FilterNode ( Message, HTMLElement, XMLTag )
 			}
 			/* Copy attribute if whitelisted
 			 */
-			else if ( AllowedTags( TagName ) != null && AllowedTags( TagName ).Exists( AttributeName ) )
+			else if ( AllowedTags.Item( TagName ) != null && AllowedTags.Item( TagName ).Exists( AttributeName ) )
 				NodeHTMLElement.setAttribute( AttributeName, Attributes( i ).value, 0 );
 		}
 
@@ -300,7 +300,7 @@ function FilterEmoticons ( Message, HTMLElement, MessageText )
 
 	var Subset = external.globals( 'EmoticonCache' ).GetSubset( Message.EmoticonSet, Languages );
 
-	if ( Subset && external.globals( 'cfg' )( 'emoticon' ).toString() == 'true' )
+	if ( Subset && external.globals( 'cfg' ).Item( 'emoticon' ).toString() == 'true' )
 	{
 		var Result = null;
 		while ( Result = Subset.Expression.exec( MessageText ) )
@@ -308,7 +308,7 @@ function FilterEmoticons ( Message, HTMLElement, MessageText )
 			FilterMarkup( HTMLElement, MessageText.substr( 0, Result.index ) );
 			MessageText = MessageText.substr( Result.lastIndex );
 
-			var Action = Subset.Style.Actions[ Subset.StringToAction( Result[0] ) ];
+			var Action = Subset.Style.Actions[ Subset.StringToAction.Item( Result[0] ) ];
 
 			if ( Action.Graphic && Action.Sound )
 			{

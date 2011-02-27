@@ -9,7 +9,7 @@ function XMPPOnIQ ( ReceivedXML )
 	/* Default to our server if missing from address
 	 */
 	if ( ! iq.FromAddress.Host.length )
-		iq.FromAddress.Parse( external.globals( 'cfg' )( 'server' ) );
+		iq.FromAddress.Parse( external.globals( 'cfg' ).Item( 'server' ) );
 
 	/* Plug-in event
 	 */
@@ -23,7 +23,7 @@ function XMPPOnIQ ( ReceivedXML )
 	 */
 	if ( external.globals( 'pending' ).Exists( iq.Id ) )
 	{
-		var Hook = external.globals( 'pending' )( iq.Id );
+		var Hook = external.globals( 'pending' ).Item( iq.Id );
 		if
 		(
 			(
@@ -159,7 +159,7 @@ function XMPPOnIQ ( ReceivedXML )
 			dom.documentElement.setAttribute( 'to', iq.From );
 			if ( iq.Id.length )
 				dom.documentElement.setAttribute( 'id', iq.Id );
-			dom.selectSingleNode( '/iq/query/data' ).text = external.File( external.globals( 'usersdir' ) + 'My Avatars\\' + external.globals( 'cfg' )( 'avatar' ) ).ReadBase64();
+			dom.selectSingleNode( '/iq/query/data' ).text = external.File( external.globals( 'usersdir' ) + 'My Avatars\\' + external.globals( 'cfg' ).Item( 'avatar' ) ).ReadBase64();
 			warn( 'SENT: ' + dom.xml );
 			external.XMPP.SendXML( dom );
 		}
@@ -194,7 +194,7 @@ function XMPPOnIQ ( ReceivedXML )
 			else
 				with ( external.createWindow( jid + '/' + iq.Id + '/file_recv', external.globals( 'cwd' ) + 'file_recv.html', new Array( jid, res, iq.From, iq.Id, iq ) ) )
 				{
-					setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_file_recv', [ external.globals( 'ClientRoster' ).Items( jid ).Name ] ) );
+					setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_file_recv', [ external.globals( 'ClientRoster' ).Items.Item( jid ).Name ] ) );
 					setIcon( external.globals( 'cwd' ) + '..\\images\\filetransfer\\disk.ico' );
 					resizeable( false );
 					showMinBox( true );

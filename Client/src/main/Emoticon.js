@@ -94,13 +94,13 @@ function EmoticonCache ()
 		if ( ! this.Styles.Exists( Name ) )
 			this.Styles.Add( Name, this.LoadStyle( Name ) );
 
-		if ( this.Styles( Name ) )
+		if ( this.Styles.Item( Name ) )
 		{
 			var ConcatLanguages = Languages.join();
-			if ( ! this.Styles( Name ).Subsets.Exists( ConcatLanguages ) )
-				this.Styles( Name ).Subsets.Add( ConcatLanguages, this.LoadSubset( this.Styles( Name ), Languages ) );
+			if ( ! this.Styles.Item( Name ).Subsets.Exists( ConcatLanguages ) )
+				this.Styles.Item( Name ).Subsets.Add( ConcatLanguages, this.LoadSubset( this.Styles.Item( Name ), Languages ) );
 
-			return this.Styles( Name ).Subsets( ConcatLanguages );
+			return this.Styles.Item( Name ).Subsets.Item( ConcatLanguages );
 		}
 		else
 		{
@@ -163,8 +163,8 @@ function EmoticonCache ()
 					if ( ! Style.Strings.Exists( Language ) )
 						Style.Strings.Add( Language, new ActiveXObject( 'Scripting.Dictionary' ) );
 
-					if ( ! Style.Strings( Language ).Exists( IconString ) )
-						Style.Strings( Language ).Add( IconString, Style.Actions.length - 1 );
+					if ( ! Style.Strings.Item( Language ).Exists( IconString ) )
+						Style.Strings.Item( Language ).Add( IconString, Style.Actions.length - 1 );
 				}
 			}
 		}
@@ -183,12 +183,12 @@ function EmoticonCache ()
 		for ( i = 0; i < Languages.length; ++i )
 			if ( Style.Strings.Exists( Languages[i] ) )
 			{
-				var LanguageStrings = ( new VBArray( Style.Strings( Languages[i] ).Keys() ) ).toArray();
+				var LanguageStrings = ( new VBArray( Style.Strings.Item( Languages[i] ).Keys() ) ).toArray();
 				for ( var j = 0; j < LanguageStrings.length; ++j )
 					if ( ! Subset.StringToAction.Exists( LanguageStrings[j] ) )
 					{
 						UnsortedStrings.push( LanguageStrings[j].replace( StringFilter, '\\$1' ) );
-						Subset.StringToAction.Add( LanguageStrings[j], Style.Strings( Languages[i] )( LanguageStrings[j] ) );
+						Subset.StringToAction.Add( LanguageStrings[j], Style.Strings.Item( Languages[i] )( LanguageStrings[j] ) );
 					}
 			}
 

@@ -40,13 +40,13 @@ function dial_block ( Address )
 	 */
 	if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) )
 	{
-		external.globals( 'ClientRoster' ).Items( ShortAddress ).RefreshAll();
-		external.globals( 'ClientRoster' ).Items( ShortAddress ).UpdateTracker();
+		external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).RefreshAll();
+		external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).UpdateTracker();
 	}
 
 	/* Update the settings window.
 	 */
-	external.globals( 'cfg' )( 'blocklist' ) = ( new VBArray( external.globals( 'block' ).Keys() ) ).toArray().toString();
+	external.globals( 'cfg' ).Item( 'blocklist' ) = ( new VBArray( external.globals( 'block' ).Keys() ) ).toArray().toString();
 	if ( external.windows.Exists( 'preferences' ) )
 		external.windows( 'preferences' ).Do( 'block_refresh', 0 );
 }

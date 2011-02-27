@@ -183,11 +183,11 @@ function ClientRosterSearch ()
 		var groups = (new VBArray(external.globals("ClientRoster").Groups.Keys())).toArray();
 		for (var i in groups)
 			displayGroup(
-				external.globals("ClientRoster").Groups(groups[i]),
+				external.globals("ClientRoster").Groups.Item(groups[i]),
 				true,
-				external.globals("ClientRoster").Groups(groups[i]).ShowAll,
-				external.globals("ClientRoster").Groups(groups[i]).ShowOffline,
-				external.globals("ClientRoster").Groups(groups[i]).ShowAll
+				external.globals("ClientRoster").Groups.Item(groups[i]).ShowAll,
+				external.globals("ClientRoster").Groups.Item(groups[i]).ShowOffline,
+				external.globals("ClientRoster").Groups.Item(groups[i]).ShowAll
 			);
 	}
 
@@ -195,7 +195,7 @@ function ClientRosterSearch ()
 	{
 		var contacts = (new VBArray(external.globals("ClientRoster").Items.Keys())).toArray();
 		for (var i in contacts)
-			displayContact(external.globals("ClientRoster").Items(contacts[i]), true);
+			displayContact(external.globals("ClientRoster").Items.Item(contacts[i]), true);
 	}
 
 	function displayGroup (Group, ShowHeader, ShowAll, ShowOffline, ShowToggle)
@@ -213,20 +213,20 @@ function ClientRosterSearch ()
 				if (Visible)
 				{
 					if (!Contact.HTMLElements.Exists(Contact.Groups[i]))
-						Contact.Draw(external.globals("ClientRoster").Groups(Contact.Groups[i]));
+						Contact.Draw(external.globals("ClientRoster").Groups.Item(Contact.Groups[i]));
 				}
 				else
 				{
 					if (Contact.HTMLElements.Exists(Contact.Groups[i]))
-						Contact.Hide(external.globals("ClientRoster").Groups(Contact.Groups[i]));
+						Contact.Hide(external.globals("ClientRoster").Groups.Item(Contact.Groups[i]));
 				}
 
 		var resources = (new VBArray(Contact.Resources.Keys())).toArray();
 		for (var i in resources)
 		{
-			var groups = (new VBArray(Contact.Resources(resources[i]).HTMLElements.Keys())).toArray()
+			var groups = (new VBArray(Contact.Resources.Item(resources[i]).HTMLElements.Keys())).toArray()
 			for (var j in groups)
-				Contact.Resources(resources[i]).HTMLElements(groups[j]).style.display = Visible ? "block" : "none";
+				Contact.Resources.Item(resources[i]).HTMLElements.Item(groups[j]).style.display = Visible ? "block" : "none";
 		}
 	}
 
@@ -234,7 +234,7 @@ function ClientRosterSearch ()
 	{
 		var groups = (new VBArray(external.globals("ClientRoster").Groups.Keys())).toArray();
 		for (var i in groups)
-			displayGroup(external.globals("ClientRoster").Groups(groups[i]), false, false, false, false);
+			displayGroup(external.globals("ClientRoster").Groups.Item(groups[i]), false, false, false, false);
 	}
 
 	function scanContacts ()
@@ -242,12 +242,12 @@ function ClientRosterSearch ()
 		var contacts = (new VBArray(external.globals("ClientRoster").Items.Keys())).toArray();
 		for (var i in contacts)
 		{
-			var contact = external.globals("ClientRoster").Items(contacts[i]);
+			var contact = external.globals("ClientRoster").Items.Item(contacts[i]);
 			if (matchContact(contact))
 			{
 				displayContact(contact, true);
 				for (var j in contact.Groups)
-					displayGroup(external.globals("ClientRoster").Groups(contact.Groups[j]), true, true, true, false);
+					displayGroup(external.globals("ClientRoster").Groups.Item(contact.Groups[j]), true, true, true, false);
 			}
 			else
 				displayContact(contact, false);

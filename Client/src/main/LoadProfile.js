@@ -22,19 +22,19 @@ function LoadProfile ( Address )
 
 	/* Select one of the default avatars if necessary
 	 */
-	if ( ! external.globals( 'cfg' )( 'avatar' ).length )
+	if ( ! external.globals( 'cfg' ).Item( 'avatar' ).length )
 	{
 		var	Avatars = new VBArray( external.Directory.ListFiles( external.globals( 'cwd' ) + '..\\avatars' ) ).toArray();
 		var Hash = parseInt( external.StringToSHA1( Address.ShortAddress() ).substr( 0, 8 ), 16 );
-		external.globals( 'cfg' )( 'avatar' ) = Avatars[ Hash % Avatars.length ].Name;
+		external.globals( 'cfg' ).Item( 'avatar' ) = Avatars[ Hash % Avatars.length ].Name;
 	}
 
 	/* Copy avatar from cache to personal repository
 	 */
-	if ( ! external.FileExists( external.globals( 'usersdir' ) + 'My Avatars\\' + external.globals( 'cfg' )( 'avatar' ) )
-		&& external.FileExists( external.globals( 'usersdir' ) + 'Avatars\\' + external.globals( 'cfg' )( 'avatar' ) ) )
+	if ( ! external.FileExists( external.globals( 'usersdir' ) + 'My Avatars\\' + external.globals( 'cfg' ).Item( 'avatar' ) )
+		&& external.FileExists( external.globals( 'usersdir' ) + 'Avatars\\' + external.globals( 'cfg' ).Item( 'avatar' ) ) )
 	{
-		external.File( external.globals( 'usersdir' ) + 'Avatars\\' + external.globals( 'cfg' )( 'avatar' ) ).Copy( external.globals( 'usersdir' ) + 'My Avatars\\' + external.globals( 'cfg' )( 'avatar' ) );
+		external.File( external.globals( 'usersdir' ) + 'Avatars\\' + external.globals( 'cfg' ).Item( 'avatar' ) ).Copy( external.globals( 'usersdir' ) + 'My Avatars\\' + external.globals( 'cfg' ).Item( 'avatar' ) );
 	}
 
 	/* Default directory where filetransfers are stored

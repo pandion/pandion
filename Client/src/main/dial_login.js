@@ -10,7 +10,7 @@ function dial_login ( visible )
 	/* Reset user profile
 	 */
 	if ( external.globals( 'cfg' ) )
-		external.globals( 'cfg' )( 'username' ) = external.globals( 'cfg' )( 'server' ) = '';
+		external.globals( 'cfg' ).Item( 'username' ) = external.globals( 'cfg' ).Item( 'server' ) = '';
 
 	/* Toggle form fields
 	 */

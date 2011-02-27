@@ -46,14 +46,14 @@ function ChatSessionPool ()
 		/* Parse the event right now
 		 */
 		if ( this.Trackers.Exists( ShortAddress ) )
-			this.Trackers( ShortAddress ).DispatchEvent( Event );
+			this.Trackers.Item( ShortAddress ).DispatchEvent( Event );
 
 		/* Queue the event
 		 */
 		else if ( Event.Type == 'message' && Event.Payload.Body.length )
 		{
 			if ( this.Events.Exists( ShortAddress ) )
-				this.Events( ShortAddress ).push( Event );
+				this.Events.Item( ShortAddress ).push( Event );
 			else
 				this.Events.Add( ShortAddress, new Array( Event ) );
 
@@ -63,8 +63,8 @@ function ChatSessionPool ()
 
 			/* Play a sound notification for the incoming message.
 			 */
-			if ( external.globals( 'cfg' )( 'soundmessage' ).toString() == 'true' )
-				sound_play( external.globals( 'cfg' )( 'soundmessagefile' ), false );
+			if ( external.globals( 'cfg' ).Item( 'soundmessage' ).toString() == 'true' )
+				sound_play( external.globals( 'cfg' ).Item( 'soundmessagefile' ), false );
 		}
 	}
 
@@ -74,16 +74,16 @@ function ChatSessionPool ()
 
 		/* Replay last messages
 		 */
-		if ( external.globals( 'cfg' )( 'history_store' ).toString() == 'true' )
+		if ( external.globals( 'cfg' ).Item( 'history_store' ).toString() == 'true' )
 		{
 			var Buffer = new Array();
 			var Filename = ( new MD5() ).digest( ShortAddress );
 			var Limit = 10;
 			var Messages = new Array();
-			var Path = external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\';
+			var Path = external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) + '\\';
 
 			if ( this.Events.Exists( ShortAddress ) )
-				Limit += this.Events( ShortAddress ).length;
+				Limit += this.Events.Item( ShortAddress ).length;
 
 			/* Load last messages from cache
 			 */
@@ -143,7 +143,7 @@ function ChatSessionPool ()
 			/* Do not show queued messages in the history
 			 */
 			if ( this.Events.Exists( ShortAddress ) )
-				Limit = Buffer.length - this.Events( ShortAddress ).length;
+				Limit = Buffer.length - this.Events.Item( ShortAddress ).length;
 			while ( Buffer.length > Limit )
 				Buffer.pop();
 
@@ -163,7 +163,7 @@ function ChatSessionPool ()
 					Message.Time	= new Date( Buffer[i].substr( 0, 4 ), Buffer[i].substr( 4, 2 ) - 1, Buffer[i].substr( 6, 2 ), Buffer[i].substr( 9, 2 ), Buffer[i].substr( 12, 2 ), Buffer[i].substr( 15, 2 ) );
 					if ( Buffer[i].substr( 18, 3 ) == 'out' )
 					{
-						Message.From = external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' );
+						Message.From = external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' );
 						Message.Body = unescape( Buffer[i].substr( 22 ) );
 					}
 					else
@@ -196,18 +196,18 @@ function ChatSessionPool ()
 		{
 			/* Temporarily disable sound notification
 			 */
-			var PlaySounds = external.globals( 'cfg' )( 'soundmessage' );
-			external.globals( 'cfg' )( 'soundmessage' ) = false;
+			var PlaySounds = external.globals( 'cfg' ).Item( 'soundmessage' );
+			external.globals( 'cfg' ).Item( 'soundmessage' ) = false;
 
 			/* Dispatch the messages
 			 */
-			for ( var i = 0; i < this.Events( ShortAddress ).length; ++i )
-				Tracker.DispatchEvent( this.Events( ShortAddress )[i] );
+			for ( var i = 0; i < this.Events.Item( ShortAddress ).length; ++i )
+				Tracker.DispatchEvent( this.Events.Item( ShortAddress )[i] );
 			this.Events.Remove( ShortAddress );
 
 			/* Reset the sound notification
 			 */
-			external.globals( 'cfg' )( 'soundmessage' ) = PlaySounds;
+			external.globals( 'cfg' ).Item( 'soundmessage' ) = PlaySounds;
 		}
 
 		/* Remove the tracker address from the undo-close tab list
@@ -223,7 +223,7 @@ function ChatSessionPool ()
 	function GetTracker ( Address )
 	{
 		var ShortAddress = Address.ShortAddress();
-		return this.Trackers.Exists( ShortAddress ) ? this.Trackers( ShortAddress ) : null;
+		return this.Trackers.Exists( ShortAddress ) ? this.Trackers.Item( ShortAddress ) : null;
 	}
 
 	function DeleteTracker ( Tracker )
@@ -262,7 +262,7 @@ function ChatSessionPool ()
 			setIcon( external.globals( 'cwd' ) + '..\\images\\chat-container\\bubble.ico' );
 			MinWidth = 180;
 			MinHeight = 210;
-			setAOT( external.globals( 'cfg' )( 'aotchat' ).toString() == 'true' );
+			setAOT( external.globals( 'cfg' ).Item( 'aotchat' ).toString() == 'true' );
 		}
 	}
 }

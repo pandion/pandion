@@ -25,14 +25,14 @@ function XMPPOnDisconnected ()
 	{
 		var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
 		for ( var i = 0; i < ContainerNames.length; ++i )
-			external.globals( 'ChatSessionPool' ).Containers( ContainerNames[i] ).InputUpdate();
+			external.globals( 'ChatSessionPool' ).Containers.Item( ContainerNames[i] ).InputUpdate();
 
 		var TrackerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Trackers.Keys() ) ).toArray();
 		for ( var i = 0; i < TrackerNames.length; ++i )
 		{
 			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 			dom.loadXML( '<presence type="unavailable"/>' );
-			dom.documentElement.setAttribute( 'from', TrackerNames[i] + '/' + external.globals( 'ConferenceSessionPool' ).Trackers( TrackerNames[i] ).Address.Resource );
+			dom.documentElement.setAttribute( 'from', TrackerNames[i] + '/' + external.globals( 'ConferenceSessionPool' ).Trackers.Item( TrackerNames[i] ).Address.Resource );
 
 			var Presence = new XMPPPresence();
 			Presence.FromDOM( dom );
@@ -55,7 +55,7 @@ function XMPPOnDisconnected ()
 		document.getElementById( 'mode-secure' ).style.display = 'none';
 		document.getElementById( 'rosterfield' ).style.display = external.globals( 'ClientRoster' ).Items.Count ? 'block' : 'none';
 		document.getElementById( 'commerror' ).style.display = external.globals( 'ClientRoster' ).Items.Count ? 'none'  : 'block';
-		document.getElementById( 'mode-message' ).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' ) + ( external.globals( 'cfg' )( 'lastmsg' ).length ? ' - ' + external.globals( 'cfg' )( 'lastmsg' ) : '' );
+		document.getElementById( 'mode-message' ).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' ) + ( external.globals( 'cfg' ).Item( 'lastmsg' ).length ? ' - ' + external.globals( 'cfg' ).Item( 'lastmsg' ) : '' );
 
 		external.globals( 'XMPPReconnectTimeout' ) = setTimeout(
 			function ()

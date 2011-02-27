@@ -65,7 +65,7 @@ function FlashTab ( Address, Times )
 {
 	if ( gContainer.Trackers.Exists( Address ) )
 	{
-		var Tracker	= gContainer.Trackers( Address );
+		var Tracker	= gContainer.Trackers.Item( Address );
 		var Name	= Tracker.HTMLButton.children.item(0).style;
 		if ( Tracker.IsActive )
 		{
@@ -89,10 +89,10 @@ function FlashTab ( Address, Times )
  */
 function ChooseEmoticons ()
 {
-	var AddressHost = gContainer.Trackers( gContainer.ActiveTrackerAddress ).Address.Host;
-	var EmoticonStyle = external.globals( 'cfg' )( 'emoticonset' );
-	if ( external.globals( 'ClientServices' ).Services.Exists( AddressHost ) && ( external.globals( 'ClientServices' ).Services( AddressHost ).Options & 0x0001 ) )
-		switch ( external.globals( 'ClientServices' ).Services( AddressHost ).Options & 0x881E )
+	var AddressHost = gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Address.Host;
+	var EmoticonStyle = external.globals( 'cfg' ).Item( 'emoticonset' );
+	if ( external.globals( 'ClientServices' ).Services.Exists( AddressHost ) && ( external.globals( 'ClientServices' ).Services.Item( AddressHost ).Options & 0x0001 ) )
+		switch ( external.globals( 'ClientServices' ).Services.Item( AddressHost ).Options & 0x881E )
 		{
 			case 0x0002: EmoticonStyle = 'msn_messenger';	break;
 			case 0x0004: EmoticonStyle = 'icq';				break;
@@ -105,7 +105,7 @@ function ChooseEmoticons ()
 		EmoticonStyle = 'wpkontakt';
 
 	if ( ! external.FileExists( external.globals( 'usersdir' ) + 'Emoticons\\' + EmoticonStyle + '\\icondef.xml' ) )
-		EmoticonStyle = external.globals( 'cfg' )( 'emoticonset' );
+		EmoticonStyle = external.globals( 'cfg' ).Item( 'emoticonset' );
 
 	var Language = external.globals( 'language' );
 	if ( ! ( Language.length < 3 || Language.indexOf( 'i-' ) == 0 || Language.indexOf( 'x-' ) == 0 ) )
@@ -128,7 +128,7 @@ function ChooseEmoticons ()
 		/* Expand palette to show all emoticons
 		 */
 		var ShowExpand = Subset.Style.Actions.length > W * H;
-		if ( Subset.Style.Actions.length > W * H && external.globals( 'cfg' )( 'emoticonviewall' ).toString() == 'true' )
+		if ( Subset.Style.Actions.length > W * H && external.globals( 'cfg' ).Item( 'emoticonviewall' ).toString() == 'true' )
 		{
 			W = Math.round( Math.pow( Subset.Style.Actions.length * W / H, 0.5 ) );
 			H = 100;
@@ -140,7 +140,7 @@ function ChooseEmoticons ()
 		for ( var i = 0; i < Guesses.length; ++i )
 			if ( Subset.StringToAction.Exists( Guesses[i] ) )
 			{
-				var Action = Subset.Style.Actions[ Subset.StringToAction( Guesses[i] ) ];
+				var Action = Subset.Style.Actions[ Subset.StringToAction.Item( Guesses[i] ) ];
 				if ( Action.Graphic && ! Singularity.Exists( Action.Graphic ) )
 				{
 					Strings.push( Guesses[i] );
@@ -154,7 +154,7 @@ function ChooseEmoticons ()
 		var SubsetStrings = ( new VBArray( Subset.StringToAction.Keys() ) ).toArray();
 		for ( var i = 0; i < SubsetStrings.length && Strings.length < W * H; ++i )
 		{
-			var Action = Subset.Style.Actions[ Subset.StringToAction( SubsetStrings[i] ) ];
+			var Action = Subset.Style.Actions[ Subset.StringToAction.Item( SubsetStrings[i] ) ];
 			if ( Action.Graphic && ! Singularity.Exists( Action.Graphic ) )
 			{
 				Strings.push( SubsetStrings[i] );
@@ -218,13 +218,13 @@ function ChooseEmoticons ()
 		if ( ShowExpand )
 		{
 			var Expand			= Popup.document.createElement( '<DIV onmouseover="this.style.borderColor = \'highlight\'; this.style.backgroundImage = \'url( ../images/misc/arrow-\' + ( external.globals( \'cfg\' )( \'emoticonviewall\' ).toString() == \'true\' ? \'we\' : \'ea\' ) + \'st-dark.gif )\';" onmouseout="this.style.borderColor = \'window\'; this.style.backgroundImage = \'url( ../images/misc/arrow-\' + ( external.globals( \'cfg\' )( \'emoticonviewall\' ).toString() == \'true\' ? \'we\' : \'ea\' ) + \'st-light.gif )\';">' );
-			Expand.title		= external.globals( 'Translator' ).Translate( 'chat-container', external.globals( 'cfg' )( 'emoticonviewall' ).toString() == 'true' ? 'palette_compact' : 'palette_expand' );
+			Expand.title		= external.globals( 'Translator' ).Translate( 'chat-container', external.globals( 'cfg' ).Item( 'emoticonviewall' ).toString() == 'true' ? 'palette_compact' : 'palette_expand' );
 			Expand.attachEvent(
 				'onclick',
 				function ( event )
 				{
 					event.cancelBubble = true;
-					external.globals( 'cfg' )( 'emoticonviewall' ) = ! ( external.globals( 'cfg' )( 'emoticonviewall' ).toString() == 'true' );
+					external.globals( 'cfg' ).Item( 'emoticonviewall' ) = ! ( external.globals( 'cfg' ).Item( 'emoticonviewall' ).toString() == 'true' );
 					Popup.hide();
 					window.parent.document.getElementById( 'btn-emoticons' ).click();
 				}
@@ -243,7 +243,7 @@ function ChooseEmoticons ()
 				color			= 'windowtext';
 				border			= '1x solid window';
 				background		= 'window no-repeat center center';
-				backgroundImage	= 'url( ../images/misc/arrow-' + ( external.globals( 'cfg' )( 'emoticonviewall' ).toString() == 'true' ? 'we' : 'ea' ) + 'st-light.gif )';
+				backgroundImage	= 'url( ../images/misc/arrow-' + ( external.globals( 'cfg' ).Item( 'emoticonviewall' ).toString() == 'true' ? 'we' : 'ea' ) + 'st-light.gif )';
 			}
 			Popup.document.body.insertAdjacentElement( 'beforeEnd', Expand );
 		}
@@ -393,10 +393,10 @@ function ChooseBackground ()
 			'onclick',
 			function ( event )
 			{
-				var Tracker = gContainer.Trackers( gContainer.ActiveTrackerAddress );
+				var Tracker = gContainer.Trackers.Item( gContainer.ActiveTrackerAddress );
 				if ( Tracker && Tracker.Background.length )
 				{
-					external.globals( 'cfg' )( 'background' ) = '';
+					external.globals( 'cfg' ).Item( 'background' ) = '';
 					Tracker.Background			= '';
 					Tracker.BackgroundLoading	= false
 					var ShortAddress			= Tracker.Address.ShortAddress();
@@ -483,10 +483,10 @@ function ChooseBackground ()
 			{
 				if ( event.srcElement.tagName == 'IMG' )
 				{
-					var Tracker = gContainer.Trackers( gContainer.ActiveTrackerAddress );
+					var Tracker = gContainer.Trackers.Item( gContainer.ActiveTrackerAddress );
 					if ( Tracker && Tracker.Background != event.srcElement.BackgroundName )
 					{
-						external.globals( 'cfg' )( 'background' ) = event.srcElement.BackgroundName;
+						external.globals( 'cfg' ).Item( 'background' ) = event.srcElement.BackgroundName;
 						Tracker.Background			= event.srcElement.BackgroundName;
 						Tracker.BackgroundLoading	= false;
 						var ShortAddress			= Tracker.Address.ShortAddress();
@@ -631,10 +631,10 @@ function Keyboard ( EventData )
 		if ( gContainer.Trackers.Exists( gContainer.ActiveTrackerAddress ) )
 		{
 			EventData.returnValue = false;
-			if ( gContainer.Trackers( gContainer.ActiveTrackerAddress ).IsActive )
-				gContainer.Trackers( gContainer.ActiveTrackerAddress ).Close();
+			if ( gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).IsActive )
+				gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Close();
 			else
-				gContainer.Trackers( gContainer.ActiveTrackerAddress ).Activate();
+				gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Activate();
 		}
 	}
 
@@ -708,7 +708,7 @@ function ResizeStartTracking ()
 {
 	if ( ! gResizeInterval )
 	{
-		if ( ! gContainer.Trackers( gContainer.ActiveTrackerAddress ).Occupants )
+		if ( ! gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Occupants )
 			document.getElementById( 'send-text' ).detachEvent( 'onpropertychange', Typing );
 		document.attachEvent( 'onmouseup', ResizeStopTracking );
 		ResizePosition();
@@ -740,10 +740,10 @@ function ResizeStopTracking ()
 		document.getElementById( 'toolbar-wrapper' ).childNodes(1).style.cursor = '';
 		document.getElementById( 'toolbar-wrapper' ).childNodes(2).style.cursor = '';
 		document.getElementById( 'toolbar-wrapper' ).childNodes(3).style.cursor = '';
-		document.getElementById( 'mode-bar' ).style.cursor = gContainer.Trackers( gContainer.ActiveTrackerAddress ).Occupants ? 'default' : 'hand';
+		document.getElementById( 'mode-bar' ).style.cursor = gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Occupants ? 'default' : 'hand';
 		document.getElementById( 'send-text' ).style.cursor = '';
 		document.frames( 'iframe-' + gContainer.ActiveTrackerAddress ).document.body.style.cursor = '';
-		if ( ! gContainer.Trackers( gContainer.ActiveTrackerAddress ).Occupants )
+		if ( ! gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Occupants )
 			document.getElementById( 'send-text' ).attachEvent( 'onpropertychange', Typing );
 	}
 }
@@ -763,8 +763,8 @@ function ResizePosition ()
 		var TabbarRow = document.getElementById( 'tab-bar-row' );
 		var InputBottomY = external.wnd.top + external.wnd.height - TabbarRow.height + 8;
 		var MaxHeight = InputBottomY - ( external.wnd.top + 200 );
-		external.globals( 'cfg' )( 'textinputheight' ) = Math.max( 60, Math.min( MaxHeight, InputBottomY - external.cursorY ) );
-		InputRow.height = external.globals( 'cfg' )( 'textinputheight' );
+		external.globals( 'cfg' ).Item( 'textinputheight' ) = Math.max( 60, Math.min( MaxHeight, InputBottomY - external.cursorY ) );
+		InputRow.height = external.globals( 'cfg' ).Item( 'textinputheight' );
 	}
 	else
 		ResizeStopTracking();
@@ -781,14 +781,14 @@ function SelectionFilter ()
  */
 function ResizeCheck ()
 {
-	var Height = parseInt( external.globals( 'cfg' )( 'textinputheight' ), 10 );
+	var Height = parseInt( external.globals( 'cfg' ).Item( 'textinputheight' ), 10 );
 	var TabbarRow = document.getElementById( 'tab-bar-row' );
 	var InputBottomY = external.wnd.top + external.wnd.height - TabbarRow.height + 50;
 	var MaxHeight = InputBottomY - ( external.wnd.top + 200 );
 	if ( Height > MaxHeight )
 	{
-		external.globals( 'cfg' )( 'textinputheight' ) = Math.max( 60, Math.min( MaxHeight, InputBottomY - external.cursorY ) );
-		document.getElementById( 'send-text' ).parentNode.parentNode.height = external.globals( 'cfg' )( 'textinputheight' );
+		external.globals( 'cfg' ).Item( 'textinputheight' ) = Math.max( 60, Math.min( MaxHeight, InputBottomY - external.cursorY ) );
+		document.getElementById( 'send-text' ).parentNode.parentNode.height = external.globals( 'cfg' ).Item( 'textinputheight' );
 	}
 }
 

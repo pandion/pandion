@@ -2,7 +2,7 @@ function dial_mode ()
 {
 	var dir = external.globals( 'cwd' ) + '..\\images\\status\\';
 	var Menu = external.newPopupMenu;
-	var mode = external.globals( 'XMPPConnected' ) ? external.globals( 'cfg' )( 'lastmode' ) : -1;
+	var mode = external.globals( 'XMPPConnected' ) ? external.globals( 'cfg' ).Item( 'lastmode' ) : -1;
 	var sspi = external.globals( 'sspiserver' ).length;
 //	Menu.AddItem( true, false, mode == 1,				false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_ffc' ), 2 );
 	Menu.AddItem( true, false, mode == 0 || mode == 1,	false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_status_available' ), 3 );
@@ -18,7 +18,7 @@ function dial_mode ()
 	var posy = window.screenTop + 48;
 	Menu.Show( posx, posy, external.globals( 'Translator' ).Direction );
 
-	var msg = external.globals( 'cfg' )( 'lastmsg' );
+	var msg = external.globals( 'cfg' ).Item( 'lastmsg' );
 	switch ( Menu.Choice )
 	{
 		case 1: // leave a note

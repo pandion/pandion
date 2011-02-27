@@ -17,9 +17,9 @@ function SettingsSave ()
 			var groupnames = ( new VBArray( external.globals( 'ClientRoster' ).Groups.Keys() ) ).toArray();
 			for ( var i = 0; i < groupnames.length; ++i )
 			{
-				if ( ! external.globals( 'ClientRoster' ).Groups( groupnames[i] ).ShowAll )
+				if ( ! external.globals( 'ClientRoster' ).Groups.Item( groupnames[i] ).ShowAll )
 					hiddengroups.push( groupnames[i] );
-				if ( external.globals( 'ClientRoster' ).Groups( groupnames[i] ).ShowOffline )
+				if ( external.globals( 'ClientRoster' ).Groups.Item( groupnames[i] ).ShowOffline )
 					hiddengroupsoffline.push( groupnames[i] );
 			}
 			cfg( 'hiddengroups' ) = hiddengroups.join( '\n' );

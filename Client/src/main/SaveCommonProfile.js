@@ -43,9 +43,9 @@ function SaveCommonProfile ()
 	if ( document.getElementById( 'content-dialog' ).style.display == 'block' )
 	{
 		if ( external.wnd.width > 50 )
-			Data( 'lastwidth' ) = external.globals( 'lastwidth' ) = external.wnd.width;
+			Data.Item( 'lastwidth' ) = external.globals( 'lastwidth' ) = external.wnd.width;
 		if ( external.wnd.height > 50 )
-			Data( 'lastheight' ) = external.globals( 'lastheight' ) = external.wnd.height;
+			Data.Item( 'lastheight' ) = external.globals( 'lastheight' ) = external.wnd.height;
 	}
 
 	hash2file( Data, external.globals( 'usersdir' ) + 'global.xml' );

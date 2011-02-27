@@ -1,4 +1,4 @@
 function Reconnect ()
 {
-	mode_new( external.globals( 'cfg' )( 'lastmode' ), external.globals( 'cfg' )( 'lastmsg' ) );
+	mode_new( external.globals( 'cfg' ).Item( 'lastmode' ), external.globals( 'cfg' ).Item( 'lastmsg' ) );
 }

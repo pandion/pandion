@@ -9,7 +9,7 @@ function XMPPOnPresence ( ReceivedXML )
 	/* Default to our server if missing from address
 	 */
 	if ( ! Presence.FromAddress.Host.length )
-		Presence.FromAddress.Parse( external.globals( 'cfg' )( 'server' ) );
+		Presence.FromAddress.Parse( external.globals( 'cfg' ).Item( 'server' ) );
 
 	/* Plugin event
 	 */
@@ -37,7 +37,7 @@ function XMPPOnPresence ( ReceivedXML )
 		}
 		/* It's a transport or someone on the other side of a transport
 		 */
-		else if ( ( external.globals( 'ClientServices' ).Services.Exists( Presence.FromAddress.Host ) && external.globals( 'ClientServices' ).Services( Presence.FromAddress.Host ).Options & 0x0001 ) || external.globals( 'ClientServices' ).PendingDisco.Exists( Presence.FromAddress.Host ) )
+		else if ( ( external.globals( 'ClientServices' ).Services.Exists( Presence.FromAddress.Host ) && external.globals( 'ClientServices' ).Services.Item( Presence.FromAddress.Host ).Options & 0x0001 ) || external.globals( 'ClientServices' ).PendingDisco.Exists( Presence.FromAddress.Host ) )
 		{
 			dom.loadXML( '<presence type="subscribed"/>' );
 			dom.documentElement.setAttribute( 'to', Presence.From );
@@ -53,7 +53,7 @@ function XMPPOnPresence ( ReceivedXML )
 		}
 		else
 		{
-			var Choice = parseInt( external.globals( 'cfg' )( 'authorization' ), 10 );
+			var Choice = parseInt( external.globals( 'cfg' ).Item( 'authorization' ), 10 );
 
 			if ( Choice == 0 || ( Choice == 2 && ! external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) ) )
 			{
@@ -105,12 +105,12 @@ function XMPPOnPresence ( ReceivedXML )
 						! external.globals( 'ClientRoster' ).Items.Exists( ShortAddress )
 						||
 						(
-							! external.globals( 'ClientRoster' ).Items( ShortAddress ).Ask
+							! external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Ask
 							&&
 							(
-								external.globals( 'ClientRoster' ).Items( ShortAddress ).Subscription == 'none'
+								external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Subscription == 'none'
 								||
-								external.globals( 'ClientRoster' ).Items( ShortAddress ).Subscription == 'from'
+								external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Subscription == 'from'
 							)
 						)
 					)
@@ -143,7 +143,7 @@ function XMPPOnPresence ( ReceivedXML )
 	 */
 	else if ( Presence.Type == 'unsubscribed' || ( Presence.Type == 'error' && Presence.XMLDOM.selectSingleNode( '/presence[@type="error"]/error[@code="404"]' ) ) )
 	{
-		if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) && external.globals( 'ClientRoster' ).Items( ShortAddress ).Ask )
+		if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) && external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Ask )
 		{
 			var desc;
 			var error = Presence.XMLDOM.selectSingleNode( '/presence/status' );
@@ -195,9 +195,9 @@ function XMPPOnPresence ( ReceivedXML )
 
 	/* Invisible not supported/allowed by server
 	 */
-	else if ( Presence.Type == 'error' && external.globals( 'cfg' )( 'lastmode' ) == 5 )
+	else if ( Presence.Type == 'error' && external.globals( 'cfg' ).Item( 'lastmode' ) == 5 )
 	{
-		mode_new( 0, external.globals( 'cfg' )( 'lastmsg' ) );
+		mode_new( 0, external.globals( 'cfg' ).Item( 'lastmsg' ) );
 	}
 
 	/* Disconnected

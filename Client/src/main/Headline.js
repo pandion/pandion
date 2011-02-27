@@ -4,7 +4,7 @@ function Headline ()
 	this.Icon				= '';
 	this.Title				= '';
 	this.XMLDOM				= null;
-	this.Address			= new XMPPAddress( external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '/' + external.globals( 'cfg' )( 'resource' ) );
+	this.Address			= new XMPPAddress( external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) + '/' + external.globals( 'cfg' ).Item( 'resource' ) );
 	this.Archive			= true;
 	this.Message			= '';
 	this.ShowOptions		= false;

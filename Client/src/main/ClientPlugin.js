@@ -103,7 +103,7 @@ function ClientPluginTab ( plugin )
 		var names = ( new VBArray( this.PluginCore.Container.Plugins.Keys() ) ).toArray();
 		for ( var i = 0; i < names.length; ++i )
 		{
-			var tab = this.PluginCore.Container.Plugins( names[i] ).ClientPluginTab;
+			var tab = this.PluginCore.Container.Plugins.Item( names[i] ).ClientPluginTab;
 			if ( tab && tab.IsActive )
 			{
 				tab.IsActive = false;
@@ -266,7 +266,7 @@ function ClientPluginContainer ()
 				else if ( file && file.text.length > 0 && file.text.length < 216 && file.text.search( /\\\/\:\*\?\"\<\>\|/ ) == -1 )
 					pluginevent.File = file.text;
 
-				plugin.Events( getAttribute( 'for' ) ).push( pluginevent );
+				plugin.Events.Item( getAttribute( 'for' ) ).push( pluginevent );
 			}
 		if ( ! plugin.Events.Count )
 			return warn( 'Plug-in contains no events\n' + path );
@@ -288,7 +288,7 @@ function ClientPluginContainer ()
 				data.Value = option.selectSingleNode( 'value' ).text;
 				if ( option.getAttribute( 'onlineonly' ) == 'yes' )
 					data.OnlineOnly = true;
-				plugin.Menus( menuname ).push( data );
+				plugin.Menus.Item( menuname ).push( data );
 			}
 		}
 
@@ -379,19 +379,19 @@ function ClientPluginContainer ()
 			context.Add( 'plugin', name );
 			this.DispatchEvent( context );
 
-			if ( this.Plugins( name ).ClientPluginTab )
+			if ( this.Plugins.Item( name ).ClientPluginTab )
 			{
-				if ( this.Plugins( name ).ClientPluginTab.IsActive )
-					this.Plugins( '/roster' ).ClientPluginTab.Activate();
-				this.Plugins( name ).ClientPluginTab.HTMLArea.removeNode( true );
-				this.Plugins( name ).ClientPluginTab.HTMLButton.removeNode( true );
+				if ( this.Plugins.Item( name ).ClientPluginTab.IsActive )
+					this.Plugins.Item( '/roster' ).ClientPluginTab.Activate();
+				this.Plugins.Item( name ).ClientPluginTab.HTMLArea.removeNode( true );
+				this.Plugins.Item( name ).ClientPluginTab.HTMLButton.removeNode( true );
 				document.getElementById( 'tab-bar-row' ).style.display = this.HTMLTabBar.children.length > 1 ? 'block' : 'none';
 			}
 
 			try
 			{
-				if ( external.Directory.Exists( this.Plugins( name ).Path ) )
-					external.Directory.Delete( this.Plugins( name ).Path );
+				if ( external.Directory.Exists( this.Plugins.Item( name ).Path ) )
+					external.Directory.Delete( this.Plugins.Item( name ).Path );
 
 				if ( external.FileExists( external.globals( 'usersdir' ) + 'Plugins\\' + name ) )
 					external.File( external.globals( 'usersdir' ) + 'Plugins\\' + name ).Delete();
@@ -432,34 +432,34 @@ function ClientPluginContainer ()
 	 */
 	function DispatchEvent ( context )
 	{
-		if ( ! context.Exists( 'name' ) || context( 'name' ).length == 0 )
+		if ( ! context.Exists( 'name' ) || context.Item( 'name' ).length == 0 )
 			return false;
 
 		var names = ( new VBArray( this.Plugins.Keys() ) ).toArray();
 		for ( var i = 0; i < names.length; ++i )
-			if ( this.Plugins( names[i] ).Events.Exists( context( 'name' ) ) )
+			if ( this.Plugins.Item( names[i] ).Events.Exists( context.Item( 'name' ) ) )
 			{
-				if ( context.Exists( 'plugin' ) && context( 'plugin' ) != names[i] )
+				if ( context.Exists( 'plugin' ) && context.Item( 'plugin' ) != names[i] )
 					continue;
 
-				var handlers = this.Plugins( names[i] ).Events( context( 'name' ) );
+				var handlers = this.Plugins.Item( names[i] ).Events.Item( context.Item( 'name' ) );
 				for ( var j = 0; j < handlers.length; ++j )
 				{
-					if ( handlers[j].XPath && ! ( context.Exists( 'xmldom' ) && context( 'xmldom' ).selectSingleNode( handlers[j].XPath ) ) )
+					if ( handlers[j].XPath && ! ( context.Exists( 'xmldom' ) && context.Item( 'xmldom' ).selectSingleNode( handlers[j].XPath ) ) )
 						continue;
 
 					with ( handlers[j] )
 					{
-						if ( this.Plugins( names[i] ).Type == 'tab-iframe' )
+						if ( this.Plugins.Item( names[i] ).Type == 'tab-iframe' )
 						{
 							if ( typeof URL == 'string' )
-								this.Plugins( names[i] ).ClientPluginTab.HTMLArea.src = this.ParseURL( URL );
+								this.Plugins.Item( names[i] ).ClientPluginTab.HTMLArea.src = this.ParseURL( URL );
 							else if ( typeof File == 'string' )
-								this.Plugins( names[i] ).ClientPluginTab.HTMLArea.src = this.Plugins( names[i] ).Path + File;
+								this.Plugins.Item( names[i] ).ClientPluginTab.HTMLArea.src = this.Plugins.Item( names[i] ).Path + File;
 						}
 						if ( typeof JScript == 'function' )
 						{
-							if ( JScript.call( this.Plugins( names[i] ), context ) )
+							if ( JScript.call( this.Plugins.Item( names[i] ), context ) )
 								return true;
 						}
 					}
@@ -480,15 +480,15 @@ function ClientPluginContainer ()
 		var substitutes = {
 			'softwarename': function () { return encodeURIComponent( external.globals( 'softwarename' ) ) },
 			'softwareversion': function () { return encodeURIComponent( external.globals( 'softwareversion' ) ) },
-			'username': function () { return encodeURIComponent( external.globals( 'cfg' )( 'username' ) ) },
-			'server': function () { return encodeURIComponent( external.globals( 'cfg' )( 'server' ) ) },
-			'resource': function () { return encodeURIComponent( external.globals( 'cfg' )( 'resource' ) ) },
-			'password': function () { return encodeURIComponent( external.globals( 'cfg' )( 'password' ) ) },
+			'username': function () { return encodeURIComponent( external.globals( 'cfg' ).Item( 'username' ) ) },
+			'server': function () { return encodeURIComponent( external.globals( 'cfg' ).Item( 'server' ) ) },
+			'resource': function () { return encodeURIComponent( external.globals( 'cfg' ).Item( 'resource' ) ) },
+			'password': function () { return encodeURIComponent( external.globals( 'cfg' ).Item( 'password' ) ) },
 			'random': function () { return encodeURIComponent( random ) },
-			'username-sha1': function () { return external.StringToSHA1( random + external.globals( 'cfg' )( 'username' ) ) },
-			'server-sha1': function () { return external.StringToSHA1( random + external.globals( 'cfg' )( 'server' ) ) },
-			'resource-sha1': function () { return external.StringToSHA1( random + external.globals( 'cfg' )( 'resource' ) ) },
-			'password-sha1': function () { return external.StringToSHA1( random + external.globals( 'cfg' )( 'password' ) ) }
+			'username-sha1': function () { return external.StringToSHA1( random + external.globals( 'cfg' ).Item( 'username' ) ) },
+			'server-sha1': function () { return external.StringToSHA1( random + external.globals( 'cfg' ).Item( 'server' ) ) },
+			'resource-sha1': function () { return external.StringToSHA1( random + external.globals( 'cfg' ).Item( 'resource' ) ) },
+			'password-sha1': function () { return external.StringToSHA1( random + external.globals( 'cfg' ).Item( 'password' ) ) }
 		};
 		return url.replace(
 			/\${([^}]+)}/g,

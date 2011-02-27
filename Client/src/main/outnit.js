@@ -3,7 +3,7 @@ function outnit ()
 	external.notifyIcon.remove();
 
 	if ( external.globals( 'XMPPConnected' ) )
-		mode_new( -1, external.globals( 'cfg' )( 'lastmsg' ) );
+		mode_new( -1, external.globals( 'cfg' ).Item( 'lastmsg' ) );
 
 	if ( external.globals( 'cfg' ) )
 		SettingsSave();

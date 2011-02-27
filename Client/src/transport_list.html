@@ -76,7 +76,7 @@ function End ()
 		external.windows( 'transport_other' ).close();
 	var HookAddresses = ( new VBArray( gHooks.Keys() ) ).toArray();
 	for ( var i = 0; i < HookAddresses.length; ++i )
-		gHooks( HookAddresses[i] ).Destroy();
+		gHooks.Item( HookAddresses[i] ).Destroy();
 	gHooks.RemoveAll();
 }
 
@@ -90,7 +90,7 @@ function transport_refresh ( jid )
 			area.children.item(0).removeNode( true );
 		var HookAddresses = ( new VBArray( gHooks.Keys() ) ).toArray();
 		for ( var i = 0; i < HookAddresses.length; ++i )
-			gHooks( HookAddresses[i] ).Destroy();
+			gHooks.Item( HookAddresses[i] ).Destroy();
 		gHooks.RemoveAll();
 	}
 	else

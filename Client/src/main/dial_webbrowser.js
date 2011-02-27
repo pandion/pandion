@@ -29,7 +29,7 @@ function dial_webbrowser (address) {
 			case "unsubscribe":
 				/* Delete from roster */
 				if (external.globals("ClientRoster").Items.Exists(xmppUri.ShortAddress()))
-					external.globals("ClientRoster").Items(xmppUri.ShortAddress()).Purge();
+					external.globals("ClientRoster").Items.Item(xmppUri.ShortAddress()).Purge();
 				break;
 			case "invite":
 			case "join":

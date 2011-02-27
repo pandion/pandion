@@ -55,10 +55,10 @@ function plugin_refresh ()
 	var list = document.getElementById( 'plugin_list' );
 	while ( list.rows.length > 1 )
 		list.deleteRow(1);
-	var allplugins = ( ( new VBArray( external.globals( 'ClientPluginContainer' ).Plugins.Keys() ) ).toArray() ).sort( function(a,b){var c=external.globals( 'ClientPluginContainer' ).Plugins(a).Name.toLowerCase();var d=external.globals( 'ClientPluginContainer' ).Plugins(b).Name.toLowerCase();return c==d?0:c<d?-1:1} );
+	var allplugins = ( ( new VBArray( external.globals( 'ClientPluginContainer' ).Plugins.Keys() ) ).toArray() ).sort( function(a,b){var c=external.globals( 'ClientPluginContainer' ).Plugins.Item(a).Name.toLowerCase();var d=external.globals( 'ClientPluginContainer' ).Plugins.Item(b).Name.toLowerCase();return c==d?0:c<d?-1:1} );
 	for ( var i = 0; i < allplugins.length; i++ )
 	{
-		var plugin = external.globals( 'ClientPluginContainer' ).Plugins( allplugins[i] );
+		var plugin = external.globals( 'ClientPluginContainer' ).Plugins.Item( allplugins[i] );
 		if ( plugin.Name.length && plugin.Version.length && plugin.Visible )
 		{
 			var row = list.insertRow(-1);

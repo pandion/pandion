@@ -14,9 +14,9 @@ function dial_conference ( Address, Password, InviteJid, InviteGroup )
 		if ( Password.length && Tracker.Password != Password )
 		{
 			Tracker.Password = Password;
-			Tracker.SendPresence( external.globals( 'cfg' )( 'lastmode' ), external.globals( 'cfg' )( 'lastmsg' ) );
+			Tracker.SendPresence( external.globals( 'cfg' ).Item( 'lastmode' ), external.globals( 'cfg' ).Item( 'lastmsg' ) );
 		}
-		if ( Address.Resource.length && Tracker.Address.Resource != Address.Resource )
+		if ( Tracker.Address.Resource.length && Tracker.Address.Resource != Address.Resource )
 		{
 			Tracker.Address = Address;
 			Tracker.DrawContainerInfo();
@@ -33,11 +33,11 @@ function dial_conference ( Address, Password, InviteJid, InviteGroup )
 			'inviteJid': InviteJid,
 			'inviteGroup': InviteGroup
 		};
-		var TabbedWindows = external.globals( 'cfg' )( 'tabbedchat' ).toString() == 'true';
+		var TabbedWindows = external.globals( 'cfg' ).Item( 'tabbedchat' ).toString() == 'true';
 		if ( TabbedWindows && SessionPool.Containers.Count )
 		{
 			var ContainerNames = ( new VBArray( SessionPool.Containers.Keys() ) ).toArray();
-			SessionPool.Containers( ContainerNames[0] ).CreateTracker( room );
+			SessionPool.Containers.Item( ContainerNames[0] ).CreateTracker( room );
 		}
 		else if ( TabbedWindows && SessionPool.ContainersLoading.Count )
 		{

@@ -11,7 +11,7 @@
 		{
 			var nick = jid;
 			if ( external.globals( 'ClientRoster' ).Items.Exists( jid ) )
-				nick = external.globals( 'ClientRoster' ).Items( jid ).Name;
+				nick = external.globals( 'ClientRoster' ).Items.Item( jid ).Name;
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_history', [ nick ] ) );
 			setIcon( external.globals( 'cwd' ) + '..\\images\\history\\books.ico' );
 			setSize( Math.max( 600,  Math.round( window.screen.availWidth / 2 ) ), Math.max( 400,  Math.round( window.screen.availHeight / 2 ) ) );

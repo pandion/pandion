@@ -5,7 +5,7 @@ function dial_chat ( Address )
 	if ( typeof Address == 'string' )
 		Address = new XMPPAddress( Address );
 
-	var TabbedWindows = external.globals( 'cfg' )( 'tabbedchat' ).toString() == 'true';
+	var TabbedWindows = external.globals( 'cfg' ).Item( 'tabbedchat' ).toString() == 'true';
 
 	if ( SessionPool.GetTracker( Address ) )
 	{
@@ -22,7 +22,7 @@ function dial_chat ( Address )
 		if ( TabbedWindows && SessionPool.Containers.Count )
 		{
 			var ContainerNames = ( new VBArray( SessionPool.Containers.Keys() ) ).toArray();
-			SessionPool.Containers( ContainerNames[0] ).CreateTracker( Address );
+			SessionPool.Containers.Item( ContainerNames[0] ).CreateTracker( Address );
 		}
 		else if ( TabbedWindows && SessionPool.ContainersLoading.Count )
 		{

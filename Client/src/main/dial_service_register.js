@@ -3,7 +3,7 @@ function dial_service_register ( address )
 	var type = 'default';
 	if ( external.globals( 'ClientServices' ).Services.Exists( address ) )
 	{
-		var service = external.globals( 'ClientServices' ).Services( address );
+		var service = external.globals( 'ClientServices' ).Services.Item( address );
 		if ( service.Options & 0x0002 )
 			type = 'msn';
 		else if ( service.Options & 0x0004 )

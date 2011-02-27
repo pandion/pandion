@@ -154,7 +154,7 @@ function dial_contacts_import ()
 								if ( ! external.globals( 'ClientRoster' ).Items.Exists( LineChopped[i] + Transport ) )
 								{
 									if ( ContactsToImport.Exists( LineChopped[i] ) )
-										ContactsToImport( LineChopped[i] ).push( LineChopped[0] );
+										ContactsToImport.Item( LineChopped[i] ).push( LineChopped[0] );
 									else
 										ContactsToImport.Add( LineChopped[i], [ LineChopped[0] ] );
 								}
@@ -175,7 +175,7 @@ function dial_contacts_import ()
 						if ( ! external.globals( 'ClientRoster' ).Items.Exists( Name + Transport ) )
 						{
 							if ( ContactsToImport.Exists( Name ) )
-								ContactsToImport( Name ).push( Group );
+								ContactsToImport.Item( Name ).push( Group );
 							else
 								ContactsToImport.Add( Name, [ Group ] );
 						}
@@ -202,10 +202,10 @@ function dial_contacts_import ()
 							dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 							dom.documentElement.firstChild.firstChild.setAttribute( 'jid', ContactNames[i] + Transport );
 							dom.documentElement.firstChild.firstChild.setAttribute( 'name', ContactNames[i] );
-							for ( var j = 0; j < ContactsToImport( ContactNames[i] ).length; ++j )
+							for ( var j = 0; j < ContactsToImport.Item( ContactNames[i] ).length; ++j )
 							{
 								var Group = dom.createElement( 'group' );
-								Group.text = ContactsToImport( ContactNames[i] )[j];
+								Group.text = ContactsToImport.Item( ContactNames[i] )[j];
 								dom.documentElement.firstChild.firstChild.appendChild( Group );
 							}
 							dom.documentElement.firstChild.setAttribute( 'xmlns', 'jabber:iq:roster' );
@@ -357,11 +357,11 @@ function dial_contacts_import ()
 							dom.loadXML( '<iq type="set"><query><item/></query></iq>' );
 							dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 							dom.documentElement.firstChild.firstChild.setAttribute( 'jid', Accounts[i] + Transport );
-							dom.documentElement.firstChild.firstChild.setAttribute( 'name', ContactsToImport( Accounts[i] )[0] );
-							for ( var j = 0; j < ContactsToImport( Accounts[i] )[1].length; ++j )
+							dom.documentElement.firstChild.firstChild.setAttribute( 'name', ContactsToImport.Item( Accounts[i] )[0] );
+							for ( var j = 0; j < ContactsToImport.Item( Accounts[i] )[1].length; ++j )
 							{
 								var Group = dom.createElement( 'group' );
-								Group.text = ContactsToImport( Accounts[i] )[1][j];
+								Group.text = ContactsToImport.Item( Accounts[i] )[1][j];
 								dom.documentElement.firstChild.firstChild.appendChild( Group );
 							}
 							dom.documentElement.firstChild.setAttribute( 'xmlns', 'jabber:iq:roster' );

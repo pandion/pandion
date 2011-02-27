@@ -12,7 +12,7 @@
 	{
 		var tag = children.item( j );
 		if ( hash.Exists( tag.tagName ) )
-			hash( tag.tagName ) = tag.text;
+			hash.Item( tag.tagName ) = tag.text;
 		else
 			hash.Add( tag.tagName, tag.text );
 	}

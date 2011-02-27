@@ -52,12 +52,12 @@ function VCARD ()
 
 	function get ( name )
 	{
-		return this.data.Exists( name ) ? this.data( name ) : '';
+		return this.data.Exists( name ) ? this.data.Item( name ) : '';
 	}
 
 	function set ( name, value )
 	{
-		return this.data.Exists( name ) ? this.data( name ) = value : this.data.Add( name, value );
+		return this.data.Exists( name ) ? this.data.Item( name ) = value : this.data.Add( name, value );
 	}
 
 	/* This array maps the XML elements to the Dictionary values.
@@ -121,7 +121,7 @@ function VCARD ()
 		{
 			var node = vcard.selectSingleNode( list[i] );
 			if ( node )
-				this.data( list[i+1] ) = node.text;
+				this.data.Item( list[i+1] ) = node.text;
 		}
 	}
 
@@ -135,8 +135,8 @@ function VCARD ()
 		{
 			try
 			{
-				if ( this.data( list[i+1] ).length )
-					vcard.selectSingleNode( list[i] ).appendChild( dom.createTextNode( this.data( list[i+1] ) ) );
+				if ( this.data.Item( list[i+1] ).length )
+					vcard.selectSingleNode( list[i] ).appendChild( dom.createTextNode( this.data.Item( list[i+1] ) ) );
 			}
 			catch ( e )
 			{

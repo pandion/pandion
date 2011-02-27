@@ -1,12 +1,12 @@
 function history_add ( ShortAddress, Time, PlainBody, Direction )
 {
-	if ( external.globals( 'cfg' )( 'history_store' ).toString() == 'true' && PlainBody.length )
+	if ( external.globals( 'cfg' ).Item( 'history_store' ).toString() == 'true' && PlainBody.length )
 	{
 		if ( ShortAddress.indexOf( '/' ) != -1 )
 			ShortAddress = ShortAddress.substr( 0, ShortAddress.indexOf( '/' ) );
 
 		var Message		= Time + ';' + ( Direction ? 'in' : 'out' ) + ';' + PlainBody.replace( /%/mg, '%25' ).replace( /\r/mg, '%0D' ).replace( /\n/mg, '%0A' );
-		var Path		= external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\';
+		var Path		= external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) + '\\';
 		var Filename	= ( new MD5() ).digest( ShortAddress );
 
 		var File = external.File( Path + Filename + '.log' );

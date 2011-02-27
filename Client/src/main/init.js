@@ -72,18 +72,18 @@ function init ()
 		var keys = ( new VBArray( brandxml.Keys() ) ).toArray();
 		for ( var i = 0; i < keys.length; i++ )
 			if ( external.globals.Exists( keys[i] ) )
-				external.globals( keys[i] ) = brandxml( keys[i] );
+				external.globals( keys[i] ) = brandxml.Item( keys[i] );
 			else
-				external.globals.Add( keys[i], brandxml( keys[i] ) );
+				external.globals.Add( keys[i], brandxml.Item( keys[i] ) );
 	}
 	if ( brandxml = file2hash( external.globals( 'cwd' ) + '..\\settings\\override.xml' ) )
 	{
 		var keys = ( new VBArray( brandxml.Keys() ) ).toArray();
 		for ( var i = 0; i < keys.length; i++ )
 			if ( external.globals.Exists( keys[i] ) )
-				external.globals( keys[i] ) = brandxml( keys[i] );
+				external.globals( keys[i] ) = brandxml.Item( keys[i] );
 			else
-				external.globals.Add( keys[i], brandxml( keys[i] ) );
+				external.globals.Add( keys[i], brandxml.Item( keys[i] ) );
 	}
 	var file = external.File( external.globals( 'cwd' ) + '..\\settings\\build.txt' );
 	var build = 0;
@@ -129,7 +129,7 @@ function init ()
 		var keys = ( new VBArray( cfg_temp.Keys() ) ).toArray();
 		for ( var i = 0; i < keys.length; i++ )
 			if ( external.globals.Exists( keys[i] ) )
-				external.globals( keys[i] ) = cfg_temp( keys[i] );
+				external.globals( keys[i] ) = cfg_temp.Item( keys[i] );
 	}
 
 	/* Translate the window
@@ -276,7 +276,7 @@ function init ()
 	/* Create the roster tab button
 	 */
 	external.globals( 'ClientPluginContainer' ).Plugins.Add( '/roster', new ClientPluginCore( external.globals( 'ClientPluginContainer' ) ) );
-	with ( external.globals( 'ClientPluginContainer' ).Plugins( '/roster' ).ClientPluginTab = new ClientPluginTab( external.globals( 'ClientPluginContainer' ).Plugins( '/roster' ) ) )
+	with ( external.globals( 'ClientPluginContainer' ).Plugins.Item( '/roster' ).ClientPluginTab = new ClientPluginTab( external.globals( 'ClientPluginContainer' ).Plugins.Item( '/roster' ) ) )
 	{
 		Icon = external.globals( 'cwd' ) + '..\\images\\main\\logo.png';
 		Tooltip = external.globals( 'Translator' ).Translate( 'main', 'cl_tooltip', [ external.globals('softwarename' ) ] );

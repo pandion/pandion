@@ -31,7 +31,7 @@ function ClientBrowseServer ()
 		for ( var i = 0; i < Identities.length; ++i )
 		{
 			if ( Identities.item(i).getAttribute( 'name' ) )
-				this.Services( jid ).Name = Identities.item(i).getAttribute( 'name' );
+				this.Services.Item( jid ).Name = Identities.item(i).getAttribute( 'name' );
 
 			var IDCategory	= Identities.item(i).getAttribute( 'category' );
 			var IDType		= Identities.item(i).getAttribute( 'type' );
@@ -40,32 +40,32 @@ function ClientBrowseServer ()
 			{
 				switch ( IDType )
 				{
-					case 'aim':			this.Services( jid ).Options |= 0x0001 | 0x0008; break;
-					case 'tlen':		this.Services( jid ).Options |= 0x0001 | 0x8000; break;
-					case 'x-tlen':		this.Services( jid ).Options |= 0x0001 | 0x8000; break;
-					case 'gadu-gadu':	this.Services( jid ).Options |= 0x0001 | 0x0800; break;
-					case 'icq':			this.Services( jid ).Options |= 0x0001 | 0x0004; break;
-					case 'msn':			this.Services( jid ).Options |= 0x0001 | 0x0002; break;
-					case 'sms':			this.Services( jid ).Options |= 0x0001 | 0x2000; break;
-					case 'smtp':		this.Services( jid ).Options |= 0x0001 | 0x1008; break;
-					case 'yahoo':		this.Services( jid ).Options |= 0x0001 | 0x0010; break;
-					default:			this.Services( jid ).Options |= 0x0001;
+					case 'aim':			this.Services.Item( jid ).Options |= 0x0001 | 0x0008; break;
+					case 'tlen':		this.Services.Item( jid ).Options |= 0x0001 | 0x8000; break;
+					case 'x-tlen':		this.Services.Item( jid ).Options |= 0x0001 | 0x8000; break;
+					case 'gadu-gadu':	this.Services.Item( jid ).Options |= 0x0001 | 0x0800; break;
+					case 'icq':			this.Services.Item( jid ).Options |= 0x0001 | 0x0004; break;
+					case 'msn':			this.Services.Item( jid ).Options |= 0x0001 | 0x0002; break;
+					case 'sms':			this.Services.Item( jid ).Options |= 0x0001 | 0x2000; break;
+					case 'smtp':		this.Services.Item( jid ).Options |= 0x0001 | 0x1008; break;
+					case 'yahoo':		this.Services.Item( jid ).Options |= 0x0001 | 0x0010; break;
+					default:			this.Services.Item( jid ).Options |= 0x0001;
 				}
 			}
 			else if ( IDCategory == 'conference' )
 			{
-				this.Services( jid ).Options |= 0x0020;
+				this.Services.Item( jid ).Options |= 0x0020;
 
 				if ( IDType == 'text' )
-					this.Services( jid ).Options |= 0x0040 | 0x0080;
+					this.Services.Item( jid ).Options |= 0x0040 | 0x0080;
 			}
 		}
 
 		if ( iq.XMLDOM.selectSingleNode( '/iq/*[@xmlns="http://jabber.org/protocol/disco#info"]/feature[@var="jabber:iq:search"]' ) )
-			this.Services( jid ).Options |= 0x0100;
+			this.Services.Item( jid ).Options |= 0x0100;
 
 		if ( iq.XMLDOM.selectSingleNode( '/iq/*[@xmlns="http://jabber.org/protocol/disco#info"]/feature[@var="jabber:iq:register"]' ) )
-			this.Services( jid ).Options |= 0x0200;
+			this.Services.Item( jid ).Options |= 0x0200;
 	}
 
 	/* Parse the XML with jabber:iq:agents
@@ -82,7 +82,7 @@ function ClientBrowseServer ()
 			var jid		= item.getAttribute( 'jid' ).toLowerCase();
 			if ( ! this.Services.Exists( jid ) )
 				this.Services.Add( jid, new ClientBrowseService( jid ) );
-			with ( this.Services( jid ) )
+			with ( this.Services.Item( jid ) )
 			{
 				if ( item.selectSingleNode( 'name' ) )
 					Name = item.selectSingleNode( 'name' ).text;
@@ -137,7 +137,7 @@ function ClientBrowseServer ()
 			var jid = item.getAttribute( 'jid' ).toLowerCase();
 			if ( ! this.Services.Exists( jid ) )
 				this.Services.Add( jid, new ClientBrowseService( jid ) );
-			with ( this.Services( jid ) )
+			with ( this.Services.Item( jid ) )
 			{
 				if ( item.getAttribute( 'name' ) )
 					Name = item.getAttribute( 'name' );
@@ -180,19 +180,19 @@ function ClientBrowseServer ()
 		var jid		= fulljid.toLowerCase();
 		if ( jid.indexOf( '/' ) != -1 )
 			jid = jid.substr( 0, jid.indexOf( '/' ) );
-		if ( this.Services.Exists( jid ) && this.Services( jid ).Options & 0x001 )
+		if ( this.Services.Exists( jid ) && this.Services.Item( jid ).Options & 0x001 )
 		{
 			var subscription = contact.getAttribute( 'subscription' );
 			if ( subscription == 'remove' )
 			{
-				this.Services( jid ).TransportMode = 0;
-				this.Services( jid ).TransportRosterJID = '';
+				this.Services.Item( jid ).TransportMode = 0;
+				this.Services.Item( jid ).TransportRosterJID = '';
 			}
 			else
 			{
-				this.Services( jid ).TransportRosterJID = fulljid;
-				if ( this.Services( jid ).TransportMode == 0 && ( subscription == 'from' || subscription == 'both' ) )
-					this.Services( jid ).TransportMode = -1;
+				this.Services.Item( jid ).TransportRosterJID = fulljid;
+				if ( this.Services.Item( jid ).TransportMode == 0 && ( subscription == 'from' || subscription == 'both' ) )
+					this.Services.Item( jid ).TransportMode = -1;
 			}
 			if ( external.windows.Exists( 'transport_list' ) )
 				external.windows( 'transport_list' ).Do( 'transport_refresh', jid );
@@ -206,13 +206,13 @@ function ClientBrowseServer ()
 		var jid = presence.FromAddress.ShortAddress();
 		if ( ! this.Services.Exists( jid ) )
 			this.Services.Add( jid, new ClientBrowseService( jid ) );
-		this.Services( jid ).Options |= 0x001;
+		this.Services.Item( jid ).Options |= 0x001;
 		if ( presence.Type == 'error' )
-			this.Services( jid ).TransportMode = -1;
+			this.Services.Item( jid ).TransportMode = -1;
 		else if ( presence.Type == 'unavailable' )
-			this.Services( jid ).TransportMode = 0;
+			this.Services.Item( jid ).TransportMode = 0;
 		else
-			this.Services( jid ).TransportMode = 1;
+			this.Services.Item( jid ).TransportMode = 1;
 		if ( external.windows.Exists( 'transport_list' ) )
 			external.windows( 'transport_list' ).Do( 'transport_refresh', jid );
 	}
@@ -233,8 +233,8 @@ function ClientBrowseServer ()
 		var retval	= new Array();
 		var jids	= ( new VBArray( this.Services.Keys() ) ).toArray();
 		for ( var i = 0; i < jids.length; ++i )
-			if ( ( this.Services( jids[i] ).Options & match ) == match )
-				retval.push( this.Services( jids[i] ) );
+			if ( ( this.Services.Item( jids[i] ).Options & match ) == match )
+				retval.push( this.Services.Item( jids[i] ) );
 		return retval;
 	}
 
@@ -245,7 +245,7 @@ function ClientBrowseServer ()
 		if ( ! this.Services.Exists( jid ) )
 		{
 			this.Services.Add( jid, new ClientBrowseService( jid ) );
-			this.Services( jid ).Options = options;
+			this.Services.Item( jid ).Options = options;
 			if ( ( options & 0x0001 ) && external.windows.Exists( 'transport_list' ) )
 				external.windows( 'transport_list' ).Do( 'transport_refresh', null );
 		}

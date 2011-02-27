@@ -52,11 +52,11 @@ function TrayCommotion ( id )
 	{
 		var cfg = external.globals( 'cfg' );
 		var connected = external.globals( 'XMPPConnected' );
-		var mode = connected ? external.globals( 'cfg' )( 'lastmode' ) : -1;
+		var mode = connected ? external.globals( 'cfg' ).Item( 'lastmode' ) : -1;
 		var roster = ! ( document.getElementById( 'signin-dialog' ).style.display == 'block' || external.windows.Exists( 'signup' ) );
 		var signup = external.windows.Exists( 'signup' );
 		var logout = roster && ! external.globals( 'sspiserver' ).length;
-		var msg = roster && external.globals( 'cfg' )( 'lastmsg' );
+		var msg = roster && external.globals( 'cfg' ).Item( 'lastmsg' );
 
 		var menu = external.newPopupMenu;
 		menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tray_about', [ external.globals( 'softwarename' ) ] ), 2 );

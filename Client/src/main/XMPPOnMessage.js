@@ -9,7 +9,7 @@ function XMPPOnMessage ( ReceivedXML )
 	/* Default to our server if missing from address
 	 */
 	if ( ! Message.FromAddress.Host.length )
-		Message.FromAddress.Parse( external.globals( 'cfg' )( 'server' ) );
+		Message.FromAddress.Parse( external.globals( 'cfg' ).Item( 'server' ) );
 
 	/* Plug-in event
 	 */
@@ -51,7 +51,7 @@ function XMPPOnMessage ( ReceivedXML )
 
 	/* Message blocking
 	 */
-	else if ( external.globals( 'block' ).Exists( ShortAddress ) || ( ! external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) && external.globals( 'cfg' )( 'msgnotinlist' ).toString() == 'false' ) )
+	else if ( external.globals( 'block' ).Exists( ShortAddress ) || ( ! external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) && external.globals( 'cfg' ).Item( 'msgnotinlist' ).toString() == 'false' ) )
 	{
 		if ( Message.Body.length )
 		{
@@ -87,8 +87,8 @@ function XMPPOnMessage ( ReceivedXML )
 	if ( Message.MUCInvitationFrom.length )
 	{
 		var FromName = new XMPPAddress( Message.MUCInvitationFrom );
-		FromName = external.globals( 'ClientRoster' ).Items.Exists( FromName.ShortAddress() ) ? external.globals( 'ClientRoster' ).Items( FromName.ShortAddress() ).Name + ' <' + FromName.ShortAddress() + '>': FromName.ShortAddress();
-		if ( external.globals( 'ClientServices' ).Services.Exists( Message.MUCInvitationFrom ) && external.globals( 'ClientServices' ).Services( Message.MUCInvitationFrom ).Options & 0x0020 )
+		FromName = external.globals( 'ClientRoster' ).Items.Exists( FromName.ShortAddress() ) ? external.globals( 'ClientRoster' ).Items.Item( FromName.ShortAddress() ).Name + ' <' + FromName.ShortAddress() + '>': FromName.ShortAddress();
+		if ( external.globals( 'ClientServices' ).Services.Exists( Message.MUCInvitationFrom ) && external.globals( 'ClientServices' ).Services.Item( Message.MUCInvitationFrom ).Options & 0x0020 )
 		{
 			dial_conference( ShortAddress, Message.MUCInvitationPassword );
 		}
@@ -129,7 +129,7 @@ function XMPPOnMessage ( ReceivedXML )
 		}
 		var FromName = ShortAddress;
 		if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) )
-			FromName = external.globals( 'ClientRoster' ).Items( ShortAddress ).Name + ' <' + ShortAddress + '>';
+			FromName = external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Name + ' <' + ShortAddress + '>';
 		if ( 6 == external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'main', 'conference_invitation', [ FromName, Message.ConferenceInvitation ] ), external.globals( 'softwarename' ), 4 | 48 ) )
 			dial_conference( Message.ConferenceInvitation );
 	}
@@ -151,10 +151,10 @@ function XMPPOnMessage ( ReceivedXML )
 
 		if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) )
 		{
-			Toaster.Title = external.globals( 'ClientRoster' ).Items( ShortAddress ).Name;
+			Toaster.Title = external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Name;
 
-			if ( external.globals( 'ClientRoster' ).Items( ShortAddress ).Resources.Exists( Resource ) )
-				Toaster.Icon = external.globals( 'ClientRoster' ).Items( ShortAddress ).Resources( Resource ).Avatar;
+			if ( external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Resources.Exists( Resource ) )
+				Toaster.Icon = external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Resources.Item( Resource ).Avatar;
 			else
 				Toaster.Icon = 'unknown-soldier.gif';
 		}
@@ -164,8 +164,8 @@ function XMPPOnMessage ( ReceivedXML )
 			if ( ! Toaster.Icon.length )
 				Toaster.Icon = 'unknown-soldier.gif';
 
-			if ( external.globals( 'ClientServices' ).Services.Exists( Host ) && external.globals( 'ClientServices' ).Services( Host ).Options & 0x0001 )
-				Toaster.Title = external.globals( 'ClientServices' ).Services( Host ).Name;
+			if ( external.globals( 'ClientServices' ).Services.Exists( Host ) && external.globals( 'ClientServices' ).Services.Item( Host ).Options & 0x0001 )
+				Toaster.Title = external.globals( 'ClientServices' ).Services.Item( Host ).Name;
 			if ( ! Toaster.Title.length )
 				Toaster.Title = ShortAddress;
 		}
@@ -206,10 +206,10 @@ function XMPPOnMessage ( ReceivedXML )
 
 		if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) )
 		{
-			Title = external.globals( 'ClientRoster' ).Items( ShortAddress ).Name;
+			Title = external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Name;
 
-			if ( external.globals( 'ClientRoster' ).Items( ShortAddress ).Resources.Exists( Resource ) )
-				Icon = external.globals( 'ClientRoster' ).Items( ShortAddress ).Resources( Resource ).Avatar;
+			if ( external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Resources.Exists( Resource ) )
+				Icon = external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Resources.Item( Resource ).Avatar;
 			else
 				Icon = 'unknown-soldier.gif';
 		}
@@ -219,8 +219,8 @@ function XMPPOnMessage ( ReceivedXML )
 			if ( ! Icon.length )
 				Icon = 'unknown-soldier.gif';
 
-			if ( external.globals( 'ClientServices' ).Services.Exists( Host ) && external.globals( 'ClientServices' ).Services( Host ).Options & 0x0001 )
-				Title = external.globals( 'ClientServices' ).Services( Host ).Name;
+			if ( external.globals( 'ClientServices' ).Services.Exists( Host ) && external.globals( 'ClientServices' ).Services.Item( Host ).Options & 0x0001 )
+				Title = external.globals( 'ClientServices' ).Services.Item( Host ).Name;
 			if ( ! Title.length )
 				Title = ShortAddress;
 		}

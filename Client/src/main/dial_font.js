@@ -32,9 +32,9 @@ function dial_font ()
 
 	var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
 	for ( var i = 0; i < ContainerNames.length; ++i )
-		external.globals( 'ChatSessionPool' ).Containers( ContainerNames[i] ).InputUpdate();
+		external.globals( 'ChatSessionPool' ).Containers.Item( ContainerNames[i] ).InputUpdate();
 
 	ContainerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Containers.Keys() ) ).toArray();
 	for ( var i = 0; i < ContainerNames.length; ++i )
-		external.globals( 'ConferenceSessionPool' ).Containers( ContainerNames[i] ).InputUpdate();
+		external.globals( 'ConferenceSessionPool' ).Containers.Item( ContainerNames[i] ).InputUpdate();
 }

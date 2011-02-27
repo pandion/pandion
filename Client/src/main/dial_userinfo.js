@@ -7,9 +7,9 @@ function dial_userinfo ( Address )
 
 	var Name = ShortAddress;
 	if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) )
-		Name = external.globals( 'ClientRoster' ).Items( ShortAddress ).Name;
-	else if ( ShortAddress == external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) )
-		Name = external.globals( 'cfg' )( 'nick' );
+		Name = external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Name;
+	else if ( ShortAddress == external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) )
+		Name = external.globals( 'cfg' ).Item( 'nick' );
 
 	if ( external.windows.Exists( ShortAddress + '/' + Address.Resource + '/vcard' ) )
 	{

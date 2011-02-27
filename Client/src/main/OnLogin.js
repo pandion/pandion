@@ -11,33 +11,33 @@ function OnLoginAuthSend ( iq )
 		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 		dom.loadXML( '<iq type="set"><query/></iq>' );
 		dom.documentElement.setAttribute( 'id', hook.Id );
-		dom.documentElement.setAttribute( 'to', external.globals( 'cfg' )( 'server' ) );
+		dom.documentElement.setAttribute( 'to', external.globals( 'cfg' ).Item( 'server' ) );
 
 		if ( iq.XMLDOM.selectSingleNode( '/iq/*[@xmlns="jabber:iq:auth"]/username' ) )
 		{
 			var tag		= dom.createElement( 'username' );
-			tag.text	= external.globals( 'cfg' )( 'username' );
+			tag.text	= external.globals( 'cfg' ).Item( 'username' );
 			dom.documentElement.firstChild.appendChild( tag );
 		}
 
 		if ( iq.XMLDOM.selectSingleNode( '/iq/*[@xmlns="jabber:iq:auth"]/resource' ) )
 		{
 			var tag		= dom.createElement( 'resource' );
-			tag.text	= external.globals( 'cfg' )( 'resource' );
+			tag.text	= external.globals( 'cfg' ).Item( 'resource' );
 			dom.documentElement.firstChild.appendChild( tag );
 		}
 
 		if ( iq.XMLDOM.selectSingleNode( '/iq/*[@xmlns="jabber:iq:auth"]/digest' ) )
 		{
 			var tag		= dom.createElement( 'digest' );
-			tag.text	= external.StringToSHA1( external.globals( 'XMPPSessionID' ) + external.globals( 'cfg' )( 'password' ) );
+			tag.text	= external.StringToSHA1( external.globals( 'XMPPSessionID' ) + external.globals( 'cfg' ).Item( 'password' ) );
 			dom.documentElement.firstChild.appendChild( tag );
 		}
 
 		else if ( iq.XMLDOM.selectSingleNode( '/iq/*[@xmlns="jabber:iq:auth"]/password' ) )
 		{
 			var tag		= dom.createElement( 'password' );
-			tag.text	= external.globals( 'cfg' )( 'password' );
+			tag.text	= external.globals( 'cfg' ).Item( 'password' );
 			dom.documentElement.firstChild.appendChild( tag );
 		}
 
@@ -110,7 +110,7 @@ function OnLoginBind ( iq )
 		if ( iq.XMLDOM.selectSingleNode( '/iq[@type="result"]/bind[@xmlns="urn:ietf:params:xml:ns:xmpp-bind"]/jid' ) )
 		{
 			var Address = new XMPPAddress( iq.XMLDOM.selectSingleNode( '/iq[@type="result"]/bind[@xmlns="urn:ietf:params:xml:ns:xmpp-bind"]/jid' ).text );
-			if ( Address.LongAddress() != external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '/' + external.globals( 'cfg' )( 'resource' ) )
+			if ( Address.LongAddress() != external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) + '/' + external.globals( 'cfg' ).Item( 'resource' ) )
 			{
 				/* Reload profile
 				 */
@@ -137,17 +137,17 @@ function OnLoginBind ( iq )
 
 		/* Got an address for the session
 		 */
-		if ( external.globals( 'cfg' )( 'username' ).length && external.globals( 'cfg' )( 'server' ).length && external.globals( 'cfg' )( 'resource' ).length )
+		if ( external.globals( 'cfg' ).Item( 'username' ).length && external.globals( 'cfg' ).Item( 'server' ).length && external.globals( 'cfg' ).Item( 'resource' ).length )
 		{
 			var hook		= new XMPPHookIQ();
 			hook.Window		= external.wnd;
 			hook.Callback	= 'OnLoginSession';
-//			hook.From		= external.globals( 'cfg' )( 'server' );
+//			hook.From		= external.globals( 'cfg' ).Item( 'server' );
 
 			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 			dom.loadXML( '<iq type="set"><session xmlns="urn:ietf:params:xml:ns:xmpp-session"/></iq>' );
 			dom.documentElement.setAttribute( 'id', hook.Id );
-			dom.documentElement.setAttribute( 'to', external.globals( 'cfg' )( 'server' ) );
+			dom.documentElement.setAttribute( 'to', external.globals( 'cfg' ).Item( 'server' ) );
 			warn( 'SENT: ' + dom.xml );
 			external.XMPP.SendXML( dom );
 		}
@@ -195,7 +195,7 @@ function OnLoginSession ( iq )
 	 */
 	else if ( iq.XMLDOM.selectSingleNode( '/iq[@type="error"]/error/conflict[@xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"]' ) )
 	{
-		external.globals( 'cfg' )( 'resource' ) = external.globals( 'cfg' )( 'resource' ) + ' (' + Math.round( Math.random() * 0xffff ) + ')';
+		external.globals( 'cfg' ).Item( 'resource' ) = external.globals( 'cfg' ).Item( 'resource' ) + ' (' + Math.round( Math.random() * 0xffff ) + ')';
 
 		var hook		= new XMPPHookIQ();
 		hook.Window		= external.wnd;
@@ -204,7 +204,7 @@ function OnLoginSession ( iq )
 		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 		dom.loadXML( '<iq type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource/></bind></iq>' );
 		dom.documentElement.setAttribute( 'id', hook.Id );
-		dom.documentElement.firstChild.firstChild.text = external.globals( 'cfg' )( 'resource' );
+		dom.documentElement.firstChild.firstChild.text = external.globals( 'cfg' ).Item( 'resource' );
 		warn( 'SENT: ' + dom.xml );
 		external.XMPP.SendXML( dom );
 	}
@@ -218,17 +218,17 @@ function OnLoginSession ( iq )
 
 function OnLoginGetDisco ()
 {
-	external.globals( 'ClientServices' ).JID = external.globals( 'ClientServices' ).Name = external.globals( 'cfg' )( 'server' );
+	external.globals( 'ClientServices' ).JID = external.globals( 'ClientServices' ).Name = external.globals( 'cfg' ).Item( 'server' );
 
 	var hook		= new XMPPHookIQ();
 	hook.Window		= external.wnd;
 	hook.Callback	= 'OnLoginDiscoItems';
-	hook.From		= external.globals( 'cfg' )( 'server' );
+	hook.From		= external.globals( 'cfg' ).Item( 'server' );
 
 	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 	dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#items"/></iq>' );
 	dom.documentElement.setAttribute( 'id', hook.Id );
-	dom.documentElement.setAttribute( 'to', external.globals( 'cfg' )( 'server' ) );
+	dom.documentElement.setAttribute( 'to', external.globals( 'cfg' ).Item( 'server' ) );
 	warn( 'SENT: ' + dom.xml );
 	external.XMPP.SendXML( dom );
 
@@ -300,12 +300,12 @@ function OnLoginGetBrowse ()
 	var hook		= new XMPPHookIQ();
 	hook.Window		= external.wnd;
 	hook.Callback	= 'OnLoginBrowse';
-	hook.From		= external.globals( 'cfg' )( 'server' );
+	hook.From		= external.globals( 'cfg' ).Item( 'server' );
 
 	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 	dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:browse"/></iq>' );
 	dom.documentElement.setAttribute( 'id', hook.Id );
-	dom.documentElement.setAttribute( 'to', external.globals( 'cfg' )( 'server' ) );
+	dom.documentElement.setAttribute( 'to', external.globals( 'cfg' ).Item( 'server' ) );
 	warn( 'SENT: ' + dom.xml );
 	external.XMPP.SendXML( dom );
 }
@@ -327,12 +327,12 @@ function OnLoginBrowse ( iq )
 		var hook		= new XMPPHookIQ();
 		hook.Window		= external.wnd;
 		hook.Callback	= 'OnLoginAgents';
-		hook.From		= external.globals( 'cfg' )( 'server' );
+		hook.From		= external.globals( 'cfg' ).Item( 'server' );
 
 		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:agents"/></iq>' );
 		dom.documentElement.setAttribute( 'id', hook.Id );
-		dom.documentElement.setAttribute( 'to', external.globals( 'cfg' )( 'server' ) );
+		dom.documentElement.setAttribute( 'to', external.globals( 'cfg' ).Item( 'server' ) );
 		warn( 'SENT: ' + dom.xml );
 		external.XMPP.SendXML( dom );
 	}
@@ -373,8 +373,8 @@ function OnLoginReceivePrivacyLists ( iq )
 		if ( iq.XMLDOM.selectSingleNode( '/iq[@type="result"]/query[@xmlns="jabber:iq:privacy"]/list[@name="invisible"]' ) )
 		{
 			external.globals( 'XMPPPrivacy' ) = 0;
-			if ( external.globals( 'XMPPReconnect' ) && external.globals( 'cfg' )( 'lastmode' ) == 5 )
-				mode_new( external.globals( 'cfg' )( 'lastmode' ), external.globals( 'cfg' )( 'lastmsg' ) );
+			if ( external.globals( 'XMPPReconnect' ) && external.globals( 'cfg' ).Item( 'lastmode' ) == 5 )
+				mode_new( external.globals( 'cfg' ).Item( 'lastmode' ), external.globals( 'cfg' ).Item( 'lastmsg' ) );
 		}
 		else
 		{
@@ -404,8 +404,8 @@ function OnLoginPrivacySetInvisible ( iq )
 	if ( iq.Type == 'result' )
 	{
 		external.globals( 'XMPPPrivacy' ) = 0;
-		if ( external.globals( 'XMPPReconnect' ) && external.globals( 'cfg' )( 'lastmode' ) == 5 )
-			mode_new( external.globals( 'cfg' )( 'lastmode' ), external.globals( 'cfg' )( 'lastmsg' ) );
+		if ( external.globals( 'XMPPReconnect' ) && external.globals( 'cfg' ).Item( 'lastmode' ) == 5 )
+			mode_new( external.globals( 'cfg' ).Item( 'lastmode' ), external.globals( 'cfg' ).Item( 'lastmsg' ) );
 	}
 	/* Server does not support jabber:iq:privacy
 	 */
@@ -450,7 +450,7 @@ function OnLoginRoster ( iq )
 
 	var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
 	for ( var i = 0; i < ContainerNames.length; ++i )
-		external.globals( 'ChatSessionPool' ).Containers( ContainerNames[i] ).InputUpdate();
+		external.globals( 'ChatSessionPool' ).Containers.Item( ContainerNames[i] ).InputUpdate();
 
 	if ( external.windows.Exists( 'transport_list' ) )
 		external.windows( 'transport_list' ).Do( 'transport_refresh', null );
@@ -466,7 +466,7 @@ function OnLoginRoster ( iq )
 	external.globals( 'soundtime' )				= ( new Date() ).getTime() + 8000;
 	external.globals( 'XMPPReconnect' )			= true;
 
-	mode_new( external.globals( 'cfg' )( 'lastmode' ), external.globals( 'cfg' )( 'lastmsg' ) );
+	mode_new( external.globals( 'cfg' ).Item( 'lastmode' ), external.globals( 'cfg' ).Item( 'lastmsg' ) );
 
 	/* Check for an updated version
 	 */
@@ -487,7 +487,7 @@ function OnLoginRoster ( iq )
 
 	/* Activate the fileserver on a random or mapped port
 	 */
-//	external.HTTPEngine.Listen( isNaN( parseInt( external.globals( 'cfg' )( 'filetransferport' ), 10 ) ) ? 0 : parseInt( external.globals( 'cfg' )( 'filetransferport' ), 10 ) );
+//	external.HTTPEngine.Listen( isNaN( parseInt( external.globals( 'cfg' ).Item( 'filetransferport' ), 10 ) ) ? 0 : parseInt( external.globals( 'cfg' ).Item( 'filetransferport' ), 10 ) );
 
 	/* Execute any command line actions that were queued while disconnected.
 	 */
@@ -509,10 +509,10 @@ function OnLoginRoster ( iq )
 	 */
 	var TrackerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Trackers.Keys() ) ).toArray();
 	for ( var i = 0; i < TrackerNames.length; ++i )
-		with ( external.globals( 'ConferenceSessionPool' ).Trackers( TrackerNames[i] ) )
+		with ( external.globals( 'ConferenceSessionPool' ).Trackers.Item( TrackerNames[i] ) )
 		{
 			Autoconnect = true;
-			SendPresence( external.globals( 'cfg' )( 'lastmode' ), external.globals( 'cfg' )( 'lastmsg' ) );
+			SendPresence( external.globals( 'cfg' ).Item( 'lastmode' ), external.globals( 'cfg' ).Item( 'lastmsg' ) );
 		}
 
 	/* Automatically open bookmarked conference rooms
@@ -520,7 +520,7 @@ function OnLoginRoster ( iq )
 	var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
 	dom.async				= false;
 	dom.resolveExternals	= false;
-	dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\bookmarks.xml' );
+	dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) + '\\bookmarks.xml' );
 	if ( dom.documentElement )
 	{
 		var BookmarkNodes = dom.documentElement.selectNodes( '/bookmarks/room[@address]' );

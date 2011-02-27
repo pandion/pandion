@@ -9,7 +9,7 @@
 	{
 		root.appendChild( dom.createTextNode( '\n\t' ) );
 		var tag = dom.createElement( keys[i] );
-		tag.text = hash( keys[i] ).toString();
+		tag.text = hash.Item( keys[i] ).toString();
 		root.appendChild( tag );
 	}
 	root.appendChild( dom.createTextNode( '\n' ) );

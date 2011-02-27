@@ -13,17 +13,17 @@ try {
 
 	/* Accept server specified hostname
 	 */
-	if ( dom.documentElement.getAttribute( 'from' ) && dom.documentElement.getAttribute( 'from' ).toLowerCase() != external.globals( 'cfg' )( 'server' ).toLowerCase() )
+	if ( dom.documentElement.getAttribute( 'from' ) && dom.documentElement.getAttribute( 'from' ).toLowerCase() != external.globals( 'cfg' ).Item( 'server' ).toLowerCase() )
 	{
-		var Username = external.globals( 'cfg' )( 'username' );
+		var Username = external.globals( 'cfg' ).Item( 'username' );
 		var Server = dom.documentElement.getAttribute( 'from' );
-		var Resource = external.globals( 'cfg' )( 'resource' );
+		var Resource = external.globals( 'cfg' ).Item( 'resource' );
 
 		LoadProfile( new XMPPAddress( Username + '@' + Server + '/' + Resource ) );
 
-		external.globals( 'cfg' )( 'username' ) = Username;
-		external.globals( 'cfg' )( 'server' ) = Server;
-		external.globals( 'cfg' )( 'resource' ) = Resource;
+		external.globals( 'cfg' ).Item( 'username' ) = Username;
+		external.globals( 'cfg' ).Item( 'server' ) = Server;
+		external.globals( 'cfg' ).Item( 'resource' ) = Resource;
 	}
 
 	/* XMPP compliant server
@@ -56,8 +56,8 @@ try {
 
 			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 			dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:auth"><username/></query></iq>' );
-			dom.documentElement.firstChild.firstChild.text = external.globals( 'cfg' )( 'username' );
-			dom.documentElement.setAttribute( 'to', external.globals( 'cfg' )( 'server' ) );
+			dom.documentElement.firstChild.firstChild.text = external.globals( 'cfg' ).Item( 'username' );
+			dom.documentElement.setAttribute( 'to', external.globals( 'cfg' ).Item( 'server' ) );
 			dom.documentElement.setAttribute( 'id', hook.Id );
 			warn( 'SENT: ' + dom.xml );
 			external.XMPP.SendXML( dom );

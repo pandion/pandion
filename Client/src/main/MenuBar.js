@@ -164,8 +164,8 @@ function MenuBarSelect ( id )
 		case 12: // exit
 			external.wnd.close(); break;
 		case 13: // received files
-			if ( external.Directory.Exists( external.globals( 'cfg' )( 'downloaddir' ) + '\\' ) )
-				external.shellExec( 'open', external.globals( 'cfg' )( 'downloaddir' ) + '\\', '', '', 1 );
+			if ( external.Directory.Exists( external.globals( 'cfg' ).Item( 'downloaddir' ) + '\\' ) )
+				external.shellExec( 'open', external.globals( 'cfg' ).Item( 'downloaddir' ) + '\\', '', '', 1 );
 			else
 				external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'main', 'msg_received_files' ), external.globals( 'softwarename' ), 0 | 48 ); break;
 		case 14: // export
@@ -219,7 +219,7 @@ function MenuBarSelect ( id )
 				cfg( 'contactlistdisplay' ) = 'detailed';
 				var TrackerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Trackers.Keys() ) ).toArray();
 				for ( var i = 0; i < TrackerNames.length; ++i )
-					external.globals( 'ConferenceSessionPool' ).Trackers( TrackerNames[i] ).RefreshOccupants();
+					external.globals( 'ConferenceSessionPool' ).Trackers.Item( TrackerNames[i] ).RefreshOccupants();
 				external.globals( 'ClientRoster' ).RefreshAll();
 			}
 			MenuBarUpdate( 'tools' ); break;
@@ -229,7 +229,7 @@ function MenuBarSelect ( id )
 				cfg( 'contactlistdisplay' ) = 'compact';
 				var TrackerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Trackers.Keys() ) ).toArray();
 				for ( var i = 0; i < TrackerNames.length; ++i )
-					external.globals( 'ConferenceSessionPool' ).Trackers( TrackerNames[i] ).RefreshOccupants();
+					external.globals( 'ConferenceSessionPool' ).Trackers.Item( TrackerNames[i] ).RefreshOccupants();
 				external.globals( 'ClientRoster' ).RefreshAll();
 			}
 			MenuBarUpdate( 'tools' ); break;
@@ -293,18 +293,18 @@ function MenuBarSelect ( id )
 							var GroupNames = ( new VBArray( external.globals( 'ClientRoster' ).Groups.Keys() ) ).toArray();
 							for ( var i = 0; i < GroupNames.length; ++i )
 							{
-								var Group = external.globals( 'ClientRoster' ).Groups( GroupNames[i] );
+								var Group = external.globals( 'ClientRoster' ).Groups.Item( GroupNames[i] );
 								Group.HTMLOnline.firstChild.innerHTML = external.globals( 'Translator' ).Translate( 'main', 'cl_group_empty' );
 								Group.HTMLShowAll.title = external.globals( 'Translator' ).Translate( 'main', 'cl_group_expand' );
 								Group.HTMLHeader.title = external.globals( 'Translator' ).Translate( 'main', 'tt-group-' + ( Group.ShowAll ? 'hide' : 'show' ) );
 								var RosterItems = ( new VBArray( Group.Items.Keys() ) ).toArray();
 								for ( var j = 0; j < RosterItems.length; ++j )
 								{
-									var RosterItem = external.globals( 'ClientRoster' ).Items( RosterItems[j] );
+									var RosterItem = external.globals( 'ClientRoster' ).Items.Item( RosterItems[j] );
 									var Resources = ( new VBArray( RosterItem.Resources.Keys() ) ).toArray();
 									for ( var k = 0; k < Resources.length; ++k )
-										if ( RosterItem.Resources( Resources[k] ).Status == OldDefaultStatus )
-											RosterItem.Resources( Resources[k] ).Status = external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' );
+										if ( RosterItem.Resources.Item( Resources[k] ).Status == OldDefaultStatus )
+											RosterItem.Resources.Item( Resources[k] ).Status = external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' );
 								}
 							}
 							external.globals( 'ClientRoster' ).RefreshAll();
@@ -312,10 +312,10 @@ function MenuBarSelect ( id )
 							external.globals( 'ClientRoster' ).Search.Blur();
 							var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
 							for ( var i = 0; i < ContainerNames.length; ++i )
-								external.globals( 'ChatSessionPool' ).Containers( ContainerNames[i] ).LanguageUpdate();
+								external.globals( 'ChatSessionPool' ).Containers.Item( ContainerNames[i] ).LanguageUpdate();
 							ContainerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Containers.Keys() ) ).toArray();
 							for ( var i = 0; i < ContainerNames.length; ++i )
-								external.globals( 'ConferenceSessionPool' ).Containers( ContainerNames[i] ).LanguageUpdate();
+								external.globals( 'ConferenceSessionPool' ).Containers.Item( ContainerNames[i] ).LanguageUpdate();
 						}
 					}
 				}
@@ -327,7 +327,7 @@ function MenuBarSelect ( id )
 				var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
 				dom.async = false;
 				dom.resolveExternals = false;
-				dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\bookmarks.xml' );
+				dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) + '\\bookmarks.xml' );
 				if ( dom.documentElement )
 				{
 					var BookmarkNodes = dom.documentElement.selectNodes( '/bookmarks/room[@address]' );

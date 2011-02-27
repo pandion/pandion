@@ -1,7 +1,7 @@
 function dial_vcard_edit ( jid )
 {
 	if ( ! jid )
-		jid = external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' );
+		jid = external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' );
 	if ( external.windows.Exists( jid + '/vcard_edit' ) )
 	{
 		if ( external.windows( jid + '/vcard_edit' ).isMinimized )

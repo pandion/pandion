@@ -4,7 +4,7 @@ function dial_contacts_export ()
 	try
 	{
 		Dialog = external.ComCtrl.ComDlg.GetFileName;
-		Dialog.FileName = external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '.xml';
+		Dialog.FileName = external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) + '.xml';
 		Dialog.Flags = 4 | 32768;
 		Dialog.Filter = 'XML (*.xml)|*.xml';
 		Location = Dialog.DisplaySave();
@@ -20,7 +20,7 @@ function dial_contacts_export ()
 	var ContactAddresses = ( new VBArray( external.globals( 'ClientRoster' ).Items.Keys() ) ).toArray();
 	for ( var i = 0; i < ContactAddresses.length; ++i )
 	{
-		var Contact = external.globals( 'ClientRoster' ).Items( ContactAddresses[i] );
+		var Contact = external.globals( 'ClientRoster' ).Items.Item( ContactAddresses[i] );
 		var Item = dom.createElement( 'item' );
 		Item.setAttribute( 'jid', ContactAddresses[i] );
 		Item.setAttribute( 'name', Contact.Name );

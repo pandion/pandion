@@ -45,19 +45,19 @@ function ConferenceSessionPool ()
 		/* Parse the event right now
 		 */
 		if ( this.Trackers.Exists( ShortAddress ) )
-			this.Trackers( ShortAddress ).DispatchEvent( Event );
+			this.Trackers.Item( ShortAddress ).DispatchEvent( Event );
 
 		/* Queue the event
 		 */
 		else if ( this.TrackersLoading.Exists( ShortAddress ) )
 		{
 			if ( this.Events.Exists( ShortAddress ) )
-				this.Events( ShortAddress ).push( Event );
+				this.Events.Item( ShortAddress ).push( Event );
 			else
 				this.Events.Add( ShortAddress, new Array( Event ) );
 
-			if ( external.globals( 'cfg' )( 'soundmessage' ).toString() == 'true' && Event.Type == 'message' && Event.Payload.Body.length && ( external.globals( 'cfg' )( 'lastmode' ) < 2 || external.globals( 'cfg' )( 'lastmode' ) == 5 ) )
-				sound_play( external.globals( 'cfg' )( 'soundmessagefile' ), false );
+			if ( external.globals( 'cfg' ).Item( 'soundmessage' ).toString() == 'true' && Event.Type == 'message' && Event.Payload.Body.length && ( external.globals( 'cfg' ).Item( 'lastmode' ) < 2 || external.globals( 'cfg' ).Item( 'lastmode' ) == 5 ) )
+				sound_play( external.globals( 'cfg' ).Item( 'soundmessagefile' ), false );
 		}
 	}
 
@@ -77,25 +77,25 @@ function ConferenceSessionPool ()
 		{
 			/* Temporarily disable sound notification
 			 */
-			var PlaySounds = external.globals( 'cfg' )( 'soundmessage' );
-			external.globals( 'cfg' )( 'soundmessage' ) = false;
+			var PlaySounds = external.globals( 'cfg' ).Item( 'soundmessage' );
+			external.globals( 'cfg' ).Item( 'soundmessage' ) = false;
 
 			/* Dispatch the messages
 			 */
-			for ( var i = 0; i < this.Events( ShortAddress ).length; ++i )
-				Tracker.DispatchEvent( this.Events( ShortAddress )[i] );
+			for ( var i = 0; i < this.Events.Item( ShortAddress ).length; ++i )
+				Tracker.DispatchEvent( this.Events.Item( ShortAddress )[i] );
 			this.Events.Remove( ShortAddress );
 
 			/* Reset the sound notification
 			 */
-			external.globals( 'cfg' )( 'soundmessage' ) = PlaySounds;
+			external.globals( 'cfg' ).Item( 'soundmessage' ) = PlaySounds;
 		}
 	}
 
 	function GetTracker ( Address )
 	{
 		var ShortAddress = Address.ShortAddress();
-		return this.Trackers.Exists( ShortAddress ) ? this.Trackers( ShortAddress ) : null;
+		return this.Trackers.Exists( ShortAddress ) ? this.Trackers.Item( ShortAddress ) : null;
 	}
 
 	function DeleteTracker ( Tracker )

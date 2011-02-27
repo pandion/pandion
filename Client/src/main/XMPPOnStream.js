@@ -92,7 +92,7 @@ function XMPPOnStream ( ReceivedXML )
 			dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1"/>' );
 			try
 			{
-				external.SASL.SCRAM.Initialize(external.globals( 'cfg' )( 'username' ), external.globals( 'cfg' )( 'password' ));
+				external.SASL.SCRAM.Initialize(external.globals( 'cfg' ).Item( 'username' ), external.globals( 'cfg' ).Item( 'password' ));
 				dom.documentElement.text = external.SASL.SCRAM.GenerateClientFirstMessage();
 			}
 			catch(e)
@@ -119,9 +119,9 @@ function XMPPOnStream ( ReceivedXML )
 		else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "PLAIN" ]' ) )
 		{
 			external.globals( 'XMPPSASLMechanism' ) = 'PLAIN';
-			var User = external.globals( 'cfg' )( 'username' );
-			var Addr = ""; // User + '@' + external.globals( 'cfg' )( 'server' ); /* Only to be used if authzid is different from authcid */
-			var Pass = external.globals( 'cfg' )( 'password' );
+			var User = external.globals( 'cfg' ).Item( 'username' );
+			var Addr = ""; // User + '@' + external.globals( 'cfg' ).Item( 'server' ); /* Only to be used if authzid is different from authcid */
+			var Pass = external.globals( 'cfg' ).Item( 'password' );
 
 			/* Plaintext algorithm:
 			 * Base64( UTF8( Addr ) + 0x00 + UTF8( User ) + 0x00 + UTF8( Pass ) )
@@ -151,8 +151,8 @@ function XMPPOnStream ( ReceivedXML )
 
 			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 			dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:auth"><username/></query></iq>' );
-			dom.documentElement.firstChild.firstChild.text = external.globals( 'cfg' )( 'username' );
-			dom.documentElement.setAttribute( 'to', external.globals( 'cfg' )( 'server' ) );
+			dom.documentElement.firstChild.firstChild.text = external.globals( 'cfg' ).Item( 'username' );
+			dom.documentElement.setAttribute( 'to', external.globals( 'cfg' ).Item( 'server' ) );
 			dom.documentElement.setAttribute( 'id', hook.Id );
 			warn( 'SENT: ' + dom.xml );
 			external.XMPP.SendXML( dom );
@@ -354,7 +354,7 @@ function XMPPOnStream ( ReceivedXML )
 		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 		dom.loadXML( '<iq type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource/></bind></iq>' );
 		dom.documentElement.setAttribute( 'id', hook.Id );
-		dom.documentElement.firstChild.firstChild.text = external.globals( 'cfg' )( 'resource' );
+		dom.documentElement.firstChild.firstChild.text = external.globals( 'cfg' ).Item( 'resource' );
 		warn( 'SENT: ' + dom.xml );
 		external.XMPP.SendXML( dom );
 	}
@@ -363,7 +363,7 @@ function XMPPOnStream ( ReceivedXML )
 	 */
 	else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:conflict[@xmlns="urn:ietf:params:xml:ns:xmpp-streams"]' ) )
 	{
-		external.globals( 'cfg' )( 'resource' ) = external.globals( 'cfg' )( 'resource' ) + ' (' + Math.round( Math.random() * 0xffff ) + ')';
+		external.globals( 'cfg' ).Item( 'resource' ) = external.globals( 'cfg' ).Item( 'resource' ) + ' (' + Math.round( Math.random() * 0xffff ) + ')';
 		var Str = '</stream:stream>';
 		warn( 'SENT: ' + Str );
 		external.XMPP.SendText( Str );

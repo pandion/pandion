@@ -166,7 +166,7 @@ function mode_new ( mode, msg )
 
 			var TrackerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Trackers.Keys() ) ).toArray();
 			for ( var i = 0; i < TrackerNames.length; ++i )
-				external.globals( 'ConferenceSessionPool' ).Trackers( TrackerNames[i] ).SendPresence( mode, msg );
+				external.globals( 'ConferenceSessionPool' ).Trackers.Item( TrackerNames[i] ).SendPresence( mode, msg );
 		}
 	}
 }
