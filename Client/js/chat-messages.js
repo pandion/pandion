@@ -48,8 +48,8 @@ function onHistory ( Messages )
 	for ( var i = 0; i < Messages.length; ++i )
 	{
 		var Message = Messages[i];
-		var Direction = Message.From == external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) ? 'send' : 'recv';
-		var SenderName = Direction == 'send' ? external.globals( 'cfg' )( 'nick' ) : SessionTracker.Name;
+		var Direction = Message.From == external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) ? 'send' : 'recv';
+		var SenderName = Direction == 'send' ? external.globals( 'cfg' ).Item( 'nick' ) : SessionTracker.Name;
 		var MessageTime = Message.Time.getHours() + ':' + ( Message.Time.getMinutes() < 10 ? '0' : '' ) + Message.Time.getMinutes();
 
 		/* Insert date
@@ -103,8 +103,8 @@ function onHistory ( Messages )
  */
 function onMessage ( Message )
 {
-	var Direction = Message.FromAddress.ShortAddress() == external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) ? 'send' : 'recv';
-	var SenderName = SessionTracker.Occupants ? Message.FromAddress.Resource : ( Direction == 'send' ? external.globals( 'cfg' )( 'nick' ) : SessionTracker.Name );
+	var Direction = Message.FromAddress.ShortAddress() == external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) ? 'send' : 'recv';
+	var SenderName = SessionTracker.Occupants ? Message.FromAddress.Resource : ( Direction == 'send' ? external.globals( 'cfg' ).Item( 'nick' ) : SessionTracker.Name );
 	var MessageTime = Message.Time.getHours() + ':' + ( Message.Time.getMinutes() < 10 ? '0' : '' ) + Message.Time.getMinutes();
 
 	/* Insert date
@@ -178,7 +178,7 @@ if ( SessionTracker.Occupants )
 else
 {
 	if ( Direction == 'send' )
-		SenderAvatar = external.globals( 'cfg' )( 'avatar' );
+		SenderAvatar = external.globals( 'cfg' ).Item( 'avatar' );
 	else
 		SenderAvatar = SessionTracker.Avatar;
 }

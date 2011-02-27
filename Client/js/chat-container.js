@@ -56,20 +56,20 @@ function Begin ()
 
 	/* Restore the size of the input area
 	 */
-	document.getElementById( 'send-text' ).parentNode.parentNode.height = isNaN( parseInt( external.globals( 'cfg' )( 'textinputheight' ), 10 ) ) ? 60 : Math.max( 60, parseInt( external.globals( 'cfg' )( 'textinputheight' ), 10 ) );
+	document.getElementById( 'send-text' ).parentNode.parentNode.height = isNaN( parseInt( external.globals( 'cfg' ).Item( 'textinputheight' ), 10 ) ) ? 60 : Math.max( 60, parseInt( external.globals( 'cfg' ).Item( 'textinputheight' ), 10 ) );
 
 	/* Load pending trackers
 	 */
 	var TrackerNames = ( new VBArray( SessionPool.TrackersLoading.Keys() ) ).toArray().sort();
-	if ( external.globals( 'cfg' )( 'tabbedchat' ).toString() == 'true' )
+	if ( external.globals( 'cfg' ).Item( 'tabbedchat' ).toString() == 'true' )
 		for ( var i = SessionPool.TrackersLoading.Count - SessionPool.ContainersLoading.Count - 1; i >= 0; i-- )
 		{
-			var Address = SessionPool.TrackersLoading( TrackerNames[i] );
+			var Address = SessionPool.TrackersLoading.Item( TrackerNames[i] );
 			gContainer.CreateTracker( Address );
 		}
 	else
 	{
-		var Address = SessionPool.TrackersLoading( TrackerNames[ SessionPool.ContainersLoading.Count ] );
+		var Address = SessionPool.TrackersLoading.Item( TrackerNames[ SessionPool.ContainersLoading.Count ] );
 		gContainer.CreateTracker( Address );
 	}
 }
@@ -98,7 +98,7 @@ function End ()
 function Close ()
 {
 	if ( gContainer.Trackers.Count == 1 )
-		gContainer.Trackers( gContainer.ActiveTrackerAddress ).Close();
+		gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Close();
 	else if ( ! gContainer.Trackers.Count || external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'chat-container', 'close_many_tabs' ), external.globals( 'softwarename' ), 4 | 48 ) == 6 )
 		external.wnd.close();
 }
@@ -134,7 +134,7 @@ function SessionContainer ( SessionPool )
 		var BackgroundPath = external.globals( 'usersdir' ) + 'Backgrounds\\' + Tracker.Background + '\\index.html';
 		if ( ! external.FileExists( BackgroundPath ) )
 		{
-			external.globals( 'cfg' )( 'background' ) = '';
+			external.globals( 'cfg' ).Item( 'background' ) = '';
 			Tracker.Background = '';
 			BackgroundPath = 'chat-messages.html';
 		}
@@ -181,7 +181,7 @@ function SessionContainer ( SessionPool )
 
 		var TrackerNames = ( new VBArray( this.Trackers.Keys() ) ).toArray();
 		for ( var i = 0; i < TrackerNames.length; ++i )
-			this.Trackers( TrackerNames[i] ).Clear();
+			this.Trackers.Item( TrackerNames[i] ).Clear();
 	}
 
 	/* Reload the user interface translation
@@ -192,8 +192,8 @@ function SessionContainer ( SessionPool )
 		MenuBarUpdate();
 		if ( this.Trackers.Exists( this.ActiveTrackerAddress ) )
 		{
-			this.Trackers( this.ActiveTrackerAddress ).DrawContainerInfo();
-			this.Trackers( this.ActiveTrackerAddress ).DrawTyping();
+			this.Trackers.Item( this.ActiveTrackerAddress ).DrawContainerInfo();
+			this.Trackers.Item( this.ActiveTrackerAddress ).DrawTyping();
 		}
 	}
 
@@ -230,7 +230,7 @@ function SessionContainer ( SessionPool )
 	 */
 	function PurgeHistory ( Address )
 	{
-		var FilePath = external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\Message Cache\\' + ( new MD5() ).digest( Address.ShortAddress() ) + '.buffer';
+		var FilePath = external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) + '\\Message Cache\\' + ( new MD5() ).digest( Address.ShortAddress() ) + '.buffer';
 		if ( external.FileExists( FilePath ) )
 			external.File( FilePath ).Delete();
 		external.File( FilePath ).Close();
@@ -244,7 +244,7 @@ function SessionTracker ( Address )
 	this.Address = Address;
 	this.Avatar = '';
 	this.AvatarPath = '';
-	this.Background = external.globals( 'cfg' )( 'background' );
+	this.Background = external.globals( 'cfg' ).Item( 'background' );
 	this.BackgroundLoading = false;
 	this.ChatState = '';
 	this.Container = null;
@@ -406,8 +406,8 @@ function SessionTracker ( Address )
 	{
 		/* Play sound
 		 */
-		if ( ( ! external.wnd.isActive() || ! this.IsActive ) && external.globals( 'cfg' )( 'soundmessage' ).toString() == 'true' && ( external.globals( 'cfg' )( 'lastmode' ) < 2 || external.globals( 'cfg' )( 'lastmode' ) == 5 ) )
-			external.wnd.params[0].sound_play( external.globals( 'cfg' )( 'soundmessagefile' ), false );
+		if ( ( ! external.wnd.isActive() || ! this.IsActive ) && external.globals( 'cfg' ).Item( 'soundmessage' ).toString() == 'true' && ( external.globals( 'cfg' ).Item( 'lastmode' ) < 2 || external.globals( 'cfg' ).Item( 'lastmode' ) == 5 ) )
+			external.wnd.params[0].sound_play( external.globals( 'cfg' ).Item( 'soundmessagefile' ), false );
 		/* Flash window
 		 */
 		if ( ! external.wnd.isActive() )
@@ -507,7 +507,7 @@ function SessionTracker ( Address )
 		var ShortAddress = this.Address.ShortAddress();
 		if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) )
 		{
-			var RosterItem = external.globals( 'ClientRoster' ).Items( ShortAddress );
+			var RosterItem = external.globals( 'ClientRoster' ).Items.Item( ShortAddress );
 			this.Name = RosterItem.Name;
 			/* Get the resource that sent the last message
 			 */
@@ -519,7 +519,7 @@ function SessionTracker ( Address )
 					this.HookIQ = null;
 				}
 				this.LastOnline = '';
-				var RosterResource = RosterItem.Resources( this.Address.Resource );
+				var RosterResource = RosterItem.Resources.Item( this.Address.Resource );
 				this.Show = RosterResource.Show;
 				this.Avatar = RosterResource.Avatar.length ? RosterResource.Avatar : 'unknown-soldier.gif';
 				this.Status = RosterResource.Status;
@@ -538,7 +538,7 @@ function SessionTracker ( Address )
 				var ResourceNames = ( new VBArray( RosterItem.Resources.Keys() ) ).toArray();
 				for ( var i = 0; i < ResourceNames.length; ++i )
 				{
-					var RosterResource = RosterItem.Resources( ResourceNames[i] );
+					var RosterResource = RosterItem.Resources.Item( ResourceNames[i] );
 					if ( RosterResource.Priority > Priority )
 					{
 						this.Address.Resource = RosterResource.ResourceName;
@@ -588,7 +588,7 @@ function SessionTracker ( Address )
 			var ServiceAddresses = ( new VBArray( external.globals( 'ClientServices' ).Services.Keys() ) ).toArray();
 			for ( var i = 0; i < ServiceAddresses.length; ++i )
 				if ( ShortAddress == ServiceAddresses[i] )
-					this.Name = external.globals( 'ClientServices' ).Services( ServiceAddresses[i] ).Name;
+					this.Name = external.globals( 'ClientServices' ).Services.Item( ServiceAddresses[i] ).Name;
 		}
 
 		/* Retrieve last online time
@@ -762,7 +762,7 @@ function SessionTracker ( Address )
 			});
 
 			this.Container.HTMLTabBar.insertAdjacentElement( 'beforeEnd', this.HTMLButton );
-			if ( external.globals( 'cfg' )( 'tabbedchat' ).toString() != 'true' )
+			if ( external.globals( 'cfg' ).Item( 'tabbedchat' ).toString() != 'true' )
 				this.Container.HTMLTabBar.style.display = this.Container.HTMLTabBar.childNodes.length ? 'inline' : 'none';
 		}
 	}
@@ -776,7 +776,7 @@ function SessionTracker ( Address )
 			this.Clear();
 			var TrackerNames = ( new VBArray( this.Container.Trackers.Keys() ) ).toArray();
 			if ( TrackerNames.length )
-				this.Container.Trackers( TrackerNames[ TrackerNames.length - 1 ] ).Activate( true );
+				this.Container.Trackers.Item( TrackerNames[ TrackerNames.length - 1 ] ).Activate( true );
 			else
 				setTimeout( 'external.wnd.close()', 0 );
 		}
@@ -807,7 +807,7 @@ function SessionTracker ( Address )
 		this.HTMLArea.src = 'about:blank';
 		this.HTMLArea.removeNode( true );
 		this.HTMLButton.removeNode( true );
-		if ( external.globals( 'cfg' )( 'tabbedchat' ).toString() != 'true' )
+		if ( external.globals( 'cfg' ).Item( 'tabbedchat' ).toString() != 'true' )
 			this.Container.HTMLTabBar.style.display = this.Container.HTMLTabBar.childNodes.length ? 'inline' : 'none';
 	}
 
@@ -902,7 +902,7 @@ function SessionTracker ( Address )
 			 /* Deactivate old tab
 			  */
 			if ( this.Container.Trackers.Exists( this.Container.ActiveTrackerAddress ) )
-				this.Container.Trackers( this.Container.ActiveTrackerAddress ).Deactivate();
+				this.Container.Trackers.Item( this.Container.ActiveTrackerAddress ).Deactivate();
 
 			/* Activate new tab
 			 */
@@ -943,7 +943,7 @@ function SessionTracker ( Address )
  */
 function SendMessage ()
 {
-	var Tracker = gContainer.Trackers( gContainer.ActiveTrackerAddress );
+	var Tracker = gContainer.Trackers.Item( gContainer.ActiveTrackerAddress );
 
 	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
 	if ( Tracker.WantsComposing && ! Tracker.ChatState )
@@ -951,12 +951,12 @@ function SendMessage ()
 	else
 		dom.loadXML( '<message type="chat"><body/><html><body/></html><x xmlns="jisp:x:jep-0038"><name/></x><active xmlns="http://jabber.org/protocol/chatstates"/></message>' );
 
-	dom.selectSingleNode( '/message/x[@xmlns="jisp:x:jep-0038"]/name' ).text = external.globals( 'cfg' )( 'emoticonset' );
+	dom.selectSingleNode( '/message/x[@xmlns="jisp:x:jep-0038"]/name' ).text = external.globals( 'cfg' ).Item( 'emoticonset' );
 	dom.documentElement.firstChild.text = document.getElementById( 'send-text' ).value;
 	dom.documentElement.setAttribute( 'xml:lang', external.globals( 'language' ) );
 	dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 	dom.documentElement.setAttribute( 'to', Tracker.Address.LongAddress() );
-	dom.documentElement.setAttribute( 'from', external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '/' + external.globals( 'cfg' )( 'resource' ) );
+	dom.documentElement.setAttribute( 'from', external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) + '/' + external.globals( 'cfg' ).Item( 'resource' ) );
 
 	var HTMLBody = dom.documentElement.selectSingleNode( '/message/html/body' );
 	var TextLines = document.getElementById( 'send-text' ).value.split( '\n' );
@@ -1017,7 +1017,7 @@ function SendMessage ()
  */
 function Typing ()
 {
-	var Tracker = gContainer.Trackers( gContainer.ActiveTrackerAddress );
+	var Tracker = gContainer.Trackers.Item( gContainer.ActiveTrackerAddress );
 
 	if ( Tracker.TypingTimeout )
 		clearTimeout( Tracker.TypingTimeout );
@@ -1058,7 +1058,7 @@ function Typing ()
  */
 function StopTyping ()
 {
-	var Tracker = gContainer.Trackers( gContainer.ActiveTrackerAddress );
+	var Tracker = gContainer.Trackers.Item( gContainer.ActiveTrackerAddress );
 
 	Tracker.TypingTimeout = null;
 
@@ -1116,7 +1116,7 @@ function MenuBarUpdate ( section )
 		var IsBlocked = external.globals( 'block' ).Exists( gContainer.ActiveTrackerAddress );
 		var IsOnline = gContainer.ActiveTrackerAddress.length
 			&& external.globals( 'ClientRoster' ).Items.Exists( gContainer.ActiveTrackerAddress )
-			&& external.globals( 'ClientRoster' ).Items( gContainer.ActiveTrackerAddress ).Resources.Count;
+			&& external.globals( 'ClientRoster' ).Items.Item( gContainer.ActiveTrackerAddress ).Resources.Count;
 
 		var contact = external.newPopupMenu;
 		contact.AddItem( Connected && ! InRoster, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_add' ), 200 );
@@ -1184,8 +1184,8 @@ function MenuBarSelect ( id )
 	switch ( id )
 	{
 		case 10: // received files
-			if ( external.Directory.Exists( external.globals( 'cfg' )( 'downloaddir' ) + '\\' ) )
-				external.shellExec( 'open', external.globals( 'cfg' )( 'downloaddir' ) + '\\', '', '', 1 );
+			if ( external.Directory.Exists( external.globals( 'cfg' ).Item( 'downloaddir' ) + '\\' ) )
+				external.shellExec( 'open', external.globals( 'cfg' ).Item( 'downloaddir' ) + '\\', '', '', 1 );
 			else
 				external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'main', 'msg_received_files' ), external.globals( 'softwarename' ), 0 | 48 );
 			break;
@@ -1193,7 +1193,7 @@ function MenuBarSelect ( id )
 			external.wnd.params[0].dial_history( gContainer.ActiveTrackerAddress );
 			break;
 		case 12: //	close
-			gContainer.Trackers( gContainer.ActiveTrackerAddress ).Close();
+			gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Close();
 			break;
 
 		case 200: // add to list
@@ -1205,16 +1205,16 @@ function MenuBarSelect ( id )
 			external.wnd.messageBox( false, external.globals( 'Translator' ).Translate( 'main', 'msg_cl_adding', [ gContainer.ActiveTrackerAddress ] ), external.globals( 'softwarename' ), 0 | 64 );
 			break;
 		case 201: // rename
-			external.globals( 'ClientRoster' ).Items( gContainer.ActiveTrackerAddress ).ChangeName();
+			external.globals( 'ClientRoster' ).Items.Item( gContainer.ActiveTrackerAddress ).ChangeName();
 			break;
 		case 202: // block
 			external.wnd.params[0].dial_block( gContainer.ActiveTrackerAddress );
 			break;
 		case 22: // view profile
-			external.wnd.params[0].dial_userinfo( gContainer.Trackers( gContainer.ActiveTrackerAddress ).Address );
+			external.wnd.params[0].dial_userinfo( gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Address );
 			break;
 //		case 23: // send file
-//			external.wnd.params[0].dial_file( gContainer.Trackers( gContainer.ActiveTrackerAddress ).Address );
+//			external.wnd.params[0].dial_file( gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Address );
 //			break;
 
 		case 30: // font
@@ -1228,20 +1228,20 @@ function MenuBarSelect ( id )
 					external.windows( windownames[i] ).setAOT( cfg( 'aotchat' ) );
 			var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
 			for ( var i = 0; i < ContainerNames.length; ++i )
-				external.globals( 'ChatSessionPool' ).Containers( ContainerNames[i] ).MenuBarUpdate( 'tools' );
+				external.globals( 'ChatSessionPool' ).Containers.Item( ContainerNames[i] ).MenuBarUpdate( 'tools' );
 			break;
 		case 33: // multiple tabs
 			cfg( 'tabbedchat' ) = ! ( cfg( 'tabbedchat' ).toString() == 'true' );
 			var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
 			for ( var i = 0; i < ContainerNames.length; ++i )
-				with ( external.globals( 'ChatSessionPool' ).Containers( ContainerNames[i] ) )
+				with ( external.globals( 'ChatSessionPool' ).Containers.Item( ContainerNames[i] ) )
 				{
 					MenuBarUpdate( 'tools' );
 					HTMLTabBar.style.display = HTMLTabBar.childNodes.length || cfg( 'tabbedchat' ) ? 'inline' : 'none';
 				}
 			ContainerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Containers.Keys() ) ).toArray();
 			for ( var i = 0; i < ContainerNames.length; ++i )
-				with ( external.globals( 'ConferenceSessionPool' ).Containers( ContainerNames[i] ) )
+				with ( external.globals( 'ConferenceSessionPool' ).Containers.Item( ContainerNames[i] ) )
 				{
 					MenuBarUpdate( 'tools' );
 					HTMLTabBar.style.display = HTMLTabBar.childNodes.length || cfg( 'tabbedchat' ) ? 'inline' : 'none';
@@ -1251,10 +1251,10 @@ function MenuBarSelect ( id )
 			cfg( 'emoticon' ) = ! ( cfg( 'emoticon' ).toString() == 'true' );
 			var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
 			for ( var i = 0; i < ContainerNames.length; ++i )
-				external.globals( 'ChatSessionPool' ).Containers( ContainerNames[i] ).MenuBarUpdate( 'tools' );
+				external.globals( 'ChatSessionPool' ).Containers.Item( ContainerNames[i] ).MenuBarUpdate( 'tools' );
 			ContainerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Containers.Keys() ) ).toArray();
 			for ( var i = 0; i < ContainerNames.length; ++i )
-				external.globals( 'ConferenceSessionPool' ).Containers( ContainerNames[i] ).MenuBarUpdate( 'tools' );
+				external.globals( 'ConferenceSessionPool' ).Containers.Item( ContainerNames[i] ).MenuBarUpdate( 'tools' );
 			break;
 		case 35: // settings
 			external.wnd.params[0].dial_preferences( '' );
@@ -1288,7 +1288,7 @@ function MenuBarSelect ( id )
  */
 function AvatarZoom ()
 {
-	if ( gContainer.Trackers( gContainer.ActiveTrackerAddress ).Avatar.length == 40 && event.button == 1 )
+	if ( gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Avatar.length == 40 && event.button == 1 )
 	{
 		var W = 112;
 		var H = 112;
@@ -1315,7 +1315,7 @@ function AvatarZoom ()
 			height = '100%';
 			border = '1x solid threeddarkshadow';
 			background = 'window no-repeat center center';
-			backgroundImage = 'url( ' + gContainer.Trackers( gContainer.ActiveTrackerAddress ).AvatarPath + gContainer.Trackers( gContainer.ActiveTrackerAddress ).Avatar + ')';
+			backgroundImage = 'url( ' + gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).AvatarPath + gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Avatar + ')';
 		}
 		Popup.document.Popup = Popup;
 		Popup.document.body.insertAdjacentElement( 'beforeEnd', Picture );
@@ -1329,7 +1329,7 @@ function LastOnline ( IQ )
 {
 	if ( gContainer.Trackers.Exists( IQ.FromAddress.ShortAddress() ) )
 	{
-		var Tracker = gContainer.Trackers( IQ.FromAddress.ShortAddress() );
+		var Tracker = gContainer.Trackers.Item( IQ.FromAddress.ShortAddress() );
 		if ( Tracker.HookIQ )
 		{
 			Tracker.HookIQ.Destroy();
@@ -1359,13 +1359,13 @@ function LastOnline ( IQ )
  */
 function MouseMenu ()
 {
-	var Tracker = gContainer.Trackers( gContainer.ActiveTrackerAddress );
+	var Tracker = gContainer.Trackers.Item( gContainer.ActiveTrackerAddress );
 	var ShortAddress = gContainer.ActiveTrackerAddress;
 	var Resource = Tracker.Address.Resource;
 	var Connected = external.globals( 'XMPPConnected' );
-	var Online = external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) && external.globals( 'ClientRoster' ).Items( ShortAddress ).Resources.Count;
+	var Online = external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) && external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Resources.Count;
 	var InRoster = external.globals( 'ClientRoster' ).Items.Exists( gContainer.ActiveTrackerAddress );
-	var IsMe = gContainer.ActiveTrackerAddress == external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' );
+	var IsMe = gContainer.ActiveTrackerAddress == external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' );
 	var Blocked = external.globals( 'block' ).Exists( ShortAddress ) && ! IsMe;
 
 	var Menu = external.newPopupMenu;
@@ -1384,14 +1384,14 @@ function MouseMenu ()
 	var pluginname = new Array();
 	var keys = ( new VBArray( external.globals( 'ClientPluginContainer' ).Plugins.Keys() ) ).toArray();
 	for ( var i = 0; i < keys.length; ++i )
-		if ( external.globals( 'ClientPluginContainer' ).Plugins( keys[i] ).Menus.Exists( 'roster' ) )
+		if ( external.globals( 'ClientPluginContainer' ).Plugins.Item( keys[i] ).Menus.Exists( 'roster' ) )
 		{
-			var pluginoptions = external.globals( 'ClientPluginContainer' ).Plugins( keys[i] ).Menus( 'roster' );
+			var pluginoptions = external.globals( 'ClientPluginContainer' ).Plugins.Item( keys[i] ).Menus.Item( 'roster' );
 			for ( var j = 0; j < pluginoptions.length; ++j )
 			{
 				Menu.AddItem( pluginoptions[j].OnlineOnly ? Online : true, false, false, false, 0, pluginoptions[j].Text, 1000 + plugindata.length );
 				plugindata.push( pluginoptions[j] );
-				pluginname.push( external.globals( 'ClientPluginContainer' ).Plugins( keys[i] ) );
+				pluginname.push( external.globals( 'ClientPluginContainer' ).Plugins.Item( keys[i] ) );
 			}
 		}
 
@@ -1424,7 +1424,7 @@ function MouseMenu ()
 			external.wnd.messageBox( false, external.globals( 'Translator' ).Translate( 'main', 'msg_cl_adding', [ gContainer.ActiveTrackerAddress ] ), external.globals( 'softwarename' ), 0 | 64 );
 		break;
 		case 4:
-			external.wnd.params[0].external.globals( 'ClientRoster' ).Items( ShortAddress ).ChangeName();
+			external.wnd.params[0].external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).ChangeName();
 		break;
 		case 5:
 			external.wnd.params[0].dial_block( ShortAddress );
@@ -1440,7 +1440,7 @@ function MouseMenu ()
 			if ( Menu.Choice > 200 && Menu.Choice - 201 < rooms.length )
 			{
 				if ( external.globals( 'ConferenceSessionPool' ).Trackers.Exists( rooms[ Menu.Choice - 201 ] ) )
-					external.wnd.params[0].dial_conference_invite( external.globals( 'ConferenceSessionPool' ).Trackers( rooms[ Menu.Choice - 201 ] ), ShortAddress, '' );
+					external.wnd.params[0].dial_conference_invite( external.globals( 'ConferenceSessionPool' ).Trackers.Item( rooms[ Menu.Choice - 201 ] ), ShortAddress, '' );
 			}
 			else if ( Menu.Choice >= 1000 && Menu.Choice - 1001 < plugindata.length )
 			{
@@ -1476,7 +1476,7 @@ function TabAddActivate ()
 	/* Hide chat
 	 */
 	if ( gContainer.Trackers.Exists( gContainer.ActiveTrackerAddress ) )
-		gContainer.Trackers( gContainer.ActiveTrackerAddress ).Deactivate();
+		gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Deactivate();
 	document.getElementById( 'mode-indicator' ).style.display = 'none';
 	document.getElementById( 'user-typing-area' ).style.display = 'none';
 	document.getElementById( 'conversation' ).style.display = 'none';
