@@ -51,12 +51,12 @@ function choice ( accept )
 				! external.globals( 'ClientRoster' ).Items.Exists( jid )
 				||
 				(
-					! external.globals( 'ClientRoster' ).Items( jid ).Ask
+					! external.globals( 'ClientRoster' ).Items.Item( jid ).Ask
 					&&
 					(
-						external.globals( 'ClientRoster' ).Items( jid ).Subscription == 'none'
+						external.globals( 'ClientRoster' ).Items.Item( jid ).Subscription == 'none'
 						||
-						external.globals( 'ClientRoster' ).Items( jid ).Subscription == 'from'
+						external.globals( 'ClientRoster' ).Items.Item( jid ).Subscription == 'from'
 					)
 				)
 			)

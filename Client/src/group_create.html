@@ -24,7 +24,7 @@ function ok ()
 		/* Add contact to the new group
 		 */
 		if ( external.globals( 'ClientRoster' ).Items.Exists( external.wnd.params[1] ) )
-			external.globals( 'ClientRoster' ).Items( external.wnd.params[1] ).CC( external.wnd.params[2], document.getElementById( 'newname' ).value );
+			external.globals( 'ClientRoster' ).Items.Item( external.wnd.params[1] ).CC( external.wnd.params[2], document.getElementById( 'newname' ).value );
 
 		/* Show an empty group
 		 */

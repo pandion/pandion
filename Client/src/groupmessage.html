@@ -62,13 +62,17 @@ function Begin ()
 		group.insertAdjacentHTML( 'beforeEnd', '<INPUT type=checkbox onclick="toggle_group( this.checked, this.parentNode )"' + ( enabled ? ' checked' : '' ) + '> ' );
 		group.insertAdjacentText( 'beforeEnd', groups[i] + '\n' );
 
-		var jids = ( new VBArray( external.globals( 'ClientRoster' ).Groups( groups[i] ).Items.Keys() ) ).toArray().sort( function(a,b){var c=external.globals('ClientRoster').Items(a).Name.toLowerCase();var d=external.globals('ClientRoster').Items(b).Name.toLowerCase();return c==d?0:c<d?-1:1} );
+		var jids = ( new VBArray( external.globals( 'ClientRoster' ).Groups.Item( groups[i] ).Items.Keys() ) ).toArray().sort(function (a,b) {
+			var c = external.globals('ClientRoster').Items.Item(a).Name.toLowerCase();
+			var d = external.globals('ClientRoster').Items.Item(b).Name.toLowerCase();
+			return c == d ? 0 : c < d ? -1 : 1
+		});
 		for ( var j = 0; j < jids.length; ++j )
 		{
 			var contact = document.createElement( 'NOBR' );
-			contact.className = external.globals( 'ClientRoster' ).Items( jids[j] ).Resources.Count ? 'list-contact-online' : 'list-contact-offline';
+			contact.className = external.globals( 'ClientRoster' ).Items.Item( jids[j] ).Resources.Count ? 'list-contact-online' : 'list-contact-offline';
 			contact.insertAdjacentHTML( 'beforeEnd', '<INPUT type=checkbox onclick="toggle_contact( this.checked, this.parentNode )"' + '<INPUT type=checkbox' + ( enabled ? ' checked' : '' ) + '> ' );
-			contact.insertAdjacentText( 'beforeEnd', external.globals( 'ClientRoster' ).Items( jids[j] ).Name + '\n' );
+			contact.insertAdjacentText( 'beforeEnd', external.globals( 'ClientRoster' ).Items.Item( jids[j] ).Name + '\n' );
 			contact.title = jids[j];
 
 			group.insertAdjacentElement( 'beforeEnd', contact );

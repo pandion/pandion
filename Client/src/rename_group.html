@@ -12,7 +12,7 @@ function init ()
 	if ( external.globals( 'ClientRoster' ).Groups.Exists( external.wnd.params ) )
 	{
 		document.getElementById( 'newname' ).focus();
-		document.getElementById( 'newname' ).value = external.globals( 'ClientRoster' ).Groups( external.wnd.params ).Name;
+		document.getElementById( 'newname' ).value = external.globals( 'ClientRoster' ).Groups.Item( external.wnd.params ).Name;
 		external.wnd.hide( false );
 	}
 	else
@@ -25,7 +25,7 @@ function ok ()
 	if ( document.getElementById( 'newname' ).value.length )
 	{
 		if ( external.globals( 'ClientRoster' ).Groups.Exists( external.wnd.params ) )
-			external.globals( 'ClientRoster' ).Groups( external.wnd.params ).SetName( document.getElementById( 'newname' ).value );
+			external.globals( 'ClientRoster' ).Groups.Item( external.wnd.params ).SetName( document.getElementById( 'newname' ).value );
 		external.wnd.close();
 	}
 }

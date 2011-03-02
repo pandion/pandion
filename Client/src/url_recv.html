@@ -23,7 +23,7 @@ function init ()
 	var desc = external.wnd.params[2];
 	var nick = jid;
 	if ( external.globals( 'ClientRoster' ).Items.Exists( jid ) )
-		nick = external.globals( 'ClientRoster' ).Items( jid ).Name;
+		nick = external.globals( 'ClientRoster' ).Items.Item( jid ).Name;
 
 	document.getElementById( 'from' ).value = nick + ( nick == jid ? '' : ' <' + jid + '>' );
 	document.getElementById( 'url' ).value = url;

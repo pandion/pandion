@@ -58,7 +58,9 @@ function Begin ()
 	var View = document.getElementById( 'view_area' );
 	var OuterList = document.getElementById( 'list_area' );
 
-	var Groups = ( new VBArray( external.globals( 'ClientRoster' ).Groups.Keys() ) ).toArray().sort( function(a,b){return a.toLowerCase()==b.toLowerCase()?0:a.toLowerCase()<b.toLowerCase()?-1:1} );
+	var Groups = ( new VBArray( external.globals( 'ClientRoster' ).Groups.Keys() ) ).toArray().sort(function (a,b) {
+		return a.toLowerCase() == b.toLowerCase() ? 0 : a.toLowerCase() < b.toLowerCase() ? -1 : 1
+	});
 	for ( var i = 0; i < Groups.length; ++i )
 	{
 		var Enabled = Groups[i] == external.wnd.params[3];
@@ -78,9 +80,13 @@ function Begin ()
 		GroupHeader.insertAdjacentElement( 'beforeEnd', GroupLabel );
 		Group.insertAdjacentElement( 'beforeEnd', GroupHeader );
 
-		var Addresses = ( new VBArray( external.globals( 'ClientRoster' ).Groups( Groups[i] ).Items.Keys() ) ).toArray().sort( function(a,b){var c=external.globals('ClientRoster').Items(a).Name.toLowerCase();var d=external.globals('ClientRoster').Items(b).Name.toLowerCase();return c==d?0:c<d?-1:1} );
+		var Addresses = ( new VBArray( external.globals( 'ClientRoster' ).Groups.Item( Groups[i] ).Items.Keys() ) ).toArray().sort(function (a,b) {
+			var c = external.globals('ClientRoster').Items.Item(a).Name.toLowerCase();
+			var d = external.globals('ClientRoster').Items.Item(b).Name.toLowerCase();
+			return c == d ? 0 : c < d ? -1 : 1
+		});
 		for ( var j = 0; j < Addresses.length; ++j )
-			if ( external.globals( 'ClientRoster' ).Items( Addresses[j] ).Resources.Count )
+			if ( external.globals( 'ClientRoster' ).Items.Item( Addresses[j] ).Resources.Count )
 			{
 				Enabled = Groups[i] == external.wnd.params[3] || Addresses[j] == external.wnd.params[2];
 
@@ -93,7 +99,7 @@ function Begin ()
 				ContactCheckbox.id		= 'contact-checkbox-' + i + '-' + j;
 				ContactLabel.htmlFor	= ContactCheckbox.id;
 				ContactLabel.insertAdjacentElement( 'beforeEnd', ContactCheckbox );
-				ContactLabel.insertAdjacentText( 'beforeEnd', external.globals( 'ClientRoster' ).Items( Addresses[j] ).Name );
+				ContactLabel.insertAdjacentText( 'beforeEnd', external.globals( 'ClientRoster' ).Items.Item( Addresses[j] ).Name );
 
 				Contact.insertAdjacentElement( 'beforeEnd', ContactLabel );
 				InnerList.insertAdjacentElement( 'beforeEnd', Contact );

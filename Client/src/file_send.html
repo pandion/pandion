@@ -44,7 +44,7 @@ function init ()
 	document.onselectstart = document.ondragstart = function(){return event.srcElement.tagName=='TEXTAREA'||event.srcElement.tagName=='INPUT'};
 	document.oncontextmenu = function(){return !(event.srcElement.tagName=='INPUT'&&event.srcElement.type!='text')};
 
-	document.getElementById( 'username' ).value = external.globals( 'ClientRoster' ).Items.Exists( external.wnd.params[0] ) ? external.globals( 'ClientRoster' ).Items( external.wnd.params[0] ).Name : external.wnd.params[0];
+	document.getElementById( 'username' ).value = external.globals( 'ClientRoster' ).Items.Exists( external.wnd.params[0] ) ? external.globals( 'ClientRoster' ).Items.Item( external.wnd.params[0] ).Name : external.wnd.params[0];
 
 	for ( var i = gProgressDeltas.length - 1; i >= 0; --i )
 		gProgressDeltas[i] = 0;
