@@ -118,7 +118,7 @@ function End ()
 		external.windows( 'conference_other' ).close();
 	var HookAddresses = ( new VBArray( gHooks.Keys() ) ).toArray();
 	for ( var i = 0; i < HookAddresses.length; ++i )
-		gHooks( HookAddresses[i] ).Destroy();
+		gHooks.Item( HookAddresses[i] ).Destroy();
 	gHooks.RemoveAll();
 }
 
@@ -149,7 +149,7 @@ function Refresh ()
 
 		var HookAddresses = ( new VBArray( gHooks.Keys() ) ).toArray();
 		for ( var i = 0; i < HookAddresses.length; ++i )
-			gHooks( HookAddresses[i] ).Destroy();
+			gHooks.Item( HookAddresses[i] ).Destroy();
 		gHooks.RemoveAll();
 	}
 	else
@@ -209,8 +209,8 @@ function Refresh ()
 
 			var Keys = ( new VBArray( Addresses.Keys() ) ).toArray();
 			for ( var i = 0; i < Keys.length; ++i )
-				if ( external.globals( 'ClientServices' ).Services.Exists( Keys[i] ) && Keys[i] != external.globals( 'ClientServices' ).Services( Keys[i] ).Name )
-					GetRoomsList( Keys[i], external.globals( 'ClientServices' ).Services( Keys[i] ).Name );
+				if ( external.globals( 'ClientServices' ).Services.Exists( Keys[i] ) && Keys[i] != external.globals( 'ClientServices' ).Services.Item( Keys[i] ).Name )
+					GetRoomsList( Keys[i], external.globals( 'ClientServices' ).Services.Item( Keys[i] ).Name );
 				else
 					GetServiceInfo( Keys[i] );
 
@@ -327,7 +327,7 @@ function ReceiveRoomsList ( iq )
 
 		var Service;
 		if ( gServices.Exists( ServiceAddress ) )
-			Service = gServices( ServiceAddress );
+			Service = gServices.Item( ServiceAddress );
 		else
 		{
 			Service			= new MUCService();
@@ -434,7 +434,7 @@ function ParseRoomsBrowse ( iq, ServiceAddress, ServiceName )
 
 	var Service;
 	if ( gServices.Exists( ServiceAddress ) )
-		Service = gServices( ServiceAddress );
+		Service = gServices.Item( ServiceAddress );
 	else
 	{
 		Service			= new MUCService();
@@ -533,7 +533,7 @@ function DrawLoaded ()
 
 		for ( var i = 0; i < Addresses.length; ++i )
 		{
-			var Service = gServices( Addresses[i] );
+			var Service = gServices.Item( Addresses[i] );
 
 			var OuterListItem	= document.createElement( 'LI' );
 			var HeaderName		= document.createElement( 'NOBR' );

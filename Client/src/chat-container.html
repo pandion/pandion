@@ -43,8 +43,8 @@
 							<IMG
 								id=mode-avatar
 								onmousedown="AvatarZoom()"
-								onclick="if ( gContainer.Trackers( gContainer.ActiveTrackerAddress ).Avatar.length == 40 ) event.cancelBubble = true;"
-								onmouseover="if ( ! gResizeInterval && gContainer.ActiveTrackerAddress.length && gContainer.Trackers( gContainer.ActiveTrackerAddress ).Avatar.length == 40 ) { this.style.borderColor = '#0570ad'; event.cancelBubble = true; }"
+								onclick="if ( gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Avatar.length == 40 ) event.cancelBubble = true;"
+								onmouseover="if ( ! gResizeInterval && gContainer.ActiveTrackerAddress.length && gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Avatar.length == 40 ) { this.style.borderColor = '#0570ad'; event.cancelBubble = true; }"
 								onmouseout="this.style.borderColor = 'transparent';"
 							/>
 							<NOBR id=mode-top>

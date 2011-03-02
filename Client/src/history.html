@@ -17,7 +17,7 @@ function init ()
 	var theirjid = external.wnd.params[1];
 	var theirnick = theirjid;
 	if ( external.globals( 'ClientRoster' ).Items.Exists( theirjid ) )
-		theirnick = external.globals( 'ClientRoster' ).Items( theirjid ).Name;
+		theirnick = external.globals( 'ClientRoster' ).Items.Item( theirjid ).Name;
 	theirnick = theirnick.replace( /&/mg, '&amp;' ).replace( / {2}/mg, ' &nbsp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' ).replace( /\n/mg, ' &nbsp;' );
 	document.getElementById( 'printmynick' ).innerText = mynick;
 	document.getElementById( 'printmyjid' ).innerText = myjid;
@@ -98,7 +98,7 @@ function toggle ( bar )
 
 	var theirnick = external.wnd.params[1];
 	if ( external.globals( 'ClientRoster' ).Items.Exists( external.wnd.params[1] ) )
-		theirnick = external.globals( 'ClientRoster' ).Items( external.wnd.params[1] ).Name;
+		theirnick = external.globals( 'ClientRoster' ).Items.Item( external.wnd.params[1] ).Name;
 
 	var OUT = '<DIV class=send><NOBR>' + ( cfg( 'nick' ).length ? cfg( 'nick' ) : cfg( 'username' ) ).replace( /&/mg, '&amp;' ).replace( / {2}/mg, ' &nbsp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' ).replace( /\n/mg, ' &nbsp;' ) + '</NOBR></DIV>';
 	var IN = '<DIV class=recv><NOBR>' + theirnick.replace( /&/mg, '&amp;' ).replace( / {2}/mg, ' &nbsp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' ).replace( /\n/mg, ' &nbsp;' ) + '</NOBR></DIV>';
@@ -150,7 +150,7 @@ function receive ( params )
 	var cfg = external.globals( 'cfg' );
 	var theirnick = external.wnd.params[1];
 	if ( external.globals( 'ClientRoster' ).Items.Exists( external.wnd.params[1] ) )
-		theirnick = external.globals( 'ClientRoster' ).Items( external.wnd.params[1] ).Name;
+		theirnick = external.globals( 'ClientRoster' ).Items.Item( external.wnd.params[1] ).Name;
 	var OUT = '<DIV class=send><NOBR>' + ( cfg( 'nick' ).length ? cfg( 'nick' ) : cfg( 'username' ) ).replace( /&/mg, '&amp;' ).replace( / {2}/mg, ' &nbsp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' ).replace( /\n/mg, ' &nbsp;' ) + '</NOBR></DIV>';
 	var IN = '<DIV class=recv><NOBR>' + theirnick.replace( /&/mg, '&amp;' ).replace( / {2}/mg, ' &nbsp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' ).replace( /\n/mg, ' &nbsp;' ) + '</NOBR></DIV>';
 	var coll = day.children.tags( 'DIV' );
@@ -276,7 +276,7 @@ function save ( day )
 		var mynick = ( cfg( 'nick' ).length ? cfg( 'nick' ) : cfg( 'username' ) ).substr( 0, maxnamelength + 1 );
 		var theirnick = external.wnd.params[1];
 		if ( external.globals( 'ClientRoster' ).Items.Exists( external.wnd.params[1] ) )
-			theirnick = external.globals( 'ClientRoster' ).Items( external.wnd.params[1] ).Name;
+			theirnick = external.globals( 'ClientRoster' ).Items.Item( external.wnd.params[1] ).Name;
 		theirnick = theirnick.substr( 0, maxnamelength + 1 );
 		if ( mynick.charAt( maxnamelength ) != '' && mynick.charAt( maxnamelength ) != ' ' )
 			if ( mynick.indexOf( ' ' ) > 0 )
@@ -396,7 +396,7 @@ function save ( day )
 		var theirjid = external.wnd.params[1];
 		var theirnick = theirjid;
 		if ( external.globals( 'ClientRoster' ).Items.Exists( theirjid ) )
-			theirnick = external.globals( 'ClientRoster' ).Items( theirjid ).Name;
+			theirnick = external.globals( 'ClientRoster' ).Items.Item( theirjid ).Name;
 		theirnick = theirnick.replace( /&/mg, '&amp;' ).replace( / {2}/mg, ' &nbsp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' ).replace( /\n/mg, ' &nbsp;' );
 
 		save.WriteLine( '<html>' );
@@ -471,7 +471,7 @@ function save ( day )
 		var theirjid = external.wnd.params[1];
 		var theirnick = theirjid;
 		if ( external.globals( 'ClientRoster' ).Items.Exists( theirjid ) )
-			theirnick = external.globals( 'ClientRoster' ).Items( theirjid ).Name;
+			theirnick = external.globals( 'ClientRoster' ).Items.Item( theirjid ).Name;
 		theirnick = theirnick.replace( /&/mg, '&amp;' ).replace( /</mg, '&lt;' ).replace( />/mg, '&gt;' );
 
 		save.WriteLine( '<?xml version="1.0"?>' );
