@@ -469,7 +469,7 @@ function recv_search_start ( iq )
 	/* Set up the default header information
 	 */
 	if ( external.globals( 'ClientServices' ).Services.Exists( iq.From ) )
-		document.getElementById( 'page3_title' ).innerText = external.globals( 'ClientServices' ).Services( iq.From ).Name;
+		document.getElementById( 'page3_title' ).innerText = external.globals( 'ClientServices' ).Services.Items( iq.From ).Name;
 	else
 		document.getElementById( 'page3_title' ).innerText = external.globals( 'Translator' ).Translate( 'adduser', 'search_title' );
 	document.getElementById( 'page3_subtitle' ).innerText = external.globals( 'Translator' ).Translate( 'adduser', 'search_tagline' );
@@ -729,7 +729,7 @@ function recv_search_results ( iq )
 			{
 				var col = fields.item( j ).getAttribute( 'var' );
 				if ( headers.Exists( col ) )
-					info.insertAdjacentText( 'beforeEnd', headers( col ) + ': ' + fields.item( j ).selectSingleNode( 'value' ).text + '\n' );
+					info.insertAdjacentText( 'beforeEnd', headers.Item( col ) + ': ' + fields.item( j ).selectSingleNode( 'value' ).text + '\n' );
 			}
 			outer.insertAdjacentElement( 'beforeEnd', info );
 			results.insertAdjacentElement( 'beforeEnd', outer );
