@@ -1,6 +1,7 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 	This file is part of Pandion instant messenger
+    Copyright (c) 2011 Marian Bäuerle
 	Copyright (c) 2004 Ontje Helmich
 	Copyright (c) 2003 Sven Wiedeck
 	License: GNU General Public License version 3 or later
@@ -9,6 +10,16 @@
   <about>
     <language>Deutsch</language>
     <history>
+    <revision>
+        <author>
+          <name>Marian Bäuerle</name>
+          <email>marianbaeuerle@gmx.de</email>
+        </author>
+        <date>2011-04-22</date>
+        <description>
+          Third Edit. Full update for Pandion 2.6.
+        </description>
+      </revision>
       <revision>
         <author>
           <name>Ontje Helmich</name>
@@ -34,9 +45,6 @@
     </history>
   </about>
   <window name="main">
-    <item id="txt_pleasewait">
-      <innerText>Einen Moment bitte</innerText>
-    </item>
     <item id="txt_disconnected">
       <innerText>Serververbindung verloren</innerText>
     </item>
@@ -58,37 +66,94 @@
     <item id="txt_config_transport">
       <innerText>Transports Konfigurieren</innerText>
     </item>
+    
+    <item id="mode-avatar">
+      <title>Wähle einen anderen Avatar</title>
+    </item>
+    <item id="mode-bar">
+      <title>Ändere deine Verfügbarkeit, Statusnachricht, oder dein persönliches Profil</title>
+    </item>
+    <item id="mode-secure">
+      <title>Die Verbindung ist gesichert durch SSL/TLS Verschlüsselungstechnik</title>
+    </item>
+    <item id="rosterfield">
+      <title>Personen und Gruppen in deiner Kontaktliste</title>
+    </item>
+    
+        <item id="signin-instructions">
+      <innerText>Melde dich mit deiner IM Adresse an</innerText>
+    </item>
+    <item id="txt-signin-address">
+      <innerText>Adresse:</innerText>
+    </item>
+    <item id="txt-signin-examples">
+      <innerText>Beispiele:</innerText>
+    </item>
+    <item id="txt-signin-password">
+      <innerText>Passwort:</innerText>
+    </item>
+    <item id="txt-signin-remember">
+      <innerText>Passwort speichern</innerText>
+    </item>
+    <item id="txt-signin-autoconnect">
+      <innerText>Automatisch anmelden</innerText>
+    </item>
+    <item id="signin-connect">
+      <innerText>Anmelden</innerText>
+    </item>
+    <item id="signin-register">
+      <innerText>Eine neue IM Adresse registrieren</innerText>
+    </item>
+    <item id="signin-settings">
+      <innerText>Verbindungseinstellungen</innerText>
+    </item>
 
+    <code id="tt-group-hide">Kontakte dieser Gruppe verstecken&#13;Rechtsklicken für mehr Einstellungen</code>
+    <code id="tt-group-show">Kontakte dieser Gruppe anzeigen&#13;Rechtsklicken für mehr Einstellungen</code>
 <code id="emoticon_unknown">Unbekannt</code>
 <code id="user_online">${0} ist jetzt online</code>
    <code id="import_invalid">Die Datei enthält keine konformen Daten.</code>
 <code id="import_no_new">Alle Kontakte in dieser Datei sind bereits in deiner Kontaktliste.</code>
     <code id="import_confirm">Diese Adressen werden deiner Kontaktliste hinzugefügt:&#13;&#13;${0}&#13;&#13;Willst du diese Adressen wirklich zu deiner Kontaktliste hinzufügen?</code>
-
-   <code id="txt_welcome">Willkommen bei ${0}!</code>
+    <code id="import_aim_not_registered">Um deine AIM Kontakte zu importieren, muss der AIM Transport registriert sein. Außerdem muss der Transport aktiviert sein.&#13;Gehe ins Menü Werkzeuge und wähle Transports aus, um den Status des AIM Transports anzuzeigen.</code>
+    <code id="import_msn_not_registered">Um deine MSN Kontakte zu importieren, muss der MSN Transport registriert sein. Außerdem muss der Transport aktiviert sein.&#13;Gehe ins Menü Werkzeuge und wähle Transports aus, um den Status des MSN Transports anzuzeigen.To import your MSN contact list, the MSN transport must be registered.  The transport must also be active.&#13;Go to the Tools menu and choose Transports to view the status of the MSN transport.</code>
+    <code id="import_gadu_not_registered">Um deine Gadu-Gadu Kontakte zu importieren, muss der Gadu-Gadu Transport registriert sein. Außerdem muss der Transport aktiviert sein.&#13;Gehe ins Menü Werkzeuge und wähle Transports aus, um den Status des Gadu-Gadu Transports anzuzeigen.</code>
+    <code id="conference_invitation">${0} lädt dich in den Konferenzraum ${1} ein&#13;&#13;Möchtest du diesem Konferenzraum beitreten?</code>
+    <code id="search_info">Finde einen Kontakt...</code>
+    <code id="invalid-user-address">Gib deine IM Adresse ein.&#13;&#13;Wenn du noch keine Adresse hast, klicke unten auf "Eine neue IM Adresse registrieren".</code>
+    <code id="invalid-sso-server">Gib die Adresse deines IM Servers ein.</code>
+    <code id="program-description">${softwarename} ist ein IM Klient für XMPP Netzwerke.</code>
+    <code id="extension-jisp">Jabber Icon Stilpaket</code>
+    <code id="extension-pdn">${softwarename} Plug-in</code>
+    <code id="extension-xmpp">Extensible Messaging and Presence Protocol (XMPP) Metadaten</code>
+    <code id="uri-xmpp">Extensible Messaging and Presence Protocol (XMPP) Adresse</code>
+    
+    <code id="menu_status">&amp;Status</code>
+    <code id="menu_status_received">&amp;Öffne meine empfangenen Dateien</code>
+    <code id="menu_status_export">&amp;Kontaktliste exportieren...</code>
+    <code id="menu_status_import">&amp;Kontaktliste importieren...</code>
+    <code id="menu_status_change">Ändere meine Status&amp;nachricht...</code>
+    <code id="menu_status_ffc">&amp;Bereit zum Chatten</code>
+    <code id="menu_status_available">&amp;Verfügbar</code>
+    <code id="menu_status_busy">&amp;Beschäftigt</code>
+    <code id="menu_status_away">A&amp;bwesend</code>
+    <code id="menu_status_xaway">&amp;länger Abwesend</code>
+    <code id="menu_status_invisible">&amp;Unsichtbar</code>
+    <code id="menu_status_offline">&amp;Offline</code>
+    <code id="menu_status_status">Mein &amp;Status</code>
+    <code id="menu_status_out">Ab&amp;melden</code>
+    <code id="menu_status_exit">B&amp;eenden</code>
+    
+    <code id="txt_welcome">Willkommen bei ${0}!</code>
     <code id="cl_tooltip">${0} Kontaktliste</code>
-    <code id="autoawaymessage">Seit über 5 Minuten untätig</code>
-    <code id="autoxawaymessage">Seit über 30 Minuten untätig</code>
-
-    <code id="menu_file">&amp;Datei</code>
-	<code id="menu_file_received">&amp;Öffne Empfangene Dateien...</code>
-    <code id="menu_file_export">&amp;Exportiere Kontaktliste...</code>
-    <code id="menu_file_import">&amp;Importiere Kontaktliste...</code>
-    <code id="menu_file_change">&amp;Status-Nachricht ändern...</code>
-    <code id="menu_file_ffc">&amp;Zeit zum Chatten</code>
-    <code id="menu_file_available">Verfügb&amp;ar</code>
-    <code id="menu_file_busy">&amp;Beschäftigt</code>
-    <code id="menu_file_away">Ab&amp;wesend</code>
-    <code id="menu_file_xaway">&amp;Länger abwesend</code>
-    <code id="menu_file_invisible">Uns&amp;ichtbar</code>
-    <code id="menu_file_offline">&amp;Offline</code>
-    <code id="menu_file_status">Mein &amp;Status</code>
-    <code id="menu_file_out">Ab&amp;melden</code>
-    <code id="menu_file_exit">B&amp;eenden</code>
+        <code id="import_files">Kontaktlisten</code>
 
     <code id="menu_axn">&amp;Aktionen</code>
     <code id="menu_axn_add">Kont&amp;akt hinzufügen...</code>
     <code id="menu_axn_addgroup">&amp;Gruppe hinzufügen...</code>
+    <code id="menu_axn_bookmarks">&amp;Als Lesezeichen markierte Konferenzräume</code>
+    <code id="menu_axn_bookmarks_add">&amp;Lesezeichen hinzufügen...</code>
+    <code id="menu_axn_bookmarks_manage">&amp;Lesezeichen organisieren...</code>
     <code id="menu_axn_join">E&amp;inen Konferenzraum betreten...</code>
     <code id="menu_axn_create">Ei&amp;nen Raum erstellen...</code>
     <code id="menu_axn_password">&amp;Passwort ändern...</code>
@@ -98,7 +163,6 @@
     <code id="menu_tool">&amp;Werkzeuge</code>
    <code id="menu_tool_transport">&amp;Transports</code>
     <code id="menu_tool_head">Übersc&amp;hriften und Hinweise</code>
-    <code id="menu_tool_admin">Server &amp;Administration</code>
     <code id="menu_tool_traffic">&amp;Netzwerk Traffic</code>
     <code id="menu_tool_aot">&amp;Immer im Vordergrund </code>
     <code id="menu_tool_settings">Ein&amp;stellungen</code>    
@@ -109,15 +173,18 @@
   <code id="menu_tool_language">&amp;Sprache</code>
 
     <code id="menu_help">&amp;Hilfe</code>
+    <code id="menu_help_welcome">&amp;Begrüßungsbildschirm</code>
     <code id="menu_help_manual">&amp;Online Dokumentation</code>
     <code id="menu_help_forum">&amp;Support Forum</code>
     <code id="menu_help_contact">&amp;Kontakt</code>
+    <code id="menu_help_update">Nach Aktualisierungen &amp;suchen</code>
     <code id="menu_help_about">Ü&amp;ber...</code>
 
     <code id="menu_tray_about">Ü&amp;ber ${0}</code>
     <code id="menu_tray_settings">Ein&amp;stellungen</code>
 
-	    <code id="wnd_signup">Registrieren - ${0}</code>
+	<code id="wnd_signup">Registrieren - ${0}</code>
+    <code id="wnd_autoupdate">Aktualisiere ${0}</code>
     <code id="wnd_vcard_edit">Benutzerinformationen</code>
     <code id="wnd_about">Über ${0}</code>
     <code id="wnd_adduser">Kontakt finden oder hinzufügen</code>
@@ -128,39 +195,42 @@
     <code id="wnd_transport_list">Transports</code>
     <code id="wnd_plugin_list">Plug-ins</code>
     <code id="wnd_plugins">Plug-ins</code>
+    <code id="wnd_conference_invite">Kontakt einladen</code>
+    <code id="wnd_conference_other">Anderer Konferenzdienst</code>
     <code id="wnd_room_browse">Räume</code>
-    <code id="wnd_room_create">Raum erstellen</code>
-    <code id="wnd_room_invite">Raumeinladung</code>
+    <code id="wnd_room_create">Konferenzraum erstellen</code>
     <code id="wnd_console">Konsole</code>
     <code id="wnd_file_send">Sende Datei an ${0}</code>
     <code id="wnd_file_recv">Empfange Datei von ${0}</code>
     <code id="wnd_group_message">Gruppennachricht</code>
+    <code id="wnd_transport_other">Anderer Transport</code>
     <code id="wnd_headlines">Schlagzeilen anzeigen</code>
     <code id="wnd_history">${0} - Nachrichten-Archiv</code>
     <code id="wnd_password">Password ändern</code>
     <code id="wnd_settings">Einstellungen</code>
-    <code id="wnd_admin_server">Server Administration</code>
     <code id="wnd_status">Status Nachricht</code>
     <code id="wnd_vcard_view">Benutzerinformation</code>
     <code id="wnd_group_create">Gruppe erstellen</code>
     <code id="wnd_group_rename">Gruppe umbenennen</code>
     <code id="wnd_contact_rename">Kontakt umbenennen</code>
     <code id="wnd_authrequest">Autorisations Nachfrage</code>
-    <code id="wnd_login">Anmelden - ${0}</code>
     <code id="wnd_extension_download">Installiere ${0}</code>
     <code id="wnd_background_list">Hintergründe</code>
     <code id="wnd_background_download">Hintergründe herunterladen</code>
+    <code id="wnd_bookmarks_add">Konferenzraum zu Lesezeichen hinzufügen</code>
+    <code id="wnd_bookmarks_edit">Konferenzraum Lesezeichen bearbeiten</code>
+    <code id="wnd_bookmarks_manage">Konferenzraum Lesezeichen</code>
+    <code id="wnd_connection_settings">Verbindungseinstellungen</code>
+    <code id="wnd_welcome">Willkommen bei ${0}</code>
 
   <code id="msg_cl_adding">${0} wurde in deine Kontaktliste aufgenommen.</code>
     <code id="msg_cl_added">${0} hat dich zu seiner Kontaktliste hinzugefügt.</code>
-    <code id="msg_cl_removed">${0} hat dich von seiner Kontaktliste gelöscht.</code>
     <code id="msg_blocked">Du bist auf der Liste der geblockten Benutzer dieser Person.</code>
     <code id="msg_autherror">Kann nicht einloggen. Dies kann folgende Gründe haben:&#13;&#13;- Du hast ein falsches Passwort eingegeben&#13;- Der Account existiert nicht auf dem Server&#13;&#13;Versuche es bitte noch mal.</code>
     <code id="msg_emoticon_install">Dieser Emoticonstyle wurde bereits installiert.</code>
     <code id="msg_received_files">Der Ordner für empfangene Dateien wurde entfernt.</code>
     <code id="msg_plugin_install">Willst du dieses Plug-in installieren?&#13;&#13;Name: ${0}&#13;Beschreibung: ${1}</code>
     <code id="msg_plugin_exists">Dieses Plug-in wurde bereits installiert.</code>
-    <code id="msg_expired">Die Trial-Zeit wurde überschritten.</code>
 
     <code id="menu_message">Nachricht</code>
     <code id="menu_filetransfer">Dateiübertragung</code>
@@ -177,11 +247,12 @@
     <code id="menu_history">Archiv</code>
     <code id="menu_profile">Profil</code>
 
-    <code id="cl_waiting_one">Du hast 1 ungelesene Nachricht</code>
-    <code id="cl_waiting_multiple">Du hast ${0} ungelesene Nachrichten</code>
     <code id="cl_error_notexist">Die Adresse existiert nicht.</code>
     <code id="cl_error_cannotadd">Kann ${0} nicht zu der Kontaktliste hinzufügen.&#13;${1}</code>
     <code id="cl_default_group">Kontakte</code>
+    <code id="cl_group_display_none">Keine Kontakte</code>
+    <code id="cl_group_display_online">Nur Onlinekontakte</code>
+    <code id="cl_group_display_all">Alle Kontakte</code>
     <code id="cl_group_expand">Zeige Offline Kontakte</code>
     <code id="cl_group_compact">Verstecke Offline Kontakte</code>
     <code id="cl_group_rename">Gruppe umbenennen</code>
@@ -193,8 +264,6 @@
     <code id="cl_status_offline">Offline</code>
     <code id="cl_status_awaiting">Warte auf Authorisation</code>
     <code id="cl_status_unknown">Unbekannter Status</code>
-    <code id="cl_status_waiting_one">1 ungelesene Nachricht</code>
-    <code id="cl_status_waiting_multiple">${0} ungelesene Nachrichten</code>
     <code id="cl_tooltip_offline">Adresse: ${0}</code>
     <code id="cl_contact_remove_group">Bist du sicher, dass du diesen Benutzer aus dieser Gruppe entfernen willst?</code>
     <code id="cl_contact_remove_list">Bist du sicher, dass du diesen Benutzer von deiner Kontaktliste entfernen willst?</code>
@@ -207,36 +276,43 @@
     <code id="cl_away">Abwesend</code>
     <code id="cl_xaway">Länger abwesend</code>
     <code id="cl_invisible">Unsichtbar</code>
+    <code id="cl_idle">Frei</code>
     <code id="cl_tooltip_online">Adresse: ${0}&#13;Resource: ${1}</code>
+    
+    <code id="time-now">gerade jetzt</code>
+    <code id="time-second">vor einer Sekunde</code>
+    <code id="time-seconds">vor ${0} Sekunden</code>
+    <code id="time-minute">vor einer Minute</code>
+    <code id="time-minutes">vor ${0} Minuten</code>
+    <code id="time-hour">vor einer Stunde</code>
+    <code id="time-hours">vor ${0} Stunden</code>
+    <code id="time-day">vor einem Tag</code>
+    <code id="time-days">vor ${0} Tagen</code>
+    <code id="time-week">vor einer Woche</code>
+    <code id="time-weeks">vor ${0} Wochen</code>
+    <code id="time-month">vor einem Monat</code>
+    <code id="time-months">vor ${0} Monaten</code>
+    <code id="time-year">vor einem Jahr</code>
+    <code id="time-years">vor ${0} Jahren</code>
+    
+    <code id="track-stable">Stabil</code>
+    <code id="track-beta">Beta</code>
+    <code id="track-development">Entwicklung</code>
   </window>
   <window name="about">
-	    <item id="btn_credits">
-      <value>Credits &gt;&gt;</value>
+    <item id="txt-copyright">
+      <innerHTML>Copyright &amp;copy; ${copyrightyear} ${copyrightholder}. Alle Rechte Vorbehalten. Dieses Produkt wurde veröffentlicht unter den Bedingungen der &lt;a href="${licenseurl}"&gt;${licensename}&lt;/a&gt;. Zusätzliche &lt;a href="${termsandcontitionsurl}"&gt;allgemeine Geschäftsbedingungen&lt;/a&gt; könnten auf eingeschlossene Abhängigkeiten angewandt werden.</innerHTML>
     </item>
-   <code id="copy_basis">Basiert auf ${0}. Copyright &amp;copy; ${1} ${2}.</code>
-
-    <item id="btn_copyright">
-      <value>Copyright &gt;&gt;</value>
+    <item id="txt-trademark">
+      <innerText>Der Name ${softwarename} und die Logos sind Markenzeichen von ${trademarkholder}. Alle Rechte vorbehalten.</innerText>
     </item>
-    <item id="btn_ok">
+    <item id="btn-ok">
       <value>OK</value>
-    </item>
-    <item id="copy_darkproject">
-      <innerHTML>Die meisten Icons und der standart Emoticonstyle unterliegen dem Copyright &amp;copy; 2001 Greg Fleming.</innerHTML>
-    </item>
-    <item id="copy_rsa">
-      <innerHTML>Benutzt den MD5 Message-Digest Algorithm. Copyright RSA Data Security, Inc.</innerHTML>
-    </item>
-    <item id="txt_copyright">
-      <innerHTML>Copyright &amp;copy;</innerHTML>
-    </item>
-<item id="copy_dns">
-      <innerHTML>Basiert auf BIND. Copyright Internet Software Consortium, Inc.</innerHTML>
     </item>
   </window>
   <window name="auth_invitation">
     <item id="btn_view">
-      <value>Zeige Profil Informationen</value>
+      <value>Profilinformationen anzeigen</value>
     </item>
     <item id="btn_deny">
       <value>Ablehnen</value>
@@ -247,68 +323,9 @@
     <item id="txt_from">
       <innerText>Du hast eine Authorisationsnachfrage bekommen von:</innerText>
     </item>
-    <item id="txt_reason">
-      <innerText>Begründung:</innerText>
+    <item id="txt_question">
+      <innerText>Möchtest du diese Person zu deiner Kontaktliste hinzufügen?</innerText>
     </item>
-    <item id="txt_add">
-      <innerText>Diesen Benutzer zu meiner Kontaktliste hinzufügen</innerText>
-    </item>
-  </window>
-  <window name="admin_users">
-    <item id="btn_refresh">
-      <value>Aktualisieren</value>
-    </item>
-    <item id="btn_ok">
-      <value>OK</value>
-    </item>
-    <item id="txt_desc">
-      <innerText>Klicke auf einen Account um eine Nachricht zu verschicken. Rechtsklick für mehr Optionen.</innerText>
-    </item>
-    <code id="add_to_list">Zur Kontaktliste hinzufügen</code>
-    <code id="tooltip_with">Asdresse: ${0}&#13;Resource: ${1}&#13;Online-Zeit: ${2}</code>
-    <code id="tooltip_without">Adresse: ${0}&#13;Online-Zeit: ${1}</code>
-    <code id="loading">Lade...</code>
-    <code id="invalid_data">Fehlerhafte Daten empfangen.</code>
-    <code id="server_error">Server Fehler:</code>
-    <code id="server_failed">Abrufen der online Benutzerliste fehlgeschlagen.&lt;BR&gt;Gehe sicher, dass du Administratorrechte für den Server hast.</code>
-    <code id="user">1 Benutzer online</code>
-    <code id="users">${0} Benutzer online</code>
-  </window>
-  <window name="admin">
-    <item id="btn_view">
-      <value>Zeige alle online Benutzer an</value>
-    </item>
-    <item id="btn_close">
-      <value>Schliessen</value>
-    </item>
-    <item id="admin_btn_wall">
-      <value>Senden</value>
-    </item>
-    <item id="admin_btn_motd">
-      <value>Senden</value>
-    </item>
-    <item id="txt_wall_desc">
-      <innerText>Diese Warnung wurde an alle Benutzer geschickt die im Moment online sind.</innerText>
-    </item>
-    <item id="txt_motd_desc">
-      <innerText>Diese Warnung wird an die Benutzer geschickt wenn sie sich einloggen.</innerText>
-    </item>
-    <item id="txt_wall">
-      <innerText>Nachricht an alle</innerText>
-    </item>
-    <item id="txt_motd">
-      <innerText>Nachricht des Tages</innerText>
-    </item>
-    <item id="txt_view">
-      <innerText>Serververbindungen beobachten (Benutzer)</innerText>
-    </item>
-    <item id="txt_desc">
-      <innerText>Benutze diese Tools um den IM Server zu überwachen und zu administrieren.</innerText>
-    </item>
-    <item id="txt_users">
-      <innerText>Benutzer</innerText>
-    </item>
-    <code id="wnd_users">Benutzer online</code>
   </window>
   <window name="console">
     <item id="btn_clear">
@@ -355,6 +372,13 @@
     <item id="txt_empty">
       <innerText>Keine Hinweise oder Schlagzeilen empfangen.</innerText>
     </item>
+    <code id="read_more">Mehr...</code>
+    <code id="replay">Wiedergabe</code>
+  </window>
+  <window name="headline-toaster">
+    <item id="options">
+      <innerText>Einstellungen...</innerText>
+    </item>
   </window>
   <window name="avatar">
     <item id="btn_cancel">
@@ -384,36 +408,12 @@
     <code id="all_files">Alle Dateien</code>
   </window>
   <window name="mode_select">
-    <item id="ok">
-      <value>OK</value>
+    <item id="txt_message">
+      <innerText>Deine Statusnachricht zeigt deine Gemütslage, Beschäftigung, oder alles andere:</innerText>
     </item>
-    <item id="btn_preset">
-      <value>Standard Nachricht...</value>
-    </item>
-    <item id="txt_desc">
-      <innerText>Andere Benutzer können diese Nachricht lesen wenn du nicht antworten kannst:</innerText>
-    </item>
-    <code id="btn_1">Gehe spazieren</code>
-    <code id="btn_2">Telefonieren</code>
-    <code id="btn_3">Schlafen</code>
-    <code id="btn_4">Essen</code>
-    <code id="btn_5">Meeting</code>
-    <code id="btn_6">Trinken</code>
-    <code id="btn_7">Konzentrieren</code>
-    <code id="btn_8">Ich arbeite</code>
-    <code id="btn_9">Schule</code>
-    <code id="msg_1">Ich laufe draussen herum.</code>
-    <code id="msg_2">Ich telefoniere gerade</code>
-    <code id="msg_3">Ich schlafe</code>
-    <code id="msg_4">Zeit für was zu futtern man!</code>
-    <code id="msg_5">Ich bin in einem Meeting.</code>
-    <code id="msg_6">Bin ein Bierchen trinken (oder auch zwei)</code>
-    <code id="msg_7">Sei still - ich muss mich konzentrieren</code>
-    <code id="msg_8">Muss arbeiten - habe keine Zeit</code>
-    <code id="msg_9">Bin in der Schule.</code>
-  </window>
-  <window name="mode_select">
-    <code id="configure">Hinweise und Schlagzeilen konfigurieren</code>
+    <code id="btn_ok">OK</code>
+    <code id="btn_ok_empty">OK (keine Nachricht)</code>
+    
   </window>
   <window name="rename_group">
     <item id="btn_ok">
@@ -486,34 +486,6 @@
     <code id="count_one">1 Emoticon</code>
     <code id="count_multiple">${0} Emoticons</code>
   </window>
-  <window name="conference_invitation">
-    <item id="btn_cancel">
-      <value>Abbrechen</value>
-    </item>
-    <item id="btn_ok">
-      <value>OK</value>
-    </item>
-    <item id="txt_room">
-      <innerText>Raum:</innerText>
-    </item>
-    <item id="txt_reason">
-      <innerText>Begründung:</innerText>
-    </item>
-    <code id="invitation">Du hast eine Konferenz-Einladung bekommen von&#13;${0}</code>
-  </window>
-  <window name="conference_custom">
-    <item id="btn_cancel">
-      <value>Abbrechen</value>
-    </item>
-    <item id="btn_ok">
-      <value>OK</value>
-    </item>
-    <item id="txt_address">
-      <innerText>Raum Adresse:</innerText>
-    </item>
-    <code id="example">Beispiel: meinraum@${0}</code>
-    <code id="invalid">Ungültige Raum-Adresse.&#13;Gib die Adresse von einem Raum an.</code>
-  </window>
   <window name="conference_create">
     <item id="btn_ok">
       <value>OK</value>
@@ -521,25 +493,22 @@
     <item id="btn_cancel">
       <value>Abbrechen</value>
     </item>
-    <item id="txt_invite">
-      <innerText>Diese Benutzer einladen:</innerText>
-    </item>
-    <item id="txt_invitation">
-      <innerText>Message an die Benutzer:</innerText>
-    </item>
-    <item id="invitation">
-      <innerText>Zeit für ein Meeting</innerText>
-    </item>
-    <item id="txt_server">
-      <innerText>Server Adresse:</innerText>
-    </item>
     <item id="txt_room">
       <innerText>Name des Raumes:</innerText>
     </item>
-    <item id="txt_info">
-      <innerText>Rauminformationen</innerText>
+    <item id="txt_instructions">
+      <innerText>Jeder Konferenzraum hat eine einmalige Adresse. Gib die Konferenzdienst-Adresse und einen einmaligen Namen für den Raum ein.</innerText>
     </item>
-    <code id="valid">Gib einen gültigen Namen für den Chatroom ein.&#13;Benutze nur Buchstaben, Zahlen, den Unterstrich und den Strich (-).</code>
+    <item id="txt_service">
+      <innerText>Dienstadresse:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Beispiel: konferenz.beispiel.net</innerText>
+    </item>
+    <item id="txt_preview">
+      <innerText>Konferenzraum-Adresse:</innerText>
+    </item>
+    <code id="incomplete">Fülle alle Felder aus...</code>
   </window>
   <window name="groupmessage">
     <item id="btn_send">
@@ -566,6 +535,15 @@
     <item id="txt_message">
       <innerText>Nachricht</innerText>
     </item>
+  </window>
+    <window name="extension_download">
+    <item id="btn_cancel">
+      <value>Abbrechen</value>
+    </item>
+    <item id="txt_status">
+      <innerText>Verbinde...</innerText>
+    </item>
+    <code id="downloading">Downloaden...</code>
   </window>
   <window name="file_recv">
     <item id="btn_close">
@@ -659,32 +637,63 @@
     <code id="error_failed">Übertragung fehlgeschlagen.</code>
   </window>
   <window name="conference_browse">
-    <item id="btn_cancel">
-      <value>Abbrechen</value>
+      <item id="btn_close">
+      <value>Schließen</value>
     </item>
-    <item id="btn_join">
-      <value>Eintreten</value>
+    <item id="btn_other_service">
+      <value>Anderer Dienst...</value>
     </item>
     <item id="btn_create">
       <value>Neuen Raum erstellen</value>
     </item>
-    <item id="btn_other">
-      <value>Anderen Raum betreten</value>
-    </item>
-    <item id="txt_rooms">
+    <item id="txt_instructions">
       <innerText>Verfügbare Räume:</innerText>
     </item>
-    <item id="txt_people">
-      <innerText>Benutzer in diesem Raum:</innerText>
+    <item id="lbl_empty">
+      <innerText>Leere Räume anzeigen</innerText>
+      <accessKey>e</accessKey>
     </item>
-    <item id="room_info_text">
-      <innerText>Wähle links einen Raum aus</innerText>
+    <item id="lbl_full">
+      <innerText>Volle Räume anzeigen</innerText>
+      <accessKey>f</accessKey>
     </item>
-    <item id="txt_loading">
-      <innerText>Lade</innerText>
+    <item id="lbl_filter">
+      <innerText>Filter:</innerText>
     </item>
-    <code id="empty">In diesem Raum ist niemand</code>
-    <code id="wnd_conference_custom">Anderen Raum betreten</code>
+    <item id="txt_empty">
+      <innerText>Es sind keine Konferenzdienste auf diesem Server verfügbar.&#13;&#13;Drücke den Button "Andere Dienste...", um den Konferenzdienst von einem anderen Server hinzuzufügen.</innerText>
+    </item>
+    <item id="txt_disconnected">
+      <innerText>Um einem Konferenzraum beizutreten, musst du mit dem IM-Server verbunden sein.</innerText>
+    </item>
+    <code id="bookmarks">Lesezeichen</code>
+    <code id="menu_join">Beitreten</code>
+    <code id="menu_add">Zu Lesezeichen hinzufügen...</code>
+    <code id="empty_filter">Auf die Filterkriterien treffen keine Räume zu</code>
+    <code id="empty_no_rooms">Für diesen Dienst sind keine Räume verfügbar</code>
+    <code id="status_connecting">Verbinde...</code>
+    <code id="status_downloading">Hole Liste der Konferenzräume...</code>
+    <code id="error_unknown">Der Dienst "${0}" ist nicht erreichbar. Vergewissere dich, dass du die korrekte Adresse eingegeben hast. Versuche es später erneut oder gib eine andere Adresse ein.</code>
+    <code id="error_no_services">Der Server "${0}" hat keinen Konferenzdienst installiert. Kontaktiere den Administrator für weitere Informationen.</code>
+    <code id="error_no_new">Alle Konferenzdienste auf dem Server "${0}" sind bereits aufgelistet.</code>
+  </window>
+  <window name="conference_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Abbrechen</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Adresse:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Beispiel: konferenz.beispiel.net</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Gib die Adresse eines Konferenzdienstes oder Servers ein.</innerText>
+    </item>
+    <code id="error_already_exists">Der Dienst "${0}" ist bereits aufgelistet. Gib die Adresse eines Konferenzdienstes oder Servers ein, der noch nicht aufgelistet ist.</code>
   </window>
   <window name="vcard">
     <code id="save">Warnung: Kann vCard Datei nicht speichern.&#13;&#13;${0}</code>
@@ -885,6 +894,24 @@
       <innerText>Betriebssystem:</innerText>
     </item>
   </window>
+  <window name="transport_other">
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Abbrechen</value>
+    </item>
+    <item id="txt_address">
+      <innerText>Adresse:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Beispiel: sms.beispiel.net</innerText>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Gib die Adresse eines Transports oder Servers ein.</innerText>
+    </item>
+    <code id="error_already_exists">Der Dienst "${0}" ist bereits aufgelistet. Gib die Adresse eines Transports oder Servers ein, der noch nicht aufgelistet ist.</code>
+  </window>
   <window name="transport_register">
     <item id="btn_back">
       <value>&lt; Zurück</value>
@@ -985,6 +1012,15 @@
     <code id="aim_removing_busy">Dein AOL IM Account wird vom Transport gelöscht.&lt;BR&gt;Es wird weiterhin möglich sein, deinen AOL IM Account mit anderer Software zu benutzen.&lt;BR&gt;</code>
     <code id="aim_creating_done">Dein Account wurde erfolgreich beim AOL IM Transport registriert.</code>
     <code id="aim_removing_done">Dein Account wurde erfolgreich beim AOL IM Transport ausgetragen.</code>
+  
+      <code id="gadu_window_title">Gadu-Gadu - Transport Konfiguration</code>
+    <code id="gadu_begin_intro">Dieser Assistent hilft dir, den Gadu-Gadu Transport zu konfigurieren.&lt;BR&gt;Dieser Transport ist eine Verbindung zwischen dir und deinem Gadu-Gadu Account.&lt;BR&gt;Du brauchst einen Gadu-Gadu Account um diesen Transport zu benutzen.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_instructions">Gib deinen Gadu-Gadu Benutzernamen und Passwort ein.&lt;BR&gt;Du kannst auch einen Nicknamen eingeben, den die anderen sehen können.&lt;BR&gt;</code>
+    <code id="gadu_newaccount_examples">&amp;nbsp;</code>
+    <code id="gadu_creating_busy">Dein Account wird gerade beim Gadu-Gadu Transport registriert.</code>
+    <code id="gadu_removing_busy">Dein Gadu-Gadu Account wird vom Transport gelöscht.&lt;BR&gt;</code>
+    <code id="gadu_creating_done">Dein Account wurde erfolgreich beim Gadu-Gadu Transport registriert.</code>
+    <code id="gadu_removing_done">Dein Account wurde erfolgreich beim Gadu-Gadu Transport ausgetragen.</code>
   </window>
   <window name="history">
     <item id="btn_go">
@@ -1012,37 +1048,16 @@
     <code id="many_messages">${0} Nachrichten</code>
     <code id="tooltip_save">Das Nachrichten-Archiv von heute speichern</code>
     <code id="tooltip_print">Das Nachrichten-Archiv von heute drucken</code>
-    <code id="tooltip_delete">Das Nachrichten-Archiv von heute löschen</code>
     <code id="error_open">Fehler: Kann das Nachrichten-Archiv nicht öffnen.</code>
     <code id="error_read">Fehler: Kann das Nachrichten-Archiv nicht lesen.</code>
     <code id="delete_confirm">Bist du sicher, dass du das gesamte Nachrichten-Archiv für ${0} löschen willst?</code>
-    <code id="delete_confirm_date">Bist du sicher, dass du die Nachrichten mit dem Datum ${0} löschen willst??</code>
     <code id="delete_cannot">Kann Archiv-Datei nicht löschen: ${0}&#13;&#13;Keine Nachrichten wurden gelöscht.</code>
-    <code id="delete_cannot_temp">Kann temporäre Datei nicht erstellen: ${0}&#13;&#13;Keine Nachrichten wurden gelöscht.</code>
-    <code id="delete_cannot_open">Kann das Nachrichten-Archiv nicht öffnen: ${0}&#13;&#13;Keine Nachrichten wurden gelöscht.</code>
-    <code id="delete_cannot_read">Kann das Nachrichten-Archiv nicht lesen: ${0}&#13;&#13;Keine Nachrichten wurden gelöscht.</code>
-    <code id="delete_cannot_write">Kann nicht in die temporäre Datei schreiben: ${0}&#13;&#13;Keine Nachrichten wurden gelöscht.</code>
     <code id="error_print">Kann nichts drucken.&#13;Das Nachrichten-Archiv ist leer.</code>
     <code id="error_save">Kann das Nachrichten-Archiv nicht speichern.&#13;${0}</code>
   </window>
   <window name="preferences">
     <item id="txt_startup">
       <innerText>Mit Betriebssystem starten</innerText>
-    </item>
-    <item id="txt_autoaway">
-      <innerText>Wenn du den Computer einige Minuten nicht benutzt wird dein Status auf "Abwesend" gesetzt.</innerText>
-    </item>
-    <item id="txt_displayawaymsg_left">
-      <innerText>Zeige diese Nachricht nach</innerText>
-    </item>
-    <item id="txt_displayxawaymsg_left">
-      <innerText>Zeige diese Nachricht nach</innerText>
-    </item>
-    <item id="txt_displayawaymsg_right">
-      <innerText>Minutes:</innerText>
-    </item>
-    <item id="txt_displayxawaymsg_right">
-      <innerText>Minutes:</innerText>
     </item>
     <item id="txt_blocking">
       <innerText>Die Blocking-Liste beinhaltet Adressen von Leuten von denen du keine Nachrichten empfangen willst.</innerText>
@@ -1059,44 +1074,26 @@
     <item id="block_btn_view">
       <value>Profil anzeigen</value>
     </item>
-    <item id="txt_ssl">
-      <innerText>Benutze Verschlüsselung (SSL)</innerText>
+    <item id="txt_connection_settings">
+      <innerText>Verbindungseinstellungen</innerText>
     </item>
-    <item id="txt_firewall_proxy">
-      <innerText>Firewall und Proxy Server</innerText>
+    <item id="txt_connection_desc">
+      <innerText>Ändere, wie die Verbindung zum IM Server hergestellt wird.</innerText>
     </item>
-    <item id="txt_proxy1">
-      <innerText>Keiner</innerText>
-    </item>
-    <item id="txt_proxy2">
-      <innerText>HTTP</innerText>
-    </item>
-    <item id="txt_proxy3">
-      <innerText>SOCKS4</innerText>
-    </item>
-    <item id="txt_proxy4">
-      <innerText>SOCKS5</innerText>
-    </item>
-    <item id="txt_proxyserver">
-      <innerText>Server:</innerText>
-    </item>
-    <item id="txt_proxyport">
-      <innerText>Port:</innerText>
-    </item>
-    <item id="txt_proxyuser">
-      <innerText>Benutzername:</innerText>
-    </item>
-    <item id="txt_proxypass">
-      <innerText>Passwort:</innerText>
+    <item id="btn_connection_settings">
+      <value>Verbindungseinstellungen</value>
     </item>
     <item id="txt_portmap">
-      <innerText>Filetransfer portmap (NAT, firewall)</innerText>
+      <innerText>Datentransfer Portmap (NAT, Firewall)</innerText>
     </item>
     <item id="txt_filetransferhost">
       <innerText>Host:</innerText>
     </item>
     <item id="txt_filetransferport">
       <innerText>Port:</innerText>
+    </item>
+    <item id="txt_updates">
+      <innerText>Automatisch nach Softwareaktualisierungen suchen</innerText>
     </item>
     <item id="txt_history_store">
       <innerText>Speichere alle Nachrichten in dem Archiv</innerText>
@@ -1140,9 +1137,6 @@
     <item id="btn_cancel">
       <value>Abbrechen</value>
     </item>
-    <item id="lbl_autoaway">
-      <innerText>Auto-away</innerText>
-    </item>
     <item id="lbl_blocking">
       <innerText>Blocken</innerText>
     </item>
@@ -1155,7 +1149,6 @@
     <item id="lbl_sound">
       <innerText>Sound</innerText>
     </item>
-    <code id="autoaway">Automatische Away Messages</code>
     <code id="blocking">Blocking-List</code>
     <code id="connection">Verbindungseinstellungen</code>
     <code id="privacy">Datenschutz</code>
@@ -1212,10 +1205,9 @@
       <value>Weiter &gt;</value>
       <accessKey>w</accessKey>
     </item>
-    <item id="btn_p1_cancel">
-      <value>Abbrechen</value>
+    <item id="btn_p1_close">
+      <value>Schließen</value>
     </item>
-
     <item id="txt_p1b_title">
       <innerText>Bearbeite Benutzernamen</innerText>
     </item>
@@ -1228,8 +1220,8 @@
     <item id="page1b_btn_next">
       <value>Weiter &gt;</value>
     </item>
-    <item id="page1b_btn_cancel">
-      <value>Abbrechen</value>
+    <item id="page1b_btn_close">
+      <value>Schließen</value>
     </item>
 
     <item id="txt_p1c_title">
@@ -1244,56 +1236,20 @@
     <item id="page1c_btn_next">
       <value>Weiter &gt;</value>
     </item>
-    <item id="page1c_btn_cancel">
-      <value>Abbrechen</value>
-    </item>
-
-    <item id="txt_p2_title">
-      <innerText>Autorisations Nachricht</innerText>
-    </item>
-    <item id="txt_p2_tagline">
-      <innerText>Du kannst der anderen Person sagen, warum du seine Autorisation haben willst indem du ihm eine Nachricht sendest.</innerText>
-    </item>
-    <item id="page2_btn_back">
-      <value>&lt; Zurück</value>
-      <accessKey>z</accessKey>
-    </item>
-    <item id="page2_btn_finish">
-      <value>Fertig</value>
-      <accessKey>f</accessKey>
-    </item>
-    <item id="page2_btn_cancel">
-      <value>Abbrechen</value>
-    </item>
-    <item id="txt_p2_desc">
-      <innerText>Die Autorisations Nachfrage wird gesendet an:</innerText>
-    </item>
-    <item id="txt_p2_user">
-      <innerText>Benutzername:</innerText>
-    </item>
-    <item id="txt_p2_network">
-      <innerText>Netzwerk:</innerText>
-    </item>
-    <item id="txt_p2_message">
-      <innerHTML>Gib eine &lt;U&gt;N&lt;/U&gt;achricht ein (optional):</innerHTML>
-    </item>
-    <item id="page2_message">
-      <innerText>Ich würde dich gerne zu meiner Kontaktliste hinzufügen.</innerText>
-    </item>
-    <item id="txt_p2_close">
-      <innerHTML>Um die Anfrage zu senden und diesen Assistenten zu schliessen klicke auf &lt;B&gt;Fertig&lt;/B&gt;.</innerHTML>
+    <item id="page1c_btn_close">
+      <value>Schließen</value>
     </item>
 
     <item id="page3_btn_back">
       <value>&lt; Zurück</value>
-      <accessKey>z</accessKey>
+      <accessKey>b</accessKey>
     </item>
     <item id="page3_btn_search">
       <value>Suchen</value>
       <accessKey>s</accessKey>
     </item>
-    <item id="page3_btn_cancel">
-      <value>Abbrechen</value>
+    <item id="page3_btn_close">
+      <value>Schließen</value>
     </item>
 
     <item id="txt_p4_title">
@@ -1309,14 +1265,73 @@
     <item id="page4_btn_next">
       <value>Weiter &gt;</value>
     </item>
-    <item id="page4_btn_cancel">
-      <value>Abbrechen</value>
+    <item id="page4_btn_close">
+      <value>Schließen</value>
     </item>
+     <item id="txt_p5_title">
+      <innerText>Person hinzufügen</innerText>
+    </item>
+    <item id="txt_p5_tagline">
+      <innerText>Die Kontaktliste ist auf dem Server gespeichert.</innerText>
+    </item>
+    <item id="txt_p5_desc">
+      <innerText>Die Autorisierungsanfrage wird gesendet an:</innerText>
+    </item>
+    <item id="txt_p5_user">
+      <innerText>Benutzername:</innerText>
+    </item>
+    <item id="txt_p5_network">
+      <innerText>Netzwerk:</innerText>
+    </item>
+    <item id="page5_btn_back">
+      <value>&lt; Zurück</value>
+    </item>
+    <item id="page5_btn_next">
+      <value>Weiter &gt;</value>
+    </item>
+    <item id="page5_btn_close">
+      <value>Schließen</value>
+    </item>
+
+    <item id="txt_p6_title">
+      <innerText>Assistent zum Finden oder Hinzufügen einer Person abschließen</innerText>
+    </item>
+    <item id="txt_p6_tagline">
+      <innerText>Du hast den Assistenten zum Finden oder Hinzufügen einer Person erfolgreich abgeschlossen.</innerText>
+    </item>
+    <item id="txt_p6_desc">
+      <innerText>Diese Person wurde erfolgreich zu deiner Kontaktliste hinzugefügt:</innerText>
+    </item>
+    <item id="txt_p6_user">
+      <innerText>Benutzername:</innerText>
+    </item>
+    <item id="txt_p6_network">
+      <innerText>Netzwerk:</innerText>
+    </item>
+    <item id="txt_p6_again">
+      <innerHTML>Um den Assistenten erneut aufzurufen, drücke &lt;B&gt;Eine andere Person hinzufügen&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_again">
+      <value>Eine andere Person hinzufügen</value>
+    </item>
+    <item id="txt_p6_finish">
+      <innerHTML>Um den Assistenten zu schließen, drücke &lt;B&gt;Fertigstellen&lt;/B&gt;.</innerHTML>
+    </item>
+    <item id="page6_btn_back">
+      <value>&lt; Zurück</value>
+    </item>
+    <item id="page6_btn_finish">
+      <value>Fertigstellen</value>
+    </item>
+    <item id="page6_btn_close">
+      <value>Schließen</value>
+    </item>
+    <code id="contacting_adding">&lt;B&gt;Kontaktiere Server&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Dies kann bis zu einer Minute dauern.&lt;BR&gt;Einen Moment, bitte.&lt;BR&gt;</code>
+    <code id="error_adding">&lt;B&gt;Serverfehler:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Der Benutzer kann nicht zu deiner Kontaktliste hinzugefügt werden.&lt;BR&gt;Kontaktiere den Administrator für weitere Informationen.</code>
     <code id="correct">Gib einen gültigen Benutzernamen ein.&#13;&#13;Beispiel: jemand123@${0}</code>
     <code id="example_address">Beispiel: jemand123@${0}</code>
-    <code id="enter_username">Gib den Benutzernamen von der Person mit der du chatten willst ein.</code>
     <code id="contacting_transport">&lt;B&gt;Kontaktiere Transport&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Dies kann bis zu einer Minute dauern.&lt;BR&gt;Bitte habe Geduld.&lt;BR&gt;</code>
-    <code id="contacting_search">&lt;B&gt;Kontaktiere Such-Service&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Dies kann bis zu einer Minute dauern.&lt;BR&gt;Bitte habe Geduld.&lt;BR&gt;</code>
+    <code id="contacting_search">&lt;B&gt;Kontaktiere Suchdienst&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;Dies kann bis zu einer Minute dauern.&lt;BR&gt;Bitte habe Geduld.&lt;BR&gt;</code>
     <code id="error_transport">&lt;B&gt;Server Fehler:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Der Benutzer kann nicht zu deiner Kontaktliste hinzugefügt werden.&lt;BR&gt;Vergewissere dich, dass du den richtigen Benutzernamen eingegeben hast.</code>
     <code id="error_search">&lt;B&gt;Server Fehler:&lt;/B&gt;&lt;BR&gt;${0}&lt;BR&gt;(code ${1})&lt;BR&gt;&lt;BR&gt;Die Suchmaske kann nicht heruntergeladen werden.&lt;BR&gt;Versuche es später noch einmal oder versuche einen anderen Dienst.</code>
     <code id="search_title">Benutzer-Suche</code>
@@ -1331,6 +1346,57 @@
     <code id="foundone">1 Ergebnis</code>
     <code id="foundmany">${0} Ergebnisse</code>	
     <code id="error_invalid">Beschädigte Daten empfangen.</code>
+  </window>
+  <window name="connection-settings">
+    <code id="logout">Du musst dich abmelden um die Änderungen anzuwenden.&#13;&#13;Möchtest du dich nun abmelden?</code>
+    <code id="automatic">Automatisch</code>
+    <item id="txt_connection">
+      <innerText>Serververbindung</innerText>
+    </item>
+    <item id="lbl_server_address">
+      <innerHTML>&lt;U&gt;A&lt;/U&gt;dresse:</innerHTML>
+      <accessKey>a</accessKey>
+    </item>
+    <item id="lbl_server_port">
+      <innerHTML>&lt;U&gt;P&lt;/U&gt;ort:</innerHTML>
+      <accessKey>p</accessKey>
+    </item>
+    <item id="txt_encryption">
+      <innerText>Sicherer Nachrichtenaustausch</innerText>
+    </item>
+    <item id="lbl_encryption_optional">
+      <innerHTML>&lt;U&gt;B&lt;/U&gt;enutze TLS Verschlüsselung, falls auf dem Server verfügbar</innerHTML>
+      <accessKey>u</accessKey>
+    </item>
+    <item id="lbl_encryption_tls">
+      <innerHTML>Verlange &lt;U&gt;T&lt;/U&gt;LS Verschlüsselung</innerHTML>
+      <accessKey>t</accessKey>
+    </item>
+    <item id="lbl_encryption_ssl">
+      <innerHTML>Verlange &lt;U&gt;S&lt;/U&gt;SL Verschlüsselung</innerHTML>
+      <accessKey>s</accessKey>
+    </item>
+    <item id="lbl_encryption_none">
+      <innerHTML>Benutze &lt;U&gt;k&lt;/U&gt;eine Verschlüsselung</innerHTML>
+      <accessKey>n</accessKey>
+    </item>
+    <item id="txt_authentication">
+      <innerText>Authentifizierung bei der Anmeldung</innerText>
+    </item>
+    <item id="lbl_authentication_normal">
+      <innerHTML>A&lt;U&gt;d&lt;/U&gt;dresse und Passwort</innerHTML>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="lbl_authentication_ntlm">
+      <innerHTML>Integrierte &lt;U&gt;W&lt;/U&gt;indows Authentifizierung</innerHTML>
+      <accessKey>w</accessKey>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Abbrechen</value>
+    </item>
   </window>
   <window name="emoticon_download">
     <item id="btn_close">
@@ -1362,9 +1428,6 @@
     </item>
     <item id="txt_loadingemo">
       <innerText>Lade...</innerText>
-    </item>
-    <item id="btn_emoticon_all">
-      <value>Zeige Details</value>
     </item>
     <item id="btn_emoticon_download">
       <value>Mehr Emoticons</value>
@@ -1431,6 +1494,9 @@
     <code id="plugin_confirm">Willst du dieses Plug-in wirklich löschen?</code>
   </window>
   <window name="transport_list">
+    <item id="btn_other">
+      <value>Anderer Transport...</value>
+    </item>
     <item id="btn_ok">
       <value>OK</value>
     </item>
@@ -1446,12 +1512,14 @@
     <item id="transport_unsupported">
       <innerHTML>&lt;B&gt;Hinweis:&lt;/B&gt; Der Server unterstützt keine Tranports. Kontaktiere deinen Serveradmin für weiter Informationen .</innerHTML>
     </item>
-    <item id="msnworkaroundlabel">
-      <innerText>Erlaube MSN Kontakten ihren Benutzernamen zu wechseln.</innerText>
-    </item>
     <code id="status_active">Aktiv</code>
     <code id="status_noreg">Nicht eingerichtet</code>
     <code id="status_disconnected">Getrennt</code>
+        <code id="status_connecting">Verbinden...</code>
+    <code id="name_unknown">Unbekannter Dienst</code>
+    <code id="error_unknown">Der Dienst "${0}" ist nicht erreichbar. Vergewissere dich, dass du die richtige Adresse eingegeben hast. Versuche es später nocheinmal oder gib eine andere Adresse ein.</code>
+    <code id="error_no_transports">Der Server "${0}" hat keine Transports installiert. Kontaktiere den Administrator für weitere Informationen.</code>
+    <code id="error_no_new_transport">Alle Transports auf dem Server "${0}" sind bereits aufgelistet.</code>
   </window>
   <window name="conference-configuration">
     <item id="btn_cancel">
@@ -1471,7 +1539,25 @@
     </item>
 		<code id="form_title">Einstellungen für diesen Konferenzraum</code>
 		<code id="form_subtitle">Fülle dieses Formular aus, um den Konferenzraum einzurichten</code>
-  </window>
+
+    <code id="muc#roomconfig_allowinvites">Den Teilnehmern erlauben, andere Benutzer einzuladen</code>
+    <code id="muc#roomconfig_changesubject">Den Teilnehmern die Änderung des Konferenzraum-Themas erlauben</code>
+    <code id="muc#roomconfig_enablelogging">Alle Konferenzraum-Nachrichten aufzeichen</code>
+    <code id="muc#roomconfig_lang">Im Konferenzraum benutzte Sprache</code>
+    <code id="muc#roomconfig_maxusers">Maximale Anzahl an Teilnehmern im Konferenzraum</code>
+    <code id="muc#roomconfig_membersonly">Nur Mitgliedern ist es gestattet, den Konferenzraum zu betreten</code>
+    <code id="muc#roomconfig_moderatedroom">Die Zustimmung des Moderators ist erforderlich, um Nachrichten zu senden</code>
+    <code id="muc#roomconfig_passwordprotectedroom">Es ist ein Passwort erforderlich, um den Konferenzraum zu betreten</code>
+    <code id="muc#roomconfig_persistentroom">Konferenzraum besteht weiterhin, auch wenn ihn jeder Teilnehmer verlassen hat</code>
+    <code id="muc#roomconfig_presencebroadcast">Rollen dafür, welche Statusinformationen verbreitet werden</code>
+    <code id="muc#roomconfig_publicroom">Den Konferenzraum in der Liste der öffentlichen Konferenzräume anzeigen lassen</code>
+    <code id="muc#roomconfig_roomadmins">Administratoren des Konferenzraumes</code>
+    <code id="muc#roomconfig_roomdesc">Beschreibung des Konferenzraumes</code>
+    <code id="muc#roomconfig_roomname">Name des Konferenzraumes</code>
+    <code id="muc#roomconfig_roomowners">Besitzer des Konferenzraumes</code>
+    <code id="muc#roomconfig_roomsecret">Passwort, um den Konferenzraum zu betreten</code>
+    <code id="muc#roomconfig_whois">Mitgliedschaft, welche die realen Adressen aller Teilnehmer aufdecken kann</code> 
+   </window>
 <window name="conference-password">
     <item id="txt_password">
       <innerText>Passwort:</innerText>
@@ -1490,10 +1576,93 @@
   </window>
 	<window name="conference-subject">
     <item id="txt_subject">
-      <innerText>Betreff:</innerText>
+      <innerText>Thema:</innerText>
     </item>
     <item id="btn_ok">
       <value>OK</value>
+    </item>
+  </window>
+   <window name="conference-invite">
+    <item id="btn_cancel">
+      <value>Abbrechen</value>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="txt_instructions">
+      <innerText>Markiere die Kontakte, die du einladen möchtest.</innerText>
+    </item>
+    <item id="txt_empty">
+      <innerText>Es sind keine Kontakte der Kontaktliste online.</innerText>
+    </item>
+  </window>
+  <window name="conference-accesslevel">
+    <item id="txt-name">
+      <innerText>Name:</innerText>
+    </item>
+    <item id="txt-room">
+      <innerText>Raum:</innerText>
+    </item>
+
+	<item id="txt-role">
+      <innerText>Rolle</innerText>
+    </item>
+	<item id="txt-visitor">
+      <innerText>Gast</innerText>
+    </item>
+    <item id="txt-visitor-desc">
+      <innerText>Kann Nachrichten lesen</innerText>
+    </item>
+	<item id="txt-participant">
+      <innerText>Teilnehmer</innerText>
+    </item>
+    <item id="txt-participant-desc">
+      <innerText>Kann auch Nachrichten senden</innerText>
+    </item>
+	<item id="txt-moderator">
+      <innerText>Moderator</innerText>
+    </item>
+    <item id="txt-moderator-desc">
+      <innerText>Kann auch Teilnehmer und Gäste hinauswerfen</innerText>
+    </item>
+
+	<item id="txt-affiliation">
+      <innerText>Mitgliedschaft</innerText>
+    </item>
+	<item id="txt-none">
+      <innerText>Niemand/Mitglied</innerText>
+    </item>
+    <item id="txt-none-desc">
+      <innerText>Kann den Konferenzraum betreten</innerText>
+    </item>
+	<item id="txt-admin">
+      <innerText>Administrator</innerText>
+    </item>
+    <item id="txt-admin-desc">
+      <innerText>Kann auch Moderatoren hinzufügen und Teilnehmer bannen</innerText>
+    </item>
+	<item id="txt-owner">
+      <innerText>Besitzer</innerText>
+    </item>
+    <item id="txt-owner-desc">
+      <innerText>Kann auch Administratoren hinzufügen</innerText>
+    </item>
+
+    <item id="btn-default">
+      <value>Standard</value>
+      <accessKey>d</accessKey>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+      <accessKey>o</accessKey>
+    </item>
+    <item id="btn-cancel">
+      <value>Abbrechen</value>
+      <accessKey>c</accessKey>
+    </item>
+    <item id="btn-close">
+      <value>Schließen</value>
+      <accessKey>c</accessKey>
     </item>
   </window>
   <window name="conference-container">
@@ -1505,6 +1674,11 @@
       <title>Ändere Schriftart und -farbe</title>
       <accessKey>f</accessKey>
     </item>
+    
+    <item id="btn-background">
+      <title>Wähle einen anderen Hintergrund</title>
+      <accessKey>b</accessKey>
+    </item>
 
     <item id="txt-emoticons">
       <innerText>Emoticons</innerText>
@@ -1512,62 +1686,96 @@
     <item id="txt-font">
       <innerText>Schriftart</innerText>
     </item>
+    <item id="txt-background">
+      <innerText>Hintergrund</innerText>
+    </item>
 
+    <item id="resize-grip">
+      <title>Ändere die Größe des Nachrichteneingabefeldes</title>
+    </item>
+    <item id="mode-bar">
+      <title>Name, Adresse, und Thema dieses Konferenzraumes</title>
+    </item>
+    <item id="send-text">
+      <title>Gib hier deine Nachricht ein</title>
+    </item>
     <item id="btn-send">
       <value>Senden</value>
+      <title>Nachricht versenden</title>
+      <accessKey>s</accessKey>
     </item>
 
-    <item id="txt-occupants">
-      <innerText>Benutzer</innerText>
+    <item id="occupants-panel">
+      <title>Teilnehmer dieses Konferenzraumes</title>
     </item>
-
+    <item id="txt-visitors">
+      <innerText>Gäste</innerText>
+      <title>Gäste können Nachrichten lesen aber nicht versenden</title>
+    </item>
+    <item id="txt-moderators">
+      <innerText>Moderatoren</innerText>
+      <title>Moderatoren können Nachrichten versenden und empfangen und sie könnnen andere Teilnehmer aus dem Konferenzraum werfen</title>
+    </item>
+    <item id="txt-participants">
+      <innerText>Teilnehmer</innerText>
+      <title>Teilnehmer können Nachrichten versenden und empfangen</title>
+    </item>
     <code id="wnd_conference_password">Verbinde mit Passwort</code>
     <code id="wnd_conference_change_name">Ändere meinen Namen</code>
-    <code id="wnd_conference_subject">Konferenzraum Betreff</code>
+    <code id="wnd_conference_subject">Konferenzraum Thema</code>
     <code id="wnd_conference_configuration">Konferenzraum Einstellungen</code>
+    <code id="wnd_conference_accesslevel">${0} - Zugangesebene</code>
 
-    <code id="default_subject">Dieser Konferenzraum hat keinen Betreff.</code>
+    <code id="tt-messages">Nachrichten, die verschickt und empfangen wurden</code>
+    <code id="tt-close">Diesen Konferenzraum verlassen</code>
+    <code id="default_subject">Dieser Konferenzraum hat kein Thema.</code>
     <code id="windowtitle">${0} - Konferenzraum</code>
     <code id="destroy">Wenn du diesen Konferenzraum löscht, wird er vom Server gelöscht und alle Benutzer werden aus dem Konferenzraum entfernt.&#13;&#13;Willst du diesen Konferenzraum wirklich löschen?</code>
 
-    <code id="menu_file_close">&amp;Schließe diesen Konferenzraum</code>
+    <code id="connecting">Verbinden...</code>
+    <code id="connected">Verbunden</code>
+    <code id="disconnected">Getrennt</code>
+    <code id="confirm-kick">Bist du sicher, dass du "${0}" aus diesem Konferenzraum werfen möchtest?</code>
+    <code id="kick-error">Teilnehmer ${0} kann nicht hinausgeworfen werden</code>
+    <code id="kicked">${0} wird aus dem Konferenzraum hinausgeworfen</code>
+    <code id="kicked-by">${0} wird von ${1} aus dem Konferenzraum hinausgeworfen</code>
+    <code id="confirm-ban">Bist du sicher, dass du "${0}" aus diesem Konferenzraum verbannen möchtest?</code>
+    <code id="ban-error">Teilnehmer ${0} kann nicht verbannt werden</code>
+    <code id="banned">${0} wird aus dem Konferenzraum verbannt</code>
+    <code id="banned-by">${0} wird von ${1} aus dem Konferenzraum verbannt</code>
+    <code id="leaving">${0} verlässt den Konferenzraum</code>
+    <code id="joining">${0} betritt dem Konferenzraum</code>
+    <code id="renaming">${0} ist bekannt als ${1}</code>
 
-    <code id="menu_axn_change_name">Ändere meinen &amp;Namen...</code>
-    <code id="menu_axn_password">Verbinde mit &amp;Passwort...</code>
-    <code id="menu_axn_subject">Ändere den Konferenzraum &amp;Betreff</code>
-    <code id="menu_axn_configuration">Konferenzraum&amp;einstellungen</code>
-    <code id="menu_axn_destroy">&amp;Lösche diesen Konferenzraum</code>
-  </window>
+    <code id="menu_file">&amp;Datei</code>
+    <code id="menu_file_close">&amp;Konferenz schließen</code>
 
-<window name="login">
-    <code id="invalid">Die Adresse ist falsch. Korrigiere die Adresse und versuche es noch einmal.&#13;&#13;Falls du keine Adresse hast, drücke auf "Registrieren" und folge den Anweisungen .</code>
-		<item id="txt_instructions">
-      <innerText>Gebe deine Adresse und dein Passwort ein.</innerText>
-    </item>
-		<item id="txt_address">
-      <innerText>Adresse:</innerText>
-    </item>
-		<item id="txt_example">
-      <innerText>Beispiel: jemand123@beispiel.de</innerText>
-    </item>
-		<item id="txt_password">
-      <innerText>Passwort:</innerText>
-    </item>
-		<item id="txt_remember">
-      <innerText>Passwort speichern</innerText>
-    </item>
-		<item id="txt_autologin">
-      <innerText>Automatisch Anmelden</innerText>
-    </item>
-		<item id="btn_signup">
-      <value>Registrieren</value>
-    </item>
-		<item id="btn_login">
-      <value>Anmelden</value>
-    </item>
-		<item id="btn_close">
-      <value>Schließen</value>
-    </item>
+    <code id="menu_axn_invite">&amp;Kontakte einladen</code>
+    <code id="menu_axn_change_name">Meinen Namen &amp;ändern...</code>
+    <code id="menu_axn_password">Mit einem Passwort &amp;verbinden...</code>
+    <code id="menu_axn_subject">&amp;Thema des Konferenzraumes ändern</code>
+    <code id="menu_axn_configuration">&amp;Diesen Konferenzraum konfigurieren</code>
+    <code id="menu_axn_destroy">&amp;Diesen Konferenzraum löschen</code>
+
+    <code id="menu_bookmarks">&amp;Lesezeichen</code>
+
+    <code id="menu_bmrk_add">&amp;Zu Lesezeichen hinzufügen...</code>
+
+    <code id="menu_occupant_private">Private &amp;Nachricht</code>
+    <code id="menu_occupant_kick">&amp;Hinauswerfen</code>
+    <code id="menu_occupant_ban">&amp;Verbannen</code>
+    <code id="menu_occupant_access">&amp;Zugangsebene...</code>
+    <code id="menu_occupant_add">&amp;Zur Kontaktliste hinzufügen</code>
+    <code id="menu_occupant_profile">&amp;Profil</code>
+
+    <code id="unrecognized-error">Unbekannter Fehler</code>
+    <code id="error-service-unavailable">Dienst nicht verfügbar</code>
+    <code id="error-not-allowed">Nicht erlaubt</code>
+    <code id="error-conflict">Konflikt: Nickname wird bereits verwendet</code>
+    <code id="error-registration-required">Registrierung erforderlich: Ausschließlich Mitglieder</code>
+    <code id="error-forbidden">Verboten: Verbannt</code>
+    <code id="error-not-authorized">Nicht berechtigt: Passwort erforderlich</code>
+    <code id="error-item-not-found">Raum wurde nicht gefunden: Er ist geschlossen</code>
   </window>
 <window name="sign_up">
     <code id="close_confirm">Die neue Adresse ist nicht komplett eingerichtet.&#13;&#13;Willst du den Assistenten wirklich schließen?</code>
@@ -1649,6 +1857,9 @@
     <item id="txt_page_account_confirm">
       <innerHTML>Passwort b&lt;U&gt;e&lt;/U&gt;stätigen:</innerHTML>
     </item>
+    <item id="txt_page_account_email">
+      <innerHTML>&lt;U&gt;E&lt;/U&gt;mail Adresse:</innerHTML>
+    </item>
     <item id="data_server">
       <accessKey>s</accessKey>
     </item>
@@ -1659,6 +1870,9 @@
       <accessKey>p</accessKey>
     </item>
     <item id="data_password_confirm">
+      <accessKey>c</accessKey>
+    </item>
+    <item id="data_email">
       <accessKey>e</accessKey>
     </item>
     <item id="txt_page_account_remember">
@@ -1718,52 +1932,6 @@
       <accessKey>a</accessKey>
     </item>
 
-    <item id="txt_conn_title">
-      <innerText>Verbindungseinstellungen</innerText>
-    </item>
-    <item id="txt_ssl">
-      <innerText>Benutze eine verschlüsselte Verbindung (SSL)</innerText>
-    </item>
-    <item id="txt_conn_desc">
-      <innerText>Firewall und Proxy Server</innerText>
-    </item>
-    <item id="txt_conn_none">
-      <innerText>Keine</innerText>
-    </item>
-    <item id="txt_conn_http">
-      <innerText>HTTP</innerText>
-    </item>
-    <item id="txt_conn_s4">
-      <innerText>SOCKS4</innerText>
-    </item>
-    <item id="txt_conn_s5">
-      <innerText>SOCKS5</innerText>
-    </item>
-    <item id="txt_conn_host">
-      <innerText>Server:</innerText>
-    </item>
-    <item id="txt_conn_port">
-      <innerText>Port:</innerText>
-    </item>
-    <item id="txt_conn_user">
-      <innerText>Benutzername:</innerText>
-    </item>
-    <item id="txt_conn_pass">
-      <innerText>Passwort:</innerText>
-    </item>
-    <item id="btn_conn_default">
-      <value>Voreinstellung</value>
-      <accessKey>v</accessKey>
-    </item>
-    <item id="btn_conn_ok">
-      <value>OK</value>
-      <accessKey>o</accessKey>
-    </item>
-    <item id="btn_conn_cancel">
-      <value>Abbrechen</value>
-      <accessKey>a</accessKey>
-    </item>
-
     <item id="txt_page_finished_title">
       <innerText>Fertigstellung des Registrierungs-Assistenten</innerText>
     </item>
@@ -1808,7 +1976,122 @@
     <code id="no_new_plugins">Es sind keine neuen Plug-ins Verfügbar.</code>
   </window>
  <window name="autoupdate">
-    <code id="download_confirm">Ein Update ist für diese Software verfügbar: ${0} ${1}&#13;&#13;Willst du das Update herunterladen?</code>
+    <item id="txt-unavailable">
+      <innerText>Es sind keine Aktualisierungen verfügbar.</innerText>
+    </item>
+    <item id="txt-no-feed">
+      <innerText>Kann Aktualisierung nicht abrufen. Versuche es später erneut.</innerText>
+    </item>
+    <item id="txt-available-updates">
+      <innerText>Verfügbare Aktualisierungen</innerText>
+    </item>
+    <item id="txt-tracks-info">
+      <innerText>Unterschiedliche Versionen bieten mehr Stabilität oder die neuesten Verbesserungen.</innerText>
+    </item>
+    <item id="txt-latest">
+      <innerText>Neueste verfügbare Version:</innerText>
+    </item>
+    <item id="txt-alternatives">
+      <innerText>Alternative Versionen:</innerText>
+    </item>
+    <item id="btn-close">
+      <value>Schließen</value>
+    </item>
+
+    <item id="txt-new-version">
+      <innerText>Eine neue Version ist verfügbar.</innerText>
+    </item>
+    <item id="txt-whats-new">
+      <innerText>Was ist neu?</innerText>
+    </item>
+    <item id="txt-learn-more">
+      <innerText>Erfahre mehr über die Verbesserungen, die diese Aktualisierung bringt. Dieser Link öffnet sich in deinem Webbrowser.</innerText>
+    </item>
+    <item id="txt-continue">
+      <innerText>Du kannst ${softwarename} weiterverwenden, solange die Aktualisierung heruntergeladen wird.</innerText>
+    </item>
+    <item id="txt-restart">
+      <innerText>Die Aktualisierung wird installiert, wenn ${softwarename} neugestartet wird. Du kannst ${softwarename} weiterverwenden, ohne neuzustarten. Möchtest du jetzt neustarten und aktualisieren?</innerText>
+    </item>
+    <item id="txt-browser">
+      <innerText>Der Download startet in deinem Webbrowser.</innerText>
+    </item>
+    <item id="btn-update">
+      <value>Jetzt Aktualisieren</value>
+    </item>
+    <item id="btn-download">
+      <value>Jetzt herunterladen</value>
+    </item>
+    <item id="btn-later">
+      <value>Später</value>
+    </item>
+    <code id="up-to-date">Auf dem neuesten Stand</code>
+    <code id="previous-version">Vorige Version</code>
+    <code id="recommended">Empfohlen</code>
+    <code id="description-stable">Stabile Versionen wurden am längsten getestet.</code>
+    <code id="description-beta">Beinhaltet Fehlerbehebungen und Features, die noch getestet werden.</code>
+    <code id="description-development">Manche Features funktionieren noch nicht ordnungsgemäß, solange sie in Arbeit sind.</code>
+    <code id="title">Softwareaktualisierung: ${0} ${1}</code>
+  </window>
+  <window name="welcome">
+    <item id="txt-hello">
+      <innerText>Hallo und willkommen bei ${softwarename}</innerText>
+    </item>
+    <item id="txt-free-software">
+      <innerText>Dieses Programm ist kostenlos und open source Software. Die ganze Entwicklung, Übersetzung und der Support wird von unseren wunderbaren Community-Mitgliedern erbracht.</innerText>
+    </item>
+    <item id="txt-more-information">
+      <innerHTML>Für weitere Informationen folge uns @&lt;a href="http://twitter.com/${twittername}"&gt;${twittername}&lt;/a&gt; auf Twitter oder werde Fan auf &lt;a href="http://www.facebook.com/${facebookpage}"&gt;Facebook.com/${facebookpage}&lt;/a&gt;.</innerHTML>
+    </item>
+    <item id="txt-enjoy">
+      <innerText>Wir hoffen, dir gefällt die Benutzung unseres Programmes.</innerText>
+    </item>
+    <item id="txt-team">
+      <innerText>Das ${softwarename} Team</innerText>
+    </item>
+    <item id="settings-close">
+      <title>Bestätigen und schließen</title>
+    </item>
+    <item id="btn-add-contact">
+      <innerText>Einen Kontakt hinzufügen</innerText>
+    </item>
+    <item id="btn-edit-profile">
+      <innerText>Mein Profil bearbeiten</innerText>
+    </item>
+    <item id="btn-transports">
+      <innerText>Transports</innerText>
+    </item>
+    <item id="btn-settings">
+      <innerText>Einstellungen</innerText>
+    </item>
+    <item id="txt-confirm">
+      <innerText>Bitte bestätige diese Einstellungen:</innerText>
+    </item>
+    <item id="txt-default-xmpp">
+      <innerText>Benutze ${softwarename} als meinen standard XMPP Klient</innerText>
+    </item>
+    <item id="txt-homepage">
+      <innerText>Setze meine Startseite auf ${browsersearchboxname}</innerText>
+    </item>
+    <item id="txt-search-engine">
+      <innerText>Füge ${browsersearchboxname} zu meinen Suchmaschinen hinzu</innerText>
+    </item>
+    <item id="txt-feed-title">
+      <innerText>Support und Feedback</innerText>
+    </item>
+    <item id="txt-ask-question">
+      <innerText>Stelle eine Frage</innerText>
+    </item>
+    <item id="txt-powered-by">
+      <innerText>powered by GetSatisfaction</innerText>
+    </item>
+    <item id="txt-show-welcome">
+      <innerText>Zeige diesen Willkommensbildschirm beim Start</innerText>
+    </item>
+    <item id="btn-ok">
+      <value>OK</value>
+    </item>
+    <code id="search-topics">Suche alle Themen...</code>
   </window>
 <window name="chat-messages">
     <code id="copy">Kopieren</code>
@@ -1839,21 +2122,38 @@
     <item id="txt-background">
       <innerText>Hintergrund</innerText>
     </item>
-
+    
+    <item id="resize-grip">
+      <title>Ändere die Größe des Nachrichteneingabefeldes</title>
+    </item>
+    <item id="mode-bar">
+      <title>Die Person, die deine Nachrichten erhält</title>
+    </item>
+    <item id="send-text">
+      <title>Gib deine Nachricht hier ein</title>
+    </item>
     <item id="btn-send">
       <value>Senden</value>
+      <title>Nachricht versenden</title>
+      <accessKey>s</accessKey>
     </item>
 
+    <code id="tt-avatar">Zeige den ganzen Avatar an</code>
+    <code id="tt-messages">Nachrichten, die versandt und empfangen wurden</code>
+    <code id="tt-close">Diese Konversation beenden</code>
     <code id="msg_typing">${0} schreibt eine Nachricht.</code>
     <code id="unknown">${0} antwortet vielleicht nicht, weil sein/ihr Status unbekannt ist</code>
     <code id="lastonline">Zuletzt Online: ${0}</code>
     <code id="windowtitle">${0} - Gespräch</code>
-    <code id="choose_emoticons">Betrachte alle Emoticons dieses Styles oder suche neue aus</code>
     <code id="background_no">Kein Hintergrund</code>
     <code id="background_list">Verfügbare Hintergründe...</code>
     <code id="close_many_tabs">Willst du wirklich alle Gespräche schließen?</code>
     <code id="close_recent_message">Du hast gerade erst eine Nachricht erhaletn.&#13;&#13;Willst du dieses Gespräch beenden?</code>
+	<code id="palette_compact">Verringere die Größe der Emoticon-Liste</code>
+	<code id="palette_expand">Zeige alle Emoticons in diesem Stil</code>
+	<code id="palette_browse">Andere Emoticon-Stile...</code>
 
+    <code id="menu_file">&amp;Datei</code>
     <code id="menu_file_received">&amp;Öffne Empfangene Dateien...</code>
     <code id="menu_file_history">Gesprächs &amp;Archiv</code>
     <code id="menu_file_close">&amp;Beende Gespräch</code>
@@ -1870,9 +2170,47 @@
     <code id="menu_tool_font">Ändere die Schri&amp;ftart...</code>
     <code id="menu_tool_background">Wähle den &amp;Hintergrund...</code>
     <code id="menu_tool_aot">&amp;Immer Oben</code>
-    <code id="menu_tool_popup">&amp;Neue Nachrichten im Vordergrund</code>
     <code id="menu_tool_tabbed">Gespräch-&amp;Tabs verwenden</code>
     <code id="menu_tool_emoticons">&amp;Emoticons anzeigen</code>
     <code id="menu_tool_settings">Ein&amp;stellungen</code>
+  </window>
+  <window name="conference-bookmarks-add">
+    <item id="txt_address">
+      <innerText>Konferenzraum-Adresse:</innerText>
+    </item>
+    <item id="txt_example">
+      <innerText>Beispiel: mein_raum@konferenz.beispiel.net</innerText>
+    </item>
+    <item id="lbl_autojoin">
+      <innerText>Diesem Konferenzraum beim Anmelden beitreten</innerText>
+    </item>
+    <item id="lbl_password">
+      <innerText>Den Raum betreten mit diesem Passwort:</innerText>
+    </item>
+    <item id="btn_ok">
+      <value>OK</value>
+    </item>
+    <item id="btn_cancel">
+      <value>Abbrechen</value>
+    </item>
+    <code id="error_invalid_address">Die Konferenzraum-Adresse ist ungültig.</code>
+  </window>
+  <window name="conference-bookmarks-manage">
+    <item id="txt_head">
+      <innerText>Bearbeite, lösche, oder füge Konferenzraum-Lesezeichen hinzu:</innerText>
+    </item>
+    <item id="btn_edit">
+      <value>Bearbeiten</value>
+    </item>
+    <item id="btn_delete">
+      <value>Löschen</value>
+    </item>
+    <item id="btn_add">
+      <value>Hinzufügen</value>
+    </item>
+    <item id="btn_close">
+      <value>Schließen</value>
+    </item>
+    <code id="confirm_delete">Möchtest du dieses Konferenzraum-Lesezeichen entfernen?</code>
   </window>
 </translation>
