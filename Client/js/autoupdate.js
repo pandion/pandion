@@ -4,7 +4,6 @@
 	License: GNU General Public License version 3 or later
 */
 window.attachEvent("onload", function () {
-
 	var getLatestAppcastByTrack = function (doc, track) {
 		var appcastNamespaceUri = "http://pandion.im/protocol/appcast/1.0";
 		var appcasts = getAppcastsFromFeed(doc);
@@ -286,7 +285,6 @@ window.attachEvent("onload", function () {
 			}
 		});
 	}
-
 });
 
 var gFileName, gSession, gInterval, gParameters, gLocation = '';
