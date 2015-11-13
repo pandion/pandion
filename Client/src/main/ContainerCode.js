@@ -262,8 +262,8 @@ function ChooseEmoticons ()
 				external.windows( 'MainWindow' ).Do( 'dial_emoticon_list', null );
 				Popup.hide();
 				Popup.document.body.innerHTML = '';
-				if ( ! window.parent.document.getElementById( 'send-text' ).disabled )
-					window.parent.document.getElementById( 'send-text' ).focus();
+				if ( ! document.getElementById( 'send-text' ).disabled )
+					document.getElementById( 'send-text' ).focus();
 			}
 		);
 		with ( Browse.style )
@@ -296,9 +296,9 @@ function ChooseEmoticons ()
 			function ( event )
 			{
 				if ( event.srcElement.tagName == 'DIV' )
-					window.parent.document.getElementById( 'send-text' ).value += event.srcElement.title;
-				if ( ! window.parent.document.getElementById( 'send-text' ).disabled )
-					window.parent.document.getElementById( 'send-text' ).focus();
+					document.getElementById( 'send-text' ).value += event.srcElement.title;
+				if ( ! document.getElementById( 'send-text' ).disabled )
+					document.getElementById( 'send-text' ).focus();
 				Popup.hide();
 				Popup.document.body.innerHTML = '';
 			}
