@@ -226,7 +226,7 @@ function ChooseEmoticons ()
 					event.cancelBubble = true;
 					external.globals( 'cfg' ).Item( 'emoticonviewall' ) = ! ( external.globals( 'cfg' ).Item( 'emoticonviewall' ).toString() == 'true' );
 					Popup.hide();
-					window.parent.document.getElementById( 'btn-emoticons' ).click();
+					document.getElementById( 'btn-emoticons' ).click();
 				}
 			);
 			with ( Expand.style )
