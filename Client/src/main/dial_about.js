@@ -12,7 +12,8 @@ function dial_about ()
 			setTitle( external.globals( 'Translator' ).Translate( 'main', 'wnd_about', [ external.globals( 'softwarename' ) ] ) );
 			setIcon( external.globals( 'cwd' ) + '..\\images\\brand\\default.ico' );
 			resizeable( false );
-			setSize( 516, 266 );
-			setPos( ( screen.availWidth - 516 ) / 2, ( screen.availHeight - 266 ) / 2 );
+			setSize( 540, 266 );
+			setPos( ( screen.availWidth - 540 ) / 2, ( screen.availHeight - 266 ) / 2 );
 		}
+
 }

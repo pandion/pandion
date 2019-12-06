@@ -117,6 +117,8 @@ function XMPPOnIQ ( ReceivedXML )
 			Windows = 'Windows Vista';
 		else if ( Windows == 'Windows NT 6.1' )
 			Windows = 'Windows 7';
+      else if ( Windows == 'Windows NT 6.2' )
+			Windows = 'Windows';
 		dom.selectSingleNode( '/iq/query/os' ).text = Windows + ' (' + navigator.userLanguage + ')';
 		warn( 'SENT: ' + dom.xml );
 		external.XMPP.SendXML( dom );

@@ -7,12 +7,13 @@ var gContainer = null;
 
 function Begin ()
 {
+
 	external.globals( 'Translator' ).TranslateWindow( 'chat-container', document );
 	external.wnd.setCloseHandler( 'Close' );
 
 	/* Event handlers for text selecting, input area resizing, and text input focus
 	 */
-    document.attachEvent( 'onselectionchange', DisableButton );
+	document.attachEvent( 'onselectionchange', DisableButton );
 	document.attachEvent( 'onselectstart', SelectionFilter );
 	document.attachEvent( 'ondragstart', SelectionFilter );
 	window.attachEvent( 'onresize', ResizeCheck );
@@ -74,6 +75,8 @@ function Begin ()
 	}
 }
 
+
+
 function End ()
 {
 	/* Stop receiving new trackers and events
@@ -97,10 +100,16 @@ function End ()
  */
 function Close ()
 {
-	if ( gContainer.Trackers.Count == 1 )
+	if ( gContainer.Trackers.Count == 1 ) 
+	{
 		gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Close();
-	else if ( ! gContainer.Trackers.Count || external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'chat-container', 'close_many_tabs' ), external.globals( 'softwarename' ), 4 | 48 ) == 6 )
+		ClearOpenTrackers();
+	}
+	else if ( ! gContainer.Trackers.Count || external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'chat-container', 'close_many_tabs' ), external.globals( 'softwarename' ), 4 | 48 ) == 6 ) 
+	{
+		ClearOpenTrackers();
 		external.wnd.close();
+	}
 }
 
 function SessionContainer ( SessionPool )
@@ -171,6 +180,8 @@ function SessionContainer ( SessionPool )
 		this.Trackers.Add( Tracker.Address.ShortAddress(), Tracker );
 		this.SessionPool.AddTracker( Tracker );
 		document.frames( 'iframe-' + Tracker.Address.ShortAddress() ).document.body.title = external.globals( 'Translator' ).Translate( 'chat-container', 'tt-messages' );
+
+		SaveOpenTrackers( );
 	}
 
 	/* Get out of the session pool and remove all trackers from this container
@@ -740,8 +751,9 @@ function SessionTracker ( Address )
 			this.HTMLButton.insertAdjacentElement( 'beforeEnd', Close );
 
 			this.HTMLButton.attachEvent("onmousedown", function () {
-				if (event.button !== 1)
-					return;
+				if (event.button !== 1) {
+                                    return;
+				}
 				else if (event.srcElement.tagName === "SPAN")
 					event.srcElement.SessionTracker.Activate(true);
 				else
@@ -779,6 +791,7 @@ function SessionTracker ( Address )
 				this.Container.Trackers.Item( TrackerNames[ TrackerNames.length - 1 ] ).Activate( true );
 			else
 				setTimeout( 'external.wnd.close()', 0 );
+			SaveOpenTrackers( );
 		}
 	}
 
@@ -1213,10 +1226,9 @@ function MenuBarSelect ( id )
 		case 22: // view profile
 			external.wnd.params[0].dial_userinfo( gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Address );
 			break;
-//		case 23: // send file
-//			external.wnd.params[0].dial_file( gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Address );
-//			break;
-
+		case 23: // send file
+			external.wnd.params[0].dial_file( gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Address );
+			break;
 		case 30: // font
 			dial_font();
 			break;
@@ -1461,8 +1473,8 @@ function MouseMenu ()
  */
 function OnWindowActivate ()
 {
-	setTimeout(function () {
-		if (!document.getElementById("send-text").disabled) {
+        setTimeout(function () {
+                if ( external.wnd.isActive()) {
 			document.getElementById("send-text").blur();
 			document.getElementById("send-text").focus();
 		}
@@ -1513,3 +1525,116 @@ function TabAddStart ()
 {
 	external.wnd.params[0].dial_chat( document.getElementById( 'new-tab-address' ).value );
 }
+
+/* Send (y)
+*/
+function SendLike() {
+  SendEmoticons('(y)');
+}
+
+/* Send emoticon text
+*/
+function SendEmoticons(emoticons)
+{
+	var Tracker = gContainer.Trackers.Item( gContainer.ActiveTrackerAddress );
+
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	if ( Tracker.WantsComposing && ! Tracker.ChatState )
+		dom.loadXML( '<message type="chat"><body/><html><body/></html><x xmlns="jisp:x:jep-0038"><name/></x><x xmlns="jabber:x:event"><composing/></x></message>' );
+	else
+		dom.loadXML( '<message type="chat"><body/><html><body/></html><x xmlns="jisp:x:jep-0038"><name/></x><active xmlns="http://jabber.org/protocol/chatstates"/></message>' );
+
+	dom.selectSingleNode( '/message/x[@xmlns="jisp:x:jep-0038"]/name' ).text = external.globals( 'cfg' ).Item( 'emoticonset' );
+	dom.documentElement.firstChild.text = emoticons;
+	dom.documentElement.setAttribute( 'xml:lang', external.globals( 'language' ) );
+	dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
+	dom.documentElement.setAttribute( 'to', Tracker.Address.LongAddress() );
+	dom.documentElement.setAttribute( 'from', external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) + '/' + external.globals( 'cfg' ).Item( 'resource' ) );
+
+	var HTMLBody = dom.documentElement.selectSingleNode( '/message/html/body' );
+
+	HTMLBody.setAttribute( 'style', document.getElementById( 'send-text' ).style.cssText.toLowerCase() );
+	HTMLBody.appendChild( dom.createTextNode( emoticons) );
+
+	dom.documentElement.selectSingleNode( '/message/html' ).setAttribute( 'xmlns', 'http://jabber.org/protocol/xhtml-im' );
+	dom.documentElement.selectSingleNode( '/message/html/body' ).setAttribute( 'xmlns', 'http://www.w3.org/1999/xhtml' );
+
+	if ( Tracker.MessageThread )
+	{
+		var Thread = dom.createElement( 'thread' );
+		Thread.text = Tracker.MessageThread;
+		dom.documentElement.appendChild( Thread );
+	}
+
+	try
+	{
+		document.frames( 'iframe-' + Tracker.Address.ShortAddress() ).onSendingMessage( dom );
+	}
+	catch ( e )
+	{
+	}
+
+	external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+
+	var Message = new XMPPMessage();
+	Message.FromDOM( dom );
+	document.frames( 'iframe-' + Tracker.Address.ShortAddress() ).onMessage( Message );
+	external.wnd.params[0].history_add( Tracker.Address.ShortAddress(), Message.Stamp, Message.Body, false );
+
+}
+
+/* Clear Open Trackers
+*/
+function ClearOpenTrackers() {
+	var file = external.globals('OpenTrackers');
+	var Trackers = external.globals( 'ChatSessionPool' ).Trackers;
+	var TrackerNames = new Array();
+
+	var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+	dom.async = false;
+	dom.resolveExternals = false;
+	var root = dom.createElement( 'trackers' );
+	root.appendChild( dom.createTextNode( '\n\t' ) );
+	var tag = dom.createElement( 'opentrackers' );
+	tag.text = TrackerNames.join( '\n' );
+	root.appendChild( tag );
+	root.appendChild( dom.createTextNode( '\n' ) );
+	dom.appendChild( dom.createProcessingInstruction( 'xml', 'version="1.0" encoding="UTF-8"' ) );
+	dom.appendChild( root );
+	try
+	{
+		dom.save( file );
+	}
+	catch ( e )
+	{
+	}
+}
+
+/* Save Open Trackers on disk
+*/
+function SaveOpenTrackers ()
+{
+	var file = external.globals('OpenTrackers');
+	var Trackers = external.globals( 'ChatSessionPool' ).Trackers;
+	var TrackerNames = ( new VBArray( Trackers.Keys() ) ).toArray();
+	var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+	dom.async = false;
+	dom.resolveExternals = false;
+	var root = dom.createElement( 'trackers' );
+	root.appendChild( dom.createTextNode( '\n\t' ) );
+	var tag = dom.createElement( 'opentrackers' );
+	tag.text = TrackerNames.join( '\n' );
+	root.appendChild( tag );
+	root.appendChild( dom.createTextNode( '\n' ) );
+	dom.appendChild( dom.createProcessingInstruction( 'xml', 'version="1.0" encoding="UTF-8"' ) );
+	dom.appendChild( root );
+	try
+	{
+		dom.save( file );
+	}
+	catch ( e )
+	{
+	}
+}
+

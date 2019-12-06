@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 	This file is part of Pandion instant messenger
+        Copyright (c) 2019 Maico Tamanho
 	Copyright (c) 2010 Leonardo Caldeira
 	Copyright (c) 2008 Jefferson Oliveira
 	License: GNU General Public License version 3 or later
@@ -1291,6 +1292,9 @@ ${0}</code>
 		<item id="txt_erase">
 			<innerText>Apagar</innerText>
 		</item>
+      <item id="txt_order">
+         <innerText>Ordenar</innerText>
+      </item>
 		<item id="txt_history">
 			<innerText>Histórico de Mensagens</innerText>
 		</item>
@@ -1333,6 +1337,10 @@ ${0}</code>
 			<title>Escolher um plano de fundo diferente</title>
 			<accessKey>b</accessKey>
 		</item>
+		<item id="btn-sendlike">
+			<title>Enviar (y)</title>
+			<accessKey>l</accessKey>
+		</item>
 		<item id="txt-emoticons">
 			<innerText>Emoticons</innerText>
 		</item>
@@ -1341,6 +1349,9 @@ ${0}</code>
 		</item>
 		<item id="txt-background">
 			<innerText>Plano de Fundo</innerText>
+		</item>
+		<item id="txt-sendlike">
+			<innerText></innerText>
 		</item>
 		<item id="resize-grip">
 			<title>Mudar o tamanho do campo de entrada de mensagem</title>
@@ -1581,6 +1592,10 @@ Você quer fechar esta conversação?</code>
 		</item>
 		<item id="btn-background">
 			<title>Escolher um plano de fundo diferente</title>
+			<accessKey>b</accessKey>
+		</item>
+		<item id="btn-sendlike">
+			<title>Enviar (y)</title>
 			<accessKey>b</accessKey>
 		</item>
 		<item id="txt-emoticons">

@@ -332,6 +332,9 @@ textarea, input, button {
 #btn-background span {
 	background-image: url(../images/chat-container/theme.png);
 }
+#btn-sendlike span {
+	background-image: url(../images/chat-container/sendlike.png);
+}
 #resize-grip {
 	position: absolute;
 	overflow: hidden;

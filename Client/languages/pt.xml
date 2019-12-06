@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright © 2004-2009 Dário Ornelas
+Copyright © 2004-2019 Maico Tamanho
 This file is published under the Creative Commons Attribution-Share Alike 3.0 License
 http://creativecommons.org/licenses/by-sa/3.0
 -->
@@ -1231,6 +1231,9 @@ http://creativecommons.org/licenses/by-sa/3.0
     </item>
     <item id="txt_erase">
       <innerText>Apagar</innerText>
+    </item>
+    <item id="txt_order">
+      <innerText>Ordenar</innerText>
     </item>
     <item id="txt_history">
       <innerText>Histórico</innerText>

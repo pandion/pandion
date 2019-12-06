@@ -163,8 +163,11 @@ function refresh ()
 		Windows = 'Windows Vista';
 	else if ( Windows == 'Windows NT 6.1' )
 		Windows = 'Windows 7';
-	document.getElementById( 'os' ).value = Windows + ' (' + navigator.userLanguage + ')';
-
+   else if ( Windows == 'Windows NT 6.2' )
+      Windows = 'Windows';
+	
+   	document.getElementById( 'os' ).value = Windows + ' (' + navigator.userLanguage + ')';
+   
 	var hook = new XMPPHookIQ();
 	hook.Window = external.wnd;
 	hook.Callback = 'vcard_show';

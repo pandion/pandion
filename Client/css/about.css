@@ -60,13 +60,16 @@ a:hover {
 }
 
 /* Copyright information */
-#legal-notice {
+#sub-info {
 	position: absolute;
-	top: 120px;
+   top: 120px;
+   background-color: buttonface;
+	border-top: 1px solid white;
+   width: 100%;
+}
+#legal-notice {
 	height: 146px;
 	padding: 20px;
-	background-color: buttonface;
-	border-top: 1px solid white;
 }
 #legal-notice p {
 	margin-bottom: 10px;

@@ -1274,6 +1274,9 @@
     <item id="txt_erase">
       <innerText>Erase</innerText>
     </item>
+    <item id="txt_order">
+      <innerText>Order</innerText>
+    </item>
     <item id="txt_history">
       <innerText>Message History</innerText>
     </item>
@@ -1313,7 +1316,10 @@
       <title>Choose a different background</title>
       <accessKey>b</accessKey>
     </item>
-
+    <item id="btn-sendlike">
+      <title>Send (y)</title>
+      <accessKey>l</accessKey>
+    </item>
     <item id="txt-emoticons">
       <innerText>Emoticons</innerText>
     </item>
@@ -1571,6 +1577,11 @@
       <title>Choose a different background</title>
       <accessKey>b</accessKey>
     </item>
+    <item id="btn-sendlike">
+      <title>Send (y)</title>
+      <accessKey>l</accessKey>
+    </item>
+
 
     <item id="txt-emoticons">
       <innerText>Emoticons</innerText>
@@ -1580,6 +1591,9 @@
     </item>
     <item id="txt-background">
       <innerText>Background</innerText>
+    </item>
+    <item id="txt-sendlike">
+      <innerText></innerText>
     </item>
 
     <item id="resize-grip">
