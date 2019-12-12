@@ -3,7 +3,7 @@
 :: License: GNU General Public License version 3 or later
 
 @ECHO OFF
-SET BUILD_CONFIG=0
+SET BUILD_CONFIG=1
 
 :: Notes:
 :: - Hudson parametrized builds can specify these options automatically.
@@ -39,4 +39,4 @@ IF NOT DEFINED APPCAST_LOCAL_FILE SET APPCAST_LOCAL_FILE=../WiX/%PACKAGE%
 IF NOT DEFINED APPCAST_DOWNLOAD_URL SET APPCAST_DOWNLOAD_URL=http://downloads.sourceforge.net/project/pandion/files/builds/%PACKAGE%
 IF NOT DEFINED APPCAST_INFO_URL SET APPCAST_INFO_URL=%HUDSON_URL%job/%JOB_NAME%/%VERSION_BUILD%/changes
 IF NOT DEFINED APPCAST_FEED_URL SET APPCAST_FEED_URL=http://feeds.feedburner.com/pandionupdates
-IF NOT DEFINED APPCAST_TRACK SET APPCAST_TRACK=stable
+IF NOT DEFINED APPCAST_TRACK SET APPCAST_TRACK=development
