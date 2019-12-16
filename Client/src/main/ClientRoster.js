@@ -1833,8 +1833,6 @@ function ClientRosterItem ( roster, jid )
 			elem.title += '\n' + this.Status;
 		this.HTMLElements.Add( group.Name, elem );
 		group.HTMLOffline.insertAdjacentElement( 'beforeEnd', elem );
-
-		this.UpdateTracker();
 	}
 
 	/* Ask the user for a new name

@@ -1473,12 +1473,17 @@ function MouseMenu ()
  */
 function OnWindowActivate ()
 {
-        setTimeout(function () {
-                if ( external.wnd.isActive()) {
-			document.getElementById("send-text").blur();
-			document.getElementById("send-text").focus();
-		}
-	}, 0);
+   setTimeout( function () 
+               {
+               if ( external.wnd.isActive())
+               {  
+                  try 
+                  {
+                     document.getElementById("send-text").blur();
+                     document.getElementById("send-text").focus();
+                  } catch (e) {}
+               }
+               },0);
 }
 
 /* Show the new tab panel
