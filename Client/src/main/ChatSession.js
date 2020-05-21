@@ -63,7 +63,7 @@ function ChatSessionPool ()
 
 			/* Play a sound notification for the incoming message.
 			 */
-			if ( external.globals( 'cfg' ).Item( 'soundmessage' ).toString() == 'true' )
+			if ( external.globals( 'cfg' ).Item( 'soundmessage' ).toString() == 'true' && Event.Attention == '')
 				sound_play( external.globals( 'cfg' ).Item( 'soundmessagefile' ), false );
 		}
 	}

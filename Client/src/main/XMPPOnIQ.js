@@ -99,27 +99,18 @@ function XMPPOnIQ ( ReceivedXML )
 	else if ( iq.Namespace == 'jabber:iq:version' && iq.Type == 'get' )
 	{
 		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
-		dom.loadXML( '<iq type="result"><query xmlns="jabber:iq:version"><name/><version/><os/></query></iq>' );
+		dom.loadXML( '<iq type="result"><query xmlns="jabber:iq:version"><name/><version/><os/><hostname/></query></iq>' );
 		dom.documentElement.setAttribute( 'to', iq.From );
 		if ( iq.Id.length )
 			dom.documentElement.setAttribute( 'id', iq.Id );
 		dom.selectSingleNode( '/iq/query/name' ).text = external.globals( 'softwarename' );
 		dom.selectSingleNode( '/iq/query/version' ).text = external.globals( 'softwareversion' );
-		( /(Windows[^;\)]+)/ ).test( navigator.appVersion );
-		var Windows = RegExp.$1;
-		if ( Windows == 'Windows NT 5.0' )
-			Windows = 'Windows 2000';
-		else if ( Windows == 'Windows NT 5.1' )
-			Windows = 'Windows XP';
-		else if ( Windows == 'Windows NT 5.2' )
-			Windows = 'Windows 2003';
-		else if ( Windows == 'Windows NT 6.0' )
-			Windows = 'Windows Vista';
-		else if ( Windows == 'Windows NT 6.1' )
-			Windows = 'Windows 7';
-      else if ( Windows == 'Windows NT 6.2' )
-			Windows = 'Windows';
+
+		var Windows = external.globals( 'OSVersion' );
 		dom.selectSingleNode( '/iq/query/os' ).text = Windows + ' (' + navigator.userLanguage + ')';
+		
+		dom.selectSingleNode( '/iq/query/hostname' ).text = external.globals( 'HostName' );
+
 		warn( 'SENT: ' + dom.xml );
 		external.XMPP.SendXML( dom );
 	}
@@ -264,6 +255,12 @@ function XMPPOnIQ ( ReceivedXML )
 				'jabber:iq:version',
 				'urn:xmpp:ping'
 			];
+
+			if ( external.globals( 'cfg' )( 'attention' ).toString() == 'true' )
+			{
+				SupportedFeatures.push( 'urn:xmpp:attention:0' );
+			}
+			
 			for ( var i = 0; i < SupportedFeatures.length; ++i )
 			{
 				var Feature = dom.createElement( 'feature' );

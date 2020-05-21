@@ -1,3 +1,10 @@
+/*
+	This file is part of Pandion instant messenger
+	Copyright (c) 2009 Sebastiaan Deckers
+	License: GNU General Public License version 3 or later
+*/
+client.namespace("client.os");
+
 function dial_webbrowser (address) {
 	if (address.substr(0, 5).toLowerCase() === "xmpp:") {
 		var xmppUri = new XMPPAddress(address.substr(5));
@@ -42,16 +49,10 @@ function dial_webbrowser (address) {
 				dial_userinfo(xmppUri.ShortAddress(), xmppUri.Resource);
 				break;
 		}
-	} else if (address.substr(0, 7).toLowerCase() === "http://"
-		|| address.substr(0, 8).toLowerCase() === "https://") {
-		var HTTPHandler = "";
-		try {
-			HTTPHandler = external.RegRead("HKEY_CLASSES_ROOT", "HTTP\\shell\\open\\command", "");
-		} catch (e) {}
-		if (HTTPHandler.toLowerCase().indexOf("iexplore.exe") !== -1)
-			window.open(address, "_blank");
-		else
-			external.shellExec("open", address, "", "", 5);
+	} else if (address.substr(0, 7).toLowerCase() === "http://" || address.substr(0, 8).toLowerCase() === "https://") {
+
+		client.os.launchInBrowser ( address );
+
 	} else
 		external.shellExec("open", address, "", "", 5);
 }

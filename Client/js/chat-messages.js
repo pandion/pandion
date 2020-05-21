@@ -6,13 +6,15 @@
 /* Create a global variable to communicate with the rest of the conversation window
  */
 if ( ! window.SessionTracker )
+{
 	window.SessionTracker = window.frameElement.SessionTracker;
 
-/* Global variables used by this background
- */
-var gLastDate = ( new Date() ).toLocaleDateString();
-var gLastTime = '';
-var gLastAddress = '';
+	/* Global variables used by this background
+	*/
+	var gLastDate = ( new Date() ).toLocaleDateString();
+	var gLastTime = '';
+	var gLastAddress = '';
+}
 
 /* Activate the tracker and hook up the onresize event
  */
@@ -149,6 +151,9 @@ function onMessage ( Message )
 	 */
 	else
 	{
+		var attention = '';
+		if ( Message.Attention == 'urn:xmpp:attention:0' )
+			attention = 'attention-';
 		/* Insert sender name
 		 */
 		if ( gLastAddress != ( SessionTracker.Occupants ? Message.FromAddress.Resource : Message.FromAddress.ShortAddress() ) )
@@ -158,9 +163,9 @@ function onMessage ( Message )
 		/* Insert message body
 		 */
 		if ( gLastTime == MessageTime )
-			DrawMessage( 'body-' + Direction, Message );
+			DrawMessage( attention + 'body-' + Direction, Message );
 		else
-			DrawMessage( 'body-' + Direction, Message, 'time', MessageTime );
+			DrawMessage( attention + 'body-' + Direction, Message, 'time', MessageTime );
 		gLastTime = MessageTime;
 	}
 	Resize();

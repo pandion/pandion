@@ -533,9 +533,8 @@ function OnLoginRoster ( iq )
 					dial_conference( Address, Password );
 			}
 	}
-   
-	/* Load Open Trackers
-	*/
+	
+	/* Load Open Trackers*/
 	LoadOpenTrackers( );
 }
 
@@ -543,20 +542,25 @@ function OnLoginRoster ( iq )
 */
 function LoadOpenTrackers( ) {
 
-	var opentrackers = file2hash ( external.globals( 'OpenTrackers' ) );
-
-	if ( opentrackers )
+	try
 	{
-		var trackers = opentrackers('opentrackers').split( '\n' );
-		for ( var i = 0; i < trackers.length; i++ ) 
+		var file = file2hash ( external.globals( 'OpenTrackersFile' ) );
+		if ( file )
 		{
-			if (trackers[i] != '' ) 
-			{
-				var contact = new XMPPAddress( trackers[i] );
-				dial_chat(contact);
-			}
+			var trackers = file('opentrackers').split( '\n' );
+
+			setTimeout( function()
+										{
+											for ( var i = 0; i < trackers.length; i++ ) 
+											{
+												if (trackers[i] !== "" ) 
+												{
+													var contact = new XMPPAddress( trackers[i] );
+													dial_chat( contact );
+												}
+											}
+										},1500);
 		}
-	}
-//external.wnd.messageBox( true, 'teste', 'title', 0 );
+	} catch (ex) {}
 }
 

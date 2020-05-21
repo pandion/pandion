@@ -1059,6 +1059,9 @@ http://creativecommons.org/licenses/by-sa/3.0
     <item id="txt_os">
       <innerText>Sistema Operativo:</innerText>
     </item>
+    <item id="txt_hostname">
+      <innerText>Nome do Host:</innerText>
+    </item>
   </window>
   <window name="transport_list">
 	<item id="btn_other">
@@ -1262,6 +1265,9 @@ http://creativecommons.org/licenses/by-sa/3.0
     <code id="selectall">Selecionar Tudo</code>
   </window>
   <window name="chat-container">
+    <item id="txt-new-tab-title">
+       <innerText>Iniciar nova conversa</innerText>
+    </item>
     <item id="btn-emoticons">
       <title>Mostra o que está a pensar ou fazer</title>
       <accessKey>e</accessKey>
@@ -1661,8 +1667,14 @@ http://creativecommons.org/licenses/by-sa/3.0
     <item id="block_btn_view">
       <value>Ver perfil</value>
     </item>
-	<item id="txt_connection_settings">
+    <item id="txt_connection_settings">
       <innerText>Definições da Conexão</innerText>
+    </item>
+    <item id="txt_updates">
+      <innerText>Checar automaticamente por atualizações do programa</innerText>
+    </item>
+    <item id="txt_attention">
+      <innerText>Permite Chamadas de Atenção</innerText>
     </item>
     <item id="txt_connection_desc">
       <innerText>Alterar o modo de ligação ao servidor de mensagens instantâneas.</innerText>

@@ -71,5 +71,5 @@ function LoadProfile ( Address )
 
 	/* Set the path of Open Trackers
 	*/
-	external.globals( 'OpenTrackers' ) = external.globals( 'usersdir' ) + 'Profiles\\' + Address.ShortAddress() + '\\opentrackers.xml';
+	external.globals( 'OpenTrackersFile' ) = external.globals( 'usersdir' ) + 'Profiles\\' + Address.ShortAddress() + '\\opentrackers.xml';
 }

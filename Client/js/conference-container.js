@@ -11,7 +11,7 @@ function Begin ()
 
 	/* Event handlers for text selecting and input area resizing
 	 */
-    document.attachEvent( 'onselectionchange', DisableButton );
+	document.attachEvent( 'onselectionchange', DisableButton );
 	document.attachEvent( 'onselectstart', SelectionFilter );
 	document.attachEvent( 'ondragstart', SelectionFilter );
 	window.attachEvent( 'onresize', ResizeCheck );
@@ -29,6 +29,10 @@ function Begin ()
 	 */
 	external.wnd.setMenuHandler( 'MenuBarSelect' );
 	MenuBarUpdate();
+	
+	/* Spell Check
+	*/
+	gContainer.SpellCheck( );
 
 	/* Restore the size and position of the window
 	 */
@@ -98,6 +102,7 @@ function SessionContainer ( SessionPool )
 	this.InputUpdate = InputUpdate;
 	this.LanguageUpdate = LanguageUpdate;
 	this.MenuBarUpdate = MenuBarUpdate;
+	this.SpellCheck = SpellCheck;
 	this.TrackerCreated = TrackerCreated;
 
 	/* Create a tracker object, draw a tab
@@ -174,6 +179,21 @@ function SessionContainer ( SessionPool )
 		{
 			this.Trackers.Item( this.ActiveTrackerAddress ).DrawContainerInfo();
 			this.Trackers.Item( this.ActiveTrackerAddress ).RefreshOccupants();
+		}
+	}
+	
+	/* Enable/Disable Spell Check 
+	*/
+	function SpellCheck( )
+	{
+		if('spellcheck' in document.createElement('textarea')) //Verify is supported
+		{
+			var cfg = external.globals( 'cfg' );
+			var spell = cfg( 'spellcheck' ).toString() == 'true';
+			
+			var sendtext = document.getElementById( "send-text" );
+			sendtext.spellcheck = spell;
+			sendtext.placeholder = "spellcheck='" + spell + "'";
 		}
 	}
 
@@ -1150,7 +1170,7 @@ function ConferenceParticipant ( Tracker, Presence )
 		if ( this.Avatar.length )
 			Children.item(0).src = external.globals( 'usersdir' ) + 'Avatars\\' + this.Avatar;
 		else
-			Children.item(0).src = '..\\images\\clients\\unknown-soldier.gif';
+			Children.item(0).src = '..\\images\\clients\\unknown-soldier.png';
 
 		DrawModeMessage( Children.item(3), this.Status, 'roster-resource-link' );
 

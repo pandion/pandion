@@ -159,6 +159,14 @@
     <code id="menu_tool_language">&amp;Язык</code>
     <code id="menu_tool_aot">&amp;Поверх всех окон</code>
     <code id="menu_tool_settings">&amp;Настройки</code>
+    <code id="menu_tool_spellcheck">&amp;Проверка орфографии</code>
+    
+    <code id="menu_tool_theme">&amp;тема</code>
+    <code id="menu_tool_theme_blue">&amp;синий</code>
+    <code id="menu_tool_theme_default">&amp;По умолчанию</code>
+    <code id="menu_tool_theme_grey">&amp;Серый</code>
+    <code id="menu_tool_theme_pink">&amp;розовый</code>
+    <code id="menu_tool_theme_green">&amp;зеленый</code>
 
     <code id="menu_help">С&amp;правка</code>
     <code id="menu_help_welcome">Окно &amp;приветствия</code>
@@ -294,6 +302,9 @@
   <window name="about">
     <item id="txt-copyright">
       <innerHTML>Copyright &amp;copy; ${copyrightyear} ${copyrightholder}. Все права защищены. Это приложение опубликовано в соответствии с условиями &lt;a href="${licenseurl}"&gt;${licensename}&lt;/a&gt;. Дополнительные &lt;a href="${termsandcontitionsurl}"&gt;условия и соглашения&lt;/a&gt; могут быть включены дополнительно.</innerHTML>
+    </item>
+    <item id="txt-contributor">
+      <innerHTML>Автор:</innerHTML>
     </item>
     <item id="txt-trademark">
       <innerText>Название ${softwarename} и логотип являются торговыми марками ${trademarkholder}.&#13;Все права защищены.</innerText>
@@ -1116,6 +1127,9 @@
     <item id="txt_os">
       <innerText>Операционная система:</innerText>
     </item>
+    <item id="txt_hostname">
+      <innerText>Имя хоста:</innerText>
+    </item>
   </window>
   <window name="transport_list">
     <item id="btn_other">
@@ -1289,6 +1303,9 @@
     <item id="txt_erase">
       <innerText>Стереть</innerText>
     </item>
+    <item id="txt_order">
+      <innerText>порядок</innerText>
+    </item>
     <item id="txt_history">
       <innerText>История сообщений</innerText>
     </item>
@@ -1316,6 +1333,9 @@
     <code id="selectall">Выбрать все</code>
   </window>
   <window name="chat-container">
+    <item id="txt-new-tab-title">
+      <innerText>Начать новый разговор</innerText>
+    </item>
     <item id="btn-emoticons">
       <title>Показать о чем ты думаешь или что делаешь</title>
       <accessKey>e</accessKey>
@@ -1328,6 +1348,15 @@
       <title>Выберите другой фоновый рисунок</title>
       <accessKey>b</accessKey>
     </item>
+    
+    <item id="btn-get-attention">
+      <title></title>
+      <accessKey>g</accessKey>
+    </item>
+    <item id="btn-send-like">
+      <title>послать :yes:</title>
+      <accessKey>y</accessKey>
+    </item>
 
     <item id="txt-emoticons">
       <innerText>Смайлики</innerText>
@@ -1337,6 +1366,13 @@
     </item>
     <item id="txt-background">
       <innerText>Фон</innerText>
+    </item>
+    
+    <item id="txt-get-attention">
+      <innerText>Внимание</innerText>
+    </item>
+    <item id="txt-send-like">
+      <innerText></innerText>
     </item>
 
     <item id="resize-grip">
@@ -1352,7 +1388,9 @@
       <value>Отправить</value>
       <value>Отправить сообщение</value>
     </item>
-
+    <code id="attention-enabled">Звоните Внимание!</code>
+    <code id="attention-disabled">Обращайте внимание, отключен или не поддерживается!</code>
+    <code id="attention-message">Отправить сообщение с призывом к вниманию!</code>
     <code id="tt-avatar">Показать полноразмерную аватару</code>
     <code id="tt-messages">Сообщение было отправлено и получено</code>
     <code id="tt-close">Закрыть данный диалог</code>
@@ -1364,9 +1402,21 @@
     <code id="background_list">Другие фоновые заставки...</code>
     <code id="close_many_tabs">Вы действительно хотите закрыть все диалоги?</code>
     <code id="close_recent_message">Получено сообщение.&#13;&#13;Вы уверены, что хотите закрыть этот диалог?</code>
-	<code id="palette_compact">Уменьшить количество смайликов</code>
-	<code id="palette_expand">Показать все смайлики этой категории</code>
-	<code id="palette_browse">Выбрать другую категорию...</code>
+    <code id="palette_compact">Уменьшить количество смайликов</code>
+    <code id="palette_expand">Показать все смайлики этой категории</code>
+    <code id="palette_browse">Выбрать другую категорию...</code>
+    <code id="drew_attention">Вы обратили внимание!</code>
+    <code id="receive_attention">Обратил ваше внимание!</code>
+
+    <code id="help_title">Горячие клавиши:</code>
+    <code id="help_ctrl_tab">Активировать следующую или предыдущую вкладку</code>
+    <code id="help_ctrl_pgup">Активировать следующую вкладку</code>
+    <code id="help_ctrl_pgdn">Активировать предыдущую вкладку</code>
+    <code id="help_ctrl_19">Перейти к вкладке 1 к вкладке 9</code>
+    <code id="help_ctrl_w">Закрыть активную вкладку</code>
+    <code id="help_ctrl_shift_t">Отменить закрытие последней вкладки</code>
+    <code id="help_ctrl_t">Откройте новую вкладку</code>
+   
 
     <code id="menu_file">&amp;Файл</code>
     <code id="menu_file_received">&amp;Открыть папку принятых файлов</code>
@@ -1726,6 +1776,9 @@
     <item id="txt_updates">
       <innerText>Автоматически проверять наличие обновлений программного обеспечения</innerText>
     </item>
+    <item id="txt_attention">
+      <innerText>Позволяет Внимание Звонки</innerText>
+    </item>
     <item id="txt_auth_request">
       <innerText>Когда кто-то запрашивает мою авторизацию</innerText>
     </item>
@@ -1747,10 +1800,16 @@
     <item id="txt_soundonline">
       <innerText>Проигрывать звук, когда кто-либо подключается к сети</innerText>
     </item>
+    <item id="txt_soundattention">
+      <innerText>Воспроизвести звук, когда кто-то привлекает внимание</innerText>
+    </item>
     <item id="txt_soundoffline">
       <innerText>Проигрывать звук, когда кто-либо отключается от сети</innerText>
     </item>
     <item id="btn_sound_message">
+      <value>Найти</value>
+    </item>
+    <item id="btn_sound_attention">
       <value>Найти</value>
     </item>
     <item id="btn_sound_online">

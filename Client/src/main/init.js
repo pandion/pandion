@@ -64,8 +64,14 @@ function init ()
 	external.globals.Add( 'XMPPChallengesReceived', '' ); // number of SCRAM challenge received
 	external.globals.Add( 'XMPPKeepalive', null ); // Whitespace keepalive
 	external.globals.Add( 'LoginAddress', null ); // Login Address
-	external.globals.Add( 'OpenTrackers' , null ); //Open Trackers
-
+	external.globals.Add( 'OpenTrackersFile' , null ); //Open Trackers File
+	external.globals.Add( 'ColorRosterGroupHeader' , '#0570AD' ); //Default color onmouseover
+	external.globals.Add( 'ColorModeName' , '#312505' ); //Default color onmouseover
+	external.globals.Add( 'theme' , 'default' ); //Theme
+	external.globals.Add( 'OSVersion' , GetOSInfo() ); //OS Version
+	external.globals.Add( 'HostName' , GetHostName() ); //Host Name
+	external.globals.Add( 'CountToaster' , 0 ); //Max Count Toaster
+	
 	/* Load branding data from XML files
 	 */
 	var brandxml = new ActiveXObject( 'Scripting.Dictionary' );
@@ -133,6 +139,9 @@ function init ()
 			if ( external.globals.Exists( keys[i] ) )
 				external.globals( keys[i] ) = cfg_temp.Item( keys[i] );
 	}
+   
+   //Init theme
+   InitThemes(  );
 
 	/* Translate the window
 	 */
@@ -281,7 +290,7 @@ function init ()
 	with ( external.globals( 'ClientPluginContainer' ).Plugins.Item( '/roster' ).ClientPluginTab = new ClientPluginTab( external.globals( 'ClientPluginContainer' ).Plugins.Item( '/roster' ) ) )
 	{
 		Icon = external.globals( 'cwd' ) + '..\\images\\main\\logo.png';
-		Tooltip = external.globals( 'Translator' ).Translate( 'main', 'cl_tooltip', [ external.globals('softwarename' ) ] );
+		Tooltip = external.globals( 'Translator' ).Translate( 'main', 'cl_tooltip', [ external.globals('softwarename') ] );
 		IsActive = true;
 		HTMLArea = document.getElementById( 'content-area' );
 		DrawButton();
@@ -366,4 +375,92 @@ function init ()
 	 */
 	else
 		dial_login( external.CmdLine.length < 10 || external.CmdLine.substr( external.CmdLine.length - 10 ) != '/minimized' );
+}
+
+/**
+	Alter Tray Icon
+*/
+function setTrayIcon( mode , msg ) {
+	
+	var icon = '..\\images\\brand\\default.ico';
+	try 
+	{
+		switch( mode ) {
+			case 0: icon = '..\\images\\tray\\available.ico';
+			break;
+			case 2: icon = '..\\images\\tray\\away.ico';
+			break;
+			case 4: icon = '..\\images\\tray\\buzy.ico';
+			break;
+			case 5: icon = '..\\images\\tray\\invisible.ico';
+			break;
+			case 6: icon = '..\\images\\tray\\idle.ico';
+			break;
+		}
+		external.notifyIcon.setIcon( external.globals( 'cwd' ) + icon , 0 );
+		external.notifyIcon.setText( external.globals( 'softwarename' ) + ' - ' + msg );
+		external.notifyIcon.update();   
+	} catch (ex) {}
+}
+/**
+	Return the OS Version Name
+*/
+function GetOSInfo( )
+{
+	var ProductName = "";
+	try {
+		
+		ProductName = external.RegRead("HKEY_LOCAL_MACHINE", "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "ProductName");
+		ProductName = ProductName.replace("Microsoft ","");
+		ProductName = ProductName.replace("Enterprise ","");
+		ProductName = ProductName.replace("Professional ","");
+		ProductName = ProductName.replace("Standard ","");
+		ProductName = ProductName.replace("Ultimate ","");
+		ProductName = ProductName.replace("Home ","");
+		ProductName = ProductName.replace("Pro ","");
+		ProductName = ProductName.replace(" Microsoft","");
+		ProductName = ProductName.replace(" Enterprise","");
+		ProductName = ProductName.replace(" Professional","");
+		ProductName = ProductName.replace(" Standard","");
+		ProductName = ProductName.replace(" Ultimate","");
+		ProductName = ProductName.replace(" Home","");
+		ProductName = ProductName.replace(" Pro","");
+
+		if (ProductName == "" ) {
+			( /(Windows[^;\)]+)/ ).test( navigator.appVersion );
+			var Windows = RegExp.$1;
+			if ( Windows == 'Windows NT 5.0' )
+				Windows = 'Windows 2000';
+			else if ( Windows == 'Windows NT 5.1' )
+				Windows = 'Windows XP';
+			else if ( Windows == 'Windows NT 5.2' )
+				Windows = 'Windows 2003';
+			else if ( Windows == 'Windows NT 6.0' )
+				Windows = 'Windows Vista';
+			else if ( Windows == 'Windows NT 6.1' )
+				Windows = 'Windows 7';
+			else if ( Windows == 'Windows NT 6.2' )
+				Windows = 'Windows';
+		}
+
+	} catch (e) {
+		var ProductName = "Windows";
+	}
+
+	return ProductName;
+}
+
+/** Host Name
+*/
+function GetHostName( ) 
+{
+	try {
+		var network = new ActiveXObject('WScript.Network');
+		// Show a pop up if it works
+		return network.computerName;
+	}
+	catch (e) 
+	{
+		return "";
+	}
 }

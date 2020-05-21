@@ -17,3 +17,30 @@
 	if ( external.windows.Exists( 'stderr' ) )
 		external.windows( 'stderr' ).Do( 'redraw', 0 );
 }
+
+/**
+	Debug MSG
+*/
+function debug_msg( msg , title ) 
+{
+	try
+	{
+		if (typeof msg == 'string' )
+			external.wnd.messageBox( true, msg, title, 0 );
+		
+		else 
+		{
+			var output = '';
+			for (var property in msg) 
+			{
+				output += property + ': ' + msg[property]+'; ';
+				//external.wnd.messageBox( true, msg[property], title, 0 );
+			}
+			external.wnd.messageBox( true, output, title, 0 );
+		}
+		
+	} catch (ex) 
+	{
+		external.wnd.messageBox( true, ex.message, "ERROR", 0 );
+	}
+}

@@ -31,6 +31,10 @@ function Begin ()
 	 */
 	external.wnd.setMenuHandler( 'MenuBarSelect' );
 	MenuBarUpdate();
+	
+	/* Spell Check
+	*/
+	gContainer.SpellCheck( );
 
 	/* Restore the size and position of the window
 	 */
@@ -73,9 +77,8 @@ function Begin ()
 		var Address = SessionPool.TrackersLoading.Item( TrackerNames[ SessionPool.ContainersLoading.Count ] );
 		gContainer.CreateTracker( Address );
 	}
+	HelpTitle( );
 }
-
-
 
 function End ()
 {
@@ -103,7 +106,7 @@ function Close ()
 	if ( gContainer.Trackers.Count == 1 ) 
 	{
 		gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Close();
-		ClearOpenTrackers();
+		SaveOpenTrackers();
 	}
 	else if ( ! gContainer.Trackers.Count || external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'chat-container', 'close_many_tabs' ), external.globals( 'softwarename' ), 4 | 48 ) == 6 ) 
 	{
@@ -126,10 +129,12 @@ function SessionContainer ( SessionPool )
 	this.CreateTracker = CreateTracker;
 	this.InputUpdate = InputUpdate;
 	this.LanguageUpdate = LanguageUpdate;
+	this.ThemeUpdate = ThemeUpdate;
 	this.MenuBarUpdate = MenuBarUpdate;
+	this.SpellCheck = SpellCheck;
 	this.PurgeHistory = PurgeHistory;
 	this.TrackerCreated = TrackerCreated;
-
+	
 	/* Create a tracker object, draw a tab
 	 * TrackerCreated will be fired when the tracker is ready to receive events
 	 */
@@ -164,6 +169,7 @@ function SessionContainer ( SessionPool )
 		Tracker.DrawButton();
 		Tracker.DrawContainerInfo();
 		Tracker.DrawTyping();
+		Tracker.DiscoInfo();		
 	}
 
 	/* Register the tracker with the session pool to receive all queued events
@@ -205,6 +211,28 @@ function SessionContainer ( SessionPool )
 		{
 			this.Trackers.Item( this.ActiveTrackerAddress ).DrawContainerInfo();
 			this.Trackers.Item( this.ActiveTrackerAddress ).DrawTyping();
+		}
+	}
+	
+	/* Reload the user interface theme
+	 */
+	function ThemeUpdate ()
+	{
+		ChatThemes ( );
+	}
+	
+	/* Enable/Disable Spell Check 
+	*/
+	function SpellCheck( )
+	{
+		if('spellcheck' in document.createElement('textarea')) //Verify is supported
+		{
+			var cfg = external.globals( 'cfg' );
+			var spell = cfg( 'spellcheck' ).toString() == 'true';
+			
+			var sendtext = document.getElementById( "send-text" );
+			sendtext.spellcheck = spell;
+			sendtext.placeholder = "spellcheck='" + spell + "'";
 		}
 	}
 
@@ -260,6 +288,7 @@ function SessionTracker ( Address )
 	this.ChatState = '';
 	this.Container = null;
 	this.HookIQ = null;
+	this.HookIQDisco = null;
 	this.IsActive = false;
 	this.IsComposing = false;
 	this.IsFlashing = false;
@@ -286,7 +315,10 @@ function SessionTracker ( Address )
 	this.DrawContainerInfo = DrawContainerInfo;
 	this.DrawTyping = DrawTyping;
 	this.Flash = Flash;
+	this.GetAttention = GetAttention;
 	this.SendMessage = SendMessage;
+	this.DiscoInfo = DiscoInfo;
+	this.Attention = false;
 
 	/* Handle events from the SessionPool
 	 */
@@ -409,6 +441,66 @@ function SessionTracker ( Address )
 			 */
 			this.DrawTyping();
 		}
+		/* Attention message
+		 */
+		else if ( Event.Type == 'message' && ( Event.Payload.Attention != '' || Event.Payload.Type == 'headline') )
+		{
+			/* Change the addressee
+			 */
+			if ( this.Address.Resource != Event.Payload.FromAddress.Resource )
+			{
+				this.Address = Event.Payload.FromAddress;
+				this.DrawContainerInfo();
+			}
+
+			/* Chat state
+			 */
+			if ( Event.Payload.ChatState.length )
+				this.ChatState = Event.Payload.ChatState;
+			 
+			/* Display message
+			 */
+			if ( Event.Payload.Body.length )
+			{
+				this.LastMessage = ( new Date() ).getTime();
+				this.MessageId = Event.Payload.Id;
+				this.IsComposing = false;
+				this.MessageThread = Event.Payload.Thread;
+				this.WantsComposing = Event.Payload.WantsComposing;
+
+				/* Forward the event to the message viewer
+				 */
+				try
+				{
+					document.frames( 'iframe-' + this.Address.ShortAddress() ).onMessage( Event.Payload );
+				}
+				catch ( e )
+				{
+					external.wnd.params[0].warn( 'ERRO: onMessage failed for tracker ' + this.Address.ShortAddress() + ' - ' + e.description );
+				}
+
+				/* Notify the user of this message
+				 */
+				this.GetAttention( 5 );
+
+				/* Confirm that the message was displayed
+				 */
+				if ( Event.Payload.WantsDisplayed )
+				{
+					var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+					dom.loadXML( '<message><x xmlns="jabber:x:event"><displayed/><id/></x></message>' );
+					if ( Event.Payload.Id.length )
+						dom.selectSingleNode( '/message/x/id' ).text = Event.Payload.Id;
+					dom.documentElement.setAttribute( 'to', Event.Payload.From );
+					external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+					external.XMPP.SendXML( dom );
+				}
+			}
+
+			/* Reset the contact's typing indicator
+			 */
+			this.DrawTyping();
+		}
 	}
 
 	/* Use audio-visual signals to attract attention
@@ -431,6 +523,25 @@ function SessionTracker ( Address )
 		 */
 		if ( ! this.IsActive && ! this.IsFlashing )
 			FlashTab( this.Address.ShortAddress(), Times * 2 );
+	}
+	
+	/* Get attention
+	 */
+	function GetAttention ( Times )
+	{
+		/* Play sound
+		 */
+		if ( external.globals( 'cfg' ).Item( 'soundattention' ).toString() == 'true' )
+			external.wnd.params[0].sound_play( external.globals( 'cfg' ).Item( 'soundattentionfile' ), false );
+
+		/* Flash window
+		 */
+		this.Activate( true );
+		external.wnd.flash( 6 );
+		
+		/* Blink tab icon
+		 */
+		FlashTab( this.Address.ShortAddress(), Times * 2 );
 	}
 
 	/* Show or hide the typing indicator
@@ -516,6 +627,7 @@ function SessionTracker ( Address )
 	function DrawContainerInfo ()
 	{
 		var ShortAddress = this.Address.ShortAddress();
+
 		if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) )
 		{
 			var RosterItem = external.globals( 'ClientRoster' ).Items.Item( ShortAddress );
@@ -532,8 +644,9 @@ function SessionTracker ( Address )
 				this.LastOnline = '';
 				var RosterResource = RosterItem.Resources.Item( this.Address.Resource );
 				this.Show = RosterResource.Show;
-				this.Avatar = RosterResource.Avatar.length ? RosterResource.Avatar : 'unknown-soldier.gif';
+				this.Avatar = RosterResource.Avatar.length ? RosterResource.Avatar : 'unknown-soldier.png';
 				this.Status = RosterResource.Status;
+				this.Attention = RosterResource.Attention;
 			}
 			/* Get the resource with the highest priority
 			 */
@@ -554,8 +667,9 @@ function SessionTracker ( Address )
 					{
 						this.Address.Resource = RosterResource.ResourceName;
 						this.Show = RosterResource.Show;
-						this.Avatar = RosterResource.Avatar.length ? RosterResource.Avatar : 'unknown-soldier.gif';
+						this.Avatar = RosterResource.Avatar.length ? RosterResource.Avatar : 'unknown-soldier.png';
 						this.Status = RosterResource.Status;
+						this.Attention = RosterResource.Attention;
 					}
 				}
 			}
@@ -565,7 +679,7 @@ function SessionTracker ( Address )
 				 */
 				this.Address.Resource = '';
 				this.Show = 'offline';
-				this.Avatar = 'unknown-soldier.gif';
+				this.Avatar = 'offline-soldier.gif';
 				this.Status = RosterItem.Status;
 				if ( RosterItem.Subscription == 'to' || RosterItem.Subscription == 'both' )
 					this.Show = 'offline';
@@ -580,6 +694,7 @@ function SessionTracker ( Address )
 				this.IsComposing = false;
 				this.WantsComposing = false;
 				this.DrawTyping();
+				this.Attention = false;
 			}
 		}
 		else
@@ -592,7 +707,7 @@ function SessionTracker ( Address )
 			this.Status = '';
 
 			var Mapped = external.globals( 'ClientRoster' ).GetAvatar( this.Address.Resource, ShortAddress );
-			this.Avatar = Mapped.length ? Mapped : 'unknown-soldier.gif';
+			this.Avatar = Mapped.length ? Mapped : 'unknown-soldier.png';
 
 			/* Name of a service or transport
 			 */
@@ -616,7 +731,6 @@ function SessionTracker ( Address )
 			external.wnd.params[0].warn( 'SENT: ' + dom.xml );
 			external.XMPP.SendXML( dom );
 		}
-
 		if ( this.Avatar.length == 40 )
 			this.AvatarPath = external.globals( 'usersdir' ) + 'Avatars\\';
 		else
@@ -625,7 +739,7 @@ function SessionTracker ( Address )
 		if ( ! external.FileExists( this.AvatarPath + this.Avatar ) )
 		{
 			this.AvatarPath = external.globals( 'cwd' ) + '..\\images\\clients\\';
-			this.Avatar = 'unknown-soldier.gif';
+			this.Avatar = 'unknown-soldier.png';
 		}
 
 		this.HTMLButton.children.item(1).innerText = this.Name;
@@ -651,28 +765,82 @@ function SessionTracker ( Address )
 				document.getElementById( 'mode-avatar' ).style.backgroundImage = 'url( ' + this.AvatarPath + this.Avatar + ' )';
 				document.getElementById( 'mode-avatar' ).title = '';
 			}
-			var ModeMessage = '';
+			var ModeStatus = '';
+			var ElementStatus = document.getElementById( 'mode-status' );
+			var ModeMessage = "";
 			switch ( this.Show )
 			{
 				case 'awaiting':
-				case 'unknown': ModeMessage = external.globals( 'Translator' ).Translate( 'chat-container', 'unknown', [ this.Name ] ); break;
-				case 'offline': ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' ); break;
-				case 'chat': ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_ffc' ); break;
-				case 'dnd': ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_busy' ); break;
-				case 'xa': ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_xaway' ); break;
-				case 'away': ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_away' ); break;
-				default: ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_available' ); break;
+				case 'unknown': 
+					ModeMessage = external.globals( 'Translator' ).Translate( 'chat-container', 'unknown', [ this.Name ] ); 
+					ElementStatus.className = "mode-status-unknown";
+					break;
+				case 'offline': 
+					ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' ); 
+				   ElementStatus.className = "mode-status-offline";
+					break;
+				case 'chat': 
+					ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_ffc' ); 
+					ElementStatus.className = "mode-status-buzy";
+					break;
+				case 'dnd': 
+					ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_busy' ); 
+					ElementStatus.className = "mode-status-buzy";
+					break;
+				case 'xa': 
+					ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_xaway' ); 
+					ElementStatus.className = "mode-status-away";
+					break;
+				case 'away': 
+					ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_away' ); 
+					ElementStatus.className = "mode-status-away";
+					break;
+				default: ModeMessage = external.globals( 'Translator' ).Translate( 'main', 'cl_available' ); 
+					ElementStatus.className = "mode-status-available";
+					break;
 			}
 			if ( this.Status.length )
 				ModeMessage += ' - ' + this.Status.replace( /[\n\r]+/mg, ' - ' );
 			if ( this.LastOnline.length )
 				ModeMessage += ' - ' + external.globals( 'Translator' ).Translate( 'chat-container', 'lastonline', [ this.LastOnline ] );
+			
 			DrawModeMessage( document.getElementById( 'mode-message' ), ModeMessage, 'mode-message-link' );
+			
 			document.getElementById( 'mode-name' ).innerText = this.Name;
 			document.getElementById( 'mode-address' ).innerText = '<' + this.Address.CleanAddress() + '>';
 			document.getElementById( 'mode-address' ).style.display = this.Name == this.Address.CleanAddress() ? 'none' : 'inline';
 			external.wnd.SetTitle( external.globals( 'Translator' ).Translate( 'chat-container', 'windowtitle', [ this.Name ] ) );
-		}
+			
+			/* Get Attention button
+			*/
+			document.getElementById( 'btn-get-attention' ).disabled = !this.Attention;
+			if ( this.Attention )
+			{
+				document.getElementById( 'txt-get-attention' ).className = 'enabled';
+				document.getElementById( 'btn-get-attention' ).title = external.globals( 'Translator' ).Translate( 'chat-container', 'attention-enabled' );
+			}
+			else
+			{
+				document.getElementById( 'txt-get-attention' ).className = 'disabled';
+				document.getElementById( 'btn-get-attention' ).title = external.globals( 'Translator' ).Translate( 'chat-container', 'attention-disabled' );
+			}
+		}		
+	}
+
+	/** Get disco info and features
+	*/
+	function DiscoInfo( )
+	{
+		this.HookIQDisco = new XMPPHookIQ();
+		this.HookIQDisco.Window = external.wnd;
+		this.HookIQDisco.Callback = 'ReceiveDiscoInfo';
+		
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#info"/></iq>' );
+		dom.documentElement.setAttribute( 'id', this.HookIQDisco.Id );
+		dom.documentElement.setAttribute( 'to', this.Address.ShortAddress() + '/' + this.Address.Resource );
+		external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
 	}
 
 	/* Show or refresh the button
@@ -949,6 +1117,25 @@ function SessionTracker ( Address )
 			{
 			}
 		}
+		CloseToasterAttention();
+	}
+}
+
+/* Close all toaster attention
+*/
+function CloseToasterAttention( ) 
+{
+	if ( external.wnd.isActive() )
+	for ( var i = 1; i <= external.globals( 'CountToaster' ) ; ++i )
+	{
+		if ( external.windows.Exists( 'headline' + i ) )
+		{
+			try
+			{
+				setTimeout( external.windows( 'headline' + i ).Do ( 'CloseIfAddress', gContainer.ActiveTrackerAddress ),0);
+			}
+			catch (ex) {}
+		}
 	}
 }
 
@@ -1153,6 +1340,8 @@ function MenuBarUpdate ( section )
 		var aot = cfg( 'aotchat' ).toString() == 'true';
 		var tabs = cfg( 'tabbedchat' ).toString() == 'true';
 		var emo = cfg( 'emoticon' ).toString() == 'true';
+		//var spell = cfg( 'spellcheck' ).toString() == 'true';
+		//var spellsuported = ('spellcheck' in document.createElement('textarea'));
 
 		var tools = external.newPopupMenu;
 		tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_emo_style' ), 36 );
@@ -1162,6 +1351,7 @@ function MenuBarUpdate ( section )
 		tools.AddItem( true, aot, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_aot' ), 31 );
 		tools.AddItem( true, tabs, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_tabbed' ), 33 );
 		tools.AddItem( true, emo, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_emoticons' ), 34 );
+		//tools.AddItem( spellsuported, (spell && spellsuported) , false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_spellcheck' ), 38 );
 		tools.AddSeparator();
 		tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_settings' ), 35 );
 
@@ -1187,6 +1377,7 @@ function MenuBarUpdate ( section )
 	}
 
 	external.wnd.menuBar.Update();
+	HelpTitle( );
 }
 
 /* Launch the corresponding code or plugin event
@@ -1277,7 +1468,21 @@ function MenuBarSelect ( id )
 		case 37: // background
 			external.wnd.params[0].dial_background_list();
 			break;
-
+		case 38: // spell check
+			cfg( 'spellcheck' ) = ! ( cfg( 'spellcheck' ).toString() == 'true' );
+			var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
+			for ( var i = 0; i < ContainerNames.length; ++i )
+			{
+				external.globals( 'ChatSessionPool' ).Containers.Item( ContainerNames[i] ).MenuBarUpdate( 'tools' );
+				external.globals( 'ChatSessionPool' ).Containers.Item( ContainerNames[i] ).SpellCheck( );
+			}
+			ContainerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Containers.Keys() ) ).toArray();
+			for ( var i = 0; i < ContainerNames.length; ++i )
+			{
+				external.globals( 'ConferenceSessionPool' ).Containers.Item( ContainerNames[i] ).MenuBarUpdate( 'tools' );
+				external.globals( 'ConferenceSessionPool' ).Containers.Item( ContainerNames[i] ).SpellCheck( );
+			}
+			break;
 		case 40: // online manual
 			external.wnd.params[0].dial_webbrowser( external.globals( 'ClientPluginContainer' ).ParseURL( external.globals( 'helpmanual' ) ) );
 			break;
@@ -1364,6 +1569,47 @@ function LastOnline ( IQ )
 				Tracker.DrawContainerInfo();
 			}
 		}
+	}
+}
+/* Receive disco info and supported features
+ */
+function ReceiveDiscoInfo ( IQ )
+{
+	if ( gContainer.Trackers.Exists( IQ.FromAddress.ShortAddress() ) )
+	{
+	
+		var Tracker = gContainer.Trackers.Item( IQ.FromAddress.ShortAddress() );
+				
+		if ( Tracker.HookIQDisco )
+		{
+			Tracker.HookIQDisco.Destroy();
+			Tracker.HookIQDisco = null;
+		}
+			
+		/* Enable/Disable Attention button
+		 */
+		var attention = IQ.XMLDOM.selectSingleNode( '/iq[@type = "result"]/query[@xmlns = "http://jabber.org/protocol/disco#info"]/feature[@var="urn:xmpp:attention:0"]' );
+		
+		var enabled = attention ? true : false;
+
+		var Address = Tracker.Address;
+		var ShortAddress = Address.ShortAddress();
+		
+		if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) )
+		{
+			var RosterItem = external.globals( 'ClientRoster' ).Items.Item( ShortAddress );
+						
+			if ( RosterItem.Resources.Exists( Address.Resource ) )
+			{
+				var RosterResource = RosterItem.Resources.Item( Address.Resource );
+				if ( RosterResource.Attention != enabled )
+				{
+					RosterResource.Attention = enabled;
+					//Tracker.DrawContainerInfo( );
+				}
+			}
+		}
+		Tracker.DrawContainerInfo( );
 	}
 }
 
@@ -1473,17 +1719,19 @@ function MouseMenu ()
  */
 function OnWindowActivate ()
 {
-   setTimeout( function () 
-               {
-               if ( external.wnd.isActive())
-               {  
-                  try 
-                  {
-                     document.getElementById("send-text").blur();
-                     document.getElementById("send-text").focus();
-                  } catch (e) {}
-               }
-               },0);
+	setTimeout( function () 
+				{
+						if ( external.wnd.isActive())
+						{  
+							try 
+							{
+								document.getElementById("send-text").blur();
+								document.getElementById("send-text").focus();
+							} catch (e) {}
+						}
+				},0);
+
+	CloseToasterAttention();
 }
 
 /* Show the new tab panel
@@ -1504,6 +1752,17 @@ function TabAddActivate ()
 	 */
 	document.getElementById( 'new-tab' ).style.display = 'block';
 	document.getElementById( 'tab-add-button' ).className = 'tab-add-button-active';
+	
+	document.getElementById( 'send-text' ).blur();
+	
+	try
+	{
+		document.getElementById( 'new-tab-address' ).value = '@' + external.globals( 'cfg' ).Item( 'server' );
+	} catch (ex) {}
+	
+	
+	document.getElementById( 'new-tab-address' ).blur();
+	document.getElementById( 'new-tab-address' ).focus();
 }
 
 /* Hide the new tab panel
@@ -1531,10 +1790,10 @@ function TabAddStart ()
 	external.wnd.params[0].dial_chat( document.getElementById( 'new-tab-address' ).value );
 }
 
-/* Send (y)
+/* Send :yes:
 */
 function SendLike() {
-  SendEmoticons('(y)');
+  SendEmoticons(':yes:');
 }
 
 /* Send emoticon text
@@ -1592,7 +1851,7 @@ function SendEmoticons(emoticons)
 /* Clear Open Trackers
 */
 function ClearOpenTrackers() {
-	var file = external.globals('OpenTrackers');
+	var file = external.globals('OpenTrackersFile');
 	var Trackers = external.globals( 'ChatSessionPool' ).Trackers;
 	var TrackerNames = new Array();
 
@@ -1620,26 +1879,99 @@ function ClearOpenTrackers() {
 */
 function SaveOpenTrackers ()
 {
-	var file = external.globals('OpenTrackers');
-	var Trackers = external.globals( 'ChatSessionPool' ).Trackers;
-	var TrackerNames = ( new VBArray( Trackers.Keys() ) ).toArray();
-	var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
-	dom.async = false;
-	dom.resolveExternals = false;
-	var root = dom.createElement( 'trackers' );
-	root.appendChild( dom.createTextNode( '\n\t' ) );
-	var tag = dom.createElement( 'opentrackers' );
-	tag.text = TrackerNames.join( '\n' );
-	root.appendChild( tag );
-	root.appendChild( dom.createTextNode( '\n' ) );
-	dom.appendChild( dom.createProcessingInstruction( 'xml', 'version="1.0" encoding="UTF-8"' ) );
-	dom.appendChild( root );
 	try
 	{
+		var file = external.globals('OpenTrackersFile');
+		var TrackerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Trackers.Keys() ) ).toArray();
+		var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+		dom.async = false;
+		dom.resolveExternals = false;
+		var root = dom.createElement( 'trackers' );
+		root.appendChild( dom.createTextNode( '\n\t' ) );
+		var tag = dom.createElement( 'opentrackers' );
+		tag.text = TrackerNames.join( '\n' );
+		root.appendChild( tag );
+		root.appendChild( dom.createTextNode( '\n' ) );
+		dom.appendChild( dom.createProcessingInstruction( 'xml', 'version="1.0" encoding="UTF-8"' ) );
+		dom.appendChild( root );
+	
 		dom.save( file );
+	}
+	catch ( e )	{}
+}
+
+/* Transmit the message
+ */
+function SendAttentionMessage ()
+{
+	var Tracker = gContainer.Trackers.Item( gContainer.ActiveTrackerAddress );
+
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	if ( Tracker.WantsComposing && ! Tracker.ChatState )
+		dom.loadXML( '<message type="headline"><body/><attention xmlns="urn:xmpp:attention:0"/><x xmlns="jabber:x:event"><composing/></x></message>' );
+	else
+		dom.loadXML( '<message type="headline"><body/><attention xmlns="urn:xmpp:attention:0"/><active xmlns="http://jabber.org/protocol/chatstates"/></message>' );
+	
+	dom.documentElement.firstChild.text = document.getElementById( 'send-text' ).value;
+	dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
+	dom.documentElement.setAttribute( 'to', Tracker.Address.LongAddress() );
+	dom.documentElement.setAttribute( 'from', external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) + '/' + external.globals( 'cfg' ).Item( 'resource' ) );
+
+	if ( Tracker.MessageThread )
+	{
+		var Thread = dom.createElement( 'thread' );
+		Thread.text = Tracker.MessageThread;
+		dom.documentElement.appendChild( Thread );
+	}
+	try
+	{
+		document.frames( 'iframe-' + Tracker.Address.ShortAddress() ).onSendingMessage( dom );
 	}
 	catch ( e )
 	{
 	}
+
+	external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+	external.XMPP.SendXML( dom );
+
+	dom.documentElement.firstChild.text = ( document.getElementById( 'send-text' ).value.length > 0 ?  document.getElementById( 'send-text' ).value : external.globals( 'Translator' ).Translate( 'chat-container', 'drew_attention' ));
+
+	var Message = new XMPPMessage();
+	Message.FromDOM( dom );
+	document.frames( 'iframe-' + Tracker.Address.ShortAddress() ).onMessage( Message );
+	external.wnd.params[0].history_add( Tracker.Address.ShortAddress(), Message.Stamp, Message.Body , false );
+
+	document.getElementById( 'send-text' ).detachEvent( 'onpropertychange', Typing );
+	document.getElementById( 'send-text' ).value = '';
+	if ( ! document.getElementById( 'send-text' ).disabled )
+		document.getElementById( 'send-text' ).focus();
+
+	if ( Tracker.TypingTimeout )
+	{
+		clearTimeout( Tracker.TypingTimeout );
+		Tracker.TypingTimeout = null;
+		try
+		{
+			document.frames( 'iframe-' + Tracker.Address.ShortAddress() ).onComposingLocal( false );
+		}
+		catch ( e )
+		{
+		}
+	}
+	document.getElementById( 'send-text' ).attachEvent( 'onpropertychange', Typing );
 }
 
+/** Create title for help
+*/
+function HelpTitle( ) 
+{
+	var help = document.getElementById( 'mode-help' );
+	help.title = 	external.globals( 'Translator' ).Translate( 'chat-container', 'help_title' ) + "\n\n" +
+						"Ctrl (+ Shift) + Tab:\n      " + external.globals( 'Translator' ).Translate( 'chat-container', 'help_ctrl_tab' ) + "\n\n" +
+						"Ctrl + PgUp:\n      " + external.globals( 'Translator' ).Translate( 'chat-container', 'help_ctrl_pgup' ) + "\n\n" +
+						"Ctrl + PgDn:\n      " + external.globals( 'Translator' ).Translate( 'chat-container', 'help_ctrl_pgdn' ) + "\n\n" +
+						"Ctrl + 1...9:\n      " + external.globals( 'Translator' ).Translate( 'chat-container', 'help_ctrl_19' ) + "\n\n" +
+						"Esc:\nCtrl + F4:\nCtrl + W:\n      " + external.globals( 'Translator' ).Translate( 'chat-container', 'help_ctrl_w' ) + "\n\n" +
+						"Ctrl + Shift + T:\n      " + external.globals( 'Translator' ).Translate( 'chat-container', 'help_ctrl_shift_t' ) + "\n\n" +
+						"Ctrl + T:\n      " + external.globals( 'Translator' ).Translate( 'chat-container', 'help_ctrl_t' );
+}

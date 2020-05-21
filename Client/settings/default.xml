@@ -6,6 +6,7 @@
 <settings>
 <alertonline>true</alertonline>
 <aotchat>false</aotchat>
+<attention>true</attention>
 <authorization>2</authorization>
 <avatar/>
 <background/>
@@ -40,10 +41,13 @@
 <server/>
 <soundmessage>true</soundmessage>
 <soundmessagefile>..\sounds\message.wav</soundmessagefile>
+<soundattention>true</soundattention>
+<soundattentionfile>..\sounds\nudge.wav</soundattentionfile>
 <soundoffline>false</soundoffline>
 <soundofflinefile/>
 <soundonline>false</soundonline>
 <soundonlinefile>..\sounds\online.wav</soundonlinefile>
+<spellcheck>true</spellcheck>
 <tabbedchat>true</tabbedchat>
 <textinputheight>60</textinputheight>
 <transportservice/>

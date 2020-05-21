@@ -1,0 +1,107 @@
+
+/* Content Edge
+ */
+#content-area {
+	background: url(../../images/main/green/content-behind.png) repeat-x left top;
+}
+.content-edge-top {
+	background: url(../../images/edge/green/top.png) no-repeat center top;
+}
+.content-edge-left {
+	background: url(../../images/edge/green/left.png) no-repeat left top;
+}
+.content-edge-right {
+	background: url(../../images/edge/green/right.png) no-repeat right top;
+}
+.content-edge-bottom {
+	background: url(../../images/edge/green/bottom.png) repeat-x left bottom;
+}
+
+
+/* Bar with status, name, avatar, etc.
+ */
+#mode-bar {
+	background: url(../../images/main/green/mode-behind.png) repeat-x left top;
+}
+.mode-frame-left {
+	background: url(../../images/main/green/mode-frame-left.png) no-repeat left top;
+}
+.mode-frame-right {
+	background: url(../../images/main/green/mode-frame-right.png) no-repeat right top;
+}
+
+#mode-name {
+	color: #1A850A;
+}
+#mode-message {
+	color: #1A850A;
+}
+
+/* Find As You Type
+ */
+#find-area {
+	background-color: #ECFCDB;
+}
+#find-frame {
+	border-left: 1px solid #D3F17A;
+	border-right: 1px solid #D3F17A;
+}
+#find-wrapper {
+	border: 1px solid #1A850A;
+}
+
+/* Inside Frame
+ */
+.inside-edge-left {
+	background: url(../../images/edge/green/inside-left.png) repeat-y left top;
+}
+.inside-edge-right {
+	background: url(../../images/edge/green/inside-right.png) repeat-y right top;
+}
+
+
+/* Sign In
+ */
+#signin-area {
+	background: url(../../images/sign-in/green/content-behind.png) repeat-x left top;
+}
+.signin-frame-top {
+	background: url(../../images/sign-in/green/frame-top.png) repeat-x left top;
+}
+.signin-frame-left {
+	background: url(../../images/sign-in/green/frame-left.png) no-repeat left top;
+}
+.signin-frame-right {
+	background: url(../../images/sign-in/green/frame-right.png) no-repeat right top;
+}
+#signin-connect {
+	background: transparent url(../../images/sign-in/green/shiny.png) left -13px repeat-x;
+}
+
+/* Contact List
+ */
+.roster-group-header {
+   color: #1A850A;
+}
+.roster-group-empty {
+	color: #1A850A;
+}
+.roster-item-offline-name-blocked {
+	color: #1A850A;
+}
+.roster-item-offline-msg {
+	color: #1A850A;
+}
+.roster-resource-name-blocked {
+	color: #1A850A;
+}
+.roster-resource-msg {
+	color: #1A850A;
+}
+
+A {
+   color: #1A850A;
+}
+A:hover {
+   color: #225500;
+}

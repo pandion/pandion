@@ -1,0 +1,44 @@
+Versão 115
+- Corrigido diversos Bugs (copiar conversa, abrir tela about, boas vindas, etc)
+- Telas de Boas Vindas que não aparece
+- Adicionado símbolo de OK (y)
+- Outras pequenas correções
+
+Versão 116/117
+- Ordenação de conversas do Histórico (Asc/Desc)
+- Janela de histórico de conversa que perde o foco
+
+Versão 118
+- Reabertura automática das conversas que estavam abertas quando o Pandion foi finalizado
+- Criado novos ícones
+
+Versão 119
+- Adicionado opções de temas com as cores Verde, Cinza, Rosa  e Azul (padrão).
+
+Versão 120
+- Adicionado tema padrão do Pandion. 
+- Correção de um bug ao reconectar no pandion.
+
+Versão 121
+- Adicionado ícones de status para o System Tray. ​
+
+Versão 122
+- Abrir links de conversas no navegador padrão do windows.
+- Exibe versão correta do sistema operacional.
+
+Versão 123
+- Corrigido travamento ao trocar o tema
+- Altera tema das conversas abertas
+- Adicionado Host Name nas informações do usuário
+
+Versão 124
+- Mostra icone de acordo com o status do usuário
+- Corrigido overflow no status do usuário da tela de conversas
+- Mostra avatar de outros mensageiros
+- Verificação ortográfica (Windows 8 ou superior)
+- Alterado máximo toaster de 8 para (altura da tela/120) x 4
+- Correção de um bug ao reabrir as conversas que estavam abertas.
+- Suporte a Hyperlink na mensagem de status
+- Ajuda sobre atalhos na tela de chat
+- Nova conversa com o @empresa.com
+- Suporte a Chamar a atenção
