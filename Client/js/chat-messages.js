@@ -309,6 +309,9 @@ function ShowMenu ()
 	Menu.AddItem( HasMessages,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-messages', 'clear' ),		3 );
 	Menu.AddSeparator();
 	Menu.AddItem( HasMessages,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-messages', 'selectall' ),	4 );
+	Menu.AddSeparator();
+	Menu.AddItem( HasSelection,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-messages', 'quotetext' ),	5 );
+	
 	Menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
 
 	switch ( Menu.Choice )
@@ -317,6 +320,7 @@ function ShowMenu ()
 		case 2: CopyAll();		break;
 		case 3: Clear();		break;
 		case 4: SelectAll();	break;
+		case 5: QuoteText();	break;
 	}
 }
 
@@ -369,4 +373,19 @@ function Clear ()
 	var Messages = document.getElementById( 'messages' );
 	while ( Messages.rows.length )
 		Messages.deleteRow(0);
+}
+
+/* Quote Text
+*/
+function QuoteText ()
+{
+	//if ( ! SessionTracker.Occupants )
+		if ( document.selection.type == 'Text' )
+		{
+			var text = document.selection.createRangeCollection().item(0).text;
+			if ( text.length ) 
+			{
+				SessionTracker.QuoteText( text );
+			}
+		}
 }

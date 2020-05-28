@@ -1313,6 +1313,7 @@
    <code id="copyall">Copy All</code>
    <code id="clear">Clear</code>
    <code id="selectall">Select All</code>
+   <code id="quotetext">Quote</code>
   </window>
   <window name="chat-container">
    <item id="txt-new-tab-title">
@@ -1396,6 +1397,12 @@
    <code id="help_ctrl_w">Close currently active tab</code>
    <code id="help_ctrl_shift_t">Undo closing of last tab</code>
    <code id="help_ctrl_t">Open a new tab</code>
+   <code id="help_text_format">Text Formatting:</code>
+   <code id="help_text_italic">/Example/: Italic</code>
+   <code id="help_text_bold">*Example*: Bold</code>
+   <code id="help_text_underline">_Example_: Underline</code>
+   <code id="help_text_linethrough">~Example~: Line Through</code>
+   <code id="help_text_quote">'Example': Quote</code>
    
    <code id="menu_file">&amp;File</code>
    <code id="menu_file_received">&amp;Open my Received Files</code>
@@ -1623,6 +1630,13 @@
    </item>
    <item id="txt-background">
      <innerText>Background</innerText>
+   </item>
+   <item id="btn-send-like">
+     <title>Send :yes:</title>
+     <accessKey>y</accessKey>
+   </item>
+   <item id="txt-send-like">
+     <innerText></innerText>
    </item>
 
    <item id="resize-grip">

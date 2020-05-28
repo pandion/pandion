@@ -5,6 +5,9 @@
 <LINK rel="stylesheet" type="text/css" href="../css/main.css"></LINK>
 <LINK rel="stylesheet" type="text/css" href="../css/roster.css"></LINK>
 <LINK rel="stylesheet" type="text/css" href="../css/chat-container.css"></LINK>
+
+<SCRIPT src="main/warn.js"></SCRIPT>
+<SCRIPT src="main/DrawModeMessage.js"></SCRIPT>
 <SCRIPT src="main/XMPPAddress.js"></SCRIPT>
 <SCRIPT src="main/XMPPHookIQ.js"></SCRIPT>
 <SCRIPT src="main/XMPPMessage.js"></SCRIPT>
@@ -124,6 +127,15 @@
 								onclick="ChooseBackground()"
 							>
 								<SPAN id=txt-background></SPAN>
+							</BUTTON>
+							<BUTTON
+								oncontextmenu="return false"
+								class=toolbar-button
+								id=btn-send-like
+								onmouseover="ToolbarButtonMouseOver( this )"
+								onmouseout="ToolbarButtonMouseOut( this )"
+								onclick="SendLike()"
+							><SPAN id=txt-send-like></SPAN>
 							</BUTTON>
 						</NOBR>
 						</DIV>

@@ -1331,6 +1331,7 @@
     <code id="copyall">Копировать все</code>
     <code id="clear">Очистить</code>
     <code id="selectall">Выбрать все</code>
+    <code id="quotetext">котировка</code>
   </window>
   <window name="chat-container">
     <item id="txt-new-tab-title">
@@ -1388,9 +1389,9 @@
       <value>Отправить</value>
       <value>Отправить сообщение</value>
     </item>
-    <code id="attention-enabled">Звоните Внимание!</code>
-    <code id="attention-disabled">Обращайте внимание, отключен или не поддерживается!</code>
-    <code id="attention-message">Отправить сообщение с призывом к вниманию!</code>
+    <code id="attention-enabled">Привлечь внимание!</code>
+    <code id="attention-disabled">"Привлечь внимание", отключено или не поддерживается!</code>
+    <code id="attention-message">Отправить сообщение с "Привлечением внимания"</code>
     <code id="tt-avatar">Показать полноразмерную аватару</code>
     <code id="tt-messages">Сообщение было отправлено и получено</code>
     <code id="tt-close">Закрыть данный диалог</code>
@@ -1416,7 +1417,12 @@
     <code id="help_ctrl_w">Закрыть активную вкладку</code>
     <code id="help_ctrl_shift_t">Отменить закрытие последней вкладки</code>
     <code id="help_ctrl_t">Откройте новую вкладку</code>
-   
+    <code id="help_text_format">Форматирование текста:</code>
+    <code id="help_text_italic">/пример/: Курсив</code>
+    <code id="help_text_bold">*пример*: полужирный</code>
+    <code id="help_text_underline">_пример_: Подчеркнутый</code>
+    <code id="help_text_linethrough">~пример~: Линия через</code>
+    <code id="help_text_quote">'пример': котировка</code>
 
     <code id="menu_file">&amp;Файл</code>
     <code id="menu_file_received">&amp;Открыть папку принятых файлов</code>
@@ -1646,7 +1652,14 @@
     <item id="txt-background">
       <innerText>Фон</innerText>
     </item>
-
+    <item id="btn-send-like">
+      <title>послать :yes:</title>
+      <accessKey>y</accessKey>
+    </item>
+    <item id="txt-send-like">
+      <innerText></innerText>
+    </item>
+    
     <item id="resize-grip">
       <title>Изменить размер поля ввода сообщения</title>
     </item>

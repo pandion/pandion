@@ -409,7 +409,8 @@ function FilterEmoticons ( Message, HTMLElement, MessageText )
  */
 function FilterMarkup (HTMLElement, messageText)
 {
-	var expression = /(\s|^)([\/\*\_\-])([^\s_-](?:.*[^\s])?)\2(\s|$)/m;
+	//var expression = /(\s|^)([\/\*\_\-\'])([^\s_-](?:.*[^\s])?)\2(\s|$)/m;
+	var expression = /(\s|^)([\/\*\_\-\'\~])([^_-](?:.*)?)\2(\s|$)/m;
 	var result = null;
 	while (result = expression.exec(messageText)) {
 		FilterNothing(HTMLElement, messageText.substr(0, result.index) + result[1]);
@@ -421,7 +422,9 @@ function FilterMarkup (HTMLElement, messageText)
 			case "/": markup.style.fontStyle = "italic"; break;
 			case "*": markup.style.fontWeight = "bold"; break;
 			case "_": markup.style.textDecorationUnderline = true; break;
+			case "~":
 			case "-": markup.style.textDecorationLineThrough = true; break;
+			case "'": markup.className = "quote-text"; break;
 		}
 		HTMLElement.insertAdjacentElement("beforeEnd", markup);
 	}

@@ -1335,6 +1335,7 @@ ${0}</code>
       <code id="copyall">Copiar tudo</code>
       <code id="clear">Limpar</code>
       <code id="selectall">Selecionar tudo</code>
+      <code id="quotetext">Citar</code>
    </window>
    <window name="chat-container">
       <item id="txt-new-tab-title">
@@ -1419,6 +1420,12 @@ Você quer fechar esta conversação?</code>
       <code id="help_ctrl_w">Fechar aba</code>
       <code id="help_ctrl_shift_t">Desfazer fechar aba</code>
       <code id="help_ctrl_t">Nova aba</code>
+      <code id="help_text_format">Formatação de Texto:</code>
+      <code id="help_text_italic">/Exemplo/: Itálico</code>
+      <code id="help_text_bold">*Exemplo*: Negrito</code>
+      <code id="help_text_underline">_Exemplo_: Sublinhado</code>
+      <code id="help_text_linethrough">~Exemplo~: Tachado</code>
+      <code id="help_text_quote">'Exemplo': Citação</code>
       
       <code id="menu_file_received">&amp;Abrir Meus Arquivos Recebidos</code>
       <code id="menu_file_history">&amp;Histórico de Mensagens</code>
@@ -1631,10 +1638,6 @@ Você quer fechar esta conversação?</code>
       <item id="btn-background">
          <title>Escolher um plano de fundo diferente</title>
          <accessKey>b</accessKey>
-      </item>
-      <item id="btn-get-attention">
-         <title>Chamar atenção!</title>
-         <accessKey>g</accessKey>
       </item>
       <item id="btn-send-like">
          <title>Enviar :yes:</title>

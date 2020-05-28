@@ -42,3 +42,9 @@ Versão 124
 - Ajuda sobre atalhos na tela de chat
 - Nova conversa com o @empresa.com
 - Suporte a Chamar a atenção
+
+Versão 125
+- Corrigido erro ao iniciar conferência
+- Adicionado botão "Send :yes:" em conferência
+- Adicionado "Citar" em conversas e conferências (selecionar texto e clicar com direito do mouse)
+- Adicionado Ajuda para formatação de Texto na tela de chat

@@ -264,7 +264,8 @@ function SessionTracker ( Address )
 	this.SendInvite = SendInvite;
 	this.SendMessage = SendMessage;
 	this.SendPresence = SendPresence;
-
+	this.QuoteText = QuoteText;
+	
 	document.getElementById( 'txt-visitors' ).insertAdjacentElement( 'afterEnd', this.HTMLVisitors );
 	document.getElementById( 'txt-moderators' ).insertAdjacentElement( 'afterEnd', this.HTMLModerators );
 	document.getElementById( 'txt-participants' ).insertAdjacentElement( 'afterEnd', this.HTMLParticipants );
@@ -487,7 +488,46 @@ function SessionTracker ( Address )
 			}
 		}
 	}
-
+	
+	/* Quote Text
+	*/
+	function QuoteText( text ) 
+	{
+		var value = document.getElementById( 'send-text' ).value;
+		var sendtext = document.getElementById( 'send-text' );
+		
+		var n = text.split("\n");
+		var result = '';
+		
+		for(var x in n)
+		{   
+			result = result + "'" + n[x].replace(/^\s+|\s+$/gm,'') + "'\n";
+		}
+		
+		value = ( value.length ? value + '\n' : '' ) + ( result.length ? result : "" );
+				
+		sendtext.value = value;
+				
+		if ( ! document.getElementById( 'send-text' ).disabled )
+		{
+			var range;
+			var caretPos = sendtext.value.length
+			if (sendtext.createTextRange) 
+			{
+				range = sendtext.createTextRange();
+				range.move('character', caretPos);
+				range.select();
+			} else 
+			{
+				sendtext.focus();
+				if (sendtext.selectionStart !== undefined) 
+				{
+					sendtext.setSelectionRange(caretPos, caretPos);
+				}
+			}
+		}
+	}
+	
 	/* Use audio-visual signals to attract attention
 	 */
 	function Flash ( Times )
@@ -1913,4 +1953,78 @@ function OnWindowActivate ()
 			document.getElementById("send-text").focus();
 		}
 	}, 0);
+}
+
+/* Send :yes:
+*/
+function SendLike() {
+  SendEmoticons(':yes:');
+}
+
+/* Send emoticon text
+*/
+function SendEmoticons(emoticons)
+{
+	var Tracker = gContainer.Trackers.Item( gContainer.ActiveTrackerAddress );
+	var Input = emoticons;
+
+	/* Change nickname
+	 */
+	if ( Input.match( /\/name \S/ ) )
+	{
+		external.globals( 'cfg' ).Item( 'conferencenick' ) = Input.substr( 6 );
+		var TrackerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Trackers.Keys() ) ).toArray();
+		for ( var i = 0; i < TrackerNames.length; ++i )
+		{
+			external.globals( 'ConferenceSessionPool' ).Trackers.Item( TrackerNames[i] ).Address.Resource = external.globals( 'cfg' ).Item( 'conferencenick' );
+			external.globals( 'ConferenceSessionPool' ).Trackers.Item( TrackerNames[i] ).SendPresence( external.globals( 'cfg' ).Item( 'lastmode' ), external.globals( 'cfg' ).Item( 'lastmsg' ) );
+		}
+	}
+
+	/* Group or personal message
+	 */
+	else
+	{
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<message><body/><html><body/></html><x xmlns="jisp:x:jep-0038"><name/></x></message>' );
+		dom.documentElement.setAttribute( 'xml:lang', external.globals( 'language' ) );
+		dom.documentElement.setAttribute( 'from', external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) + '/' + external.globals( 'cfg' ).Item( 'resource' ) );
+		dom.selectSingleNode( '/message/x[@xmlns="jisp:x:jep-0038"]/name' ).text = external.globals( 'cfg' ).Item( 'emoticonset' );
+
+		if ( Input.match( /^\/([^\:]+)\: \S/ ) && Tracker.Occupants.Exists( RegExp.$1 ) )
+		{
+			Input = Input.substr( RegExp.$1.length + 3 );
+			dom.documentElement.setAttribute( 'type', 'chat' );
+			dom.documentElement.setAttribute( 'to', Tracker.Address.ShortAddress() + '/' + RegExp.$1 );
+		}
+		else
+		{
+			dom.documentElement.setAttribute( 'type', 'groupchat' );
+			dom.documentElement.setAttribute( 'to', Tracker.Address.ShortAddress() );
+		}
+
+		dom.documentElement.firstChild.text = Input;
+
+		var HTMLBody = dom.documentElement.selectSingleNode( '/message/html/body' );
+		var TextLines = Input.split( '\n' );
+		HTMLBody.setAttribute( 'style', document.getElementById( 'send-text' ).style.cssText.toLowerCase() );
+		HTMLBody.appendChild( dom.createTextNode( TextLines[0] ) );
+		for ( var i = 1; i < TextLines.length; ++i )
+		{
+			HTMLBody.appendChild( dom.createElement( 'br' ) );
+			HTMLBody.appendChild( dom.createTextNode( TextLines[i] ) );
+		}
+		dom.documentElement.selectSingleNode( 'html' ).setAttribute( 'xmlns', 'http://jabber.org/protocol/xhtml-im' );
+		dom.documentElement.selectSingleNode( 'html' ).firstChild.setAttribute( 'xmlns', 'http://www.w3.org/1999/xhtml' );
+
+		if ( dom.documentElement.getAttribute( 'type' ) == 'chat' )
+		{
+			var Message = new XMPPMessage();
+			Message.FromDOM( dom );
+			document.frames( 'iframe-' + Tracker.Address.ShortAddress() ).onMessage( Message );
+		}
+
+		external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
 }

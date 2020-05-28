@@ -181,6 +181,12 @@ function XMPPOnMessage ( ReceivedXML )
 		Event.Address = Message.FromAddress;
 		Event.Payload = Message;
 		external.globals( 'ChatSessionPool' ).AddEvent( Event );
+		
+		setTimeout 	(function()	{
+											dial_chat( ShortAddress );
+										}
+						, 2000 
+						);
 	}
 	
 	/* Toast it!

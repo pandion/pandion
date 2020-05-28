@@ -319,6 +319,7 @@ function SessionTracker ( Address )
 	this.SendMessage = SendMessage;
 	this.DiscoInfo = DiscoInfo;
 	this.Attention = false;
+	this.QuoteText = QuoteText;
 
 	/* Handle events from the SessionPool
 	 */
@@ -1043,6 +1044,45 @@ function SessionTracker ( Address )
 		}
 		catch ( e )
 		{
+		}
+	}
+	
+	/* Quote Text
+	*/
+	function QuoteText( text ) 
+	{
+		var value = document.getElementById( 'send-text' ).value;
+		var sendtext = document.getElementById( 'send-text' );
+		
+		var n = text.split("\n");
+		var result = '';
+		
+		for(var x in n)
+		{   
+			result = result + "'" + n[x].replace(/^\s+|\s+$/gm,'') + "'\n";
+		}
+		
+		value = ( value.length ? value + '\n' : '' ) + ( result.length ? result : "" );
+				
+		sendtext.value = value;
+				
+		if ( ! document.getElementById( 'send-text' ).disabled )
+		{
+			var range;
+			var caretPos = sendtext.value.length
+			if (sendtext.createTextRange) 
+			{
+				range = sendtext.createTextRange();
+				range.move('character', caretPos);
+				range.select();
+			} else 
+			{
+				sendtext.focus();
+				if (sendtext.selectionStart !== undefined) 
+				{
+					sendtext.setSelectionRange(caretPos, caretPos);
+				}
+			}
 		}
 	}
 
@@ -1973,5 +2013,11 @@ function HelpTitle( )
 						"Ctrl + 1...9:\n      " + external.globals( 'Translator' ).Translate( 'chat-container', 'help_ctrl_19' ) + "\n\n" +
 						"Esc:\nCtrl + F4:\nCtrl + W:\n      " + external.globals( 'Translator' ).Translate( 'chat-container', 'help_ctrl_w' ) + "\n\n" +
 						"Ctrl + Shift + T:\n      " + external.globals( 'Translator' ).Translate( 'chat-container', 'help_ctrl_shift_t' ) + "\n\n" +
-						"Ctrl + T:\n      " + external.globals( 'Translator' ).Translate( 'chat-container', 'help_ctrl_t' );
+						"Ctrl + T:\n      " + external.globals( 'Translator' ).Translate( 'chat-container', 'help_ctrl_t' ) + "\n\n" +
+						external.globals( 'Translator' ).Translate( 'chat-container', 'help_text_format' ) + "\n" +
+						external.globals( 'Translator' ).Translate( 'chat-container', 'help_text_italic' ) + "\n" +						
+						external.globals( 'Translator' ).Translate( 'chat-container', 'help_text_bold' ) + "\n" +
+						external.globals( 'Translator' ).Translate( 'chat-container', 'help_text_underline' ) + "\n" +
+						external.globals( 'Translator' ).Translate( 'chat-container', 'help_text_linethrough' ) + "\n" +
+						external.globals( 'Translator' ).Translate( 'chat-container', 'help_text_quote' );
 }

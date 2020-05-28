@@ -751,19 +751,26 @@ function ToolbarButtonMouseOut ( Button )
  */
 function DisableButton ()
 {
-	document.getElementById( 'btn-send' ).disabled = ( /^\s*$/ ).test( document.getElementById( 'send-text' ).value );
+	var btnsend = document.getElementById( 'btn-send' );
+	var btnattention = document.getElementById( 'btn-get-attention' );
+	var txtattention = document.getElementById( 'txt-get-attention' );
 	
-	if ( ! document.getElementById( 'btn-get-attention' ).disabled ) {
+	btnsend.disabled = ( /^\s*$/ ).test( document.getElementById( 'send-text' ).value );
+
+	if ( btnattention )
+	{
+		if ( ! btnattention.disabled ) {
 		
-		if ( ! ( /^\s*$/ ).test( document.getElementById( 'send-text' ).value ) )
-		{
-			document.getElementById( 'txt-get-attention' ).className = 'enabled-message';
-			document.getElementById( 'btn-get-attention' ).title = external.globals( 'Translator' ).Translate( 'chat-container', 'attention-message' );
-		}
-		else
-		{			
-			document.getElementById( 'txt-get-attention' ).className = 'enabled';
-			document.getElementById( 'btn-get-attention' ).title = external.globals( 'Translator' ).Translate( 'chat-container', 'attention-enabled' );
+			if ( ! ( /^\s*$/ ).test( document.getElementById( 'send-text' ).value ) )
+			{
+				txtattention.className = 'enabled-message';
+				btnattention.title = external.globals( 'Translator' ).Translate( 'chat-container', 'attention-message' );
+			}
+			else
+			{			
+				txtattention.className = 'enabled';
+				btnattention.title = external.globals( 'Translator' ).Translate( 'chat-container', 'attention-enabled' );
+			}
 		}
 	}
 }
