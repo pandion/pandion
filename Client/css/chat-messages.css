@@ -229,13 +229,14 @@ html.rtl .history-time, html.rtl .history-me-time {
 }
 .quote-text {
 	padding: 0 0 0 28px;
-	font-family: Arial;
+	font-family: "Segoe UI", Tahoma;
 	font-size: 10pt;
 	color: #696969;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	font-weight: bold;
 	font-style: italic;
+	line-height: 20pt;
 	background: url(../images/chat-container/quote-text.png) no-repeat left top;
 	border-bottom: 1px solid #d3d5d6;
 }

@@ -319,7 +319,7 @@ function SessionTracker ( Address )
 	this.SendMessage = SendMessage;
 	this.DiscoInfo = DiscoInfo;
 	this.Attention = false;
-	this.QuoteText = QuoteText;
+	this.AppendText = AppendText;
 
 	/* Handle events from the SessionPool
 	 */
@@ -1047,26 +1047,15 @@ function SessionTracker ( Address )
 		}
 	}
 	
-	/* Quote Text
+	/* Append Text
 	*/
-	function QuoteText( text ) 
+	function AppendText( text ) 
 	{
-		var value = document.getElementById( 'send-text' ).value;
 		var sendtext = document.getElementById( 'send-text' );
-		
-		var n = text.split("\n");
-		var result = '';
-		
-		for(var x in n)
-		{   
-			result = result + "'" + n[x].replace(/^\s+|\s+$/gm,'') + "'\n";
-		}
-		
-		value = ( value.length ? value + '\n' : '' ) + ( result.length ? result : "" );
+	
+		sendtext.value = ( sendtext.value.length ? sendtext.value + '\n' : '' ) + ( text.length ? text : "" );
 				
-		sendtext.value = value;
-				
-		if ( ! document.getElementById( 'send-text' ).disabled )
+		if ( ! sendtext.disabled )
 		{
 			var range;
 			var caretPos = sendtext.value.length

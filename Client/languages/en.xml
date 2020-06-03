@@ -1402,7 +1402,7 @@
    <code id="help_text_bold">*Example*: Bold</code>
    <code id="help_text_underline">_Example_: Underline</code>
    <code id="help_text_linethrough">~Example~: Line Through</code>
-   <code id="help_text_quote">'Example': Quote</code>
+   <code id="help_text_quote">> Example: Quote</code>
    
    <code id="menu_file">&amp;File</code>
    <code id="menu_file_received">&amp;Open my Received Files</code>

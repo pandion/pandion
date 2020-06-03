@@ -1422,7 +1422,7 @@
     <code id="help_text_bold">*пример*: полужирный</code>
     <code id="help_text_underline">_пример_: Подчеркнутый</code>
     <code id="help_text_linethrough">~пример~: Линия через</code>
-    <code id="help_text_quote">'пример': котировка</code>
+    <code id="help_text_quote">> пример: котировка</code>
 
     <code id="menu_file">&amp;Файл</code>
     <code id="menu_file_received">&amp;Открыть папку принятых файлов</code>

@@ -264,7 +264,7 @@ function SessionTracker ( Address )
 	this.SendInvite = SendInvite;
 	this.SendMessage = SendMessage;
 	this.SendPresence = SendPresence;
-	this.QuoteText = QuoteText;
+	this.AppendText = AppendText;
 	
 	document.getElementById( 'txt-visitors' ).insertAdjacentElement( 'afterEnd', this.HTMLVisitors );
 	document.getElementById( 'txt-moderators' ).insertAdjacentElement( 'afterEnd', this.HTMLModerators );
@@ -489,26 +489,15 @@ function SessionTracker ( Address )
 		}
 	}
 	
-	/* Quote Text
+	/* Append Text
 	*/
-	function QuoteText( text ) 
-	{
-		var value = document.getElementById( 'send-text' ).value;
+	function AppendText( text ) 
+	{		
 		var sendtext = document.getElementById( 'send-text' );
-		
-		var n = text.split("\n");
-		var result = '';
-		
-		for(var x in n)
-		{   
-			result = result + "'" + n[x].replace(/^\s+|\s+$/gm,'') + "'\n";
-		}
-		
-		value = ( value.length ? value + '\n' : '' ) + ( result.length ? result : "" );
+	
+		sendtext.value = ( sendtext.value.length ? sendtext.value + '\n' : '' ) + ( text.length ? text : "" );
 				
-		sendtext.value = value;
-				
-		if ( ! document.getElementById( 'send-text' ).disabled )
+		if ( ! sendtext.disabled )
 		{
 			var range;
 			var caretPos = sendtext.value.length

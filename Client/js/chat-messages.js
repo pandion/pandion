@@ -379,13 +379,19 @@ function Clear ()
 */
 function QuoteText ()
 {
-	//if ( ! SessionTracker.Occupants )
-		if ( document.selection.type == 'Text' )
+	if ( document.selection.type == 'Text' )
+	{
+		var text = document.selection.createRangeCollection().item(0).text;
+		if ( text.length ) 
 		{
-			var text = document.selection.createRangeCollection().item(0).text;
-			if ( text.length ) 
+			var n = text.split("\n");
+			var result = '';
+	
+			for(var x in n)
 			{
-				SessionTracker.QuoteText( text );
+				result = result + "> " + n[x].replace(/^\s+|\s+$/gm,'') + "\n";
 			}
+			SessionTracker.AppendText( result );
 		}
+	}
 }

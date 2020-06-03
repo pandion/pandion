@@ -1425,7 +1425,7 @@ Você quer fechar esta conversação?</code>
       <code id="help_text_bold">*Exemplo*: Negrito</code>
       <code id="help_text_underline">_Exemplo_: Sublinhado</code>
       <code id="help_text_linethrough">~Exemplo~: Tachado</code>
-      <code id="help_text_quote">'Exemplo': Citação</code>
+      <code id="help_text_quote">> Exemplo: Citação</code>
       
       <code id="menu_file_received">&amp;Abrir Meus Arquivos Recebidos</code>
       <code id="menu_file_history">&amp;Histórico de Mensagens</code>
