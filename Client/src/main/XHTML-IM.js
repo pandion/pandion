@@ -316,7 +316,7 @@ function FilterEmoticons ( Message, HTMLElement, MessageText )
 			{
 				var Graphic = document.createElement( 'IMG' );
 				Graphic.align = 'absmiddle';
-				Graphic.alt = Result[0];
+				Graphic.title = Result[0];
 				Graphic.border = 0;
 				Graphic.src = external.globals( 'usersdir' ) + 'Emoticons\\' + Message.EmoticonSet + '\\' + Action.Graphic;
 				Graphic.style.cursor = 'hand';
@@ -336,7 +336,7 @@ function FilterEmoticons ( Message, HTMLElement, MessageText )
 			{
 				var Graphic = document.createElement( 'IMG' );
 				Graphic.align = 'absmiddle';
-				Graphic.alt = Result[0];
+				Graphic.title = Result[0];
 				Graphic.border = 0;
 				Graphic.src = external.globals( 'usersdir' ) + 'Emoticons\\' + Message.EmoticonSet + '\\' + Action.Graphic;
 				Graphic.attachEvent(

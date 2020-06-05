@@ -52,3 +52,4 @@ Versão 125
 Versão 126
 - Corrigido "Citar" para o padrão XMPP
 - Abrir conversa com @user
+- Corrigido Ctrl + C duplicando texto de emoticon
