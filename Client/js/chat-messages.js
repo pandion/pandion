@@ -131,7 +131,7 @@ function onMessage ( Message )
 	 */
 	else if ( SessionTracker.Occupants && Message.Type != 'groupchat' )
 	{
-		DrawMUCPersonal( 'private-' + Direction, Message, Direction == 'recv' ? SenderName + ' says to you: ' : 'You say to ' + Message.ToAddress.Resource + ': ' );
+		DrawMUCPersonal( 'private-' + Direction, Message, Direction == 'recv' ? SenderName + ' ' + external.globals( 'Translator' ).Translate( 'chat-messages', 'saystoyou' ) + ' ': external.globals( 'Translator' ).Translate( 'chat-messages', 'yousayto' ) + ' ' + Message.ToAddress.Resource + ': ' );
 		gLastAddress = '';
 	}
 

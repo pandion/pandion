@@ -159,7 +159,6 @@
     <code id="menu_tool_language">&amp;Язык</code>
     <code id="menu_tool_aot">&amp;Поверх всех окон</code>
     <code id="menu_tool_settings">&amp;Настройки</code>
-    <code id="menu_tool_spellcheck">&amp;Проверка орфографии</code>
     
     <code id="menu_tool_theme">&amp;тема</code>
     <code id="menu_tool_theme_blue">&amp;синий</code>
@@ -756,6 +755,9 @@
     <item id="txt_normal">
       <innerText>Нормальное сообщение</innerText>
     </item>
+    <item id="txt_attention">
+      <innerText>Сообщение с привлечением внимания</innerText>
+    </item>
     <item id="txt_alert">
       <innerText>Важное уведомление</innerText>
     </item>
@@ -1332,6 +1334,8 @@
     <code id="clear">Очистить</code>
     <code id="selectall">Выбрать все</code>
     <code id="quotetext">котировка</code>
+    <code id="saystoyou">говорит тебе:</code>
+    <code id="yousayto">ты говоришь</code> 
   </window>
   <window name="chat-container">
     <item id="txt-new-tab-title">
@@ -1445,6 +1449,8 @@
     <code id="menu_tool_tabbed">&amp;Использовать вкладки</code>
     <code id="menu_tool_emoticons">&amp;Отображать смайлики</code>
     <code id="menu_tool_settings">&amp;Настройки</code>
+    <code id="menu_tool_spellcheck">&amp;Проверка орфографии</code>
+    <code id="menu_tool_flashingavatar">&amp;Аватар Постоянно моргание</code>
   </window>
   <window name="conference-bookmarks-add">
     <item id="txt_address">

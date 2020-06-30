@@ -10,13 +10,13 @@ Versão 116/117
 
 Versão 118
 - Reabertura automática das conversas que estavam abertas quando o Pandion foi finalizado
-- Criado novos ícones
+- Novos ícones
 
 Versão 119
 - Adicionado opções de temas com as cores Verde, Cinza, Rosa  e Azul (padrão).
 
 Versão 120
-- Adicionado tema padrão do Pandion. 
+- Adicionado tema padrão do Pandion.
 - Correção de um bug ao reconectar no pandion.
 
 Versão 121
@@ -29,19 +29,19 @@ Versão 122
 Versão 123
 - Corrigido travamento ao trocar o tema
 - Altera tema das conversas abertas
-- Adicionado Host Name nas informações do usuário
+- Adicionado Host Name nas informações do perfil do usuário
 
 Versão 124
-- Mostra icone de acordo com o status do usuário
+- Mostra ícone de acordo com o status do usuário
 - Corrigido overflow no status do usuário da tela de conversas
 - Mostra avatar de outros mensageiros
 - Verificação ortográfica (Windows 8 ou superior)
 - Alterado máximo toaster de 8 para (altura da tela/120) x 4
 - Correção de um bug ao reabrir as conversas que estavam abertas.
-- Suporte a Hyperlink na mensagem de status
-- Ajuda sobre atalhos na tela de chat
-- Nova conversa com o @empresa.com
-- Suporte a Chamar a atenção
+- Suporte a Hyperlink na mensagem de status exemplo: <a href="https://teste.com">Teste</a>
+- Ícone de ajuda sobre atalhos na tela de chat (posicionar o mouse sobre o ícone)
+- Nova conversa com o @empresa.com (CTRL + T)
+- Suporte a Chamar a Atenção
 
 Versão 125
 - Corrigido erro ao iniciar conferência
@@ -53,3 +53,9 @@ Versão 126
 - Corrigido "Citar" para o padrão XMPP
 - Abrir conversa com @user
 - Corrigido Ctrl + C duplicando texto de emoticon
+
+Versão 127
+- Corrigido sobreposição de tela em conferências
+- Mensagens Geral com Chamada de Atenção
+- Registra Mensagens Geral no Histórico
+- Avatar continua piscando quando recebe novas mensagens

@@ -13,7 +13,8 @@ function FlashTab ( Address, Times )
 		}
 		else if ( Times != 0 )
 		{
-			Times--;
+			if ( external.globals( 'cfg' )('flashingavatar' ) == false ) 
+				Times--;
 			Tracker.IsFlashing = true;
 			Tracker.HTMLButton.children.item(1).style.fontStyle = 'italic';
 			Name.visibility = Name.visibility == 'hidden' ? 'visible' : 'hidden';

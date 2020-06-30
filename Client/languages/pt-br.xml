@@ -767,6 +767,9 @@ ${0}</code>
       <item id="txt_normal">
          <innerText>Mensagem normal</innerText>
       </item>
+      <item id="txt_attention">
+         <innerText>Mensagem com chamada de atenção</innerText>
+      </item>
       <item id="txt_alert">
          <innerText>Notificação</innerText>
       </item>
@@ -1336,6 +1339,8 @@ ${0}</code>
       <code id="clear">Limpar</code>
       <code id="selectall">Selecionar tudo</code>
       <code id="quotetext">Citar</code>
+      <code id="saystoyou">diz para você:</code>
+      <code id="yousayto">Você diz para</code>      
    </window>
    <window name="chat-container">
       <item id="txt-new-tab-title">
@@ -1446,6 +1451,7 @@ Você quer fechar esta conversação?</code>
       <code id="menu_tool_emoticons">&amp;Mostrar Emoticons</code>
       <code id="menu_tool_settings">&amp;Configurações</code>
       <code id="menu_tool_spellcheck">&amp;Verificação Ortográfica</code>
+      <code id="menu_tool_flashingavatar">&amp;Avatar Piscando Constantemente</code>
    </window>
    <window name="conference-bookmarks-add">
       <item id="txt_address">

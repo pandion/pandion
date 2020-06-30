@@ -1369,6 +1369,7 @@ function MenuBarUpdate ( section )
 		var aot = cfg( 'aotchat' ).toString() == 'true';
 		var tabs = cfg( 'tabbedchat' ).toString() == 'true';
 		var emo = cfg( 'emoticon' ).toString() == 'true';
+		var flash = cfg( 'flashingavatar' ).toString() == 'true';
 		//var spell = cfg( 'spellcheck' ).toString() == 'true';
 		//var spellsuported = ('spellcheck' in document.createElement('textarea'));
 
@@ -1381,6 +1382,7 @@ function MenuBarUpdate ( section )
 		tools.AddItem( true, tabs, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_tabbed' ), 33 );
 		tools.AddItem( true, emo, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_emoticons' ), 34 );
 		//tools.AddItem( spellsuported, (spell && spellsuported) , false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_spellcheck' ), 38 );
+		tools.AddItem( true, flash, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_flashingavatar' ), 39 );
 		tools.AddSeparator();
 		tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_settings' ), 35 );
 
@@ -1510,6 +1512,14 @@ function MenuBarSelect ( id )
 			{
 				external.globals( 'ConferenceSessionPool' ).Containers.Item( ContainerNames[i] ).MenuBarUpdate( 'tools' );
 				external.globals( 'ConferenceSessionPool' ).Containers.Item( ContainerNames[i] ).SpellCheck( );
+			}
+			break;
+		case 39: // continuous flash tab
+			cfg( 'flashingavatar' ) = ! ( cfg( 'flashingavatar' ).toString() == 'true' );
+			var ContainerNames = ( new VBArray( external.globals( 'ChatSessionPool' ).Containers.Keys() ) ).toArray();
+			for ( var i = 0; i < ContainerNames.length; ++i )
+			{
+				external.globals( 'ChatSessionPool' ).Containers.Item( ContainerNames[i] ).MenuBarUpdate( 'tools' );
 			}
 			break;
 		case 40: // online manual
@@ -1748,17 +1758,19 @@ function MouseMenu ()
  */
 function OnWindowActivate ()
 {
-	setTimeout( function () 
+	setTimeout( 
+		function () 
+		{
+			if ( external.wnd.isActive() )
+			{
+				try 
 				{
-						if ( external.wnd.isActive())
-						{  
-							try 
-							{
-								document.getElementById("send-text").blur();
-								document.getElementById("send-text").focus();
-							} catch (e) {}
-						}
-				},0);
+					document.getElementById("send-text").blur();
+					document.getElementById("send-text").focus();
+				} catch (e) {}
+			}
+		}
+	,0);
 
 	CloseToasterAttention();
 }

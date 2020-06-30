@@ -741,6 +741,9 @@
    <item id="txt_normal">
      <innerText>Normal message</innerText>
    </item>
+   <item id="txt_attention">
+     <innerText>Message with call attention</innerText>
+   </item>
    <item id="txt_alert">
      <innerText>Alert notification</innerText>
    </item>
@@ -1314,6 +1317,8 @@
    <code id="clear">Clear</code>
    <code id="selectall">Select All</code>
    <code id="quotetext">Quote</code>
+   <code id="saystoyou">says to you:</code>
+   <code id="yousayto">You say to</code>  
   </window>
   <window name="chat-container">
    <item id="txt-new-tab-title">
@@ -1425,6 +1430,7 @@
    <code id="menu_tool_emoticons">&amp;Display Emoticons</code>
    <code id="menu_tool_settings">&amp;Settings</code>
    <code id="menu_tool_spellcheck">&amp;Spell Check</code>
+   <code id="menu_tool_flashingavatar">&amp;Avatar Constantly Blinking</code>
   </window>
   <window name="conference-bookmarks-add">
    <item id="txt_address">

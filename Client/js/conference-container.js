@@ -1936,12 +1936,22 @@ function MouseMenu ()
  */
 function OnWindowActivate ()
 {
-	setTimeout(function () {
-		if (!document.getElementById("send-text").disabled) {
-			document.getElementById("send-text").blur();
-			document.getElementById("send-text").focus();
+	setTimeout(
+		function () 
+		{
+			if ( external.wnd.isActive() )
+			{
+				try 
+				{
+					if (!document.getElementById("send-text").disabled) 
+					{
+						document.getElementById("send-text").blur();
+						document.getElementById("send-text").focus();
+					}
+				} catch(e) {}
+			}
 		}
-	}, 0);
+	,0);
 }
 
 /* Send :yes:
