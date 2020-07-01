@@ -583,8 +583,7 @@ function Keyboard ( EventData )
 	 */
 	else if ( k == 84 && Function & 0x02 && Function & 0x04 )
 	{
-		if ( gContainer.SessionPool.RecentTrackers.length )
-			external.wnd.params[0].dial_chat( gContainer.SessionPool.RecentTrackers.pop() );
+		UndoClosingLastTab();
 	}
 
 	/* Open a new tab

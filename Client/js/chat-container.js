@@ -2002,6 +2002,14 @@ function SendAttentionMessage ()
 	document.getElementById( 'send-text' ).attachEvent( 'onpropertychange', Typing );
 }
 
+/* Undo closing of last tab
+ */
+function UndoClosingLastTab ()
+{
+	if ( gContainer.SessionPool.RecentTrackers.length )
+			external.wnd.params[0].dial_chat( gContainer.SessionPool.RecentTrackers.pop() );
+}
+
 /** Create title for help
 */
 function HelpTitle( ) 

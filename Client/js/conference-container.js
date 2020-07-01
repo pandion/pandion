@@ -2027,3 +2027,17 @@ function SendEmoticons(emoticons)
 		external.XMPP.SendXML( dom );
 	}
 }
+
+/* Open new conferente
+ */
+function TabAddActivate ()
+{
+	external.wnd.params[0].dial_conference_create();
+}
+
+/* Browse conference
+ */
+function UndoClosingLastTab ()
+{
+	external.wnd.params[0].dial_conference_browse();
+}
