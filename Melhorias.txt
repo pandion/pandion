@@ -4,13 +4,16 @@ Versão 115
 - Adicionado símbolo de OK (y)
 - Outras pequenas correções
 
-Versão 116/117
+Versão 116
 - Ordenação de conversas do Histórico (Asc/Desc)
+
+Versão 117
 - Janela de histórico de conversa que perde o foco
+- Novos ícones no Chat e Histórico
 
 Versão 118
 - Reabertura automática das conversas que estavam abertas quando o Pandion foi finalizado
-- Novos ícones
+- Novo ícone do Pandion
 
 Versão 119
 - Adicionado opções de temas com as cores Verde, Cinza, Rosa  e Azul (padrão).
