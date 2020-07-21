@@ -388,6 +388,7 @@ function ClientRoster ()
 	AvatarMap.Add( 'home',				'house'			);
 	AvatarMap.Add( 'ichat',				'mac'			);
 	AvatarMap.Add( 'imagent',			'mac'			);
+	AvatarMap.Add( 'astrachat',			'astrachat'		);
 	AvatarMap.Add( 'imcom',				'console'		);
 	AvatarMap.Add( 'imendio',			'gnome'			);
 	AvatarMap.Add( 'imov',				'imov'			);
