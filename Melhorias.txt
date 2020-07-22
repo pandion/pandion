@@ -62,3 +62,7 @@ Versão 127
 - Mensagens Geral com Chamada de Atenção
 - Registra Mensagens Geral no Histórico
 - Avatar continua piscando quando recebe novas mensagens
+
+Versão 128
+- Em alguns ambientes, usuário é desconectado ao abrir uma conversa com o usuário off-line
+- Adicionado icone do cliente AstraChat

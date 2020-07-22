@@ -832,16 +832,26 @@ function SessionTracker ( Address )
 	*/
 	function DiscoInfo( )
 	{
-		this.HookIQDisco = new XMPPHookIQ();
-		this.HookIQDisco.Window = external.wnd;
-		this.HookIQDisco.Callback = 'ReceiveDiscoInfo';
-		
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
-		dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#info"/></iq>' );
-		dom.documentElement.setAttribute( 'id', this.HookIQDisco.Id );
-		dom.documentElement.setAttribute( 'to', this.Address.ShortAddress() + '/' + this.Address.Resource );
-		external.wnd.params[0].warn( 'SENT: ' + dom.xml );
-		external.XMPP.SendXML( dom );
+		var ShortAddress = this.Address.ShortAddress();
+
+		if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) )
+		{
+			var RosterItem = external.globals( 'ClientRoster' ).Items.Item( ShortAddress );
+			this.Name = RosterItem.Name;
+			/* online */
+			if ( RosterItem.Resources.Exists( this.Address.Resource ) )
+			{
+				this.HookIQDisco = new XMPPHookIQ();
+				this.HookIQDisco.Window = external.wnd;
+				this.HookIQDisco.Callback = 'ReceiveDiscoInfo';
+				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+				dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#info"/></iq>' );
+				dom.documentElement.setAttribute( 'id', this.HookIQDisco.Id );
+				dom.documentElement.setAttribute( 'to', this.Address.ShortAddress() + '/' + this.Address.Resource );
+				external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+				external.XMPP.SendXML( dom );
+			}
+		}
 	}
 
 	/* Show or refresh the button
