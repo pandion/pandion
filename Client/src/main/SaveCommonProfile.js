@@ -16,7 +16,8 @@ function SaveCommonProfile ()
 	Data.Add( 'softwaretrack', external.globals( 'softwaretrack' ) );
 	Data.Add( 'welcomescreen', external.globals( 'welcomescreen' ) );
 	Data.Add( 'welcomesettings', external.globals( 'welcomesettings' ) );
-   Data.Add( 'theme', external.globals( 'theme' ) );
+	Data.Add( 'theme', external.globals( 'theme' ) );
+	Data.Add( 'idletime', external.globals( 'idletime' ));
 
 	// Querying position/size requires the main dialog to be visible.
 	external.wnd.restore();

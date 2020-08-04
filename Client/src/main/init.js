@@ -71,6 +71,7 @@ function init ()
 	external.globals.Add( 'OSVersion' , GetOSInfo() ); //OS Version
 	external.globals.Add( 'HostName' , GetHostName() ); //Host Name
 	external.globals.Add( 'CountToaster' , 0 ); //Max Count Toaster
+	external.globals.Add( 'idletime' , 300); //Idle Time
 	
 	/* Load branding data from XML files
 	 */
