@@ -1,7 +1,7 @@
-#define FILEVER 2,6,128,0 
-#define PRODUCTVER 2,6,128,0 
-#define FILEVERSTR "2,6,128,0\0" 
-#define PRODUCTVERSTR "2,6,128,0\0" 
+#define FILEVER 2,6,129,0 
+#define PRODUCTVER 2,6,129,0 
+#define FILEVERSTR "2,6,129,0\0" 
+#define PRODUCTVERSTR "2,6,129,0\0" 
 #define COMMENTS "http://pandion.im/" 
 #define COMPANY "Pandion Contributors" 
 #define DESCRIPTION "Pandion" 

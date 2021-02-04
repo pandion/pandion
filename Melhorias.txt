@@ -67,3 +67,6 @@ Versão 128
 - Em alguns ambientes, usuário é desconectado ao abrir uma conversa com o usuário off-line
 - Adicionado icone do cliente AstraChat
 - Adicionado configuração global.xml para tempo ocioso
+
+Versão 129
+- Corrigido recebimento de arquivos de versões antigas do Pandion (v.2.5)
