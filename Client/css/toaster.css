@@ -1,0 +1,51 @@
+BODY {
+	cursor: hand;
+	margin: 0px;
+	padding: 0px;
+	border: 2px outset;
+	background-image: url( ../images/toaster/background.gif );
+}
+#close {
+	cursor: default;
+	float: right;
+	margin-top: 4px;
+	margin-right: 4px;
+}
+#icon {
+	float: left;
+	margin-top: 4px;
+	margin-left: 4px;
+}
+#title {
+	display: block;
+	margin-top: 3px;
+	margin-left: 24px;
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+	color: #57a6d3;
+	border-bottom: 1px solid #d3d5d6;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#message {
+	display: block;
+	font-family: "Segoe UI", Tahoma;
+	font-size: 11px;
+	color: #48444A;
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#options {
+	font-family: "Segoe UI", Tahoma;
+	font-size: 11px;
+	color: #48444A;
+	text-decoration: none;
+	padding: 4px;
+}
+#options:hover {
+	color: red;
+	text-decoration: underline;
+}

@@ -11,7 +11,7 @@ function Begin ()
 
 	/* Event handlers for text selecting and input area resizing
 	 */
-    document.attachEvent( 'onselectionchange', DisableButton );
+	document.attachEvent( 'onselectionchange', DisableButton );
 	document.attachEvent( 'onselectstart', SelectionFilter );
 	document.attachEvent( 'ondragstart', SelectionFilter );
 	window.attachEvent( 'onresize', ResizeCheck );
@@ -29,6 +29,10 @@ function Begin ()
 	 */
 	external.wnd.setMenuHandler( 'MenuBarSelect' );
 	MenuBarUpdate();
+	
+	/* Spell Check
+	*/
+	gContainer.SpellCheck( );
 
 	/* Restore the size and position of the window
 	 */
@@ -98,6 +102,7 @@ function SessionContainer ( SessionPool )
 	this.InputUpdate = InputUpdate;
 	this.LanguageUpdate = LanguageUpdate;
 	this.MenuBarUpdate = MenuBarUpdate;
+	this.SpellCheck = SpellCheck;
 	this.TrackerCreated = TrackerCreated;
 
 	/* Create a tracker object, draw a tab
@@ -176,6 +181,21 @@ function SessionContainer ( SessionPool )
 			this.Trackers.Item( this.ActiveTrackerAddress ).RefreshOccupants();
 		}
 	}
+	
+	/* Enable/Disable Spell Check 
+	*/
+	function SpellCheck( )
+	{
+		if('spellcheck' in document.createElement('textarea')) //Verify is supported
+		{
+			var cfg = external.globals( 'cfg' );
+			var spell = cfg( 'spellcheck' ).toString() == 'true';
+			
+			var sendtext = document.getElementById( "send-text" );
+			sendtext.spellcheck = spell;
+			sendtext.placeholder = "spellcheck='" + spell + "'";
+		}
+	}
 
 	/* Load the configured font settings for the text input field
 	 * Disable input field if not connected to IM server
@@ -244,7 +264,8 @@ function SessionTracker ( Address )
 	this.SendInvite = SendInvite;
 	this.SendMessage = SendMessage;
 	this.SendPresence = SendPresence;
-
+	this.AppendText = AppendText;
+	
 	document.getElementById( 'txt-visitors' ).insertAdjacentElement( 'afterEnd', this.HTMLVisitors );
 	document.getElementById( 'txt-moderators' ).insertAdjacentElement( 'afterEnd', this.HTMLModerators );
 	document.getElementById( 'txt-participants' ).insertAdjacentElement( 'afterEnd', this.HTMLParticipants );
@@ -467,7 +488,35 @@ function SessionTracker ( Address )
 			}
 		}
 	}
-
+	
+	/* Append Text
+	*/
+	function AppendText( text ) 
+	{		
+		var sendtext = document.getElementById( 'send-text' );
+	
+		sendtext.value = ( sendtext.value.length ? sendtext.value + '\n' : '' ) + ( text.length ? text : "" );
+				
+		if ( ! sendtext.disabled )
+		{
+			var range;
+			var caretPos = sendtext.value.length
+			if (sendtext.createTextRange) 
+			{
+				range = sendtext.createTextRange();
+				range.move('character', caretPos);
+				range.select();
+			} else 
+			{
+				sendtext.focus();
+				if (sendtext.selectionStart !== undefined) 
+				{
+					sendtext.setSelectionRange(caretPos, caretPos);
+				}
+			}
+		}
+	}
+	
 	/* Use audio-visual signals to attract attention
 	 */
 	function Flash ( Times )
@@ -1150,7 +1199,7 @@ function ConferenceParticipant ( Tracker, Presence )
 		if ( this.Avatar.length )
 			Children.item(0).src = external.globals( 'usersdir' ) + 'Avatars\\' + this.Avatar;
 		else
-			Children.item(0).src = '..\\images\\clients\\unknown-soldier.gif';
+			Children.item(0).src = '..\\images\\clients\\unknown-soldier.png';
 
 		DrawModeMessage( Children.item(3), this.Status, 'roster-resource-link' );
 
@@ -1887,10 +1936,108 @@ function MouseMenu ()
  */
 function OnWindowActivate ()
 {
-	setTimeout(function () {
-		if (!document.getElementById("send-text").disabled) {
-			document.getElementById("send-text").blur();
-			document.getElementById("send-text").focus();
+	setTimeout(
+		function () 
+		{
+			if ( external.wnd.isActive() )
+			{
+				try 
+				{
+					if (!document.getElementById("send-text").disabled) 
+					{
+						document.getElementById("send-text").blur();
+						document.getElementById("send-text").focus();
+					}
+				} catch(e) {}
+			}
 		}
-	}, 0);
+	,0);
+}
+
+/* Send :yes:
+*/
+function SendLike() {
+  SendEmoticons(':yes:');
+}
+
+/* Send emoticon text
+*/
+function SendEmoticons(emoticons)
+{
+	var Tracker = gContainer.Trackers.Item( gContainer.ActiveTrackerAddress );
+	var Input = emoticons;
+
+	/* Change nickname
+	 */
+	if ( Input.match( /\/name \S/ ) )
+	{
+		external.globals( 'cfg' ).Item( 'conferencenick' ) = Input.substr( 6 );
+		var TrackerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Trackers.Keys() ) ).toArray();
+		for ( var i = 0; i < TrackerNames.length; ++i )
+		{
+			external.globals( 'ConferenceSessionPool' ).Trackers.Item( TrackerNames[i] ).Address.Resource = external.globals( 'cfg' ).Item( 'conferencenick' );
+			external.globals( 'ConferenceSessionPool' ).Trackers.Item( TrackerNames[i] ).SendPresence( external.globals( 'cfg' ).Item( 'lastmode' ), external.globals( 'cfg' ).Item( 'lastmsg' ) );
+		}
+	}
+
+	/* Group or personal message
+	 */
+	else
+	{
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom.loadXML( '<message><body/><html><body/></html><x xmlns="jisp:x:jep-0038"><name/></x></message>' );
+		dom.documentElement.setAttribute( 'xml:lang', external.globals( 'language' ) );
+		dom.documentElement.setAttribute( 'from', external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) + '/' + external.globals( 'cfg' ).Item( 'resource' ) );
+		dom.selectSingleNode( '/message/x[@xmlns="jisp:x:jep-0038"]/name' ).text = external.globals( 'cfg' ).Item( 'emoticonset' );
+
+		if ( Input.match( /^\/([^\:]+)\: \S/ ) && Tracker.Occupants.Exists( RegExp.$1 ) )
+		{
+			Input = Input.substr( RegExp.$1.length + 3 );
+			dom.documentElement.setAttribute( 'type', 'chat' );
+			dom.documentElement.setAttribute( 'to', Tracker.Address.ShortAddress() + '/' + RegExp.$1 );
+		}
+		else
+		{
+			dom.documentElement.setAttribute( 'type', 'groupchat' );
+			dom.documentElement.setAttribute( 'to', Tracker.Address.ShortAddress() );
+		}
+
+		dom.documentElement.firstChild.text = Input;
+
+		var HTMLBody = dom.documentElement.selectSingleNode( '/message/html/body' );
+		var TextLines = Input.split( '\n' );
+		HTMLBody.setAttribute( 'style', document.getElementById( 'send-text' ).style.cssText.toLowerCase() );
+		HTMLBody.appendChild( dom.createTextNode( TextLines[0] ) );
+		for ( var i = 1; i < TextLines.length; ++i )
+		{
+			HTMLBody.appendChild( dom.createElement( 'br' ) );
+			HTMLBody.appendChild( dom.createTextNode( TextLines[i] ) );
+		}
+		dom.documentElement.selectSingleNode( 'html' ).setAttribute( 'xmlns', 'http://jabber.org/protocol/xhtml-im' );
+		dom.documentElement.selectSingleNode( 'html' ).firstChild.setAttribute( 'xmlns', 'http://www.w3.org/1999/xhtml' );
+
+		if ( dom.documentElement.getAttribute( 'type' ) == 'chat' )
+		{
+			var Message = new XMPPMessage();
+			Message.FromDOM( dom );
+			document.frames( 'iframe-' + Tracker.Address.ShortAddress() ).onMessage( Message );
+		}
+
+		external.wnd.params[0].warn( 'SENT: ' + dom.xml );
+		external.XMPP.SendXML( dom );
+	}
+}
+
+/* Open new conferente
+ */
+function TabAddActivate ()
+{
+	external.wnd.params[0].dial_conference_create();
+}
+
+/* Browse conference
+ */
+function UndoClosingLastTab ()
+{
+	external.wnd.params[0].dial_conference_browse();
 }

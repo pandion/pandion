@@ -9,8 +9,9 @@ client.ui.idle.sensor.mouseMovement = function (arg) {
 	this.events = new client.events.manager(arg.events || {});
 
 	var that = this, idleMouseX, idleMouseY;
+	var duration = external.globals( 'idletime' );
 	this.mouseTracker = new client.utils.countdown({
-		duration: 5*60*1000,
+		duration: duration*1000,
 		period: 10000,
 		events: {
 			onStep: function () {

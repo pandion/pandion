@@ -1,0 +1,57 @@
+BODY {
+	cursor: hand;
+	margin: 0px;
+	padding: 0px;
+	border: 2px outset;
+	background-image: url( ../images/attention/background.png );
+}
+#close {
+	cursor: default;
+	float: right;
+	margin-top: 4px;
+	margin-right: 4px;
+}
+#icon {
+	float: left;
+	margin-top: 4px;
+	margin-left: 4px;
+}
+#title {
+	display: block;
+	margin-top: 3px;
+	margin-left: 24px;
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: bold;
+   color: #bf2725;
+	border-bottom: 1px solid #d3d5d6;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#attention {
+	display: block;
+	font-family: "Segoe UI", Tahoma;
+	font-size: 12px;
+	font-weight: bold;
+   color: #48444A;
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#options {
+	font-family: "Segoe UI", Tahoma;
+	font-size: 11px;
+	color: #48444A;
+	text-decoration: none;
+	padding: 4px;
+}
+#options:hover {
+	color: red;
+	text-decoration: underline;
+}
+#img {
+   height: 32px;
+   width: 32px;
+	background: url( ../images/attention/attention.png) no-repeat center center;
+}

@@ -18,6 +18,9 @@ function XMPPOnDisconnected ()
 	external.globals("XMPPKeepalive").cancel();
 
 	MenuBarUpdate();
+   
+   // Alter system tray
+   setTrayIcon( -1 , external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' ) );
 
 	if ( external.windows.Exists( 'signup' ) )
 		external.windows( 'signup' ).Do( 'step1_error', '' );
@@ -55,7 +58,9 @@ function XMPPOnDisconnected ()
 		document.getElementById( 'mode-secure' ).style.display = 'none';
 		document.getElementById( 'rosterfield' ).style.display = external.globals( 'ClientRoster' ).Items.Count ? 'block' : 'none';
 		document.getElementById( 'commerror' ).style.display = external.globals( 'ClientRoster' ).Items.Count ? 'none'  : 'block';
-		document.getElementById( 'mode-message' ).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' ) + ( external.globals( 'cfg' ).Item( 'lastmsg' ).length ? ' - ' + external.globals( 'cfg' ).Item( 'lastmsg' ) : '' );
+		document.getElementById( 'mode-status' ).className = "mode-status-offline" ; 
+		
+		DrawModeMessage ( document.getElementById( 'mode-message' ), external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' ) + ( external.globals( 'cfg' ).Item( 'lastmsg' ).length ? ' - ' + external.globals( 'cfg' ).Item( 'lastmsg' ) : '' ), 'roster-resource-link' );
 
 		external.globals( 'XMPPReconnectTimeout' ) = setTimeout(
 			function ()

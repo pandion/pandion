@@ -98,9 +98,10 @@ STDMETHODIMP CFile::Create(BSTR strFileName,
 		{
 			Close();
 		}
-		if(strFileName == _bstr_t(L"?temp"))
+		if(_bstr_t(strFileName) == _bstr_t(L"?temp"))
 		{
 			m_FileName = getTempFileName();
+			return S_OK;
 		}
 		else
 		{

@@ -126,7 +126,7 @@ function XMPPOnPresence ( ReceivedXML )
 					external.wnd.hide( false );
 					external.wnd.restore();
 					external.wnd.focus();
-				}
+				}         
 
 				external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'main', 'msg_cl_added', [ Presence.FromAddress.CleanAddress() ] ), external.globals( 'softwarename' ), 0 | 64 );
 			}

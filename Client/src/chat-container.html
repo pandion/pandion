@@ -3,6 +3,9 @@
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
 <META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
 <LINK rel="stylesheet" type="text/css" href="../css/chat-container.css"></LINK>
+
+<SCRIPT src="main/warn.js"></SCRIPT>
+<SCRIPT src="main/DrawModeMessage.js"></SCRIPT>
 <SCRIPT src="main/XMPPAddress.js"></SCRIPT>
 <SCRIPT src="main/XMPPHookIQ.js"></SCRIPT>
 <SCRIPT src="main/XMPPMessage.js"></SCRIPT>
@@ -11,6 +14,12 @@
 <SCRIPT src="main/ContainerCode.js"></SCRIPT>
 <SCRIPT src="main/md5_obj.js"></SCRIPT>
 <SCRIPT src="../js/chat-container.js"></SCRIPT>
+<SCRIPT src="main/Themes.js"></SCRIPT>
+
+<script type="text/javascript">
+	ChatThemes();
+</script>
+
 </HEAD>
 
 <BODY scroll=no onload="Begin()" onunload="End()" onkeydown="Keyboard( event )">
@@ -25,17 +34,15 @@
 			<DIV id=content-edge-right>
 			<DIV id=content-edge-bottom>
 			<TABLE cellspacing=0 cellpadding=0 style="table-layout: fixed; width: 100%; height: 100%; border-width: 0;">
-
 				<COLGROUP>
 					<COL width="*"/>
 					<COL width=79/>
 				</COLGROUP>
-
 				<!-- Mode Indicator -->
 				<TR id=mode-indicator valign=top>
 					<TD id=mode-bar colspan=2
 						onclick="MouseMenu()"
-						onmouseover="document.getElementById( 'mode-name' ).style.color = '#312505'; document.getElementById( 'mode-message' ).style.color = '#312505'; document.getElementById( 'mode-address' ).style.color = '#312505';"
+						onmouseover="document.getElementById( 'mode-name' ).style.color = external.globals( 'ColorModeName' ); document.getElementById( 'mode-message' ).style.color = external.globals( 'ColorModeName' ); document.getElementById( 'mode-address' ).style.color = external.globals( 'ColorModeName' );"
 						onmouseout="document.getElementById( 'mode-name' ).style.color = ''; document.getElementById( 'mode-message' ).style.color = ''; document.getElementById( 'mode-address' ).style.color = '';"
 					>
 						<DIV id=mode-frame-left>
@@ -44,14 +51,17 @@
 								id=mode-avatar
 								onmousedown="AvatarZoom()"
 								onclick="if ( gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Avatar.length == 40 ) event.cancelBubble = true;"
-								onmouseover="if ( ! gResizeInterval && gContainer.ActiveTrackerAddress.length && gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Avatar.length == 40 ) { this.style.borderColor = '#0570ad'; event.cancelBubble = true; }"
+								onmouseover="if ( ! gResizeInterval && gContainer.ActiveTrackerAddress.length && gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Avatar.length == 40 ) { this.style.borderColor = external.globals( 'ColorRosterGroupHeader' ); event.cancelBubble = true; }"
 								onmouseout="this.style.borderColor = 'transparent';"
 							/>
 							<NOBR id=mode-top>
 								<SPAN id=mode-name></SPAN>
 								<SPAN id=mode-address></SPAN>
 							</NOBR>
-							<NOBR id=mode-message></NOBR>
+							<NOBR id=mode-bottom>
+								<SPAN id=mode-status></SPAN>
+								<SPAN id=mode-message></SPAN>
+							</NOBR>
 						</DIV>
 						</DIV>
 					</TD>
@@ -122,6 +132,24 @@
 							>
 								<SPAN id=txt-background></SPAN>
 							</BUTTON>
+							<BUTTON
+								oncontextmenu="return false"
+								class=toolbar-button
+								id=btn-get-attention
+								onmouseover="ToolbarButtonMouseOver( this )"
+								onmouseout="ToolbarButtonMouseOut( this )"
+								onclick="SendAttentionMessage()"
+							><SPAN id=txt-get-attention></SPAN>
+							</BUTTON>
+							<BUTTON
+								oncontextmenu="return false"
+								class=toolbar-button
+								id=btn-send-like
+								onmouseover="ToolbarButtonMouseOver( this )"
+								onmouseout="ToolbarButtonMouseOut( this )"
+								onclick="SendLike()"
+							><SPAN id=txt-send-like></SPAN>
+							</BUTTON>
 						</NOBR>
 						</DIV>
 						</DIV>
@@ -161,10 +189,10 @@
 						<DIV class=new-tab-top>
 						<DIV class=new-tab-left>
 						<DIV class=new-tab-right>
-							<H1 id=txt-new-tab-title>Start a new conversation</H1>
+							<H1 id=txt-new-tab-title></H1>
 							<FORM onsubmit="TabAddStart(); return false;">
-								<INPUT type=text id=new-tab-address value="bob@example.com" />
-								<INPUT type=submit value="&raquo;" />
+								<INPUT type=text id=new-tab-address value="bob@example.com"  />
+								<INPUT type=submit id=btn-new-tab-address value="&raquo;" />
 							</FORM>
 						</DIV>
 						</DIV>
@@ -176,6 +204,8 @@
 				<!-- / New Tab -->
 
 			</TABLE>
+			<SPAN id=mode-help>
+			</SPAN>
 			</DIV>
 			</DIV>
 			</DIV>

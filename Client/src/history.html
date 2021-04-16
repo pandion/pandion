@@ -6,6 +6,7 @@
 <SCRIPT language=JScript>
 
 var gQUERY, gCOUNT, gPRINTDAY;
+var history_order = 1;
 
 function init ()
 {
@@ -27,8 +28,32 @@ function init ()
 	document.getElementById( 'search' ).focus();
 	document.getElementById( 'statusfield2' ).innerText = theirjid;
 	document.getElementById( 'loading' ).innerHTML = external.globals( 'Translator' ).Translate( 'history', 'loading' );
+   bottom_order();
 	setTimeout( 'filter( "" )', 0 );
 	external.wnd.hide( false );
+}
+
+function history_iverter() 
+{
+   if (history_order) {
+      history_order = 0;
+   } else {
+      history_order = 1;
+   }
+   
+   bottom_order();
+   
+   filter( document.getElementById( 'search' ).value );
+ }
+
+function bottom_order() 
+{
+   var image_order = document.getElementById( 'history_order' );
+   if (history_order) {
+      image_order.src = '../images/history/order_up.png';
+   } else {
+      image_order.src = '../images/history/order_down.png';
+   }
 }
 
 function filter ( query )
@@ -47,14 +72,28 @@ function filter ( query )
 		var date = '';
 		var elem;
 		gCOUNT = 0;
-		while ( ! file.AtEnd )
-		{
-			var line = file.ReadLine();
-			if ( line.length < 21 )
-				continue;
-			if ( gQUERY.length )
+      
+      var lines = [];
+      while ( ! file.AtEnd )
+      {  
+         var line = file.ReadLine();
+         if ( gQUERY.length )
 				if ( line.toLowerCase().indexOf( gQUERY, 21 ) == -1 )
 					continue;
+         if ( line.length < 21 )
+				continue;
+         lines.push(line);
+      }
+		file.Close()
+      
+      var orderindex = 0;
+      if (history_order) 
+         orderindex = lines.length - 1;
+
+      for(var i=0; i < lines.length; i++)
+		{
+         var line = lines[orderindex];
+			
 			var stamp = line.substr( 0, 8 );
 			if ( date != stamp )
 			{
@@ -69,9 +108,14 @@ function filter ( query )
 				}
 				date = stamp;
 			}
+         
+         if (history_order)
+            orderindex--;
+         else 
+            orderindex++;
+            
 			++gCOUNT;
 		}
-		file.Close()
 	}
 	document.getElementById( 'statusfield1' ).innerText = gCOUNT == 1 ? external.globals( 'Translator' ).Translate( 'history', 'one_message' ) : external.globals( 'Translator' ).Translate( 'history', 'many_messages', [ gCOUNT ] );
 	if ( ! gCOUNT )
@@ -757,6 +801,7 @@ BODY {
 <BUTTON onmouseover="this.className='dial_on'" onmouseout="this.className=''" onclick="save( '' ); document.getElementById( 'search' ).focus();"><IMG src="../images/history/disk.png"><BR><SPAN id=txt_save></SPAN></BUTTON>
 <BUTTON onmouseover="this.className='dial_on'" onmouseout="this.className=''" onclick="printer( '' ); document.getElementById( 'search' ).focus();"><IMG src="../images/history/printer.png"><BR><SPAN id=txt_print></SPAN></BUTTON>
 <BUTTON onmouseover="this.className='dial_on'" onmouseout="this.className=''" onclick="history_clear(); document.getElementById( 'search' ).focus();"><IMG src="../images/history/dustbin.png" border=0><BR><SPAN id=txt_erase></SPAN></BUTTON>
+<BUTTON onmouseover="this.className='dial_on'" onmouseout="this.className=''" onclick="history_iverter(); document.getElementById( 'search' ).focus();"><IMG id=history_order src="../images/history/order_up.png" border=0><BR><SPAN id=txt_order></SPAN></BUTTON>
 </NOBR>
 </TD>
 </TR>

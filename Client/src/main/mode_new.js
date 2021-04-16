@@ -3,7 +3,7 @@ function mode_new ( mode, msg )
 	var cfg = external.globals( 'cfg' );
 	if ( mode == -1 )
 	// offline
-	{
+	{   
 		external.globals( 'XMPPReconnect' ) = false;
 		document.getElementById( 'connecting' ).style.display = 'none';
 		document.getElementById( 'rosterfield' ).style.display = 'block';
@@ -12,6 +12,7 @@ function mode_new ( mode, msg )
 		if ( msg.length )
 			cfg( 'lastmsg' ) = msg;
 		document.getElementById( 'mode-message' ).innerText = external.globals( 'Translator' ).Translate( 'main', 'cl_status_offline' ) + ( cfg( 'lastmsg' ).length ? ' - ' + cfg( 'lastmsg' ) : '' );
+		document.getElementById( 'mode-status' ).className = "mode-status-offline" ; 
 
 		if ( external.globals( 'XMPPConnected' ) )
 		{
@@ -54,7 +55,23 @@ function mode_new ( mode, msg )
 			external.globals( 'Translator' ).Translate( 'main', 'cl_invisible' ),
 			external.globals( 'Translator' ).Translate( 'main', 'cl_idle' )
 		];
-		document.getElementById( 'mode-message' ).innerText = mode_text[mode] + ( msg.length ? ' - ' + msg.replace( /[\n\r]+/mg, ' - ' ) : '' );
+		var modestatus = document.getElementById( 'mode-status' );
+		switch( mode ) {
+			case 0: modestatus.className  = 'mode-status-available';
+			break;
+			case 2: modestatus.className  = "mode-status-away";
+			break;
+			case 4: modestatus.className  = "mode-status-buzy";
+			break;
+			case 5: modestatus.className  = "mode-status-invisible";
+			break;
+			case 6: modestatus.className  = "mode-status-idle"; 
+			break;
+		}
+		
+		DrawModeMessage ( document.getElementById( 'mode-message' ) , mode_text[mode] + ( msg.length ? ' - ' + msg.replace( /[\n\r]+/mg, ' - ' ) : '' ) , 'roster-resource-link' );
+
+		setTrayIcon( mode , mode_text[mode] ); //Alter tray icon
 
 		if ( document.getElementById( 'connecting' ).style.display == 'block' )
 			return;
@@ -170,3 +187,4 @@ function mode_new ( mode, msg )
 		}
 	}
 }
+

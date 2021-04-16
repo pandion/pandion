@@ -6,13 +6,15 @@
 /* Create a global variable to communicate with the rest of the conversation window
  */
 if ( ! window.SessionTracker )
+{
 	window.SessionTracker = window.frameElement.SessionTracker;
 
-/* Global variables used by this background
- */
-var gLastDate = ( new Date() ).toLocaleDateString();
-var gLastTime = '';
-var gLastAddress = '';
+	/* Global variables used by this background
+	*/
+	var gLastDate = ( new Date() ).toLocaleDateString();
+	var gLastTime = '';
+	var gLastAddress = '';
+}
 
 /* Activate the tracker and hook up the onresize event
  */
@@ -129,7 +131,7 @@ function onMessage ( Message )
 	 */
 	else if ( SessionTracker.Occupants && Message.Type != 'groupchat' )
 	{
-		DrawMUCPersonal( 'private-' + Direction, Message, Direction == 'recv' ? SenderName + ' says to you: ' : 'You say to ' + Message.ToAddress.Resource + ': ' );
+		DrawMUCPersonal( 'private-' + Direction, Message, Direction == 'recv' ? SenderName + ' ' + external.globals( 'Translator' ).Translate( 'chat-messages', 'saystoyou' ) + ' ': external.globals( 'Translator' ).Translate( 'chat-messages', 'yousayto' ) + ' ' + Message.ToAddress.Resource + ': ' );
 		gLastAddress = '';
 	}
 
@@ -149,6 +151,9 @@ function onMessage ( Message )
 	 */
 	else
 	{
+		var attention = '';
+		if ( Message.Attention == 'urn:xmpp:attention:0' )
+			attention = 'attention-';
 		/* Insert sender name
 		 */
 		if ( gLastAddress != ( SessionTracker.Occupants ? Message.FromAddress.Resource : Message.FromAddress.ShortAddress() ) )
@@ -158,9 +163,9 @@ function onMessage ( Message )
 		/* Insert message body
 		 */
 		if ( gLastTime == MessageTime )
-			DrawMessage( 'body-' + Direction, Message );
+			DrawMessage( attention + 'body-' + Direction, Message );
 		else
-			DrawMessage( 'body-' + Direction, Message, 'time', MessageTime );
+			DrawMessage( attention + 'body-' + Direction, Message, 'time', MessageTime );
 		gLastTime = MessageTime;
 	}
 	Resize();
@@ -304,6 +309,9 @@ function ShowMenu ()
 	Menu.AddItem( HasMessages,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-messages', 'clear' ),		3 );
 	Menu.AddSeparator();
 	Menu.AddItem( HasMessages,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-messages', 'selectall' ),	4 );
+	Menu.AddSeparator();
+	Menu.AddItem( HasSelection,	false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-messages', 'quotetext' ),	5 );
+	
 	Menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
 
 	switch ( Menu.Choice )
@@ -312,6 +320,7 @@ function ShowMenu ()
 		case 2: CopyAll();		break;
 		case 3: Clear();		break;
 		case 4: SelectAll();	break;
+		case 5: QuoteText();	break;
 	}
 }
 
@@ -364,4 +373,25 @@ function Clear ()
 	var Messages = document.getElementById( 'messages' );
 	while ( Messages.rows.length )
 		Messages.deleteRow(0);
+}
+
+/* Quote Text
+*/
+function QuoteText ()
+{
+	if ( document.selection.type == 'Text' )
+	{
+		var text = document.selection.createRangeCollection().item(0).text;
+		if ( text.length ) 
+		{
+			var n = text.split("\n");
+			var result = '';
+	
+			for(var x in n)
+			{
+				result = result + "> " + n[x].replace(/^\s+|\s+$/gm,'') + "\n";
+			}
+			SessionTracker.AppendText( result );
+		}
+	}
 }

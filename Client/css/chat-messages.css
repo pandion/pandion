@@ -38,6 +38,16 @@ A:hover {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+.attention-body-recv {
+	padding: 10px 0 10px 28px;
+	font-family: Arial;
+	font-size: 12pt;
+	color: #bf2725;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-weight: bold;
+	background: url(../images/attention/attention_recv.png) no-repeat left center;
+}
 .body-send {
 	padding: 0 0 4px 4px;
 	font-family: Arial;
@@ -45,6 +55,16 @@ A:hover {
 	color: #004200;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+.attention-body-send {
+	padding: 10px 0 10px 28px;
+	font-family: Arial;
+	font-size: 12pt;
+	color: #48444A;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-weight: bold;
+background: url(../images/attention/attention_send.png) no-repeat left center;
 }
 .date {
 	width: 100%;
@@ -206,4 +226,17 @@ html.rtl .sound-button {
 }
 html.rtl .history-time, html.rtl .history-me-time {
 	padding: 0 0 0 2px;
+}
+.quote-text {
+	padding: 0 0 0 28px;
+	font-family: "Segoe UI", Tahoma;
+	font-size: 10pt;
+	color: #696969;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-weight: bold;
+	font-style: italic;
+	line-height: 20pt;
+	background: url(../images/chat-container/quote-text.png) no-repeat left top;
+	border-bottom: 1px solid #d3d5d6;
 }

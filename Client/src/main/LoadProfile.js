@@ -64,4 +64,12 @@ function LoadProfile ( Address )
 		external.wnd.hide( false );
 		external.wnd.focus();
 	}
+
+	/* Set Login Address to global variable
+	*/
+	external.globals( 'LoginAddress' ) = Address;
+
+	/* Set the path of Open Trackers
+	*/
+	external.globals( 'OpenTrackersFile' ) = external.globals( 'usersdir' ) + 'Profiles\\' + Address.ShortAddress() + '\\opentrackers.xml';
 }

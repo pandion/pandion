@@ -264,20 +264,22 @@ function FilterNode ( Message, HTMLElement, XMLTag )
 function FilterHyperlinks ( Message, HTMLElement, MessageText )
 {
 	var PathExpression = /(?:([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(?:(?:(news|telnet|nttp|file|http|ftp|https|irc|callto):\/\/)|(www|ftp)[-a-z0-9]*\.)[-a-z0-9\.]+)(?::[0-9]*)?(?:\/(?:[-a-z0-9_\$\.\+\!\*,;:@&=\?\/~\#\%]*)?(?:(?:[(\[{][-a-z0-9_\$\.\+\!\*,;:@&=\?\/~\#\%]*[)\]}])*)?[-a-z0-9_\$\.\+\!\*,;:@&=\?\/~\#\%]*)?/im; // 1. IP address, 2. protocol, 3. www or ftp
-	var AddressExpression = /(?:(xmpp|mailto):)?[a-z0-9\u0080-\u1FFF\u2070-\uD7AF\uF900-\uFDFF\uFE70-\uFEFF!#$%*+=?^_`{|}~-]+(?:\.[a-z0-9\u0080-\u1FFF\u2070-\uD7AF\uF900-\uFDFF\uFE70-\uFEFF!#$%*+=?^_`{|}~-]+)*(@)(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:(\?)(?:[-a-z0-9_\$\.\+\!\*,;:@&=\?\/~\#\%]*)?(?:(?:[(\[{][-a-z0-9_\$\.\+\!\*,;:@&=\?\/~\#\%]*[)\]}])*)?[-a-z0-9_\$\.\+\!\*,;:@&=\?\/~\#\%]*)?/im; // 1. protocol, 2. '@' symbol, 3. '?' symbol
+	var AddressExpression1 = /(?:(xmpp|mailto):)?[a-z0-9\u0080-\u1FFF\u2070-\uD7AF\uF900-\uFDFF\uFE70-\uFEFF!#$%*+=?^_`{|}~-]+(?:\.[a-z0-9\u0080-\u1FFF\u2070-\uD7AF\uF900-\uFDFF\uFE70-\uFEFF!#$%*+=?^_`{|}~-]+)*(@)(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:(\?)(?:[-a-z0-9_\$\.\+\!\*,;:@&=\?\/~\#\%]*)?(?:(?:[(\[{][-a-z0-9_\$\.\+\!\*,;:@&=\?\/~\#\%]*[)\]}])*)?[-a-z0-9_\$\.\+\!\*,;:@&=\?\/~\#\%]*)?/im; // 1. protocol, 2. '@' symbol, 3. '?' symbol
+	var AddressExpression2 = /(@)([^\s*_-].*?)(?=\s|$)/im;
+	
 	var Result = null;
-	while ( Result = ( PathExpression.exec( MessageText ) || AddressExpression.exec( MessageText ) ) )
+	while ( Result = ( PathExpression.exec( MessageText ) || AddressExpression1.exec( MessageText ) || AddressExpression2.exec( MessageText )) )
 	{
 		FilterEmoticons( Message, HTMLElement, MessageText.substr( 0, Result.index ) );
 		MessageText = MessageText.substr( Result.lastIndex );
 
 		var Hyperlink = document.createElement( 'A' );
 		Hyperlink.href = Result[0];
-		if ( Result[2] == '@' )
-		{
+		if ( Result[1] == '@' )
+			Hyperlink.href = 'xmpp:' + Result[2] + '@' + external.globals( 'cfg' ).Item( 'server' );
+		else if ( Result[2] == '@' )
 			if ( Result[1].length == 0 )
 				Hyperlink.href = 'xmpp:' + Result[0];
-		}
 		else if ( Result[1].length > 0 || Result[3] == 'www' )
 			Hyperlink.href = 'http://' + Result[0];
 		else if ( Result[3] == 'ftp' )
@@ -314,7 +316,7 @@ function FilterEmoticons ( Message, HTMLElement, MessageText )
 			{
 				var Graphic = document.createElement( 'IMG' );
 				Graphic.align = 'absmiddle';
-				Graphic.alt = Result[0];
+				Graphic.title = Result[0];
 				Graphic.border = 0;
 				Graphic.src = external.globals( 'usersdir' ) + 'Emoticons\\' + Message.EmoticonSet + '\\' + Action.Graphic;
 				Graphic.style.cursor = 'hand';
@@ -334,7 +336,7 @@ function FilterEmoticons ( Message, HTMLElement, MessageText )
 			{
 				var Graphic = document.createElement( 'IMG' );
 				Graphic.align = 'absmiddle';
-				Graphic.alt = Result[0];
+				Graphic.title = Result[0];
 				Graphic.border = 0;
 				Graphic.src = external.globals( 'usersdir' ) + 'Emoticons\\' + Message.EmoticonSet + '\\' + Action.Graphic;
 				Graphic.attachEvent(
@@ -409,9 +411,10 @@ function FilterEmoticons ( Message, HTMLElement, MessageText )
  */
 function FilterMarkup (HTMLElement, messageText)
 {
-	var expression = /(\s|^)([\/\*\_\-])([^\s_-](?:.*[^\s])?)\2(\s|$)/m;
+	var expression = /(\s|^)([\/\*\_\-\~])([^\s_-](?:.*[^\s])?)\2(\s|$)/m;
+	var quote = /(^)(> )(.*)(\s|$)/m;
 	var result = null;
-	while (result = expression.exec(messageText)) {
+	while (result = ( expression.exec(messageText) || quote.exec(messageText))) {
 		FilterNothing(HTMLElement, messageText.substr(0, result.index) + result[1]);
 		messageText = result[4] + messageText.substr(result.lastIndex);
 		var markup = document.createElement("span");
@@ -421,7 +424,9 @@ function FilterMarkup (HTMLElement, messageText)
 			case "/": markup.style.fontStyle = "italic"; break;
 			case "*": markup.style.fontWeight = "bold"; break;
 			case "_": markup.style.textDecorationUnderline = true; break;
+			case "~":
 			case "-": markup.style.textDecorationLineThrough = true; break;
+			case "> ": markup.className = "quote-text"; break;
 		}
 		HTMLElement.insertAdjacentElement("beforeEnd", markup);
 	}

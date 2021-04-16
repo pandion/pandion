@@ -90,10 +90,18 @@ function MenuBarUpdate ( section )
 		var language = external.globals( 'MenuLanguages' );
 		var username = cfg && cfg( 'username' ).length;
 
-		var display = external.newPopupMenu;
+      var theme = external.newPopupMenu;
+      theme.AddItem( true, false, external.globals( 'theme' ) == 'default' , false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tool_theme_default' ), 310 );
+      theme.AddItem( true, false, external.globals( 'theme' ) == 'blue' , false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tool_theme_blue' ), 311 );
+      theme.AddItem( true, false, external.globals( 'theme' ) == 'green' , false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tool_theme_green' ), 312 );
+		theme.AddItem( true, false, external.globals( 'theme' ) == 'grey' , false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tool_theme_grey' ), 313 );
+      theme.AddItem( true, false, external.globals( 'theme' ) == 'pink' , false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tool_theme_pink' ), 314 );
+      
+		
+      var display = external.newPopupMenu;
 		display.AddItem( true, false, list, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tool_detailed' ), 330 );
 		display.AddItem( true, false, ! list, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tool_compact' ), 331 );
-
+      
 		var language = external.newPopupMenu;
 		var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
 		dom.async = false;
@@ -116,6 +124,7 @@ function MenuBarUpdate ( section )
 		tools.AddItem( roster,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_plugin' ), 37 );
 		tools.AddSeparator();
 		tools.AddItem( roster,false,false,false, display.Handle,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_view' ), 33 );
+		tools.AddItem( true,false,false,false, theme.Handle,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_theme' ), 31 );
 		tools.AddItem( true,false,false,false, language.Handle,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_language' ), 38 );
 		tools.AddItem( true,aot,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_aot' ), 34 );
 		tools.AddSeparator();
@@ -208,9 +217,24 @@ function MenuBarSelect ( id )
 			dial_vcard_edit(); break;
 		case 27: // change my avatar
 			dial_avatar_pick(); break;
-
 		case 30: // headlines
 			dial_headlines(); break;
+		case 310: //default
+         AlterTheme( 'default' ); 
+         MenuBarUpdate( 'tools' ); break;
+      case 311: //blue
+         AlterTheme( 'blue' ); 
+         MenuBarUpdate( 'tools' ); break;
+      case 312: //green
+         AlterTheme( 'green' ); 
+         MenuBarUpdate( 'tools' ); break;
+		case 313: //grey
+         AlterTheme( 'grey' ); 
+         MenuBarUpdate( 'tools' ); break;
+		case 314: //pink
+         AlterTheme( 'pink' ); 
+         MenuBarUpdate( 'tools' ); break;
+
 		case 32: // view network traffic
 			dial_console(); break;
 		case 330: // detailed

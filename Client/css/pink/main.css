@@ -1,0 +1,107 @@
+
+/* Content Edge
+ */
+#content-area {
+	background: url(../../images/main/pink/content-behind.png) repeat-x left top;
+}
+.content-edge-top {
+	background: url(../../images/edge/pink/top.png) no-repeat center top;
+}
+.content-edge-left {
+	background: url(../../images/edge/pink/left.png) no-repeat left top;
+}
+.content-edge-right {
+	background: url(../../images/edge/pink/right.png) no-repeat right top;
+}
+.content-edge-bottom {
+	background: url(../../images/edge/pink/bottom.png) repeat-x left bottom;
+}
+
+
+/* Bar with status, name, avatar, etc.
+ */
+#mode-bar {
+	background: url(../../images/main/pink/mode-behind.png) repeat-x left top;
+}
+.mode-frame-left {
+	background: url(../../images/main/pink/mode-frame-left.png) no-repeat left top;
+}
+.mode-frame-right {
+	background: url(../../images/main/pink/mode-frame-right.png) no-repeat right top;
+}
+
+#mode-name {
+	color: #FF3030;
+}
+#mode-message {
+	color: #FF3030;
+}
+
+/* Find As You Type
+ */
+#find-area {
+	background-color: #FBF0F0;
+}
+#find-frame {
+	border-left: 1px solid #FFD2D2;
+	border-right: 1px solid #FFD2D2;
+}
+#find-wrapper {
+	border: 1px solid pink;
+}
+
+/* Inside Frame
+ */
+.inside-edge-left {
+	background: url(../../images/edge/pink/inside-left.png) repeat-y left top;
+}
+.inside-edge-right {
+	background: url(../../images/edge/pink/inside-right.png) repeat-y right top;
+}
+
+
+/* Sign In
+ */
+#signin-area {
+	background: url(../../images/sign-in/pink/content-behind.png) repeat-x left top;
+}
+.signin-frame-top {
+	background: url(../../images/sign-in/pink/frame-top.png) repeat-x left top;
+}
+.signin-frame-left {
+	background: url(../../images/sign-in/pink/frame-left.png) no-repeat left top;
+}
+.signin-frame-right {
+	background: url(../../images/sign-in/pink/frame-right.png) no-repeat right top;
+}
+#signin-connect {
+	background: transparent url(../../images/sign-in/pink/shiny.png) left -13px repeat-x;
+}
+
+/* Contact List
+ */
+.roster-group-header {
+   color: #FF8080;
+}
+.roster-group-empty {
+	color: #FF8080;
+}
+.roster-item-offline-name-blocked {
+	color: #FF8080;
+}
+.roster-item-offline-msg {
+	color: #FF8080;
+}
+.roster-resource-name-blocked {
+	color: #FF8080;
+}
+.roster-resource-msg {
+	color: #FF8080;
+}
+
+A {
+   color: #FF3030;
+}
+A:hover {
+   color: #B90000;
+}
