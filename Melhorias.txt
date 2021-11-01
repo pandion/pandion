@@ -70,3 +70,4 @@ Versão 128
 
 Versão 129
 - Corrigido recebimento de arquivos de versões antigas do Pandion (v.2.5)
+- Adicionado icone do cliente Monal

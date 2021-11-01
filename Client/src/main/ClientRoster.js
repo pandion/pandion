@@ -411,6 +411,7 @@ function ClientRoster ()
 	AvatarMap.Add( 'laptop',			'laptop'		);
 	AvatarMap.Add( 'libgaim',			'gaim'			);
 	AvatarMap.Add( 'miranda',			'miranda'		);
+	AvatarMap.Add( 'monal',				'monal'			);
 	AvatarMap.Add( 'myjab',				'myjabber'		);
 	AvatarMap.Add( 'mobile',			'sms'			);
 	AvatarMap.Add( 'mcenter',			'neosmt'		);
