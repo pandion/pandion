@@ -4,6 +4,7 @@
 	Copyright (c) 2010 Tony Guardado Toppes
 	Copyright (c) 2003-2004 César Gómez
 	Copyright (c) 2004 Leandro Vázquez Cervantes
+	Copyright (c) 2021 Maico Tamanho
 	License: GNU General Public License version 3 or later
 -->
 <translation xml:lang="es">
@@ -146,6 +147,12 @@
 		<code id="menu_tool_view">&amp;Vista</code>
 		<code id="menu_tool_detailed">&amp;Detallada</code>
 		<code id="menu_tool_compact">&amp;Compacta</code>
+		<code id="menu_tool_theme">&amp;Tema</code>
+		<code id="menu_tool_theme_blue">&amp;Azul</code>
+		<code id="menu_tool_theme_default">&amp;Defecto</code>
+		<code id="menu_tool_theme_grey">&amp;Gris </code>
+		<code id="menu_tool_theme_pink">&amp;Rosado</code>
+		<code id="menu_tool_theme_green">&amp;Verde</code>
 		<code id="menu_tool_language">&amp;Idioma</code>
 		<code id="menu_tool_aot">&amp;Siempre visible</code>
 		<code id="menu_tool_settings">&amp;Configuración</code>
@@ -731,6 +738,9 @@
 		<item id="txt_normal">
 			<innerText>Mensaje normal</innerText>
 		</item>
+		<item id="txt_attention">
+			<innerText>Mensaje de llamada de atención</innerText>
+		</item>
 		<item id="txt_alert">
 			<innerText>Alerta de notificación</innerText>
 		</item>
@@ -1102,6 +1112,9 @@
 		<item id="txt_os">
 			<innerText>Sistema Operativo:</innerText>
 		</item>
+		<item id="txt_hostname">
+			<innerText>Nombre de Host:</innerText>
+		</item>
 	</window>
 	<window name="transport_list">
 		<item id="btn_other">
@@ -1272,6 +1285,9 @@
 		<item id="txt_erase">
 			<innerText>Borrar</innerText>
 		</item>
+		<item id="txt_order">
+			<innerText>Dirección</innerText>
+		</item>
 		<item id="txt_history">
 			<innerText>Historial de Mensajes</innerText>
 		</item>
@@ -1297,8 +1313,14 @@
 		<code id="copyall">Copiar Todo</code>
 		<code id="clear">Limpiar</code>
 		<code id="selectall">Seleccionar Todo</code>
+		<code id="quotetext">Citar</code>
+		<code id="saystoyou">decirte:</code>
+		<code id="yousayto">Le dices a</code>
 	</window>
 	<window name="chat-container">
+		<item id="txt-new-tab-title">
+			<innerText>Iniciar una nueva conversación</innerText>
+		</item>
 		<item id="btn-emoticons">
 			<title>Muestra lo que estás pensando o haciendo</title>
 			<accessKey>e</accessKey>
@@ -1311,6 +1333,14 @@
 			<title>Elije un fondo diferente</title>
 			<accessKey>f</accessKey>
 		</item>
+		<item id="btn-get-attention">
+			<title></title>
+			<accessKey>g</accessKey>
+		</item>
+		<item id="btn-send-like">
+			<title>Mandar :yes:</title>
+			<accessKey>y</accessKey>
+		</item>
 
 		<item id="txt-emoticons">
 			<innerText>Emoticonos</innerText>
@@ -1320,6 +1350,9 @@
 		</item>
 		<item id="txt-background">
 			<innerText>Fondo</innerText>
+		</item>
+		<item id="txt-get-attention">
+			<innerText>Atención</innerText>
 		</item>
 
 		<item id="resize-grip">
@@ -1336,7 +1369,10 @@
 			<title>Enviar el mensaje</title>
 			<accessKey>m</accessKey>
 		</item>
-
+		
+		<code id="attention-enabled">¡Llamar la atención!</code>
+		<code id="attention-disabled">Llamada de Atención deshabilitada o no admitida</code>
+		<code id="attention-message">¡Envía un mensaje con Llamada de Atención!</code>
 		<code id="tt-avatar">Mostrar avatar en tamaño completo</code>
 		<code id="tt-messages">Mensajes enviados y recibidos</code>
 		<code id="tt-close">Finalizar esta conversación</code>
@@ -1351,7 +1387,24 @@
 		<code id="palette_compact">Reducir el tamaño de la lista de emoticonos</code>
 		<code id="palette_expand">Mostrar todos los emoticones de este tema</code>
 		<code id="palette_browse">Otros Temas de Emoticonos...</code>
-
+		<code id="drew_attention">¡Llamaste la Atención! </code>
+		<code id="receive_attention">¡Te llamó la Atención! </code>
+		
+		<code id="help_title">Atajos del Teclado:</code>
+		<code id="help_ctrl_tab">Activar pestaña siguiente o anterior</code>
+		<code id="help_ctrl_pgup">Activar la siguiente pestaña</code>
+		<code id="help_ctrl_pgdn">Activar pestaña anterior</code>
+		<code id="help_ctrl_19">Vaya a la pestaña 1 a la pestaña 9</code>
+		<code id="help_ctrl_w">Cerrar pestaña</code>
+		<code id="help_ctrl_shift_t">Deshacer cerrar pestaña</code>
+		<code id="help_ctrl_t">Nueva pestaña</code>
+		<code id="help_text_format">Formato de texto:</code>
+		<code id="help_text_italic">/Ejemplo/: Itálico</code>
+		<code id="help_text_bold">*Ejemplo*: Negrito</code>
+		<code id="help_text_underline">_Ejemplo_: Subrayada</code>
+		<code id="help_text_linethrough">~Ejemplo~: Línea a través </code>
+		<code id="help_text_quote">> Ejemplo: Citar</code>
+		
 		<code id="menu_file">&amp;Archivo</code>
 		<code id="menu_file_received">&amp;Abrir mis archivos recibidos</code>
 		<code id="menu_file_history">Historial de &amp;Mensajes</code>
@@ -1372,6 +1425,8 @@
 		<code id="menu_tool_tabbed">&amp;Conversaciones en pestañas</code>
 		<code id="menu_tool_emoticons">&amp;Mostrar emoticonos</code>
 		<code id="menu_tool_settings">&amp;Opciones</code>
+		<code id="menu_tool_spellcheck">&amp;Verificación Ortográfica </code>
+		<code id="menu_tool_flashingavatar">&amp;Avatar parpadeante</code>
 	</window>
 	<window name="conference-bookmarks-add">
 		<item id="txt_address">
@@ -1569,6 +1624,16 @@
 			<title>Seleccionar un fondo diferente</title>
 			<accessKey>f</accessKey>
 		</item>
+		<item id="btn-send-like">
+			<title>Mandar :yes:</title>
+			<accessKey>y</accessKey>
+		</item>
+		<item id="txt-get-attention">
+			<innerText>Llamar la Atención</innerText>
+		</item>
+		<item id="txt-send-like">
+			<innerText></innerText>
+		</item>
 
 		<item id="txt-emoticons">
 			<innerText>Emoticonos</innerText>
@@ -1689,6 +1754,9 @@
 		<item id="txt_connection_desc">
 			<innerText>Cambiar como conectarse al servidor de mensajería instantánea.</innerText>
 		</item>
+		<item id="txt_attention">
+			<innerText>Permite llamadas de Atención</innerText>
+		</item>
 		<item id="btn_connection_settings">
 			<value>Configuración de Conexión</value>
 		</item>
@@ -1711,7 +1779,7 @@
 			<innerText>Comprobar automáticamente actualizaciones de software</innerText>
 		</item>
 		<item id="txt_auth_request">
-			<innerText>uando alguien pida mi autorización</innerText>
+			<innerText>Cuando alguien pida mi autorización</innerText>
 		</item>
 		<item id="txt_authorization1">
 			<innerText>Preguntarme</innerText>
@@ -1729,7 +1797,10 @@
 			<innerText>Reproducir un sonido cuando llegue un mensaje</innerText>
 		</item>
 		<item id="txt_soundonline">
-			<innerText>eproducir un sonido cuando alguien se conecte</innerText>
+			<innerText>Reproducir un sonido cuando alguien se conecte</innerText>
+		</item>
+		<item id="txt_soundattention">
+			<innerText>Reproducir un sonido cuando alguien llama la atención</innerText>
 		</item>
 		<item id="txt_soundoffline">
 			<innerText>Reproducir un sonido cuando alguien se desconecte</innerText>
@@ -1738,6 +1809,9 @@
 			<value>Examinar</value>
 		</item>
 		<item id="btn_sound_online">
+			<value>Examinar</value>
+		</item>
+		<item id="btn_sound_attention">
 			<value>Examinar</value>
 		</item>
 		<item id="btn_sound_offline">

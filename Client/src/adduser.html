@@ -469,7 +469,7 @@ function recv_search_start ( iq )
 	/* Set up the default header information
 	 */
 	if ( external.globals( 'ClientServices' ).Services.Exists( iq.From ) )
-		document.getElementById( 'page3_title' ).innerText = external.globals( 'ClientServices' ).Services.Items( iq.From ).Name;
+		document.getElementById( 'page3_title' ).innerText = external.globals( 'ClientServices' ).Services.Item( iq.From ).Name;
 	else
 		document.getElementById( 'page3_title' ).innerText = external.globals( 'Translator' ).Translate( 'adduser', 'search_title' );
 	document.getElementById( 'page3_subtitle' ).innerText = external.globals( 'Translator' ).Translate( 'adduser', 'search_tagline' );
