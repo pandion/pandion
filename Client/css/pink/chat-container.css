@@ -1,0 +1,70 @@
+/* Content edge
+ */
+#content-edge-top {
+	background: url(../../images/edge/pink/top.png) no-repeat center top;
+}
+#content-edge-left {
+	background: url(../../images/edge/pink/left.png) no-repeat left top;
+}
+#content-edge-right {
+	background: url(../../images/edge/pink/right.png) no-repeat right top;
+}
+#content-edge-bottom {
+	background: url(../../images/edge/pink/bottom.png) repeat-x left bottom;
+}
+.inside-edge-left {
+	background: url(../../images/edge/pink/inside-left.png) repeat-y left top;
+}
+.inside-edge-right {
+	background: url(../../images/edge/pink/inside-right.png) repeat-y right top;
+}
+/* Bar with status, name, avatar, etc.
+ */
+#mode-bar {
+	background: url(../../images/chat-container/pink/mode-behind.png) repeat-x left top;
+}
+#mode-frame-left {
+	background: url(../../images/chat-container/pink/mode-frame-left.png) no-repeat left top;
+}
+#mode-frame-right {
+	background: url(../../images/chat-container/pink/mode-frame-right.png) no-repeat right top;
+}
+#mode-name {
+	color: #FF3030;
+}
+#mode-message {
+	color: #FF3030;
+}
+#mode-address {
+	color: #FF3030;
+}
+/* Toolbar buttons
+ */
+#toolbar {
+	background-image: url(../../images/chat-container/pink/toolbar-behind.png);
+}
+#tab-bar-row {
+	background-image: url(../../images/chat-container/pink/tabs-behind.png);
+}
+.tab-bar-button-active {
+	background-image: url(../../images/chat-container/pink/tab-button.png);
+}
+/* New tab screen
+ */
+#new-tab {
+	background: url(../../images/sign-in/pink/content-behind.png) repeat-x left top;
+}
+.new-tab-top {
+	background: url(../../images/sign-in/pink/frame-top.png) repeat-x left top;
+}
+.new-tab-left {
+	background: url(../../images/sign-in/pink/frame-left.png) no-repeat left top;
+}
+.new-tab-right {
+	background: url(../../images/sign-in/pink/frame-right.png) no-repeat right top;
+}
+.toolbar-button-over {
+	color: buttontext;
+	background-color: #ffc7c7;
+	border: 1px #FF3030 solid;	
+}

@@ -28,8 +28,11 @@
 
 <!-- Shown in the About dialog -->
 <copyrightholder>Contributors</copyrightholder>
-<copyrightyear>2001-2011</copyrightyear>
+<copyrightyear>2001-2021</copyrightyear>
 <softwareurl>http://pandion.im/</softwareurl>
+<contributortext>Contributor:</contributortext>
+<contributorname>Maico Tamanho</contributorname>
+<contributormail>maicotamanho@hotmail.com</contributormail>
 <licensename>GNU General Public License 3 or later</licensename>
 <licenseurl>http://www.gnu.org/licenses/gpl-3.0.html</licenseurl>
 <termsandcontitionsurl>http://pandion.im/about</termsandcontitionsurl>

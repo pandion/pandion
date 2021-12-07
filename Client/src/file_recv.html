@@ -139,7 +139,7 @@ function acceptfile ()
 		}
 	}
 	external.HTTPEngine.subscribe( external.wnd );
-	external.HTTPEngine.SetProxyInfo( '', 0, '', '' );
+	//external.HTTPEngine.SetProxyInfo( '', 0, '', '' );
 	gSession = external.HTTPEngine.Get( gTempFile, gPath, offset, 0xFFFFFFFF - offset, gHost, gPort );
 	if ( ! gSession )
 	{

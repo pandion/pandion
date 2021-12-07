@@ -15,7 +15,10 @@ window.attachEvent("onload", function () {
 	document.getElementById("software-number").innerText = external.globals("softwareversion");
 	document.getElementById("software-track").innerText = external.globals("Translator").Translate("main", "track-" + external.globals("softwaretrack"));
 	client.css.addClass(document.getElementById("software-track"), external.globals("softwaretrack"));
-	document.getElementById("software-link").innerText = document.getElementById("software-link").href = external.globals("softwareurl");
+	//document.getElementById("software-link").innerText = document.getElementById("software-link").href = external.globals("softwareurl");
+	document.getElementById("contributor-name").innerText = external.globals("contributorname");
+	document.getElementById("contributor-mail").innerText = external.globals("contributormail");
+	document.getElementById("contributor-mail").href = 'mailto:' + external.globals("contributormail");
 
 	document.getElementById("content").attachEvent("onsubmit", function () {
 		event.returnValue = false;

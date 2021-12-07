@@ -13,7 +13,9 @@ function dial_groupmessage ( name )
 			setIcon( external.globals( 'cwd' ) + '..\\images\\chat-container\\bubble.ico' );
 			resizeable( false );
 			MinHeight = MinWidth = 0;
-			setSize( 550, 400 );
-			setPos( ( screen.availWidth - 450 ) / 2, ( screen.availHeight - 300 ) / 2 );
+			var winHeight = 410;
+			var winWidth = 700;
+			setSize( winWidth, winHeight );
+			setPos( ( screen.availWidth - winWidth ) / 2, ( screen.availHeight - winHeight ) / 2 );
 		}
 }

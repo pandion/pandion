@@ -4,6 +4,7 @@
 <META HTTP-EQUIV="MSThemeCompatible" CONTENT="Yes">
 <LINK rel="stylesheet" type="text/css" href="../css/main.css"></LINK>
 <LINK rel="stylesheet" type="text/css" href="../css/roster.css"></LINK>
+<LINK id="theme" rel="stylesheet" type="text/css" href=""></LINK>
 
 <script type="text/javascript" src="../js/lib/json2.js"></script>
 <script type="text/javascript" src="../js/lib/client.js"></script>
@@ -15,12 +16,15 @@
 <script type="text/javascript" src="../js/lib/client/ui/idle/sensor/mouseMovement.js"></script>
 <script type="text/javascript" src="../js/lib/client/ui/idle/sensor/screenSaver.js"></script>
 <script type="text/javascript" src="../js/lib/client/ui/idle/sensor/workstationLock.js"></script>
+<script type="text/javascript" src="../js/lib/client/os/launchInBrowser.js"></script>
 <script type="text/javascript" src="main/idle.js"></script>
 
+<SCRIPT src="main/DrawModeMessage.js"></SCRIPT>
 <SCRIPT src="main/warn.js"></SCRIPT>
 <SCRIPT src="main/file2hash.js"></SCRIPT>
 <SCRIPT src="main/hash2file.js"></SCRIPT>
 <SCRIPT src="main/init.js"></SCRIPT>
+<SCRIPT src="main/Themes.js"></SCRIPT>
 <SCRIPT src="main/login.js"></SCRIPT>
 <SCRIPT src="main/outnit.js"></SCRIPT>
 <SCRIPT src="main/handle_keyboard.js"></SCRIPT>
@@ -136,14 +140,14 @@
 				<TR valign=top height=42>
 					<TD id=mode-bar
 						onclick="dial_mode()"
-						onmouseover="document.getElementById( 'mode-name' ).style.color = '#312505'; document.getElementById( 'mode-message' ).style.color = '#040E14';"
+						onmouseover="document.getElementById( 'mode-name' ).style.color = external.globals( 'ColorModeName' ); document.getElementById( 'mode-message' ).style.color = external.globals( 'ColorModeName' );"
 						onmouseout="document.getElementById( 'mode-name' ).style.color = ''; document.getElementById( 'mode-message' ).style.color = '';"
 					>
 						<DIV class=mode-frame-left>
 						<DIV class=mode-frame-right>
 							<IMG
 								id=mode-avatar
-								onmouseover="this.style.borderColor = '#0570ad';"
+								onmouseover="this.style.borderColor = external.globals( 'ColorRosterGroupHeader' );"
 								onmouseout="this.style.borderColor = 'transparent';"
 								onclick="dial_avatar_pick(); event.cancelBubble = true;"
 							/>
@@ -151,7 +155,10 @@
 								<SPAN id=mode-name></SPAN>
 								<IMG id=mode-secure width=16 height=16 src="../images/misc/lock-closed.png" align=top>
 							</NOBR>
-							<NOBR id=mode-message></NOBR>
+							<NOBR id=mode-bottom>
+ 								<SPAN id=mode-status></SPAN>
+								<SPAN id=mode-message></SPAN>
+							</NOBR>
 						</DIV>
 						</DIV>
 					</TD>

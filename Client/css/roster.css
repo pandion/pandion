@@ -3,7 +3,7 @@
 .roster-group-header {
 	margin-top: 4px;
 	margin-bottom: 4px;
-	font-family: Arial;
+	font-family: "Segoe UI", Tahoma;
 	font-size: 14px;
 	font-weight: bold;
 	color: #57a6d3;
@@ -23,7 +23,7 @@
 	display: block;
 	font-style: italic;
 	padding-bottom: 5px;
-	font-family: Arial;
+	font-family: "Segoe UI", Tahoma;
 	font-size: 10px;
 	color: #b3b5b6;
 }
@@ -43,7 +43,7 @@
 	color: #333536;
 }
 .roster-item-offline-msg {
-	font-family: Arial;
+	font-family: "Segoe UI", Tahoma;
 	font-size: 10px;
 	color: #b3b5b6;
 }
@@ -68,7 +68,7 @@
 	color: #333536;
 }
 .roster-resource-msg {
-	font-family: Arial;
+	font-family:"Segoe UI", Tahoma;
 	font-size: 10px;
 	color: #b3b5b6;
 }
@@ -79,12 +79,12 @@
 .roster-resource-busy {
 	font-family: "Segoe UI", Tahoma;
 	font-size: 10px;
-	color: #f84a21;
+	color: #FF3030;
 }
 .roster-resource-away {
 	font-family: "Segoe UI", Tahoma;
 	font-size: 10px;
-	color: #427fd1;
+	color: #1A7AB0;
 }
 
 /* RTL */

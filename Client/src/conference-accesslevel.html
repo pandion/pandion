@@ -58,7 +58,7 @@ function Refresh ()
 	if ( Occupant.Avatar.length )
 		document.getElementById( 'avatar' ).src = external.globals( 'usersdir' ) + 'Avatars\\' + Occupant.Avatar;
 	else
-		document.getElementById( 'avatar' ).src = '..\\images\\clients\\unknown-soldier.gif';
+		document.getElementById( 'avatar' ).src = '..\\images\\clients\\unknown-soldier.png';
 
 	var LocalOccupant		= Occupant.Tracker.Occupants( Occupant.Tracker.Address.Resource );
 	var LocalOwner			= LocalOccupant && LocalOccupant.Affiliation == 'owner';

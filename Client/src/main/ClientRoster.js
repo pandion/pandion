@@ -131,7 +131,90 @@ function ClientRosterAvatarDirect ( iq )
 				RosterResource.LoadingAvatarHash = '';
 			}
 		}
+	} else if ( iq.Namespace == 'jabber:iq:avatar' && iq.Type == 'error' ) 
+	{
+		LoadAvatarFromVersion ( iq );
+		/*try
+		{
+			var ShortAddress = iq.FromAddress.ShortAddress();
+			var RosterItem = external.globals( 'ClientRoster' ).Items.Item( ShortAddress );
+			var RosterResource = RosterItem.Resources.Item( iq.FromAddress.Resource );
+			var hook		= new XMPPHookIQ();
+			hook.Window		= external.wnd;
+			hook.Callback	= 'ClientRosterAvatarPubsub';
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			dom.loadXML( '<iq type="get"><pubsub xmlns="http://jabber.org/protocol/pubsub"><items node="urn:xmpp:avatar:data"></items></pubsub></iq>' );
+			dom.documentElement.setAttribute( 'id', hook.Id );
+			dom.documentElement.setAttribute( 'to', ShortAddress );
+			warn( 'SENT: ' + dom.xml );
+			external.XMPP.SendXML( dom );
+			RosterResource.LoadingAvatarId = '';
+		} catch (ex) { } */
 	}
+}
+
+/* Load from version
+*/
+function LoadAvatarFromVersion ( iq ) {
+	try 
+	{
+		var ShortAddress = iq.FromAddress.ShortAddress();
+		if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) )
+		{
+			var RosterItem = external.globals( 'ClientRoster' ).Items.Item( ShortAddress );
+			var Resources = ( new VBArray( RosterItem.Resources.Keys() ) ).toArray();
+			
+			for ( var i = 0; i < Resources.length; ++i )
+			{
+				var RosterResource = RosterItem.Resources.Item( Resources[i] );
+				RosterItem.LoadingVersion	= true;
+				var hook					= new XMPPHookIQ();
+				hook.Window					= external.wnd;
+				hook.Callback				= 'ClientRosterVersion';
+				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+				dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:version"/></iq>' );
+				dom.documentElement.setAttribute( 'id', hook.Id );
+				dom.documentElement.setAttribute( 'to', ShortAddress + '/' + Resources[i] );
+				warn( 'SENT: ' + dom.xml );
+				external.XMPP.SendXML( dom );
+			}
+		}
+	}
+	catch (ex) {}
+}
+
+/* Get avatar from others
+*/
+function ClientRosterAvatarPubsub ( iq )
+{
+	if ( iq.Namespace == 'http://jabber.org/protocol/pubsub' && iq.Type == 'result' )
+	{
+		var ShortAddress = iq.FromAddress.ShortAddress();
+		if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) )
+		{
+			var RosterItem = external.globals( 'ClientRoster' ).Items.Item( ShortAddress );
+			var Resources = ( new VBArray( RosterItem.Resources.Keys() ) ).toArray();
+			for ( var i = 0; i < Resources.length; ++i )
+			{
+				var RosterResource = RosterItem.Resources.Item( Resources[i] );
+				if ( RosterResource.LoadingAvatarHash.length == 40 && ! external.FileExists( external.globals( 'usersdir' ) + 'Avatars\\' + RosterResource.LoadingAvatarHash ) )
+				{
+					if ( iq.XMLDOM.selectSingleNode( '/iq/pubsub/items/item/data' ) ) {
+						external.File( external.globals( 'usersdir' ) + 'Avatars\\' + RosterResource.LoadingAvatarHash ).WriteBase64( iq.XMLDOM.selectSingleNode( '/iq/pubsub/items/item/data' ).text );
+						RosterResource.Avatar = RosterResource.LoadingAvatarHash;
+						for ( var i = 0; i < RosterItem.Groups.length; ++i )
+							RosterResource.Redraw( RosterItem.Roster.Groups.Item( RosterItem.Groups[i] ) );
+						RosterItem.UpdateTracker();
+					} 
+					else 
+					{
+						LoadAvatarFromVersion ( iq );
+					}
+				}
+				RosterResource.LoadingAvatarHash = '';
+			}
+		}
+	} 
 }
 
 /* Enter new name in roster if previously it had only the address
@@ -304,6 +387,8 @@ function ClientRoster ()
 	AvatarMap.Add( 'hapi',				'hapi'			);
 	AvatarMap.Add( 'home',				'house'			);
 	AvatarMap.Add( 'ichat',				'mac'			);
+	AvatarMap.Add( 'imagent',			'mac'			);
+	AvatarMap.Add( 'astrachat',			'astrachat'		);
 	AvatarMap.Add( 'imcom',				'console'		);
 	AvatarMap.Add( 'imendio',			'gnome'			);
 	AvatarMap.Add( 'imov',				'imov'			);
@@ -317,6 +402,7 @@ function ClientRoster ()
 	AvatarMap.Add( 'jabbix',			'jabbix'		);
 	AvatarMap.Add( 'jarl',				'jarl'			);
 	AvatarMap.Add( 'jajc',				'jajc'			);
+	AvatarMap.Add( 'jitsi',				'jitsi'			);
 	AvatarMap.Add( 'jbother',			'jbother'		);
 	AvatarMap.Add( 'just another',		'jajc'			);
 	AvatarMap.Add( 'jwchat',			'jwchat'		);
@@ -325,6 +411,7 @@ function ClientRoster ()
 	AvatarMap.Add( 'laptop',			'laptop'		);
 	AvatarMap.Add( 'libgaim',			'gaim'			);
 	AvatarMap.Add( 'miranda',			'miranda'		);
+	AvatarMap.Add( 'monal',				'monal'			);
 	AvatarMap.Add( 'myjab',				'myjabber'		);
 	AvatarMap.Add( 'mobile',			'sms'			);
 	AvatarMap.Add( 'mcenter',			'neosmt'		);
@@ -1033,14 +1120,14 @@ function ClientRosterGroup ( roster, name )
 				if ( external.globals( 'ClientRoster' ).Search.Query.length )
 					return;
 
-				event.srcElement.style.color = '#0570AD';
+				event.srcElement.style.color = external.globals( 'ColorRosterGroupHeader' );
 			}
 		);
 		this.HTMLHeader.attachEvent(
 			'onmouseout',
 			function ()
 			{
-				event.srcElement.style.color = '#57A6D3';
+				event.srcElement.style.color = '';
 			}
 		);
 		this.HTMLHeader.GroupName = this.Name;
@@ -1446,7 +1533,6 @@ function ClientRosterItem ( roster, jid )
 	this.Groups			= new Array();
 	this.Roster			= roster;
 	this.Status			= '';
-	this.Address		= new XMPPAddress( jid );
 	this.Resources		= new ActiveXObject( 'Scripting.Dictionary' );
 	this.HTMLElements	= new ActiveXObject( 'Scripting.Dictionary' );
 	this.Subscription	= '';
@@ -1468,8 +1554,10 @@ function ClientRosterItem ( roster, jid )
 	 */
 	function UpdateTracker ()
 	{
-		if ( external.globals( 'ChatSessionPool' ).GetTracker( this.Address ) )
+		if ( external.globals( 'ChatSessionPool' ).GetTracker( this.Address ) ) {
 			external.globals( 'ChatSessionPool' ).GetTracker( this.Address ).DrawContainerInfo();
+			external.globals( 'ChatSessionPool' ).GetTracker( this.Address ).DiscoInfo();
+		}
 	}
 
 	/* Redraws the item/resources in all groups
@@ -1672,6 +1760,7 @@ function ClientRosterItem ( roster, jid )
 			userresource.Status		= presence.Status.replace( /[\n\r]+/mg, ' - ' );
 			userresource.Show		= presence.Show;
 			userresource.Priority	= presence.Priority;
+			userresource.Attention	= false;
 
 			if ( ! presence.Status.length || ( userresource.Show == 'away' && userresource.Status.toLowerCase() == 'away' ) || ( userresource.Show == 'dnd' && userresource.Status.toLowerCase() == 'busy' ) )
 				userresource.Status = external.globals( 'Translator' ).Translate( 'main', 'cl_status_empty' );
@@ -1992,7 +2081,7 @@ function ClientRosterResource ( item, name )
 			img.className = 'roster-resource-avatar';
 			img.align = external.globals( 'Translator' ).Direction ? 'right' : 'left';
 			if ( this.Avatar.length == 0 )
-				img.src = '..\\images\\clients\\unknown-soldier.gif';
+				img.src = '..\\images\\clients\\unknown-soldier.png';
 			else if ( this.Avatar.length == 40 )
 				img.src = external.globals( 'usersdir' ) + 'Avatars\\' + this.Avatar;
 			else if ( external.globals( 'cfg' ).Item( 'contactlistdisplay' ) == 'compact' && external.FileExists( external.globals( 'cwd' ) + '..\\images\\clients\\small\\' + this.Avatar ) )
@@ -2014,58 +2103,8 @@ function ClientRosterResource ( item, name )
 
 			item(3).className = 'roster-resource-msg';
 			item(3).innerText = '';
-			if ( this.Status.indexOf( 'http://' ) > -1 )
-			{
-				var offset = 0;
-				var foundAt = 0;
-				while ( ( foundAt = this.Status.indexOf( 'http://', offset ) ) > -1 )
-				{
-					if ( offset < foundAt )
-						item(3).insertAdjacentText( 'beforeEnd', this.Status.substring( offset, foundAt ) );
-					offset = this.Status.indexOf( ' ', foundAt + 7 );
-					if ( offset < 0 )
-						offset = this.Status.length;
-					var link = document.createElement( 'A' );
-					link.className = 'roster-resource-link';
-					link.href = link.innerText = this.Status.substring( foundAt, offset );
-					link.attachEvent(
-						'onclick',
-						function ()
-						{
-							dial_webbrowser( event.srcElement.href );
-							event.returnValue = false;
-							event.cancelBubble = true;
-						}
-					);
-					link.attachEvent(
-						'oncontextmenu',
-						function ()
-						{
-							event.returnValue = false;
-							event.cancelBubble = true;
-							var Menu = external.newPopupMenu;
-							Menu.AddItem( true, false, false, true, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_open' ), 1 );
-							Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_copy' ), 2 );
-							Menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
-							switch ( Menu.Choice )
-							{
-								case 1:
-									dial_webbrowser( event.srcElement.href );
-								break;
-								case 2:
-									window.clipboardData.setData( 'Text', event.srcElement.href );
-								break;
-							}
-						}
-					);
-					item(3).insertAdjacentElement( 'beforeEnd', link );
-				}
-				if ( offset < this.Status.length - 1 )
-					item(3).insertAdjacentText( 'beforeEnd', this.Status.substr( offset ) );
-				item(3).insertAdjacentText( 'beforeEnd', '\n' );
-			}
-			else
-				item(3).innerText = this.Status + '\n';
+			
+			DrawModeMessage ( item(3) ,  this.Status, 'roster-resource-link' );
 
 			item(3).style.display = external.globals( 'cfg' ).Item( 'contactlistdisplay' ) == 'detailed' ? '' : 'none';
 		}
@@ -2171,7 +2210,7 @@ function ClientRosterResource ( item, name )
 		img.className = 'roster-resource-avatar';
 		img.align = external.globals( 'Translator' ).Direction ? 'right' : 'left';
 		if ( this.Avatar.length == 0 )
-			img.src = '..\\images\\clients\\unknown-soldier.gif';
+			img.src = '..\\images\\clients\\unknown-soldier.png';
 		else if ( this.Avatar.length == 40 )
 			img.src = external.globals( 'usersdir' ) + 'Avatars\\' + this.Avatar;
 		else if ( external.globals( 'cfg' ).Item( 'contactlistdisplay' ) == 'compact' && external.FileExists( external.globals( 'cwd' ) + '..\\images\\clients\\small\\' + this.Avatar ) )
@@ -2195,59 +2234,9 @@ function ClientRosterResource ( item, name )
 		}
 		var msg = document.createElement( 'SPAN' );
 		msg.className = 'roster-resource-msg';
-		if ( this.Status.indexOf( 'http://' ) > -1 )
-		{
-			var offset = 0;
-			var foundAt = 0;
-			while ( ( foundAt = this.Status.indexOf( 'http://', offset ) ) > -1 )
-			{
-				if ( offset < foundAt )
-					msg.insertAdjacentText( 'beforeEnd', this.Status.substring( offset, foundAt ) );
-				offset = this.Status.indexOf( ' ', foundAt + 7 );
-				if ( offset < 0 )
-					offset = this.Status.length;
-				var link = document.createElement( 'A' );
-				link.className = 'roster-resource-link';
-				link.href = link.innerText = this.Status.substring( foundAt, offset );
-				link.attachEvent(
-					'onclick',
-					function ()
-					{
-						dial_webbrowser( event.srcElement.href );
-						event.returnValue = false;
-						event.cancelBubble = true;
-					}
-				);
-				link.attachEvent(
-					'oncontextmenu',
-					function ()
-					{
-						event.returnValue = false;
-						event.cancelBubble = true;
-						var Menu = external.newPopupMenu;
-						Menu.AddItem( true, false, false, true, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_open' ), 1 );
-						Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_copy' ), 2 );
-						Menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
-						switch ( Menu.Choice )
-						{
-							case 1:
-								dial_webbrowser( event.srcElement.href );
-							break;
-							case 2:
-								window.clipboardData.setData( 'Text', event.srcElement.href );
-							break;
-						}
-					}
-				);
-				msg.insertAdjacentElement( 'beforeEnd', link );
-			}
-			if ( offset < this.Status.length - 1 )
-				msg.insertAdjacentText( 'beforeEnd', this.Status.substr( offset ) );
-			msg.insertAdjacentText( 'beforeEnd', '\n' );
-		}
-		else
-			msg.innerText = this.Status + '\n';
-
+		
+		DrawModeMessage ( msg, this.Status , 'roster-resource-link' );
+		
 		msg.style.display = external.globals( 'cfg' ).Item( 'contactlistdisplay' ) == 'detailed' ? '' : 'none';
 		elem.title = this.ResourceName.length ? external.globals( 'Translator' ).Translate( 'main', 'cl_tooltip_online', [ this.RosterItem.Address.CleanAddress(), this.ResourceName ] ) : external.globals( 'Translator' ).Translate( 'main', 'cl_tooltip_offline', [ this.RosterItem.Address.CleanAddress() ] );
 		if ( this.Status.length )

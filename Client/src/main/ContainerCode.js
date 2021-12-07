@@ -1,64 +1,3 @@
-/* Filter the status message for hyperlinks
- */
-function DrawModeMessage ( HTMLElement, Status, ClassName )
-{
-	HTMLElement.innerText = '';
-	if ( Status.indexOf( 'http://' ) > -1 )
-	{
-		var Offset	= 0;
-		var FoundAt	= 0;
-		while ( ( FoundAt = Status.indexOf( 'http://', Offset ) ) > -1 )
-		{
-			if ( Offset < FoundAt )
-				HTMLElement.insertAdjacentText( 'beforeEnd', Status.substring( Offset, FoundAt ) );
-			Offset = Status.indexOf( ' ', FoundAt + 7 );
-			if ( Offset < 0 )
-				Offset = Status.length;
-			var Hyperlink		= document.createElement( 'A' );
-			Hyperlink.className	= ClassName;
-			Hyperlink.href		= Hyperlink.innerText = Status.substring( FoundAt, Offset );
-			Hyperlink.attachEvent(
-				'onclick',
-				function ()
-				{
-					external.windows( 'MainWindow' ).Do( 'dial_webbrowser', event.srcElement.href );
-					event.returnValue	= false;
-					event.cancelBubble	= true;
-				}
-			);
-			Hyperlink.attachEvent(
-				'onmouseup',
-				function ()
-				{
-					event.returnValue	= false;
-					event.cancelBubble	= true;
-					if ( event.button != 2 )
-						return true;
-					var Menu = external.newPopupMenu;
-					Menu.AddItem( true, false, false, true, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_open' ), 1 );
-					Menu.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'cl_link_copy' ), 2 );
-					Menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
-					switch ( Menu.Choice )
-					{
-						case 1:
-							external.windows( 'MainWindow' ).Do( 'dial_webbrowser', event.srcElement.href );
-						break;
-						case 2:
-							window.clipboardData.setData( 'Text', event.srcElement.href );
-						break;
-					}
-				}
-			);
-			HTMLElement.insertAdjacentElement( 'beforeEnd', Hyperlink );
-		}
-		if ( Offset < Status.length - 1 )
-			HTMLElement.insertAdjacentText( 'beforeEnd', Status.substr( Offset ) );
-		HTMLElement.insertAdjacentText( 'beforeEnd', '\n' );
-	}
-	else
-		HTMLElement.innerText = Status + '\n';
-}
-
 /* Flash the icon in the tab button
  */
 function FlashTab ( Address, Times )
@@ -74,7 +13,8 @@ function FlashTab ( Address, Times )
 		}
 		else if ( Times != 0 )
 		{
-			Times--;
+			if ( external.globals( 'cfg' )('flashingavatar' ) == false ) 
+				Times--;
 			Tracker.IsFlashing = true;
 			Tracker.HTMLButton.children.item(1).style.fontStyle = 'italic';
 			Name.visibility = Name.visibility == 'hidden' ? 'visible' : 'hidden';
@@ -226,7 +166,7 @@ function ChooseEmoticons ()
 					event.cancelBubble = true;
 					external.globals( 'cfg' ).Item( 'emoticonviewall' ) = ! ( external.globals( 'cfg' ).Item( 'emoticonviewall' ).toString() == 'true' );
 					Popup.hide();
-					window.parent.document.getElementById( 'btn-emoticons' ).click();
+					document.getElementById( 'btn-emoticons' ).click();
 				}
 			);
 			with ( Expand.style )
@@ -262,8 +202,8 @@ function ChooseEmoticons ()
 				external.windows( 'MainWindow' ).Do( 'dial_emoticon_list', null );
 				Popup.hide();
 				Popup.document.body.innerHTML = '';
-				if ( ! window.parent.document.getElementById( 'send-text' ).disabled )
-					window.parent.document.getElementById( 'send-text' ).focus();
+				if ( ! document.getElementById( 'send-text' ).disabled )
+				  document.getElementById( 'send-text' ).focus();
 			}
 		);
 		with ( Browse.style )
@@ -296,9 +236,9 @@ function ChooseEmoticons ()
 			function ( event )
 			{
 				if ( event.srcElement.tagName == 'DIV' )
-					window.parent.document.getElementById( 'send-text' ).value += event.srcElement.title;
-				if ( ! window.parent.document.getElementById( 'send-text' ).disabled )
-					window.parent.document.getElementById( 'send-text' ).focus();
+					document.getElementById( 'send-text' ).value += event.srcElement.title;
+				if ( ! document.getElementById( 'send-text' ).disabled )
+					document.getElementById( 'send-text' ).focus();
 				Popup.hide();
 				Popup.document.body.innerHTML = '';
 			}
@@ -514,8 +454,8 @@ function ChooseBackground ()
 						document.frames( 'iframe-' + ShortAddress ).SessionTracker = Tracker;
 					}
 				}
-				if ( ! window.parent.document.getElementById( 'send-text' ).disabled )
-					window.parent.document.getElementById( 'send-text' ).focus();
+				if ( ! document.getElementById( 'send-text' ).disabled )
+					document.getElementById( 'send-text' ).focus();
 				Popup.hide();
 			}
 		);
@@ -643,8 +583,7 @@ function Keyboard ( EventData )
 	 */
 	else if ( k == 84 && Function & 0x02 && Function & 0x04 )
 	{
-		if ( gContainer.SessionPool.RecentTrackers.length )
-			external.wnd.params[0].dial_chat( gContainer.SessionPool.RecentTrackers.pop() );
+		UndoClosingLastTab();
 	}
 
 	/* Open a new tab
@@ -676,7 +615,7 @@ function Keyboard ( EventData )
 	 */
 	else if ( ( ! Function || Function == 0x04 ) && k != 9 && k != 32 )
 	{
-		if ( EventData.srcElement.id != 'send-text' && ! document.getElementById( 'send-text' ).disabled )
+		if ( EventData.srcElement.id != 'send-text' && ! document.getElementById( 'send-text' ).disabled && EventData.srcElement.id != 'new-tab-address' )
 		{
 			document.getElementById( 'send-text' ).focus();
 			document.getElementById( 'send-text' ).value = document.getElementById( 'send-text' ).value;
@@ -761,7 +700,7 @@ function ResizePosition ()
 	{
 		var InputRow = document.getElementById( 'send-text' ).parentNode.parentNode;
 		var TabbarRow = document.getElementById( 'tab-bar-row' );
-		var InputBottomY = external.wnd.top + external.wnd.height - TabbarRow.height + 8;
+		var InputBottomY = external.wnd.top + external.wnd.height - ( TabbarRow.height + 8 ) ;
 		var MaxHeight = InputBottomY - ( external.wnd.top + 200 );
 		external.globals( 'cfg' ).Item( 'textinputheight' ) = Math.max( 60, Math.min( MaxHeight, InputBottomY - external.cursorY ) );
 		InputRow.height = external.globals( 'cfg' ).Item( 'textinputheight' );
@@ -812,5 +751,26 @@ function ToolbarButtonMouseOut ( Button )
  */
 function DisableButton ()
 {
-	document.getElementById( 'btn-send' ).disabled = ( /^\s*$/ ).test( document.getElementById( 'send-text' ).value );
+	var btnsend = document.getElementById( 'btn-send' );
+	var btnattention = document.getElementById( 'btn-get-attention' );
+	var txtattention = document.getElementById( 'txt-get-attention' );
+	
+	btnsend.disabled = ( /^\s*$/ ).test( document.getElementById( 'send-text' ).value );
+
+	if ( btnattention )
+	{
+		if ( ! btnattention.disabled ) {
+		
+			if ( ! ( /^\s*$/ ).test( document.getElementById( 'send-text' ).value ) )
+			{
+				txtattention.className = 'enabled-message';
+				btnattention.title = external.globals( 'Translator' ).Translate( 'chat-container', 'attention-message' );
+			}
+			else
+			{			
+				txtattention.className = 'enabled';
+				btnattention.title = external.globals( 'Translator' ).Translate( 'chat-container', 'attention-enabled' );
+			}
+		}
+	}
 }

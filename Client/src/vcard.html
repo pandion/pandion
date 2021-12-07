@@ -211,11 +211,13 @@ function version_show ( iq )
 		document.getElementById( 'version' ).value = Node.text;
 	if ( Node = iq.XMLDOM.selectSingleNode( '/iq/query/os' ) )
 		document.getElementById( 'os' ).value = Node.text;
+	if ( Node = iq.XMLDOM.selectSingleNode( '/iq/query/hostname' ) )
+		document.getElementById( 'hostname' ).value = Node.text;
 }
 
 function clearall ()
 {
-	var list = new Array( 'given', 'middle', 'family', 'nickname', 'url', 'bday', 'age', 'gender', 'maritalstatus', 'orgname', 'orgunit', 'workcell', 'homecell', 'title', 'role', 'homeextadd', 'homestreet', 'homelocality', 'homeregion', 'homepcode', 'homecountry', 'workextadd', 'workstreet', 'worklocality', 'workregion', 'workpcode', 'workcountry', 'homevoice', 'homefax', 'workvoice', 'workfax', 'email1', 'email2', 'name', 'version', 'os', 'time' );
+	var list = new Array( 'given', 'middle', 'family', 'nickname', 'url', 'bday', 'age', 'gender', 'maritalstatus', 'orgname', 'orgunit', 'workcell', 'homecell', 'title', 'role', 'homeextadd', 'homestreet', 'homelocality', 'homeregion', 'homepcode', 'homecountry', 'workextadd', 'workstreet', 'worklocality', 'workregion', 'workpcode', 'workcountry', 'homevoice', 'homefax', 'workvoice', 'workfax', 'email1', 'email2', 'name', 'version', 'os', 'hostname', 'time' );
 	for ( var i = 0; i < list.length; i++ )
 		document.getElementById( list[i] ).value = '';
 }
@@ -412,6 +414,7 @@ function save ()
 <TR><TD id=txt_software></TD><TD><INPUT type=text readonly class=text id=name></TD></TR>
 <TR><TD id=txt_version></TD><TD><INPUT type=text readonly class=text id=version></TD></TR>
 <TR><TD id=txt_os></TD><TD><INPUT type=text readonly class=text id=os></TD></TR>
+<TR><TD id=txt_hostname></TD><TD><INPUT type=text readonly class=text id=hostname></TD></TR>
 </TABLE>
 </FIELDSET>
 

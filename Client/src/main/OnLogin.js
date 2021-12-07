@@ -533,4 +533,34 @@ function OnLoginRoster ( iq )
 					dial_conference( Address, Password );
 			}
 	}
+	
+	/* Load Open Trackers*/
+	LoadOpenTrackers( );
 }
+
+/** Load Open Trackers
+*/
+function LoadOpenTrackers( ) {
+
+	try
+	{
+		var file = file2hash ( external.globals( 'OpenTrackersFile' ) );
+		if ( file )
+		{
+			var trackers = file('opentrackers').split( '\n' );
+
+			setTimeout( function()
+										{
+											for ( var i = 0; i < trackers.length; i++ ) 
+											{
+												if (trackers[i] !== "" ) 
+												{
+													var contact = new XMPPAddress( trackers[i] );
+													dial_chat( contact );
+												}
+											}
+										},1500);
+		}
+	} catch (ex) {}
+}
+

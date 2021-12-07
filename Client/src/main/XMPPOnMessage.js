@@ -133,7 +133,62 @@ function XMPPOnMessage ( ReceivedXML )
 		if ( 6 == external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'main', 'conference_invitation', [ FromName, Message.ConferenceInvitation ] ), external.globals( 'softwarename' ), 4 | 48 ) )
 			dial_conference( Message.ConferenceInvitation );
 	}
+	
+	/* Message Attention
+	*/			
+	else if ( Message.Type == 'headline' && Message.Attention == 'urn:xmpp:attention:0' ) 
+	{
+		Message.Body = (Message.Body.length ? Message.Body : external.globals( 'Translator' ).Translate( 'chat-container', 'receive_attention' ));
+		var Host							= Message.FromAddress.Host;
+		var Resource					= Message.FromAddress.Resource;
+		var Toaster 					= new Headline();
+		Toaster.Message				= Message.Body;
+		Toaster.Address				= Message.FromAddress;
+		Toaster.ShowPreferences		= true;
+		Toaster.PreferenceSection	= 'privacy';
+		Toaster.OpenConversation 	= Message.FromAddress;
+		Toaster.CloseOnOptions     = false;
+		Toaster.AutoClose				= false;
+		Toaster.Archive				= false;
+		Toaster.HtmlFile				= 'attention.html'
+		
+		if ( external.globals( 'ClientRoster' ).Items.Exists( ShortAddress ) )
+		{
+			Toaster.Title = external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Name;
 
+			if ( external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Resources.Exists( Resource ) )
+				Toaster.Icon = external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Resources.Item( Resource ).Avatar;
+			else
+				Toaster.Icon = 'unknown-soldier.png';
+		}
+		else
+		{
+			Toaster.Icon = external.globals( 'ClientRoster' ).GetAvatar( Resource.toLowerCase(), ShortAddress );
+			if ( ! Toaster.Icon.length )
+				Toaster.Icon = 'unknown-soldier.png';
+
+			if ( external.globals( 'ClientServices' ).Services.Exists( Host ) && external.globals( 'ClientServices' ).Services.Item( Host ).Options & 0x0001 )
+				Toaster.Title = external.globals( 'ClientServices' ).Services.Item( Host ).Name;
+			if ( ! Toaster.Title.length )
+				Toaster.Title = ShortAddress;
+		}
+		
+		Toaster.Show();
+		
+		history_add( ShortAddress, Message.Stamp, Message.Body, true );
+		var Event = new ChatSessionEvent();
+		Event.Type = 'message';
+		Event.Address = Message.FromAddress;
+		Event.Payload = Message;
+		external.globals( 'ChatSessionPool' ).AddEvent( Event );
+		
+		setTimeout 	(function()	{
+											dial_chat( ShortAddress );
+										}
+						, 2000 
+						);
+	}
+	
 	/* Toast it!
 	 */
 	else if ( Message.Type == 'headline' && ( Message.Body.length || Message.Subject.length ) )
@@ -156,13 +211,13 @@ function XMPPOnMessage ( ReceivedXML )
 			if ( external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Resources.Exists( Resource ) )
 				Toaster.Icon = external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Resources.Item( Resource ).Avatar;
 			else
-				Toaster.Icon = 'unknown-soldier.gif';
+				Toaster.Icon = 'unknown-soldier.png';
 		}
 		else
 		{
 			Toaster.Icon = external.globals( 'ClientRoster' ).GetAvatar( Resource.toLowerCase(), ShortAddress );
 			if ( ! Toaster.Icon.length )
-				Toaster.Icon = 'unknown-soldier.gif';
+				Toaster.Icon = 'unknown-soldier.png';
 
 			if ( external.globals( 'ClientServices' ).Services.Exists( Host ) && external.globals( 'ClientServices' ).Services.Item( Host ).Options & 0x0001 )
 				Toaster.Title = external.globals( 'ClientServices' ).Services.Item( Host ).Name;
@@ -211,13 +266,13 @@ function XMPPOnMessage ( ReceivedXML )
 			if ( external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Resources.Exists( Resource ) )
 				Icon = external.globals( 'ClientRoster' ).Items.Item( ShortAddress ).Resources.Item( Resource ).Avatar;
 			else
-				Icon = 'unknown-soldier.gif';
+				Icon = 'unknown-soldier.png';
 		}
 		else
 		{
 			Icon = external.globals( 'ClientRoster' ).GetAvatar( Resource.toLowerCase(), ShortAddress );
 			if ( ! Icon.length )
-				Icon = 'unknown-soldier.gif';
+				Icon = 'unknown-soldier.png';
 
 			if ( external.globals( 'ClientServices' ).Services.Exists( Host ) && external.globals( 'ClientServices' ).Services.Item( Host ).Options & 0x0001 )
 				Title = external.globals( 'ClientServices' ).Services.Item( Host ).Name;

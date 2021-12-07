@@ -188,7 +188,7 @@ window.attachEvent("onload", function () {
 
 	if (external.wnd.params.selectVersion) {
 		/* Load list of latest updates */
-		document.getElementById("tracks-version-number").innerText = external.globals("softwareversion");
+		document.getElementById("tracks-version-number").innerText = external.globals("softwareversion") + " ";
 		document.getElementById("tracks-version-track").innerText = external.globals("Translator").Translate("main", "track-" + external.globals("softwaretrack"));
 		client.css.addClass(document.getElementById("tracks-version-track"), external.globals("softwareversion"));
 		client.css.hide(document.getElementById("download-progress"));

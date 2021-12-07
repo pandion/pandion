@@ -41,7 +41,7 @@ a:hover {
 	background: transparent url(../images/about/logo.png) no-repeat top right;
 }
 #software-name {
-	margin: 20px 0 0.25em 20px;
+	margin: 10px 0 0.25em 20px;
 	font-weight: normal;
 	font-size: 3em;
 }
@@ -50,6 +50,16 @@ a:hover {
 	font-weight: normal;
 	font-size: 1em;
 	color: #333;
+}
+#contributor {
+	margin: 15px 0 0 20px;
+	font-weight: normal;
+	font-size: 1em;
+	color: #333;
+}
+#contributor-name {
+	=margin: 0 0 0 0.25em; /* ie6/ie7 */
+	font-weight: bold;
 }
 #software-track {
 	=margin: 0 0 0 0.25em; /* ie6/ie7 */
@@ -60,13 +70,16 @@ a:hover {
 }
 
 /* Copyright information */
-#legal-notice {
+#sub-info {
 	position: absolute;
 	top: 120px;
-	height: 146px;
-	padding: 20px;
 	background-color: buttonface;
 	border-top: 1px solid white;
+	width: 100%;
+}
+#legal-notice {
+	height: 146px;
+	padding: 20px;
 }
 #legal-notice p {
 	margin-bottom: 10px;

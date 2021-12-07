@@ -151,19 +151,11 @@ function refresh ()
 	document.getElementById( 'time' ).value = ( new Date ).toLocaleString();
 	document.getElementById( 'name' ).value = external.globals( 'softwarename' );
 	document.getElementById( 'version' ).value = external.globals( 'softwareversion' );
-	( /(Windows[^;\)]+)/ ).test( navigator.appVersion );
-	var Windows = RegExp.$1;
-	if ( Windows == 'Windows NT 5.0' )
-		Windows = 'Windows 2000';
-	else if ( Windows == 'Windows NT 5.1' )
-		Windows = 'Windows XP';
-	else if ( Windows == 'Windows NT 5.2' )
-		Windows = 'Windows 2003';
-	else if ( Windows == 'Windows NT 6.0' )
-		Windows = 'Windows Vista';
-	else if ( Windows == 'Windows NT 6.1' )
-		Windows = 'Windows 7';
+
+	var Windows = external.globals( 'OSVersion' );
 	document.getElementById( 'os' ).value = Windows + ' (' + navigator.userLanguage + ')';
+
+	document.getElementById( 'hostname' ).value = external.globals( 'HostName' );;
 
 	var hook = new XMPPHookIQ();
 	hook.Window = external.wnd;
@@ -397,6 +389,7 @@ function save ()
 <TR><TD id=txt_software></TD><TD><INPUT type=text class=text id=name readonly></TD></TR>
 <TR><TD id=txt_version></TD><TD><INPUT type=text class=text id=version readonly></TD></TR>
 <TR><TD id=txt_os></TD><TD><INPUT type=text class=text id=os readonly></TD></TR>
+<TR><TD id=txt_hostname></TD><TD><INPUT type=text readonly class=text id=hostname></TD></TR>
 </TABLE>
 </FIELDSET>
 

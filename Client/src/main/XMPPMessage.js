@@ -23,6 +23,7 @@ function XMPPMessage ()
 	this.To						= '';
 	this.ToAddress				= new XMPPAddress();
 	this.Type					= 'normal';
+	this.Attention				= '';
 	this.OOB					= [];
 	this.EventId				= '';
 	this.WantsComposing			= false;
@@ -66,6 +67,10 @@ function XMPPMessage ()
 
 		if ( node = dom.documentElement.getAttribute( 'type' ) )
 			this.Type = node;
+		/** JEP 224 -  Attention
+		*/
+		if ( node = dom.selectSingleNode( '/message/attention' ) )
+			this.Attention = node.getAttribute( 'xmlns' );
 
 		if ( node = dom.selectSingleNode( '/message/thread' ) )
 			this.Thread = node.text;

@@ -14,7 +14,7 @@ function dial_conference_invite ( Tracker, Contact, Group )
 			setIcon( external.globals( 'cwd' ) + '..\\images\\conference\\contacts.ico' );
 			resizeable( false );
 			MinHeight = MinWidth = 0;
-			setSize( 300, 450 );
-			setPos( ( screen.availWidth - 300 ) / 2, ( screen.availHeight - 450 ) / 2 );
+			setSize( 500, 450 );
+			setPos( ( screen.availWidth - 500 ) / 2, ( screen.availHeight - 450 ) / 2 );
 		}
 }

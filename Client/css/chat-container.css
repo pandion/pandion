@@ -88,32 +88,60 @@ textarea, input, button {
 	text-overflow: ellipsis;
 	overflow: hidden;
 	font-family: "Segoe UI", Tahoma;
-	font-size: 11px;
+	font-size: 12px;
 	color: #4f575c;
 }
 #mode-name {
-	float: left;
 	font-family: "Segoe UI", Tahoma;
 	font-size: 14px;
 	font-weight: bold;
 	color: #1a7ab0;
-}
-#mode-message {
-	height: 16px;
-	width: 100%;
-	padding: 0 0 0 2px;
-	font-family: "Segoe UI", Tahoma;
-	font-size: 11px;
-	color: #1a7ab0;
-	text-overflow: ellipsis;
-	overflow: hidden;
+	text-align: left;
 }
 #mode-address {
 	margin: 4px 0 0 6px;
-	float: left;
 	font-family: "Segoe UI", Tahoma;
 	font-size: 11px;
 	color: #1a7ab0;
+}
+#mode-bottom {
+	width: 100%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	font-family: "Segoe UI", Tahoma;
+	font-size: 11px;
+	color: #1a7ab0;
+}
+#mode-message {
+	font-family: "Segoe UI", Tahoma;
+	font-size: 11px;
+	vertical-align: middle;
+	margin-left: 3px;
+}
+#mode-status {
+	height: 10px;
+	width: 10px;
+	vertical-align: middle;
+}
+.mode-status-offline {
+	color: #000000;
+	background: url(../images/status/offline.png) no-repeat center left; 
+}
+.mode-status-available {
+	color: #1A850A;
+	background: url(../images/status/available.png) no-repeat center left; 
+}
+.mode-status-away {
+	color: #1A7AB0;
+	background: url(../images/status/away.png) no-repeat center left;
+}
+.mode-status-buzy {
+	color: #FF3030;
+	background: url(../images/status/buzy.png) no-repeat center left;
+}
+.mode-status-unknown {
+	color: #FEC109;
+	background: url(../images/status/unknown.png) no-repeat center left;
 }
 .mode-message-link {
 	font-family: "Segoe UI", Tahoma;
@@ -164,7 +192,7 @@ textarea, input, button {
 /* Messages
  */
 #chat-area {
-    height: 100%;
+	 height: 100%;
 }
 
 /* Message composition
@@ -316,6 +344,10 @@ textarea, input, button {
 }
 .toolbar-button-over {
 	color: buttontext;
+	background-color: transparent;
+	border: 1px buttontext solid;
+	margin-left: 1px;
+	margin-right: 1px;
 }
 .toolbar-button span, .toolbar-button-over span {
 	margin: 0 0 0 3px;
@@ -323,6 +355,7 @@ textarea, input, button {
 	background: no-repeat left center;
 	height: 24px;
 }
+
 #btn-emoticons span {
 	background-image: url(../images/chat-container/emoticon.png);
 }
@@ -332,11 +365,23 @@ textarea, input, button {
 #btn-background span {
 	background-image: url(../images/chat-container/theme.png);
 }
+#btn-send-like span {
+	background-image: url(../images/chat-container/like.png);
+}
+#btn-get-attention .enabled-message {
+	background-image: url(../images/chat-container/attention-message.png);
+}
+#btn-get-attention .enabled {
+	background-image: url(../images/chat-container/attention-enabled.png);
+}
+#btn-get-attention .disabled {
+	background-image: url(../images/chat-container/attention-disabled.png);
+}
 #resize-grip {
 	position: absolute;
 	overflow: hidden;
 	cursor: n-resize;
-	margin: 28px 0 0 0;
+	margin: 0 0 5px 0;
 	height: 5px;
 	width: 100%;
 }
@@ -415,4 +460,36 @@ html.rtl .toolbar-button span, html.rtl .toolbar-button-over span {
 }
 html.rtl #occupants-panel {
 	padding: 0 6px 0 0;
+}
+#txt-new-tab-title {
+	font-family: "Segoe UI", Tahoma;
+	margin: 40px 0px 0px 40px;
+	font-weight: normal;
+	font-size: 2em;
+}
+#new-tab-address {
+	font-family: "Segoe UI", Tahoma;
+	margin: 0px 0px 0px 40px;
+	font-weight: normal;
+	width: 350px;
+	height: 25px;
+	font-size: 15px;
+	text-align: left;
+}
+#btn-new-tab-address {
+	font-family: "Segoe UI", Tahoma;
+	margin: 0;
+	font-weight: normal;
+	width: 30px;
+	height: 25px;
+	font-size: 15px;
+}
+#mode-help {
+	position: absolute; 
+	right: 5px; 
+	bottom: 3px;
+	width: 20px;
+	height: 20px;
+	background: url(..\images\chat-container\help.png) no-repeat center center; 
+	z-index: 1000; 
 }
